@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.project.model.house;
 
 import pt.ipp.isep.dei.project.model.Measurable;
 import pt.ipp.isep.dei.project.model.Reading;
+import pt.ipp.isep.dei.project.model.RoomReading;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
@@ -231,8 +232,8 @@ public RoomSensorList getSensorList() {
      * @return latest measurement by sensor type
  */
 
-    public Reading getLatestMeasurementBySensorType(SensorType type) {
-        return sensorList.getLatestMeasurementBySensorType(type);
+    public RoomReading getLatestMeasurementBySensorType(SensorType type) {
+        return new RoomReading(sensorList.getLatestMeasurementBySensorType(type).getValue(),sensorList.getLatestMeasurementBySensorType(type).getDateTime());
     }
 
 

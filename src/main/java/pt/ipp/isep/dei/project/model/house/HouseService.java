@@ -96,8 +96,8 @@ public class HouseService {
         //throw new RuntimeException("There are no sensors with that id in the rooms.");
     }
 
-    public void updateRepository(String sensorId) {
-        roomRepository.save(getRoomWithRightSensor(sensorId));
+    public void updateRepository(Room room) {
+        roomRepository.save(room);
     }
 
 }

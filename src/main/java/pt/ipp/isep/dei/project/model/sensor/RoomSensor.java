@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.project.model.sensor;
 
-import pt.ipp.isep.dei.project.model.Reading;
+import pt.ipp.isep.dei.project.model.RoomReading;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import javax.persistence.*;
@@ -11,16 +11,16 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-public class RoomSensor implements Sensor {
+public class RoomSensor {
     @Id
     private String id;
     private String sensorName;
     private LocalDateTime startingDate;
 
     @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "Reading",
+    @CollectionTable(name = "RoomReading",
             joinColumns = @JoinColumn(name = "SENSOR_ID"))
-    private List<Reading> listOfReadings = new ArrayList<>();
+    private List<RoomReading> listOfRoomReadings = new ArrayList<>();
 
     @Embedded
     private SensorType sensorType;
@@ -62,7 +62,7 @@ public class RoomSensor implements Sensor {
     public double getMaximumValueOfDay(LocalDate date) {
         if (!getDailyMeasurement(date).isEmpty()) {
             double maximumValueOfDay = getDailyMeasurement(date).get(0).getValue();
-            for (Reading reading : getDailyMeasurement(date)) {
+            for (RoomReading reading : getDailyMeasurement(date)) {
                 if (!Utils.isFirstDoubleBiggerThanSecondOne(maximumValueOfDay, reading.getValue()) && !Utils.isSameDouble(maximumValueOfDay, reading.getValue())) {
                     maximumValueOfDay = reading.getValue();
                 }
@@ -72,16 +72,16 @@ public class RoomSensor implements Sensor {
         return Double.NaN;
     }
 
-    public List<Reading> getDailyMeasurement(LocalDate date) {
-        List<Reading> daylyReadings = new ArrayList<>();
-        for (Reading registo : listOfReadings) {
+    public List<RoomReading> getDailyMeasurement(LocalDate date) {
+        List<RoomReading> daylyRoomReadings = new ArrayList<>();
+        for (RoomReading registo : listOfRoomReadings) {
             LocalDate secondDate = registo.getDateTime().toLocalDate();
 
             if (checkIfDaysAreEqual(date, secondDate) && (!Double.isNaN(registo.getValue()))) {
-                daylyReadings.add(registo);
+                daylyRoomReadings.add(registo);
             }
         }
-        return daylyReadings;
+        return daylyRoomReadings;
 
     }
 
@@ -90,7 +90,7 @@ public class RoomSensor implements Sensor {
     }
 
     public boolean isMeasurementListEmpty() {
-        return listOfReadings.isEmpty();
+        return listOfRoomReadings.isEmpty();
     }
 
     public boolean sensorTypeEqualsSensorType(SensorType type) {
@@ -98,29 +98,29 @@ public class RoomSensor implements Sensor {
         return (this.getSensorType().getType().equals(tipoDoSensorPedido));
     }
 
-    public Reading getLastMeasurement() {
-        if (listOfReadings.isEmpty()) {
+    public RoomReading getLastMeasurement() {
+        if (listOfRoomReadings.isEmpty()) {
             return null;
         }
-        Reading reading = listOfReadings.get(0);
-        for (int i = (listOfReadings.size() - 1); i > 0; i--) {
-            if (!(Double.isNaN(listOfReadings.get(i).getValue()))) {
-                return listOfReadings.get(i);
+        RoomReading reading = listOfRoomReadings.get(0);
+        for (int i = (listOfRoomReadings.size() - 1); i > 0; i--) {
+            if (!(Double.isNaN(listOfRoomReadings.get(i).getValue()))) {
+                return listOfRoomReadings.get(i);
             }
         }
         return reading;
     }
 
-    public boolean addReading(Reading reading) {
+    public boolean addRoomReading(RoomReading reading) {
         if (!this.readingExistsBySensorIdLocalDateTime(reading)) {
-            return this.listOfReadings.add(reading);
+            return this.listOfRoomReadings.add(reading);
         }
         return false;
     }
 
-    public boolean readingExistsBySensorIdLocalDateTime(Reading reading) {
-        if (!listOfReadings.isEmpty()) {
-            for (Reading reading1 : listOfReadings) {
+    public boolean readingExistsBySensorIdLocalDateTime(RoomReading reading) {
+        if (!listOfRoomReadings.isEmpty()) {
+            for (RoomReading reading1 : listOfRoomReadings) {
                 if (reading1.getDateTime() == reading.getDateTime())
                     return true;
             }

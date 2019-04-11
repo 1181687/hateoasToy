@@ -24,7 +24,10 @@ public class ImportGeoAreasFromJSONOrXML {
         // Write the path
         String path = InputValidator.getString("Please specify the name of the file to import.");
         File file = new File(path);
-
+        if (!isValidFormat(path)) {
+            System.out.println("\nERROR: Please insert a valid format.\n");
+            return;
+        }
 
         if (!file.exists()) {
             System.out.println("\nERROR: There's no such file with that name.\n");
@@ -73,4 +76,13 @@ public class ImportGeoAreasFromJSONOrXML {
         }
     }
 
+    /**
+     * Check if format is valid.
+     *
+     * @param fileName
+     * @return
+     */
+    private boolean isValidFormat(String fileName) {
+        return fileName.endsWith(".json") || fileName.endsWith(".xml");
+    }
 }

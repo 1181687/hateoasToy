@@ -1,12 +1,10 @@
 package pt.ipp.isep.dei.project.controllers.importreadingsfromcsvcontroller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import pt.ipp.isep.dei.project.model.ProjectFileReader;
-import pt.ipp.isep.dei.project.model.Reading;
-import pt.ipp.isep.dei.project.model.ReadingDTO;
-import pt.ipp.isep.dei.project.model.ReadingMapper;
+import pt.ipp.isep.dei.project.model.*;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaService;
 import pt.ipp.isep.dei.project.model.house.HouseService;
+import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorList;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
@@ -24,11 +22,19 @@ import java.util.logging.Logger;
 
 public class ImportReadingsController {
     private static final Logger LOGGER = Logger.getLogger(ImportReadingsController.class.getName());
+    /*private static final String READING_MESSAGE_ERROR = "Reading not imported: date of reading is before starting date of sensor. ";
+    private static final String DUPLICATE_READING_MESSAGE_ERROR = "Reading not imported: duplicate reading ";
+    private static final String SENSOR_NOT_ACTIVE = "Reading not imported: Sensor is deactive on the specific date.";
+    private static final String SENSOR_NOT_EXISTS = "Reading not imported: Sensor does not exist.";
+    private static final String DATE_INVALID = "Reading not imported: Invalid date. ";
+    */
+
     @Autowired
     private GeographicalAreaService geographicalAreaService;
     private GeoAreaSensorList allSensorInTheGeoAreas;
     private GeoAreaSensor geoAreaSensor;
     private RoomSensor roomSensor;
+    private Room room;
     private List<Object> readingDTOList;
     private int numberOfNotImportedReadings;
     @Autowired
@@ -85,6 +91,12 @@ public class ImportReadingsController {
                     numberOfNotImportedReadings++;
                     continue;
                 }
+                if (Objects.isNull(reading.getDateTime())) {
+                    numberOfNotImportedReadings++;
+                    String invalidInfo = "id: " + reading.getId() + ", value: " + reading.getValue() + ", timestamp/date: " + reading.getDateTime() + ", unit: " + reading.getUnits() + ".";
+                    LOGGER.log(Level.WARNING, "Reading not imported due to invalid timestamp/date " + invalidInfo);
+                    continue;
+                }
                 if (isDateTimeBeforeSensorStartingDate(reading.getDateTime())) {
                     numberOfNotImportedReadings++;
                     String invalidInfo = "id: " + reading.getId() + ", value: " + reading.getValue() + ", timestamp/date: " + reading.getDateTime() + ", unit: " + reading.getUnits() + ".";
@@ -94,10 +106,17 @@ public class ImportReadingsController {
             }
             if (option == 2) {
                 roomSensor = houseService.getSensorById(reading.getId());
+                room = houseService.getRoomWithRightSensor(reading.getId());
                 if (Objects.isNull(roomSensor) || !roomSensor.isActive()) {
                     numberOfNotImportedReadings++;
                     String invalidInfo = "id: " + reading.getId() + ", value: " + reading.getValue() + ", timestamp/date: " + reading.getDateTime() + ", unit: " + reading.getUnits() + ".";
                     LOGGER.log(Level.WARNING, "Reading not imported due to something: " + invalidInfo);
+                    continue;
+                }
+                if (Objects.isNull(reading.getDateTime())) {
+                    numberOfNotImportedReadings++;
+                    String invalidInfo = "id: " + reading.getId() + ", value: " + reading.getValue() + ", timestamp/date: " + reading.getDateTime() + ", unit: " + reading.getUnits() + ".";
+                    LOGGER.log(Level.WARNING, "Reading not imported due to invalid timestamp/date " + invalidInfo);
                     continue;
                 }
                 if (isDateTimeBeforeRoomSensorStartingDate(reading.getDateTime())) {
@@ -116,9 +135,10 @@ public class ImportReadingsController {
                 imported = true;
                 this.geographicalAreaService.updateRepository();
             }
-            if (option == 2 && roomSensor.addReading(ReadingMapper.mapToEntity(reading))) {
+            if (option == 2 && room.getSensorById(reading.getId()).addRoomReading(new RoomReading(ReadingMapper.mapToEntity(reading).getValue(),ReadingMapper.mapToEntity(reading).getDateTime()))) {
+
                 imported = true;
-                this.houseService.updateRepository(roomSensor.getId());
+                this.houseService.updateRepository(room);
             }
         }
 
@@ -154,4 +174,179 @@ public class ImportReadingsController {
         readingDTOList = fileReader.readFile(file);
         return readingDTOList;
     }
+
+    /*
+    public static void printxmlRoomReadings (String invalidSensorID, String invalidValue, String xmlOption) {
+
+        try {
+
+            DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+
+            // root elements
+            Document doc = docBuilder.newDocument();
+            Element rootElement = doc.createElement("smart_home");
+            doc.appendChild(rootElement);
+
+            // error report elements
+            Element errorsReport = doc.createElement("errors_report");
+            rootElement.appendChild(errorsReport);
+
+
+            // HOUSE
+            Element house = doc.createElement("house");
+            errorsReport.appendChild(house);
+
+
+            // ROOM
+            Element room =doc.createElement("room");
+            house.appendChild(room);
+
+            // SENSOR
+            Element roomSensors = doc.createElement("sensor");
+            room.appendChild(roomSensors);
+
+            //READINGS
+            Element roomSensorReadings = doc.createElement("room_sensor_reading");
+            roomSensors.appendChild(roomSensorReadings);
+
+            //Reading attribute id sensor
+            Attr attrRoomSensorId =doc.createAttribute("sensor_id");
+            attrRoomSensorId.setValue(invalidSensorID);
+            roomSensorReadings.setAttributeNode(attrRoomSensorId);
+
+            // reading error elements
+            Element readingError = doc.createElement("reading_error");
+            readingError.appendChild(doc.createTextNode(invalidValue));
+            roomSensors.appendChild(readingError);
+            switch (xmlOption) {
+                case READING_MESSAGE_ERROR:
+                    // cause elements - IF DATE IS BEFORE!!
+                    Element dateBeforeMessage = doc.createElement("cause");
+                    dateBeforeMessage.appendChild(doc.createTextNode(READING_MESSAGE_ERROR));
+                    roomSensors.appendChild(dateBeforeMessage);
+                    break;
+                case DUPLICATE_READING_MESSAGE_ERROR:
+
+                    // cause elements - IF DUPLICATE READING!!
+                    Element duplicateValueMessage = doc.createElement("cause");
+                    duplicateValueMessage.appendChild(doc.createTextNode(DUPLICATE_READING_MESSAGE_ERROR));
+                    roomSensors.appendChild(duplicateValueMessage);
+                    break;
+                case SENSOR_NOT_ACTIVE:
+                    // cause elements - IF SENSOR IS NOT ACTIVE!!
+                    Element sensorDeactive = doc.createElement("cause");
+                    sensorDeactive.appendChild(doc.createTextNode(SENSOR_NOT_ACTIVE));
+                    roomSensors.appendChild(sensorDeactive);
+                    break;
+                case SENSOR_NOT_EXISTS:
+                    // cause elements - IF SENSOR NOT EXISTS!!
+                    Element sensorNull = doc.createElement("cause");
+                    sensorNull.appendChild(doc.createTextNode(SENSOR_NOT_EXISTS));
+                    roomSensors.appendChild(sensorNull);
+                    break;
+                default:
+                    System.out.println("ola");
+
+            }
+
+
+            // write the content into xml file
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            DOMSource source = new DOMSource(doc);
+            StreamResult result = new StreamResult(new File("log/File.xml"));
+
+            // Output to console for testing
+            // StreamResult result = new StreamResult(System.out);
+
+            transformer.transform(source, result);
+
+            System.out.println("File saved!");
+
+        } catch (ParserConfigurationException pce) {
+            pce.printStackTrace();
+
+        } catch (TransformerException tfe) {
+            tfe.printStackTrace();
+        }
+    }
+
+    public static void printxmlNullSensor () {
+        try {
+            DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+
+            // root elements
+            Document doc = docBuilder.newDocument();
+            Element rootElement = doc.createElement("smart_home");
+            doc.appendChild(rootElement);
+
+            // error report elements
+            Element errorsReport = doc.createElement("errors_report");
+            rootElement.appendChild(errorsReport);
+
+
+            // HOUSE
+            Element house = doc.createElement("house");
+            errorsReport.appendChild(house);
+
+
+            // ROOM
+            Element room =doc.createElement("room");
+            house.appendChild(room);
+
+            // SENSOR
+            Element roomSensors = doc.createElement("sensor");
+            room.appendChild(roomSensors);
+
+            Element sensorNull = doc.createElement("cause");
+            sensorNull.appendChild(doc.createTextNode(SENSOR_NOT_EXISTS));
+            roomSensors.appendChild(sensorNull);
+        }
+        catch (ParserConfigurationException pce) {
+            pce.printStackTrace();
+
+        }
+
+    }
+
+    public static void printxmlReadingBeforeStartingDate () {
+        try {
+            DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+
+            // root elements
+            Document doc = docBuilder.newDocument();
+            Element rootElement = doc.createElement("smart_home");
+            doc.appendChild(rootElement);
+
+            // error report elements
+            Element errorsReport = doc.createElement("errors_report");
+            rootElement.appendChild(errorsReport);
+
+
+            // HOUSE
+            Element house = doc.createElement("house");
+            errorsReport.appendChild(house);
+
+
+            // ROOM
+            Element room =doc.createElement("room");
+            house.appendChild(room);
+
+            // SENSOR
+            Element roomSensors = doc.createElement("sensor");
+            room.appendChild(roomSensors);
+
+            Element sensorNull = doc.createElement("cause");
+            sensorNull.appendChild(doc.createTextNode(READING_MESSAGE_ERROR));
+            roomSensors.appendChild(sensorNull);
+        }
+        catch (ParserConfigurationException pce) {
+            pce.printStackTrace();
+
+        }
+
+    }*/
 }
