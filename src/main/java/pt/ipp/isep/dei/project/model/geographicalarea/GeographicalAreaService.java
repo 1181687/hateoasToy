@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class GeographicalAreaList {
+public class GeographicalAreaService {
 
     private List<GeographicalArea> geoAreaList;
 
@@ -21,7 +21,7 @@ public class GeographicalAreaList {
     /**
      * constructor that receives a new list of Geographical Areas.
      */
-    public GeographicalAreaList() {
+    public GeographicalAreaService() {
         this.geoAreaList = new ArrayList<>();
     }
 

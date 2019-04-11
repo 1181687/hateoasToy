@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.AddSensorToGeoAreaController;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaService;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeList;
 
 import java.util.Scanner;
@@ -12,8 +12,8 @@ area, so that one can get measurements of that type in that area. */
 public class AddSensorToGeoArea {
     private AddSensorToGeoAreaController controller;
 
-    public AddSensorToGeoArea(GeographicalAreaList geographicalAreaList, SensorTypeList sensorTypeList) {
-        this.controller = new AddSensorToGeoAreaController(sensorTypeList, geographicalAreaList);
+    public AddSensorToGeoArea(GeographicalAreaService geographicalAreaService, SensorTypeList sensorTypeList) {
+        this.controller = new AddSensorToGeoAreaController(sensorTypeList, geographicalAreaService);
     }
 
     public void run() {

@@ -56,7 +56,7 @@ public class Main {
 
     //GeographicalArea Repository Injection
     @Autowired
-    private GeographicalAreaList geographicalAreaList;
+    private GeographicalAreaService geographicalAreaService;
 
     //House Repository Injection
     @Autowired
@@ -77,8 +77,8 @@ public class Main {
             data();
 
             //UI levels
-            Admin admin = new Admin(geographicalAreaTypeList, geographicalAreaList, sensorTypeList, houseEdificioB, powerSourceTypeList, houseEdificioB.getRoomList(), houseService);
-            RegularUser regularUser = new RegularUser(geographicalAreaTypeList, geographicalAreaList, sensorTypeList, houseEdificioB);
+            Admin admin = new Admin(geographicalAreaTypeList, geographicalAreaService, sensorTypeList, houseEdificioB, powerSourceTypeList, houseEdificioB.getRoomList(), houseService);
+            RegularUser regularUser = new RegularUser(geographicalAreaTypeList, geographicalAreaService, sensorTypeList, houseEdificioB);
             PowerUser powerUser = new PowerUser(houseEdificioB);
             RoomOwner roomOwner = new RoomOwner(houseEdificioB);
 

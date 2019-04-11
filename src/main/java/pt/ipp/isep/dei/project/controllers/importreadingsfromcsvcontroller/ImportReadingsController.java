@@ -5,7 +5,7 @@ import pt.ipp.isep.dei.project.model.ProjectFileReader;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.ReadingMapper;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaService;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorList;
 import pt.ipp.isep.dei.project.utils.Utils;
@@ -23,7 +23,7 @@ import java.util.logging.Logger;
 public class ImportReadingsController {
     private static final Logger LOGGER = Logger.getLogger(ImportReadingsController.class.getName());
     @Autowired
-    private GeographicalAreaList geographicalAreaList;
+    private GeographicalAreaService geographicalAreaService;
     private GeoAreaSensorList allSensorInTheGeoAreas;
     private GeoAreaSensor sensor;
     private List<Object> readingDTOList;
@@ -32,11 +32,11 @@ public class ImportReadingsController {
     /**
      * Constructor.
      *
-     * @param geographicalAreaList GeographicalAreaList to be used.
+     * @param geographicalAreaService GeographicalAreaList to be used.
      */
-    public ImportReadingsController(GeographicalAreaList geographicalAreaList) {
-        this.geographicalAreaList = geographicalAreaList;
-        this.allSensorInTheGeoAreas = this.geographicalAreaList.getAllSensors();
+    public ImportReadingsController(GeographicalAreaService geographicalAreaService) {
+        this.geographicalAreaService = geographicalAreaService;
+        this.allSensorInTheGeoAreas = this.geographicalAreaService.getAllSensors();
     }
 
     /**
@@ -92,7 +92,7 @@ public class ImportReadingsController {
 
             this.geographicalAreaList.updateRepository();
         }*/
-        this.geographicalAreaList.updateRepository();
+        this.geographicalAreaService.updateRepository();
         return imported;
     }
 
