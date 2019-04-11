@@ -49,10 +49,10 @@ activate "ui : ImportRoomSensors"
 "ui : ImportRoomSensors" -> "ctrl : ImportRoomSensors\nController": importSensorsToRooms()
 activate "ctrl : ImportRoomSensors\nController"
 loop for each roomSensorDTO
-"ctrl : ImportRoomSensors\nController" -> ReadingMapper: mapToEntity(roomSensorDTOs)
-activate ReadingMapper
-ReadingMapper --> "ctrl : ImportRoomSensors\nController": RoomSensor sensor
-deactivate ReadingMapper
+"ctrl : ImportRoomSensors\nController" -> RoomSensorMapper: mapToEntity(roomSensorDTOs)
+activate RoomSensorMapper
+RoomSensorMapper --> "ctrl : ImportRoomSensors\nController": RoomSensor sensor
+deactivate RoomSensorMapper
 "ctrl : ImportRoomSensors\nController" -> "HouseService": addSensorToRoom(roomId,sensor)
 activate HouseService
 ref over HouseService
