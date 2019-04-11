@@ -157,7 +157,7 @@ public class Admin {
                     }
                     break;
                 case 14:
-                    ImportRoomSensors ui260 = new ImportRoomSensors(roomList);
+                    ImportRoomSensors ui260 = new ImportRoomSensors(houseService);
                     ui260.run();
                     break;
             }
