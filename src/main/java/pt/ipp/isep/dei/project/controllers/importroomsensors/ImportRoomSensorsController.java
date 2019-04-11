@@ -3,10 +3,8 @@ package pt.ipp.isep.dei.project.controllers.importroomsensors;
 import pt.ipp.isep.dei.project.model.ProjectFileReader;
 import pt.ipp.isep.dei.project.model.house.HouseService;
 import pt.ipp.isep.dei.project.model.house.RoomId;
-import pt.ipp.isep.dei.project.model.house.RoomList;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensorDTO;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensorMapper;
-import pt.ipp.isep.dei.project.model.sensor.Sensor;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.io.File;
@@ -22,8 +20,6 @@ public class ImportRoomSensorsController {
     private List<Object> DTOList;
     private int numberOfNotImportedReadings;
     private HouseService houseService;
-    private RoomList roomList;
-    private Sensor sensor;
 
     public ImportRoomSensorsController(HouseService houseService) {
         // this.roomList = roomList;
