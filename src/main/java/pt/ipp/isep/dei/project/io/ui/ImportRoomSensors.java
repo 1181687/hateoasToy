@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.project.io.ui;
 
-import pt.ipp.isep.dei.project.controllers.importroomsensorandreadings.ImportRoomSensorsAndReadingsController;
+import pt.ipp.isep.dei.project.controllers.importroomsensorandreadings.ImportRoomSensorsController;
 import pt.ipp.isep.dei.project.model.house.HouseService;
 
 import java.io.File;
@@ -9,12 +9,12 @@ import java.util.List;
 
 public class ImportRoomSensors {
 
-    private ImportRoomSensorsAndReadingsController controller;
+    private ImportRoomSensorsController controller;
     private String filePath;
     private File file;
 
     public ImportRoomSensors(HouseService houseService) {
-        this.controller = new ImportRoomSensorsAndReadingsController(houseService);
+        this.controller = new ImportRoomSensorsController(houseService);
     }
 
     public void run() throws FileNotFoundException {

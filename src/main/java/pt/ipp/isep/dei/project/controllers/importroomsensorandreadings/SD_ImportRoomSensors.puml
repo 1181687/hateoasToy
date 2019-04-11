@@ -1,4 +1,5 @@
 @startuml
+autonumber
 skinparam sequenceMessageAlign center
 skinparam sequence {
 	ArrowColor Black
@@ -20,47 +21,47 @@ skinparam sequence {
 activate AdminUser
 actor AdminUser
 
-AdminUser -> "ui : ImportRoomSensors":1 - Import room sensors
+AdminUser -> "ui : ImportRoomSensors": Import room sensors
 activate "ui : ImportRoomSensors"
-"ui : ImportRoomSensors" --> AdminUser: 2 - Ask for the file path
+"ui : ImportRoomSensors" --> AdminUser: Ask for the file path
 deactivate "ui : ImportRoomSensors"
-AdminUser -> "ui : ImportRoomSensors": 3 - File path
+AdminUser -> "ui : ImportRoomSensors": File path
 activate "ui : ImportRoomSensors"
-"ui : ImportRoomSensors" -> "ctrl : ImportRoomSensors\nController": 3.1 - readFile(file, path)
+"ui : ImportRoomSensors" -> "ctrl : ImportRoomSensors\nController": readFile(file, path)
 activate "ctrl : ImportRoomSensors\nController"
-"ctrl : ImportRoomSensors\nController" -> "reader : Reader": 3.1.1 - createReader(path)
+"ctrl : ImportRoomSensors\nController" -> "reader : Reader": createReader(path)
 activate "reader : Reader"
-"reader : Reader" --> "ctrl : ImportRoomSensors\nController": 3.1.2 - reader
+"reader : Reader" --> "ctrl : ImportRoomSensors\nController": reader
 deactivate "reader : Reader"
-"ctrl : ImportRoomSensors\nController" -> "reader : Reader": 3.1.3 - readFile(file)
+"ctrl : ImportRoomSensors\nController" -> "reader : Reader": readFile(file)
 activate "reader : Reader"
 ref over "reader : Reader"
 readFile
 end
-"reader : Reader" --> "ctrl : ImportRoomSensors\nController": 3.1.4 - roomSensorDTOs
+"reader : Reader" --> "ctrl : ImportRoomSensors\nController": roomSensorDTOs
 deactivate "reader : Reader"
-"ctrl : ImportRoomSensors\nController" --> "ui : ImportRoomSensors": 3.2 - roomSensorDTOs
+"ctrl : ImportRoomSensors\nController" --> "ui : ImportRoomSensors": roomSensorDTOs
 deactivate "ctrl : ImportRoomSensors\nController"
-"ui : ImportRoomSensors" --> AdminUser: 4 - Ask for confirmation
+"ui : ImportRoomSensors" --> AdminUser: Ask for confirmation
 deactivate "ui : ImportRoomSensors"
-AdminUser -> "ui : ImportRoomSensors": 5 - Confirmation received
+AdminUser -> "ui : ImportRoomSensors": Confirmation received
 activate "ui : ImportRoomSensors"
-"ui : ImportRoomSensors" -> "ctrl : ImportRoomSensors\nController": 5.1 - importSensorsToRooms()
+"ui : ImportRoomSensors" -> "ctrl : ImportRoomSensors\nController": importSensorsToRooms()
 activate "ctrl : ImportRoomSensors\nController"
 loop for each roomSensorDTO
-"ctrl : ImportRoomSensors\nController" -> ReadingMapper: 5.1.1 - mapToEntity(roomSensorDTOs)
+"ctrl : ImportRoomSensors\nController" -> ReadingMapper: mapToEntity(roomSensorDTOs)
 activate ReadingMapper
-ReadingMapper --> "ctrl : ImportRoomSensors\nController": 5.1.2 - RoomSensor sensor
+ReadingMapper --> "ctrl : ImportRoomSensors\nController": RoomSensor sensor
 deactivate ReadingMapper
-"ctrl : ImportRoomSensors\nController" -> "HouseService": 5.1.3 - addSensorToRoom(roomId,sensor)
+"ctrl : ImportRoomSensors\nController" -> "HouseService": addSensorToRoom(roomId,sensor)
 activate HouseService
 ref over HouseService
 addSensorToRoom
 end
-"HouseService" --> "ctrl : ImportRoomSensors\nController": 5.1.3.1 - true
+"HouseService" --> "ctrl : ImportRoomSensors\nController": true
 deactivate HouseService
 end loop
-"ctrl : ImportRoomSensors\nController" --> "ui : ImportRoomSensors": 5.2 - true
+"ctrl : ImportRoomSensors\nController" --> "ui : ImportRoomSensors": true
 deactivate "ctrl : ImportRoomSensors\nController"
 "ui : ImportRoomSensors" --> AdminUser: 6 - Give feedback
 deactivate "ui : ImportRoomSensors"
