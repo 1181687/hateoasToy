@@ -8,6 +8,7 @@ import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorList;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
+import pt.ipp.isep.dei.project.model.sensor.RoomSensorList;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.io.File;
@@ -35,6 +36,7 @@ public class ImportReadingsController {
     private GeoAreaSensor geoAreaSensor;
     private RoomSensor roomSensor;
     private Room room;
+    private RoomSensorList allSensorInTheHouse;
     private List<Object> readingDTOList;
     private int numberOfNotImportedReadings;
     @Autowired
@@ -50,6 +52,7 @@ public class ImportReadingsController {
         this.geographicalAreaService = geographicalAreaService;
         this.allSensorInTheGeoAreas = this.geographicalAreaService.getAllSensors();
         this.houseService = houseService;
+        this.allSensorInTheHouse = this.houseService.getAllSensors();
     }
 
     /**
@@ -87,7 +90,7 @@ public class ImportReadingsController {
             ReadingDTO reading = (ReadingDTO) object;
             if (option == 1) {
                 geoAreaSensor = allSensorInTheGeoAreas.getSensorById(reading.getId());
-                if (Objects.isNull(geoAreaSensor) || !geoAreaSensor.isActive()) {
+                if (Objects.isNull(geoAreaSensor)) {
                     numberOfNotImportedReadings++;
                     continue;
                 }
@@ -97,34 +100,70 @@ public class ImportReadingsController {
                     LOGGER.log(Level.WARNING, "Reading not imported due to invalid timestamp/date " + invalidInfo);
                     continue;
                 }
+
+                if (Objects.isNull(geoAreaSensor.getId())) {
+                    numberOfNotImportedReadings++;
+                    LOGGER.log(Level.WARNING, "Reading was not imported because its sensor has a null id.");
+                    continue;
+                }
+
                 if (isDateTimeBeforeSensorStartingDate(reading.getDateTime())) {
                     numberOfNotImportedReadings++;
                     String invalidInfo = "id: " + reading.getId() + ", value: " + reading.getValue() + ", timestamp/date: " + reading.getDateTime() + ", unit: " + reading.getUnits() + ".";
                     LOGGER.log(Level.WARNING, "Reading not imported due to timestamp/date of reading being before starting date of sensor: " + invalidInfo);
                     continue;
                 }
+
+                if (!allSensorInTheGeoAreas.geoAreaSensorExists(geoAreaSensor.getId())) {
+                    numberOfNotImportedReadings++;
+                    String invalidInfo = "id: " + geoAreaSensor.getId() + ".";
+                    LOGGER.log(Level.WARNING, "Reading was not imported because the following sensor id doesn't exist: " + invalidInfo);
+                    continue;
+                }
+
+                if (geoAreaSensor.readingExistsBySensorIdLocalDateTime(ReadingMapper.mapToEntity(reading))) {
+                    numberOfNotImportedReadings++;
+                    String invalidInfo = "sensor id: " + geoAreaSensor.getId() + ", timestamp/date: " + reading.getDateTime() + ", value: " + reading.getValue() + ".";
+                    LOGGER.log(Level.WARNING, "Reading was not imported because the following reading is duplicated: doesn't exist:\n" + invalidInfo);
+                    continue;
+                }
             }
             if (option == 2) {
                 roomSensor = houseService.getSensorById(reading.getId());
                 room = houseService.getRoomWithRightSensor(reading.getId());
-                if (Objects.isNull(roomSensor) || !roomSensor.isActive()) {
+                if (Objects.isNull(roomSensor)) {
                     numberOfNotImportedReadings++;
-                    String invalidInfo = "id: " + reading.getId() + ", value: " + reading.getValue() + ", timestamp/date: " + reading.getDateTime() + ", unit: " + reading.getUnits() + ".";
-                    LOGGER.log(Level.WARNING, "Reading not imported due to something: " + invalidInfo);
                     continue;
                 }
+
                 if (Objects.isNull(reading.getDateTime())) {
                     numberOfNotImportedReadings++;
                     String invalidInfo = "id: " + reading.getId() + ", value: " + reading.getValue() + ", timestamp/date: " + reading.getDateTime() + ", unit: " + reading.getUnits() + ".";
                     LOGGER.log(Level.WARNING, "Reading not imported due to invalid timestamp/date " + invalidInfo);
                     continue;
                 }
+
                 if (isDateTimeBeforeRoomSensorStartingDate(reading.getDateTime())) {
                     numberOfNotImportedReadings++;
                     String invalidInfo = "id: " + reading.getId() + ", value: " + reading.getValue() + ", timestamp/date: " + reading.getDateTime() + ", unit: " + reading.getUnits() + ".";
                     LOGGER.log(Level.WARNING, "Reading not imported due to timestamp/date of reading being before starting date of sensor: " + invalidInfo);
                     continue;
                 }
+
+                if (!allSensorInTheHouse.roomSensorExists(roomSensor.getId())) {
+                    numberOfNotImportedReadings++;
+                    String invalidInfo = "id: " + geoAreaSensor.getId() + ".";
+                    LOGGER.log(Level.WARNING, "Reading was not imported because the following sensor id doesn't exist: " + invalidInfo);
+                    continue;
+                }
+
+                if (roomSensor.readingExistsBySensorIdLocalDateTime(new RoomReading(ReadingMapper.mapToEntity(reading).getValue(),ReadingMapper.mapToEntity(reading).getDateTime()))) {
+                    numberOfNotImportedReadings++;
+                    String invalidInfo = "sensor id: " + roomSensor.getId() + ", timestamp/date: " + reading.getDateTime() + ", value: " + reading.getValue() + ".";
+                    LOGGER.log(Level.WARNING, "Reading was not imported because the following reading is duplicated: doesn't exist:\n" + invalidInfo);
+                    continue;
+                }
+
             }
             if (reading.getUnits().equals("F")) {
                 double celsiusValue = Utils.convertFahrenheitToCelsius(reading.getValue());

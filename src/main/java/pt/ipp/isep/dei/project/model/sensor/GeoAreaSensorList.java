@@ -311,4 +311,14 @@ public class GeoAreaSensorList {
         }
         return false;
     }
+
+    public boolean geoAreaSensorExists(String id) {
+        for (GeoAreaSensor sensor : listOfSensors) {
+            if (sensor.getId() == id) {
+                return true;
+            }
+
+        }
+        return false;
+    }
 }
