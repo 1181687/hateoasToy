@@ -67,19 +67,34 @@ public class ImportRoomSensorsController {
             if (!this.houseService.roomExists(roomId)) {
                 numberOfNotImportedReadings++;
                 String invalidInfo = "id: " + sensorDTO.getId() + ".";
-                LOGGER.log(Level.WARNING, "Sensor was not imported because " + roomId.getId() +" doesn't exist: " + invalidInfo);
-                 continue;
-            } else if (this.houseService.addSensorToRoom(RoomSensorMapper.mapToEntity(sensorDTO),roomId)) {
+                LOGGER.log(Level.WARNING, "Sensor was not imported because " + roomId.getId() + " doesn't exist: " + invalidInfo);
+                continue;
+            } else if (this.houseService.addSensorToRoom(RoomSensorMapper.mapToEntity(sensorDTO), roomId)) {
                 imported = true;
             } else {
-                LOGGER.log(Level.WARNING, "Sensor was not imported because room " + roomId.getId() +" already has a sensor with the same id: Sensor id" + sensorDTO.getId()+".");
+                LOGGER.log(Level.WARNING, "Sensor was not imported because room " + roomId.getId() + " already has a sensor with the same id: Sensor id" + sensorDTO.getId() + ".");
                 numberOfNotImportedReadings++;
             }
         }
         return imported;
     }
 
+    public String getInformation() {
 
+        int numberOfSensors = this.DTOList.size();
+        String header = "\n The chosen file contains: \n";
+
+        StringBuilder content = new StringBuilder();
+
+        content.append(header);
+        content.append("\n");
+        content.append(" > ");
+        content.append(numberOfSensors);
+        content.append(" sensors to import to the house.");
+        content.append("\n");
+
+        return content.toString();
+    }
 
 }
 

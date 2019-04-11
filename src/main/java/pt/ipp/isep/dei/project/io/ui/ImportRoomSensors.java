@@ -33,11 +33,11 @@ public class ImportRoomSensors {
 
 
         List<Object> sensors = controller.readFile(file, filePath);
-        // Import confirmation
         if (sensors.isEmpty()) {
             System.out.println("\nSorry! The file is empty.\n");
             return;
         }
+        System.out.println(controller.getInformation());
         String importConfirmation = InputValidator.confirmValidation("\nDo you really want to import the sensors? (Y/N)\n");
         if ("Y".equals(importConfirmation) || "y".equals(importConfirmation)) {
 
@@ -50,7 +50,7 @@ public class ImportRoomSensors {
                     }
                     System.out.println("\n The file was imported with success.\n");
                 } else {
-                    System.out.println("\nThe file was not imported. \n");
+                    System.out.println("\n It seems this file has already been imported. \n");
                 }
             } catch (Exception e) {
                 System.out.println("\nSorry! The file doesn't contain valid sensors. It was not possible to import them.\n");
