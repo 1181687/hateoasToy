@@ -39,16 +39,16 @@ public class RoomSensor implements Sensor {
         this.isActive = true;
     }
 
+    protected RoomSensor() {
+        // empty
+    }
+
     public String getId() {
         return id;
     }
 
     public LocalDateTime getStartingDate() {
         return startingDate;
-    }
-
-    protected RoomSensor() {
-        // empty
     }
 
     public SensorType getSensorType() {

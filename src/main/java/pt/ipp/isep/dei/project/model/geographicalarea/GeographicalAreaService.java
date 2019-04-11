@@ -147,7 +147,7 @@ public class GeographicalAreaService {
     public String getGeoAreaListToString(boolean useCriteria) {
         StringBuilder content = new StringBuilder();
         for (int i = 1; i <= geoAreaList.size(); i++) {
-            content.append(i + " - ID: " + geoAreaList.get(i - 1).getId());
+            content.append(i + " - ID: " + geoAreaList.get(i - 1).getId().getId());
             content.append(", Description: " + geoAreaList.get(i - 1).getDescription());
             content.append(", Type: " + geoAreaList.get(i - 1).getGeoAreaType().getStringOfTypeOfGeoArea());
             content.append(", Latitude: " + geoAreaList.get(i - 1).getLocation().getLatitude());
