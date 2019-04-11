@@ -1,6 +1,7 @@
 package pt.ipp.isep.dei.project.controllers.importroomsensorandreadings;
 
 import pt.ipp.isep.dei.project.model.ProjectFileReader;
+import pt.ipp.isep.dei.project.model.house.HouseService;
 import pt.ipp.isep.dei.project.model.house.RoomList;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensorDTO;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensorMapper;
@@ -19,11 +20,13 @@ import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
 public class ImportRoomSensorsAndReadingsController {
     private List<Object> DTOList;
     private int numberOfNotImportedReadings;
+    private HouseService houseService;
     private RoomList roomList;
     private Sensor sensor;
 
-    public ImportRoomSensorsAndReadingsController(RoomList roomList) {
-        this.roomList = roomList;
+    public ImportRoomSensorsAndReadingsController(HouseService houseService) {
+       // this.roomList = roomList;
+        this.houseService = houseService;
     }
 
     /**
@@ -59,23 +62,23 @@ public class ImportRoomSensorsAndReadingsController {
         return this.numberOfNotImportedReadings;
     }
 
-    /*public boolean addSensorsToRooms() {
+    public boolean addSensorsToRooms() {
         configLogFile();
         boolean imported = false;
         for (Object object : this.DTOList) {
             RoomSensorDTO sensorDTO = (RoomSensorDTO) object;
             String roomId = sensorDTO.getRoomId();
-            if (!this.roomList.isNameExistant(roomId)) {
+            if (!this.houseService.roomExists(roomId)) {
                 numberOfNotImportedReadings++;
                 String invalidInfo = "id: " + sensorDTO.getId() + ".";
                 LOGGER.log(Level.WARNING, "Sensor was not imported due because" + roomId +" doesn't exist: " + invalidInfo);
                 // continue;
-            } else if (roomSensorReadingService.saveSensor(RoomSensorMapper.mapToEntity(sensorDTO))) {
+            } else if (this.houseService.getRoomById(roomId).addSensorToListOfSensorsInRoom(RoomSensorMapper.mapToEntity(sensorDTO))) {
                 imported = true;
             }
         }
         return imported;
-    }*/
+    }
 
 
 }
