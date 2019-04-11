@@ -6,6 +6,7 @@ import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.ReadingMapper;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
+import pt.ipp.isep.dei.project.model.house.HouseService;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensorList;
@@ -32,16 +33,19 @@ public class ImportReadingsController {
     private RoomSensor roomSensor;
     private List<Object> readingDTOList;
     private int numberOfNotImportedReadings;
+    @Autowired
+    private HouseService houseService;
 
     /**
      * Constructor.
      *
      * @param geographicalAreaList GeographicalAreaList to be used.
+     * @param houseService
      */
-    public ImportReadingsController(GeographicalAreaList geographicalAreaList) {
+    public ImportReadingsController(GeographicalAreaList geographicalAreaList, HouseService houseService) {
         this.geographicalAreaList = geographicalAreaList;
         this.allSensorInTheGeoAreas = this.geographicalAreaList.getAllSensors();
-        this.allSensorInTheHouse = this.
+        this.houseService = houseService;
     }
 
     /**
@@ -50,7 +54,7 @@ public class ImportReadingsController {
      * @param localDateTime Given date time to be compared.
      * @return True or False.
      */
-    public boolean isDateTimeBeforeGeoAreaSensorStartingDate(LocalDateTime localDateTime) {
+    public boolean isDateTimeBeforeSensorStartingDate(LocalDateTime localDateTime) {
         return localDateTime.isBefore(geoAreaSensor.getStartingDate());
     }
 
@@ -81,7 +85,7 @@ public class ImportReadingsController {
                 geoAreaSensor = allSensorInTheGeoAreas.getSensorById(reading.getId());
             }
             if(option==2){
-                roomSensor = allSensorInTheHouse.getSensorById(reading.getId());
+                roomSensor = houseService.getSensorById(reading.getId());
             }
 
             if (Objects.isNull(geoAreaSensor) || Objects.isNull(roomSensor)) {

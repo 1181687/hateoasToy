@@ -81,7 +81,7 @@ public class ImportRoomSensorsAndReadingsController {
      * @return True or False.
      */
     /*
-    public boolean isDateTimeBeforeGeoAreaSensorStartingDate(LocalDateTime localDateTime) {
+    public boolean isDateTimeBeforeSensorStartingDate(LocalDateTime localDateTime) {
         return localDateTime.isBefore(sensor.getStartingDate());
     }
     */
