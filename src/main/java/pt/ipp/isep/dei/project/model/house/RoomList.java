@@ -345,9 +345,9 @@ public class RoomList {
         return content.toString();
     }
 
-    public RoomSensor getSensorById(String sensorId){
+    public RoomSensor getSensorById(String sensorId) {
         for (Room room : listOfRooms) {
-            if(Objects.nonNull(room.getSensorById(sensorId))){
+            if (Objects.nonNull(room.getSensorById(sensorId))) {
                 return room.getSensorById(sensorId);
             }
         }

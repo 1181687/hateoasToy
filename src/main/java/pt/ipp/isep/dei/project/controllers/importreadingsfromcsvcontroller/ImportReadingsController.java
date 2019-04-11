@@ -5,11 +5,11 @@ import pt.ipp.isep.dei.project.model.ProjectFileReader;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.ReadingMapper;
-import pt.ipp.isep.dei.project.model.house.HouseService;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaService;
+import pt.ipp.isep.dei.project.model.house.HouseService;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
-import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorList;
+import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.io.File;
@@ -79,10 +79,10 @@ public class ImportReadingsController {
         boolean imported = false;
         for (Object object : this.readingDTOList) {
             ReadingDTO reading = (ReadingDTO) object;
-            if(option==1){
+            if (option == 1) {
                 geoAreaSensor = allSensorInTheGeoAreas.getSensorById(reading.getId());
             }
-            if(option==2){
+            if (option == 2) {
                 roomSensor = houseService.getSensorById(reading.getId());
             }
 
@@ -90,7 +90,7 @@ public class ImportReadingsController {
                 numberOfNotImportedReadings++;
                 continue;
             }
-            if (isDateTimeBeforeSensorStartingDate(reading.getDateTime())||isDateTimeBeforeRoomSensorStartingDate(reading.getDateTime())) {
+            if (isDateTimeBeforeSensorStartingDate(reading.getDateTime()) || isDateTimeBeforeRoomSensorStartingDate(reading.getDateTime())) {
                 numberOfNotImportedReadings++;
                 String invalidInfo = "id: " + reading.getId() + ", value: " + reading.getValue() + ", timestamp/date: " + reading.getDateTime() + ", unit: " + reading.getUnits() + ".";
                 LOGGER.log(Level.WARNING, "Reading not imported due to timestamp/date of reading being before starting date of sensor: " + invalidInfo);
@@ -101,17 +101,17 @@ public class ImportReadingsController {
                 reading.setValue(Utils.round(celsiusValue, 2));
                 reading.setUnits("C");
             }
-            if (option==1 && geoAreaSensor.addReading(ReadingMapper.mapToEntity(reading))) {
+            if (option == 1 && geoAreaSensor.addReading(ReadingMapper.mapToEntity(reading))) {
                 imported = true;
             }
-            if(option==2 && roomSensor.addReading(ReadingMapper.mapToEntity(reading))){
+            if (option == 2 && roomSensor.addReading(ReadingMapper.mapToEntity(reading))) {
                 imported = true;
             }
         }
-        if(imported && option==1){
+        if (imported && option == 1) {
             this.geographicalAreaService.updateRepository();
         }
-        if(imported && option==2){
+        if (imported && option == 2) {
             this.houseService.updateRepository(roomSensor.getId());
         }
         return imported;
