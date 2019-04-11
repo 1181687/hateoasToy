@@ -24,7 +24,7 @@ public class RoomSensorList {
     }
 
     public boolean addSensor(RoomSensor sensor) {
-        if (listOfSensors.contains(sensor.getId()) || Objects.isNull(sensor.getId())) {
+        if (listOfSensors.contains(sensor) || Objects.isNull(sensor)) {
             return false;
         }
         listOfSensors.add(sensor);

@@ -122,4 +122,15 @@ public class RoomSensor implements Sensor {
         }
         return false;
     }
+
+    public boolean equals(Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (!(object instanceof RoomSensor)) {
+            return false;
+        }
+        RoomSensor sensor = (RoomSensor) object;
+        return this.id.equals(sensor.id);
+    }
 }

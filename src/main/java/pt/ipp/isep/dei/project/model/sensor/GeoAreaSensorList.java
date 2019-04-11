@@ -52,7 +52,7 @@ public class GeoAreaSensorList {
      * @return True or false.
      */
     public boolean addSensor(GeoAreaSensor sensor) {
-        if (listOfSensors.contains(sensor.getId()) || Objects.isNull(sensor.getId())) {
+        if (listOfSensors.contains(sensor) || Objects.isNull(sensor)) {
             return false;
         }
         listOfSensors.add(sensor);
