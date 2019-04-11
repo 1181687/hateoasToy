@@ -28,7 +28,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class AddGeoAreaControllerTest {
     private AddGeoAreaController controller;
     @InjectMocks
-    private GeographicalAreaList geographicalAreaList;
+    private GeographicalAreaService geographicalAreaService;
     private GeographicalArea cityOfPorto;
 
     @Mock
@@ -49,7 +49,7 @@ public class AddGeoAreaControllerTest {
         cityOfPorto = new GeographicalArea("Porto", "City of Porto", city, location, areaShape);
 
         // Controller
-        controller = new AddGeoAreaController(geographicalAreaList, geographicalAreaTypeList);
+        controller = new AddGeoAreaController(geographicalAreaService, geographicalAreaTypeList);
     }
 
     @Configuration
@@ -82,10 +82,10 @@ public class AddGeoAreaControllerTest {
         // Arrange
         controller.addNewGeoArea(cityOfPorto);
 
-        GeographicalAreaList expectedResult = geographicalAreaList;
+        GeographicalAreaService expectedResult = geographicalAreaService;
 
         // Act
-        GeographicalAreaList result = controller.getGeographicalAreaList();
+        GeographicalAreaService result = controller.getGeographicalAreaService();
 
         // Assert
         assertEquals(expectedResult, result);

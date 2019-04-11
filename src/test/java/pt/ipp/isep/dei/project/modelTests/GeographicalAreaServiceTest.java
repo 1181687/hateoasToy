@@ -16,7 +16,7 @@ import pt.ipp.isep.dei.project.io.ui.Main;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaService;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
@@ -30,11 +30,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @ContextConfiguration(classes = {Main.class},
         loader = AnnotationConfigContextLoader.class)
-@SpringJUnitConfig(GeographicalAreaListTest.Config.class)
+@SpringJUnitConfig(GeographicalAreaServiceTest.Config.class)
 @DataJpaTest
-public class GeographicalAreaListTest {
+public class GeographicalAreaServiceTest {
     @InjectMocks
-    private GeographicalAreaList geoAreaList;
+    private GeographicalAreaService geoAreaList;
     private GeographicalArea portoCity;
     private GeographicalArea bonfimStreet;
     private GeoAreaSensor sensor;

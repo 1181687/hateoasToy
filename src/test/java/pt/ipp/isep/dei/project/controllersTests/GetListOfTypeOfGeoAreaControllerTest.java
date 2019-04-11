@@ -26,7 +26,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class GetListOfTypeOfGeoAreaControllerTest {
 
     @Autowired
-    private GeographicalAreaList geographicalAreaList;
+    private GeographicalAreaService geographicalAreaService;
     private GeographicalAreaTypeList geographicalAreaTypeList;
     private GeographicalArea ag;
     private GeographicalAreaType type;
@@ -42,7 +42,7 @@ public class GetListOfTypeOfGeoAreaControllerTest {
 
         // Geo Area Type List & Geo Area List
         this.geographicalAreaTypeList = new GeographicalAreaTypeList();
-        this.controller = new GetListOfTypeOfGeoAreaController(geographicalAreaList, geographicalAreaTypeList);
+        this.controller = new GetListOfTypeOfGeoAreaController(geographicalAreaService, geographicalAreaTypeList);
     }
 
     @Configuration
@@ -54,7 +54,7 @@ public class GetListOfTypeOfGeoAreaControllerTest {
         //Arrange
         String nameType = "Urban area";
         this.geographicalAreaTypeList.addTypeOfGeoAreaToTheList(type);
-        this.geographicalAreaList.addGeoArea(ag);
+        this.geographicalAreaService.addGeoArea(ag);
 
         ArrayList<String> expectedResult = new ArrayList<>(Arrays.asList("Campus do ISEP"));
 

@@ -50,11 +50,11 @@ activate "ui : RemoveSensor\nFromGeoAreaUI"
 activate "controller : RemoveSensor\nFromGeoAreaController"
 "controller : RemoveSensor\nFromGeoAreaController" -> "geoArea \n: GeographicalArea": 3.3.1 - getSensorList()
 activate "geoArea \n: GeographicalArea"
-"geoArea \n: GeographicalArea" --> "controller : RemoveSensor\nFromGeoAreaController": 3.3.2 - sensorList
+"geoArea \n: GeographicalArea" --> "controller : RemoveSensor\nFromGeoAreaController": 3.3.2 - geoAreaSensorList
 deactivate "geoArea \n: GeographicalArea"
-"controller : RemoveSensor\nFromGeoAreaController" --> "ui : RemoveSensor\nFromGeoAreaUI": 3.4 - sensorList
+"controller : RemoveSensor\nFromGeoAreaController" --> "ui : RemoveSensor\nFromGeoAreaUI": 3.4 - geoAreaSensorList
 deactivate "controller : RemoveSensor\nFromGeoAreaController"
-"ui : RemoveSensor\nFromGeoAreaUI" -> "ui : RemoveSensor\nFromGeoAreaUI":  3.5 listToString(sensorList)
+"ui : RemoveSensor\nFromGeoAreaUI" -> "ui : RemoveSensor\nFromGeoAreaUI":  3.5 listToString(geoAreaSensorList)
 "ui : RemoveSensor\nFromGeoAreaUI" --> AdminUser: 4 - Show list and ask to \nchoose one sensor to remove
 deactivate "ui : RemoveSensor\nFromGeoAreaUI"
 AdminUser -> "ui : RemoveSensor\nFromGeoAreaUI": 5 - Sensor position

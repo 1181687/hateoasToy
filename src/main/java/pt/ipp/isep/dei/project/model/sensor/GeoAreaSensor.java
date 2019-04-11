@@ -73,6 +73,7 @@ public class GeoAreaSensor implements Sensor {
     }
 
     protected GeoAreaSensor() {
+        //empty
     }
 
     public String getId() {
@@ -303,8 +304,17 @@ public class GeoAreaSensor implements Sensor {
 
 
     public boolean addReading(Reading reading) {
-        if (!listOfReadings.contains(reading)) {
+        if (!this.readingExistsBySensorIdLocalDateTime(reading)) {
             return this.listOfReadings.add(reading);
+        }
+        return false;
+    }
+
+    public boolean readingExistsBySensorIdLocalDateTime(Reading reading) {
+
+        for (Reading reading1 : listOfReadings) {
+            if (reading1.getDateTime() == reading.getDateTime())
+                return true;
         }
         return false;
     }

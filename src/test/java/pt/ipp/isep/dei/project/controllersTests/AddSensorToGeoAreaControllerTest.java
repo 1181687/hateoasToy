@@ -17,7 +17,7 @@ import pt.ipp.isep.dei.project.io.ui.Main;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaService;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
@@ -34,7 +34,7 @@ public class AddSensorToGeoAreaControllerTest {
     private GeographicalArea campusDoIsep;
     private SensorTypeList sensorTypeList;
     @InjectMocks
-    private GeographicalAreaList geographicalAreaList;
+    private GeographicalAreaService geographicalAreaService;
 
     @Mock
     private GeoAreaRepository geoAreaRepository;
@@ -50,7 +50,7 @@ public class AddSensorToGeoAreaControllerTest {
 
         this.sensorTypeList = new SensorTypeList();
 
-        this.controller = new AddSensorToGeoAreaController(sensorTypeList, geographicalAreaList);
+        this.controller = new AddSensorToGeoAreaController(sensorTypeList, geographicalAreaService);
 
 
     }
@@ -64,7 +64,7 @@ public class AddSensorToGeoAreaControllerTest {
 
         sensorTypeList.addSensorType(sensorType);
 
-        geographicalAreaList.getGeoAreaList().add(campusDoIsep);
+        geographicalAreaService.getGeoAreaList().add(campusDoIsep);
 
         controller.getAreaGeograficaNaListaPorPosicao(0);
         controller.getTipoSensorPorPosicao(0);
@@ -96,9 +96,9 @@ public class AddSensorToGeoAreaControllerTest {
         GeographicalArea ag3 = new GeographicalArea(nomeAG3, "Cidade de Ancora", tipo3, local3, area3);
 
 
-        geographicalAreaList.addGeoArea(campusDoIsep);
-        geographicalAreaList.addGeoArea(ag2);
-        geographicalAreaList.addGeoArea(ag3);
+        geographicalAreaService.addGeoArea(campusDoIsep);
+        geographicalAreaService.addGeoArea(ag2);
+        geographicalAreaService.addGeoArea(ag3);
 
         int posicao = 0;
         String expectedResult = "ISEP";
@@ -126,9 +126,9 @@ public class AddSensorToGeoAreaControllerTest {
         AreaShape area3 = new AreaShape(10, 10, local3);
         GeographicalArea ag3 = new GeographicalArea(nomeAG3, "Cidade de Ancora", tipo3, local3, area3);
 
-        geographicalAreaList.addGeoArea(campusDoIsep);
-        geographicalAreaList.addGeoArea(ag2);
-        geographicalAreaList.addGeoArea(ag3);
+        geographicalAreaService.addGeoArea(campusDoIsep);
+        geographicalAreaService.addGeoArea(ag2);
+        geographicalAreaService.addGeoArea(ag3);
 
         int posicao = 2;
         String expectedResult = "Ancora";
@@ -145,7 +145,7 @@ public class AddSensorToGeoAreaControllerTest {
     public void testarNomeAreaGeograficaPorIndiceComApenasUmaArea () {
 
         // Arrange
-        geographicalAreaList.addGeoArea(campusDoIsep);
+        geographicalAreaService.addGeoArea(campusDoIsep);
 
         int posicao = 0;
         String expectedResult = "ISEP";
@@ -169,8 +169,8 @@ public class AddSensorToGeoAreaControllerTest {
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, "Cidade de Ancora", tipo2, local2, area2);
 
 
-        geographicalAreaList.addGeoArea(campusDoIsep);
-        geographicalAreaList.addGeoArea(ag2);
+        geographicalAreaService.addGeoArea(campusDoIsep);
+        geographicalAreaService.addGeoArea(ag2);
 
         int expectedResult = 2;
 
@@ -296,7 +296,7 @@ public class AddSensorToGeoAreaControllerTest {
         GeoAreaSensor s1 = new GeoAreaSensor("123", "s1", sensorType, local, "l/m2");
 
         sensorTypeList.addSensorType(sensorType);
-        geographicalAreaList.getGeoAreaList().add(campusDoIsep);
+        geographicalAreaService.getGeoAreaList().add(campusDoIsep);
 
         controller.getAreaGeograficaNaListaPorPosicao(0);
         controller.getTipoSensorPorPosicao(0);
@@ -321,7 +321,7 @@ public class AddSensorToGeoAreaControllerTest {
         GeoAreaSensor s1 = new GeoAreaSensor(id, name, sensorType, locS1, units);
 
         sensorTypeList.addSensorType(sensorType);
-        geographicalAreaList.getGeoAreaList().add(campusDoIsep);
+        geographicalAreaService.getGeoAreaList().add(campusDoIsep);
         controller.getAreaGeograficaNaListaPorPosicao(0);
         controller.getTipoSensorPorPosicao(0);
         controller.criarNovaLocalizacao(45, 45, 45);
