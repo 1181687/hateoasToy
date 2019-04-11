@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2019-04-11T18:03:45</date>
+  <millis>1555002225596</millis>
+  <sequence>4</sequence>
+  <logger>com.sun.xml.internal.ws.spi.db.BindingContextFactory</logger>
+  <level>WARNING</level>
+  <class>pt.ipp.isep.dei.project.controllers.configurehouseinformationfromjsoncontroller.ConfigureHouseInformationFromJsonController</class>
+  <method>checkForInvalidRoomInfo</method>
+  <thread>14</thread>
+  <message>Room was not imported because B106 already exists: id: pt.ipp.isep.dei.project.model.house.RoomId@b6510f0.</message>
+</record>
+<record>
+  <date>2019-04-11T18:03:45</date>
+  <millis>1555002225605</millis>
+  <sequence>5</sequence>
+  <logger>com.sun.xml.internal.ws.spi.db.BindingContextFactory</logger>
+  <level>WARNING</level>
+  <class>pt.ipp.isep.dei.project.controllers.configurehouseinformationfromjsoncontroller.ConfigureHouseInformationFromJsonController</class>
+  <method>checkForInvalidRoomInfo</method>
+  <thread>14</thread>
+  <message>Room was not imported because B209 already exists: id: pt.ipp.isep.dei.project.model.house.RoomId@282617dc.</message>
+</record>
+<record>
+  <date>2019-04-11T18:03:45</date>
+  <millis>1555002225607</millis>
+  <sequence>6</sequence>
+  <logger>com.sun.xml.internal.ws.spi.db.BindingContextFactory</logger>
+  <level>WARNING</level>
+  <class>pt.ipp.isep.dei.project.controllers.configurehouseinformationfromjsoncontroller.ConfigureHouseInformationFromJsonController</class>
+  <method>checkForInvalidRoomInfo</method>
+  <thread>14</thread>
+  <message>Room was not imported because B210 already exists: id: pt.ipp.isep.dei.project.model.house.RoomId@6be85b24.</message>
+</record>
+<record>
+  <date>2019-04-11T18:03:45</date>
+  <millis>1555002225610</millis>
+  <sequence>7</sequence>
+  <logger>com.sun.xml.internal.ws.spi.db.BindingContextFactory</logger>
+  <level>WARNING</level>
+  <class>pt.ipp.isep.dei.project.controllers.configurehouseinformationfromjsoncontroller.ConfigureHouseInformationFromJsonController</class>
+  <method>checkForInvalidRoomInfo</method>
+  <thread>14</thread>
+  <message>Room was not imported because B102 already exists: id: pt.ipp.isep.dei.project.model.house.RoomId@776e8a45.</message>
+</record>
+<record>
+  <date>2019-04-11T18:03:45</date>
+  <millis>1555002225612</millis>
+  <sequence>8</sequence>
+  <logger>com.sun.xml.internal.ws.spi.db.BindingContextFactory</logger>
+  <level>WARNING</level>
+  <class>pt.ipp.isep.dei.project.controllers.configurehouseinformationfromjsoncontroller.ConfigureHouseInformationFromJsonController</class>
+  <method>checkForInvalidRoomInfo</method>
+  <thread>14</thread>
+  <message>Room was not imported because B405A already exists: id: pt.ipp.isep.dei.project.model.house.RoomId@7c650d24.</message>
+</record>
+<record>
+  <date>2019-04-11T18:03:45</date>
+  <millis>1555002225614</millis>
+  <sequence>9</sequence>
+  <logger>com.sun.xml.internal.ws.spi.db.BindingContextFactory</logger>
+  <level>WARNING</level>
+  <class>pt.ipp.isep.dei.project.controllers.configurehouseinformationfromjsoncontroller.ConfigureHouseInformationFromJsonController</class>
+  <method>checkForInvalidGridInfo</method>
+  <thread>14</thread>
+  <message>House grid was not imported because B building already exists: id: pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId@4579a1ee.</message>
+</record>
+<record>
+  <date>2019-04-11T18:03:45</date>
+  <millis>1555002225618</millis>
+  <sequence>10</sequence>
+  <logger>com.sun.xml.internal.ws.spi.db.BindingContextFactory</logger>
+  <level>WARNING</level>
+  <class>pt.ipp.isep.dei.project.controllers.configurehouseinformationfromjsoncontroller.ConfigureHouseInformationFromJsonController</class>
+  <method>checkForInvalidGridInfo</method>
+  <thread>14</thread>
+  <message>House grid was not imported because B building technical already exists: id: pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId@362c0fe8.</message>
+</record>
+</log>
