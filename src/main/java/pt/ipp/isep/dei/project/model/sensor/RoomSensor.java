@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class RoomSensor implements Sensor {
@@ -121,5 +122,21 @@ public class RoomSensor implements Sensor {
                 return true;
         }
         return false;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (!(object instanceof RoomSensor)) {
+            return false;
+        }
+        RoomSensor sensor = (RoomSensor) object;
+        return this.id.equalsIgnoreCase(sensor.id);
+    }
+    @Override
+    public int hashCode (){
+        return Objects.hash(this.id);
     }
 }
