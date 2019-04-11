@@ -42,7 +42,7 @@ public class ImportRoomSensors {
         if ("Y".equals(importConfirmation) || "y".equals(importConfirmation)) {
 
             try {
-                if (controller.addSensorsToRooms()) {
+                if (controller.importSensorsToRooms()) {
                     int notImportedSensors = controller.getNumberOfNotImportedReadings();
                     if (notImportedSensors > 0) {
                         System.out.println("\nThe file was partially imported. There were " + notImportedSensors + " sensors that were not imported, due to invalid information.\n");

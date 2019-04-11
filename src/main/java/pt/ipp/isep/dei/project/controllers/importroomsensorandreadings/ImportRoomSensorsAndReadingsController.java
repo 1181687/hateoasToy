@@ -62,7 +62,7 @@ public class ImportRoomSensorsAndReadingsController {
         return this.numberOfNotImportedReadings;
     }
 
-    public boolean addSensorsToRooms() {
+    public boolean importSensorsToRooms() {
         configLogFile();
         boolean imported = false;
         for (Object object : this.DTOList) {
@@ -78,6 +78,10 @@ public class ImportRoomSensorsAndReadingsController {
             }
         }
         return imported;
+    }
+
+    private boolean addSensorToRoom(String roomId, RoomSensorDTO sensorDTO){
+        return this.houseService.getRoomById(roomId).addSensorToListOfSensorsInRoom(RoomSensorMapper.mapToEntity(sensorDTO));
     }
 
 
