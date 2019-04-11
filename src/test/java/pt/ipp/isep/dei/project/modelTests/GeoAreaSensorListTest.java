@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
-import pt.ipp.isep.dei.project.model.sensor.SensorList;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorList;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 
 import java.time.LocalDate;
@@ -17,8 +17,8 @@ import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class SensorListTest {
-    private SensorList sensorList;
+class GeoAreaSensorListTest {
+    private GeoAreaSensorList geoAreaSensorList;
     private GeoAreaSensor temperatureSensor1;
     private GeoAreaSensor temperatureSensor2;
     private GeoAreaSensor rainfallSensor;
@@ -27,29 +27,29 @@ class SensorListTest {
     private Reading reading0;
     private Reading reading1;
     private Reading nullReading;
-    private SensorList emptySensorList = new SensorList();
+    private GeoAreaSensorList emptyGeoAreaSensorList = new GeoAreaSensorList();
     private Location location;
 
 
     @BeforeEach
     public void StartUp() {
         // GeoAreaSensor List
-        sensorList = new SensorList();
+        geoAreaSensorList = new GeoAreaSensorList();
 
         // Sensors
         location = new Location(41.1496, -8.6109, 97);
         SensorType temperature = new SensorType("Temperature");
-        temperatureSensor1 = sensorList.newSensor("s1", "GeoAreaSensor Temp 1", temperature, location, "l/m2");
-        sensorList.addSensor(temperatureSensor1);
-        temperatureSensor2 = sensorList.newSensor("s2", "GeoAreaSensor Temp 2", temperature, location, "l/m2");
-        sensorList.addSensor(temperatureSensor2);
+        temperatureSensor1 = geoAreaSensorList.newSensor("s1", "GeoAreaSensor Temp 1", temperature, location, "l/m2");
+        geoAreaSensorList.addSensor(temperatureSensor1);
+        temperatureSensor2 = geoAreaSensorList.newSensor("s2", "GeoAreaSensor Temp 2", temperature, location, "l/m2");
+        geoAreaSensorList.addSensor(temperatureSensor2);
         SensorType rainfall = new SensorType("Rainfall");
-        rainfallSensor = sensorList.newSensor("s3", "GeoAreaSensor Rain", rainfall, location, "l/m2");
-        sensorList.addSensor(rainfallSensor);
+        rainfallSensor = geoAreaSensorList.newSensor("s3", "GeoAreaSensor Rain", rainfall, location, "l/m2");
+        geoAreaSensorList.addSensor(rainfallSensor);
         SensorType humidity = new SensorType("Humidity");
-        humiditySensor = sensorList.newSensor("s4", "GeoAreaSensor Humidity", humidity, location, "l/m2");
-        sensorList.addSensor(humiditySensor);
-        dummySensor = sensorList.newSensor("s5", "Dummy", null, null, "l/m2");
+        humiditySensor = geoAreaSensorList.newSensor("s4", "GeoAreaSensor Humidity", humidity, location, "l/m2");
+        geoAreaSensorList.addSensor(humiditySensor);
+        dummySensor = geoAreaSensorList.newSensor("s5", "Dummy", null, null, "l/m2");
 
         // Readings
         LocalDateTime dateTime0 = LocalDateTime.of(2018, 12, 3, 15, 20, 00);
@@ -66,7 +66,7 @@ class SensorListTest {
     @Test
     void addSensorTest() {
         // Act
-        boolean result = sensorList.addSensor(dummySensor);
+        boolean result = geoAreaSensorList.addSensor(dummySensor);
 
         // Assert
         assertTrue(result);
@@ -82,7 +82,7 @@ class SensorListTest {
         expectedResult.add(humiditySensor);
 
         // Act
-        List<GeoAreaSensor> result = sensorList.getListOfSensors();
+        List<GeoAreaSensor> result = geoAreaSensorList.getListOfSensors();
 
         // Assert
         assertEquals(result, expectedResult);
@@ -98,7 +98,7 @@ class SensorListTest {
         SensorType temperature = new SensorType("Temperature");
 
         // Act
-        List<Reading> result = sensorList.getListOfLatestMeasurementsBySensorType(temperature);
+        List<Reading> result = geoAreaSensorList.getListOfLatestMeasurementsBySensorType(temperature);
 
         // Assert
         assertEquals(expectedResult, result);
@@ -115,7 +115,7 @@ class SensorListTest {
         SensorType temperature = new SensorType("Temperature");
 
         // Act
-        List<Reading> result = sensorList.getListOfLatestMeasurementsBySensorType(temperature);
+        List<Reading> result = geoAreaSensorList.getListOfLatestMeasurementsBySensorType(temperature);
 
         // Assert
         assertEquals(expectedResult, result);
@@ -129,7 +129,7 @@ class SensorListTest {
         SensorType humidity = new SensorType("Humidity");
 
         // Act
-        List<Reading> result = sensorList.getListOfLatestMeasurementsBySensorType(humidity);
+        List<Reading> result = geoAreaSensorList.getListOfLatestMeasurementsBySensorType(humidity);
 
         // Assert
         assertEquals(expectedResult, result);
@@ -143,7 +143,7 @@ class SensorListTest {
         SensorType temperature = new SensorType("Temperature");
 
         // Act
-        Reading result = sensorList.getLatestMeasurementBySensorType(temperature);
+        Reading result = geoAreaSensorList.getLatestMeasurementBySensorType(temperature);
 
         // Assert
         assertEquals(expectedResult, result);
@@ -155,7 +155,7 @@ class SensorListTest {
         SensorType humidity = new SensorType("Humidity");
 
         // Act
-        Reading result = sensorList.getLatestMeasurementBySensorType(humidity);
+        Reading result = geoAreaSensorList.getLatestMeasurementBySensorType(humidity);
 
         // Assert
         assertEquals(null, result);
@@ -167,7 +167,7 @@ class SensorListTest {
         SensorType humidity = new SensorType("Humidity");
 
         // Act
-        Reading result = sensorList.getLatestMeasurementBySensorType(humidity);
+        Reading result = geoAreaSensorList.getLatestMeasurementBySensorType(humidity);
 
         // Assert
         assertEquals(null, result);
@@ -183,7 +183,7 @@ class SensorListTest {
         SensorType temperature = new SensorType("Temperature");
 
         // Act
-        double result = sensorList.getMaximumMeasureOfTypeOfSensorInGivenDay(temperature, date);
+        double result = geoAreaSensorList.getMaximumMeasureOfTypeOfSensorInGivenDay(temperature, date);
 
         // Assert
         assertEquals(expectedResult, result, 0.001);
@@ -198,7 +198,7 @@ class SensorListTest {
         double expectedResult = Double.NaN;
 
         // Act
-        double result = emptySensorList.getMaximumMeasureOfTypeOfSensorInGivenDay(temperature, date);
+        double result = emptyGeoAreaSensorList.getMaximumMeasureOfTypeOfSensorInGivenDay(temperature, date);
 
         // Assert
         assertEquals(expectedResult, result, 0.001);
@@ -212,7 +212,7 @@ class SensorListTest {
         double expectedResult = 20.0;
 
         // Act
-        double result = sensorList.getDailyAverage(searchDate);
+        double result = geoAreaSensorList.getDailyAverage(searchDate);
 
         // Assert
         assertEquals(expectedResult, result, 0.001);
@@ -226,7 +226,7 @@ class SensorListTest {
         double expectedResult = Double.NaN;
 
         //Act
-        double result = sensorList.getDailyAverage(searchDate);
+        double result = geoAreaSensorList.getDailyAverage(searchDate);
 
         //Assert
         assertEquals(expectedResult, result, 0.001);
@@ -242,7 +242,7 @@ class SensorListTest {
                         "4 - Name of the sensor: GeoAreaSensor Humidity\n";
 
         // Act
-        String result = sensorList.getSensorListToString();
+        String result = geoAreaSensorList.getSensorListToString();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -251,7 +251,7 @@ class SensorListTest {
     @Test
     public void checkIfSensorListIsEmptyTrueTest() {
         // Act
-        boolean result = emptySensorList.isEmpty();
+        boolean result = emptyGeoAreaSensorList.isEmpty();
 
         // Assert
         assertTrue(result);
@@ -260,7 +260,7 @@ class SensorListTest {
     @Test
     public void checkIfSensorListIsEmptyFalseTest() {
         // Act
-        boolean result = sensorList.isEmpty();
+        boolean result = geoAreaSensorList.isEmpty();
 
         // Assert
         assertFalse(result);
@@ -269,10 +269,10 @@ class SensorListTest {
     @Test
     public void testHashCode() {
         // Arrange
-        int expectedResult = Objects.hash(emptySensorList.getListOfSensors());
+        int expectedResult = Objects.hash(emptyGeoAreaSensorList.getListOfSensors());
 
         // Act
-        int result = emptySensorList.hashCode();
+        int result = emptyGeoAreaSensorList.hashCode();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -281,10 +281,10 @@ class SensorListTest {
     @Test
     void testEqualsTrue() {
         // Arrange
-        SensorList sensorList1 = new SensorList();
+        GeoAreaSensorList geoAreaSensorList1 = new GeoAreaSensorList();
 
         //Act
-        boolean result = sensorList1.equals(emptySensorList);
+        boolean result = geoAreaSensorList1.equals(emptyGeoAreaSensorList);
 
         // Assert
         assertTrue(result);
@@ -293,7 +293,7 @@ class SensorListTest {
     @Test
     void testEqualsSameObj() {
         // Act
-        boolean result = sensorList.equals(sensorList);
+        boolean result = geoAreaSensorList.equals(geoAreaSensorList);
 
         // Assert
         assertTrue(result);
@@ -302,7 +302,7 @@ class SensorListTest {
     @Test
     void testEqualsFalse() {
         // Act
-        boolean result = emptySensorList.equals(dummySensor);
+        boolean result = emptyGeoAreaSensorList.equals(dummySensor);
 
         // Assert
         assertFalse(result);
@@ -314,7 +314,7 @@ class SensorListTest {
         GeoAreaSensor expectedResult = temperatureSensor2;
 
         // Act
-        GeoAreaSensor result = sensorList.getSensorWithMostRecentReading(sensorList);
+        GeoAreaSensor result = geoAreaSensorList.getSensorWithMostRecentReading(geoAreaSensorList);
 
         // Assert
         assertEquals(expectedResult, result);
@@ -323,7 +323,7 @@ class SensorListTest {
     @Test
     public void checkIfSensorExistsByIdTrueTest() {
         // Act
-        boolean result = sensorList.checkIfSensorExistsById("s1");
+        boolean result = geoAreaSensorList.checkIfSensorExistsById("s1");
 
         // Assert
         assertTrue(result);
@@ -332,7 +332,7 @@ class SensorListTest {
     @Test
     public void checkIfSensorExistsByIdFalseTest() {
         // Act
-        boolean result = sensorList.checkIfSensorExistsById("s14123");
+        boolean result = geoAreaSensorList.checkIfSensorExistsById("s14123");
 
         // Assert
         assertFalse(result);
@@ -344,7 +344,7 @@ class SensorListTest {
         GeoAreaSensor expectedResult = temperatureSensor1;
 
         // Act
-        GeoAreaSensor result = sensorList.getSensorById("s1");
+        GeoAreaSensor result = geoAreaSensorList.getSensorById("s1");
 
         // Assert
         assertEquals(expectedResult, result);
@@ -353,7 +353,7 @@ class SensorListTest {
     @Test
     public void getSensorByIdNullTest() {
         // Act
-        GeoAreaSensor result = sensorList.getSensorById("s14123");
+        GeoAreaSensor result = geoAreaSensorList.getSensorById("s14123");
 
         // Assert
         assertEquals(null, result);
@@ -362,20 +362,20 @@ class SensorListTest {
     @Test
     public void testGetSensorWithMostRecentReadingNoArguments() {
         //arrange
-        SensorList sensorList = new SensorList();
+        GeoAreaSensorList geoAreaSensorList = new GeoAreaSensorList();
 
         //GeoAreaSensor
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Rainfall");
         Location locS0 = new Location(42.1496, -8.6109, 97);
         GeoAreaSensor s0 = new GeoAreaSensor("S09", "Sensor0", dataFuncionamento0, sensorType0, locS0, "l/m2");
-        sensorList.addSensor(s0);
+        geoAreaSensorList.addSensor(s0);
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Rainfall");
         Location locS1 = new Location(42.1496, -8.6109, 97);
         GeoAreaSensor s1 = new GeoAreaSensor("S02", "Sensor1", dataFuncionamento1, sensorType1, locS1, "l/m2");
-        sensorList.addSensor(s1);
+        geoAreaSensorList.addSensor(s1);
 
         // Sensor0
         LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
@@ -401,7 +401,7 @@ class SensorListTest {
 
         GeoAreaSensor expectedResult = s1;
 
-        GeoAreaSensor result = sensorList.getSensorWithMostRecentReading();
+        GeoAreaSensor result = geoAreaSensorList.getSensorWithMostRecentReading();
 
         //Assert
         assertEquals(expectedResult, result);
@@ -413,7 +413,7 @@ class SensorListTest {
     @Test
     void testCheckIfSensorExistsById_tryingToTestAnExistingId_ShouldReturnTrue() {
         // Act
-        boolean result = sensorList.checkIfSensorExistsById("s1");
+        boolean result = geoAreaSensorList.checkIfSensorExistsById("s1");
 
         //
         assertTrue(result);
@@ -425,7 +425,7 @@ class SensorListTest {
     @Test
     void testCheckIfSensorExistsById_tryingToTestANonExistingId_ShouldReturnFalse() {
         // Act
-        boolean result = sensorList.checkIfSensorExistsById("FUKU");
+        boolean result = geoAreaSensorList.checkIfSensorExistsById("FUKU");
 
         //
         assertFalse(result);
@@ -440,7 +440,7 @@ class SensorListTest {
         GeoAreaSensor expectedResult = temperatureSensor1;
 
         // Act
-        GeoAreaSensor result = sensorList.getSensorById("s1");
+        GeoAreaSensor result = geoAreaSensorList.getSensorById("s1");
 
         //
         assertEquals(expectedResult, result);
@@ -452,7 +452,7 @@ class SensorListTest {
     @org.junit.jupiter.api.Test
     void testGetSensorById_tryingToTestANonExistingId_ShouldReturnNull() {
         // Act
-        GeoAreaSensor result = sensorList.getSensorById("FUKU");
+        GeoAreaSensor result = geoAreaSensorList.getSensorById("FUKU");
 
         //
         assertEquals(null, result);
@@ -464,7 +464,7 @@ class SensorListTest {
         LocalDate date2 = LocalDate.of(2017,12,4);
         boolean expectedResult = false;
 
-        boolean result= sensorList.checkMeasurementExistenceBetweenDates(location, date1, date2);
+        boolean result = geoAreaSensorList.checkMeasurementExistenceBetweenDates(location, date1, date2);
 
         assertEquals(expectedResult, result);
 
@@ -477,7 +477,7 @@ class SensorListTest {
         LocalDate date2 = LocalDate.of(2018,12,4);
         boolean expectedResult = true;
 
-        boolean result= sensorList.checkMeasurementExistenceBetweenDates(location, date1, date2);
+        boolean result = geoAreaSensorList.checkMeasurementExistenceBetweenDates(location, date1, date2);
 
         assertEquals(expectedResult, result);
 
@@ -490,7 +490,7 @@ class SensorListTest {
     @Test
     public void testRemoveSensorById_tryingWithAnExistingId_ShouldReturnTrue() {
         // Act
-        boolean result = sensorList.removeSensorById("s1");
+        boolean result = geoAreaSensorList.removeSensorById("s1");
 
         // Assert
         assertTrue(result);
@@ -502,7 +502,7 @@ class SensorListTest {
     @Test
     public void testRemoveSensorById_tryingWithANonExistingId_ShouldReturnFalse() {
         // Act
-        boolean result = sensorList.removeSensorById("s11241");
+        boolean result = geoAreaSensorList.removeSensorById("s11241");
 
         // Assert
         assertFalse(result);

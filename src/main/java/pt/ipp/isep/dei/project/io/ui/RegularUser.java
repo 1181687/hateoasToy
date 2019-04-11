@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.project.io.ui;
 
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaService;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaTypeList;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
@@ -9,14 +9,14 @@ import pt.ipp.isep.dei.project.model.sensor.SensorTypeList;
 public class RegularUser {
 
     GeographicalAreaTypeList geographicalAreaTypeList;
-    GeographicalAreaList geographicalAreaList;
+    GeographicalAreaService geographicalAreaService;
     SensorTypeList sensorTypeList;
     House house;
     SensorType sensorTypeTemperature = new SensorType("Temperature");
 
-    public RegularUser(GeographicalAreaTypeList geographicalAreaTypeList, GeographicalAreaList geographicalAreaList, SensorTypeList sensorTypeList, House house) {
+    public RegularUser(GeographicalAreaTypeList geographicalAreaTypeList, GeographicalAreaService geographicalAreaService, SensorTypeList sensorTypeList, House house) {
         this.geographicalAreaTypeList = geographicalAreaTypeList;
-        this.geographicalAreaList = geographicalAreaList;
+        this.geographicalAreaService = geographicalAreaService;
         this.sensorTypeList = sensorTypeList;
         this.house = house;
     }

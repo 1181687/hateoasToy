@@ -3,7 +3,7 @@ package pt.ipp.isep.dei.project.controllers.deactivatesensorfromgeoarea;
 import org.springframework.beans.factory.annotation.Autowired;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaService;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapper;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorDTO;
@@ -13,9 +13,9 @@ import java.util.List;
 
 public class DeactivateSensorFromGeoAreaController {
     @Autowired
-    private GeographicalAreaList geoAreaList;
+    private GeographicalAreaService geoAreaList;
 
-    public DeactivateSensorFromGeoAreaController(GeographicalAreaList geoAreaList) {
+    public DeactivateSensorFromGeoAreaController(GeographicalAreaService geoAreaList) {
         this.geoAreaList = geoAreaList;
     }
 

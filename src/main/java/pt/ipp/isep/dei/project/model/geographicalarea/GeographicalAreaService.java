@@ -5,13 +5,13 @@ import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.GeoAreaRepository;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
-import pt.ipp.isep.dei.project.model.sensor.SensorList;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorList;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class GeographicalAreaList {
+public class GeographicalAreaService {
 
     private List<GeographicalArea> geoAreaList;
 
@@ -21,7 +21,7 @@ public class GeographicalAreaList {
     /**
      * constructor that receives a new list of Geographical Areas.
      */
-    public GeographicalAreaList() {
+    public GeographicalAreaService() {
         this.geoAreaList = new ArrayList<>();
     }
 
@@ -187,14 +187,14 @@ public class GeographicalAreaList {
     /**
      * Method that returns all the sensors present in the all the geo areas in the list.
      *
-     * @return SensorList with all the sensors.
+     * @return GeoAreaSensorList with all the sensors.
      */
-    public SensorList getAllSensors() {
-        SensorList sensorList = new SensorList();
+    public GeoAreaSensorList getAllSensors() {
+        GeoAreaSensorList geoAreaSensorList = new GeoAreaSensorList();
         for (GeographicalArea geoArea : geoAreaList) {
-            sensorList.getListOfSensors().addAll(geoArea.getSensorListInTheGeographicArea().getListOfSensors());
+            geoAreaSensorList.getListOfSensors().addAll(geoArea.getSensorListInTheGeographicArea().getListOfSensors());
         }
-        return sensorList;
+        return geoAreaSensorList;
     }
 
     public boolean checkIfGeoAreaExistsById(String geoAreaId) {

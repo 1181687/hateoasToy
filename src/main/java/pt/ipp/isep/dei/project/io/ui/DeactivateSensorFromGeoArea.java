@@ -2,7 +2,7 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.deactivatesensorfromgeoarea.DeactivateSensorFromGeoAreaController;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaService;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorDTO;
 
 import java.util.ArrayList;
@@ -14,8 +14,8 @@ public class DeactivateSensorFromGeoArea {
     private List<GeographicalAreaDTO> geographicalAreaDTOS;
     private GeographicalAreaDTO geographicalAreaDTO;
 
-    public DeactivateSensorFromGeoArea(GeographicalAreaList geographicalAreaList) {
-        this.ctrl = new DeactivateSensorFromGeoAreaController(geographicalAreaList);
+    public DeactivateSensorFromGeoArea(GeographicalAreaService geographicalAreaService) {
+        this.ctrl = new DeactivateSensorFromGeoAreaController(geographicalAreaService);
         this.geographicalAreaDTOS = ctrl.listOfGeographicalAreas();
     }
 

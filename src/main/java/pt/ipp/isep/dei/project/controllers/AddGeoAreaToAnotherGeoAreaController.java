@@ -1,17 +1,17 @@
 package pt.ipp.isep.dei.project.controllers;
 
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaService;
 
 public class AddGeoAreaToAnotherGeoAreaController {
-    private GeographicalAreaList geographicalAreaList;
+    private GeographicalAreaService geographicalAreaService;
 
     /**
      * construtor of the controller.
-     * @param geographicalAreaList
+     * @param geographicalAreaService
      */
-    public AddGeoAreaToAnotherGeoAreaController(GeographicalAreaList geographicalAreaList) {
-        this.geographicalAreaList = geographicalAreaList;
+    public AddGeoAreaToAnotherGeoAreaController(GeographicalAreaService geographicalAreaService) {
+        this.geographicalAreaService = geographicalAreaService;
     }
 
     /**
@@ -20,7 +20,7 @@ public class AddGeoAreaToAnotherGeoAreaController {
      * @return the content of the list.
      */
     public String getListToString(boolean useCriterion) {
-        return geographicalAreaList.getGeoAreaListToString(useCriterion);
+        return geographicalAreaService.getGeoAreaListToString(useCriterion);
     }
 
     /**
@@ -29,7 +29,7 @@ public class AddGeoAreaToAnotherGeoAreaController {
      * @return the geographical area on list selected by position.
      */
     public GeographicalArea getGeoAreaInTheList(int selectedOption) {
-        return geographicalAreaList.getGeographicalAreaInTheList(selectedOption);
+        return geographicalAreaService.getGeographicalAreaInTheList(selectedOption);
     }
 
     /**
@@ -38,7 +38,7 @@ public class AddGeoAreaToAnotherGeoAreaController {
      * @return null if a geo area doesn't have an inserted area.
      */
     public boolean isGeoAreaInsertedinAnotherArea(GeographicalArea geoArea) {
-        return geographicalAreaList.checkIfGeoAreaDoesntHaveAnInsertedArea(geoArea);
+        return geographicalAreaService.checkIfGeoAreaDoesntHaveAnInsertedArea(geoArea);
     }
 
     /**
@@ -47,7 +47,7 @@ public class AddGeoAreaToAnotherGeoAreaController {
      * @param area
      */
     public void addGeoAreaInASpecificPosition(int position, GeographicalArea area) {
-        geographicalAreaList.addGeoAreaInASpecificPosition(position, area);
+        geographicalAreaService.addGeoAreaInASpecificPosition(position, area);
     }
 
     /**
@@ -55,7 +55,7 @@ public class AddGeoAreaToAnotherGeoAreaController {
      * @param area
      */
     public void removeGeoArea(GeographicalArea area) {
-        geographicalAreaList.removeGeoArea(area);
+        geographicalAreaService.removeGeoArea(area);
     }
 
     /**
@@ -63,7 +63,7 @@ public class AddGeoAreaToAnotherGeoAreaController {
      * @return integer
      */
     public int getListSize(){
-        return geographicalAreaList.getSize();
+        return geographicalAreaService.getSize();
     }
 }
 

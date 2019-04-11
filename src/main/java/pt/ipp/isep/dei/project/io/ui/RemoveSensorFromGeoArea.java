@@ -2,7 +2,7 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.removesensorfromgeoareacontroller.RemoveSensorFromGeoAreaController;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaService;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorDTO;
 
 import java.util.List;
@@ -16,11 +16,11 @@ public class RemoveSensorFromGeoArea {
     /**
      * Constructor.
      *
-     * @param geographicalAreaList List that contains all of the geographical areas in the system.
+     * @param geographicalAreaService List that contains all of the geographical areas in the system.
      */
-    public RemoveSensorFromGeoArea(GeographicalAreaList geographicalAreaList) {
-        controller = new RemoveSensorFromGeoAreaController(geographicalAreaList);
-        geographicalAreaDTOS = controller.getGeographicalAreaList();
+    public RemoveSensorFromGeoArea(GeographicalAreaService geographicalAreaService) {
+        controller = new RemoveSensorFromGeoAreaController(geographicalAreaService);
+        geographicalAreaDTOS = controller.getGeographicalAreaService();
     }
 
     /**

@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.GetListOfTypeOfGeoAreaController;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaService;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaTypeList;
 
 import java.util.List;
@@ -13,7 +13,7 @@ public class GetListOfTypeOfGeoArea {
     private GetListOfTypeOfGeoAreaController controller;
 
 
-    public GetListOfTypeOfGeoArea(GeographicalAreaList lista, GeographicalAreaTypeList listaTAG) {
+    public GetListOfTypeOfGeoArea(GeographicalAreaService lista, GeographicalAreaTypeList listaTAG) {
         this.controller = new GetListOfTypeOfGeoAreaController(lista, listaTAG);
     }
 

@@ -37,7 +37,7 @@ public class DeactivateSensorFromGeoAreaControllerTest {
     private GeoAreaSensor temperatureSensor;
     private GeoAreaSensorDTO temperatureSensorDTO;
     @Autowired
-    private GeographicalAreaList geographicalAreaList;
+    private GeographicalAreaService geographicalAreaService;
 
     @BeforeEach
     public void StartUp() {
@@ -47,7 +47,7 @@ public class DeactivateSensorFromGeoAreaControllerTest {
         Location location = new Location(41.1496, -8.6109, 97);
         AreaShape shape = new AreaShape(10, 10, location);
         porto = new GeographicalArea("Porto", "City of Porto", city, location, shape);
-        geographicalAreaList.addGeoArea(porto);
+        geographicalAreaService.addGeoArea(porto);
 
         // Geographical Area DTO
         portoDTO = GeographicalAreaMapper.mapToDTOwithSensors(porto);
@@ -63,7 +63,7 @@ public class DeactivateSensorFromGeoAreaControllerTest {
         temperatureSensorDTO = GeoAreaSensorMapper.mapToDTO(temperatureSensor);
 
         // Controller
-        this.controller = new DeactivateSensorFromGeoAreaController(geographicalAreaList);
+        this.controller = new DeactivateSensorFromGeoAreaController(geographicalAreaService);
     }
 
     @Test

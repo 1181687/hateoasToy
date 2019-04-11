@@ -65,10 +65,26 @@ public class ConfigureHouseFromAFile {
 
             try {
                 if (controller.importHouseInformation()) {
+                    int notImportedRooms = controller.getNumberOfNotImportedRooms();
+                    int notImportedGrids = controller.getNumberOfNotImportedGrids();
+                    if (notImportedRooms > 0 || notImportedGrids > 0) {
+                        System.out.println("\nThe file was partially imported.");
+                    }
+                    if (notImportedRooms > 0) {
+                        System.out.println("\nThere were " + notImportedRooms + " rooms that were not imported, due to invalid information.\n");
+                        return;
+                    }
+
+                    if (notImportedGrids > 0) {
+                        System.out.println("\nThere were " + notImportedGrids + " grids that were not imported, due to invalid information.\n");
+                        return;
+                    }
                     System.out.println("\n The House was configured with success.\n");
+
                 } else {
                     System.out.println("The House is already configured.\n");
                 }
+
             } catch (Exception e) {
                 System.out.println("\nSorry! The file doesn't contain valid information. It was not possible to import it.\n");
             }
@@ -76,7 +92,7 @@ public class ConfigureHouseFromAFile {
         } else {
             System.out.println("The House was not configured. \n");
         }
-
     }
-
 }
+
+

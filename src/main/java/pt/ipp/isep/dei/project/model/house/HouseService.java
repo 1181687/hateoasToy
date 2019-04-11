@@ -50,4 +50,12 @@ public class HouseService {
 
     }
 
+    public boolean roomExists(RoomId roomId) {
+        return roomRepository.existsById(roomId);
+    }
+
+    public boolean gridExists(HouseGridId gridId) {
+        return houseGridRepository.existsById(gridId);
+    }
+
 }

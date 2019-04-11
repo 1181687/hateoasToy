@@ -1,5 +1,7 @@
 package pt.ipp.isep.dei.project.model.house;
 
+import pt.ipp.isep.dei.project.utils.Utils;
+
 import javax.persistence.Embeddable;
 import java.util.Objects;
 
@@ -38,7 +40,7 @@ public class Dimension {
      * @param height given height
      */
     private static void validateHeight(double height) {
-        if (Double.isNaN(height) || height <= 0) {
+        if (Double.isNaN(height) || Utils.isFirstDoubleSmallerThanOrEqualToSecondOne(height, 0.0)) {
             throw new RuntimeException("Please enter a valid height. Height should be greater than zero");
         }
     }
@@ -50,7 +52,7 @@ public class Dimension {
      * @param length given length
      */
     private static void validateLength(double length) {
-        if (Double.isNaN(length) || length <= 0) {
+        if (Double.isNaN(length) || Utils.isFirstDoubleSmallerThanOrEqualToSecondOne(length, 0.0)) {
             throw new RuntimeException("Please enter a valid length. Length should be greater than zero");
         }
     }
@@ -62,7 +64,7 @@ public class Dimension {
      * @param width given width
      */
     private static void validateWidth(double width) {
-        if (Double.isNaN(width) || width <= 0) {
+        if (Double.isNaN(width) || Utils.isFirstDoubleSmallerThanOrEqualToSecondOne(width, 0.0)) {
             throw new RuntimeException("Please enter a valid width. Width should be greater than zero");
         }
     }

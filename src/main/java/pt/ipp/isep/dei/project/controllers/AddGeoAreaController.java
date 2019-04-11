@@ -3,24 +3,24 @@ package pt.ipp.isep.dei.project.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaService;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaTypeList;
 
 import java.util.List;
 
 public class AddGeoAreaController {
     @Autowired
-    private GeographicalAreaList geographicalAreaList;
+    private GeographicalAreaService geographicalAreaService;
     @Autowired
     private GeographicalAreaTypeList geographicalAreaTypeList;
 
     /**
      * construtor of the controller with geoAreaList and types of GeoAreaList.
-     * @param geographicalAreaList
+     * @param geographicalAreaService
      * @param typesGeoAreaList
      */
-    public AddGeoAreaController(GeographicalAreaList geographicalAreaList, GeographicalAreaTypeList typesGeoAreaList) {
-        this.geographicalAreaList = geographicalAreaList;
+    public AddGeoAreaController(GeographicalAreaService geographicalAreaService, GeographicalAreaTypeList typesGeoAreaList) {
+        this.geographicalAreaService = geographicalAreaService;
         this.geographicalAreaTypeList = typesGeoAreaList;
     }
 
@@ -30,14 +30,14 @@ public class AddGeoAreaController {
      * @return boolean
      */
     public boolean addNewGeoArea(GeographicalArea newGA) {
-        return geographicalAreaList.addGeoArea(newGA);
+        return geographicalAreaService.addGeoArea(newGA);
     }
 
     /**
      * method that get the geo area list.
      */
-    public GeographicalAreaList getGeographicalAreaList() {
-        return geographicalAreaList;
+    public GeographicalAreaService getGeographicalAreaService() {
+        return geographicalAreaService;
     }
 
     /**
@@ -58,7 +58,7 @@ public class AddGeoAreaController {
      * @return a new geographical area.
      */
     public GeographicalArea createNewGeoArea(String id, String description, String typeName, Location location, double height, double length) {
-        return geographicalAreaList.newGeographicalArea(id, description, typeName, location, height, length);
+        return geographicalAreaService.newGeographicalArea(id, description, typeName, location, height, length);
 
     }
 

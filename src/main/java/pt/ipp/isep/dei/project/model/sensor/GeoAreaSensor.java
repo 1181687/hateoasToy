@@ -73,6 +73,7 @@ public class GeoAreaSensor implements Sensor {
     }
 
     protected GeoAreaSensor() {
+        //empty
     }
 
     public String getId() {
