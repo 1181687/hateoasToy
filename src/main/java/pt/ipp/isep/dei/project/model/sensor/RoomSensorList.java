@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class RoomSensorList {
@@ -23,7 +24,7 @@ public class RoomSensorList {
     }
 
     public boolean addSensor(RoomSensor sensor) {
-        if (listOfSensors.contains(sensor)) {
+        if (listOfSensors.contains(sensor.getId()) || Objects.isNull(sensor.getId())) {
             return false;
         }
         listOfSensors.add(sensor);
