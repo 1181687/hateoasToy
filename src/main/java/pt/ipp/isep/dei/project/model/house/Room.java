@@ -514,8 +514,8 @@ public RoomSensorList getSensorList() {
         this.description = description;
     }
 
-    public RoomSensor getSensorById(String sensorId){
-        if(!Objects.isNull(sensorList.getSensorById(sensorId))){
+    public RoomSensor getSensorById(String sensorId) {
+        if (!Objects.isNull(sensorList.getSensorById(sensorId))) {
             return sensorList.getSensorById(sensorId);
         }
         return null;

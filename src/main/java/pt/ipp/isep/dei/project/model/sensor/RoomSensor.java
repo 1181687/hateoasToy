@@ -39,16 +39,16 @@ public class RoomSensor implements Sensor {
         this.isActive = true;
     }
 
+    protected RoomSensor() {
+        // empty
+    }
+
     public String getId() {
         return id;
     }
 
     public LocalDateTime getStartingDate() {
         return startingDate;
-    }
-
-    protected RoomSensor() {
-        // empty
     }
 
     public SensorType getSensorType() {
@@ -108,8 +108,17 @@ public class RoomSensor implements Sensor {
     }
 
     public boolean addReading(Reading reading) {
-        if (!listOfReadings.contains(reading)) {
+        if (!this.readingExistsBySensorIdLocalDateTime(reading)) {
             return this.listOfReadings.add(reading);
+        }
+        return false;
+    }
+
+    public boolean readingExistsBySensorIdLocalDateTime(Reading reading) {
+
+        for (Reading reading1 : listOfReadings) {
+            if (reading1.getDateTime() == reading.getDateTime())
+                return true;
         }
         return false;
     }

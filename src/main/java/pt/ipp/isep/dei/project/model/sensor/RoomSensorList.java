@@ -71,9 +71,9 @@ public class RoomSensorList {
         return listOfLatestReadings;
     }
 
-    public RoomSensor getSensorById(String sensorId){
+    public RoomSensor getSensorById(String sensorId) {
         for (RoomSensor sensor : listOfSensors) {
-            if(sensor.getId().equals(sensorId)){
+            if (sensor.getId().equals(sensorId)) {
                 return sensor;
             }
         }
