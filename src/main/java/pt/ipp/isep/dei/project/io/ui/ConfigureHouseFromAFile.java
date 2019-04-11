@@ -1,4 +1,4 @@
-/*package pt.ipp.isep.dei.project.io.ui;
+package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.configurehouseinformationfromjsoncontroller.ConfigureHouseInformationFromJsonController;
 import pt.ipp.isep.dei.project.model.house.House;
@@ -23,78 +23,76 @@ public class ConfigureHouseFromAFile {
         // Write the path
         String path = InputValidator.getString("Please specify the name of the file to import.");
         File file = new File(path);
-        boolean flag = true;
 
-        do {
+        if (!file.exists()) {
+            System.out.println("\nERROR: There's no such file with that name.\n");
+            return;
+        }
+        List<Object> dtoList = controller.readFile(file, path);
+        if (Objects.isNull(dtoList) || dtoList.isEmpty()) {
+            System.out.println("\nThe information on the file is not valid to be imported.\n");
+            return;
+        }
 
-            if (!file.exists()) {
-                System.out.println("\nERROR: There's no such file with that name.\n");
-                return;
-            }
-            List<Object> dtoList = controller.readFile(file, path);
-            if (Objects.isNull(dtoList) || dtoList.isEmpty()) {
-                System.out.println("\nThe information on the file is not valid to be imported.\n");
-                return;
-            }
+        // Content of the choosen file
+        String confirmOptions = "\n This is the content of the chosen file: \n";
 
-            // Content of the choosen file
-            String confirmOptions = "\n This is the content of the chosen file: \n";
-
-            StringBuilder content = new StringBuilder();
-            content.append(confirmOptions);
+        StringBuilder content = new StringBuilder();
+        content.append(confirmOptions);
+        content.append("\n");
+        for (Object house : dtoList) {
+            HouseDTO houseDTO = (HouseDTO) house;
+            String id = houseDTO.getAddressDTO().getCompleteAddress();
+            int numberOfRooms = houseDTO.getRoomDTOList().size();
+            int numberOfGrids = houseDTO.getHouseGridDTOList().size();
+            content.append(" > ");
+            content.append(id);
             content.append("\n");
-            for (Object house : dtoList) {
-                HouseDTO houseDTO = (HouseDTO) house;
-                String id = houseDTO.getAddressDTO().getCompleteAddress();
-                int numberOfRooms = houseDTO.getRoomDTOList().size();
-                int numberOfGrids = houseDTO.getHouseGridDTOList().size();
-                content.append(" > ");
-                content.append(id);
-                content.append("\n");
-                content.append(" - Number of rooms: ");
-                content.append(numberOfRooms);
-                content.append("\n");
-                content.append(" - Number of Grids: ");
-                content.append(numberOfGrids);
-                content.append("\n");
-            }
+            content.append(" - Number of rooms: ");
+            content.append(numberOfRooms);
+            content.append("\n");
+            content.append(" - Number of Grids: ");
+            content.append(numberOfGrids);
+            content.append("\n");
+        }
 
-            System.out.println(content);
+        System.out.println(content);
 
 
-            // Import confirmation
-            String importConfirmation = InputValidator.confirmValidation("Do you want to configure the House with this information? (Y/N)");
-            if ("Y".equalsIgnoreCase(importConfirmation)) {
+        // Import confirmation
+        String importConfirmation = InputValidator.confirmValidation("Do you want to configure the House with this information? (Y/N)");
+        if ("Y".equalsIgnoreCase(importConfirmation)) {
 
-                try {
-                    if (controller.addRoomsToGridById()) ;
-                    {
-                        int notImportedRooms = controller.getNumberOfNotImportedRooms();
-                        if (notImportedRooms > 0) {
-                            System.out.println("\nThe file was partially imported. There were " + notImportedRooms + " rooms that were not imported, due to invalid information.\n");
-                            flag = false;
-                            return;
-                        }
-
-                        if (controller.importHouseInformation()) {
-                            System.out.println("\n The House was configured with success.\n");
-
-                        } else {
-                            System.out.println("The House is already configured.\n");
-                        }
-
+            try {
+                if (controller.importHouseInformation()) {
+                    int notImportedRooms = controller.getNumberOfNotImportedRooms();
+                    int notImportedGrids = controller.getNumberOfNotImportedGrids();
+                    if (notImportedRooms > 0 || notImportedGrids > 0) {
+                        System.out.println("\nThe file was partially imported.");
                     }
-                } catch (Exception e) {
-                    System.out.println("\nSorry! The file doesn't contain valid information. It was not possible to import it.\n");
+                    if (notImportedRooms > 0) {
+                        System.out.println("\nThere were " + notImportedRooms + " rooms that were not imported, due to invalid information.\n");
+                        return;
+                    }
+
+                    if (notImportedGrids > 0) {
+                        System.out.println("\nThere were " + notImportedGrids + " grids that were not imported, due to invalid information.\n");
+                        return;
+                    }
+                    System.out.println("\n The House was configured with success.\n");
+
+                } else {
+                    System.out.println("The House is already configured.\n");
                 }
 
-            } else {
-                System.out.println("The House was not configured. \n");
+            } catch (Exception e) {
+                System.out.println("\nSorry! The file doesn't contain valid information. It was not possible to import it.\n");
             }
 
-        } while (flag);
+        } else {
+            System.out.println("The House was not configured. \n");
+        }
     }
-
 }
 
-*/
+
