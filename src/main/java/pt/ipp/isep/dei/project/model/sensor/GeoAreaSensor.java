@@ -161,7 +161,7 @@ public class GeoAreaSensor implements Sensor {
             return false;
         }
         GeoAreaSensor sensor = (GeoAreaSensor) object;
-        return this.id.equals(sensor.id);
+        return this.id.equalsIgnoreCase(sensor.id);
     }
 
     /**

@@ -131,6 +131,6 @@ public class RoomSensor implements Sensor {
             return false;
         }
         RoomSensor sensor = (RoomSensor) object;
-        return this.id.equals(sensor.id);
+        return this.id.equalsIgnoreCase(sensor.id);
     }
 }
