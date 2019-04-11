@@ -20,6 +20,7 @@ import pt.ipp.isep.dei.project.model.sensor.RoomSensorMapper;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
@@ -277,13 +278,17 @@ public class JSONReaderGeoAreasSensors implements ProjectFileReader {
                 String readingUnit = object.get("unit").getAsString();
 
                 LocalDateTime dateTime;
+                try {
+                    if (sensorID.contains("RF")) {
+                        LocalDate date = LocalDate.parse(object.get("timestamp/date").getAsString());
+                        dateTime = date.atStartOfDay();
+                    } else {
+                        ZonedDateTime zonedDateTime = ZonedDateTime.parse(object.get("timestamp/date").getAsString());
+                        dateTime = zonedDateTime.toLocalDateTime();
 
-                if (sensorID.contains("RF")) {
-                    LocalDate date = LocalDate.parse(object.get("timestamp/date").getAsString());
-                    dateTime = date.atStartOfDay();
-                } else {
-                    ZonedDateTime zonedDateTimeateTime = ZonedDateTime.parse(object.get("timestamp/date").getAsString());
-                    dateTime = zonedDateTimeateTime.toLocalDateTime();
+                    }
+                } catch (DateTimeException e) {
+                    dateTime = null;
                 }
                 double value = object.get("value").getAsDouble();
                 ReadingDTO readingDTO = ReadingMapper.mapToDTOwithIDandUnits(sensorID, dateTime, value, readingUnit);
