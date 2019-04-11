@@ -74,7 +74,7 @@ public class RoomSensorList {
 
     public RoomSensor getSensorById(String sensorId) {
         for (RoomSensor sensor : listOfSensors) {
-            if (sensor.getId().equals(sensorId)) {
+            if (sensor.getId().equalsIgnoreCase(sensorId)) {
                 return sensor;
             }
         }
