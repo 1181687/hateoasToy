@@ -16,10 +16,14 @@ skinparam sequence {
     ActorFontSize 17
     ActorFontName Aapex
 }
-loop GeographicalAreaList
+loop HouseService
 autonumber
+"houseService\n:HouseService" -> "roomRepository\n:RoomRepository" : updateHouseWithRoomsAndGrids()
+activate "houseService\n:HouseService"
 
-"GeographicalAreaService\n:GeographicalAreaService" -> "geographicalAreaRepository\n:GeographicalAreaRepository" : addGeoArea()
+"houseService\n:HouseService" -> "houseGridRepository\n:houseGridRepository" : updateHouseWithRoomsAndGrids()
+
+deactivate "houseService\n:HouseService"
 
 end
 @enduml

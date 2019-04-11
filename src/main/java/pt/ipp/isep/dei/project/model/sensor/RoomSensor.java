@@ -43,6 +43,14 @@ public class RoomSensor implements Sensor {
         // empty
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public LocalDateTime getStartingDate() {
+        return startingDate;
+    }
+
     public SensorType getSensorType() {
         return sensorType;
     }
@@ -97,5 +105,21 @@ public class RoomSensor implements Sensor {
             }
         }
         return reading;
+    }
+
+    public boolean addReading(Reading reading) {
+        if (!this.readingExistsBySensorIdLocalDateTime(reading)) {
+            return this.listOfReadings.add(reading);
+        }
+        return false;
+    }
+
+    public boolean readingExistsBySensorIdLocalDateTime(Reading reading) {
+
+        for (Reading reading1 : listOfReadings) {
+            if (reading1.getDateTime() == reading.getDateTime())
+                return true;
+        }
+        return false;
     }
 }

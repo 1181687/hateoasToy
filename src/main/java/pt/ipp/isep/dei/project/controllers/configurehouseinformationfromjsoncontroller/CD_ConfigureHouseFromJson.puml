@@ -1,0 +1,155 @@
+@startuml
+skinparam linetype ortho
+
+skinparam class {
+	BackgroundColor PaleTurquoise
+	ArrowColor Black
+	BorderColor Black
+	FontStyle Bold
+}
+
+hide circle
+
+
+
+ConfigureHouseFromAFileUI "1" --> "1" ConfigureHouseInformationFromJSONOController
+ConfigureHouseInformationFromJSONOController "1" --> "1" HouseService
+ConfigureHouseInformationFromJSONOController "1" --> "1" House
+ConfigureHouseInformationFromJSONOController "1" -right-> "1" "<<ProjectFileReader>>"
+HouseService "1" --> "1" AddressMapper: uses
+HouseService "1" --> "1" RoomMapper: uses
+HouseService "1" --> "1" HouseGridMapper: uses
+HouseService "1" -right-> "1" House: updates
+JSONReader "1" -down-> "1" AddressMapper: uses
+JSONReader "1" -down-> "1" RoomMapper: uses
+JSONReader "1" -down-> "1" HouseGridMapper: uses
+JSONReader "1" -left-> "1" HouseDTO: uses
+AddressMapper "1" -down-> "1" AddressDTO: creates
+RoomMapper "1" --> "1" RoomDTO: creates
+HouseGridMapper "1" --> "1" HouseGridDTO: creates
+
+
+JSONReader "1" -right-* "1" "<<ProjectFileReader>>" : implements
+
+Class ConfigureHouseFromAFileUI {
+- ConfigureHouseInformationFromJSONOController controller
++ run()
+
+}
+
+Class ConfigureHouseInformationFromJSONOController {
+- List<Object> houseObjects
+- int numberOfNotImportedRooms
+- int numberOfNotImportedGrids
+- configLogFile ()
++ createReader ()
++ readFile ()
++ importHouseInformation ()
++ getNumberOfNotImportedRooms ()
++ getNumberOfNotImportedGrids ()
+- writeAddressToFile ()
+- checkForInvalidRoomInfo ()
+- checkForInvalidGridInfo ()
+}
+
+
+
+Class HouseGridDTO {
+- String name;
+- List<RoomDTO> roomDTOS
++ get ()
++ set ()
++ addRoomDTO ()
+
+}
+
+Class HouseGridMapper {
++ newHouseGridDTO ()
++ mapToEntity ()
+}
+
+
+Class AddressMapper {
++ newAddressDTO ()
++ mapToEntity ()
+
+}
+
+Class AddressDTO {
+- String completeAddress
+- LocationDTO location
+- GeographicalAreaDTO insertedGeoArea
++ get ()
++ set ()
+
+}
+
+
+Class House {
+- RoomList roomList
+- List<HouseGrid> listHouseGrids
+- Address address
++ addRoom ()
++ addGrid ()
+
+}
+
+Class HouseDTO {
+- AddressDTO addressDTO
+- List<RoomDTO> roomDTOList
+- List<HouseGridDTO> houseGridDTOList
++ get ()
++ set ()
+
+}
+
+Class HouseService {
+- RoomRepository roomRepository
+- HouseGridRepository houseGridRepository
++ mapToEntity ()
++ addRoomToHouseGrid ()
++ roomExists ()
++ gridExists ()
+
+}
+
+
+Class RoomDTO {
+- String id
+- String description
+- int houseFloor
+- double width
+- double length
+- double height
++ get ()
++ set ()
++ getRooms ()
++ addRoom ()
+
+}
+
+Class RoomMapper {
++ newRoomDTO ()
++ mapToDTO ()
++ mapToEntity ()
+
+}
+
+Interface "<<ProjectFileReader>>" {
++ getTypeName ()
++ readFile ()
+
+}
+
+
+Class JSONReader {
++ readFile ()
++ getTypeName ()
+- parseJsonObjectsHouse ()
+- getRoomDtoById ()
+
+}
+
+
+
+@enduml

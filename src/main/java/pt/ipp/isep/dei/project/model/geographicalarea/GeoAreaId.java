@@ -5,7 +5,6 @@ import pt.ipp.isep.dei.project.model.Location;
 import javax.persistence.Embeddable;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.Objects;
 
 import static java.util.Objects.isNull;
 

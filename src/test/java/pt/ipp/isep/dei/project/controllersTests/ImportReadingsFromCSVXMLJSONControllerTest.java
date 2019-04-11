@@ -124,7 +124,7 @@ class ImportReadingsFromCSVXMLJSONControllerTest {
         // Arrange
         controller.checkIfSensorExistsById("432");
         controller.addReadingToSensor(readingDTO);
-        Reading reading = ReadingMapper.mapToEntity(readingDTO);
+        Reading reading = ReadingMapper.updateHouseWithRoomsAndGrids(readingDTO);
 
         // Act
         boolean result = temperatureSensor.getListOfReadings().contains(reading);

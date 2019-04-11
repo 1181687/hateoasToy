@@ -256,7 +256,7 @@ public class HouseGrid implements Measurable {
     @Override
     public String getNameToString() {
         StringBuilder name = new StringBuilder();
-        name.append("housegrid: " + this.houseGridName + "\n");
+        name.append("housegrid: " + this.houseGridName.getHousegridId() + "\n");
         return name.toString();
     }
 

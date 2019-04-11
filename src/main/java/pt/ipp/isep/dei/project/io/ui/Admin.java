@@ -77,8 +77,8 @@ public class Admin {
                     ui9.jsonGeoAreaSensors();
                     break;
                 case 10:
-                    ImportReadings ui10 = new ImportReadings(geographicalAreaService);
-                    ui10.run();
+                    ImportReadings ui10 = new ImportReadings(geographicalAreaService, houseService);
+                    ui10.run(1);
                     break;
                 case 11:
                     DeactivateSensorFromGeoArea ui11 = new DeactivateSensorFromGeoArea(geographicalAreaService);
@@ -160,6 +160,9 @@ public class Admin {
                     ImportRoomSensors ui260 = new ImportRoomSensors(houseService);
                     ui260.run();
                     break;
+                case 15:
+                    ImportReadings ui15 = new ImportReadings(geographicalAreaService, houseService);
+                    ui15.run(2);
             }
             option = Menu.adminHouseMenu();
         }

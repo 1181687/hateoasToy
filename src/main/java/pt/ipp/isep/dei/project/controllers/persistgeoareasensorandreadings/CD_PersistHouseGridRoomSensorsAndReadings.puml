@@ -8,13 +8,14 @@ skinparam class {
 	FontStyle Bold
 }
 
+hide empty attributes
+hide empty methods
 hide circle
 "<<Entity>>\nHouseGrid" "." -right-> "." "<<Service>>\nHouseService": uses
-"<<Service>>\nHouseService" "1" -right-> "1" "<<Repository>>\nRoomRepository"
+"<<Service>>\nHouseService" "1" -down-> "1" "<<Repository>>\nRoomRepository"
 "<<Service>>\nHouseService" "1" -right-> "1" "<<Repository>>\nHouseGridRepository"
-"<<Entity>>\nHouseGrid" --> "<<Entity>>\nRoom"
-"<<Entity>>\nRoom" -right-> "<<Entity>>\nRoomSensor"
-"<<Entity>>\nRoomSensor" -right-> "Reading"
+"<<Entity>>\nRoom" "1" -down-> "0 .. *" "<<Entity>>\nRoomSensor"
+"<<Entity>>\nRoomSensor" "1" -right-> "0 .. *" "Reading"
 "<<Entity>>\nRoom" "." -left-> "." "<<Service>>\nHouseService": uses
 "<<Entity>>\nRoom" "1"-left-> "1" "HouseGridId"
 "<<Entity>>\nHouseGrid" "1" -down-> "1" "HouseGridId"
@@ -31,12 +32,12 @@ Class "<<Service>>\nHouseService" {
 - RoomRepository
 - HouseGridRepository
 + updateHouseWithRoomsAndGrids()
++ addRoomToHouseGrid()
++ roomExists()
++ houseGridExists()
 }
 
 Class "<<Entity>>\nHouseGrid" {
-- HouseGridId houseGridId
-+ addGeoArea()
-+ updateRepository()
 }
 
 Class "<<Entity>>\nRoom" {
@@ -60,8 +61,8 @@ Class "Reading" {
 - LocalDateTime date
 }
 
-
 Interface "<<Repository>>\nRoomRepository"{
+
 }
 
 Interface "<<Repository>>\nHouseGridRepository"{

@@ -37,7 +37,7 @@ public class ConfHouseLocationController {
         StringBuilder content = new StringBuilder();
         int numberInTheList = 1;
         for (GeographicalArea geoArea : geographicalAreaService.getGeoAreaList()) {
-            content.append(numberInTheList + " - ID: " + geoArea.getId());
+            content.append(numberInTheList + " - ID: " + geoArea.getId().getId());
             content.append(", Description: " + geoArea.getDescription());
             content.append(", Type: " + geoArea.getGeoAreaType().getStringOfTypeOfGeoArea());
             content.append(", Latitude: " + geoArea.getLocation().getLatitude());

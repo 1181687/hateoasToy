@@ -22,7 +22,6 @@ public class ImportRoomSensorsController {
     private HouseService houseService;
 
     public ImportRoomSensorsController(HouseService houseService) {
-       // this.roomList = roomList;
         this.houseService = houseService;
     }
 

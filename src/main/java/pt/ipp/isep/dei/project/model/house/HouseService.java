@@ -21,7 +21,7 @@ public class HouseService {
     @Autowired
     private HouseGridRepository houseGridRepository;
 
-    public void mapToEntity(HouseDTO houseDTO, House house) {
+    public void updateHouseWithRoomsAndGrids(HouseDTO houseDTO, House house) {
         Address houseAddress = AddressMapper.mapToEntity(houseDTO.getAddressDTO());
         house.setAddress(houseAddress);
 
@@ -63,11 +63,11 @@ public class HouseService {
         return false;
     }
 
-    public Room getRoomById(RoomId roomId){
-         if(this.roomRepository.findById(roomId).isPresent()){
-             return this.roomRepository.findById(roomId).get();
+    public Room getRoomById(RoomId roomId) {
+        if (this.roomRepository.findById(roomId).isPresent()) {
+            return this.roomRepository.findById(roomId).get();
         }
-         return null;
+        return null;
     }
 
     public boolean roomExists(RoomId roomId) {
@@ -76,6 +76,26 @@ public class HouseService {
 
     public boolean gridExists(HouseGridId gridId) {
         return houseGridRepository.existsById(gridId);
+    }
+
+    public Room getRoomWithRightSensor(String sensorId) {
+        for (Room room : roomRepository.findAll()) {
+            if (Objects.nonNull(room.getSensorById(sensorId))) {
+                return room;
+            }
+        }
+        throw new RuntimeException("There are no rooms with that sensor id in the rooms.");
+    }
+
+    public RoomSensor getSensorById(String sensorId) {
+        if (Objects.nonNull(getRoomWithRightSensor(sensorId))) {
+            return getRoomWithRightSensor(sensorId).getSensorById(sensorId);
+        }
+        throw new RuntimeException("There are no sensors with that id in the rooms.");
+    }
+
+    public void updateRepository(String sensorId) {
+        roomRepository.save(getRoomWithRightSensor(sensorId));
     }
 
 }
