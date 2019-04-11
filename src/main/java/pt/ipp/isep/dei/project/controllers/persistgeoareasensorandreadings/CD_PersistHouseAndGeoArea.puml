@@ -12,21 +12,26 @@ hide empty attributes
 hide empty methods
 hide circle
 "<<Entity>>\nHouseGrid" "." -right-> "." "<<Service>>\nHouseService": uses
-"<<Service>>\nHouseService" "1" -down-> "1" "<<Repository>>\nRoomRepository"
+"<<Service>>\nHouseService" "1" -right-> "1" "<<Repository>>\nRoomRepository"
 "<<Service>>\nHouseService" "1" -right-> "1" "<<Repository>>\nHouseGridRepository"
-"<<Entity>>\nRoom" "1" -down-> "0 .. *" "<<Entity>>\nRoomSensor"
-"<<Entity>>\nRoomSensor" "1" -right-> "0 .. *" "Reading"
+"<<Entity>>\nRoomSensor" "1" -down-> "0..*" "Reading"
 "<<Entity>>\nRoom" "." -left-> "." "<<Service>>\nHouseService": uses
 "<<Entity>>\nRoom" "1"-left-> "1" "HouseGridId"
 "<<Entity>>\nHouseGrid" "1" -down-> "1" "HouseGridId"
 
+"<<Entity>>\nGeographicalArea" "1" -down-> "0..*" "<<Sensor>>"
+"<<Entity>>\nRoom" "1" -down-> "0 .. *" "<<Sensor>>"
 
-GeographicalAreaList "." -right-> "." "<<Service>>\nGeoAreaService": uses
-"<<Service>>\nGeoAreaService" "1" -right-> "1" "<<Repository>>\nGeoAreaRepository"
-GeographicalAreaList --> "<<Entity>>\nGeographicalArea"
-"<<Entity>>\nGeographicalArea" -right-> "<<Entity>>\nGeoAreaSensor"
-"<<Entity>>\nGeoAreaSensor" -right-> "Reading"
+"<<Entity>>\nGeographicalArea" "." -right-> "." "<<Service>>\nGeoAreaService": uses
+"<<Service>>\nGeoAreaService" "1" -up-> "1" "<<Repository>>\nGeoAreaRepository"
+"<<Entity>>\nGeoAreaSensor" "1" -down-> "0..*" "Reading"
 
+"<<Entity>>\nGeoAreaSensor" "1" -right-* "1" "<<Sensor>>" : implements
+"<<Entity>>\nRoomSensor" "1" -left-* "1" "<<Sensor>>" : implements
+
+
+Interface "<<Sensor>>" {
+}
 
 Class "HouseGridId" {
 - String houseGridId
@@ -86,11 +91,6 @@ Class "<<Service>>\nGeoAreaService" {
 +setGeoAreaRepository()
 }
 
-Class GeographicalAreaList {
--List<GeographicalArea> geoAreaList
-+addGeoArea()
-+updateRepository()
-}
 
 Class "<<Entity>>\nGeographicalArea" {
 -String id
