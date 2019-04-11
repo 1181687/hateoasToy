@@ -39,7 +39,7 @@ public class GeographicalAreaList {
      * @return boolean
      */
     public boolean addGeoArea(GeographicalArea geoArea) {
-        if (!(geoAreaList.contains(geoArea))) {
+        if (!(geoAreaRepository.existsById(geoArea.getId()))) {
             geoAreaList.add(geoArea);
             geoAreaRepository.save(geoArea);
             return true;
