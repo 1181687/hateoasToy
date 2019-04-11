@@ -86,7 +86,7 @@ public class ImportReadingsController {
                 roomSensor = houseService.getSensorById(reading.getId());
             }
 
-            if (Objects.isNull(geoAreaSensor) || Objects.isNull(roomSensor)) {
+            if (Objects.isNull(geoAreaSensor) || Objects.isNull(roomSensor) || !geoAreaSensor.isActive()) {
                 numberOfNotImportedReadings++;
                 continue;
             }
