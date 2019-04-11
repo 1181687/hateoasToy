@@ -27,6 +27,14 @@ public class RoomSensor implements Sensor {
         this.isActive = true;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public LocalDateTime getStartingDate() {
+        return startingDate;
+    }
+
     public SensorType getSensorType() {
         return sensorType;
     }
@@ -81,5 +89,12 @@ public class RoomSensor implements Sensor {
             }
         }
         return reading;
+    }
+
+    public boolean addReading(Reading reading) {
+        if (!listOfReadings.contains(reading)) {
+            return this.listOfReadings.add(reading);
+        }
+        return false;
     }
 }

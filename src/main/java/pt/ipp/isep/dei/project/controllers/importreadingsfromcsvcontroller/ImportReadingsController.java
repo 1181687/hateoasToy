@@ -28,7 +28,6 @@ public class ImportReadingsController {
     @Autowired
     private GeographicalAreaList geographicalAreaList;
     private SensorList allSensorInTheGeoAreas;
-    private RoomSensorList allSensorInTheHouse;
     private GeoAreaSensor geoAreaSensor;
     private RoomSensor roomSensor;
     private List<Object> readingDTOList;
@@ -59,7 +58,7 @@ public class ImportReadingsController {
     }
 
     public boolean isDateTimeBeforeRoomSensorStartingDate(LocalDateTime localDateTime) {
-        return localDateTime.isBefore(geoAreaSensor.getStartingDate());
+        return localDateTime.isBefore(roomSensor.getStartingDate());
     }
 
     /**
@@ -92,7 +91,7 @@ public class ImportReadingsController {
                 numberOfNotImportedReadings++;
                 continue;
             }
-            if (isDateTimeBeforeSensorStartingDate(reading.getDateTime())) {
+            if (isDateTimeBeforeSensorStartingDate(reading.getDateTime())||isDateTimeBeforeRoomSensorStartingDate(reading.getDateTime())) {
                 numberOfNotImportedReadings++;
                 String invalidInfo = "id: " + reading.getId() + ", value: " + reading.getValue() + ", timestamp/date: " + reading.getDateTime() + ", unit: " + reading.getUnits() + ".";
                 LOGGER.log(Level.WARNING, "Reading not imported due to timestamp/date of reading being before starting date of sensor: " + invalidInfo);
@@ -103,13 +102,18 @@ public class ImportReadingsController {
                 reading.setValue(Utils.round(celsiusValue, 2));
                 reading.setUnits("C");
             }
-            if (sensor.addReading(ReadingMapper.mapToEntity(reading))) {
+            if (option==1 && geoAreaSensor.addReading(ReadingMapper.mapToEntity(reading))) {
+                imported = true;
+            }
+            if(option==2 && roomSensor.addReading(ReadingMapper.mapToEntity(reading))){
                 imported = true;
             }
         }
-        if(imported){
-
+        if(imported && option==1){
             this.geographicalAreaList.updateRepository();
+        }
+        if(imported && option==2){
+            this.houseService.updateRepository(roomSensor.getId());
         }
         return imported;
     }
