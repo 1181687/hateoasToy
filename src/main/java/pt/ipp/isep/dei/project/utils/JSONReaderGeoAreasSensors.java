@@ -15,6 +15,7 @@ import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridDTO;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridMapper;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorDTO;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensorDTO;
+import pt.ipp.isep.dei.project.model.sensor.RoomSensorMapper;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -310,12 +311,12 @@ public class JSONReaderGeoAreasSensors implements ProjectFileReader {
                 String sensorId = sensor.get("id").getAsString();
                 String room = sensor.get("room").getAsString();
                 String sensorName = sensor.get("name").getAsString();
-                LocalDateTime startingDate = LocalDateTime.parse(sensor.get("start_date").getAsString());
+                LocalDate startingDate = LocalDate.parse(sensor.get("start_date").getAsString());
                 String sensorType = sensor.get("type").getAsString();
                 String sensorUnits = sensor.get("units").getAsString();
 
 
-                RoomSensorDTO roomSensorDTO = new RoomSensorDTO();
+                RoomSensorDTO roomSensorDTO = RoomSensorMapper.newRoomSensorDTO();
                 roomSensorDTO.setId(sensorId);
                 roomSensorDTO.setName(sensorName);
                 roomSensorDTO.setSensorType(sensorType);
@@ -323,7 +324,7 @@ public class JSONReaderGeoAreasSensors implements ProjectFileReader {
                 roomSensorDTO.setStartingDate(startingDate);
                 roomSensorDTO.setUnits(sensorUnits);
 
-                roomSensorsDTO.add(sensor);
+                roomSensorsDTO.add(roomSensorDTO);
             }
         }
 
