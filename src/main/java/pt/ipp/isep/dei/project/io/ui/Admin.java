@@ -93,7 +93,7 @@ public class Admin {
         }
     }
 
-    public void runAdminHouse() {
+    public void runAdminHouse() throws FileNotFoundException {
         int option = Menu.adminHouseMenu();
         if (option == 0) {
             return;
@@ -155,6 +155,10 @@ public class Admin {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
+                    break;
+                case 14:
+                    ImportRoomSensors ui260 = new ImportRoomSensors(houseService);
+                    ui260.run();
                     break;
             }
             option = Menu.adminHouseMenu();
