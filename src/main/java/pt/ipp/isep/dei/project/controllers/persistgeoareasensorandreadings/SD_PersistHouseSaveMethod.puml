@@ -16,7 +16,6 @@ skinparam sequence {
     ActorFontSize 17
     ActorFontName Aapex
 }
-loop HouseService
 autonumber
 "houseService\n:HouseService" -> "roomRepository\n:RoomRepository" : updateHouseWithRoomsAndGrids()
 activate "houseService\n:HouseService"
@@ -26,6 +25,7 @@ activate "roomRepository\n:RoomRepository"
 deactivate "roomRepository\n:RoomRepository"
 deactivate "houseService\n:HouseService"
 
+
 "houseService\n:HouseService" -> "houseGridRepository\n:houseGridRepository" : updateHouseWithRoomsAndGrids()
 activate "houseService\n:HouseService"
 activate "houseGridRepository\n:houseGridRepository"
@@ -34,5 +34,4 @@ activate "houseGridRepository\n:houseGridRepository"
 deactivate "houseGridRepository\n:houseGridRepository"
 deactivate "houseService\n:HouseService"
 
-end
 @enduml
