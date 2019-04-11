@@ -85,6 +85,12 @@ public class ImportReadingsController {
                     numberOfNotImportedReadings++;
                     continue;
                 }
+                if (Objects.isNull(reading.getDateTime())) {
+                    numberOfNotImportedReadings++;
+                    String invalidInfo = "id: " + reading.getId() + ", value: " + reading.getValue() + ", timestamp/date: " + reading.getDateTime() + ", unit: " + reading.getUnits() + ".";
+                    LOGGER.log(Level.WARNING, "Reading not imported due to invalid timestamp/date " + invalidInfo);
+                    continue;
+                }
                 if (isDateTimeBeforeSensorStartingDate(reading.getDateTime())) {
                     numberOfNotImportedReadings++;
                     String invalidInfo = "id: " + reading.getId() + ", value: " + reading.getValue() + ", timestamp/date: " + reading.getDateTime() + ", unit: " + reading.getUnits() + ".";
@@ -96,6 +102,12 @@ public class ImportReadingsController {
                 roomSensor = houseService.getSensorById(reading.getId());
                 if (Objects.isNull(roomSensor)) {
                     numberOfNotImportedReadings++;
+                    continue;
+                }
+                if (Objects.isNull(reading.getDateTime())) {
+                    numberOfNotImportedReadings++;
+                    String invalidInfo = "id: " + reading.getId() + ", value: " + reading.getValue() + ", timestamp/date: " + reading.getDateTime() + ", unit: " + reading.getUnits() + ".";
+                    LOGGER.log(Level.WARNING, "Reading not imported due to invalid timestamp/date " + invalidInfo);
                     continue;
                 }
                 if (isDateTimeBeforeRoomSensorStartingDate(reading.getDateTime())) {
