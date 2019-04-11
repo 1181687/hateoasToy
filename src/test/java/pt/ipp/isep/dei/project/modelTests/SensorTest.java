@@ -11,6 +11,7 @@ import pt.ipp.isep.dei.project.io.ui.Main;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
+import pt.ipp.isep.dei.project.model.sensor.SensorId;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 
 import java.time.LocalDate;
@@ -2511,7 +2512,7 @@ public class SensorTest {
         String id = "sdfg22";
         String expectedResult = "sdfg22";
         //Act
-        this.temperatureSensor.setId(id);
+        this.temperatureSensor.setId(new SensorId(id));
         String result = this.temperatureSensor.getId();
         //Assert
         assertEquals(expectedResult, result);

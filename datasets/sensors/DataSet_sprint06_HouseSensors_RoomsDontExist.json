@@ -1,0 +1,36 @@
+{
+  "sensor": [
+    {
+      "id": "TT12345OA",
+      "room": "B705",
+      "name": "Temperature B405",
+      "start_date": "2016-11-15",
+      "type": "temperature",
+      "units": "C"
+    },
+    {
+      "id": "TT12346OB",
+      "room": "106",
+      "name": "Temperature B106",
+      "start_date": "2016-11-15",
+      "type": "temperature",
+      "units": "C"
+    },
+    {
+      "id": "TT12334OA",
+      "room": "107",
+      "name": "Temperature B107",
+      "start_date": "2017-11-15",
+      "type": "temperature",
+      "units": "C"
+    },
+    {
+      "id": "TT1236AC",
+      "room": "109",
+      "name": "Temperature B109",
+      "start_date": "2017-11-16",
+      "type": "temperature",
+      "units": "C"
+    }
+  ]
+}

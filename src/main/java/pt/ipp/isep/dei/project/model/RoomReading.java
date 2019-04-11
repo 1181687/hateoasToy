@@ -3,8 +3,8 @@ package pt.ipp.isep.dei.project.model;
 import javax.persistence.Embeddable;
 import java.time.LocalDateTime;
 
-@Embeddable()
-public class Reading {
+@Embeddable
+public class RoomReading {
 
     private double value;
     private LocalDateTime dateTime;
@@ -15,17 +15,18 @@ public class Reading {
      * @param value    value
      * @param dateTime date
      */
-    public Reading(double value, LocalDateTime dateTime) {
+    public RoomReading(double value, LocalDateTime dateTime) {
         this.value = value;
         this.dateTime = dateTime;
     }
 
-    protected Reading() {
+    protected RoomReading() {
         // empty
     }
 
     /**
      * Get method
+     *
      * @return value
      */
     public double getValue() {
@@ -38,6 +39,7 @@ public class Reading {
 
     /**
      * Get method
+     *
      * @return dateTime
      */
     public LocalDateTime getDateTime() {
@@ -72,7 +74,7 @@ public class Reading {
         if (!(obj instanceof Reading)) {
             return false;
         }
-        Reading reading = (Reading) obj;
+        RoomReading reading = (RoomReading) obj;
         Double valueOfTheReading = this.value;
         return valueOfTheReading.equals(reading.getValue()) && this.dateTime.equals(reading.getDateTime());
     }
