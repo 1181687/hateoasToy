@@ -17,6 +17,8 @@ skinparam sequence {
 	ActorFontName Aapex
 }
 
+autonumber
+actor AdminUser
 activate AdminUser
 actor AdminUser
 
