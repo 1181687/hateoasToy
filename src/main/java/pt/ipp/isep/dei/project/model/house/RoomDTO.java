@@ -23,7 +23,9 @@ public class RoomDTO {
     }
 
     public void setRoomId(String id) {
-        this.id = id;
+        if (!id.isEmpty()) {
+            this.id = id;
+        }
     }
 
     public String getDescription() {

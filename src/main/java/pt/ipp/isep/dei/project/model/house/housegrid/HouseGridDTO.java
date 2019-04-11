@@ -20,7 +20,9 @@ public class HouseGridDTO {
     }
 
     public void setName(String name) {
-        this.name = name;
+        if (!name.isEmpty()) {
+            this.name = name;
+        }
     }
 
     public List<RoomDTO> getRoomDTOS() {

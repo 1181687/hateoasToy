@@ -203,7 +203,7 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
         s1.addReadingsToList(reading11);
         s1.addReadingsToList(reading12);
 
-        double expectedResult = 30;
+        double expectedResult = 25.0;
 
         //Act
         double result = this.controller.getMostRecentAvailableMeasurement();
@@ -336,7 +336,7 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
         s1.addReadingsToList(reading11);
         s1.addReadingsToList(reading12);
 
-        LocalDateTime expectedResult = LocalDateTime.of(2018,11,4,17,24);
+        LocalDateTime expectedResult = LocalDateTime.of(2018, 11, 3, 17, 24);
 
         //Act
         LocalDateTime result = this.controller.getDateOfLastMeasurement();

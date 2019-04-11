@@ -71,12 +71,12 @@ public class ConfigureHouseFromAFile {
                         System.out.println("\nThe file was partially imported.");
                     }
                     if (notImportedRooms > 0) {
-                        System.out.println("\nThere were " + notImportedRooms + " rooms that were not imported, due to invalid information.\n");
+                        System.out.println("There were " + notImportedRooms + " rooms that were not imported, due to invalid information.\n");
                         return;
                     }
 
                     if (notImportedGrids > 0) {
-                        System.out.println("\nThere were " + notImportedGrids + " grids that were not imported, due to invalid information.\n");
+                        System.out.println("There were " + notImportedGrids + " grids that were not imported, due to invalid information.\n");
                         return;
                     }
                     System.out.println("\n The House was configured with success.\n");

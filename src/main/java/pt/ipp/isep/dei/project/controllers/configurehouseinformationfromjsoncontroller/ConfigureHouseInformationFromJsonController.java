@@ -10,6 +10,7 @@ import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.io.*;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 import java.util.Properties;
@@ -54,64 +55,6 @@ public class ConfigureHouseInformationFromJsonController {
         return numberOfNotImportedGrids;
     }
 
-    public boolean importHouseInformation() {
-        configLogFile();
-        boolean imported = false;
-        HouseDTO houseDTO = (HouseDTO) houseObjects.get(0);
-        for (RoomDTO roomDTO : houseDTO.getRoomDTOList()) {
-            RoomId roomId = new RoomId(roomDTO.getRoomId());
-            double height = roomDTO.getHeight();
-            double length = roomDTO.getLength();
-            double width = roomDTO.getWidth();
-            if (Objects.isNull(roomId.getId())) {
-                numberOfNotImportedRooms++;
-                LOGGER.log(Level.WARNING, "Room was not imported because it has a null id.");
-                houseDTO.getRoomDTOList().remove(roomDTO);
-                continue;
-            }
-            if (this.houseService.roomExists(roomId)) {
-                numberOfNotImportedRooms++;
-                String invalidInfo = "id: " + roomId + ".";
-                LOGGER.log(Level.WARNING, "Room was not imported because" + roomId + " already exists: " + invalidInfo);
-                houseDTO.getRoomDTOList().remove(roomDTO);
-                continue;
-            }
-            if (Double.isNaN(length) || Utils.isFirstDoubleSmallerThanOrEqualToSecondOne(length, 0.0) ||
-                    Double.isNaN(width) || Utils.isFirstDoubleSmallerThanOrEqualToSecondOne(width, 0.0) ||
-                    Double.isNaN(height) || Utils.isFirstDoubleSmallerThanOrEqualToSecondOne(height, 0.0)) {
-                numberOfNotImportedRooms++;
-                String invalidInfo = "id: " + roomDTO.getRoomId() + ".";
-                LOGGER.log(Level.WARNING, "Room was not imported because" + roomId + " does not have valid dimensions " + invalidInfo);
-                houseDTO.getRoomDTOList().remove(roomDTO);
-            }
-        }
-        for (HouseGridDTO houseGridDTO : houseDTO.getHouseGridDTOList()) {
-            HouseGridId houseGridId = new HouseGridId(houseGridDTO.getName());
-            if (Objects.isNull(houseGridId.getHousegridId())) {
-                numberOfNotImportedGrids++;
-                LOGGER.log(Level.WARNING, "House grid was not imported because it has a null id.");
-                houseDTO.getHouseGridDTOList().remove(houseGridDTO);
-                continue;
-            }
-            if (this.houseService.gridExists(houseGridId)) {
-                numberOfNotImportedGrids++;
-                String invalidInfo = "id: " + houseGridId + ".";
-                LOGGER.log(Level.WARNING, "House grid was not imported because" + houseGridId + " already exists: " + invalidInfo);
-                houseDTO.getHouseGridDTOList().remove(houseGridDTO);
-                continue;
-
-            }
-        }
-        if (!(numberOfNotImportedGrids == houseDTO.getHouseGridDTOList().size()
-                && numberOfNotImportedRooms == houseDTO.getRoomDTOList().size())) {
-            houseService.updateHouseWithRoomsAndGrids(houseDTO, house);
-            imported = true;
-        }
-        writeAddressToFile(house.getAddress());
-        return imported;
-    }
-
-
     /**
      * receives the String Path (json) and creates the respective reader (json)
      * and saves it in controller private attribute reader
@@ -132,6 +75,74 @@ public class ConfigureHouseInformationFromJsonController {
         createReader(path);
         this.houseObjects = this.reader.readFile(file);
         return houseObjects;
+    }
+
+    public boolean importHouseInformation() {
+        configLogFile();
+        boolean imported = false;
+        HouseDTO houseDTO = (HouseDTO) houseObjects.get(0);
+        checkForInvalidRoomInfo(houseDTO.getRoomDTOList());
+        checkForInvalidGridInfo(houseDTO);
+        if (!(numberOfNotImportedGrids == houseDTO.getHouseGridDTOList().size()
+                && numberOfNotImportedRooms == houseDTO.getRoomDTOList().size())) {
+            houseService.updateHouseWithRoomsAndGrids(houseDTO, house);
+            imported = true;
+        }
+        writeAddressToFile(house.getAddress());
+        return imported;
+    }
+
+    private void checkForInvalidRoomInfo(List<RoomDTO> dtos) {
+        for (Iterator<RoomDTO> roomDTOIterator = dtos.iterator(); roomDTOIterator.hasNext(); ) {
+            RoomDTO roomDTO = roomDTOIterator.next();
+            RoomId roomId = new RoomId(roomDTO.getRoomId());
+            double height = roomDTO.getHeight();
+            double length = roomDTO.getLength();
+            double width = roomDTO.getWidth();
+            if (Objects.isNull(roomId.getId())) {
+                numberOfNotImportedRooms++;
+                LOGGER.log(Level.WARNING, "Room was not imported because it has a null id.");
+                roomDTOIterator.remove();
+                continue;
+            }
+            if (this.houseService.roomExists(roomId)) {
+                numberOfNotImportedRooms++;
+                String invalidInfo = "id: " + roomId + ".";
+                LOGGER.log(Level.WARNING, "Room was not imported because " + roomId.getId() + " already exists: " + invalidInfo);
+                roomDTOIterator.remove();
+                continue;
+            }
+            if (Double.isNaN(length) || Utils.isFirstDoubleSmallerThanOrEqualToSecondOne(length, 0.0) ||
+                    Double.isNaN(width) || Utils.isFirstDoubleSmallerThanOrEqualToSecondOne(width, 0.0) ||
+                    Double.isNaN(height) || Utils.isFirstDoubleSmallerThanOrEqualToSecondOne(height, 0.0)) {
+                numberOfNotImportedRooms++;
+                String invalidInfo = "id: " + roomDTO.getRoomId() + ".";
+                LOGGER.log(Level.WARNING, "Room was not imported because " + roomId.getId() + " does not have valid dimensions " + invalidInfo);
+                roomDTOIterator.remove();
+            }
+        }
+    }
+
+    private void checkForInvalidGridInfo(HouseDTO houseDTO) {
+        List<HouseGridDTO> houseGridDTOS = houseDTO.getHouseGridDTOList();
+        List<RoomDTO> roomDTOS = houseDTO.getRoomDTOList();
+        for (Iterator<HouseGridDTO> houseGridDTOIterator = houseGridDTOS.iterator(); houseGridDTOIterator.hasNext(); ) {
+            HouseGridDTO houseGridDTO = houseGridDTOIterator.next();
+            HouseGridId houseGridId = new HouseGridId(houseGridDTO.getName());
+            if (Objects.isNull(houseGridId.getHousegridId())) {
+                numberOfNotImportedGrids++;
+                LOGGER.log(Level.WARNING, "House grid was not imported because it has a null id.");
+                houseGridDTOIterator.remove();
+                continue;
+            }
+            if (this.houseService.gridExists(houseGridId)) {
+                numberOfNotImportedGrids++;
+                String invalidInfo = "id: " + houseGridId + ".";
+                LOGGER.log(Level.WARNING, "House grid was not imported because " + houseGridId.getHousegridId() + " already exists: " + invalidInfo);
+                houseGridDTOIterator.remove();
+            }
+            houseGridDTO.getRoomDTOS().removeIf(roomDTO -> !roomDTOS.contains(roomDTO));
+        }
     }
 
     public void writeAddressToFile(Address address) {
