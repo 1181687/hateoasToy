@@ -50,7 +50,7 @@ public class ImportRoomSensors {
                     }
                     System.out.println("\n The file was imported with success.\n");
                 } else {
-                    System.out.println("\n It seems this file has already been imported. \n");
+                    System.out.println("\n The file doesn't contain valid sensors. \n");
                 }
             } catch (Exception e) {
                 System.out.println("\nSorry! The file doesn't contain valid sensors. It was not possible to import them.\n");
