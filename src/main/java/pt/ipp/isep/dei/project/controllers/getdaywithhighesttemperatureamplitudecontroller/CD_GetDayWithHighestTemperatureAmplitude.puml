@@ -41,7 +41,7 @@ Class House {
 }
 
 Class GeographicalArea {
--SensorList sensorList
+-SensorList geoAreaSensorList
 -Location location
 +getSensorListByTypeInAPeriod()
 +getNearestSensorsToLocation()

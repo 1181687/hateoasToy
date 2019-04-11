@@ -1,0 +1,108 @@
+@startuml
+skinparam linetype ortho
+
+skinparam class {
+	BackgroundColor PaleTurquoise
+	ArrowColor Black
+	BorderColor Black
+	FontStyle Bold
+}
+
+hide circle
+
+ImportRoomSensors "1" --> "1" ImportRoomSensorsController
+ImportRoomSensorsController "1" -right-> "1" HouseService
+ImportRoomSensorsController "1" --> "1" RoomSensorMapper :uses
+"<<Repository>>\n RoomRepository" "1"-> "0*" Room
+Room "1" -down-> "1"  RoomSensorList
+RoomSensorList "1" -left-> "0*" RoomSensor
+ImportRoomSensorsController "1" -> "*" RoomSensor
+ImportRoomSensorsController "1" -down-> "1" "<<ProjectFileReader>>"
+RoomSensorMapper "1" -up-> "1" RoomSensorDTO : creates
+HouseService "1" -right-> "*" "<<Repository>>\n RoomRepository"
+JSONReader -down-* "<<ProjectFileReader>>" : implements
+JSONReader -left-> RoomSensorMapper : uses
+
+Class ImportRoomSensors {
+-controller: ImportRoomSensorsController
++run()
+}
+
+Class ImportRoomSensorsController {
+-List<Object> DTOList
+-int numberOfNotImportedReadings
+-HouseService houseService
+
++isValidFormat()
++getNumberOfNotImportedReadings()
++readFile()
++importSensorsToRooms()
+-configLogFile()
+-createReader()
+}
+
+
+Class RoomSensorMapper {
++newRoomSensorDTO()
++mapToEntity()
+}
+
+Class JSONReader {
+-readerName : String
++readFile()
++getTypeName()
+-parseJsonRoomSensorDTO()
+}
+
+Class HouseService {
+-RoomRepository roomRepo
++roomExists()
++addSensorToRoom()
+}
+
+Class "<<Repository>>\n RoomRepository" {
+-listOfSensors: List<Sensor>
++checkIfSensorExistsById()
++getSensorById()
+}
+
+Class RoomSensor {
+-String id
+-String sensorName
+-LocalDateTime startingDate
+-List<Reading> listOfReadings
+-SensorType sensorType
+-String units
+-boolean isActive
++gets()
++sets()
+}
+
+Class RoomSensorDTO {
+-String id
+-String name
+-LocalDate startingDate
+-String type
+-String RoomId
+-String units
+-boolean isActive
++gets()
++sets()
+}
+
+Class Room {
+-RoomId roomId;
+-RoomSensorList sensorList;
++addSensor()
+}
+
+Class RoomSensorList {
+-List<RoomSensor> listOfSensors;
++addSensor()
+}
+
+Interface "<<ProjectFileReader>>" {
++getTypeName()
++readFile()
+}
+@enduml

@@ -1,7 +1,5 @@
 package pt.ipp.isep.dei.project.model.house;
 
-
-import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.MeasurableList;
 import pt.ipp.isep.dei.project.model.Reading;
@@ -21,7 +19,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-@Service
 public class House {
     //@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     //@JoinTable(name="house_rooms", joinColumns=@JoinColumn(name="house_fk"),

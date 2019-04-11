@@ -1,0 +1,68 @@
+@startuml
+autonumber
+skinparam sequenceMessageAlign center
+skinparam sequence {
+	ArrowColor Black
+	ActorBorderColor DarkBlue
+	LifeLineBorderColor black
+	LifeLineBackgroundColor LightGrey
+
+	ParticipantBorderColor Black
+	ParticipantBackgroundColor LightGrey
+	ParticipantFontStyle Bold
+
+	ActorBackgroundColor DimGrey
+	ActorFontColor DeepSkyBlue
+	ActorFontStyle Bold
+	ActorFontSize 17
+	ActorFontName Aapex
+}
+
+activate AdminUser
+actor AdminUser
+
+AdminUser -> "ui : ImportRoomSensors": Import room sensors
+activate "ui : ImportRoomSensors"
+"ui : ImportRoomSensors" --> AdminUser: Ask for the file path
+deactivate "ui : ImportRoomSensors"
+AdminUser -> "ui : ImportRoomSensors": File path
+activate "ui : ImportRoomSensors"
+"ui : ImportRoomSensors" -> "ctrl : ImportRoomSensors\nController": readFile(file, path)
+activate "ctrl : ImportRoomSensors\nController"
+"ctrl : ImportRoomSensors\nController" -> "reader : Reader": createReader(path)
+activate "reader : Reader"
+"reader : Reader" --> "ctrl : ImportRoomSensors\nController": reader
+deactivate "reader : Reader"
+"ctrl : ImportRoomSensors\nController" -> "reader : Reader": readFile(file)
+activate "reader : Reader"
+ref over "reader : Reader"
+readFile
+end
+"reader : Reader" --> "ctrl : ImportRoomSensors\nController": roomSensorDTOs
+deactivate "reader : Reader"
+"ctrl : ImportRoomSensors\nController" --> "ui : ImportRoomSensors": roomSensorDTOs
+deactivate "ctrl : ImportRoomSensors\nController"
+"ui : ImportRoomSensors" --> AdminUser: Ask for confirmation
+deactivate "ui : ImportRoomSensors"
+AdminUser -> "ui : ImportRoomSensors": Confirmation received
+activate "ui : ImportRoomSensors"
+"ui : ImportRoomSensors" -> "ctrl : ImportRoomSensors\nController": importSensorsToRooms()
+activate "ctrl : ImportRoomSensors\nController"
+loop for each roomSensorDTO
+"ctrl : ImportRoomSensors\nController" -> RoomSensorMapper: mapToEntity(roomSensorDTOs)
+activate RoomSensorMapper
+RoomSensorMapper --> "ctrl : ImportRoomSensors\nController": RoomSensor sensor
+deactivate RoomSensorMapper
+"ctrl : ImportRoomSensors\nController" -> "HouseService": addSensorToRoom(roomId,sensor)
+activate HouseService
+ref over HouseService
+addSensorToRoom
+end
+"HouseService" --> "ctrl : ImportRoomSensors\nController": true
+deactivate HouseService
+end loop
+"ctrl : ImportRoomSensors\nController" --> "ui : ImportRoomSensors": true
+deactivate "ctrl : ImportRoomSensors\nController"
+"ui : ImportRoomSensors" --> AdminUser: 6 - Give feedback
+deactivate "ui : ImportRoomSensors"
+@enduml

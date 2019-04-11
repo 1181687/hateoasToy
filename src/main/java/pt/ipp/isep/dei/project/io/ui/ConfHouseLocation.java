@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.ConfHouseLocationController;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaService;
 import pt.ipp.isep.dei.project.model.house.House;
 
 import java.util.Scanner;
@@ -13,8 +13,8 @@ public class ConfHouseLocation {
      */
     private ConfHouseLocationController controller;
 
-    public ConfHouseLocation(GeographicalAreaList geographicalAreaList, House house) {
-        this.controller = new ConfHouseLocationController(geographicalAreaList, house);
+    public ConfHouseLocation(GeographicalAreaService geographicalAreaService, House house) {
+        this.controller = new ConfHouseLocationController(geographicalAreaService, house);
     }
 
 

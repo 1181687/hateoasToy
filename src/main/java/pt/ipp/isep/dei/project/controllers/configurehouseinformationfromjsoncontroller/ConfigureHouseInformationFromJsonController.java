@@ -143,6 +143,13 @@ public class ConfigureHouseInformationFromJsonController {
             }
             houseGridDTO.getRoomDTOS().removeIf(roomDTO -> !roomDTOS.contains(roomDTO));
         }
+        if (!(numberOfNotImportedGrids == houseDTO.getHouseGridDTOList().size()
+                && numberOfNotImportedRooms == houseDTO.getRoomDTOList().size())) {
+            houseService.updateHouseWithRoomsAndGrids(houseDTO, house);
+            imported = true;
+        }
+        writeAddressToFile(house.getAddress());
+        return imported;
     }
 
     public void writeAddressToFile(Address address) {

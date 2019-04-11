@@ -5,11 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import pt.ipp.isep.dei.project.model.ProjectFileReader;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaService;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapper;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorDTO;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorMapper;
-import pt.ipp.isep.dei.project.model.sensor.SensorList;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.io.File;
@@ -18,13 +17,13 @@ import java.util.List;
 
 public class ImportGeoAreasFromJSONOrXMLController {
     @Autowired
-    private GeographicalAreaList geographicalAreaList;
+    private GeographicalAreaService geographicalAreaService;
     private ProjectFileReader reader;
     private List<Object> geoAreaDTOList;
 
 
-    public ImportGeoAreasFromJSONOrXMLController(GeographicalAreaList geographicalAreaList) {
-        this.geographicalAreaList = geographicalAreaList;
+    public ImportGeoAreasFromJSONOrXMLController(GeographicalAreaService geographicalAreaService) {
+        this.geographicalAreaService = geographicalAreaService;
     }
 
     /**
@@ -42,7 +41,7 @@ public class ImportGeoAreasFromJSONOrXMLController {
             for (GeoAreaSensorDTO sensorDTO : geoDTO.getSensors()) {
                 geoArea.addSensor(GeoAreaSensorMapper.mapToEntity(sensorDTO));
             }
-            if (geographicalAreaList.addGeoArea(geoArea)) {
+            if (geographicalAreaService.addGeoArea(geoArea)) {
                 imported = true;
             }
         }

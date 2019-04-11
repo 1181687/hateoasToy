@@ -95,7 +95,7 @@ public class GetFirstHottestDayHouseAreaControllerTest {
         temperatureSensor1.addReadingsToList(reading5);
         temperatureSensor1.addReadingsToList(reading6);
 
-        //Add sensors to SensorList
+        //Add sensors to GeoAreaSensorList
 
         portoCity.getSensorListInTheGeographicArea().addSensor(temperatureSensor);
         portoCity.getSensorListInTheGeographicArea().addSensor(temperatureSensor1);

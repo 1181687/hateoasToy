@@ -16,7 +16,7 @@ import pt.ipp.isep.dei.project.io.ui.Main;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaService;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.house.Address;
 import pt.ipp.isep.dei.project.model.house.House;
@@ -34,7 +34,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ConfHouseLocationControllerTest {
     private ConfHouseLocationController ctrl;
     @InjectMocks
-    private GeographicalAreaList geographicalAreaList;
+    private GeographicalAreaService geographicalAreaService;
     private GeographicalArea porto;
     private GeographicalArea isep;
     private House mainHouse;
@@ -51,8 +51,8 @@ public class ConfHouseLocationControllerTest {
         isep = new GeographicalArea("ISEP", "Campus do ISEP", geographicalAreaType, location, areaShape);
         GeographicalAreaType city = new GeographicalAreaType("City");
         porto = new GeographicalArea("Porto", "City of Porto", city, location, areaShape);
-        geographicalAreaList.addGeoArea(isep);
-        geographicalAreaList.addGeoArea(porto);
+        geographicalAreaService.addGeoArea(isep);
+        geographicalAreaService.addGeoArea(porto);
         isep.setInsertedIn(porto);
 
         //House
@@ -66,7 +66,7 @@ public class ConfHouseLocationControllerTest {
         Address address = new Address("4200-072", houseLocation, isep);
         mainHouse.setAddress(address);
 
-        ctrl = new ConfHouseLocationController(geographicalAreaList, mainHouse);
+        ctrl = new ConfHouseLocationController(geographicalAreaService, mainHouse);
     }
 
     @Configuration
@@ -146,8 +146,8 @@ public class ConfHouseLocationControllerTest {
     @Test
     public void testIsGeographicalAreaListEmpty_whenItIs_shouldReturnTrue() {
         // Arrange
-        geographicalAreaList.removeGeoArea(isep);
-        geographicalAreaList.removeGeoArea(porto);
+        geographicalAreaService.removeGeoArea(isep);
+        geographicalAreaService.removeGeoArea(porto);
 
         // Act
         boolean result = ctrl.isGeographicalAreaListEmpty();

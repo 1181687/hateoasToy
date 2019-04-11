@@ -2,12 +2,20 @@ package pt.ipp.isep.dei.project.model.sensor;
 
 import pt.ipp.isep.dei.project.model.Reading;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class RoomSensorList {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn
     private List<RoomSensor> listOfSensors;
 
     public RoomSensorList() {
@@ -61,6 +69,15 @@ public class RoomSensorList {
             }
         }
         return listOfLatestReadings;
+    }
+
+    public RoomSensor getSensorById(String sensorId){
+        for (RoomSensor sensor : listOfSensors) {
+            if(sensor.getId().equals(sensorId)){
+                return sensor;
+            }
+        }
+        return null;
     }
 
 
