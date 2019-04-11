@@ -69,17 +69,14 @@ public class ImportRoomSensorsController {
                 numberOfNotImportedReadings++;
                 String invalidInfo = "id: " + sensorDTO.getId() + ".";
                 LOGGER.log(Level.WARNING, "Sensor was not imported due because" + roomId.getId() +" doesn't exist: " + invalidInfo);
-                // continue;
-            } else if (this.houseService.getRoomById(roomId).addSensorToListOfSensorsInRoom(RoomSensorMapper.mapToEntity(sensorDTO))) {
+                 continue;
+            } else if (this.houseService.addSensorToRoom(RoomSensorMapper.mapToEntity(sensorDTO),roomId)) {
                 imported = true;
             }
         }
         return imported;
     }
 
-    private boolean addSensorToRoom(RoomId roomId, RoomSensorDTO sensorDTO){
-        return this.houseService.getRoomById(roomId).addSensorToListOfSensorsInRoom(RoomSensorMapper.mapToEntity(sensorDTO));
-    }
 
 
 }
