@@ -81,7 +81,7 @@ public class ImportReadingsController {
             ReadingDTO reading = (ReadingDTO) object;
             if (option == 1) {
                 geoAreaSensor = allSensorInTheGeoAreas.getSensorById(reading.getId());
-                if (Objects.isNull(geoAreaSensor)) {
+                if (Objects.isNull(geoAreaSensor) || !geoAreaSensor.isActive()) {
                     numberOfNotImportedReadings++;
                     continue;
                 }
@@ -94,8 +94,10 @@ public class ImportReadingsController {
             }
             if (option == 2) {
                 roomSensor = houseService.getSensorById(reading.getId());
-                if (Objects.isNull(roomSensor)) {
+                if (Objects.isNull(roomSensor) || !roomSensor.isActive()) {
                     numberOfNotImportedReadings++;
+                    String invalidInfo = "id: " + reading.getId() + ", value: " + reading.getValue() + ", timestamp/date: " + reading.getDateTime() + ", unit: " + reading.getUnits() + ".";
+                    LOGGER.log(Level.WARNING, "Reading not imported due to something: " + invalidInfo);
                     continue;
                 }
                 if (isDateTimeBeforeRoomSensorStartingDate(reading.getDateTime())) {
@@ -105,17 +107,6 @@ public class ImportReadingsController {
                     continue;
                 }
             }
-
-            /*if (Objects.isNull(geoAreaSensor) || Objects.isNull(roomSensor)) {
-                numberOfNotImportedReadings++;
-                continue;
-            }*/
-            /*if (isDateTimeBeforeSensorStartingDate(reading.getDateTime()) || isDateTimeBeforeRoomSensorStartingDate(reading.getDateTime())) {
-                numberOfNotImportedReadings++;
-                String invalidInfo = "id: " + reading.getId() + ", value: " + reading.getValue() + ", timestamp/date: " + reading.getDateTime() + ", unit: " + reading.getUnits() + ".";
-                LOGGER.log(Level.WARNING, "Reading not imported due to timestamp/date of reading being before starting date of sensor: " + invalidInfo);
-                continue;
-            }*/
             if (reading.getUnits().equals("F")) {
                 double celsiusValue = Utils.convertFahrenheitToCelsius(reading.getValue());
                 reading.setValue(Utils.round(celsiusValue, 2));
@@ -123,17 +114,14 @@ public class ImportReadingsController {
             }
             if (option == 1 && geoAreaSensor.addReading(ReadingMapper.mapToEntity(reading))) {
                 imported = true;
+                this.geographicalAreaService.updateRepository();
             }
             if (option == 2 && roomSensor.addReading(ReadingMapper.mapToEntity(reading))) {
                 imported = true;
+                this.houseService.updateRepository(roomSensor.getId());
             }
         }
-        if (imported && option == 1) {
-            this.geographicalAreaService.updateRepository();
-        }
-        if (imported && option == 2) {
-            this.houseService.updateRepository(roomSensor.getId());
-        }
+
         return imported;
     }
 

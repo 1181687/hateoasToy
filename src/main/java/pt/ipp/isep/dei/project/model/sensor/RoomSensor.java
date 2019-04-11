@@ -12,13 +12,12 @@ import java.util.Objects;
 
 @Entity
 public class RoomSensor implements Sensor {
-
     @Id
     private String id;
     private String sensorName;
     private LocalDateTime startingDate;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "Reading",
             joinColumns = @JoinColumn(name = "SENSOR_ID"))
     private List<Reading> listOfReadings = new ArrayList<>();
@@ -28,8 +27,8 @@ public class RoomSensor implements Sensor {
 
     private String units;
 
-    @Transient
-    private boolean isActive;
+    @Embedded
+    private SensorState isActive;
 
     public RoomSensor(String id, String sensorName, LocalDateTime startingDate, SensorType sensorType, String units) {
         this.id = id;
@@ -37,7 +36,7 @@ public class RoomSensor implements Sensor {
         this.startingDate = startingDate;
         this.sensorType = sensorType;
         this.units = units;
-        this.isActive = true;
+        this.isActive = new SensorState();
     }
 
     protected RoomSensor() {
@@ -54,6 +53,10 @@ public class RoomSensor implements Sensor {
 
     public SensorType getSensorType() {
         return sensorType;
+    }
+
+    public boolean isActive() {
+        return isActive.isActive();
     }
 
     public double getMaximumValueOfDay(LocalDate date) {
@@ -116,10 +119,11 @@ public class RoomSensor implements Sensor {
     }
 
     public boolean readingExistsBySensorIdLocalDateTime(Reading reading) {
-
-        for (Reading reading1 : listOfReadings) {
-            if (reading1.getDateTime() == reading.getDateTime())
-                return true;
+        if (!listOfReadings.isEmpty()) {
+            for (Reading reading1 : listOfReadings) {
+                if (reading1.getDateTime() == reading.getDateTime())
+                    return true;
+            }
         }
         return false;
     }
