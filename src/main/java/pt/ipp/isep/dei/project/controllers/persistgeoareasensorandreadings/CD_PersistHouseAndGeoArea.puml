@@ -11,19 +11,19 @@ skinparam class {
 hide empty attributes
 hide empty methods
 hide circle
-"<<Entity>>\nHouseGrid" "." -right-> "." "<<Service>>\nHouseService": uses
-"<<Service>>\nHouseService" "1" -right-> "1" "<<Repository>>\nRoomRepository"
+"<<Entity>>\nHouseGrid" "." <-left- "." "<<Repository>>\nHouseGridRepository"
+"<<Service>>\nHouseService" "1" -left-> "1" "<<Repository>>\nRoomRepository"
 "<<Service>>\nHouseService" "1" -right-> "1" "<<Repository>>\nHouseGridRepository"
 "<<Entity>>\nRoomSensor" "1" -down-> "0..*" "Reading"
-"<<Entity>>\nRoom" "." -left-> "." "<<Service>>\nHouseService": uses
+"<<Entity>>\nRoom" "." <-right- "." "<<Repository>>\nRoomRepository"
 "<<Entity>>\nRoom" "1"-left-> "1" "HouseGridId"
 "<<Entity>>\nHouseGrid" "1" -down-> "1" "HouseGridId"
 
-"<<Entity>>\nGeographicalArea" "1" -down-> "0..*" "<<Sensor>>"
+"<<Entity>>\nGeographicalArea" "1" -left-> "0..*" "<<Sensor>>"
 "<<Entity>>\nRoom" "1" -down-> "0 .. *" "<<Sensor>>"
 
-"<<Entity>>\nGeographicalArea" "." -right-> "." "<<Service>>\nGeoAreaService": uses
-"<<Service>>\nGeoAreaService" "1" -up-> "1" "<<Repository>>\nGeoAreaRepository"
+"<<Entity>>\nGeographicalArea" "." <-left- "." "<<Repository>>\nGeoAreaRepository"
+"<<Service>>\nGeoAreaService" "1" -down-> "1" "<<Repository>>\nGeoAreaRepository"
 "<<Entity>>\nGeoAreaSensor" "1" -down-> "0..*" "Reading"
 
 "<<Entity>>\nGeoAreaSensor" "1" -right-* "1" "<<Sensor>>" : implements
@@ -40,8 +40,6 @@ Class "HouseGridId" {
 
 
 Class "<<Service>>\nHouseService" {
-- RoomRepository
-- HouseGridRepository
 + updateHouseWithRoomsAndGrids()
 + addRoomToHouseGrid()
 + roomExists()
@@ -80,15 +78,9 @@ Interface "<<Repository>>\nHouseGridRepository"{
 }
 
 
-
-
-
-
 Class "<<Service>>\nGeoAreaService" {
-- static GeoAreaService
-+getInstance()
-+getGeoAreaRepository()
-+setGeoAreaRepository()
++ addGeoArea()
++ updateRepository()
 }
 
 
@@ -96,7 +88,6 @@ Class "<<Entity>>\nGeographicalArea" {
 -String id
 -String description
 -GeographicalAreaType geographicalAreaType
--GeographicalArea insertedIn
 -Location location
 -AreaShape areaShape
 }
@@ -108,7 +99,6 @@ Class "<<Entity>>\nGeoAreaSensor" {
 -SensorType sensortype
 -Location location
 -String units
--boolean isActive
 }
 
 
