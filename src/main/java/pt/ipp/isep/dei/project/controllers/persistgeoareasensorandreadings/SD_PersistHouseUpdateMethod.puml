@@ -1,0 +1,38 @@
+@startuml
+skinparam sequenceMessageAlign center
+skinparam sequence {
+    ArrowColor Black
+    ActorBorderColor DarkBlue
+    LifeLineBorderColor black
+    LifeLineBackgroundColor LightGrey
+
+    ParticipantBorderColor Black
+    ParticipantBackgroundColor LightGrey
+    ParticipantFontStyle Bold
+
+    ActorBackgroundColor DimGrey
+    ActorFontColor DeepSkyBlue
+    ActorFontStyle Bold
+    ActorFontSize 17
+    ActorFontName Aapex
+}
+loop HouseService
+autonumber
+":HouseService" -> "geoAreaService\n:GeoAreaService": getInstance()
+activate ":HouseService"
+activate "geoAreaService\n:GeoAreaService"
+":HouseService"  <-- "geoAreaService\n:GeoAreaService":geoAreaService
+deactivate "geoAreaService\n:GeoAreaService"
+deactivate ":HouseService"
+
+":HouseService" -> "geoAreaService\n:GeoAreaService": getGeoAreaRepository()
+activate ":HouseService"
+activate "geoAreaService\n:GeoAreaService"
+":HouseService"  <-- "geoAreaService\n:GeoAreaService":geoAreaRepository
+deactivate "geoAreaService\n:GeoAreaService"
+deactivate ":HouseService"
+":HouseService" -> "geoAreaRepository\n:GeoAreaRepository": save(geoArea)
+activate ":HouseService"
+activate "geoAreaRepository\n:GeoAreaRepository"
+end
+@enduml
