@@ -73,6 +73,7 @@ public class ImportRoomSensorsController {
                 imported = true;
             } else {
                 LOGGER.log(Level.WARNING, "Sensor was not imported because room " + roomId.getId() +" already has a sensor with the same id: Sensor id" + sensorDTO.getId()+".");
+                numberOfNotImportedReadings++;
             }
         }
         return imported;
