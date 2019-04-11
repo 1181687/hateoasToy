@@ -85,7 +85,7 @@ public class ConfigureHouseInformationFromJsonController {
         checkForInvalidGridInfo(houseDTO);
         if (!(numberOfNotImportedGrids == houseDTO.getHouseGridDTOList().size()
                 && numberOfNotImportedRooms == houseDTO.getRoomDTOList().size())) {
-            houseService.mapToEntity(houseDTO, house);
+            houseService.updateHouseWithRoomsAndGrids(houseDTO, house);
             imported = true;
         }
         writeAddressToFile(house.getAddress());
@@ -143,13 +143,6 @@ public class ConfigureHouseInformationFromJsonController {
             }
             houseGridDTO.getRoomDTOS().removeIf(roomDTO -> !roomDTOS.contains(roomDTO));
         }
-        if (!(numberOfNotImportedGrids == houseDTO.getHouseGridDTOList().size()
-                && numberOfNotImportedRooms == houseDTO.getRoomDTOList().size())) {
-            houseService.updateHouseWithRoomsAndGrids(houseDTO, house);
-            imported = true;
-        }
-        writeAddressToFile(house.getAddress());
-        return imported;
     }
 
     public void writeAddressToFile(Address address) {
