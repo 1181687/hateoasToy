@@ -57,20 +57,4 @@ public class ImportRoomSensors {
             }
         }
     }
-
- /*   private void getFilePath() {
-        this.filePath = InputValidator.getString("Please specify the name of the file you would like to import (extensions accepted: json).");
-        if (!controller.isValidFormat(this.filePath)) {
-            System.out.println("\nERROR: Please insert a valid format.\n");
-            return;
-        }
-    }
-
-    private void fileDoesntExist() {
-        this.file = new File(this.filePath);
-        if (!file.exists()) {
-            System.out.println("\nERROR: There's no such file with that name.\n");
-            return;
-        }
-    }*/
 }
