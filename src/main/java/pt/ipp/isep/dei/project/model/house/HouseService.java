@@ -52,9 +52,16 @@ public class HouseService {
 
     }
 
-   /* public boolean roomExists(String roomId){
-        return this.roomRepository.existsById(roomId);
-    }*/
+    public boolean addSensorToRoom(RoomSensor sensor, RoomId roomId){
+        Room room = getRoomById(roomId);
+        if(Objects.nonNull(room)){
+            if(room.addSensorToListOfSensorsInRoom(sensor)){
+                this.roomRepository.save(room);
+                return true;
+            }
+        }
+        return false;
+    }
 
     public Room getRoomById(RoomId roomId) {
         if (this.roomRepository.findById(roomId).isPresent()) {
