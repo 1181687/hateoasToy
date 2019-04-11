@@ -22,7 +22,6 @@ public class ImportRoomSensorsController {
     private HouseService houseService;
 
     public ImportRoomSensorsController(HouseService houseService) {
-        // this.roomList = roomList;
         this.houseService = houseService;
     }
 
@@ -68,18 +67,15 @@ public class ImportRoomSensorsController {
             if (!this.houseService.roomExists(roomId)) {
                 numberOfNotImportedReadings++;
                 String invalidInfo = "id: " + sensorDTO.getId() + ".";
-                LOGGER.log(Level.WARNING, "Sensor was not imported due because" + roomId.getId() + " doesn't exist: " + invalidInfo);
-                // continue;
-            } else if (this.houseService.getRoomById(roomId).addSensorToListOfSensorsInRoom(RoomSensorMapper.mapToEntity(sensorDTO))) {
+                LOGGER.log(Level.WARNING, "Sensor was not imported due because" + roomId.getId() +" doesn't exist: " + invalidInfo);
+                 continue;
+            } else if (this.houseService.addSensorToRoom(RoomSensorMapper.mapToEntity(sensorDTO),roomId)) {
                 imported = true;
             }
         }
         return imported;
     }
 
-    private boolean addSensorToRoom(RoomId roomId, RoomSensorDTO sensorDTO) {
-        return this.houseService.getRoomById(roomId).addSensorToListOfSensorsInRoom(RoomSensorMapper.mapToEntity(sensorDTO));
-    }
 
 
 }

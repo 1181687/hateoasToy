@@ -31,7 +31,8 @@ public class Room implements Measurable {
     @Embedded
     private Dimension dimension;
 
-    @Transient
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn
     private RoomSensorList sensorList;
 
     @Transient

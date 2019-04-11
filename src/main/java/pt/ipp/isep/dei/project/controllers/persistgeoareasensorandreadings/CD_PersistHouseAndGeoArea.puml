@@ -19,19 +19,12 @@ hide circle
 "<<Entity>>\nRoom" "1"-left-> "1" "HouseGridId"
 "<<Entity>>\nHouseGrid" "1" -down-> "1" "HouseGridId"
 
-"<<Entity>>\nGeographicalArea" "1" -left-> "0..*" "<<Sensor>>"
-"<<Entity>>\nRoom" "1" -down-> "0 .. *" "<<Sensor>>"
+"<<Entity>>\nGeographicalArea" "1" -left-> "0..*" "<<Entity>>\nGeoAreaSensor"
+"<<Entity>>\nRoom" "1" -down-> "0 .. *" "<<Entity>>\nRoomSensor"
 
 "<<Entity>>\nGeographicalArea" "." <-left- "." "<<Repository>>\nGeoAreaRepository"
 "<<Service>>\nGeoAreaService" "1" -down-> "1" "<<Repository>>\nGeoAreaRepository"
 "<<Entity>>\nGeoAreaSensor" "1" -down-> "0..*" "Reading"
-
-"<<Entity>>\nGeoAreaSensor" "1" -right-* "1" "<<Sensor>>" : implements
-"<<Entity>>\nRoomSensor" "1" -left-* "1" "<<Sensor>>" : implements
-
-
-Interface "<<Sensor>>" {
-}
 
 Class "HouseGridId" {
 - String houseGridId
