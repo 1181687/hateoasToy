@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2019-04-11T11:35:28</date>
+  <millis>1554978928568</millis>
+  <sequence>4</sequence>
+  <logger>com.sun.xml.internal.ws.spi.db.BindingContextFactory</logger>
+  <level>WARNING</level>
+  <class>pt.ipp.isep.dei.project.controllers.configurehouseinformationfromjsoncontroller.ConfigureHouseInformationFromJsonController</class>
+  <method>importHouseInformation</method>
+  <thread>13</thread>
+  <message>Room was not imported becausept.ipp.isep.dei.project.model.house.RoomId@22bf77d8 already exists: id: pt.ipp.isep.dei.project.model.house.RoomId@22bf77d8.</message>
+</record>
