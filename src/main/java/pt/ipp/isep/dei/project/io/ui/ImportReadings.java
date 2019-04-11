@@ -1,7 +1,6 @@
 package pt.ipp.isep.dei.project.io.ui;
 import pt.ipp.isep.dei.project.controllers.importreadingsfromcsvcontroller.ImportReadingsController;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaService;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
 import pt.ipp.isep.dei.project.model.house.HouseService;
 
 import java.io.File;
@@ -14,8 +13,8 @@ public class ImportReadings {
      *
      * @param geographicalAreaService
      */
-    public ImportReadings(GeographicalAreaList geographicalAreaList, HouseService houseService) {
-        controller = new ImportReadingsController(geographicalAreaList, houseService);
+    public ImportReadings(GeographicalAreaService geographicalAreaService, HouseService houseService) {
+        controller = new ImportReadingsController(geographicalAreaService, houseService);
     }
 
 

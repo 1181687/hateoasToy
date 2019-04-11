@@ -5,13 +5,10 @@ import pt.ipp.isep.dei.project.model.ProjectFileReader;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.ReadingMapper;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
 import pt.ipp.isep.dei.project.model.house.HouseService;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaService;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
-import pt.ipp.isep.dei.project.model.sensor.RoomSensorList;
-import pt.ipp.isep.dei.project.model.sensor.SensorList;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorList;
 import pt.ipp.isep.dei.project.utils.Utils;
 
@@ -30,8 +27,6 @@ public class ImportReadingsController {
     @Autowired
     private GeographicalAreaService geographicalAreaService;
     private GeoAreaSensorList allSensorInTheGeoAreas;
-    private GeoAreaSensor sensor;
-    private GeographicalAreaList geographicalAreaList;
     private GeoAreaSensor geoAreaSensor;
     private RoomSensor roomSensor;
     private List<Object> readingDTOList;
@@ -42,12 +37,12 @@ public class ImportReadingsController {
     /**
      * Constructor.
      *
-     * @param geographicalAreaList GeographicalAreaList to be used.
+     * @param geographicalAreaService GeographicalAreaService to be used.
      * @param houseService
      */
-    public ImportReadingsController(GeographicalAreaList geographicalAreaList, HouseService houseService) {
-        this.geographicalAreaList = geographicalAreaList;
-        this.allSensorInTheGeoAreas = this.geographicalAreaList.getAllSensors();
+    public ImportReadingsController(GeographicalAreaService geographicalAreaService, HouseService houseService) {
+        this.geographicalAreaService = geographicalAreaService;
+        this.allSensorInTheGeoAreas = this.geographicalAreaService.getAllSensors();
         this.houseService = houseService;
     }
 
