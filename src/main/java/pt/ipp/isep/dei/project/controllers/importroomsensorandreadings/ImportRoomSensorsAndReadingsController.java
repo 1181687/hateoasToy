@@ -67,7 +67,7 @@ public class ImportRoomSensorsAndReadingsController {
                 String invalidInfo = "id: " + sensorDTO.getId() + ".";
                 LOGGER.log(Level.WARNING, "Sensor was not imported due because" + roomId +" doesn't exist: " + invalidInfo);
                 // continue;
-            } else if (roomSensorReadingService.saveSensor(RoomSensorMapper.mapToEntity(sensorDTO))) {
+            } else if (roomSensorReadingService.saveSensor(RoomSensorMapper.updateHouseWithRoomsAndGrids(sensorDTO))) {
                 imported = true;
             }
         }

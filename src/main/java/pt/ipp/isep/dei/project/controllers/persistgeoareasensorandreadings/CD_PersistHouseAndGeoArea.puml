@@ -21,6 +21,12 @@ hide circle
 "<<Entity>>\nHouseGrid" "1" -down-> "1" "HouseGridId"
 
 
+GeographicalAreaList "." -right-> "." "<<Service>>\nGeoAreaService": uses
+"<<Service>>\nGeoAreaService" "1" -right-> "1" "<<Repository>>\nGeoAreaRepository"
+GeographicalAreaList --> "<<Entity>>\nGeographicalArea"
+"<<Entity>>\nGeographicalArea" -right-> "<<Entity>>\nGeoAreaSensor"
+"<<Entity>>\nGeoAreaSensor" -right-> "Reading"
+
 
 Class "HouseGridId" {
 - String houseGridId
@@ -67,5 +73,47 @@ Interface "<<Repository>>\nRoomRepository"{
 
 Interface "<<Repository>>\nHouseGridRepository"{
 }
+
+
+
+
+
+
+Class "<<Service>>\nGeoAreaService" {
+- static GeoAreaService
++getInstance()
++getGeoAreaRepository()
++setGeoAreaRepository()
+}
+
+Class GeographicalAreaList {
+-List<GeographicalArea> geoAreaList
++addGeoArea()
++updateRepository()
+}
+
+Class "<<Entity>>\nGeographicalArea" {
+-String id
+-String description
+-GeographicalAreaType geographicalAreaType
+-GeographicalArea insertedIn
+-Location location
+-AreaShape areaShape
+}
+
+Class "<<Entity>>\nGeoAreaSensor" {
+-String id
+-String sensorName
+-LocalDateTime startingDate
+-SensorType sensortype
+-Location location
+-String units
+-boolean isActive
+}
+
+
+Interface "<<Repository>>\nGeoAreaRepository"{
+}
+
 
 @enduml

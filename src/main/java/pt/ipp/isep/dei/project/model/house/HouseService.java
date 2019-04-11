@@ -18,7 +18,7 @@ public class HouseService {
     @Autowired
     private HouseGridRepository houseGridRepository;
 
-    public void mapToEntity(HouseDTO houseDTO, House house) {
+    public void updateHouseWithRoomsAndGrids(HouseDTO houseDTO, House house) {
         Address houseAddress = AddressMapper.mapToEntity(houseDTO.getAddressDTO());
         house.setAddress(houseAddress);
 
