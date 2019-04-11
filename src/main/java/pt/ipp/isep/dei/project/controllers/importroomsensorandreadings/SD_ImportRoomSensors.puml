@@ -28,46 +28,38 @@ AdminUser -> "ui : ImportRoomSensors": 3 - File path
 activate "ui : ImportRoomSensors"
 "ui : ImportRoomSensors" -> "ctrl : ImportRoomSensors\nController": 3.1 - readFile(file, path)
 activate "ctrl : ImportRoomSensors\nController"
-"ctrl : ImportRoomSensors\nController" -> "reader : XMLReader": 3.1.1 - createReader(path)
-activate "reader : XMLReader"
-"reader : XMLReader" --> "ctrl : ImportRoomSensors\nController": 3.1.2 - reader
-deactivate "reader : XMLReader"
-"ctrl : ImportRoomSensors\nController" -> "reader : XMLReader": 3.1.3 - readFile(file)
-activate "reader : XMLReader"
-ref over "reader : XMLReader"
+"ctrl : ImportRoomSensors\nController" -> "reader : Reader": 3.1.1 - createReader(path)
+activate "reader : Reader"
+"reader : Reader" --> "ctrl : ImportRoomSensors\nController": 3.1.2 - reader
+deactivate "reader : Reader"
+"ctrl : ImportRoomSensors\nController" -> "reader : Reader": 3.1.3 - readFile(file)
+activate "reader : Reader"
+ref over "reader : Reader"
 readFile
 end
-"reader : XMLReader" --> "ctrl : ImportRoomSensors\nController": 3.1.4 - roomSensorDTOs
-deactivate "reader : XMLReader"
+"reader : Reader" --> "ctrl : ImportRoomSensors\nController": 3.1.4 - roomSensorDTOs
+deactivate "reader : Reader"
 "ctrl : ImportRoomSensors\nController" --> "ui : ImportRoomSensors": 3.2 - roomSensorDTOs
 deactivate "ctrl : ImportRoomSensors\nController"
 "ui : ImportRoomSensors" --> AdminUser: 4 - Ask for confirmation
 deactivate "ui : ImportRoomSensors"
 AdminUser -> "ui : ImportRoomSensors": 5 - Confirmation received
 activate "ui : ImportRoomSensors"
-"ui : ImportRoomSensors" -> "ctrl : ImportRoomSensors\nController": 5.1 - importReadings()
+"ui : ImportRoomSensors" -> "ctrl : ImportRoomSensors\nController": 5.1 - importSensorsToRooms()
 activate "ctrl : ImportRoomSensors\nController"
-loop for each roomSensorDTOs
+loop for each roomSensorDTO
 "ctrl : ImportRoomSensors\nController" -> ReadingMapper: 5.1.1 - mapToEntity(roomSensorDTOs)
 activate ReadingMapper
-ReadingMapper --> "ctrl : ImportRoomSensors\nController": 5.1.2 - reading
+ReadingMapper --> "ctrl : ImportRoomSensors\nController": 5.1.2 - RoomSensor sensor
 deactivate ReadingMapper
-"ctrl : ImportRoomSensors\nController" -> "sensors : SensorList": 5.1.3 - getSensorById(id)
-activate "sensors : SensorList"
-"sensors : SensorList" --> "sensor : Sensor": 5.1.3.1 - getSensor()
-activate "sensor : Sensor"
-"sensor : Sensor" --> "sensors : SensorList": 5.1.3.2 - sensor
-deactivate "sensor : Sensor"
-"sensors : SensorList" --> "ctrl : ImportRoomSensors\nController": 5.1.4 - sensor
-deactivate "sensors : SensorList"
-"ctrl : ImportRoomSensors\nController" -> "sensor : Sensor": 5.1.5 - addReading(reading)
-activate "sensor : Sensor"
-"sensor : Sensor" --> "ctrl : ImportRoomSensors\nController": 5.1.6 - true
-deactivate "sensor : Sensor"
-end loop
-ref over "ctrl : ImportRoomSensors\nController"
-updateRepository
+"ctrl : ImportRoomSensors\nController" -> "HouseService": 5.1.3 - addSensorToRoom(roomId,sensor)
+activate HouseService
+ref over HouseService
+addSensorToRoom
 end
+"HouseService" --> "ctrl : ImportRoomSensors\nController": 5.1.3.1 - true
+deactivate HouseService
+end loop
 "ctrl : ImportRoomSensors\nController" --> "ui : ImportRoomSensors": 5.2 - true
 deactivate "ctrl : ImportRoomSensors\nController"
 "ui : ImportRoomSensors" --> AdminUser: 6 - Give feedback
