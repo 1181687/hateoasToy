@@ -1,0 +1,75 @@
+@startuml
+skinparam sequenceMessageAlign center
+skinparam sequence {
+	ArrowColor Black
+	ActorBorderColor DarkBlue
+	LifeLineBorderColor black
+	LifeLineBackgroundColor LightGrey
+
+	ParticipantBorderColor Black
+	ParticipantBackgroundColor LightGrey
+	ParticipantFontStyle Bold
+
+	ActorBackgroundColor DimGrey
+	ActorFontColor DeepSkyBlue
+	ActorFontStyle Bold
+	ActorFontSize 17
+	ActorFontName Aapex
+}
+
+activate AdminUser
+actor AdminUser
+
+AdminUser -> "ui : ImportRoomSensors":1 - Import room sensors
+activate "ui : ImportRoomSensors"
+"ui : ImportRoomSensors" --> AdminUser: 2 - Ask for the file path
+deactivate "ui : ImportRoomSensors"
+AdminUser -> "ui : ImportRoomSensors": 3 - File path
+activate "ui : ImportRoomSensors"
+"ui : ImportRoomSensors" -> "ctrl : ImportRoomSensors\nController": 3.1 - readFile(file, path)
+activate "ctrl : ImportRoomSensors\nController"
+"ctrl : ImportRoomSensors\nController" -> "reader : XMLReader": 3.1.1 - createReader(path)
+activate "reader : XMLReader"
+"reader : XMLReader" --> "ctrl : ImportRoomSensors\nController": 3.1.2 - reader
+deactivate "reader : XMLReader"
+"ctrl : ImportRoomSensors\nController" -> "reader : XMLReader": 3.1.3 - readFile(file)
+activate "reader : XMLReader"
+ref over "reader : XMLReader"
+readFile
+end
+"reader : XMLReader" --> "ctrl : ImportRoomSensors\nController": 3.1.4 - roomSensorDTOs
+deactivate "reader : XMLReader"
+"ctrl : ImportRoomSensors\nController" --> "ui : ImportRoomSensors": 3.2 - roomSensorDTOs
+deactivate "ctrl : ImportRoomSensors\nController"
+"ui : ImportRoomSensors" --> AdminUser: 4 - Ask for confirmation
+deactivate "ui : ImportRoomSensors"
+AdminUser -> "ui : ImportRoomSensors": 5 - Confirmation received
+activate "ui : ImportRoomSensors"
+"ui : ImportRoomSensors" -> "ctrl : ImportRoomSensors\nController": 5.1 - importReadings()
+activate "ctrl : ImportRoomSensors\nController"
+loop for each roomSensorDTOs
+"ctrl : ImportRoomSensors\nController" -> ReadingMapper: 5.1.1 - mapToEntity(roomSensorDTOs)
+activate ReadingMapper
+ReadingMapper --> "ctrl : ImportRoomSensors\nController": 5.1.2 - reading
+deactivate ReadingMapper
+"ctrl : ImportRoomSensors\nController" -> "sensors : SensorList": 5.1.3 - getSensorById(id)
+activate "sensors : SensorList"
+"sensors : SensorList" --> "sensor : Sensor": 5.1.3.1 - getSensor()
+activate "sensor : Sensor"
+"sensor : Sensor" --> "sensors : SensorList": 5.1.3.2 - sensor
+deactivate "sensor : Sensor"
+"sensors : SensorList" --> "ctrl : ImportRoomSensors\nController": 5.1.4 - sensor
+deactivate "sensors : SensorList"
+"ctrl : ImportRoomSensors\nController" -> "sensor : Sensor": 5.1.5 - addReading(reading)
+activate "sensor : Sensor"
+"sensor : Sensor" --> "ctrl : ImportRoomSensors\nController": 5.1.6 - true
+deactivate "sensor : Sensor"
+end loop
+ref over "ctrl : ImportRoomSensors\nController"
+updateRepository
+end
+"ctrl : ImportRoomSensors\nController" --> "ui : ImportRoomSensors": 5.2 - true
+deactivate "ctrl : ImportRoomSensors\nController"
+"ui : ImportRoomSensors" --> AdminUser: 6 - Give feedback
+deactivate "ui : ImportRoomSensors"
+@enduml
