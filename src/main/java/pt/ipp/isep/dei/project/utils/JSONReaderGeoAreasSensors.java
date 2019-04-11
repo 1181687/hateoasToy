@@ -134,7 +134,7 @@ public class JSONReaderGeoAreasSensors implements ProjectFileReader {
 
             }
 
-            HouseDTO houseDTO = HouseMapper.newHouseDTO();
+            HouseDTO houseDTO = new HouseDTO();
             houseDTO.setAddressDTO(addressDTO);
             houseDTO.setRoomDTOList(roomDTOS);
             houseDTO.setHouseGridDTOList(houseGridDTOS);
