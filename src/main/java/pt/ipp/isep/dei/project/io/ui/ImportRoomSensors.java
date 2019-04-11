@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.project.io.ui;
 
-import pt.ipp.isep.dei.project.controllers.importroomsensorandreadings.ImportRoomSensorsController;
+import pt.ipp.isep.dei.project.controllers.importroomsensors.ImportRoomSensorsController;
 import pt.ipp.isep.dei.project.model.house.HouseService;
 
 import java.io.File;

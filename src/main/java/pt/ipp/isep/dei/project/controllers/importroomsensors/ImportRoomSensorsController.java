@@ -1,4 +1,4 @@
-package pt.ipp.isep.dei.project.controllers.importroomsensorandreadings;
+package pt.ipp.isep.dei.project.controllers.importroomsensors;
 
 import pt.ipp.isep.dei.project.model.ProjectFileReader;
 import pt.ipp.isep.dei.project.model.house.HouseService;
