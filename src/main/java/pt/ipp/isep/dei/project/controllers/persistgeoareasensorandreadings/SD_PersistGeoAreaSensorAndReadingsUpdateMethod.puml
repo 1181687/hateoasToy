@@ -16,7 +16,7 @@ skinparam sequence {
     ActorFontSize 17
     ActorFontName Aapex
 }
-loop GeographicalAreaList
+loop GeographicalAreaService
 autonumber
 
 "GeographicalAreaService\n:GeographicalAreaService" -> "geographicalAreaRepository\n:GeographicalAreaRepository" : addGeoArea()

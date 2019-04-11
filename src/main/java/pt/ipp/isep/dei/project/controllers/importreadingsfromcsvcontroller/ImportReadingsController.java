@@ -81,21 +81,41 @@ public class ImportReadingsController {
             ReadingDTO reading = (ReadingDTO) object;
             if (option == 1) {
                 geoAreaSensor = allSensorInTheGeoAreas.getSensorById(reading.getId());
+                if (Objects.isNull(geoAreaSensor)) {
+                    numberOfNotImportedReadings++;
+                    continue;
+                }
+                if (isDateTimeBeforeSensorStartingDate(reading.getDateTime())) {
+                    numberOfNotImportedReadings++;
+                    String invalidInfo = "id: " + reading.getId() + ", value: " + reading.getValue() + ", timestamp/date: " + reading.getDateTime() + ", unit: " + reading.getUnits() + ".";
+                    LOGGER.log(Level.WARNING, "Reading not imported due to timestamp/date of reading being before starting date of sensor: " + invalidInfo);
+                    continue;
+                }
             }
             if (option == 2) {
                 roomSensor = houseService.getSensorById(reading.getId());
+                if (Objects.isNull(roomSensor)) {
+                    numberOfNotImportedReadings++;
+                    continue;
+                }
+                if (isDateTimeBeforeRoomSensorStartingDate(reading.getDateTime())) {
+                    numberOfNotImportedReadings++;
+                    String invalidInfo = "id: " + reading.getId() + ", value: " + reading.getValue() + ", timestamp/date: " + reading.getDateTime() + ", unit: " + reading.getUnits() + ".";
+                    LOGGER.log(Level.WARNING, "Reading not imported due to timestamp/date of reading being before starting date of sensor: " + invalidInfo);
+                    continue;
+                }
             }
 
-            if (Objects.isNull(geoAreaSensor) || Objects.isNull(roomSensor) || !geoAreaSensor.isActive()) {
+            /*if (Objects.isNull(geoAreaSensor) || Objects.isNull(roomSensor)) {
                 numberOfNotImportedReadings++;
                 continue;
-            }
-            if (isDateTimeBeforeSensorStartingDate(reading.getDateTime()) || isDateTimeBeforeRoomSensorStartingDate(reading.getDateTime())) {
+            }*/
+            /*if (isDateTimeBeforeSensorStartingDate(reading.getDateTime()) || isDateTimeBeforeRoomSensorStartingDate(reading.getDateTime())) {
                 numberOfNotImportedReadings++;
                 String invalidInfo = "id: " + reading.getId() + ", value: " + reading.getValue() + ", timestamp/date: " + reading.getDateTime() + ", unit: " + reading.getUnits() + ".";
                 LOGGER.log(Level.WARNING, "Reading not imported due to timestamp/date of reading being before starting date of sensor: " + invalidInfo);
                 continue;
-            }
+            }*/
             if (reading.getUnits().equals("F")) {
                 double celsiusValue = Utils.convertFahrenheitToCelsius(reading.getValue());
                 reading.setValue(Utils.round(celsiusValue, 2));
