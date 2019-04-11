@@ -1,8 +1,5 @@
 package pt.ipp.isep.dei.project.model.sensor;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.web.ResourceProperties;
-import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 
@@ -13,8 +10,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-public class
-SensorList {
+public class GeoAreaSensorList {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -27,7 +23,7 @@ SensorList {
     /**
      * Constructor method.
      */
-    public SensorList() {
+    public GeoAreaSensorList() {
         this.listOfSensors = new ArrayList<>();
     }
 
@@ -56,7 +52,7 @@ SensorList {
      * @return True or false.
      */
     public boolean addSensor(GeoAreaSensor sensor) {
-        if (listOfSensors.contains(sensor)) {
+        if (listOfSensors.contains(sensor.getId()) || Objects.isNull(sensor.getId())) {
             return false;
         }
         listOfSensors.add(sensor);
@@ -154,8 +150,8 @@ SensorList {
      * @param location Location used.
      * @return A list with the nearest sensor (or more, if there are more than one with the same distance).
      */
-    public SensorList getNearestSensorsToLocation(Location location) {
-        SensorList nearestSensors = new SensorList();
+    public GeoAreaSensorList getNearestSensorsToLocation(Location location) {
+        GeoAreaSensorList nearestSensors = new GeoAreaSensorList();
         double shortestDistance = Double.NaN;
         for (GeoAreaSensor sensor : listOfSensors) {
             if (Double.isNaN(shortestDistance) || shortestDistance > sensor.distanceBetweenSensorAndLocation(location)) {
@@ -207,7 +203,7 @@ SensorList {
 
 
     /**
-     * method that creates the same hashCode to the same SensorList
+     * method that creates the same hashCode to the same GeoAreaSensorList
      *
      * @return the hashcode created
      */
@@ -227,22 +223,22 @@ SensorList {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof SensorList)) {
+        if (!(obj instanceof GeoAreaSensorList)) {
             return false;
         }
-        SensorList listOne = (SensorList) obj;
+        GeoAreaSensorList listOne = (GeoAreaSensorList) obj;
         return this.listOfSensors.equals(listOne.listOfSensors);
     }
 
     /**
      * Method that receives a list of sensors and returns the sensor with the most recent reading.
      *
-     * @param sensorList
+     * @param geoAreaSensorList
      * @return
      */
-    public GeoAreaSensor getSensorWithMostRecentReading(SensorList sensorList) {
-        GeoAreaSensor sensorWithMostRecentReading = sensorList.getListOfSensors().get(0);
-        for (GeoAreaSensor sensor : sensorList.getListOfSensors()) {
+    public GeoAreaSensor getSensorWithMostRecentReading(GeoAreaSensorList geoAreaSensorList) {
+        GeoAreaSensor sensorWithMostRecentReading = geoAreaSensorList.getListOfSensors().get(0);
+        for (GeoAreaSensor sensor : geoAreaSensorList.getListOfSensors()) {
             if (!(sensor.isMeasurementListEmpty()) &&
                     sensor.getLastMeasurement().getDateTime().isAfter(sensorWithMostRecentReading.getLastMeasurement().getDateTime())) {
                 sensorWithMostRecentReading = sensor;

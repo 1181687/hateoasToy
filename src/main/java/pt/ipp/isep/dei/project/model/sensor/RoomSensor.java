@@ -3,19 +3,31 @@ package pt.ipp.isep.dei.project.model.sensor;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.utils.Utils;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class RoomSensor implements Sensor {
 
+    @Id
     private String id;
     private String sensorName;
     private LocalDateTime startingDate;
+
+    @ElementCollection
+    @CollectionTable(name = "Reading",
+            joinColumns = @JoinColumn(name = "SENSOR_ID"))
     private List<Reading> listOfReadings = new ArrayList<>();
+
+    @Transient
     private SensorType sensorType;
+
     private String units;
+
+    @Transient
     private boolean isActive;
 
     public RoomSensor(String id, String sensorName, LocalDateTime startingDate, SensorType sensorType, String units) {
@@ -25,6 +37,18 @@ public class RoomSensor implements Sensor {
         this.sensorType = sensorType;
         this.units = units;
         this.isActive = true;
+    }
+
+    protected RoomSensor() {
+        // empty
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public LocalDateTime getStartingDate() {
+        return startingDate;
     }
 
     public SensorType getSensorType() {
@@ -81,5 +105,12 @@ public class RoomSensor implements Sensor {
             }
         }
         return reading;
+    }
+
+    public boolean addReading(Reading reading) {
+        if (!listOfReadings.contains(reading)) {
+            return this.listOfReadings.add(reading);
+        }
+        return false;
     }
 }

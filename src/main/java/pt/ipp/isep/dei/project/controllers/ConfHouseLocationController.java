@@ -1,20 +1,20 @@
 package pt.ipp.isep.dei.project.controllers;
 
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaService;
 import pt.ipp.isep.dei.project.model.house.Address;
 import pt.ipp.isep.dei.project.model.house.House;
 
 import java.util.Objects;
 
 public class ConfHouseLocationController {
-    private GeographicalAreaList geographicalAreaList;
+    private GeographicalAreaService geographicalAreaService;
     private House house;
     private Address address;
     private GeographicalArea geographicalArea;
 
-    public ConfHouseLocationController(GeographicalAreaList geographicalAreaList, House house) {
-        this.geographicalAreaList = geographicalAreaList;
+    public ConfHouseLocationController(GeographicalAreaService geographicalAreaService, House house) {
+        this.geographicalAreaService = geographicalAreaService;
         this.house = house;
     }
 
@@ -36,13 +36,13 @@ public class ConfHouseLocationController {
     public String getGeoAreaListToString(boolean useCriterion) {
         StringBuilder content = new StringBuilder();
         int numberInTheList = 1;
-        for (GeographicalArea geoArea : geographicalAreaList.getGeoAreaList()) {
+        for (GeographicalArea geoArea : geographicalAreaService.getGeoAreaList()) {
             content.append(numberInTheList + " - ID: " + geoArea.getId());
             content.append(", Description: " + geoArea.getDescription());
             content.append(", Type: " + geoArea.getGeoAreaType().getStringOfTypeOfGeoArea());
             content.append(", Latitude: " + geoArea.getLocation().getLatitude());
             content.append(", Longitude: " + geoArea.getLocation().getLongitude());
-            if (useCriterion && !geographicalAreaList.checkIfGeoAreaDoesntHaveAnInsertedArea(geoArea)) {
+            if (useCriterion && !geographicalAreaService.checkIfGeoAreaDoesntHaveAnInsertedArea(geoArea)) {
                 content.append(", Inserted in: " + geoArea.getInsertedIn().getGeoAreaType().getStringOfTypeOfGeoArea());
                 content.append(" " + geoArea.getInsertedIn().getDescription());
             }
@@ -58,14 +58,14 @@ public class ConfHouseLocationController {
      * @return True or False.
      */
     public boolean isGeographicalAreaListEmpty() {
-        return geographicalAreaList.getGeoAreaList().isEmpty();
+        return geographicalAreaService.getGeoAreaList().isEmpty();
     }
 
     /**
      * @return
      */
     public int getNumberOfGeoAreas() {
-        return geographicalAreaList.getSize();
+        return geographicalAreaService.getSize();
     }
 
     /**
@@ -74,7 +74,7 @@ public class ConfHouseLocationController {
      * @param position Position of the Geographical Area.
      */
     public void setGeographicalArea(int position) {
-        geographicalArea = geographicalAreaList.getGeographicalAreaInTheList(position);
+        geographicalArea = geographicalAreaService.getGeographicalAreaInTheList(position);
     }
 
     /**

@@ -5,10 +5,11 @@ import pt.ipp.isep.dei.project.model.ProjectFileReader;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.ReadingMapper;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaService;
+import pt.ipp.isep.dei.project.model.house.HouseService;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
-import pt.ipp.isep.dei.project.model.sensor.Sensor;
-import pt.ipp.isep.dei.project.model.sensor.SensorList;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorList;
+import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.io.File;
@@ -24,20 +25,25 @@ import java.util.logging.Logger;
 public class ImportReadingsController {
     private static final Logger LOGGER = Logger.getLogger(ImportReadingsController.class.getName());
     @Autowired
-    private GeographicalAreaList geographicalAreaList;
-    private SensorList allSensorInTheGeoAreas;
-    private GeoAreaSensor sensor;
+    private GeographicalAreaService geographicalAreaService;
+    private GeoAreaSensorList allSensorInTheGeoAreas;
+    private GeoAreaSensor geoAreaSensor;
+    private RoomSensor roomSensor;
     private List<Object> readingDTOList;
     private int numberOfNotImportedReadings;
+    @Autowired
+    private HouseService houseService;
 
     /**
      * Constructor.
      *
-     * @param geographicalAreaList GeographicalAreaList to be used.
+     * @param geographicalAreaService GeographicalAreaService to be used.
+     * @param houseService
      */
-    public ImportReadingsController(GeographicalAreaList geographicalAreaList) {
-        this.geographicalAreaList = geographicalAreaList;
-        this.allSensorInTheGeoAreas = this.geographicalAreaList.getAllSensors();
+    public ImportReadingsController(GeographicalAreaService geographicalAreaService, HouseService houseService) {
+        this.geographicalAreaService = geographicalAreaService;
+        this.allSensorInTheGeoAreas = this.geographicalAreaService.getAllSensors();
+        this.houseService = houseService;
     }
 
     /**
@@ -47,7 +53,11 @@ public class ImportReadingsController {
      * @return True or False.
      */
     public boolean isDateTimeBeforeSensorStartingDate(LocalDateTime localDateTime) {
-        return localDateTime.isBefore(sensor.getStartingDate());
+        return localDateTime.isBefore(geoAreaSensor.getStartingDate());
+    }
+
+    public boolean isDateTimeBeforeRoomSensorStartingDate(LocalDateTime localDateTime) {
+        return localDateTime.isBefore(roomSensor.getStartingDate());
     }
 
     /**
@@ -57,24 +67,30 @@ public class ImportReadingsController {
      */
     public void addReadingToSensor(ReadingDTO readingDTO) {
         Reading reading = ReadingMapper.mapToEntity(readingDTO);
-        sensor.addReadingsToList(reading);
+        geoAreaSensor.addReadingsToList(reading);
     }
 
     public int getNumberOfNotImportedReadings() {
         return this.numberOfNotImportedReadings;
     }
 
-    public boolean addReadingToSensorById() {
+    public boolean addReadingToSensorById(int option) {
         configLogFile();
         boolean imported = false;
         for (Object object : this.readingDTOList) {
             ReadingDTO reading = (ReadingDTO) object;
-            sensor = allSensorInTheGeoAreas.getSensorById(reading.getId());
-            if (Objects.isNull(sensor)) {
+            if (option == 1) {
+                geoAreaSensor = allSensorInTheGeoAreas.getSensorById(reading.getId());
+            }
+            if (option == 2) {
+                roomSensor = houseService.getSensorById(reading.getId());
+            }
+
+            if (Objects.isNull(geoAreaSensor) || Objects.isNull(roomSensor)) {
                 numberOfNotImportedReadings++;
                 continue;
             }
-            if (isDateTimeBeforeSensorStartingDate(reading.getDateTime())) {
+            if (isDateTimeBeforeSensorStartingDate(reading.getDateTime()) || isDateTimeBeforeRoomSensorStartingDate(reading.getDateTime())) {
                 numberOfNotImportedReadings++;
                 String invalidInfo = "id: " + reading.getId() + ", value: " + reading.getValue() + ", timestamp/date: " + reading.getDateTime() + ", unit: " + reading.getUnits() + ".";
                 LOGGER.log(Level.WARNING, "Reading not imported due to timestamp/date of reading being before starting date of sensor: " + invalidInfo);
@@ -85,15 +101,19 @@ public class ImportReadingsController {
                 reading.setValue(Utils.round(celsiusValue, 2));
                 reading.setUnits("C");
             }
-            if (sensor.addReading(ReadingMapper.mapToEntity(reading))) {
+            if (option == 1 && geoAreaSensor.addReading(ReadingMapper.mapToEntity(reading))) {
+                imported = true;
+            }
+            if (option == 2 && roomSensor.addReading(ReadingMapper.mapToEntity(reading))) {
                 imported = true;
             }
         }
-        /*if(imported){
-
-            this.geographicalAreaList.updateRepository();
-        }*/
-        this.geographicalAreaList.updateRepository();
+        if (imported && option == 1) {
+            this.geographicalAreaService.updateRepository();
+        }
+        if (imported && option == 2) {
+            this.houseService.updateRepository(roomSensor.getId());
+        }
         return imported;
     }
 

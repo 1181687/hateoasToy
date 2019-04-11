@@ -9,7 +9,7 @@ import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
-import pt.ipp.isep.dei.project.model.sensor.SensorList;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorList;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 
 import java.time.LocalDate;
@@ -303,14 +303,14 @@ class GeographicalAreaTest {
         ag1.getSensorListInTheGeographicArea().addSensor(s2);
         ag1.getSensorListInTheGeographicArea().addSensor(s3);
 
-        SensorList expectedResult = new SensorList();
+        GeoAreaSensorList expectedResult = new GeoAreaSensorList();
         expectedResult.addSensor(s0);
         expectedResult.addSensor(s1);
 
         SensorType sensorTypePedido = new SensorType("Temperatura");
 
         //Act
-        SensorList result = ag1.getSensorsByType(sensorTypePedido);
+        GeoAreaSensorList result = ag1.getSensorsByType(sensorTypePedido);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -349,7 +349,7 @@ class GeographicalAreaTest {
         Location locS3 = new Location(-4, -10, 65);
         GeoAreaSensor s3 = new GeoAreaSensor("7654", "A123", dataFuncionamento3, sensorType3, locS3, "l/m2");
 
-        SensorList expectedResult = new SensorList();
+        GeoAreaSensorList expectedResult = new GeoAreaSensorList();
 
         SensorType sensorTypePedido = new SensorType("Pressão atmosférica");
 
@@ -359,7 +359,7 @@ class GeographicalAreaTest {
         ag1.getSensorListInTheGeographicArea().addSensor(s3);
 
         //Act
-        SensorList result = ag1.getSensorsByType(sensorTypePedido);
+        GeoAreaSensorList result = ag1.getSensorsByType(sensorTypePedido);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -429,7 +429,7 @@ class GeographicalAreaTest {
         ag1.getSensorListInTheGeographicArea().addSensor(s1);
         ag1.getSensorListInTheGeographicArea().addSensor(s2);
 
-        SensorList expectedResult = new SensorList();
+        GeoAreaSensorList expectedResult = new GeoAreaSensorList();
         expectedResult.addSensor(s1);
         expectedResult.addSensor(s2);
 
@@ -439,7 +439,7 @@ class GeographicalAreaTest {
         SensorType tipoResultado = new SensorType("Temperatura");
 
         //Act
-        SensorList result = ag1.getSensorListByTypeInAPeriod(tipoResultado, dataInicial, dataFinal);
+        GeoAreaSensorList result = ag1.getSensorListByTypeInAPeriod(tipoResultado, dataInicial, dataFinal);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -509,7 +509,7 @@ class GeographicalAreaTest {
         ag1.getSensorListInTheGeographicArea().addSensor(s1);
         ag1.getSensorListInTheGeographicArea().addSensor(s2);
 
-        SensorList expectedResult = new SensorList();
+        GeoAreaSensorList expectedResult = new GeoAreaSensorList();
 
         LocalDate dataInicial = LocalDate.of(2016, 1, 1);
         LocalDate dataFinal = LocalDate.of(2016, 4, 30);
@@ -517,7 +517,7 @@ class GeographicalAreaTest {
         SensorType tipoResultado = new SensorType("Temperatura");
 
         //Act
-        SensorList result = ag1.getSensorListByTypeInAPeriod(tipoResultado, dataInicial, dataFinal);
+        GeoAreaSensorList result = ag1.getSensorListByTypeInAPeriod(tipoResultado, dataInicial, dataFinal);
 
         System.out.println(result.getSensorListToString());
         System.out.println(expectedResult.getSensorListToString());
@@ -1181,17 +1181,17 @@ class GeographicalAreaTest {
         //Instance of SensorType
         SensorType typeOfSensorTested = new SensorType("Rainfall");
 
-        //Instance of SensorList
+        //Instance of GeoAreaSensorList
         ag.getSensorListInTheGeographicArea().addSensor(s1);
         ag.getSensorListInTheGeographicArea().addSensor(s2);
 
         LocalDate day = LocalDate.of(2016, 1, 1);
-        SensorList expectedResult = new SensorList();
+        GeoAreaSensorList expectedResult = new GeoAreaSensorList();
         expectedResult.addSensor(s1);
         expectedResult.addSensor(s2);
 
         //ACT
-        SensorList result = ag.getSensorListByTypeInADay(typeOfSensorTested, day);
+        GeoAreaSensorList result = ag.getSensorListByTypeInADay(typeOfSensorTested, day);
 
         //ASSERT
         assertEquals(expectedResult, result);
@@ -1245,18 +1245,18 @@ class GeographicalAreaTest {
         //Instance of SensorType
         SensorType typeOfSensorTested = new SensorType("Rainfall");
 
-        //SensorList to ag
+        //GeoAreaSensorList to ag
         ag.getSensorListInTheGeographicArea().addSensor(s1);
         ag.getSensorListInTheGeographicArea().addSensor(s2);
 
         //Instance of a day
         LocalDate day = LocalDate.of(2016, 1, 1);
 
-        SensorList expectedResult = new SensorList();
+        GeoAreaSensorList expectedResult = new GeoAreaSensorList();
         expectedResult.addSensor(s2);
 
         //ACT
-        SensorList result = ag.getSensorListByTypeInADay(typeOfSensorTested, day);
+        GeoAreaSensorList result = ag.getSensorListByTypeInADay(typeOfSensorTested, day);
 
         //ASSERT
         assertEquals(expectedResult, result);
@@ -1312,18 +1312,18 @@ class GeographicalAreaTest {
         //Instance of SensorType
         SensorType typeOfSensorTested = new SensorType("Rainfall");
 
-        //SensorList to ag
+        //GeoAreaSensorList to ag
         ag.getSensorListInTheGeographicArea().addSensor(s1);
         ag.getSensorListInTheGeographicArea().addSensor(s2);
 
         //Instance of a day
         LocalDate day = LocalDate.of(2016, 1, 1);
 
-        SensorList expectedResult = new SensorList();
+        GeoAreaSensorList expectedResult = new GeoAreaSensorList();
         expectedResult.addSensor(s1);
 
         //ACT
-        SensorList result = ag.getSensorListByTypeInADay(typeOfSensorTested, day);
+        GeoAreaSensorList result = ag.getSensorListByTypeInADay(typeOfSensorTested, day);
 
         //ASSERT
         assertEquals(expectedResult, result);

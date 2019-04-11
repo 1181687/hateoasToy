@@ -1,0 +1,109 @@
+@startuml
+skinparam linetype ortho
+
+skinparam class {
+	BackgroundColor PaleTurquoise
+	ArrowColor Black
+	BorderColor Black
+	FontStyle Bold
+}
+
+hide empty attributes
+hide empty methods
+hide circle
+"<<Entity>>\nHouseGrid" "." <-left- "." "<<Repository>>\nHouseGridRepository"
+"<<Service>>\nHouseService" "1" -left-> "1" "<<Repository>>\nRoomRepository"
+"<<Service>>\nHouseService" "1" -right-> "1" "<<Repository>>\nHouseGridRepository"
+"<<Entity>>\nRoomSensor" "1" -down-> "0..*" "Reading"
+"<<Entity>>\nRoom" "." <-right- "." "<<Repository>>\nRoomRepository"
+"<<Entity>>\nRoom" "1"-left-> "1" "HouseGridId"
+"<<Entity>>\nHouseGrid" "1" -down-> "1" "HouseGridId"
+
+"<<Entity>>\nGeographicalArea" "1" -left-> "0..*" "<<Sensor>>"
+"<<Entity>>\nRoom" "1" -down-> "0 .. *" "<<Sensor>>"
+
+"<<Entity>>\nGeographicalArea" "." <-left- "." "<<Repository>>\nGeoAreaRepository"
+"<<Service>>\nGeoAreaService" "1" -down-> "1" "<<Repository>>\nGeoAreaRepository"
+"<<Entity>>\nGeoAreaSensor" "1" -down-> "0..*" "Reading"
+
+"<<Entity>>\nGeoAreaSensor" "1" -right-* "1" "<<Sensor>>" : implements
+"<<Entity>>\nRoomSensor" "1" -left-* "1" "<<Sensor>>" : implements
+
+
+Interface "<<Sensor>>" {
+}
+
+Class "HouseGridId" {
+- String houseGridId
++ getHouseGridId()
+}
+
+
+Class "<<Service>>\nHouseService" {
++ updateHouseWithRoomsAndGrids()
++ addRoomToHouseGrid()
++ roomExists()
++ houseGridExists()
+}
+
+Class "<<Entity>>\nHouseGrid" {
+}
+
+Class "<<Entity>>\nRoom" {
+- RoomId id
+- String description
+- int houseFloor
+- Dimension dimension
+}
+
+Class "<<Entity>>\nRoomSensor" {
+- String id
+- String sensorName
+- LocalDateTime startingDate
+- SensorType sensortype
+- String units
+}
+
+Class "Reading" {
+- Long id
+- double value
+- LocalDateTime date
+}
+
+Interface "<<Repository>>\nRoomRepository"{
+
+}
+
+Interface "<<Repository>>\nHouseGridRepository"{
+}
+
+
+Class "<<Service>>\nGeoAreaService" {
++ addGeoArea()
++ updateRepository()
+}
+
+
+Class "<<Entity>>\nGeographicalArea" {
+-String id
+-String description
+-GeographicalAreaType geographicalAreaType
+-Location location
+-AreaShape areaShape
+}
+
+Class "<<Entity>>\nGeoAreaSensor" {
+-String id
+-String sensorName
+-LocalDateTime startingDate
+-SensorType sensortype
+-Location location
+-String units
+}
+
+
+Interface "<<Repository>>\nGeoAreaRepository"{
+}
+
+
+@enduml

@@ -104,7 +104,7 @@ public class ConfigureHouseInformationFromJsonController {
         }
         if (!(numberOfNotImportedGrids == houseDTO.getHouseGridDTOList().size()
                 && numberOfNotImportedRooms == houseDTO.getRoomDTOList().size())) {
-            houseService.mapToEntity(houseDTO, house);
+            houseService.updateHouseWithRoomsAndGrids(houseDTO, house);
             imported = true;
         }
         writeAddressToFile(house.getAddress());

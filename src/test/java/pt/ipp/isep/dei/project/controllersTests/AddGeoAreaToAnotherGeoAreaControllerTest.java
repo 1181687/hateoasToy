@@ -15,7 +15,7 @@ import pt.ipp.isep.dei.project.io.ui.Main;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaService;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -27,7 +27,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class AddGeoAreaToAnotherGeoAreaControllerTest {
     private AddGeoAreaToAnotherGeoAreaController controller;
     @InjectMocks
-    private GeographicalAreaList geographicalAreaList;
+    private GeographicalAreaService geographicalAreaService;
     private GeographicalArea cityOfPorto;
     private GeographicalArea parishOfBonfim;
     private GeographicalArea cityOfBraga;
@@ -45,18 +45,18 @@ public class AddGeoAreaToAnotherGeoAreaControllerTest {
         Location location = new Location(41.178553, -8.608035, 111);
         AreaShape areaShape = new AreaShape(0.261, 0.249, location);
         cityOfPorto = new GeographicalArea("Porto", "City of Porto", city, location, areaShape);
-        geographicalAreaList.addGeoArea(cityOfPorto);
+        geographicalAreaService.addGeoArea(cityOfPorto);
         Location location1 = new Location(40.178553, -8.208035, 112);
         AreaShape areaShape1 = new AreaShape(0.161, 0.149, location1);
         parishOfBonfim = new GeographicalArea("Bonfim", "Parish of Bonfim", parish, location1, areaShape1);
         parishOfBonfim.setInsertedIn(cityOfPorto);
-        geographicalAreaList.addGeoArea(parishOfBonfim);
+        geographicalAreaService.addGeoArea(parishOfBonfim);
         Location location2 = new Location(21.178553, -7.608035, 100);
         AreaShape areaShape2 = new AreaShape(0.191, 0.249, location2);
         cityOfBraga = new GeographicalArea("Braga", "City of Braga", city, location2, areaShape2);
 
         // Controller
-        controller = new AddGeoAreaToAnotherGeoAreaController(geographicalAreaList);
+        controller = new AddGeoAreaToAnotherGeoAreaController(geographicalAreaService);
     }
 
     @Configuration
@@ -114,7 +114,7 @@ public class AddGeoAreaToAnotherGeoAreaControllerTest {
         GeographicalArea expectedResult = cityOfBraga;
 
         // Act
-        GeographicalArea result = geographicalAreaList.getGeoAreaList().get(0);
+        GeographicalArea result = geographicalAreaService.getGeoAreaList().get(0);
 
         // Assert
         assertEquals(expectedResult, result);
@@ -128,7 +128,7 @@ public class AddGeoAreaToAnotherGeoAreaControllerTest {
         GeographicalArea expectedResult = parishOfBonfim;
 
         // Act
-        GeographicalArea result = geographicalAreaList.getGeoAreaList().get(0);
+        GeographicalArea result = geographicalAreaService.getGeoAreaList().get(0);
 
         // Assert
         assertEquals(expectedResult, result);
