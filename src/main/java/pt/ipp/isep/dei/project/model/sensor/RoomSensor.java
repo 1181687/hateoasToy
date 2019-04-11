@@ -22,7 +22,7 @@ public class RoomSensor implements Sensor {
             joinColumns = @JoinColumn(name = "SENSOR_ID"))
     private List<Reading> listOfReadings = new ArrayList<>();
 
-    @Transient
+    @Embedded
     private SensorType sensorType;
 
     private String units;
