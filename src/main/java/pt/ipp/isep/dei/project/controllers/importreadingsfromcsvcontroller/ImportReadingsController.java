@@ -1,12 +1,10 @@
 package pt.ipp.isep.dei.project.controllers.importreadingsfromcsvcontroller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import pt.ipp.isep.dei.project.model.ProjectFileReader;
-import pt.ipp.isep.dei.project.model.Reading;
-import pt.ipp.isep.dei.project.model.ReadingDTO;
-import pt.ipp.isep.dei.project.model.ReadingMapper;
+import pt.ipp.isep.dei.project.model.*;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaService;
 import pt.ipp.isep.dei.project.model.house.HouseService;
+import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorList;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
@@ -29,6 +27,7 @@ public class ImportReadingsController {
     private GeoAreaSensorList allSensorInTheGeoAreas;
     private GeoAreaSensor geoAreaSensor;
     private RoomSensor roomSensor;
+    private Room room;
     private List<Object> readingDTOList;
     private int numberOfNotImportedReadings;
     @Autowired
@@ -94,6 +93,7 @@ public class ImportReadingsController {
             }
             if (option == 2) {
                 roomSensor = houseService.getSensorById(reading.getId());
+                room = houseService.getRoomWithRightSensor(reading.getId());
                 if (Objects.isNull(roomSensor) || !roomSensor.isActive()) {
                     numberOfNotImportedReadings++;
                     String invalidInfo = "id: " + reading.getId() + ", value: " + reading.getValue() + ", timestamp/date: " + reading.getDateTime() + ", unit: " + reading.getUnits() + ".";
@@ -116,9 +116,10 @@ public class ImportReadingsController {
                 imported = true;
                 this.geographicalAreaService.updateRepository();
             }
-            if (option == 2 && roomSensor.addReading(ReadingMapper.mapToEntity(reading))) {
+            if (option == 2 && room.getSensorById(reading.getId()).addRoomReading(new RoomReading(ReadingMapper.mapToEntity(reading).getValue(),ReadingMapper.mapToEntity(reading).getDateTime()))) {
+
                 imported = true;
-                this.houseService.updateRepository(roomSensor.getId());
+                this.houseService.updateRepository(room);
             }
         }
 

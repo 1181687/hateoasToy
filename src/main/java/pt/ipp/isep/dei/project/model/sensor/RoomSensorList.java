@@ -1,6 +1,7 @@
 package pt.ipp.isep.dei.project.model.sensor;
 
 import pt.ipp.isep.dei.project.model.Reading;
+import pt.ipp.isep.dei.project.model.RoomReading;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -45,13 +46,13 @@ public class RoomSensorList {
         return Double.NaN;
     }
 
-    public Reading getLatestMeasurementBySensorType(SensorType type) {
-        List<Reading> listOfLatestReadings = getListOfLatestMeasurementsBySensorType(type);
+    public RoomReading getLatestMeasurementBySensorType(SensorType type) {
+        List<RoomReading> listOfLatestReadings = getListOfLatestMeasurementsBySensorType(type);
         if (getListOfLatestMeasurementsBySensorType(type).isEmpty()) {
             return null;
         }
-        Reading latestReading = listOfLatestReadings.get(0);
-        for (Reading reading : listOfLatestReadings) {
+        RoomReading latestReading = listOfLatestReadings.get(0);
+        for (RoomReading reading : listOfLatestReadings) {
             if (reading.getDateTime().isAfter(latestReading.getDateTime())) {
                 latestReading = reading;
             }
@@ -59,8 +60,8 @@ public class RoomSensorList {
         return latestReading;
     }
 
-    public List<Reading> getListOfLatestMeasurementsBySensorType(SensorType type) {
-        List<Reading> listOfLatestReadings = new ArrayList<>();
+    public List<RoomReading> getListOfLatestMeasurementsBySensorType(SensorType type) {
+        List<RoomReading> listOfLatestReadings = new ArrayList<>();
         for (RoomSensor sensor : listOfSensors) {
             if (sensor.isMeasurementListEmpty()) {
                 break;

@@ -15,13 +15,13 @@ import java.util.List;
 
 @Entity
 public class GeoAreaSensor implements Sensor {
-    @Id
-    private String id;
+    @EmbeddedId
+    private SensorId id;
     private String sensorName;
     private LocalDateTime startingDate;
 
     @ElementCollection
-    @CollectionTable(name = "Reading",
+    @CollectionTable(name = "GeoArea_Reading",
             joinColumns = @JoinColumn(name = "SENSOR_ID"))
 
     private List<Reading> listOfReadings = new ArrayList<>();
@@ -46,7 +46,7 @@ public class GeoAreaSensor implements Sensor {
      * @param location     Location of the sensor
      */
     public GeoAreaSensor(String id, String sensorName, LocalDateTime startingDate, SensorType sensorType, Location location, String units) {
-        this.id = id;
+        this.id = new SensorId(id);
         this.sensorName = sensorName;
         this.startingDate = startingDate;
         this.sensorType = sensorType;
@@ -63,7 +63,7 @@ public class GeoAreaSensor implements Sensor {
      * @param location   Location of the sensor
      */
     public GeoAreaSensor(String id, String sensorName, SensorType sensorType, Location location, String units) {
-        this.id = id;
+        this.id = new SensorId(id);
         this.sensorName = sensorName;
         this.startingDate = LocalDateTime.now();
         this.sensorType = sensorType;
@@ -77,10 +77,10 @@ public class GeoAreaSensor implements Sensor {
     }
 
     public String getId() {
-        return id;
+        return id.getSensorId();
     }
 
-    public void setId(String id) {
+    public void setId(SensorId id) {
         this.id = id;
     }
 
@@ -161,7 +161,7 @@ public class GeoAreaSensor implements Sensor {
             return false;
         }
         GeoAreaSensor sensor = (GeoAreaSensor) object;
-        return this.id.equalsIgnoreCase(sensor.id);
+        return this.id.getSensorId().equalsIgnoreCase(sensor.id.getSensorId());
     }
 
     /**
