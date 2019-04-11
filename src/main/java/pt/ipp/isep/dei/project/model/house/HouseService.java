@@ -52,7 +52,17 @@ public class HouseService {
         }
         return false;
 
+    }
 
+   /* public boolean roomExists(String roomId){
+        return this.roomRepository.existsById(roomId);
+    }*/
+
+    public Room getRoomById(RoomId roomId){
+         if(this.roomRepository.findById(roomId).isPresent()){
+             return this.roomRepository.findById(roomId).get();
+        }
+         return null;
     }
 
     public boolean roomExists(RoomId roomId) {

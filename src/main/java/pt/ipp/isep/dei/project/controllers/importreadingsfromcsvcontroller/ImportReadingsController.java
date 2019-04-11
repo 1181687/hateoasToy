@@ -7,10 +7,12 @@ import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.ReadingMapper;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
 import pt.ipp.isep.dei.project.model.house.HouseService;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaService;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensorList;
 import pt.ipp.isep.dei.project.model.sensor.SensorList;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorList;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.io.File;
@@ -26,8 +28,10 @@ import java.util.logging.Logger;
 public class ImportReadingsController {
     private static final Logger LOGGER = Logger.getLogger(ImportReadingsController.class.getName());
     @Autowired
+    private GeographicalAreaService geographicalAreaService;
+    private GeoAreaSensorList allSensorInTheGeoAreas;
+    private GeoAreaSensor sensor;
     private GeographicalAreaList geographicalAreaList;
-    private SensorList allSensorInTheGeoAreas;
     private GeoAreaSensor geoAreaSensor;
     private RoomSensor roomSensor;
     private List<Object> readingDTOList;
@@ -110,7 +114,7 @@ public class ImportReadingsController {
             }
         }
         if(imported && option==1){
-            this.geographicalAreaList.updateRepository();
+            this.geographicalAreaService.updateRepository();
         }
         if(imported && option==2){
             this.houseService.updateRepository(roomSensor.getId());

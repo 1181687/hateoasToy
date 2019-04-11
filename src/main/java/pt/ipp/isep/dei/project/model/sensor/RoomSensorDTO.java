@@ -1,12 +1,13 @@
 package pt.ipp.isep.dei.project.model.sensor;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class RoomSensorDTO {
 
     private String id;
     private String name;
-    private LocalDateTime startingDate;
+    private LocalDate startingDate;
     private String type;
     private String RoomId;
     private String units;
@@ -32,10 +33,10 @@ public class RoomSensorDTO {
     }
 
     public LocalDateTime getStartingDate() {
-        return startingDate;
+        return startingDate.atStartOfDay();
     }
 
-    public void setStartingDate(LocalDateTime startingDate) {
+    public void setStartingDate(LocalDate startingDate) {
         this.startingDate = startingDate;
     }
 

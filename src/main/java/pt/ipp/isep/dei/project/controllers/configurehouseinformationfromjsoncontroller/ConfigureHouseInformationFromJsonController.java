@@ -83,10 +83,8 @@ public class ConfigureHouseInformationFromJsonController {
                 String invalidInfo = "id: " + roomDTO.getRoomId() + ".";
                 LOGGER.log(Level.WARNING, "Room was not imported because" + roomId + " does not have valid dimensions " + invalidInfo);
                 houseDTO.getRoomDTOList().remove(roomDTO);
-                continue;
             }
         }
-
         for (HouseGridDTO houseGridDTO : houseDTO.getHouseGridDTOList()) {
             HouseGridId houseGridId = new HouseGridId(houseGridDTO.getName());
             if (Objects.isNull(houseGridId.getHousegridId())) {

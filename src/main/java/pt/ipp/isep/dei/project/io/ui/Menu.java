@@ -106,9 +106,11 @@ public final class Menu {
         content.append("\n");
         content.append("13-Configure House from a file");
         content.append("\n");
+        content.append("14-Import room sensors");
+        content.append("\n");
         content.append(RETURN_MENU);
         String label = content.toString();
-        return InputValidator.getIntRange(label, 0, 13);
+        return InputValidator.getIntRange(label, 0, 14);
     }
 
     public static int regularUserMenu() {

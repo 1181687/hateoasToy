@@ -36,7 +36,7 @@ public class RemoveSensorFromGeoAreaControllerTest {
     private GeoAreaSensor temperatureSensor;
     private GeoAreaSensorDTO temperatureSensorDTO;
     @InjectMocks
-    private GeographicalAreaList geographicalAreaList;
+    private GeographicalAreaService geographicalAreaService;
 
     @Mock
     private GeoAreaRepository geoAreaRepository;
@@ -49,7 +49,7 @@ public class RemoveSensorFromGeoAreaControllerTest {
         Location location = new Location(41.1496, -8.6109, 97);
         AreaShape shape = new AreaShape(10, 10, location);
         porto = new GeographicalArea("Porto", "City of Porto", city, location, shape);
-        geographicalAreaList.addGeoArea(porto);
+        geographicalAreaService.addGeoArea(porto);
 
         // Geographical Area DTO
         portoDTO = GeographicalAreaMapper.mapToDTOwithSensors(porto);
@@ -65,7 +65,7 @@ public class RemoveSensorFromGeoAreaControllerTest {
         temperatureSensorDTO = GeoAreaSensorMapper.mapToDTO(temperatureSensor);
 
         // Controller
-        this.controller = new RemoveSensorFromGeoAreaController(geographicalAreaList);
+        this.controller = new RemoveSensorFromGeoAreaController(geographicalAreaService);
     }
 
     @Configuration
@@ -82,7 +82,7 @@ public class RemoveSensorFromGeoAreaControllerTest {
         expectedResult.add(GeographicalAreaMapper.mapToEntity(portoDTO));
 
         // Act
-        List<GeographicalAreaDTO> firstResult = controller.getGeographicalAreaList();
+        List<GeographicalAreaDTO> firstResult = controller.getGeographicalAreaService();
         List<GeographicalArea> result = new ArrayList<>();
         result.add(GeographicalAreaMapper.mapToEntity(firstResult.get(0)));
 

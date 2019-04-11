@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.project.io.ui;
 
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaService;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaTypeList;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.HouseService;
@@ -13,7 +13,7 @@ import java.io.FileNotFoundException;
 public class Admin {
 
     private GeographicalAreaTypeList geographicalAreaTypeList;
-    private GeographicalAreaList geographicalAreaList;
+    private GeographicalAreaService geographicalAreaService;
     private SensorTypeList sensorTypeList;
     private House house;
     private PowerSourceTypeList powerSourceTypeList;
@@ -21,9 +21,9 @@ public class Admin {
     private HouseService houseService;
 
 
-    public Admin(GeographicalAreaTypeList geographicalAreaTypeList, GeographicalAreaList geographicalAreaList, SensorTypeList sensorTypeList, House house, PowerSourceTypeList powerSourceTypeList, RoomList roomList, HouseService houseService) {
+    public Admin(GeographicalAreaTypeList geographicalAreaTypeList, GeographicalAreaService geographicalAreaService, SensorTypeList sensorTypeList, House house, PowerSourceTypeList powerSourceTypeList, RoomList roomList, HouseService houseService) {
         this.geographicalAreaTypeList = geographicalAreaTypeList;
-        this.geographicalAreaList = geographicalAreaList;
+        this.geographicalAreaService = geographicalAreaService;
         this.sensorTypeList = sensorTypeList;
         this.house = house;
         this.powerSourceTypeList = powerSourceTypeList;
@@ -53,7 +53,7 @@ public class Admin {
                     ui3.run();
                     break;
                 case 4:
-                    GetListOfTypeOfGeoArea ui4 = new GetListOfTypeOfGeoArea(geographicalAreaList, geographicalAreaTypeList);
+                    GetListOfTypeOfGeoArea ui4 = new GetListOfTypeOfGeoArea(geographicalAreaService, geographicalAreaTypeList);
                     ui4.run();
                     break;
                 case 5:
@@ -61,42 +61,39 @@ public class Admin {
                     ui5.run();
                     break;
                 case 6:
-                    AddSensorToGeoArea ui6 = new AddSensorToGeoArea(geographicalAreaList, sensorTypeList);
+                    AddSensorToGeoArea ui6 = new AddSensorToGeoArea(geographicalAreaService, sensorTypeList);
                     ui6.run();
                     break;
                 case 7:
-                    AddGeoAreaToAnotherGeoArea ui7 = new AddGeoAreaToAnotherGeoArea(geographicalAreaList);
+                    AddGeoAreaToAnotherGeoArea ui7 = new AddGeoAreaToAnotherGeoArea(geographicalAreaService);
                     ui7.run();
                     break;
                 case 8:
-                    InsertedGeoArea ui8 = new InsertedGeoArea(geographicalAreaList);
+                    InsertedGeoArea ui8 = new InsertedGeoArea(geographicalAreaService);
                     ui8.run();
                     break;
                 case 9:
-                    ImportGeoAreasFromJSONOrXML ui9 = new ImportGeoAreasFromJSONOrXML(geographicalAreaList);
+                    ImportGeoAreasFromJSONOrXML ui9 = new ImportGeoAreasFromJSONOrXML(geographicalAreaService);
                     ui9.jsonGeoAreaSensors();
                     break;
                 case 10:
-                    ImportReadings ui10 = new ImportReadings(geographicalAreaList);
+                    ImportReadings ui10 = new ImportReadings(geographicalAreaService);
                     ui10.run(1);
                     break;
                 case 11:
-                    DeactivateSensorFromGeoArea ui11 = new DeactivateSensorFromGeoArea(geographicalAreaList);
+                    DeactivateSensorFromGeoArea ui11 = new DeactivateSensorFromGeoArea(geographicalAreaService);
                     ui11.run();
                     break;
                 case 12:
-                    RemoveSensorFromGeoArea ui12 = new RemoveSensorFromGeoArea(geographicalAreaList);
+                    RemoveSensorFromGeoArea ui12 = new RemoveSensorFromGeoArea(geographicalAreaService);
                     ui12.run();
                     break;
-                case 15:
-                    ImportReadings ui15 = new ImportReadings(geographicalAreaList);
-                    ui15.run(2);
             }
             option = Menu.adminGeoAreaMenu();
         }
     }
 
-    public void runAdminHouse() {
+    public void runAdminHouse() throws FileNotFoundException {
         int option = Menu.adminHouseMenu();
         if (option == 0) {
             return;
@@ -105,7 +102,7 @@ public class Admin {
 
             switch (option) {
                 case 1:
-                    ConfHouseLocation ui101 = new ConfHouseLocation(geographicalAreaList, house);
+                    ConfHouseLocation ui101 = new ConfHouseLocation(geographicalAreaService, house);
                     ui101.run();
                     break;
                 case 2:
@@ -159,6 +156,13 @@ public class Admin {
                         e.printStackTrace();
                     }
                     break;
+                case 14:
+                    ImportRoomSensors ui260 = new ImportRoomSensors(houseService);
+                    ui260.run();
+                    break;
+                case 15:
+                    ImportReadings ui15 = new ImportReadings(geographicalAreaList);
+                    ui15.run(2);
             }
             option = Menu.adminHouseMenu();
         }

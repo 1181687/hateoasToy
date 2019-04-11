@@ -1,7 +1,11 @@
-package pt.ipp.isep.dei.project.controllers.importroomsensorandreadings;
+package pt.ipp.isep.dei.project.controllers.importroomsensors;
 
 import pt.ipp.isep.dei.project.model.ProjectFileReader;
+import pt.ipp.isep.dei.project.model.house.HouseService;
+import pt.ipp.isep.dei.project.model.house.RoomId;
 import pt.ipp.isep.dei.project.model.house.RoomList;
+import pt.ipp.isep.dei.project.model.sensor.RoomSensorDTO;
+import pt.ipp.isep.dei.project.model.sensor.RoomSensorMapper;
 import pt.ipp.isep.dei.project.model.sensor.Sensor;
 import pt.ipp.isep.dei.project.utils.Utils;
 
@@ -10,17 +14,20 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.FileHandler;
+import java.util.logging.Level;
 
 import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
 
-public class ImportRoomSensorsAndReadingsController {
+public class ImportRoomSensorsController {
     private List<Object> DTOList;
     private int numberOfNotImportedReadings;
+    private HouseService houseService;
     private RoomList roomList;
     private Sensor sensor;
 
-    public ImportRoomSensorsAndReadingsController(RoomList roomList) {
-        this.roomList = roomList;
+    public ImportRoomSensorsController(HouseService houseService) {
+       // this.roomList = roomList;
+        this.houseService = houseService;
     }
 
     /**
@@ -55,36 +62,29 @@ public class ImportRoomSensorsAndReadingsController {
     public int getNumberOfNotImportedReadings() {
         return this.numberOfNotImportedReadings;
     }
-/*
-    public boolean addSensorsToRooms() {
+
+    public boolean importSensorsToRooms() {
         configLogFile();
         boolean imported = false;
         for (Object object : this.DTOList) {
             RoomSensorDTO sensorDTO = (RoomSensorDTO) object;
-            RoomId roomId = new RoomId(sensorDTO.getRoom());
-            if (!this.roomService.roomExists(roomId)) {
+            RoomId roomId = new RoomId(sensorDTO.getRoomId());
+            if (!this.houseService.roomExists(roomId)) {
                 numberOfNotImportedReadings++;
                 String invalidInfo = "id: " + sensorDTO.getId() + ".";
-                LOGGER.log(Level.WARNING, "Sensor was not imported due because" + roomId +" doesn't exist: " + invalidInfo);
+                LOGGER.log(Level.WARNING, "Sensor was not imported due because" + roomId.getId() +" doesn't exist: " + invalidInfo);
                 // continue;
-            } else if (roomSensorReadingService.saveSensor(RoomSensorMapper.mapToEntity(sensorDTO))) {
+            } else if (this.houseService.getRoomById(roomId).addSensorToListOfSensorsInRoom(RoomSensorMapper.mapToEntity(sensorDTO))) {
                 imported = true;
             }
         }
         return imported;
     }
-*/
-    /**
-     * Method that checks if a given date time is before the starting date of the sensor.
-     *
-     * @param localDateTime Given date time to be compared.
-     * @return True or False.
-     */
-    /*
-    public boolean isDateTimeBeforeSensorStartingDate(LocalDateTime localDateTime) {
-        return localDateTime.isBefore(sensor.getStartingDate());
+
+    private boolean addSensorToRoom(RoomId roomId, RoomSensorDTO sensorDTO){
+        return this.houseService.getRoomById(roomId).addSensorToListOfSensorsInRoom(RoomSensorMapper.mapToEntity(sensorDTO));
     }
-    */
+
 
 }
 
