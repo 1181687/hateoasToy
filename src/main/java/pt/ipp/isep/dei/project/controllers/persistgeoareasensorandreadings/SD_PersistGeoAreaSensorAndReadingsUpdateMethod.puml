@@ -18,21 +18,8 @@ skinparam sequence {
 }
 loop GeographicalAreaList
 autonumber
-":GeographicalAreaList" -> "geoAreaService\n:GeoAreaService": getInstance()
-activate ":GeographicalAreaList"
-activate "geoAreaService\n:GeoAreaService"
-":GeographicalAreaList"  <-- "geoAreaService\n:GeoAreaService":geoAreaService
-deactivate "geoAreaService\n:GeoAreaService"
-deactivate ":GeographicalAreaList"
 
-":GeographicalAreaList" -> "geoAreaService\n:GeoAreaService": getGeoAreaRepository()
-activate ":GeographicalAreaList"
-activate "geoAreaService\n:GeoAreaService"
-":GeographicalAreaList"  <-- "geoAreaService\n:GeoAreaService":geoAreaRepository
-deactivate "geoAreaService\n:GeoAreaService"
-deactivate ":GeographicalAreaList"
-":GeographicalAreaList" -> "geoAreaRepository\n:GeoAreaRepository": save(geoArea)
-activate ":GeographicalAreaList"
-activate "geoAreaRepository\n:GeoAreaRepository"
+"GeographicalAreaService\n:GeographicalAreaService" -> "geographicalAreaRepository\n:GeographicalAreaRepository" : addGeoArea()
+
 end
 @enduml
