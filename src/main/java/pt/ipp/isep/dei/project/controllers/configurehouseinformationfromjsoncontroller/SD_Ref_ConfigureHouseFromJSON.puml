@@ -24,20 +24,19 @@ activate "AddressMapper"
 "AddressMapper" --> JSONReader : addressDTO
 loop parseRooms
 
-JSONReader -> "RoomMapper": mapToDTO (id, description, houseFloor, length, width, height)
+JSONReader -> "RoomMapper": newRoomDTO (id, description, houseFloor, length, width, height)
 activate "RoomMapper"
 "RoomMapper" --> JSONReader: roomDTO
 deactivate "RoomMapper"
 end
 loop parseGrids
 activate "JSONReader"
-JSONReader -> "HouseGridMapper": mapToDTO (name,roomDTO)
+JSONReader -> "HouseGridMapper": newHouseGridDTO (name)
 activate "HouseGridMapper"
-"HouseGridMapper" -> ":HouseGridDTO" : create
-activate ":HouseGridDTO"
-":HouseGridDTO" --> "HouseGridMapper": houseGridDTO
-deactivate ":HouseGridDTO"
 "HouseGridMapper" --> JSONReader: houseGridDTO
 deactivate "HouseGridMapper"
+loop for each roomDTO
+JSONReader <-- JSONReader: addRoomDTO\nToGridDTO(roomDTO)
+end
 end
 @enduml
