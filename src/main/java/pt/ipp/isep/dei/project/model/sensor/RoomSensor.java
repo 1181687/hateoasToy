@@ -22,7 +22,7 @@ public class RoomSensor implements Sensor {
             joinColumns = @JoinColumn(name = "SENSOR_ID"))
     private List<Reading> listOfReadings = new ArrayList<>();
 
-    @Transient
+    @Embedded
     private SensorType sensorType;
 
     private String units;
@@ -139,9 +139,8 @@ public class RoomSensor implements Sensor {
         RoomSensor sensor = (RoomSensor) object;
         return this.id.equalsIgnoreCase(sensor.id);
     }
-
     @Override
-    public int hashCode() {
+    public int hashCode (){
         return Objects.hash(this.id);
     }
 }
