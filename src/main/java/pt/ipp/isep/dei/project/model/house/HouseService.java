@@ -9,6 +9,7 @@ import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridDTO;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridMapper;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
+import pt.ipp.isep.dei.project.model.sensor.RoomSensorList;
 
 import java.util.Objects;
 
@@ -98,6 +99,14 @@ public class HouseService {
 
     public void updateRepository(Room room) {
         roomRepository.save(room);
+    }
+
+    public RoomSensorList getAllSensors() {
+        RoomSensorList roomSensorList = new RoomSensorList();
+        for (Room room : roomRepository.findAll()) {
+            roomSensorList.getListOfSensors().addAll(room.getSensorList().getListOfSensors());
+        }
+        return roomSensorList;
     }
 
 }

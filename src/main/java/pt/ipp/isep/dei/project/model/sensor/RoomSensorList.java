@@ -82,5 +82,19 @@ public class RoomSensorList {
         return null;
     }
 
+    public List<RoomSensor> getListOfSensors() {
+        return listOfSensors;
+    }
+
+    public boolean roomSensorExists(String id) {
+        for (RoomSensor sensor : listOfSensors) {
+            if (sensor.getId() == id) {
+                return true;
+            }
+
+        }
+        return false;
+    }
+
 
 }
