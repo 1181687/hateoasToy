@@ -26,7 +26,7 @@ public class GeoAreaSensor implements Sensor {
 
     private List<Reading> listOfReadings = new ArrayList<>();
 
-    @Transient
+    @Embedded
     private SensorType sensorType;
 
     @Transient

@@ -86,7 +86,6 @@ public class HouseService {
             }
         }
         return null;
-        //throw new RuntimeException("There are no rooms with that sensor id in the rooms.");
     }
 
     public RoomSensor getSensorById(String sensorId) {
@@ -94,7 +93,6 @@ public class HouseService {
             return getRoomWithRightSensor(sensorId).getSensorById(sensorId);
         }
         return null;
-        //throw new RuntimeException("There are no sensors with that id in the rooms.");
     }
 
     public void updateRepository(Room room) {
