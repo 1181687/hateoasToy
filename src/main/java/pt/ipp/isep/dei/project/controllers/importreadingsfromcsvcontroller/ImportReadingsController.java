@@ -157,7 +157,7 @@ public class ImportReadingsController {
                     continue;
                 }
 
-                if (roomSensor.readingExistsBySensorIdLocalDateTime(new RoomReading(ReadingMapper.mapToEntity(reading).getValue(),ReadingMapper.mapToEntity(reading).getDateTime()))) {
+                if (roomSensor.readingExistsBySensorIdLocalDateTime(new RoomReading(ReadingMapper.mapToEntity(reading).getValue(), ReadingMapper.mapToEntity(reading).getDateTime()))) {
                     numberOfNotImportedReadings++;
                     String invalidInfo = "sensor id: " + roomSensor.getId() + ", timestamp/date: " + reading.getDateTime() + ", value: " + reading.getValue() + ".";
                     LOGGER.log(Level.WARNING, "Reading was not imported because the following reading is duplicated: doesn't exist:\n" + invalidInfo);
@@ -174,7 +174,7 @@ public class ImportReadingsController {
                 imported = true;
                 this.geographicalAreaService.updateRepository();
             }
-            if (option == 2 && room.getSensorById(reading.getId()).addRoomReading(new RoomReading(ReadingMapper.mapToEntity(reading).getValue(),ReadingMapper.mapToEntity(reading).getDateTime()))) {
+            if (option == 2 && room.getSensorById(reading.getId()).addRoomReading(new RoomReading(ReadingMapper.mapToEntity(reading).getValue(), ReadingMapper.mapToEntity(reading).getDateTime()))) {
 
                 imported = true;
                 this.houseService.updateRepository(room);

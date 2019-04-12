@@ -26,6 +26,7 @@ public class RoomReading {
 
     /**
      * Get method
+     *
      * @return value
      */
     public double getValue() {
@@ -38,6 +39,7 @@ public class RoomReading {
 
     /**
      * Get method
+     *
      * @return dateTime
      */
     public LocalDateTime getDateTime() {

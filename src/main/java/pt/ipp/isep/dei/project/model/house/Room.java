@@ -232,8 +232,8 @@ public RoomSensorList getSensorList() {
      * @return latest measurement by sensor type
  */
 
-    public RoomReading getLatestMeasurementBySensorType(SensorType type) {
-        return new RoomReading(sensorList.getLatestMeasurementBySensorType(type).getValue(),sensorList.getLatestMeasurementBySensorType(type).getDateTime());
+public RoomReading getLatestMeasurementBySensorType(SensorType type) {
+    return new RoomReading(sensorList.getLatestMeasurementBySensorType(type).getValue(), sensorList.getLatestMeasurementBySensorType(type).getDateTime());
     }
 
 
