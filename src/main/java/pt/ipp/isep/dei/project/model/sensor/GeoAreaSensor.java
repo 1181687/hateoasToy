@@ -311,10 +311,11 @@ public class GeoAreaSensor implements Sensor {
     }
 
     public boolean readingExistsBySensorIdLocalDateTime(Reading reading) {
-
-        for (Reading reading1 : listOfReadings) {
-            if (reading1.getDateTime() == reading.getDateTime())
-                return true;
+        if (!listOfReadings.isEmpty()) {
+            for (Reading reading1 : listOfReadings) {
+                if (reading1.getDateTime().equals(reading.getDateTime()))
+                    return true;
+            }
         }
         return false;
     }
