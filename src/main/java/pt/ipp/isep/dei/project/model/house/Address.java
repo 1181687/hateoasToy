@@ -97,4 +97,8 @@ public class Address {
     public void setCompleteAddress(String completeAddress) {
         this.completeAddress = completeAddress;
     }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
 }
