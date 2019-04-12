@@ -141,8 +141,9 @@ public class RoomSensor {
         RoomSensor sensor = (RoomSensor) object;
         return this.id.equalsIgnoreCase(sensor.id);
     }
+
     @Override
-    public int hashCode (){
+    public int hashCode() {
         return Objects.hash(this.id);
     }
 }

@@ -78,13 +78,13 @@ public class RemoveSensorFromGeoAreaControllerTest {
     @Test
     public void testGetGeographicalAreaList_ShouldReturnTheCorrespondingList() {
         // Arrange
-        List<GeographicalArea> expectedResult = new ArrayList<>();
-        expectedResult.add(GeographicalAreaMapper.mapToEntity(portoDTO));
+        List<String> expectedResult = new ArrayList<>();
+        expectedResult.add(GeographicalAreaMapper.mapToEntity(portoDTO).getId().getId());
 
         // Act
         List<GeographicalAreaDTO> firstResult = controller.getGeographicalAreaService();
-        List<GeographicalArea> result = new ArrayList<>();
-        result.add(GeographicalAreaMapper.mapToEntity(firstResult.get(0)));
+        List<String> result = new ArrayList<>();
+        result.add(GeographicalAreaMapper.mapToEntity(firstResult.get(0)).getId().getId());
 
         // Assert
         assertEquals(expectedResult, result);

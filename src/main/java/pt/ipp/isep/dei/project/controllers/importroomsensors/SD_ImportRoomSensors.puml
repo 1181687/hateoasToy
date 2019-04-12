@@ -31,17 +31,17 @@ AdminUser -> "ui : ImportRoomSensors": File path
 activate "ui : ImportRoomSensors"
 "ui : ImportRoomSensors" -> "ctrl : ImportRoomSensors\nController": readFile(file, path)
 activate "ctrl : ImportRoomSensors\nController"
-"ctrl : ImportRoomSensors\nController" -> "reader : Reader": createReader(path)
-activate "reader : Reader"
-"reader : Reader" --> "ctrl : ImportRoomSensors\nController": reader
-deactivate "reader : Reader"
-"ctrl : ImportRoomSensors\nController" -> "reader : Reader": readFile(file)
-activate "reader : Reader"
-ref over "reader : Reader"
+"ctrl : ImportRoomSensors\nController" -> "<<ProjectFileReader>>":  createReader(path)
+activate "<<ProjectFileReader>>"
+"<<ProjectFileReader>>"  --> "ctrl : ImportRoomSensors\nController": reader
+deactivate "<<ProjectFileReader>>"
+"ctrl : ImportRoomSensors\nController" -> "<<ProjectFileReader>>" : readFile(file)
+activate "<<ProjectFileReader>>"
+ref over "<<ProjectFileReader>>"
 readFile
 end
-"reader : Reader" --> "ctrl : ImportRoomSensors\nController": roomSensorDTOs
-deactivate "reader : Reader"
+"<<ProjectFileReader>>"  --> "ctrl : ImportRoomSensors\nController": roomSensorDTOs
+deactivate "<<ProjectFileReader>>"
 "ctrl : ImportRoomSensors\nController" --> "ui : ImportRoomSensors": roomSensorDTOs
 deactivate "ctrl : ImportRoomSensors\nController"
 "ui : ImportRoomSensors" --> AdminUser: Ask for confirmation
@@ -65,6 +65,6 @@ deactivate HouseService
 end loop
 "ctrl : ImportRoomSensors\nController" --> "ui : ImportRoomSensors": true
 deactivate "ctrl : ImportRoomSensors\nController"
-"ui : ImportRoomSensors" --> AdminUser: 6 - Give feedback
+"ui : ImportRoomSensors" --> AdminUser: Give feedback
 deactivate "ui : ImportRoomSensors"
 @enduml

@@ -22,57 +22,57 @@ actor AdminUser
 activate AdminUser
 actor AdminUser
 
-AdminUser -> "ui : ImportReadings":1 - Import readings
+AdminUser -> "ui : ImportReadings": Import readings
 activate "ui : ImportReadings"
-"ui : ImportReadings" --> AdminUser: 2 - Ask for the file path
+"ui : ImportReadings" --> AdminUser: Ask for the file path
 deactivate "ui : ImportReadings"
-AdminUser -> "ui : ImportReadings": 3 - File path
+AdminUser -> "ui : ImportReadings": File path
 activate "ui : ImportReadings"
-"ui : ImportReadings" -> "ctrl : ImportReadings\nController": 3.1 - readFile(file, path)
+"ui : ImportReadings" -> "ctrl : ImportReadings\nController": readFile(file, path)
 activate "ctrl : ImportReadings\nController"
-"ctrl : ImportReadings\nController" -> "reader : XMLReader": 3.1.1 - createReader(path)
-activate "reader : XMLReader"
-"reader : XMLReader" --> "ctrl : ImportReadings\nController": 3.1.2 - reader
-deactivate "reader : XMLReader"
-"ctrl : ImportReadings\nController" -> "reader : XMLReader": 3.1.3 - readFile(file)
-activate "reader : XMLReader"
-ref over "reader : XMLReader"
+"ctrl : ImportReadings\nController" -> "<<ProjectFileReader>>" :  createReader(path)
+activate "<<ProjectFileReader>>"
+"<<ProjectFileReader>>"  --> "ctrl : ImportReadings\nController": reader
+deactivate "<<ProjectFileReader>>"
+"ctrl : ImportReadings\nController" -> "<<ProjectFileReader>>":  readFile(file)
+activate "<<ProjectFileReader>>"
+ref over "<<ProjectFileReader>>"
 readFile
 end
-"reader : XMLReader" --> "ctrl : ImportReadings\nController": 3.1.4 - readingDTOs
-deactivate "reader : XMLReader"
-"ctrl : ImportReadings\nController" --> "ui : ImportReadings": 3.2 - readingDTOs
+"<<ProjectFileReader>>" --> "ctrl : ImportReadings\nController": readingDTOs
+deactivate "<<ProjectFileReader>>"
+"ctrl : ImportReadings\nController" --> "ui : ImportReadings": readingDTOs
 deactivate "ctrl : ImportReadings\nController"
-"ui : ImportReadings" --> AdminUser: 4 - Ask for confirmation
+"ui : ImportReadings" --> AdminUser: Ask for confirmation
 deactivate "ui : ImportReadings"
-AdminUser -> "ui : ImportReadings": 5 - Confirmation received
+AdminUser -> "ui : ImportReadings": confirmation received
 activate "ui : ImportReadings"
-"ui : ImportReadings" -> "ctrl : ImportReadings\nController": 5.1 - importReadings()
+"ui : ImportReadings" -> "ctrl : ImportReadings\nController": importReadings()
 activate "ctrl : ImportReadings\nController"
 loop for each readingDTO
-"ctrl : ImportReadings\nController" -> ReadingMapper: 5.1.1 - mapToEntity(readingDTO)
+"ctrl : ImportReadings\nController" -> ReadingMapper: mapToEntity(readingDTO)
 activate ReadingMapper
-ReadingMapper --> "ctrl : ImportReadings\nController": 5.1.2 - reading
+ReadingMapper --> "ctrl : ImportReadings\nController": reading
 deactivate ReadingMapper
-"ctrl : ImportReadings\nController" -> "sensors : RoomSensorList": 5.1.3 - getSensorById(id)
+"ctrl : ImportReadings\nController" -> "sensors : RoomSensorList": getSensorById(id)
 activate "sensors : RoomSensorList"
-"sensors : RoomSensorList" --> "sensor : RoomSensor": 5.1.3.1 - getSensor()
+"sensors : RoomSensorList" --> "sensor : RoomSensor": getSensor()
 activate "sensor : RoomSensor"
-"sensor : RoomSensor" --> "sensors : RoomSensorList": 5.1.3.2 - sensor
+"sensor : RoomSensor" --> "sensors : RoomSensorList": sensor
 deactivate "sensor : RoomSensor"
-"sensors : RoomSensorList" --> "ctrl : ImportReadings\nController": 5.1.4 - sensor
+"sensors : RoomSensorList" --> "ctrl : ImportReadings\nController": sensor
 deactivate "sensors : RoomSensorList"
-"ctrl : ImportReadings\nController" -> "sensor : RoomSensor": 5.1.5 - addReading(reading)
+"ctrl : ImportReadings\nController" -> "sensor : RoomSensor": addReading(reading)
 activate "sensor : RoomSensor"
-"sensor : RoomSensor" --> "ctrl : ImportReadings\nController": 5.1.6 - true
+"sensor : RoomSensor" --> "ctrl : ImportReadings\nController": true
 deactivate "sensor : RoomSensor"
 end loop
 ref over "ctrl : ImportReadings\nController"
 updateRepository
 end
-"ctrl : ImportReadings\nController" --> "ui : ImportReadings": 5.2 - true
+"ctrl : ImportReadings\nController" --> "ui : ImportReadings": true
 deactivate "ctrl : ImportReadings\nController"
-"ui : ImportReadings" --> AdminUser: 6 - Give feedback
+"ui : ImportReadings" --> AdminUser: Give feedback
 deactivate "ui : ImportReadings"
 
 @enduml

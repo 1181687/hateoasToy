@@ -21,20 +21,25 @@ actor AdminUser
 activate AdminUser
 actor AdminUser
 
-AdminUser -> ":ConfigureHouseFromAFileUI": configureHouse
+
+
+AdminUser -> ":ConfigureHouseFromAFileUI": Configure House
 activate ":ConfigureHouseFromAFileUI"
-AdminUser <-- ":ConfigureHouseFromAFileUI": pathOFileRequest
+AdminUser <-- ":ConfigureHouseFromAFileUI": Ask for the file path
 deactivate ":ConfigureHouseFromAFileUI"
-AdminUser -> ":ConfigureHouseFromAFileUI": pathOfFile
+AdminUser -> ":ConfigureHouseFromAFileUI": File path
 activate ":ConfigureHouseFromAFileUI"
-":ConfigureHouseFromAFileUI" -> ":ConfigureHouseInformation\nFromJSONOController" :  readFile(file,path)
+":ConfigureHouseFromAFileUI" -> ":ConfigureHouseInformation\nFromJSONOController" :  readFile(file, path)
 activate ":ConfigureHouseInformation\nFromJSONOController"
-":ConfigureHouseInformation\nFromJSONOController" -> "<<ProjectFileReader>>": readFile()
+":ConfigureHouseInformation\nFromJSONOController"  -> "<<ProjectFileReader>>" :  createReader(path)
+activate "<<ProjectFileReader>>"
+"<<ProjectFileReader>>"  --> ":ConfigureHouseInformation\nFromJSONOController" : reader
+deactivate "<<ProjectFileReader>>"
+":ConfigureHouseInformation\nFromJSONOController" -> "<<ProjectFileReader>>":  readFile(file)
 activate "<<ProjectFileReader>>"
 ref over "<<ProjectFileReader>>"
-readFile()
+readFile
 end
-
 ":ConfigureHouseInformation\nFromJSONOController" <--  "<<ProjectFileReader>>": ListOfHouseObjects
 deactivate "<<ProjectFileReader>>"
 ":ConfigureHouseFromAFileUI" <-- ":ConfigureHouseInformation\nFromJSONOController": ListOfHouseObjects
@@ -63,10 +68,10 @@ activate "RoomMapper"
  ":HouseService" <-- "HouseGridMapper" : grid
   deactivate "HouseGridMapper"
   loop for each room
-  ":HouseService" -> "grid :HouseGrid" :  addRoom(room)
-  activate "grid :HouseGrid"
-  ":HouseService" <-- "grid :HouseGrid" : true
-  deactivate "grid :HouseGrid"
+  ":HouseService" -> ":HouseGrid" :  addRoom(room)
+  activate ":HouseGrid"
+  ":HouseService" <-- ":HouseGrid" : true
+  deactivate ":HouseGrid"
   end
   end
  ":ConfigureHouseInformation\nFromJSONOController" <-- ":HouseService": true
@@ -74,7 +79,7 @@ activate "RoomMapper"
  ":ConfigureHouseInformation\nFromJSONOController" <-- ":ConfigureHouseInformation\nFromJSONOController" : writeAddressToFile(address)
 ":ConfigureHouseFromAFileUI" <-- ":ConfigureHouseInformation\nFromJSONOController": true
  deactivate ":ConfigureHouseInformation\nFromJSONOController"
-AdminUser <-- ":ConfigureHouseFromAFileUI": confirmationMessage
+AdminUser <-- ":ConfigureHouseFromAFileUI": give feedback
 deactivate ":ConfigureHouseFromAFileUI"
 deactivate AdminUser
 
