@@ -1,6 +1,5 @@
 package pt.ipp.isep.dei.project.model.sensor;
 
-import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.RoomReading;
 
 import javax.persistence.*;
