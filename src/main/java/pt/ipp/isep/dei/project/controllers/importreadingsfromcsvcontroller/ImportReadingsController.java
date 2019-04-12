@@ -86,6 +86,7 @@ public class ImportReadingsController {
     public boolean addReadingToSensorById(int option) {
         configLogFile();
         boolean imported = false;
+        boolean importedRoomReading = false;
         for (Object object : this.readingDTOList) {
             ReadingDTO reading = (ReadingDTO) object;
             if (option == 1) {
@@ -130,7 +131,15 @@ public class ImportReadingsController {
             }
             if (option == 2) {
                 roomSensor = houseService.getSensorById(reading.getId());
-                room = houseService.getRoomWithRightSensor(reading.getId());
+                if (Objects.nonNull(room) && !room.equals(houseService.getRoomWithRightSensor(reading.getId()))) {
+                    this.houseService.updateRepository(room);
+                    room = houseService.getRoomWithRightSensor(reading.getId());
+                } else {
+                    if (Objects.isNull(room)) {
+                        room = houseService.getRoomWithRightSensor(reading.getId());
+                    }
+                }
+
                 if (Objects.isNull(roomSensor)) {
                     numberOfNotImportedReadings++;
                     continue;
@@ -176,9 +185,13 @@ public class ImportReadingsController {
             }
             if (option == 2 && room.getSensorById(reading.getId()).addRoomReading(new RoomReading(ReadingMapper.mapToEntity(reading).getValue(), ReadingMapper.mapToEntity(reading).getDateTime()))) {
 
-                imported = true;
-                this.houseService.updateRepository(room);
+                importedRoomReading = true;
+
             }
+        }
+        if (importedRoomReading) {
+            this.houseService.updateRepository(room);
+            return importedRoomReading;
         }
 
         return imported;
