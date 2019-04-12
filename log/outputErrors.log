@@ -2,57 +2,13 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2019-04-11T23:22:37</date>
-  <millis>1555021357249</millis>
+  <date>2019-04-12T10:57:10</date>
+  <millis>1555063030378</millis>
   <sequence>4</sequence>
   <logger>com.sun.xml.internal.ws.spi.db.BindingContextFactory</logger>
   <level>WARNING</level>
   <class>pt.ipp.isep.dei.project.controllers.importroomsensors.ImportRoomSensorsController</class>
   <method>importSensorsToRooms</method>
-  <thread>15</thread>
+  <thread>18</thread>
   <message>Sensor was not imported because B405 doesn't exist: id: TT12345OA.</message>
-</record>
-<record>
-  <date>2019-04-11T23:23:07</date>
-  <millis>1555021387149</millis>
-  <sequence>5</sequence>
-  <logger>com.sun.xml.internal.ws.spi.db.BindingContextFactory</logger>
-  <level>WARNING</level>
-  <class>pt.ipp.isep.dei.project.controllers.importroomsensors.ImportRoomSensorsController</class>
-  <method>importSensorsToRooms</method>
-  <thread>15</thread>
-  <message>Sensor was not imported because B405 doesn't exist: id: TT12345OA.</message>
-</record>
-<record>
-  <date>2019-04-11T23:23:07</date>
-  <millis>1555021387162</millis>
-  <sequence>6</sequence>
-  <logger>com.sun.xml.internal.ws.spi.db.BindingContextFactory</logger>
-  <level>WARNING</level>
-  <class>pt.ipp.isep.dei.project.controllers.importroomsensors.ImportRoomSensorsController</class>
-  <method>importSensorsToRooms</method>
-  <thread>15</thread>
-  <message>Sensor was not imported because room B106 already has a sensor with the same id: Sensor idTT12346OB.</message>
-</record>
-<record>
-  <date>2019-04-11T23:23:07</date>
-  <millis>1555021387169</millis>
-  <sequence>7</sequence>
-  <logger>com.sun.xml.internal.ws.spi.db.BindingContextFactory</logger>
-  <level>WARNING</level>
-  <class>pt.ipp.isep.dei.project.controllers.importroomsensors.ImportRoomSensorsController</class>
-  <method>importSensorsToRooms</method>
-  <thread>15</thread>
-  <message>Sensor was not imported because room B107 already has a sensor with the same id: Sensor idTT12334OA.</message>
-</record>
-<record>
-  <date>2019-04-11T23:23:07</date>
-  <millis>1555021387177</millis>
-  <sequence>8</sequence>
-  <logger>com.sun.xml.internal.ws.spi.db.BindingContextFactory</logger>
-  <level>WARNING</level>
-  <class>pt.ipp.isep.dei.project.controllers.importroomsensors.ImportRoomSensorsController</class>
-  <method>importSensorsToRooms</method>
-  <thread>15</thread>
-  <message>Sensor was not imported because room B109 already has a sensor with the same id: Sensor idTT1236AC.</message>
 </record>
