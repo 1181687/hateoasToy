@@ -24,6 +24,12 @@ public class HouseService {
 
     public void updateHouseWithRoomsAndGrids(HouseDTO houseDTO, House house) {
         Address houseAddress = AddressMapper.mapToEntity(houseDTO.getAddressDTO());
+        if(Objects.isNull(houseAddress.getLocation())){
+            houseAddress.setLocation(house.getLocation());
+        }
+        if(Objects.isNull(houseAddress.getInsertedGeoArea())){
+            houseAddress.setInsertedGeoArea(house.getInsertedGeoArea());
+        }
         house.setAddress(houseAddress);
 
         for (RoomDTO roomDTO : houseDTO.getRoomDTOList()) {
