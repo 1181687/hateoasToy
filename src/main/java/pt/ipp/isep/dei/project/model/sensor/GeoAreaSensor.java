@@ -1,7 +1,11 @@
 package pt.ipp.isep.dei.project.model.sensor;
 
 import pt.ipp.isep.dei.project.model.Location;
-import javax.persistence.*;
+
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 import java.time.LocalDateTime;
 
 @Entity
@@ -13,7 +17,7 @@ public class GeoAreaSensor {
 
     private LocalDateTime startingDate;
 
-    @Embedded
+    @ManyToOne
     private SensorType sensorType;
 
     @Transient
