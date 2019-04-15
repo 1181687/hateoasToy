@@ -42,7 +42,7 @@ public class HouseService {
             house.addGrid(houseGrid);
             houseGridRepository.save(houseGrid);
             for (Room room : houseGrid.getRoomList().getListOfRooms()) {
-                addRoomToHouseGrid(houseGrid.getHouseGridName(), room);
+                addRoomToHouseGrid(houseGrid.getHouseGridId(), room);
             }
 
         }
