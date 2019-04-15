@@ -1,16 +1,9 @@
-package pt.ipp.isep.dei.project.services;
+package pt.ipp.isep.dei.project.model.sensor;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.RoomSensorReadingsRepository;
 import pt.ipp.isep.dei.project.RoomSensorRepository;
-import pt.ipp.isep.dei.project.model.RoomReading;
-
-import javax.persistence.*;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
 @Service
 public class RoomSensorService {

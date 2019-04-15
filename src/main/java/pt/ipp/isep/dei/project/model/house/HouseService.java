@@ -4,12 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.HouseGridRepository;
 import pt.ipp.isep.dei.project.RoomRepository;
-import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
-import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridDTO;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
-import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridMapper;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
-import pt.ipp.isep.dei.project.services.RoomSensorService;
 
 import java.util.Objects;
 
@@ -22,7 +18,7 @@ public class HouseService {
     @Autowired
     private HouseGridRepository houseGridRepository;
 
-    public void updateHouseWithRoomsAndGrids(HouseDTO houseDTO, House house) {
+  /*  public void updateHouseWithRoomsAndGrids(HouseDTO houseDTO, House house) {
         Address houseAddress = AddressMapper.mapToEntity(houseDTO.getAddressDTO());
         if (Objects.isNull(houseAddress.getLocation())) {
             houseAddress.setLocation(house.getLocation());
@@ -42,12 +38,12 @@ public class HouseService {
             house.addGrid(houseGrid);
             houseGridRepository.save(houseGrid);
             for (Room room : houseGrid.getRoomList().getListOfRooms()) {
-                addRoomToHouseGrid(houseGrid.getHouseGridName(), room);
+                addRoomToHouseGrid(houseGrid.getHouseGridId(), room);
             }
 
         }
 
-    }
+    }*/
 
     public boolean addRoomToHouseGrid(HouseGridId houseGridId, Room room) {
         if (houseGridRepository.existsById(houseGridId)) {
@@ -105,12 +101,12 @@ public class HouseService {
         roomRepository.save(room);
     }
 
-    public RoomSensorService getAllSensors() {
+   /* public RoomSensorService getAllSensors() {
         RoomSensorService roomSensorList = new RoomSensorService();
         for (Room room : roomRepository.findAll()) {
             roomSensorList.getListOfSensors().addAll(room.getSensorList().getListOfSensors());
         }
         return roomSensorList;
-    }
+    }*/
 
 }

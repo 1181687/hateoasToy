@@ -1,30 +1,26 @@
 package pt.ipp.isep.dei.project.model.house.housegrid;
 
 
-import pt.ipp.isep.dei.project.model.house.RoomDTO;
-
-import java.util.ArrayList;
-import java.util.List;
-
 public class HouseGridDTO {
 
-    private String name;
-    private List<RoomDTO> roomDTOS = new ArrayList<>();
+    private String id;
+    //private List<RoomDTO> roomDTOS = new ArrayList<>();
 
     public HouseGridDTO() {
         //Intentionally empty
     }
 
-    public String getName() {
-        return name;
+    public String getId() {
+        return id;
     }
 
-    public void setName(String name) {
-        if (!name.isEmpty()) {
-            this.name = name;
+    public void setId(String id) {
+        if (!id.isEmpty()) {
+            this.id = id;
         }
     }
 
+    /*
     public List<RoomDTO> getRoomDTOS() {
         return roomDTOS;
     }
@@ -35,6 +31,6 @@ public class HouseGridDTO {
 
     public void addRoomDTO(RoomDTO room) {
         roomDTOS.add(room);
-
     }
+    */
 }
