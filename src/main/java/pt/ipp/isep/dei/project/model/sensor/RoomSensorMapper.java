@@ -16,6 +16,5 @@ public final class RoomSensorMapper {
         SensorTypeId typeId = new SensorTypeId(type.getSensorType());
         return new RoomSensor(sensorDTO.getId(), sensorDTO.getName(), sensorDTO.getStartingDate(), typeId, sensorDTO.getUnits());
     }*/
-}
 
-*/
+
