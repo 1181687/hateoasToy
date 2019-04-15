@@ -1,23 +1,16 @@
 package pt.ipp.isep.dei.project.model.sensor;
 
-import pt.ipp.isep.dei.project.model.GeoAreaReading;
 import pt.ipp.isep.dei.project.model.Location;
-import pt.ipp.isep.dei.project.utils.Utils;
-
 import javax.persistence.*;
-import java.time.DayOfWeek;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoField;
-import java.util.ArrayList;
-import java.util.List;
-
 
 @Entity
-public class GeoAreaSensor implements Sensor {
+public class GeoAreaSensor {
     @EmbeddedId
     private GeoAreaSensorId id;
+
     private String sensorName;
+
     private LocalDateTime startingDate;
 
     @Embedded
@@ -31,6 +24,7 @@ public class GeoAreaSensor implements Sensor {
     @Transient
     private boolean isActive;
 
+    /*
     /**
      * Constructor method
      *
@@ -39,6 +33,8 @@ public class GeoAreaSensor implements Sensor {
      * @param sensorType   Type of sensor
      * @param location     Location of the sensor
      */
+
+    /*
     public GeoAreaSensor(String id, String sensorName, LocalDateTime startingDate, SensorType sensorType, Location location, String units) {
         this.id = new GeoAreaSensorId(id);
         this.sensorName = sensorName;
@@ -48,7 +44,7 @@ public class GeoAreaSensor implements Sensor {
         this.units = units;
         this.isActive = true;
     }
-
+     /*
     /**
      * Constructor method
      *
@@ -56,6 +52,8 @@ public class GeoAreaSensor implements Sensor {
      * @param sensorType Type of sensor
      * @param location   Location of the sensor
      */
+
+    /*
     public GeoAreaSensor(String id, String sensorName, SensorType sensorType, Location location, String units) {
         this.id = new GeoAreaSensorId(id);
         this.sensorName = sensorName;
@@ -65,11 +63,12 @@ public class GeoAreaSensor implements Sensor {
         this.units = units;
         this.isActive = true;
     }
+    */
 
+     /*
     protected GeoAreaSensor() {
         //empty
     }
-
     public String getId() {
         return id.getSensorId();
     }
@@ -83,6 +82,8 @@ public class GeoAreaSensor implements Sensor {
      *
      * @return sensor Name
      */
+
+     /*
     public String getSensorName() {
         return sensorName;
     }
@@ -91,16 +92,18 @@ public class GeoAreaSensor implements Sensor {
      * Get method
      *
      * @return Starting date of a sensor
-     */
+
     public LocalDateTime getStartingDate() {
         return startingDate;
     }
-
+/*
     /**
      * Get method
      *
      * @return sensor Type
      */
+
+/*
     public SensorType getSensorType() {
         return sensorType;
     }
@@ -110,6 +113,8 @@ public class GeoAreaSensor implements Sensor {
      *
      * @return sensor Location
      */
+
+/*
     public Location getLocation() {
         return location;
     }
@@ -133,6 +138,7 @@ public class GeoAreaSensor implements Sensor {
      *
      * @return
      */
+/*
     public boolean deactivateDevice() {
         if (isActive) {
             isActive = false;
@@ -147,6 +153,7 @@ public class GeoAreaSensor implements Sensor {
      * @param object receives an object
      * @return boolean
      */
+/*
     public boolean equals(Object object) {
         if (this == object) {
             return true;
@@ -163,6 +170,7 @@ public class GeoAreaSensor implements Sensor {
      *
      * @return the hashcode created
      */
+/*
     public int hashCode() {
         return 1;
     }
@@ -173,6 +181,7 @@ public class GeoAreaSensor implements Sensor {
      * @param sensor1 a sensor
      * @return distance between two locations
      */
+/*
     public double distanceBetweenTwoLocations(GeoAreaSensor sensor1) {
 
         return this.location.distanceBetweenTwoLocations(sensor1.location);
@@ -185,6 +194,7 @@ public class GeoAreaSensor implements Sensor {
      * @param endDate   end date of measurements
      * @return measurements between two dates
      */
+/*
     public List<Double> getMeasurementValueBetweenDates(LocalDate startDate, LocalDate endDate) {
 
         List<Double> measurementsBetweenDates = new ArrayList<>();
@@ -204,6 +214,7 @@ public class GeoAreaSensor implements Sensor {
      * @param endDate   end date of measurements
      * @return existence of measurement between two dates
      */
+/*
     public boolean checkMeasurementExistenceBetweenDates(LocalDate startDate, LocalDate endDate) {
         List<Double> measurementsBetweenDates = getMeasurementValueBetweenDates(startDate, endDate);
 
@@ -216,6 +227,7 @@ public class GeoAreaSensor implements Sensor {
      * @param dayOfMonth specific day of the month
      * @return smallest measurement of a month
      */
+/*
     public double getSmallestMeasurementOfMonth(LocalDate dayOfMonth) {
         LocalDate firstDayOfMonth = dayOfMonth.withDayOfMonth(1);
         LocalDate lastDayOfMonth = dayOfMonth.withDayOfMonth(dayOfMonth.lengthOfMonth());
@@ -241,6 +253,7 @@ public class GeoAreaSensor implements Sensor {
      * @param date a date
      * @return
      */
+/*
     public double getBiggestMeasurementOfMonth(LocalDate date) {
         LocalDate firstDayOfMonth = date.withDayOfMonth(1);
         LocalDate lastDayOfMonth = date.withDayOfMonth(date.lengthOfMonth());
@@ -266,6 +279,7 @@ public class GeoAreaSensor implements Sensor {
      * @param date a date
      * @return Monthly Average measurement
      */
+/*
     public double getMonthlyAverageMeasurement(LocalDate date) {
         LocalDate firstDayOfMonth = date.withDayOfMonth(1);
         LocalDate lastDayOfMonth = date.withDayOfMonth(date.lengthOfMonth());
@@ -291,7 +305,7 @@ public class GeoAreaSensor implements Sensor {
      *
      * @param geoAreaReading listOfReadings of a sensor
      */
-
+/*
     public void addReadingsToList(GeoAreaReading geoAreaReading) {
         this.listOfReadings.add(geoAreaReading);
     }
@@ -320,6 +334,7 @@ public class GeoAreaSensor implements Sensor {
      *
      * @return empty list of measurements
      */
+/*
     public boolean isMeasurementListEmpty() {
         return listOfReadings.isEmpty();
     }
@@ -329,6 +344,7 @@ public class GeoAreaSensor implements Sensor {
      *
      * @return last measurement
      */
+/*
     public GeoAreaReading getLastMeasurement() {
         if (listOfReadings.isEmpty()) {
             return null;
@@ -348,6 +364,7 @@ public class GeoAreaSensor implements Sensor {
      * @param tipo Type of sensor
      * @return a type of sensor is equal to the sensor type being compared
      */
+/*
     public boolean sensorTypeEqualsSensorType(SensorType tipo) {
         String tipoDoSensorPedido = tipo.getSensorType();
         return (this.getSensorType().getSensorType().equals(tipoDoSensorPedido));
@@ -359,6 +376,8 @@ public class GeoAreaSensor implements Sensor {
      * @param date a given day
      * @return the measurements of a given day
      */
+
+/*
     public List<GeoAreaReading> getDailyMeasurement(LocalDate date) {
         List<GeoAreaReading> registosDoDia = new ArrayList<>();
         for (GeoAreaReading registo : listOfReadings) {
@@ -379,6 +398,8 @@ public class GeoAreaSensor implements Sensor {
      * @param secondDate second day
      * @return the first day is equal to the second day
      */
+
+/*
     public boolean checkIfDaysAreEqual(LocalDate firstDate, LocalDate secondDate) {
         return (firstDate.isEqual(secondDate));
     }
@@ -389,6 +410,8 @@ public class GeoAreaSensor implements Sensor {
      * @param data a given day
      * @return Lowest measurement of a day
      */
+
+/*
     public double getLowestMeasurementOfDay(LocalDate data) {
         if (!getDailyMeasurement(data).isEmpty()) {
             double valorMinimoDoDia = getDailyMeasurement(data).get(0).getValue();
@@ -408,6 +431,8 @@ public class GeoAreaSensor implements Sensor {
      * @param date a specific date
      * @return
      */
+
+/*
     public LocalDate getFirstDayOfWeek(LocalDate date) {
         if (date.getDayOfWeek().equals(DayOfWeek.SUNDAY)) {
             return date;
@@ -421,6 +446,8 @@ public class GeoAreaSensor implements Sensor {
      * @param date a given date
      * @return lowest measurements of the week
      */
+
+/*
     public List<Double> lowestMeasurementsOfWeek(LocalDate date) {
         List<Double> lowestMeasurementOfWeek = new ArrayList<>();
         LocalDate firstDayOfWeek = getFirstDayOfWeek(date);
@@ -440,6 +467,8 @@ public class GeoAreaSensor implements Sensor {
      * @param date a given date
      * @return average of lowest measurements of a week
      */
+
+/*
     public double getAverageOfLowestMeasurementsWeek(LocalDate date) {
 
         List<Double> lowestMeasurementOfWeek = this.lowestMeasurementsOfWeek(date);
@@ -462,6 +491,8 @@ public class GeoAreaSensor implements Sensor {
      * @param date a given day
      * @return the maximum value of measurements
      */
+
+/*
     public double getMaximumValueOfDay(LocalDate date) {
         if (!getDailyMeasurement(date).isEmpty()) {
             double maximumValueOfDay = getDailyMeasurement(date).get(0).getValue();
@@ -481,6 +512,8 @@ public class GeoAreaSensor implements Sensor {
      * @param date a given date
      * @return lowest measurements of the week
      */
+
+/*
     public List<Double> biggestWeeklyMeasurements(LocalDate date) {
         List<Double> biggestWeeklyMeasurements = new ArrayList<>();
         LocalDate firstDayOfWeek = getFirstDayOfWeek(date);
@@ -502,6 +535,8 @@ public class GeoAreaSensor implements Sensor {
      * @param date a given date
      * @return average of biggest measurements of a week
      */
+
+/*
     public double getAverageOfBiggestMeasurementsWeek(LocalDate date) {
 
         List<Double> biggestWeeklyMeasurements = this.biggestWeeklyMeasurements(date);
@@ -524,6 +559,8 @@ public class GeoAreaSensor implements Sensor {
      * @param location a given location
      * @return distance between a sensor and a location
      */
+
+/*
     public double distanceBetweenSensorAndLocation(Location location) {
         return this.location.distanceBetweenTwoLocations(location);
     }
@@ -534,7 +571,7 @@ public class GeoAreaSensor implements Sensor {
      * @param day a given day
      * @return sum of daily measurements (total)
      */
-
+/*
     public double getTotalDailyMeasurements(LocalDate day) {
         double sum = 0;
         if (!(getDailyMeasurement(day).isEmpty())) {
@@ -551,6 +588,8 @@ public class GeoAreaSensor implements Sensor {
      * @param date a given day
      * @return daily average
      */
+
+/*
     public double getDailyAverage(LocalDate date) {
         return getTotalDailyMeasurements(date) / getDailyMeasurement(date).size();
     }
@@ -572,6 +611,8 @@ public class GeoAreaSensor implements Sensor {
      * @param endDate   final date of the period the user wants to consider
      * @return a GeoAreaReading
      */
+
+/*
     public GeoAreaReading getFirstHighestReading(LocalDate startDate, LocalDate endDate) {
         if (getReadingsBetweenDates(startDate, endDate).isEmpty()) {
             return null;
@@ -593,6 +634,8 @@ public class GeoAreaSensor implements Sensor {
      * @param day day to check
      * @return Highest, most recent reading of the given day
      */
+
+/*
     public GeoAreaReading getHighestReadingOfADay(LocalDate day) {
         if (getDailyMeasurementWithDoubleNaN(day).isEmpty()) {
             return null;
@@ -613,6 +656,8 @@ public class GeoAreaSensor implements Sensor {
      * @param endDate   last day of the interval
      * @return
      */
+
+/*
     public List<GeoAreaReading> getDailyMaxReadingsInAnInterval(LocalDate startDate, LocalDate endDate) {
         List<GeoAreaReading> maximumGeoAreaReadings = new ArrayList<>();
 
@@ -631,6 +676,8 @@ public class GeoAreaSensor implements Sensor {
      * @param geoAreaReadings list of geoAreaReadings
      * @return the most recent lowest GeoAreaReading
      */
+
+/*
     public GeoAreaReading getLastLowestReading(List<GeoAreaReading> geoAreaReadings) {
         if (geoAreaReadings.isEmpty()) {
             return null;
@@ -649,6 +696,8 @@ public class GeoAreaSensor implements Sensor {
      *
      * @return List with Readings.
      */
+
+/*
     public List<GeoAreaReading> getListOfReadings() {
         return listOfReadings;
     }
@@ -659,6 +708,8 @@ public class GeoAreaSensor implements Sensor {
      * @param date given day
      * @return list of readings registered in given day
      */
+
+/*
     public List<GeoAreaReading> getDailyMeasurementWithDoubleNaN(LocalDate date) {
         List<GeoAreaReading> dailyGeoAreaReadings = new ArrayList<>();
         for (GeoAreaReading registo : listOfReadings) {
@@ -671,4 +722,5 @@ public class GeoAreaSensor implements Sensor {
         return dailyGeoAreaReadings;
 
     }
+    */
 }

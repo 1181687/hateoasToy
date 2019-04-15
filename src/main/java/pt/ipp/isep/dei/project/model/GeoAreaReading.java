@@ -4,13 +4,15 @@ import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorId;
 
 import javax.persistence.Embeddable;
 import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
 import java.time.LocalDateTime;
 
-@Embeddable()
+@Entity
 public class GeoAreaReading {
 
     @EmbeddedId
     private GeoAreaReadingId geoAreaReadingId;
+
     private double value;
 
     /**
