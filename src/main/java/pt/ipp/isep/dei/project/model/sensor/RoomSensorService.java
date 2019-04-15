@@ -1,5 +1,8 @@
 package pt.ipp.isep.dei.project.model.sensor;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import pt.ipp.isep.dei.project.RoomSensorRepository;
 import pt.ipp.isep.dei.project.model.RoomReading;
 
 import javax.persistence.*;
@@ -8,19 +11,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@Entity
+@Service
 public class RoomSensorService {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn
-    private List<RoomSensor> listOfSensors;
+    @Autowired
+    private RoomSensorRepository roomSensorRepository;
 
     public RoomSensorService() {
-        this.listOfSensors = new ArrayList<>();
     }
 
     public boolean addSensor(RoomSensor sensor) {
@@ -79,10 +76,6 @@ public class RoomSensorService {
             }
         }
         return null;
-    }
-
-    public List<RoomSensor> getListOfSensors() {
-        return listOfSensors;
     }
 
     public boolean roomSensorExists(String id) {
