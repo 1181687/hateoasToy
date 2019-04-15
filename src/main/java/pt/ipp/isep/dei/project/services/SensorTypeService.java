@@ -11,11 +11,11 @@ public class SensorTypeService {
     @Autowired
     SensorTypeRepository sensorTypeRepository;
 
-    public SensorTypeService() {
-    }
+    //public SensorTypeService() {
+    //}
 
     public boolean createAndAddSensorType(String sensorTypeId) {
-        if (!sensorTypeRepository.existsById(new SensorTypeId(sensorTypeId))) {
+        if (!sensorTypeRepository.existsById(new SensorTypeId(sensorTypeId)) || sensorTypeId == null) {
             this.sensorTypeRepository.save(new SensorType(sensorTypeId));
             return true;
         }
