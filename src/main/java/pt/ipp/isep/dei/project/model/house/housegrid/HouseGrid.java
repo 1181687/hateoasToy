@@ -25,7 +25,6 @@ public class HouseGrid /*implements Measurable*/ {
      *
      * @param houseGridId Id to be used.
      */
-
     public HouseGrid(String houseGridId) {
         validateId(houseGridId);
         this.houseGridId = new HouseGridId(houseGridId);
@@ -65,7 +64,7 @@ public class HouseGrid /*implements Measurable*/ {
 
     /**
      * Override method for the equals method.
-     * Two grids are equals if they share the same Id.
+     * Two grids are equal if they share the same Id.
      *
      * @param obj Object to be analysed.
      * @return True or false.
