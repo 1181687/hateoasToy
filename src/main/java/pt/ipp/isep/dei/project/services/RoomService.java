@@ -1,5 +1,11 @@
-package pt.ipp.isep.dei.project.model.house;
+package pt.ipp.isep.dei.project.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import pt.ipp.isep.dei.project.RoomRepository;
+import pt.ipp.isep.dei.project.model.house.Dimension;
+import pt.ipp.isep.dei.project.model.house.Room;
+import pt.ipp.isep.dei.project.model.house.RoomId;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
 
 import javax.persistence.Transient;
@@ -7,31 +13,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class RoomList {
-    //@Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
-    //private long id;
+@Service
+public class RoomService {
+    @Autowired
+    RoomRepository roomRepository;
 
-    //@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    //@JoinColumn
-    @Transient
-    private List<Room> listOfRooms;
-
-    /**
-     * Constructor.
-     */
-    public RoomList() {
-        this.listOfRooms = new ArrayList<>();
+    public boolean addRoom(String id, String description, int housefloor, double height, double length, double width) {
+        Dimension dimensions = new Dimension(height, length, width);
+        if (!roomRepository.existsById(new RoomId(id))) {
+            Room room = new Room(id, description, housefloor, dimensions);
+            roomRepository.save(room);
+            return true;
+        }
+        return false;
     }
 
-    /**
-     * Get method.
-     *
-     * @return listOfRooms.
-     */
-    public List<Room> getListOfRooms() {
-        return listOfRooms;
-    }
 
     /**
      * Method that gets the room in a specific position in the list.
@@ -39,9 +35,9 @@ public class RoomList {
      * @param position Specifies the position of the room in the list.
      * @return The respective room.
      */
-    public Room getRoomFromPosition(int position) {
+  /*  public Room getRoomFromPosition(int position) {
         return listOfRooms.get(position);
-    }
+    }*/
 
 
     /**
@@ -81,6 +77,7 @@ public class RoomList {
 
     /**
      * method that displays the List of Rooms
+     *
      * @return Content of Room List
      */
     public String getRoomListContent() {
@@ -99,6 +96,7 @@ public class RoomList {
 
     /**
      * Method that checks if a Room List is Empty
+     *
      * @return true if it is empty
      */
     public boolean isEmpty() {
@@ -107,6 +105,7 @@ public class RoomList {
 
     /**
      * Method that gives us the size of the Room List
+     *
      * @return Room List size
      */
     public int getLength() {
@@ -115,6 +114,7 @@ public class RoomList {
 
     /**
      * Method that displays a choosen Room (in a specific position) with its characteristics (name, housegrid floor, height, length and width)
+     *
      * @param position position of the Room in the Room List
      * @return Content of the Room
      */
@@ -135,6 +135,7 @@ public class RoomList {
 
     /**
      * Method that changes the name of a Room
+     *
      * @param chosenRoom room that you want to change
      * @param changeName new name for the room
      */
@@ -144,6 +145,7 @@ public class RoomList {
 
     /**
      * Method that changes the housegrid floor of a Room
+     *
      * @param chosenRoom       room that you want to change
      * @param changeHouseFloor new housegrid floor for the room
      */
@@ -153,6 +155,7 @@ public class RoomList {
 
     /**
      * Method that changes the dimensions of a Room
+     *
      * @param chosenRoom      room that you want to change
      * @param chosenFeature   Dimension that you want to change (Height, Length, Width)
      * @param changeDimension New value (double) for the chosen dimension (Height, Length, Width)
@@ -171,6 +174,7 @@ public class RoomList {
 
     /**
      * Method that goes through the room list and shows the room by name if that name matches a room with the same name in the list
+     *
      * @param name room name (string)
      * @return room
      */
@@ -187,6 +191,7 @@ public class RoomList {
 
     /**
      * Method that gets the name of the chosen room in a specific position in the room list
+     *
      * @param position position of the chosen room in a List
      * @return if the List is empty, returns null. Else returns the name of room in that position
      */
@@ -201,11 +206,11 @@ public class RoomList {
     /*
      */
 /**
-     * method that get the maximum temperature in a room in a given day.
-     * @param name of Room
-     * @param type of sensor (temperature)
-     * @param date any given day
-     * @return the maximum temperature in a specific Room in a given day
+ * method that get the maximum temperature in a room in a given day.
+ * @param name of Room
+ * @param type of sensor (temperature)
+ * @param date any given day
+ * @return the maximum temperature in a specific Room in a given day
  *//*
 
     public double getMaximumTemperatureInRoomInGivenDay(String name, SensorType type, LocalDate date) {
@@ -215,6 +220,7 @@ public class RoomList {
 
     /**
      * method that check if a name of a room already exists on the list of rooms.
+     *
      * @param name
      * @return boolean
      */
@@ -246,7 +252,7 @@ public class RoomList {
     }*/
 
     /**
-     * method that checks if there are no devices in the RoomList
+     * method that checks if there are no devices in the RoomService
      * @return true if there aren't devices. False if there are devices
      */
    /* public boolean isDeviceListOfAllRoomsEmpty() {
@@ -262,9 +268,9 @@ public class RoomList {
     /*
      */
 /**
-     * Method that displays the sensor list content of a Room
-     * @param position
-     * @return
+ * Method that displays the sensor list content of a Room
+ * @param position
+ * @return
  *//*
 
     public String getSensorListContentOfRoom(int position) {
@@ -273,9 +279,9 @@ public class RoomList {
 
     */
 /**
-     * method that check if the sensor list of the room is empty
-     *
-     * @param position
+ * method that check if the sensor list of the room is empty
+ *
+ * @param position
  *//*
 
     public boolean isSensorListEmpty(int position) {
