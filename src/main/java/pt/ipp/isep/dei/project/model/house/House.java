@@ -9,7 +9,7 @@ public class House {
     //@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     //@JoinColumn
     //@Transient
-    //private RoomList roomList;
+    //private RoomService roomList;
 
     //@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     //@Fetch(value = FetchMode.SUBSELECT)
@@ -32,7 +32,7 @@ public class House {
 
 
    /* public House(List<String> deviceTypeList, int meteringPeriodGrid, int meteringPeriodDevice) {
-        this.roomList = new RoomList();
+        this.roomList = new RoomService();
         this.listHouseGrids = new ArrayList<>();
         this.deviceTypeList = new ArrayList<>();
         createDeviceTypes(deviceTypeList);
