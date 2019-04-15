@@ -15,22 +15,33 @@ General Criteria:
                                         testNameOfTheMethod_conditionThatIsBeingTested_expectedResult).
 - All code, comments and documentation are in proper English.
 
+
 Specific Criteria:
-- given -
-- when -
-- then:
+- given - list of sensor readings for the house sensors. Sensors without a valid room shouldn’t be imported but
+registered in the application log.
 
-- but -
+- when - The user chooses option "1" from Menu (Administrator), then option "1" (House) and then option "15" (Import
+readings for house sensors);
+Then User inserts the name of the file to be imported and chooses the option "YES" in "Do you want to import
+these readings? (Y/N)"
 
+
+"ERROR: There's no such file with that name." - when no file or directory is found when the user inputs the name of the
+file to be imported.
+
+"The information on the file is not valid to be imported." - Data is null or doesn't have the right format (a string in
+the place of a double or vice versa) or the file is empty.
+
+"The file is already imported."- when you try to import the contents of the file after that have been already imported.
+
+"The file was not imported."- when the file cannot be imported.
 
 
 Test Criteria:
-
-
-Acceptance Tests:
-
-
-
-ASSUMPTIONS:
+- All unit tests with "Process finished with exit code 0" message.
+- When user chooses the options from the menu it should not accept letters, symbols, or any
+  number that's not displayed in the menu.
+- When He/She then chooses the option "Y" or "N" it should not accept letters, symbols, or any number unless its a "Y"
+or "y" or a "N" or a "n".
 
 
