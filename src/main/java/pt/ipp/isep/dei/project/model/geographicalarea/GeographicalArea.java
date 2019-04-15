@@ -1,17 +1,8 @@
 package pt.ipp.isep.dei.project.model.geographicalarea;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import pt.ipp.isep.dei.project.model.GeoAreaReading;
 import pt.ipp.isep.dei.project.model.Location;
-import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
-import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorService;
-import pt.ipp.isep.dei.project.model.sensor.SensorType;
-import pt.ipp.isep.dei.project.utils.Utils;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.*;
 
 @Entity
 public class GeographicalArea {
@@ -23,8 +14,8 @@ public class GeographicalArea {
     @Embedded
     private GeographicalAreaType type;
 
-    @Transient
-    private GeographicalArea insertedIn;
+    @Embedded
+    private GeoAreaId parentGeoArea;
 
     @Embedded
     private Location location;
@@ -127,17 +118,13 @@ public class GeographicalArea {
      *
      * @return the area inserted
      */
-    public GeographicalArea getInsertedIn() {
-        return insertedIn;
+    public GeoAreaId getParentGeoArea() {
+        return parentGeoArea;
     }
 
-    /**
-     * set the inserted area where the geo area is.
-     *
-     * @param mainGeoArea Geographical area where THIS Geo Area will be inserted in.
-     */
-    public void setInsertedIn(GeographicalArea mainGeoArea) {
-        this.insertedIn = mainGeoArea;
+
+    public void setParentGeoArea(GeoAreaId insertedIn) {
+        this.parentGeoArea = insertedIn;
     }
 
     public AreaShape getAreaShape() {

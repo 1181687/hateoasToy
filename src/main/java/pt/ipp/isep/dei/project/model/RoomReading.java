@@ -1,23 +1,26 @@
 package pt.ipp.isep.dei.project.model;
 
 import javax.persistence.Embeddable;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
 import java.time.LocalDateTime;
 
-@Embeddable
+@Entity
 public class RoomReading {
 
+    @EmbeddedId
+    private RoomReadingId roomReadingId;
     private double value;
-    private LocalDateTime dateTime;
 
     /**
      * constructor that receives a value and a date
      *
      * @param value    value
-     * @param dateTime date
+     *
      */
-    public RoomReading(double value, LocalDateTime dateTime) {
+    public RoomReading(double value, RoomReadingId roomReadingId) {
         this.value = value;
-        this.dateTime = dateTime;
+        this.roomReadingId=roomReadingId;
     }
 
     protected RoomReading() {
@@ -38,19 +41,6 @@ public class RoomReading {
     }
 
     /**
-     * Get method
-     *
-     * @return dateTime
-     */
-    public LocalDateTime getDateTime() {
-        return dateTime;
-    }
-
-    public void setDateTime(LocalDateTime dateTime) {
-        this.dateTime = dateTime;
-    }
-
-    /**
      * Method that creates a hashcode.
      *
      * @return Created hashcode.
@@ -66,7 +56,7 @@ public class RoomReading {
      * @param obj Object used.
      * @return True or false.
      */
-    @Override
+    /*@Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
@@ -77,5 +67,5 @@ public class RoomReading {
         RoomReading reading = (RoomReading) obj;
         Double valueOfTheReading = this.value;
         return valueOfTheReading.equals(reading.getValue()) && this.dateTime.equals(reading.getDateTime());
-    }
+    }*/
 }

@@ -6,7 +6,7 @@ import pt.ipp.isep.dei.project.model.RoomReading;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
-import pt.ipp.isep.dei.project.model.sensor.RoomSensorService;
+import pt.ipp.isep.dei.project.services.RoomSensorService;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 
 import javax.persistence.*;

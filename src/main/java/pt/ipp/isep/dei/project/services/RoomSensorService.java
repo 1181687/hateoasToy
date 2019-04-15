@@ -1,15 +1,9 @@
-package pt.ipp.isep.dei.project.model.sensor;
+package pt.ipp.isep.dei.project.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pt.ipp.isep.dei.project.RoomSensorReadingsRepository;
 import pt.ipp.isep.dei.project.RoomSensorRepository;
-import pt.ipp.isep.dei.project.model.RoomReading;
-
-import javax.persistence.*;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
 @Service
 public class RoomSensorService {
@@ -17,10 +11,10 @@ public class RoomSensorService {
     @Autowired
     private RoomSensorRepository roomSensorRepository;
 
-    public RoomSensorService() {
-    }
+    @Autowired
+    private RoomSensorReadingsRepository roomSensorReadingsRepository;
 
-    public boolean addSensor(RoomSensor sensor) {
+    /*public boolean addSensor(RoomSensor sensor) {
         if (listOfSensors.contains(sensor) || Objects.isNull(sensor)) {
             return false;
         }
@@ -86,7 +80,5 @@ public class RoomSensorService {
 
         }
         return false;
-    }
-
-
+    }*/
 }
