@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.project.model;
 
-import pt.ipp.isep.dei.project.model.sensor.SensorId;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorId;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -31,8 +31,8 @@ public final class ReadingMapper {
         if (Objects.isNull(readingDTO)) {
             return null;
         }
-        SensorId sensorId = new SensorId(readingDTO.getId());
-        return new GeoAreaReading(sensorId,readingDTO.getDateTime(), readingDTO.getValue());
+        GeoAreaSensorId geoAreaSensorId = new GeoAreaSensorId(readingDTO.getId());
+        return new GeoAreaReading(geoAreaSensorId,readingDTO.getDateTime(), readingDTO.getValue());
     }
 
     /**
