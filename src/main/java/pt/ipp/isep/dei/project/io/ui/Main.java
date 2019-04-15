@@ -71,11 +71,11 @@ public class Main {
     public CommandLineRunner mainRun() {
 
         return (args) -> {
-            //DefineSensorType defineSensorType = new DefineSensorType(sensorTypeService);
-            //defineSensorType.run();
+            DefineSensorType defineSensorType = new DefineSensorType(sensorTypeService);
+            defineSensorType.run();
 
-            AddRoom addRoom= new AddRoom(roomService);
-            addRoom.run();
+            //AddRoom addRoom= new AddRoom(roomService);
+            //addRoom.run();
         };
     }
 /*
