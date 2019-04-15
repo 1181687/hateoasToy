@@ -1,10 +1,11 @@
 package pt.ipp.isep.dei.project.model.sensor;
 
 import pt.ipp.isep.dei.project.model.Location;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaId;
 
+import javax.persistence.Embedded;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 import java.time.LocalDateTime;
 
@@ -17,8 +18,8 @@ public class GeoAreaSensor {
 
     private LocalDateTime startingDate;
 
-    @ManyToOne
-    private SensorType sensorType;
+    @Embedded
+    private SensorTypeId sensorTypeId;
 
     @Transient
     private Location location;
@@ -28,41 +29,46 @@ public class GeoAreaSensor {
     @Transient
     private boolean isActive;
 
+    @Embedded
+    private GeoAreaId geoAreaId;
+
 
     /**
      * Constructor method
      *
      * @param sensorName   name of the sensor (string)
      * @param startingDate starting date of the sensor
-     * @param sensorType   Type of sensor
+     * @param sensorTypeId   ID of the type of sensor
      * @param location     Location of the sensor
      */
-    public GeoAreaSensor(String id, String sensorName, LocalDateTime startingDate, SensorType sensorType, Location location, String units) {
+    public GeoAreaSensor(String id, String sensorName, LocalDateTime startingDate, SensorTypeId sensorTypeId, Location location, String units, GeoAreaId geoAreaId) {
         this.id = new GeoAreaSensorId(id);
         this.sensorName = sensorName;
         this.startingDate = startingDate;
-        this.sensorType = sensorType;
+        this.sensorTypeId = sensorTypeId;
         this.location = location;
         this.units = units;
         this.isActive = true;
+        this.geoAreaId = geoAreaId;
     }
 
     /**
      * Constructor method
      *
      * @param sensorName name of the sensor (string)
-     * @param sensorType Type of sensor
+     * @param sensorTypeId ID of the type of sensor
      * @param location   Location of the sensor
      */
 
-    public GeoAreaSensor(String id, String sensorName, SensorType sensorType, Location location, String units) {
+    public GeoAreaSensor(String id, String sensorName, SensorTypeId sensorTypeId, Location location, String units, GeoAreaId geoAreaId) {
         this.id = new GeoAreaSensorId(id);
         this.sensorName = sensorName;
         this.startingDate = LocalDateTime.now();
-        this.sensorType = sensorType;
+        this.sensorTypeId = sensorTypeId;
         this.location = location;
         this.units = units;
         this.isActive = true;
+        this.geoAreaId = geoAreaId;
     }
 
 
@@ -105,8 +111,8 @@ public class GeoAreaSensor {
      * @return sensor Type
      */
 
-    public SensorType getSensorType() {
-        return sensorType;
+    public SensorTypeId getSensorType() {
+        return sensorTypeId;
     }
 
     /**
