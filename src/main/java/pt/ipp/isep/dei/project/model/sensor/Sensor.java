@@ -1,10 +1,10 @@
 package pt.ipp.isep.dei.project.model.sensor;
 
-import pt.ipp.isep.dei.project.model.Reading;
+import pt.ipp.isep.dei.project.model.GeoAreaReading;
 
 public interface Sensor {
 
-    boolean addReading(Reading reading);
+    boolean addReading(GeoAreaReading geoAreaReading);
 
-    boolean readingExistsBySensorIdLocalDateTime(Reading reading);
+    boolean readingExistsBySensorIdLocalDateTime(GeoAreaReading geoAreaReading);
 }

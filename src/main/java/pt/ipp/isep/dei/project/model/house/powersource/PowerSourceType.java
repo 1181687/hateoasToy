@@ -4,10 +4,6 @@ import java.util.Objects;
 
 public class PowerSourceType {
 
-
-    private Long id;
-
-
     private String typeOfPowerSource;
 
     /**

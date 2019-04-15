@@ -1,13 +1,17 @@
 package pt.ipp.isep.dei.project.model;
 
+import pt.ipp.isep.dei.project.model.sensor.SensorId;
+
 import javax.persistence.Embeddable;
+import javax.persistence.EmbeddedId;
 import java.time.LocalDateTime;
 
-@Embeddable
-public class RoomReading {
+@Embeddable()
+public class GeoAreaReading {
 
+    @EmbeddedId
+    private ReadingId readingId;
     private double value;
-    private LocalDateTime dateTime;
 
     /**
      * constructor that receives a value and a date
@@ -15,39 +19,42 @@ public class RoomReading {
      * @param value    value
      * @param dateTime date
      */
-    public RoomReading(double value, LocalDateTime dateTime) {
+    public GeoAreaReading(SensorId sensorId, LocalDateTime dateTime, double value) {
+        this.readingId = new ReadingId(sensorId,dateTime);
         this.value = value;
-        this.dateTime = dateTime;
     }
 
-    protected RoomReading() {
+    protected GeoAreaReading() {
         // empty
     }
 
     /**
      * Get method
-     *
      * @return value
      */
     public double getValue() {
         return value;
     }
 
-    public void setValue(double value) {
-        this.value = value;
-    }
 
     /**
      * Get method
-     *
      * @return dateTime
      */
     public LocalDateTime getDateTime() {
-        return dateTime;
+        return readingId.getLocalDateTime();
     }
 
-    public void setDateTime(LocalDateTime dateTime) {
-        this.dateTime = dateTime;
+    /**
+     * Get method of the SensorId of the reading.
+     * @return
+     */
+    public SensorId getSensorId() {
+        return readingId.getSensorId();
+    }
+
+    private ReadingId getReadingId(){
+        return readingId;
     }
 
     /**
@@ -74,8 +81,8 @@ public class RoomReading {
         if (!(obj instanceof GeoAreaReading)) {
             return false;
         }
-        RoomReading reading = (RoomReading) obj;
-        Double valueOfTheReading = this.value;
-        return valueOfTheReading.equals(reading.getValue()) && this.dateTime.equals(reading.getDateTime());
+        GeoAreaReading geoAreaReading = (GeoAreaReading) obj;
+        ReadingId readingId = this.readingId;
+        return readingId.equals(geoAreaReading.getReadingId());
     }
 }

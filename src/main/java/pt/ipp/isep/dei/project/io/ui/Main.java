@@ -9,10 +9,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import pt.ipp.isep.dei.project.model.Location;
-import pt.ipp.isep.dei.project.model.Reading;
-import pt.ipp.isep.dei.project.model.devices.Device;
-import pt.ipp.isep.dei.project.model.devices.Program;
-import pt.ipp.isep.dei.project.model.devices.Programmable;
 import pt.ipp.isep.dei.project.model.geographicalarea.*;
 import pt.ipp.isep.dei.project.model.house.*;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
@@ -21,7 +17,6 @@ import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceTypeList;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeList;
 import pt.ipp.isep.dei.project.utils.Utils;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @EnableJpaRepositories(basePackages = "pt.ipp.isep.dei.project")
@@ -68,7 +63,7 @@ public class Main {
         SpringApplication.run(Main.class, args);
 
     }
-
+/*
     @Bean
     public CommandLineRunner mainRun() {
 
@@ -139,7 +134,7 @@ public class Main {
         Address address = new Address("4200-072", houseLocation, insertedGeoArea);
         houseEdificioB = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
         //houseEdificioB.setAddress(address);
-
+/*
 
         // READINGS
         // Electric Water Heater B107/B109
@@ -162,44 +157,44 @@ public class Main {
         LocalDateTime ewhDate16 = LocalDateTime.of(2018, 12, 31, 20, 45, 00);
         LocalDateTime ewhDate17 = LocalDateTime.of(2018, 12, 31, 21, 00, 00);
         LocalDateTime ewhDate18 = LocalDateTime.of(2018, 12, 31, 21, 15, 00);
-        Reading ewhEC = new Reading(0.2, ewhDate);
-        Reading ewhEC1 = new Reading(0.375, ewhDate1);
-        Reading ewhEC2 = new Reading(0.375, ewhDate2);
-        Reading ewhEC3 = new Reading(0.375, ewhDate3);
-        Reading ewhEC4 = new Reading(0.375, ewhDate4);
-        Reading ewhEC5 = new Reading(0.25, ewhDate5);
-        Reading ewhEC6 = new Reading(0.2, ewhDate6);
-        Reading ewhEC7 = new Reading(0.2, ewhDate7);
-        Reading ewhEC8 = new Reading(0.2, ewhDate8);
-        Reading ewhEC9 = new Reading(0.375, ewhDate9);
-        Reading ewhEC10 = new Reading(0.375, ewhDate10);
-        Reading ewhEC11 = new Reading(0.375, ewhDate11);
-        Reading ewhEC12 = new Reading(0.375, ewhDate12);
-        Reading ewhEC13 = new Reading(0.2, ewhDate13);
-        Reading ewhEC14 = new Reading(0.1, ewhDate14);
-        Reading ewhEC15 = new Reading(0.375, ewhDate15);
-        Reading ewhEC16 = new Reading(0.375, ewhDate16);
-        Reading ewhEC17 = new Reading(0.375, ewhDate17);
-        Reading ewhEC18 = new Reading(0.15, ewhDate18);
-        Reading ewh1EC = new Reading(0.2, ewhDate);
-        Reading ewh1EC1 = new Reading(0.5, ewhDate1);
-        Reading ewh1EC2 = new Reading(0.5, ewhDate2);
-        Reading ewh1EC3 = new Reading(0.5, ewhDate3);
-        Reading ewh1EC4 = new Reading(0.5, ewhDate4);
-        Reading ewh1EC5 = new Reading(0.25, ewhDate5);
-        Reading ewh1EC6 = new Reading(0.2, ewhDate6);
-        Reading ewh1EC7 = new Reading(0.2, ewhDate7);
-        Reading ewh1EC8 = new Reading(0.2, ewhDate8);
-        Reading ewh1EC9 = new Reading(0.5, ewhDate9);
-        Reading ewh1EC10 = new Reading(0.5, ewhDate10);
-        Reading ewh1EC11 = new Reading(0.5, ewhDate11);
-        Reading ewh1EC12 = new Reading(0.5, ewhDate12);
-        Reading ewh1EC13 = new Reading(0.2, ewhDate13);
-        Reading ewh1EC14 = new Reading(0.1, ewhDate14);
-        Reading ewh1EC15 = new Reading(0.5, ewhDate15);
-        Reading ewh1EC16 = new Reading(0.5, ewhDate16);
-        Reading ewh1EC17 = new Reading(0.5, ewhDate17);
-        Reading ewh1EC18 = new Reading(0.15, ewhDate18);
+        GeoAreaReading ewhEC = new GeoAreaReading(0.2, ewhDate);
+        GeoAreaReading ewhEC1 = new GeoAreaReading(0.375, ewhDate1);
+        GeoAreaReading ewhEC2 = new GeoAreaReading(0.375, ewhDate2);
+        GeoAreaReading ewhEC3 = new GeoAreaReading(0.375, ewhDate3);
+        GeoAreaReading ewhEC4 = new GeoAreaReading(0.375, ewhDate4);
+        GeoAreaReading ewhEC5 = new GeoAreaReading(0.25, ewhDate5);
+        GeoAreaReading ewhEC6 = new GeoAreaReading(0.2, ewhDate6);
+        GeoAreaReading ewhEC7 = new GeoAreaReading(0.2, ewhDate7);
+        GeoAreaReading ewhEC8 = new GeoAreaReading(0.2, ewhDate8);
+        GeoAreaReading ewhEC9 = new GeoAreaReading(0.375, ewhDate9);
+        GeoAreaReading ewhEC10 = new GeoAreaReading(0.375, ewhDate10);
+        GeoAreaReading ewhEC11 = new GeoAreaReading(0.375, ewhDate11);
+        GeoAreaReading ewhEC12 = new GeoAreaReading(0.375, ewhDate12);
+        GeoAreaReading ewhEC13 = new GeoAreaReading(0.2, ewhDate13);
+        GeoAreaReading ewhEC14 = new GeoAreaReading(0.1, ewhDate14);
+        GeoAreaReading ewhEC15 = new GeoAreaReading(0.375, ewhDate15);
+        GeoAreaReading ewhEC16 = new GeoAreaReading(0.375, ewhDate16);
+        GeoAreaReading ewhEC17 = new GeoAreaReading(0.375, ewhDate17);
+        GeoAreaReading ewhEC18 = new GeoAreaReading(0.15, ewhDate18);
+        GeoAreaReading ewh1EC = new GeoAreaReading(0.2, ewhDate);
+        GeoAreaReading ewh1EC1 = new GeoAreaReading(0.5, ewhDate1);
+        GeoAreaReading ewh1EC2 = new GeoAreaReading(0.5, ewhDate2);
+        GeoAreaReading ewh1EC3 = new GeoAreaReading(0.5, ewhDate3);
+        GeoAreaReading ewh1EC4 = new GeoAreaReading(0.5, ewhDate4);
+        GeoAreaReading ewh1EC5 = new GeoAreaReading(0.25, ewhDate5);
+        GeoAreaReading ewh1EC6 = new GeoAreaReading(0.2, ewhDate6);
+        GeoAreaReading ewh1EC7 = new GeoAreaReading(0.2, ewhDate7);
+        GeoAreaReading ewh1EC8 = new GeoAreaReading(0.2, ewhDate8);
+        GeoAreaReading ewh1EC9 = new GeoAreaReading(0.5, ewhDate9);
+        GeoAreaReading ewh1EC10 = new GeoAreaReading(0.5, ewhDate10);
+        GeoAreaReading ewh1EC11 = new GeoAreaReading(0.5, ewhDate11);
+        GeoAreaReading ewh1EC12 = new GeoAreaReading(0.5, ewhDate12);
+        GeoAreaReading ewh1EC13 = new GeoAreaReading(0.2, ewhDate13);
+        GeoAreaReading ewh1EC14 = new GeoAreaReading(0.1, ewhDate14);
+        GeoAreaReading ewh1EC15 = new GeoAreaReading(0.5, ewhDate15);
+        GeoAreaReading ewh1EC16 = new GeoAreaReading(0.5, ewhDate16);
+        GeoAreaReading ewh1EC17 = new GeoAreaReading(0.5, ewhDate17);
+        GeoAreaReading ewh1EC18 = new GeoAreaReading(0.15, ewhDate18);
 
         // Dishwasher B107
         LocalDateTime dwDate = LocalDateTime.of(2018, 12, 31, 13, 00, 00);
@@ -212,37 +207,37 @@ public class Main {
         LocalDateTime dwDate7 = LocalDateTime.of(2018, 12, 31, 21, 45, 00);
         LocalDateTime dwDate8 = LocalDateTime.of(2018, 12, 31, 22, 00, 00);
         LocalDateTime dwDate9 = LocalDateTime.of(2018, 12, 31, 22, 15, 00);
-        Reading dwEC = new Reading(0.2, dwDate);
-        Reading dwEC1 = new Reading(0.3, dwDate1);
-        Reading dwEC2 = new Reading(0.2, dwDate2);
-        Reading dwEC3 = new Reading(0.2, dwDate3);
-        Reading dwEC4 = new Reading(0.2, dwDate4);
-        Reading dwEC5 = new Reading(0.1, dwDate5);
-        Reading dwEC6 = new Reading(0.1, dwDate6);
-        Reading dwEC7 = new Reading(0.375, dwDate7);
-        Reading dwEC8 = new Reading(0.375, dwDate8);
-        Reading dwEC9 = new Reading(0.2, dwDate9);
+        GeoAreaReading dwEC = new GeoAreaReading(0.2, dwDate);
+        GeoAreaReading dwEC1 = new GeoAreaReading(0.3, dwDate1);
+        GeoAreaReading dwEC2 = new GeoAreaReading(0.2, dwDate2);
+        GeoAreaReading dwEC3 = new GeoAreaReading(0.2, dwDate3);
+        GeoAreaReading dwEC4 = new GeoAreaReading(0.2, dwDate4);
+        GeoAreaReading dwEC5 = new GeoAreaReading(0.1, dwDate5);
+        GeoAreaReading dwEC6 = new GeoAreaReading(0.1, dwDate6);
+        GeoAreaReading dwEC7 = new GeoAreaReading(0.375, dwDate7);
+        GeoAreaReading dwEC8 = new GeoAreaReading(0.375, dwDate8);
+        GeoAreaReading dwEC9 = new GeoAreaReading(0.2, dwDate9);
 
         // Washing Machine B107
         LocalDateTime wmDate = LocalDateTime.of(2018, 12, 31, 10, 30, 00);
         LocalDateTime wdDate1 = LocalDateTime.of(2018, 12, 31, 10, 15, 00);
         LocalDateTime wdDate2 = LocalDateTime.of(2018, 12, 31, 13, 30, 00);
         LocalDateTime wdDate3 = LocalDateTime.of(2018, 12, 31, 13, 45, 00);
-        Reading wmEC = new Reading(0.4, wmDate);
-        Reading wmEC1 = new Reading(0.2, wdDate1);
-        Reading wmEC2 = new Reading(0.25, wdDate2);
-        Reading wmEC3 = new Reading(0.25, wdDate3);
+        GeoAreaReading wmEC = new GeoAreaReading(0.4, wmDate);
+        GeoAreaReading wmEC1 = new GeoAreaReading(0.2, wdDate1);
+        GeoAreaReading wmEC2 = new GeoAreaReading(0.25, wdDate2);
+        GeoAreaReading wmEC3 = new GeoAreaReading(0.25, wdDate3);
 
         // Washing Machine B109
         LocalDateTime wm1Date = LocalDateTime.of(2018, 12, 31, 10, 15, 00);
         LocalDateTime wm1Date1 = LocalDateTime.of(2018, 12, 31, 10, 30, 00);
         LocalDateTime wm1Date2 = LocalDateTime.of(2018, 12, 31, 10, 45, 00);
         LocalDateTime wm1Date3 = LocalDateTime.of(2018, 12, 31, 11, 00, 00);
-        Reading wm1EC = new Reading(0.4, wm1Date);
-        Reading wm1EC1 = new Reading(0.2, wm1Date1);
-        Reading wm1EC2 = new Reading(0.2, wm1Date2);
-        Reading wm1EC3 = new Reading(0.25, wm1Date3);
-        Reading wm1EC4 = new Reading(0.25, wm1Date3);
+        GeoAreaReading wm1EC = new GeoAreaReading(0.4, wm1Date);
+        GeoAreaReading wm1EC1 = new GeoAreaReading(0.2, wm1Date1);
+        GeoAreaReading wm1EC2 = new GeoAreaReading(0.2, wm1Date2);
+        GeoAreaReading wm1EC3 = new GeoAreaReading(0.25, wm1Date3);
+        GeoAreaReading wm1EC4 = new GeoAreaReading(0.25, wm1Date3);
 
 
         // ROOMS
@@ -518,5 +513,5 @@ public class Main {
 
     }
 
-
+*/
 }

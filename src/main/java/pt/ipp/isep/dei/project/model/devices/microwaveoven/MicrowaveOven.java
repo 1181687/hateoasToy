@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.project.model.devices.microwaveoven;
 
-import pt.ipp.isep.dei.project.model.Reading;
+import pt.ipp.isep.dei.project.model.GeoAreaReading;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
 import pt.ipp.isep.dei.project.model.house.Room;
@@ -16,14 +16,14 @@ public class MicrowaveOven implements Device {
     private String name;
     private Room location;
     private MicrowaveOvenSpecs specs;
-    private List<Reading> readingList;
+    private List<GeoAreaReading> geoAreaReadingList;
     private boolean isActive;
     private LocalDateTime deactivationDate;
 
     public MicrowaveOven(String name, DeviceSpecs specs) {
         this.name = name;
         this.specs = (MicrowaveOvenSpecs) specs;
-        this.readingList = new ArrayList<>();
+        this.geoAreaReadingList = new ArrayList<>();
         this.isActive = true;
     }
 
@@ -58,13 +58,13 @@ public class MicrowaveOven implements Device {
     }
 
     /**
-     * method that gets the list of Reading of the Device.
+     * method that gets the list of GeoAreaReading of the Device.
      *
      * @return reading list
      */
     @Override
-    public List<Reading> getReadings() {
-        return readingList;
+    public List<GeoAreaReading> getReadings() {
+        return geoAreaReadingList;
     }
 
     /**

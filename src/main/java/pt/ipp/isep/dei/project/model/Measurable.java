@@ -15,25 +15,25 @@ public interface Measurable {
 
     Map<LocalDateTime, Double> getDataSeries(LocalDateTime startDate, LocalDateTime endDate);
 
-    List<Reading> getReadings();
+    List<GeoAreaReading> getReadings();
 
 
-    default List<Reading> getReadingsListInInterval(LocalDateTime startDate, LocalDateTime endDate) {
-        List<Reading> readingList = new ArrayList<>();
+    default List<GeoAreaReading> getReadingsListInInterval(LocalDateTime startDate, LocalDateTime endDate) {
+        List<GeoAreaReading> geoAreaReadingList = new ArrayList<>();
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
-        for (Reading reading : getReadings()) {
-            if (!startDate.isAfter(reading.getDateTime()) && !endDate.isBefore(reading.getDateTime())) {
-                readingList.add(reading);
+        for (GeoAreaReading geoAreaReading : getReadings()) {
+            if (!startDate.isAfter(geoAreaReading.getDateTime()) && !endDate.isBefore(geoAreaReading.getDateTime())) {
+                geoAreaReadingList.add(geoAreaReading);
             }
         }
-        if (!(readingList.isEmpty())) {
-            LocalDateTime firstValidReadingDateTime = readingList.get(0).getDateTime();
+        if (!(geoAreaReadingList.isEmpty())) {
+            LocalDateTime firstValidReadingDateTime = geoAreaReadingList.get(0).getDateTime();
 
             if (startDate.isAfter(firstValidReadingDateTime.minusMinutes(meteringPeriodGrid))) {
-                readingList.remove(0);
+                geoAreaReadingList.remove(0);
             }
         }
-        return readingList;
+        return geoAreaReadingList;
     }
 
     double getNominalPower();

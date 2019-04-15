@@ -1,5 +1,7 @@
 package pt.ipp.isep.dei.project.model;
 
+import pt.ipp.isep.dei.project.model.sensor.SensorId;
+
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -21,30 +23,31 @@ public final class ReadingMapper {
     }
 
     /**
-     * Method that turns a ReadingDTO into a Reading.
-     * @param readingDTO Reading to be used.
-     * @return Reading with the required information.
+     * Method that turns a ReadingDTO into a GeoAreaReading.
+     * @param readingDTO GeoAreaReading to be used.
+     * @return GeoAreaReading with the required information.
      */
-    public static Reading mapToEntity(ReadingDTO readingDTO) {
+    public static GeoAreaReading mapToEntity(ReadingDTO readingDTO) {
         if (Objects.isNull(readingDTO)) {
             return null;
         }
-        return new Reading(readingDTO.getValue(), readingDTO.getDateTime());
+        SensorId sensorId = new SensorId(readingDTO.getId());
+        return new GeoAreaReading(sensorId,readingDTO.getDateTime(), readingDTO.getValue());
     }
 
     /**
-     * Method that creates a ReadingDTO based on a existing Reading.
+     * Method that creates a ReadingDTO based on a existing GeoAreaReading.
      *
-     * @param reading Reading to be used.
+     * @param geoAreaReading GeoAreaReading to be used.
      * @return ReadingDTO.
      */
-    public static ReadingDTO mapToDTO(Reading reading) {
-        if (Objects.isNull(reading)) {
+    public static ReadingDTO mapToDTO(GeoAreaReading geoAreaReading) {
+        if (Objects.isNull(geoAreaReading)) {
             return null;
         }
         ReadingDTO dto = newReadingDTO();
-        dto.setDateTime(reading.getDateTime());
-        dto.setValue(reading.getValue());
+        dto.setDateTime(geoAreaReading.getDateTime());
+        dto.setValue(geoAreaReading.getValue());
         return dto;
     }
 

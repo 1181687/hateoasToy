@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.model.house.housegrid;
 
+import pt.ipp.isep.dei.project.model.GeoAreaReading;
 import pt.ipp.isep.dei.project.model.Measurable;
-import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.RoomList;
@@ -118,12 +118,12 @@ public class HouseGrid implements Measurable {
      * @return
      */
     @Override
-    public List<Reading> getReadings() {
-        List<Reading> listOfReadings = new ArrayList<>();
+    public List<GeoAreaReading> getReadings() {
+        List<GeoAreaReading> listOfGeoAreaReadings = new ArrayList<>();
         for (Room room : this.roomList.getListOfRooms()) {
-            listOfReadings.addAll(room.getReadings());
+            listOfGeoAreaReadings.addAll(room.getReadings());
         }
-        return listOfReadings;
+        return listOfGeoAreaReadings;
     }
 
     /**

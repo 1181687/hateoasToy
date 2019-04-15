@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.project.model.devices.dishwasher;
 
-import pt.ipp.isep.dei.project.model.Reading;
+import pt.ipp.isep.dei.project.model.GeoAreaReading;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
 import pt.ipp.isep.dei.project.model.house.Room;
@@ -16,7 +16,7 @@ public class DishWasher implements Device {
     private String name;
     private Room location;
     private DishWasherSpecs specs;
-    private List<Reading> readingList;
+    private List<GeoAreaReading> geoAreaReadingList;
     private boolean isActive;
     private LocalDateTime deactivationDate;
 
@@ -24,7 +24,7 @@ public class DishWasher implements Device {
         this.name = name;
         this.specs = (DishWasherSpecs) dishWasherSpecs;
         this.isActive = true;
-        this.readingList = new ArrayList<>();
+        this.geoAreaReadingList = new ArrayList<>();
     }
 
     /**
@@ -99,13 +99,13 @@ public class DishWasher implements Device {
     }
 
     /**
-     * method that gets the list of Reading of the Device.
+     * method that gets the list of GeoAreaReading of the Device.
      *
      * @return
      */
     @Override
-    public List<Reading> getReadings() {
-        return this.readingList;
+    public List<GeoAreaReading> getReadings() {
+        return this.geoAreaReadingList;
     }
 
     /**

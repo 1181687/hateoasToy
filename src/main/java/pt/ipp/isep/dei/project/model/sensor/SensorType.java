@@ -5,7 +5,7 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class SensorType {
 
-    private String type;
+    private String sensorType;
 
     protected SensorType() {
     }
@@ -16,20 +16,20 @@ public class SensorType {
      * @param tipoSensor Type of sensor
      */
     public SensorType(String tipoSensor) {
-        this.type = tipoSensor;
+        this.sensorType = tipoSensor;
     }
 
     /**
      * get method
      *
-     * @return type of sensor
+     * @return sensorType of sensor
      */
-    public String getType() {
-        return type;
+    public String getSensorType() {
+        return sensorType;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setSensorType(String sensorType) {
+        this.sensorType = sensorType;
     }
 
     /**
@@ -55,7 +55,7 @@ public class SensorType {
             return false;
         }
         SensorType ts = (SensorType) obj;
-        return this.type.equals(ts.type);
+        return this.sensorType.equals(ts.sensorType);
 
     }
 }

@@ -1,6 +1,5 @@
 package pt.ipp.isep.dei.project.model.sensor;
 
-import pt.ipp.isep.dei.project.model.RoomReading;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import javax.persistence.*;
@@ -16,11 +15,6 @@ public class RoomSensor {
     private String id;
     private String sensorName;
     private LocalDateTime startingDate;
-
-    @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "RoomReading",
-            joinColumns = @JoinColumn(name = "SENSOR_ID"))
-    private List<RoomReading> listOfRoomReadings = new ArrayList<>();
 
     @Embedded
     private SensorType sensorType;
@@ -94,8 +88,8 @@ public class RoomSensor {
     }
 
     public boolean sensorTypeEqualsSensorType(SensorType type) {
-        String tipoDoSensorPedido = type.getType();
-        return (this.getSensorType().getType().equals(tipoDoSensorPedido));
+        String tipoDoSensorPedido = type.getSensorType();
+        return (this.getSensorType().getSensorType().equals(tipoDoSensorPedido));
     }
 
     public RoomReading getLastMeasurement() {

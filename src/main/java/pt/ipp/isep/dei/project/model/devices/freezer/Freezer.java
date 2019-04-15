@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.project.model.devices.freezer;
 
-import pt.ipp.isep.dei.project.model.Reading;
+import pt.ipp.isep.dei.project.model.GeoAreaReading;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
 import pt.ipp.isep.dei.project.model.house.Room;
@@ -15,7 +15,7 @@ public class Freezer implements Device {
     private String name;
     private Room location;
     private FreezerSpecs specs;
-    private List<Reading> readingList;
+    private List<GeoAreaReading> geoAreaReadingList;
     private boolean isActive;
     private LocalDateTime deactivationDate;
 
@@ -23,7 +23,7 @@ public class Freezer implements Device {
         this.name = name;
         this.specs = (FreezerSpecs) freezerSpecs;
         this.isActive = true;
-        this.readingList = new ArrayList<>();
+        this.geoAreaReadingList = new ArrayList<>();
     }
 
     /**
@@ -95,8 +95,8 @@ public class Freezer implements Device {
     }
 
     @Override
-    public List<Reading> getReadings() {
-        return this.readingList;
+    public List<GeoAreaReading> getReadings() {
+        return this.geoAreaReadingList;
     }
 
     /**

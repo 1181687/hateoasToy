@@ -1,12 +1,11 @@
 package pt.ipp.isep.dei.project.model.house;
 
+import pt.ipp.isep.dei.project.model.GeoAreaReading;
 import pt.ipp.isep.dei.project.model.Measurable;
-import pt.ipp.isep.dei.project.model.Reading;
-import pt.ipp.isep.dei.project.model.RoomReading;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
-import pt.ipp.isep.dei.project.model.sensor.RoomSensorList;
+import pt.ipp.isep.dei.project.model.sensor.RoomSensorService;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 
 import javax.persistence.*;
@@ -34,7 +33,7 @@ public class Room implements Measurable {
 
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn
-    private RoomSensorList sensorList;
+    private RoomSensorService sensorList;
 
     @Transient
     private List<Device> deviceList;
@@ -55,7 +54,7 @@ public class Room implements Measurable {
         this.description = description;
         this.houseFloor = houseFloor;
         this.dimension = dimension;
-        this.sensorList = new RoomSensorList();
+        this.sensorList = new RoomSensorService();
         this.deviceList = new ArrayList<>();
     }
 
@@ -119,12 +118,12 @@ public class Room implements Measurable {
     }
 
     @Override
-    public List<Reading> getReadings() {
-        List<Reading> listOfReadings = new ArrayList<>();
+    public List<GeoAreaReading> getReadings() {
+        List<GeoAreaReading> listOfGeoAreaReadings = new ArrayList<>();
         for (Device device : this.deviceList) {
-            listOfReadings.addAll(device.getReadings());
+            listOfGeoAreaReadings.addAll(device.getReadings());
         }
-        return listOfReadings;
+        return listOfGeoAreaReadings;
     }
 
     /**
@@ -209,7 +208,7 @@ public class Room implements Measurable {
      * @return the list of sensors.
  */
 
-public RoomSensorList getSensorList() {
+public RoomSensorService getSensorList() {
         return sensorList;
     }
 

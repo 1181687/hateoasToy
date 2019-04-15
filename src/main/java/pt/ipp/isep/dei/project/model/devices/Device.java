@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.model.devices;
 
+import pt.ipp.isep.dei.project.model.GeoAreaReading;
 import pt.ipp.isep.dei.project.model.Measurable;
-import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.house.Room;
 
 import java.time.LocalDateTime;
@@ -135,24 +135,24 @@ public interface    Device extends Measurable {
     }
 
     /**
-     * Method that adds a reading to the device.
+     * Method that adds a geoAreaReading to the device.
      *
-     * @param reading Reading to be added.
+     * @param geoAreaReading GeoAreaReading to be added.
      */
-    default void addReadingsToTheList(Reading reading)  {
-        this.getReadings().add(reading);
+    default void addReadingsToTheList(GeoAreaReading geoAreaReading)  {
+        this.getReadings().add(geoAreaReading);
     }
 
     /**
-     * Method that calculates the sum of the value in each Reading in a given Reading list.
+     * Method that calculates the sum of the value in each GeoAreaReading in a given GeoAreaReading list.
      *
-     * @param readingList List with Readingss.
+     * @param geoAreaReadingList List with Readingss.
      * @return Double with the required sum.
      */
-    default double getSumOfTheReadings(List<Reading> readingList) {
+    default double getSumOfTheReadings(List<GeoAreaReading> geoAreaReadingList) {
         double sum = 0;
-        for (Reading reading : readingList) {
-            sum += reading.getValue();
+        for (GeoAreaReading geoAreaReading : geoAreaReadingList) {
+            sum += geoAreaReading.getValue();
         }
         return sum;
     }
@@ -173,9 +173,9 @@ public interface    Device extends Measurable {
      */
     default double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
         double totalEnergyConsumption = 0;
-        List<Reading> validReadings = getReadingsListInInterval(startDate, endDate);
-        if (!(validReadings.isEmpty())) {
-            totalEnergyConsumption = getSumOfTheReadings(validReadings);
+        List<GeoAreaReading> validGeoAreaReadings = getReadingsListInInterval(startDate, endDate);
+        if (!(validGeoAreaReadings.isEmpty())) {
+            totalEnergyConsumption = getSumOfTheReadings(validGeoAreaReadings);
         }
         return totalEnergyConsumption;
     }
@@ -201,9 +201,9 @@ public interface    Device extends Measurable {
 
     default Map<LocalDateTime, Double> getDataSeries(LocalDateTime startDate, LocalDateTime endDate) {
         Map<LocalDateTime, Double> map = new TreeMap<>();
-        List<Reading> validReadingList = getReadingsListInInterval(startDate, endDate);
-        for (Reading reading : validReadingList) {
-            map.put(reading.getDateTime(), reading.getValue());
+        List<GeoAreaReading> validGeoAreaReadingList = getReadingsListInInterval(startDate, endDate);
+        for (GeoAreaReading geoAreaReading : validGeoAreaReadingList) {
+            map.put(geoAreaReading.getDateTime(), geoAreaReading.getValue());
         }
         return map;
     }

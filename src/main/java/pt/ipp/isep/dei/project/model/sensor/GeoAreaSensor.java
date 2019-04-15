@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.model.sensor;
 
+import pt.ipp.isep.dei.project.model.GeoAreaReading;
 import pt.ipp.isep.dei.project.model.Location;
-import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import javax.persistence.*;
@@ -19,12 +19,6 @@ public class GeoAreaSensor implements Sensor {
     private SensorId id;
     private String sensorName;
     private LocalDateTime startingDate;
-
-    @ElementCollection
-    @CollectionTable(name = "GeoArea_Reading",
-            joinColumns = @JoinColumn(name = "SENSOR_ID"))
-
-    private List<Reading> listOfReadings = new ArrayList<>();
 
     @Embedded
     private SensorType sensorType;
@@ -195,9 +189,9 @@ public class GeoAreaSensor implements Sensor {
 
         List<Double> measurementsBetweenDates = new ArrayList<>();
 
-        for (Reading reading : listOfReadings) {
-            if ((reading.getDateTime().toLocalDate().isEqual(startDate) || reading.getDateTime().toLocalDate().isAfter(startDate)) && (reading.getDateTime().toLocalDate().isEqual(endDate) || reading.getDateTime().toLocalDate().isBefore(endDate))) {
-                measurementsBetweenDates.add(reading.getValue());
+        for (GeoAreaReading geoAreaReading : listOfReadings) {
+            if ((geoAreaReading.getDateTime().toLocalDate().isEqual(startDate) || geoAreaReading.getDateTime().toLocalDate().isAfter(startDate)) && (geoAreaReading.getDateTime().toLocalDate().isEqual(endDate) || geoAreaReading.getDateTime().toLocalDate().isBefore(endDate))) {
+                measurementsBetweenDates.add(geoAreaReading.getValue());
             }
         }
         return measurementsBetweenDates;
@@ -295,25 +289,25 @@ public class GeoAreaSensor implements Sensor {
     /**
      * Method that adds a listOfReadings to a list of measurements
      *
-     * @param reading listOfReadings of a sensor
+     * @param geoAreaReading listOfReadings of a sensor
      */
 
-    public void addReadingsToList(Reading reading) {
-        this.listOfReadings.add(reading);
+    public void addReadingsToList(GeoAreaReading geoAreaReading) {
+        this.listOfReadings.add(geoAreaReading);
     }
 
 
-    public boolean addReading(Reading reading) {
-        if (!this.readingExistsBySensorIdLocalDateTime(reading)) {
-            return this.listOfReadings.add(reading);
+    public boolean addReading(GeoAreaReading geoAreaReading) {
+        if (!this.readingExistsBySensorIdLocalDateTime(geoAreaReading)) {
+            return this.listOfReadings.add(geoAreaReading);
         }
         return false;
     }
 
-    public boolean readingExistsBySensorIdLocalDateTime(Reading reading) {
+    public boolean readingExistsBySensorIdLocalDateTime(GeoAreaReading geoAreaReading) {
         if (!listOfReadings.isEmpty()) {
-            for (Reading reading1 : listOfReadings) {
-                if (reading1.getDateTime().equals(reading.getDateTime()))
+            for (GeoAreaReading geoAreaReading1 : listOfReadings) {
+                if (geoAreaReading1.getDateTime().equals(geoAreaReading.getDateTime()))
                     return true;
             }
         }
@@ -335,17 +329,17 @@ public class GeoAreaSensor implements Sensor {
      *
      * @return last measurement
      */
-    public Reading getLastMeasurement() {
+    public GeoAreaReading getLastMeasurement() {
         if (listOfReadings.isEmpty()) {
             return null;
         }
-        Reading reading = listOfReadings.get(0);
+        GeoAreaReading geoAreaReading = listOfReadings.get(0);
         for (int i = (listOfReadings.size() - 1); i > 0; i--) {
             if (!(Double.isNaN(listOfReadings.get(i).getValue()))) {
                 return listOfReadings.get(i);
             }
         }
-        return reading;
+        return geoAreaReading;
     }
 
     /**
@@ -355,8 +349,8 @@ public class GeoAreaSensor implements Sensor {
      * @return a type of sensor is equal to the sensor type being compared
      */
     public boolean sensorTypeEqualsSensorType(SensorType tipo) {
-        String tipoDoSensorPedido = tipo.getType();
-        return (this.getSensorType().getType().equals(tipoDoSensorPedido));
+        String tipoDoSensorPedido = tipo.getSensorType();
+        return (this.getSensorType().getSensorType().equals(tipoDoSensorPedido));
     }
 
     /**
@@ -365,9 +359,9 @@ public class GeoAreaSensor implements Sensor {
      * @param date a given day
      * @return the measurements of a given day
      */
-    public List<Reading> getDailyMeasurement(LocalDate date) {
-        List<Reading> registosDoDia = new ArrayList<>();
-        for (Reading registo : listOfReadings) {
+    public List<GeoAreaReading> getDailyMeasurement(LocalDate date) {
+        List<GeoAreaReading> registosDoDia = new ArrayList<>();
+        for (GeoAreaReading registo : listOfReadings) {
             LocalDate secondDate = registo.getDateTime().toLocalDate();
 
             if (checkIfDaysAreEqual(date, secondDate) && (!Double.isNaN(registo.getValue()))) {
@@ -398,7 +392,7 @@ public class GeoAreaSensor implements Sensor {
     public double getLowestMeasurementOfDay(LocalDate data) {
         if (!getDailyMeasurement(data).isEmpty()) {
             double valorMinimoDoDia = getDailyMeasurement(data).get(0).getValue();
-            for (Reading registo : getDailyMeasurement(data)) {
+            for (GeoAreaReading registo : getDailyMeasurement(data)) {
                 if (Utils.isFirstDoubleBiggerThanSecondOne(valorMinimoDoDia, registo.getValue())) {
                     valorMinimoDoDia = registo.getValue();
                 }
@@ -471,9 +465,9 @@ public class GeoAreaSensor implements Sensor {
     public double getMaximumValueOfDay(LocalDate date) {
         if (!getDailyMeasurement(date).isEmpty()) {
             double maximumValueOfDay = getDailyMeasurement(date).get(0).getValue();
-            for (Reading reading : getDailyMeasurement(date)) {
-                if (!Utils.isFirstDoubleBiggerThanSecondOne(maximumValueOfDay, reading.getValue()) && !Utils.isSameDouble(maximumValueOfDay, reading.getValue())) {
-                    maximumValueOfDay = reading.getValue();
+            for (GeoAreaReading geoAreaReading : getDailyMeasurement(date)) {
+                if (!Utils.isFirstDoubleBiggerThanSecondOne(maximumValueOfDay, geoAreaReading.getValue()) && !Utils.isSameDouble(maximumValueOfDay, geoAreaReading.getValue())) {
+                    maximumValueOfDay = geoAreaReading.getValue();
                 }
             }
             return maximumValueOfDay;
@@ -544,8 +538,8 @@ public class GeoAreaSensor implements Sensor {
     public double getTotalDailyMeasurements(LocalDate day) {
         double sum = 0;
         if (!(getDailyMeasurement(day).isEmpty())) {
-            for (Reading reading : getDailyMeasurement(day)) {
-                sum += reading.getValue();
+            for (GeoAreaReading geoAreaReading : getDailyMeasurement(day)) {
+                sum += geoAreaReading.getValue();
             }
         }
         return sum;
@@ -561,11 +555,11 @@ public class GeoAreaSensor implements Sensor {
         return getTotalDailyMeasurements(date) / getDailyMeasurement(date).size();
     }
 
-    public List<Reading> getReadingsBetweenDates(LocalDate startDate, LocalDate endDate) {
-        List<Reading> measurementsBetweenDates = new ArrayList<>();
-        for (Reading reading : listOfReadings) {
-            if ((reading.getDateTime().toLocalDate().isEqual(startDate) || reading.getDateTime().toLocalDate().isAfter(startDate)) && (reading.getDateTime().toLocalDate().isEqual(endDate) || reading.getDateTime().toLocalDate().isBefore(endDate))) {
-                measurementsBetweenDates.add(reading);
+    public List<GeoAreaReading> getReadingsBetweenDates(LocalDate startDate, LocalDate endDate) {
+        List<GeoAreaReading> measurementsBetweenDates = new ArrayList<>();
+        for (GeoAreaReading geoAreaReading : listOfReadings) {
+            if ((geoAreaReading.getDateTime().toLocalDate().isEqual(startDate) || geoAreaReading.getDateTime().toLocalDate().isAfter(startDate)) && (geoAreaReading.getDateTime().toLocalDate().isEqual(endDate) || geoAreaReading.getDateTime().toLocalDate().isBefore(endDate))) {
+                measurementsBetweenDates.add(geoAreaReading);
             }
         }
         return measurementsBetweenDates;
@@ -576,40 +570,40 @@ public class GeoAreaSensor implements Sensor {
      *
      * @param startDate initial date of the period the user wants to consider
      * @param endDate   final date of the period the user wants to consider
-     * @return a Reading
+     * @return a GeoAreaReading
      */
-    public Reading getFirstHighestReading(LocalDate startDate, LocalDate endDate) {
+    public GeoAreaReading getFirstHighestReading(LocalDate startDate, LocalDate endDate) {
         if (getReadingsBetweenDates(startDate, endDate).isEmpty()) {
             return null;
         }
-        Reading highestReading = getReadingsBetweenDates(startDate, endDate).get(0);
-        for (Reading reading : getReadingsBetweenDates(startDate, endDate)) {
-            if ((!Double.isNaN(reading.getValue())) && reading.getValue() > highestReading.getValue()) {
-                highestReading = reading;
+        GeoAreaReading highestGeoAreaReading = getReadingsBetweenDates(startDate, endDate).get(0);
+        for (GeoAreaReading geoAreaReading : getReadingsBetweenDates(startDate, endDate)) {
+            if ((!Double.isNaN(geoAreaReading.getValue())) && geoAreaReading.getValue() > highestGeoAreaReading.getValue()) {
+                highestGeoAreaReading = geoAreaReading;
             }
         }
-        return highestReading;
+        return highestGeoAreaReading;
     }
 
     /**
-     * Returns the Reading with the highest value for a given day.
+     * Returns the GeoAreaReading with the highest value for a given day.
      * If there are two Readings with the same value, it returns the most recent one.
      * If there are no Readings in the given day, this method returns null.
      *
      * @param day day to check
      * @return Highest, most recent reading of the given day
      */
-    public Reading getHighestReadingOfADay(LocalDate day) {
+    public GeoAreaReading getHighestReadingOfADay(LocalDate day) {
         if (getDailyMeasurementWithDoubleNaN(day).isEmpty()) {
             return null;
         }
-        Reading highestReading = getDailyMeasurementWithDoubleNaN(day).get(0);
-        for (Reading reading : getDailyMeasurement(day)) {
-            if (!Double.isNaN(reading.getValue()) && Utils.isFirstDoubleBiggerOrEqualThanSecondOne(reading.getValue(), highestReading.getValue())) {
-                highestReading = reading;
+        GeoAreaReading highestGeoAreaReading = getDailyMeasurementWithDoubleNaN(day).get(0);
+        for (GeoAreaReading geoAreaReading : getDailyMeasurement(day)) {
+            if (!Double.isNaN(geoAreaReading.getValue()) && Utils.isFirstDoubleBiggerOrEqualThanSecondOne(geoAreaReading.getValue(), highestGeoAreaReading.getValue())) {
+                highestGeoAreaReading = geoAreaReading;
             }
         }
-        return highestReading;
+        return highestGeoAreaReading;
     }
 
     /**
@@ -619,35 +613,35 @@ public class GeoAreaSensor implements Sensor {
      * @param endDate   last day of the interval
      * @return
      */
-    public List<Reading> getDailyMaxReadingsInAnInterval(LocalDate startDate, LocalDate endDate) {
-        List<Reading> maximumReadings = new ArrayList<>();
+    public List<GeoAreaReading> getDailyMaxReadingsInAnInterval(LocalDate startDate, LocalDate endDate) {
+        List<GeoAreaReading> maximumGeoAreaReadings = new ArrayList<>();
 
         for (LocalDate dateIterator = startDate; dateIterator.isBefore(endDate.plusDays(1)); dateIterator = dateIterator.plusDays(1)) {
             if (getHighestReadingOfADay(dateIterator) != null) {
-                maximumReadings.add(getHighestReadingOfADay(dateIterator));
+                maximumGeoAreaReadings.add(getHighestReadingOfADay(dateIterator));
             }
         }
-        return maximumReadings;
+        return maximumGeoAreaReadings;
     }
 
     /**
-     * Method that receives a list of Readings and returns the most recent Reading that has the lowest value.
+     * Method that receives a list of Readings and returns the most recent GeoAreaReading that has the lowest value.
      * If the given reading list is empty, the method returns null;
      *
-     * @param readings list of readings
-     * @return the most recent lowest Reading
+     * @param geoAreaReadings list of geoAreaReadings
+     * @return the most recent lowest GeoAreaReading
      */
-    public Reading getLastLowestReading(List<Reading> readings) {
-        if (readings.isEmpty()) {
+    public GeoAreaReading getLastLowestReading(List<GeoAreaReading> geoAreaReadings) {
+        if (geoAreaReadings.isEmpty()) {
             return null;
         }
-        Reading lowestReading = readings.get(0);
-        for (Reading reading : readings) {
-            if (Utils.isFirstDoubleSmallerThanOrEqualToSecondOne(reading.getValue(), lowestReading.getValue())) {
-                lowestReading = reading;
+        GeoAreaReading lowestGeoAreaReading = geoAreaReadings.get(0);
+        for (GeoAreaReading geoAreaReading : geoAreaReadings) {
+            if (Utils.isFirstDoubleSmallerThanOrEqualToSecondOne(geoAreaReading.getValue(), lowestGeoAreaReading.getValue())) {
+                lowestGeoAreaReading = geoAreaReading;
             }
         }
-        return lowestReading;
+        return lowestGeoAreaReading;
     }
 
     /**
@@ -655,7 +649,7 @@ public class GeoAreaSensor implements Sensor {
      *
      * @return List with Readings.
      */
-    public List<Reading> getListOfReadings() {
+    public List<GeoAreaReading> getListOfReadings() {
         return listOfReadings;
     }
 
@@ -665,16 +659,16 @@ public class GeoAreaSensor implements Sensor {
      * @param date given day
      * @return list of readings registered in given day
      */
-    public List<Reading> getDailyMeasurementWithDoubleNaN(LocalDate date) {
-        List<Reading> dailyReadings = new ArrayList<>();
-        for (Reading registo : listOfReadings) {
+    public List<GeoAreaReading> getDailyMeasurementWithDoubleNaN(LocalDate date) {
+        List<GeoAreaReading> dailyGeoAreaReadings = new ArrayList<>();
+        for (GeoAreaReading registo : listOfReadings) {
             LocalDate secondDate = registo.getDateTime().toLocalDate();
 
             if (checkIfDaysAreEqual(date, secondDate)) {
-                dailyReadings.add(registo);
+                dailyGeoAreaReadings.add(registo);
             }
         }
-        return dailyReadings;
+        return dailyGeoAreaReadings;
 
     }
 }

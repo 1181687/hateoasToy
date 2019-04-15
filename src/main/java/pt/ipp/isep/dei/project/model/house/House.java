@@ -1,8 +1,8 @@
 package pt.ipp.isep.dei.project.model.house;
 
+import pt.ipp.isep.dei.project.model.GeoAreaReading;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.MeasurableList;
-import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.DeviceType;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
@@ -286,12 +286,12 @@ public class House {
      * @param type
      * @return latest measurement.
      *//*
-    public Reading getLatestMeasurementBySensorType(String name, SensorType type) {
+    public GeoAreaReading getLatestMeasurementBySensorType(String name, SensorType type) {
         Room room = roomList.getRoomByName(name);
         if (Objects.isNull(room)) {
             return null;
         }
-        Reading reading = room.getLatestMeasurementBySensorType(type);
+        GeoAreaReading reading = room.getLatestMeasurementBySensorType(type);
         if (Objects.isNull(reading)) {
             return null;
         }
@@ -797,9 +797,9 @@ public class House {
      *
      * @param startDate initial date of the period the user wants to consider
      * @param endDate   final date of the period the user wants to consider
-     * @return a Reading if there is a valid one; otherwise it returns null
+     * @return a GeoAreaReading if there is a valid one; otherwise it returns null
      */
-    public Reading getFirstHighestReadingHouseArea(SensorType type, LocalDate startDate, LocalDate endDate) {
+    public GeoAreaReading getFirstHighestReadingHouseArea(SensorType type, LocalDate startDate, LocalDate endDate) {
         GeographicalArea insertedGeoArea = address.getInsertedGeoArea();
         if (Objects.isNull(insertedGeoArea.getFirstHighestReading(type, startDate, endDate))) {
             return null;
@@ -833,7 +833,7 @@ public class House {
         return insertedGeoArea.getHighestDailyAmplitude(mapOfDailyAmplitude);
     }
 
-    public Reading getLastLowestMaximumReading(SensorType sensorType, LocalDate startDate, LocalDate endDate) {
+    public GeoAreaReading getLastLowestMaximumReading(SensorType sensorType, LocalDate startDate, LocalDate endDate) {
         GeographicalArea insertedGeoArea = address.getInsertedGeoArea();
         return insertedGeoArea.getLastLowestMaximumReading(this.getLocation(), sensorType, startDate, endDate);
     }

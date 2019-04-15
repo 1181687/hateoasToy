@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.project.model.devices.washingmachine;
 
-import pt.ipp.isep.dei.project.model.Reading;
+import pt.ipp.isep.dei.project.model.GeoAreaReading;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
 import pt.ipp.isep.dei.project.model.house.Room;
@@ -16,7 +16,7 @@ public class WashingMachine implements Device {
     private String name;
     private Room location;
     private WashingMachineSpecs specs;
-    private List<Reading> readingList;
+    private List<GeoAreaReading> geoAreaReadingList;
     private boolean isActive;
     private LocalDateTime deactivationDate;
 
@@ -25,7 +25,7 @@ public class WashingMachine implements Device {
         this.name = name;
         this.specs = (WashingMachineSpecs) washingMachineSpecs;
         this.isActive = true;
-        this.readingList = new ArrayList<>();
+        this.geoAreaReadingList = new ArrayList<>();
 
     }
 
@@ -100,13 +100,13 @@ public class WashingMachine implements Device {
     }
 
     /**
-     * method that gets the list of Reading of the Device.
+     * method that gets the list of GeoAreaReading of the Device.
      *
      * @return
      */
     @Override
-    public List<Reading> getReadings() {
-        return this.readingList;
+    public List<GeoAreaReading> getReadings() {
+        return this.geoAreaReadingList;
     }
 
     /**
