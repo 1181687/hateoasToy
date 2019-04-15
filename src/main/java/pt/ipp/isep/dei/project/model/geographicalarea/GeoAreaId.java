@@ -3,6 +3,8 @@ package pt.ipp.isep.dei.project.model.geographicalarea;
 import pt.ipp.isep.dei.project.model.Location;
 
 import javax.persistence.Embeddable;
+import javax.persistence.Embedded;
+import javax.persistence.EmbeddedId;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
@@ -12,17 +14,18 @@ import static java.util.Objects.isNull;
 public class GeoAreaId implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private Location location;
-
     private String id;
 
-    private GeographicalAreaType geographicalAreaType;
+    private Location location;
 
-    public GeoAreaId(@NotNull Location location, @NotNull String id, @NotNull GeographicalAreaType geographicalAreaType) {
+    @Embedded
+    private GeoAreaTypeId geographicalAreaTypeId;
+
+    public GeoAreaId( @NotNull String id,@NotNull Location location, @NotNull GeoAreaTypeId geographicalAreaTypeId) {
         validateId(id);
         this.location = location;
         this.id = id;
-        this.geographicalAreaType = geographicalAreaType;
+        this.geographicalAreaTypeId = geographicalAreaTypeId;
     }
 
 
@@ -50,19 +53,8 @@ public class GeoAreaId implements Serializable {
         return id;
     }
 
-    public GeographicalAreaType getGeographicalAreaType() {
-        return geographicalAreaType;
+    public GeoAreaTypeId getGeographicalAreaType() {
+        return geographicalAreaTypeId;
     }
 
-    public void setLocation(Location location) {
-        this.location = location;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public void setGeographicalAreaType(GeographicalAreaType geographicalAreaType) {
-        this.geographicalAreaType = geographicalAreaType;
-    }
 }

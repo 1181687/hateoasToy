@@ -1,8 +1,10 @@
 package pt.ipp.isep.dei.project.model.house.powersource;
 
 import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
 import java.util.Objects;
 
+@Entity
 public class PowerSourceType {
     @EmbeddedId
     private PowerSourceTypeId typeOfPowerSource;
@@ -14,6 +16,9 @@ public class PowerSourceType {
      */
     public PowerSourceType(String typeOfPowerSource) {
         this.typeOfPowerSource = new PowerSourceTypeId(typeOfPowerSource);
+    }
+
+    protected PowerSourceType() {
     }
 
     /**

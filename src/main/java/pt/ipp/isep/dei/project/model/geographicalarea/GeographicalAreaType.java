@@ -46,7 +46,11 @@ public class GeographicalAreaType {
         return this.geoAreaType.equals(tag.geoAreaType);
     }
 
-//
+    public GeoAreaTypeId getGeoAreaType() {
+        return geoAreaType;
+    }
+
+    //
 //    public void setStringOfTypeOfGeoArea(String geoAreaType) {
 //        this.geoAreaType = geoAreaType;
 //    }

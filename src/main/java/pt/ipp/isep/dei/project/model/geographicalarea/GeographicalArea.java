@@ -11,14 +11,8 @@ public class GeographicalArea {
     private GeoAreaId id;
     private String description;
 
-    @Embedded
-    private GeographicalAreaType type;
-
-    @Embedded
+    @Transient
     private GeoAreaId parentGeoArea;
-
-    @Embedded
-    private Location location;
 
     @Embedded
     private AreaShape areaShape;
@@ -28,16 +22,9 @@ public class GeographicalArea {
         //intentionally empty
     }
 
-    /**
-     * constructor of geographical area that receives a name, type, insertedIn, location, areaShape and a sensor list.
-     *
-     * @param id
-     * @param geographicalAreaType
-     * @param location
-     * @param areaShape
-     */
-    public GeographicalArea(String id, String description, GeographicalAreaType geographicalAreaType, Location location, AreaShape areaShape) {
-        this.id = new GeoAreaId(location, id, geographicalAreaType);
+
+    public GeographicalArea(GeoAreaId geoAreaId, String description, AreaShape areaShape) {
+        this.id = geoAreaId;
         this.description = description;
         this.areaShape = areaShape;
     }
@@ -92,12 +79,8 @@ public class GeographicalArea {
      *
      * @return a type of geographical area.
      */
-    public GeographicalAreaType getGeoAreaType() {
-        return id.getGeographicalAreaType();
-    }
-
-    public void setType(GeographicalAreaType geographicalAreaType) {
-        this.id.setGeographicalAreaType(geographicalAreaType);
+    public String getGeoAreaTypeId() {
+        return id.getId();
     }
 
     /**
@@ -109,9 +92,6 @@ public class GeographicalArea {
         return this.id.getLocation();
     }
 
-    public void setLocation(Location location) {
-        this.id.setLocation(location);
-    }
 
     /**
      * get the inserted area where the geographical area is.
