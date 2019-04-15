@@ -4,12 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.HouseGridRepository;
 import pt.ipp.isep.dei.project.RoomRepository;
-import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridDTO;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
-import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridMapper;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
-import pt.ipp.isep.dei.project.model.sensor.RoomSensorService;
 
 import java.util.Objects;
 
@@ -38,13 +35,14 @@ public class HouseService {
             roomRepository.save(room);
         }
         for (HouseGridDTO houseGridDTO : houseDTO.getHouseGridDTOList()) {
+            /*
             HouseGrid houseGrid = HouseGridMapper.mapToEntity(houseGridDTO);
             house.addGrid(houseGrid);
             houseGridRepository.save(houseGrid);
             for (Room room : houseGrid.getRoomList().getListOfRooms()) {
                 addRoomToHouseGrid(houseGrid.getHouseGridId(), room);
             }
-
+            */
         }
 
     }
@@ -105,6 +103,7 @@ public class HouseService {
         roomRepository.save(room);
     }
 
+    /*
     public RoomSensorService getAllSensors() {
         RoomSensorService roomSensorList = new RoomSensorService();
         for (Room room : roomRepository.findAll()) {
@@ -112,5 +111,5 @@ public class HouseService {
         }
         return roomSensorList;
     }
-
+    */
 }
