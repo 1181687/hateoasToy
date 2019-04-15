@@ -11,6 +11,7 @@ import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridMapper;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensorService;
 
+import javax.persistence.Transient;
 import java.util.Objects;
 
 @Service
@@ -22,7 +23,7 @@ public class HouseService {
     @Autowired
     private HouseGridRepository houseGridRepository;
 
-    public void updateHouseWithRoomsAndGrids(HouseDTO houseDTO, House house) {
+  /*  public void updateHouseWithRoomsAndGrids(HouseDTO houseDTO, House house) {
         Address houseAddress = AddressMapper.mapToEntity(houseDTO.getAddressDTO());
         if (Objects.isNull(houseAddress.getLocation())) {
             houseAddress.setLocation(house.getLocation());
@@ -47,7 +48,7 @@ public class HouseService {
 
         }
 
-    }
+    }*/
 
     public boolean addRoomToHouseGrid(HouseGridId houseGridId, Room room) {
         if (houseGridRepository.existsById(houseGridId)) {
@@ -105,12 +106,12 @@ public class HouseService {
         roomRepository.save(room);
     }
 
-    public RoomSensorService getAllSensors() {
+   /* public RoomSensorService getAllSensors() {
         RoomSensorService roomSensorList = new RoomSensorService();
         for (Room room : roomRepository.findAll()) {
             roomSensorList.getListOfSensors().addAll(room.getSensorList().getListOfSensors());
         }
         return roomSensorList;
-    }
+    }*/
 
 }
