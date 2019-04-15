@@ -1,14 +1,15 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.sensor.SensorType;
-import pt.ipp.isep.dei.project.model.sensor.SensorTypeList;
+import org.springframework.beans.factory.annotation.Autowired;
+import pt.ipp.isep.dei.project.services.SensorTypeService;
 
 public class DefineSensorTypeController {
-    private SensorTypeList sensorTypeList;
+
+    @Autowired
+    private SensorTypeService sensorTypeService;
 
 
-    public DefineSensorTypeController(SensorTypeList sensorTypeList) {
-        this.sensorTypeList = sensorTypeList;
+    public DefineSensorTypeController() {
     }
 
     /**
@@ -18,7 +19,6 @@ public class DefineSensorTypeController {
      * @return true or false
      */
     public boolean createAndAddSensorType(String sensorType) {
-        SensorType newSensorType = this.sensorTypeList.newSensorType(sensorType);
-        return this.sensorTypeList.addSensorType(newSensorType);
+        return sensorTypeService.createAndAddSensorType(sensorType);
     }
 }
