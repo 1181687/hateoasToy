@@ -55,7 +55,7 @@ public class HouseService {
 
     }
 
-    public boolean addSensorToRoom(RoomSensor sensor, RoomId roomId){
+  /* public boolean addSensorToRoom(RoomSensor sensor, RoomId roomId){
         Room room = getRoomById(roomId);
         if(Objects.nonNull(room)){
             if(room.addSensorToListOfSensorsInRoom(sensor)){
@@ -64,7 +64,7 @@ public class HouseService {
             }
         }
         return false;
-    }
+    }*/
 
     public Room getRoomById(RoomId roomId) {
         if (this.roomRepository.findById(roomId).isPresent()) {
@@ -81,7 +81,7 @@ public class HouseService {
         return houseGridRepository.existsById(gridId);
     }
 
-    public Room getRoomWithRightSensor(String sensorId) {
+   /* public Room getRoomWithRightSensor(String sensorId) {
         for (Room room : roomRepository.findAll()) {
             if (Objects.nonNull(room.getSensorById(sensorId))) {
                 return room;
@@ -95,7 +95,7 @@ public class HouseService {
             return getRoomWithRightSensor(sensorId).getSensorById(sensorId);
         }
         return null;
-    }
+    }*/
 
     public void updateRepository(Room room) {
         roomRepository.save(room);

@@ -35,7 +35,11 @@ public class JSONReaderGeoAreasSensors implements ProjectFileReader {
         // empty
     }
 
-    private static List<Object> parseJsonObjectsHouse(JsonElement house) throws NumberFormatException, NullPointerException {
+    @Override
+    public List<Object> readFile(File file) throws FileNotFoundException {
+        return null;
+    }
+/* private static List<Object> parseJsonObjectsHouse(JsonElement house) throws NumberFormatException, NullPointerException {
         List<Object> houseObject = new ArrayList<>();
 
         // Get address attributes
@@ -144,7 +148,7 @@ public class JSONReaderGeoAreasSensors implements ProjectFileReader {
         }
 
         return houseObject;
-    }
+    }*/
 
 
     private static RoomDTO getRoomDtoById(List<RoomDTO> listRoomDto, String id) {
@@ -336,7 +340,7 @@ public class JSONReaderGeoAreasSensors implements ProjectFileReader {
         return roomSensorsDTO;
     }
 
-    @Override
+   /* @Override
     @SuppressWarnings("unchecked")
     public List<Object> readFile(File file) throws FileNotFoundException {
         FileReader fileReader = new FileReader(file);
@@ -363,5 +367,5 @@ public class JSONReaderGeoAreasSensors implements ProjectFileReader {
             finalList = null;
         }
         return finalList;
-    }
+    }*/
 }

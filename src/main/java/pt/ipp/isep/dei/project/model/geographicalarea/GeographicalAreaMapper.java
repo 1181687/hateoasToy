@@ -40,7 +40,7 @@ public final class GeographicalAreaMapper {
      * @param geographicalArea GeoArea to be used.
      * @return GeoAreaDTO.
      */
-    public static GeographicalAreaDTO mapToDTOwithSensors(GeographicalArea geographicalArea) {
+  /*  public static GeographicalAreaDTO mapToDTOwithSensors(GeographicalArea geographicalArea) {
         if (Objects.isNull(geographicalArea)) {
             return null;
         }
@@ -56,7 +56,7 @@ public final class GeographicalAreaMapper {
         geoDTO.addAllSensors(geographicalArea.getSensorListInTheGeographicArea().getListOfSensors());
         return geoDTO;
     }
-
+*/
     /**
      * Method that turns a GeoAreaDTO into a GeoArea.
      *
