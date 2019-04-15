@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.project.model;
 
-import pt.ipp.isep.dei.project.model.sensor.SensorId;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorId;
 
 import javax.persistence.Embeddable;
 import javax.persistence.EmbeddedId;
@@ -19,8 +19,8 @@ public class GeoAreaReading {
      * @param value    value
      * @param dateTime date
      */
-    public GeoAreaReading(SensorId sensorId, LocalDateTime dateTime, double value) {
-        this.readingId = new ReadingId(sensorId,dateTime);
+    public GeoAreaReading(GeoAreaSensorId geoAreaSensorId, LocalDateTime dateTime, double value) {
+        this.readingId = new ReadingId(geoAreaSensorId,dateTime);
         this.value = value;
     }
 
@@ -46,11 +46,11 @@ public class GeoAreaReading {
     }
 
     /**
-     * Get method of the SensorId of the reading.
+     * Get method of the GeoAreaSensorId of the reading.
      * @return
      */
-    public SensorId getSensorId() {
-        return readingId.getSensorId();
+    public GeoAreaSensorId getSensorId() {
+        return readingId.getGeoAreaSensorId();
     }
 
     private ReadingId getReadingId(){

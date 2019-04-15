@@ -1,21 +1,21 @@
 package pt.ipp.isep.dei.project.model;
 
-import pt.ipp.isep.dei.project.model.sensor.SensorId;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorId;
 
 import java.time.LocalDateTime;
 
 public class ReadingId {
 
-    private SensorId sensorId;
+    private GeoAreaSensorId geoAreaSensorId;
     private LocalDateTime localDateTime;
 
-    public ReadingId(SensorId sensorId, LocalDateTime localDateTime) {
-        this.sensorId = sensorId;
+    public ReadingId(GeoAreaSensorId geoAreaSensorId, LocalDateTime localDateTime) {
+        this.geoAreaSensorId = geoAreaSensorId;
         this.localDateTime = localDateTime;
     }
 
-    public SensorId getSensorId() {
-        return sensorId;
+    public GeoAreaSensorId getGeoAreaSensorId() {
+        return geoAreaSensorId;
     }
 
     public LocalDateTime getLocalDateTime() {

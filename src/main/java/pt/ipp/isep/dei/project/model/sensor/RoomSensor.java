@@ -11,8 +11,8 @@ import java.util.Objects;
 
 @Entity
 public class RoomSensor {
-    @Id
-    private String id;
+    /*@EmbeddedId
+    /*private GeoAreaSensorId id;
     private String sensorName;
     private LocalDateTime startingDate;
 
@@ -139,5 +139,5 @@ public class RoomSensor {
     @Override
     public int hashCode() {
         return Objects.hash(this.id);
-    }
+    }*/
 }

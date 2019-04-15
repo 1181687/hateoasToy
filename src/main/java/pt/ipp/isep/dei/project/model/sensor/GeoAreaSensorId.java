@@ -4,15 +4,15 @@ import javax.persistence.Embeddable;
 import java.io.Serializable;
 
 @Embeddable
-public class SensorId implements Serializable {
+public class GeoAreaSensorId implements Serializable {
     private static final long serialVersionUID = 1L;
     private String sensorId;
 
-    public SensorId(String sensorId) {
+    public GeoAreaSensorId(String sensorId) {
         this.sensorId = sensorId;
     }
 
-    protected SensorId() {
+    protected GeoAreaSensorId() {
         //empty
     }
 
