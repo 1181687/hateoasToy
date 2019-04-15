@@ -28,7 +28,7 @@ public class GeoAreaSensor {
     @Transient
     private boolean isActive;
 
-    /*
+
     /**
      * Constructor method
      *
@@ -37,8 +37,6 @@ public class GeoAreaSensor {
      * @param sensorType   Type of sensor
      * @param location     Location of the sensor
      */
-
-    /*
     public GeoAreaSensor(String id, String sensorName, LocalDateTime startingDate, SensorType sensorType, Location location, String units) {
         this.id = new GeoAreaSensorId(id);
         this.sensorName = sensorName;
@@ -48,7 +46,7 @@ public class GeoAreaSensor {
         this.units = units;
         this.isActive = true;
     }
-     /*
+
     /**
      * Constructor method
      *
@@ -57,7 +55,6 @@ public class GeoAreaSensor {
      * @param location   Location of the sensor
      */
 
-    /*
     public GeoAreaSensor(String id, String sensorName, SensorType sensorType, Location location, String units) {
         this.id = new GeoAreaSensorId(id);
         this.sensorName = sensorName;
@@ -67,12 +64,13 @@ public class GeoAreaSensor {
         this.units = units;
         this.isActive = true;
     }
-    */
 
-     /*
+
     protected GeoAreaSensor() {
         //empty
     }
+
+
     public String getId() {
         return id.getSensorId();
     }
@@ -81,13 +79,13 @@ public class GeoAreaSensor {
         this.id = id;
     }
 
+    /*
     /**
      * Get method
      *
      * @return sensor Name
      */
 
-     /*
     public String getSensorName() {
         return sensorName;
     }
@@ -107,7 +105,6 @@ public class GeoAreaSensor {
      * @return sensor Type
      */
 
-/*
     public SensorType getSensorType() {
         return sensorType;
     }
@@ -118,7 +115,6 @@ public class GeoAreaSensor {
      * @return sensor Location
      */
 
-/*
     public Location getLocation() {
         return location;
     }
@@ -142,7 +138,7 @@ public class GeoAreaSensor {
      *
      * @return
      */
-/*
+
     public boolean deactivateDevice() {
         if (isActive) {
             isActive = false;
@@ -157,7 +153,7 @@ public class GeoAreaSensor {
      * @param object receives an object
      * @return boolean
      */
-/*
+
     public boolean equals(Object object) {
         if (this == object) {
             return true;
@@ -174,7 +170,7 @@ public class GeoAreaSensor {
      *
      * @return the hashcode created
      */
-/*
+
     public int hashCode() {
         return 1;
     }
@@ -185,7 +181,7 @@ public class GeoAreaSensor {
      * @param sensor1 a sensor
      * @return distance between two locations
      */
-/*
+
     public double distanceBetweenTwoLocations(GeoAreaSensor sensor1) {
 
         return this.location.distanceBetweenTwoLocations(sensor1.location);
