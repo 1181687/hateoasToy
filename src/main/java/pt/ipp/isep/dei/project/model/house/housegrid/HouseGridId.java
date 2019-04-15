@@ -16,7 +16,7 @@ public class HouseGridId implements Serializable {
         //empty
     }
 
-    public String getHousegridId() {
+    public String getId() {
         return housegridId;
     }
 }

@@ -28,7 +28,7 @@ public class RoomSensorService {
 
         return true;
     }
-
+/*
     public double getMaximumMeasureOfTypeOfSensorInGivenDay(SensorType type, LocalDate date) {
         if (!listOfSensors.isEmpty()) {
             double maxValue = listOfSensors.get(0).getMaximumValueOfDay(date);
@@ -87,6 +87,6 @@ public class RoomSensorService {
         }
         return false;
     }
-
+*/
 
 }
