@@ -1,6 +1,5 @@
 package pt.ipp.isep.dei.project.io.ui;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import pt.ipp.isep.dei.project.controllers.DefineSensorTypeController;
 import pt.ipp.isep.dei.project.services.SensorTypeService;
 
@@ -12,13 +11,10 @@ import java.util.Scanner;
 
 public class DefineSensorType {
 
-    @Autowired
-    private SensorTypeService sensorTypeService;
-
     private DefineSensorTypeController controller;
 
-    public DefineSensorType() {
-        this.controller = new DefineSensorTypeController();
+    public DefineSensorType(SensorTypeService sensorTypeService) {
+        this.controller = new DefineSensorTypeController(sensorTypeService);
     }
 
     public void run() {

@@ -1,15 +1,13 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import pt.ipp.isep.dei.project.services.SensorTypeService;
 
 public class DefineSensorTypeController {
 
-    @Autowired
     private SensorTypeService sensorTypeService;
 
-
-    public DefineSensorTypeController() {
+    public DefineSensorTypeController(SensorTypeService sensorTypeService) {
+        this.sensorTypeService = sensorTypeService;
     }
 
     /**

@@ -12,7 +12,6 @@ import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaTypeList;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.HouseService;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceTypeList;
-import pt.ipp.isep.dei.project.model.sensor.SensorTypeList;
 import pt.ipp.isep.dei.project.services.GeoAreaService;
 import pt.ipp.isep.dei.project.services.SensorTypeService;
 
@@ -43,7 +42,7 @@ public class Main {
 
     private House houseEdificioB;
     private PowerSourceTypeList powerSourceTypeList;
-    private SensorTypeList sensorTypeList;
+    //private SensorTypeList sensorTypeList;
     private GeographicalAreaTypeList geographicalAreaTypeList;
 
     //GeographicalArea Repository Injection
@@ -69,8 +68,7 @@ public class Main {
     public CommandLineRunner mainRun() {
 
         return (args) -> {
-
-            DefineSensorType defineSensorType = new DefineSensorType();
+            DefineSensorType defineSensorType = new DefineSensorType(sensorTypeService);
             defineSensorType.run();
         };
     }
