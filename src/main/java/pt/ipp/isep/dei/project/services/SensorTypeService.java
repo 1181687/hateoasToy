@@ -22,7 +22,7 @@ public class SensorTypeService {
         return false;
     }
 
-/*
+
     /**
      * Get method
      *
@@ -30,30 +30,6 @@ public class SensorTypeService {
      */
     /*public List<SensorType> getListOfSensorTypes() {
         return listOfSensorTypes;
-    }
-
-    /**
-     * Method that creates a new sensor Type
-     *
-     * @param novoTipo new Type of sensor (string)
-     * @return new sensor Type
-     */
-    /*public SensorType newSensorType(String novoTipo) {
-        return new SensorType(novoTipo);
-    }
-
-    /**
-     * Boolean method that adds a sensor Type to the sensor Type List if the list doesn't already contain that sensor type
-     *
-     * @param novoSensorType new type of sensor
-     * @return true or false
-     */
-    /*public boolean addSensorType(SensorType novoSensorType) {
-        if (!(this.listOfSensorTypes.contains(novoSensorType))) {
-            this.listOfSensorTypes.add(novoSensorType);
-            return true;
-        }
-        return false;
     }
 
     /**
