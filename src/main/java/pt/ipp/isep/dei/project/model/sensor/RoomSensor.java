@@ -11,8 +11,8 @@ import java.util.Objects;
 
 @Entity
 public class RoomSensor {
-    @Id
-    private String id;
+    @EmbeddedId
+    private RoomSensorId id;
     private String sensorName;
     private LocalDateTime startingDate;
 
@@ -25,7 +25,7 @@ public class RoomSensor {
     private SensorState isActive;
 
     public RoomSensor(String id, String sensorName, LocalDateTime startingDate, SensorType sensorType, String units) {
-        this.id = id;
+        this.id = new RoomSensorId(id);
         this.sensorName = sensorName;
         this.startingDate = startingDate;
         this.sensorType = sensorType;
@@ -37,9 +37,9 @@ public class RoomSensor {
         // empty
     }
 
-    public String getId() {
+    /*public String getId() {
         return id;
-    }
+    }*/
 
     public LocalDateTime getStartingDate() {
         return startingDate;
@@ -53,7 +53,7 @@ public class RoomSensor {
         return isActive.isActive();
     }
 
-    public double getMaximumValueOfDay(LocalDate date) {
+    /*public double getMaximumValueOfDay(LocalDate date) {
         if (!getDailyMeasurement(date).isEmpty()) {
             double maximumValueOfDay = getDailyMeasurement(date).get(0).getValue();
             for (RoomReading reading : getDailyMeasurement(date)) {
@@ -139,5 +139,5 @@ public class RoomSensor {
     @Override
     public int hashCode() {
         return Objects.hash(this.id);
-    }
+    }*/
 }
