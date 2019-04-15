@@ -10,7 +10,7 @@ public class RoomSensor {
     private String sensorName;
     private LocalDateTime startingDate;
 
-    @Embedded
+    @ManyToOne
     private SensorType sensorType;
 
     private String units;
