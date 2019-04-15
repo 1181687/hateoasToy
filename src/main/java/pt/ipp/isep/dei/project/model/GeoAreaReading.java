@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.project.model;
 
-import pt.ipp.isep.dei.project.model.sensor.SensorId;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorId;
 
 import javax.persistence.Embeddable;
 import javax.persistence.EmbeddedId;
@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 public class GeoAreaReading {
 
     @EmbeddedId
-    private ReadingId readingId;
+    private GeoAreaReadingId geoAreaReadingId;
     private double value;
 
     /**
@@ -19,8 +19,8 @@ public class GeoAreaReading {
      * @param value    value
      * @param dateTime date
      */
-    public GeoAreaReading(SensorId sensorId, LocalDateTime dateTime, double value) {
-        this.readingId = new ReadingId(sensorId,dateTime);
+    public GeoAreaReading(GeoAreaSensorId geoAreaSensorId, LocalDateTime dateTime, double value) {
+        this.geoAreaReadingId = new GeoAreaReadingId(geoAreaSensorId,dateTime);
         this.value = value;
     }
 
@@ -42,19 +42,19 @@ public class GeoAreaReading {
      * @return dateTime
      */
     public LocalDateTime getDateTime() {
-        return readingId.getLocalDateTime();
+        return geoAreaReadingId.getLocalDateTime();
     }
 
     /**
-     * Get method of the SensorId of the reading.
+     * Get method of the GeoAreaSensorId of the reading.
      * @return
      */
-    public SensorId getSensorId() {
-        return readingId.getSensorId();
+    public GeoAreaSensorId getSensorId() {
+        return geoAreaReadingId.getGeoAreaSensorId();
     }
 
-    private ReadingId getReadingId(){
-        return readingId;
+    private GeoAreaReadingId getGeoAreaReadingId(){
+        return geoAreaReadingId;
     }
 
     /**
@@ -82,7 +82,7 @@ public class GeoAreaReading {
             return false;
         }
         GeoAreaReading geoAreaReading = (GeoAreaReading) obj;
-        ReadingId readingId = this.readingId;
-        return readingId.equals(geoAreaReading.getReadingId());
+        GeoAreaReadingId geoAreaReadingId = this.geoAreaReadingId;
+        return geoAreaReadingId.equals(geoAreaReading.getGeoAreaReadingId());
     }
 }

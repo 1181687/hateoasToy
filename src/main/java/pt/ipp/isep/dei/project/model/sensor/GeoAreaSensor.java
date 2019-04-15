@@ -16,7 +16,7 @@ import java.util.List;
 @Entity
 public class GeoAreaSensor implements Sensor {
     @EmbeddedId
-    private SensorId id;
+    private GeoAreaSensorId id;
     private String sensorName;
     private LocalDateTime startingDate;
 
@@ -40,7 +40,7 @@ public class GeoAreaSensor implements Sensor {
      * @param location     Location of the sensor
      */
     public GeoAreaSensor(String id, String sensorName, LocalDateTime startingDate, SensorType sensorType, Location location, String units) {
-        this.id = new SensorId(id);
+        this.id = new GeoAreaSensorId(id);
         this.sensorName = sensorName;
         this.startingDate = startingDate;
         this.sensorType = sensorType;
@@ -57,7 +57,7 @@ public class GeoAreaSensor implements Sensor {
      * @param location   Location of the sensor
      */
     public GeoAreaSensor(String id, String sensorName, SensorType sensorType, Location location, String units) {
-        this.id = new SensorId(id);
+        this.id = new GeoAreaSensorId(id);
         this.sensorName = sensorName;
         this.startingDate = LocalDateTime.now();
         this.sensorType = sensorType;
@@ -74,7 +74,7 @@ public class GeoAreaSensor implements Sensor {
         return id.getSensorId();
     }
 
-    public void setId(SensorId id) {
+    public void setId(GeoAreaSensorId id) {
         this.id = id;
     }
 

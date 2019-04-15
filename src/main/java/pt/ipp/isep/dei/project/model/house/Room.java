@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.project.model.house;
 
 import pt.ipp.isep.dei.project.model.GeoAreaReading;
 import pt.ipp.isep.dei.project.model.Measurable;
+import pt.ipp.isep.dei.project.model.RoomReading;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
