@@ -19,4 +19,8 @@ public class RoomSensorId implements Serializable {
     public String getSensorId() {
         return sensorId;
     }
+
+    public void setSensorId(String sensorId) {
+        this.sensorId = sensorId;
+    }
 }

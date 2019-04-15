@@ -1,29 +1,20 @@
 package pt.ipp.isep.dei.project.model.sensor;
 
-import pt.ipp.isep.dei.project.model.RoomReading;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import pt.ipp.isep.dei.project.RoomSensorReadingsRepository;
+import pt.ipp.isep.dei.project.RoomSensorRepository;
 
-import javax.persistence.*;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-
-@Entity
+@Service
 public class RoomSensorService {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @Autowired
+    private RoomSensorRepository roomSensorRepository;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn
-    private List<RoomSensor> listOfSensors;
+    @Autowired
+    private RoomSensorReadingsRepository roomSensorReadingsRepository;
 
-    public RoomSensorService() {
-        this.listOfSensors = new ArrayList<>();
-    }
-
-    public boolean addSensor(RoomSensor sensor) {
+    /*public boolean addSensor(RoomSensor sensor) {
         if (listOfSensors.contains(sensor) || Objects.isNull(sensor)) {
             return false;
         }
@@ -81,10 +72,6 @@ public class RoomSensorService {
         return null;
     }
 
-    public List<RoomSensor> getListOfSensors() {
-        return listOfSensors;
-    }
-
     public boolean roomSensorExists(String id) {
         for (RoomSensor sensor : listOfSensors) {
             if (sensor.getId() == id) {
@@ -93,7 +80,5 @@ public class RoomSensorService {
 
         }
         return false;
-    }
-
-
+    }*/
 }
