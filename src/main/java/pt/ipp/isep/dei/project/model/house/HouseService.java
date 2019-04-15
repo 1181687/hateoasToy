@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.HouseGridRepository;
 import pt.ipp.isep.dei.project.RoomRepository;
-import pt.ipp.isep.dei.project.model.LocationDTO;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 
 @Service
@@ -15,11 +14,6 @@ public class HouseService {
 
     @Autowired
     private HouseGridRepository houseGridRepository;
-
-    public void configureHouseLocation(LocationDTO locationDTO) {
-
-
-    }
 
 
   /*  public void updateHouseWithRoomsAndGrids(HouseDTO houseDTO, House house) {
@@ -104,6 +98,8 @@ public class HouseService {
     public void updateRepository(Room room) {
         roomRepository.save(room);
     }
+
+
 
 
    /* public RoomSensorService getAllSensors() {
