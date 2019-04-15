@@ -1,0 +1,113 @@
+@startuml
+skinparam linetype ortho
+
+skinparam class {
+	BackgroundColor PaleTurquoise
+	ArrowColor Black
+	BorderColor Black
+	FontStyle Bold
+}
+
+hide circle
+
+ImportReadings "1" --> "1" ImportReadingsController
+ImportReadingsController "1" -right-> "1" GeographicalAreaList
+ImportReadingsController "1" --> "1" ReadingMapper :uses
+ImportReadingsController "1" -> "1" SensorList
+ImportReadingsController "1" -> "1" Sensor
+ImportReadingsController "1" -> "1" "<<ProjectFileReader>>"
+ReadingMapper "1" -up-> "1" ReadingDTO : creates
+GeographicalAreaList "1" -down-> "*" SensorList
+SensorList "1" -down-> "0*" Sensor
+XMLReader -left-* "<<ProjectFileReader>>" : implements
+CSVReader -left-* "<<ProjectFileReader>>" : implements
+JSONReader -left-* "<<ProjectFileReader>>" : implements
+XMLReader -up-> ReadingMapper : uses
+CSVReader -up-> ReadingMapper : uses
+JSONReader -up-> ReadingMapper : uses
+
+Class ImportReadings {
+-controller: ImportReadingsController
++run()
+}
+
+Class ImportReadingsController {
+-geographicalAreaList: GeographicalAreaList
+-allSensorInTheGeoAreas: SensorList
+-sensor: Sensor
+-readingDTOList : List<Object>
++createReader()
++readFile()
++importReadings()
++checkIfSensorExistsById()
++isDateTimeBeforeSensorStartingDate()
+}
+
+
+Class XMLReader {
+-readerName : String
++readFile()
++getTypeName()w
+-readReadingsFile()
+-getReadingDTO()
+-getTagValue()
+-getTag()
+}
+
+Class ReadingMapper {
++mapToEntity()
++mapToDTO()
+}
+Class CSVReader {
+-readerName : String
++readFile()
++getTypeName()
+-parseLine()
+}
+
+Class JSONReader {
+-readerName : String
++readFile()
++getTypeName()
+-parseReadings()
+}
+
+Class GeographicalAreaList {
+-geoAreaList: GeographicalAreaList
++getAllSensors()
+}
+
+Class SensorList {
+-listOfSensors: List<Sensor>
++checkIfSensorExistsById()
++getSensorById()
+}
+
+Class Sensor {
+-id: String;
+-startingDate LocalDateTime
+-listOfReadings: List<Reading>
++addReading()
+}
+
+Class ReadingDTO {
+-id: String
+-value: double
+-dateTime: LocalDateTime
+-unit: String
++getValue()
++setValue()
++getDateTime()
++setDateTime()
++getId()
++setId()
++getUnit()
++setUnit()
+}
+
+
+Interface "<<ProjectFileReader>>" {
++getTypeName()
++readFile()
+}
+@enduml
