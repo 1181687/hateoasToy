@@ -2,19 +2,18 @@ package pt.ipp.isep.dei.project.controllers;
 
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
+import pt.ipp.isep.dei.project.services.RoomService;
 
 public class AddRoomController {
-    private House house;
-    private Room room;
-
+   private RoomService roomService;
 
     /**
-     * method constructor that receives a housegrid
+     * method constructor that receives a roomService
      *
-     * @param house housegrid received
+     * @param roomService received
      */
-    public AddRoomController(House house) {
-        this.house = house;
+    public AddRoomController(RoomService roomService) {
+        this.roomService = roomService;
     }
 
     /**
@@ -27,8 +26,8 @@ public class AddRoomController {
      * @param description description of the room
      * @param housefloor given housefloor number to the new room
      */
-    public void addRoom(String id, String description, double height, double length, double width, int housefloor) {
-        this.room = house.newRoom(id, description, housefloor, height, length, width);
+    public void addRoom(String id, String description,  int housefloor, double height, double length, double width) {
+       roomService.addRoom(id, description, housefloor, height, length, width);
     }
 
 
@@ -37,6 +36,6 @@ public class AddRoomController {
      * @param name
      */
     public boolean isNameExistant(String name) {
-        return this.house.isNameExistant(name);
+        return this.roomService.isNameExistant(name);
     }
 }

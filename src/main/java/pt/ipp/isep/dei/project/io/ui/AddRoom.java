@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.AddRoomController;
 import pt.ipp.isep.dei.project.model.house.House;
+import pt.ipp.isep.dei.project.services.RoomService;
 
 /**
  * US105 As an Administrator, I want to add a new room to the housegrid, in order to configure
@@ -13,12 +14,12 @@ public class AddRoom {
     private AddRoomController controller;
 
     /**
-     * method constructor that receives a housegrid
+     * method constructor that receives a roomService
      *
-     * @param house housegrid received
+     * @param roomService
      */
-    public AddRoom(House house) {
-        this.controller = new AddRoomController(house);
+    public AddRoom(RoomService roomService) {
+        this.controller = new AddRoomController(roomService);
     }
 
     /**
@@ -28,7 +29,7 @@ public class AddRoom {
      */
     public void run() {
 
-        String label1 = "What is the name of the room you want to add to the housegrid?";
+        String label1 = "What is the name of the room you want to add to the house?";
         String id = InputValidator.getString(label1);
 
         while (controller.isNameExistant(id)) {
@@ -36,7 +37,7 @@ public class AddRoom {
             id = InputValidator.getString(label1);
         }
 
-        String label11 = "What is the description of the room you want to add to the housegrid?";
+        String label11 = "What is the description of the room you want to add to the house?";
         String description = InputValidator.getString(label11);
 
         String label2 = "Write the number of housefloor's room";
@@ -51,8 +52,7 @@ public class AddRoom {
         String label5 = "Write the width of the room";
         double width = InputValidator.getDoublePos(label5);
 
-        controller.newRoom(height, length, width, id, description, houseFloor);
-        controller.addRoomToHouse();
+        controller.addRoom(id, description, houseFloor, height, length, width);
 
         StringBuilder content = new StringBuilder();
         content.append("The new room ");
