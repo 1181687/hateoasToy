@@ -10,6 +10,7 @@ import pt.ipp.isep.dei.project.model.geographicalarea.*;
 import pt.ipp.isep.dei.project.model.house.*;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceTypeList;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeList;
+import pt.ipp.isep.dei.project.services.GeoAreaService;
 
 @EnableJpaRepositories(basePackages = "pt.ipp.isep.dei.project")
 @EntityScan(basePackages = "pt.ipp.isep.dei.project")

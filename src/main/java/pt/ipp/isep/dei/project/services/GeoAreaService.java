@@ -1,4 +1,4 @@
-package pt.ipp.isep.dei.project.model.geographicalarea;
+package pt.ipp.isep.dei.project.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
