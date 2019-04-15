@@ -39,7 +39,7 @@ public final class RoomMapper {
      * @param room Room to be used.
      * @return GeoAreaDTO.
      */
-    public static RoomDTO mapToDTO(Room room) {
+   /* public static RoomDTO mapToDTO(Room room) {
         if (Objects.isNull(room)) {
             return null;
         }
@@ -53,7 +53,7 @@ public final class RoomMapper {
         roomDTO.setHeight(room.getDimension().getHeight());
 
         return roomDTO;
-    }
+    }*/
 
     /**
      * Method that turns a RoomDTO into a Room.
@@ -61,7 +61,7 @@ public final class RoomMapper {
      * @param roomDTO to be used.
      * @return room with the required information.
      */
-    public static Room mapToEntity(RoomDTO roomDTO) {
+   /* public static Room mapToEntity(RoomDTO roomDTO) {
         if (Objects.isNull(roomDTO)) {
             return null;
         }
@@ -70,6 +70,6 @@ public final class RoomMapper {
 
         return new Room(roomDTO.getRoomId(), roomDTO.getDescription(), roomDTO.getHouseFloor(), dimension);
 
-    }
+    }*/
 
 }

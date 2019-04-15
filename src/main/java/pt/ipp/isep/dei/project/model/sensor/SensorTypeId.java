@@ -12,6 +12,8 @@ public class SensorTypeId implements Serializable {
         this.sensorTypeId = sensorTypeId;
     }
 
+    protected SensorTypeId(){}
+
     public String getSensorTypeId() {
         return sensorTypeId;
     }

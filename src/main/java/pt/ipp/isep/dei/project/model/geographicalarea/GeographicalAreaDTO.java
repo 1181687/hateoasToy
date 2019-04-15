@@ -95,9 +95,9 @@ public class GeographicalAreaDTO {
         this.sensors.add(sensor);
     }
 
-    public void addAllSensors(List<GeoAreaSensor> sensorList) {
+  /*  public void addAllSensors(List<GeoAreaSensor> sensorList) {
         for (GeoAreaSensor sensor : sensorList) {
             this.sensors.add(GeoAreaSensorMapper.mapToDTO(sensor));
         }
-    }
+    }*/
 }

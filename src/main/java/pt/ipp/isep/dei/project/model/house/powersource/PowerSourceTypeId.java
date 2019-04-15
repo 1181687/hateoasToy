@@ -12,6 +12,9 @@ public class PowerSourceTypeId implements Serializable {
         this.powerSourceTypeId = powerSourceTypeId;
     }
 
+    protected PowerSourceTypeId() {
+    }
+
     public String getPowerSourceTypeId() {
         return powerSourceTypeId;
     }

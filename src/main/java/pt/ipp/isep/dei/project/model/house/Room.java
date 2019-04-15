@@ -3,10 +3,8 @@ package pt.ipp.isep.dei.project.model.house;
 import pt.ipp.isep.dei.project.model.GeoAreaReading;
 import pt.ipp.isep.dei.project.model.Measurable;
 import pt.ipp.isep.dei.project.model.RoomReading;
-import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
-import pt.ipp.isep.dei.project.services.RoomSensorService;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 
 import javax.persistence.*;
@@ -32,23 +30,23 @@ public class Room implements Measurable {
     @Embedded
     private Dimension dimension;
 
-    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    @JoinColumn
-    private RoomSensorService sensorList;
+  //  @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+   // @JoinColumn
+   // private RoomSensorService sensorList;
 
-    @Transient
-    private List<Device> deviceList;
+  //  @Transient
+  //  private List<Device> deviceList;
 
     /**
      * constructor that receives name, houseFloor, dimension
      * throw an exception if any of the parameters is invalid.
      * Invalid parameters if Dimension is null or name is null or empty
      *
-     * @param roomId
-     * @param houseFloor
-     * @param dimension
+     * //@param roomId
+     * //@param houseFloor
+     * //@param dimension
      */
-    public Room(String roomId, String description, int houseFloor, Dimension dimension) {
+  /*  public Room(String roomId, String description, int houseFloor, Dimension dimension) {
         validateName(roomId);
         validateDimensions(dimension);
         this.roomId = new RoomId(roomId.trim());
@@ -57,7 +55,7 @@ public class Room implements Measurable {
         this.dimension = dimension;
         this.sensorList = new RoomSensorService();
         this.deviceList = new ArrayList<>();
-    }
+    }*/
 
     protected Room() {
         // empty
@@ -118,14 +116,14 @@ public class Room implements Measurable {
         return houseFloor;
     }
 
-    @Override
+    /*@Override
     public List<GeoAreaReading> getReadings() {
         List<GeoAreaReading> listOfGeoAreaReadings = new ArrayList<>();
         for (Device device : this.deviceList) {
             listOfGeoAreaReadings.addAll(device.getReadings());
         }
         return listOfGeoAreaReadings;
-    }
+    }*/
 
     /**
      * Method that defines the House Floor number of the room
@@ -158,6 +156,31 @@ public class Room implements Measurable {
         content.append(", Length: " + getDimension().getLength());
         content.append(", Width: " + getDimension().getWidth());
         return content.toString();
+    }
+
+    @Override
+    public double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
+        return 0;
+    }
+
+    @Override
+    public Map<LocalDateTime, Double> getDataSeries(LocalDateTime startDate, LocalDateTime endDate) {
+        return null;
+    }
+
+    @Override
+    public List<GeoAreaReading> getReadings() {
+        return null;
+    }
+
+    @Override
+    public List<GeoAreaReading> getReadingsListInInterval(LocalDateTime startDate, LocalDateTime endDate) {
+        return null;
+    }
+
+    @Override
+    public double getNominalPower() {
+        return 0;
     }
 
     /**
@@ -198,9 +221,9 @@ public class Room implements Measurable {
      * @return a new sensor to the list of sensors
      */
 
-    public boolean addSensorToListOfSensorsInRoom(RoomSensor newSensor) {
+   /* public boolean addSensorToListOfSensorsInRoom(RoomSensor newSensor) {
         return this.sensorList.addSensor(newSensor);
-    }
+    }*/
 
 
 /**
@@ -208,11 +231,11 @@ public class Room implements Measurable {
      *
      * @return the list of sensors.
  */
-
+/*
 public RoomSensorService getSensorList() {
         return sensorList;
     }
-
+*/
 
 /**
      * @param type of sensor (temperature)
@@ -220,9 +243,9 @@ public RoomSensorService getSensorList() {
      * @return maximum temperature
  */
 
-    public double getMaximumMeasurementInGivenDay(SensorType type, LocalDate date) {
+  /*  public double getMaximumMeasurementInGivenDay(SensorType type, LocalDate date) {
         return sensorList.getMaximumMeasureOfTypeOfSensorInGivenDay(type, date);
-    }
+    }*/
 
 
 /**
@@ -232,10 +255,10 @@ public RoomSensorService getSensorList() {
      * @return latest measurement by sensor type
  */
 
-public RoomReading getLatestMeasurementBySensorType(SensorType type) {
+/*public RoomReading getLatestMeasurementBySensorType(SensorType type) {
     return new RoomReading(sensorList.getLatestMeasurementBySensorType(type).getValue(), sensorList.getLatestMeasurementBySensorType(type).getDateTime());
     }
-
+*/
 
     /**
      * Method that return the nominal power of the list of devices in the room.
@@ -243,7 +266,7 @@ public RoomReading getLatestMeasurementBySensorType(SensorType type) {
      *
      * @return
      */
-    @Override
+   /* @Override
     public double getNominalPower() {
         double totalNominalPower = 0;
         if (this.getSize() != 0) {
@@ -252,7 +275,7 @@ public RoomReading getLatestMeasurementBySensorType(SensorType type) {
             }
         }
         return totalNominalPower;
-    }
+    }*/
 
     /*
      */
@@ -282,7 +305,7 @@ public RoomReading getLatestMeasurementBySensorType(SensorType type) {
      *
      * @return content of the device list
      */
-    public String getDeviceListToString() {
+   /* public String getDeviceListToString() {
         StringBuilder content = new StringBuilder();
         int deviceListLength = this.getSize();
         int numberInTheList = 1;
@@ -292,14 +315,14 @@ public RoomReading getLatestMeasurementBySensorType(SensorType type) {
             numberInTheList++;
         }
         return content.toString();
-    }
+    }*/
 
     /**
      * method that checks if Device List of the room is empty
      */
-    public boolean isDeviceListEmpty() {
+    /*public boolean isDeviceListEmpty() {
         return this.deviceList.isEmpty();
-    }
+    }*/
 
     /**
      * Method that adds a device to the list of devices if device not null
@@ -307,7 +330,7 @@ public RoomReading getLatestMeasurementBySensorType(SensorType type) {
      * @param device the device to be added
      * @return true if it adds, false if it doesn't add
      */
-    public boolean addDevice(Device device) {
+    /*public boolean addDevice(Device device) {
         if (Objects.isNull(device)) {
             throw new RuntimeException("Device is null.");
         }
@@ -316,7 +339,7 @@ public RoomReading getLatestMeasurementBySensorType(SensorType type) {
         }
         this.deviceList.add(device);
         return true;
-    }
+    }*/
 
     /**
      * method that returns the name of room
@@ -337,7 +360,7 @@ public RoomReading getLatestMeasurementBySensorType(SensorType type) {
      * @param endDate
      * @return the total energy consumption
      */
-    @Override
+   /* @Override
     public double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
         double totalEnergyConsumption = 0;
         if (!this.deviceList.isEmpty()) {
@@ -361,34 +384,34 @@ public RoomReading getLatestMeasurementBySensorType(SensorType type) {
             }
         }
         return map;
-    }
+    }*/
 
     /**
      * get List of devices
      *
      * @return List<Device>
      */
-    public List<Device> getDeviceList() {
+    /*public List<Device> getDeviceList() {
         return this.deviceList;
-    }
+    }*/
 
     /**
      * get size of list of devices
      *
      * @return integer
      */
-    public int getSize() {
+   /* public int getSize() {
         return this.deviceList.size();
-    }
+    }*/
 
     /**
      * method that get a Device by it's position
      * @param position integer position of Device
      * @return Device
      */
-    public Device getDeviceByPosition(int position) {
+    /*public Device getDeviceByPosition(int position) {
         return this.deviceList.get(position);
-    }
+    }*/
 
     /**
      * method that check if a name of a Device already exists on the list of devices.
@@ -396,7 +419,7 @@ public RoomReading getLatestMeasurementBySensorType(SensorType type) {
      * @param name name of device
      * @return boolean true if exists, false if it doesn't
      */
-    public boolean isDeviceNameExistant(String name) {
+    /*public boolean isDeviceNameExistant(String name) {
         for (int i = 0; i < this.deviceList.size(); i++) {
             if (isNull(this.deviceList.get(i).getName())) {
                 break;
@@ -406,21 +429,21 @@ public RoomReading getLatestMeasurementBySensorType(SensorType type) {
             }
         }
         return false;
-    }
+    }*/
 
     /**
      * method that check if the device list is empty
      */
-    public boolean isEmpty() {
+  /*  public boolean isEmpty() {
         return this.deviceList.isEmpty();
-    }
+    }*/
 
     /**
      * method that gets the state of every device in the list of devices.
      *
      * @return String of the name and the status of the device ("Activated" or "Deactivated").
      */
-    public String getActiveDeactiveDeviceListToString() {
+   /* public String getActiveDeactiveDeviceListToString() {
         String deviceName = " - Device name: ";
         StringBuilder content = new StringBuilder();
         int deviceListLength = getSize();
@@ -438,14 +461,14 @@ public RoomReading getLatestMeasurementBySensorType(SensorType type) {
             }
         }
         return content.toString();
-    }
+    }*/
 
     /**
      * Method that remove a device from the list of devices
      */
-    public boolean removeDevice(Device device) {
+   /* public boolean removeDevice(Device device) {
         return this.deviceList.remove(device);
-    }
+    }*/
 
     /**
      * Method that gets all the devices of a certain type.
@@ -453,7 +476,7 @@ public RoomReading getLatestMeasurementBySensorType(SensorType type) {
      * @param type Required type.
      * @return DeviceList with all the devices of the required type.
      */
-    public List<Device> getAllDevicesOfAType(String type) {
+  /*  public List<Device> getAllDevicesOfAType(String type) {
         List<Device> listOfDevicesWithTheType = new ArrayList<>();
         for (Device device : this.deviceList) {
             if (device.getType().equals(type)) {
@@ -461,7 +484,7 @@ public RoomReading getLatestMeasurementBySensorType(SensorType type) {
             }
         }
         return listOfDevicesWithTheType;
-    }
+    }*/
 
     /**
      * method that delete a device from the list of devices.
@@ -469,7 +492,7 @@ public RoomReading getLatestMeasurementBySensorType(SensorType type) {
      * @param device
      * @return true if the device was removed. False if not.
      */
-    public boolean deleteDevice(String device) {
+   /* public boolean deleteDevice(String device) {
         for (Device searchDevice : this.deviceList) {
             if (device.equals(searchDevice.getName())) {
                 this.deviceList.remove(searchDevice);
@@ -478,19 +501,19 @@ public RoomReading getLatestMeasurementBySensorType(SensorType type) {
         }
         return false;
     }
-
+*/
     /**
      * method that get the name of the device by position.
      *
      * @param position
      * @return null if the list is empty.
      */
-    public String getDeviceNameByPosition(int position) {
+    /*public String getDeviceNameByPosition(int position) {
         if (this.deviceList.isEmpty()) {
             return "There are no devices in the device list.";
         }
         return this.deviceList.get(position).getName();
-    }
+    }*/
 
     /**
      * method that deactivate the device.
@@ -498,7 +521,7 @@ public RoomReading getLatestMeasurementBySensorType(SensorType type) {
      * @param device
      * @return true if the device was deactivated. False, if not.
      */
-    public boolean deactivateDevice(String device) {
+   /* public boolean deactivateDevice(String device) {
 
         for (Device searchDevice : this.deviceList) {
             if (device.equals(searchDevice.getName())) {
@@ -521,5 +544,5 @@ public RoomReading getLatestMeasurementBySensorType(SensorType type) {
             return sensorList.getSensorById(sensorId);
         }
         return null;
-    }
+    }*/
 }

@@ -10,19 +10,19 @@ public class RoomSensor {
     private String sensorName;
     private LocalDateTime startingDate;
 
-    @ManyToOne
-    private SensorType sensorType;
+    @Embedded
+    private SensorTypeId sensorTypeId;
 
     private String units;
 
     @Embedded
     private SensorState isActive;
 
-    public RoomSensor(String id, String sensorName, LocalDateTime startingDate, SensorType sensorType, String units) {
+    public RoomSensor(String id, String sensorName, LocalDateTime startingDate, SensorTypeId sensorTypeId, String units) {
         this.id = new RoomSensorId(id);
         this.sensorName = sensorName;
         this.startingDate = startingDate;
-        this.sensorType = sensorType;
+        this.sensorTypeId = sensorTypeId;
         this.units = units;
         this.isActive = new SensorState();
     }
@@ -39,8 +39,8 @@ public class RoomSensor {
         return startingDate;
     }
 
-    public SensorType getSensorType() {
-        return sensorType;
+    public SensorTypeId getSensorType() {
+        return sensorTypeId;
     }
 
     public boolean isActive() {

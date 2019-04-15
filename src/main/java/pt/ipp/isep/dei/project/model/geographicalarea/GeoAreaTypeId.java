@@ -12,6 +12,9 @@ public class GeoAreaTypeId implements Serializable {
         this.geoAreaTypeId = geoAreaTypeId;
     }
 
+    protected GeoAreaTypeId() {
+    }
+
     public String getGeoAreaTypeId() {
         return geoAreaTypeId;
     }

@@ -1,7 +1,5 @@
 package pt.ipp.isep.dei.project.model.house.housegrid;
 
-import pt.ipp.isep.dei.project.model.Measurable;
-
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import java.util.Objects;
@@ -9,7 +7,7 @@ import java.util.Objects;
 import static java.util.Objects.isNull;
 
 @Entity
-public class HouseGrid implements Measurable {
+public class HouseGrid /*implements Measurable*/ {
 
     @EmbeddedId
     private HouseGridId houseGridId;
