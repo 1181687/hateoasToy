@@ -412,19 +412,6 @@ public class House {
         return listHouseGrids.isEmpty();
     }*/
 
-    /**
-     * Method that creates a housegrid grid.
-     *
-     * @param grid Name of the grid.
-     * @return New object of the class housegrid.
-     */
-   /* public boolean createHouseGrid(HouseGrid grid) {
-        if (!this.gridNameAlreadyExists(grid.getName())) {
-            return this.addGrid(grid);
-        }
-        throw new RuntimeException("Name already exists. Please, write a new one.");
-    }*/
-
    /* public boolean gridNameAlreadyExists(String name) {
         for (HouseGrid houseGrid : listHouseGrids) {
             if (houseGrid.getName().equalsIgnoreCase(name)) {
