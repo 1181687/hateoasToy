@@ -17,7 +17,7 @@ public class HouseGrid /*implements Measurable*/ {
     private PowerSourceList powerSourceList;
 
     @Transient
-    private RoomList roomList;
+    private RoomService roomList;
     */
 
     /**
@@ -25,11 +25,11 @@ public class HouseGrid /*implements Measurable*/ {
      *
      * @param houseGridId Id to be used.
      */
-    public HouseGrid(String houseGridId) {
-        validateId(houseGridId);
-        this.houseGridId = new HouseGridId(houseGridId);
+    public HouseGrid(HouseGridId houseGridId) {
+        //validateId(houseGridId);
+        this.houseGridId = houseGridId;
         /*
-        this.roomList = new RoomList();
+        this.roomList = new RoomService();
         this.powerSourceList = new PowerSourceList();
         */
     }
@@ -112,7 +112,7 @@ public class HouseGrid /*implements Measurable*/ {
      * method that get the rooms connected to the housegrid grid.
      */
     /*
-    public RoomList getRoomList() {
+    public RoomService getRoomList() {
         return roomList;
     }
     */
@@ -227,7 +227,7 @@ public class HouseGrid /*implements Measurable*/ {
     */
 
     /**
-     * method that checks if there are no devices in the RoomList
+     * method that checks if there are no devices in the RoomService
      *
      * @return true if there aren't devices. False if there are devices
      */
