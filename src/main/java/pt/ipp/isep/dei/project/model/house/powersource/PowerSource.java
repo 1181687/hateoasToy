@@ -1,5 +1,7 @@
 package pt.ipp.isep.dei.project.model.house.powersource;
 
+import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
+
 import javax.persistence.Embedded;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -13,6 +15,9 @@ public class PowerSource {
 
     @Embedded
     private PowerSourceTypeId powerSourceTypeId;
+
+    @Embedded
+    private HouseGridId houseGridId;
 
     /**
      * Protected constructor used by Spring.

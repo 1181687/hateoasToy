@@ -13,6 +13,7 @@ import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.HouseService;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceTypeList;
 import pt.ipp.isep.dei.project.services.GeoAreaService;
+import pt.ipp.isep.dei.project.services.RoomService;
 import pt.ipp.isep.dei.project.services.SensorTypeService;
 
 @EnableJpaRepositories(basePackages = "pt.ipp.isep.dei.project")
@@ -56,6 +57,8 @@ public class Main {
     //SensorType Repository Injection
     @Autowired
     private SensorTypeService sensorTypeService;
+    @Autowired
+    private RoomService roomService;
 
 
     public static void main(String[] args) {
@@ -68,8 +71,11 @@ public class Main {
     public CommandLineRunner mainRun() {
 
         return (args) -> {
-            DefineSensorType defineSensorType = new DefineSensorType(sensorTypeService);
-            defineSensorType.run();
+            //DefineSensorType defineSensorType = new DefineSensorType(sensorTypeService);
+            //defineSensorType.run();
+
+            AddRoom addRoom= new AddRoom(roomService);
+            addRoom.run();
         };
     }
 /*

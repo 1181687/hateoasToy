@@ -18,7 +18,7 @@ import static java.util.Objects.isNull;
 public class Room implements Measurable {
 
     //@Id
-    @Column(name = "cenas", insertable = false, updatable = false)
+    @Column(name = "RoomID", insertable = false, updatable = false)
     @EmbeddedId
     private RoomId roomId;
     private String description;
@@ -46,16 +46,15 @@ public class Room implements Measurable {
      * //@param houseFloor
      * //@param dimension
      */
-  /*  public Room(String roomId, String description, int houseFloor, Dimension dimension) {
+   public Room(String roomId, String description, int houseFloor, Dimension dimension) {
         validateName(roomId);
         validateDimensions(dimension);
         this.roomId = new RoomId(roomId.trim());
         this.description = description;
         this.houseFloor = houseFloor;
         this.dimension = dimension;
-        this.sensorList = new RoomSensorService();
-        this.deviceList = new ArrayList<>();
-    }*/
+        //this.deviceList = new ArrayList<>();
+    }
 
     protected Room() {
         // empty
