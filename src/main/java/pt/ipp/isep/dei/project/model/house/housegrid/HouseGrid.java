@@ -25,9 +25,9 @@ public class HouseGrid /*implements Measurable*/ {
      *
      * @param houseGridId Id to be used.
      */
-    public HouseGrid(String houseGridId) {
-        validateId(houseGridId);
-        this.houseGridId = new HouseGridId(houseGridId);
+    public HouseGrid(HouseGridId houseGridId) {
+        //validateId(houseGridId);
+        this.houseGridId = houseGridId;
         /*
         this.roomList = new RoomService();
         this.powerSourceList = new PowerSourceList();
