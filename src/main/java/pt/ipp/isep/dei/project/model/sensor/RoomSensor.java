@@ -1,6 +1,10 @@
 package pt.ipp.isep.dei.project.model.sensor;
 
-import javax.persistence.*;
+import pt.ipp.isep.dei.project.model.house.RoomId;
+
+import javax.persistence.Embedded;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
 import java.time.LocalDateTime;
 
 @Entity
@@ -18,13 +22,17 @@ public class RoomSensor {
     @Embedded
     private SensorState isActive;
 
-    public RoomSensor(String id, String sensorName, LocalDateTime startingDate, SensorTypeId sensorTypeId, String units) {
+    @Embedded
+    private RoomId roomId;
+
+    public RoomSensor(String id, String sensorName, LocalDateTime startingDate, SensorTypeId sensorTypeId, String units, RoomId roomId) {
         this.id = new RoomSensorId(id);
         this.sensorName = sensorName;
         this.startingDate = startingDate;
         this.sensorTypeId = sensorTypeId;
         this.units = units;
         this.isActive = new SensorState();
+        this.roomId = roomId;
     }
 
     protected RoomSensor() {
