@@ -21,7 +21,7 @@ public class PowerSourceList {
      * @param type            type of Power Source
      * @return new Power Source
      */
-    public PowerSource createNewPowerSource(String powerSourceName, PowerSourceType type){
+    /*public PowerSource createNewPowerSource(String powerSourceName, PowerSourceType type){
         if(!this.powerSourceNameAlreadyExists(powerSourceName)){
             return new PowerSource(powerSourceName, type);
 
@@ -46,7 +46,7 @@ public class PowerSourceList {
      * @param newPowerSource new Power Source
      * @return true if the adds a power source or false if it doesn't
      */
-    public boolean addPowerSource(PowerSource newPowerSource){
+    /*public boolean addPowerSource(PowerSource newPowerSource){
 
         if (!(this.listOfPowerSources.contains(newPowerSource))) {
             this.listOfPowerSources.add(newPowerSource);
@@ -67,5 +67,5 @@ public class PowerSourceList {
             numberInTheList++;
         }
         return content.toString();
-    }
+    }*/
 }

@@ -1,31 +1,35 @@
 package pt.ipp.isep.dei.project.model.house.powersource;
 
+import javax.persistence.Embedded;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
 import java.util.Objects;
 
-import static java.util.Objects.isNull;
-
+@Entity
 public class PowerSource {
 
+    @EmbeddedId
+    private PowerSourceId powerSourceId;
 
-    private String name;
+    @Embedded
+    private PowerSourceTypeId powerSourceTypeId;
 
-    private PowerSourceType powerSourceType;
-
+    /**
+     * Protected constructor used by Spring.
+     */
     protected PowerSource() {
+        // empty
     }
 
     /**
-     * constructor that receives a power source name (String) and a PowerSourceType. Throws an exception if any of the parameters is invalid.
-     * Invalid parameters if PowerSourceType is null or name is null or empty
+     * Constructor.
      *
-     * @param powerSourceName name of the Power Source (String)
-     * @param powerSourceType type of the Power Source
+     * @param id Id to be used.
+     * @param typeId Type Id to be used.
      */
-    public PowerSource(String powerSourceName, PowerSourceType powerSourceType) {
-        validateName(powerSourceName);
-        validatePowerSourceType(powerSourceType);
-        this.powerSourceType = powerSourceType;
-        this.name = powerSourceName;
+    public PowerSource(PowerSourceId id, PowerSourceTypeId typeId) {
+        this.powerSourceId = id;
+        this.powerSourceTypeId = typeId;
     }
 
     /**
@@ -33,38 +37,43 @@ public class PowerSource {
      *
      * @param name name of the Power Source
      */
+    /*
     private static void validateName(String name) {
         if (isNull(name) || name.trim().length() == 0) {
             throw new NullPointerException("Please enter a valid name. Name should not be empty");
         }
     }
+    */
 
     /**
      * Method that validates the Type of Power Source. Throws an exception if it is null.
      *
      * @param powerSourceType type of Power Source
      */
+    /*
     private static void validatePowerSourceType(PowerSourceType powerSourceType) {
         if (isNull(powerSourceType)) {
             throw new NullPointerException("Please select a valid power source type");
         }
     }
+    */
 
     /**
-     * method that creates the same hashcode to PowerSources with the same attributes: name and Type.
-     * @return the hashcode created
+     * Override method for the hash code.
+     *
+     * @return Hash code created.
      */
-
     @Override
     public int hashCode() {
-        return Objects.hash(this.name);
+        return Objects.hash(this.powerSourceId);
     }
 
     /**
-     * Equals method to determine if two PowerSources are equal.
-     * They are equals if all attributes are equal.
-     * @param obj receives an object
-     * @return boolean
+     * Override method for the equals method.
+     * Two Power sources are equal if they share the same Id.
+     *
+     * @param obj Object to be analysed.
+     * @return True or false.
      */
     @Override
     public boolean equals(Object obj) {
@@ -77,18 +86,23 @@ public class PowerSource {
 
         PowerSource type = (PowerSource) obj;
 
-        return this.name.equalsIgnoreCase(type.name);
+        return this.powerSourceId.equals(type.getId());
     }
 
     /**
-     * get method
-     * @return power source name
+     * Get method.
+     * @return PowerSourceId.
      */
-    public String getName() {
-        return name;
+    public PowerSourceId getId() {
+        return powerSourceId;
     }
 
-    public PowerSourceType getPowerSourceType() {
-        return powerSourceType;
+    /**
+     * Get method.
+     *
+     * @return PowerSourceTypeId.
+     */
+    public PowerSourceTypeId getPowerSourceTypeId() {
+        return powerSourceTypeId;
     }
 }
