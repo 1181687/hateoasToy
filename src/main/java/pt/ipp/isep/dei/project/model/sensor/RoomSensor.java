@@ -1,40 +1,28 @@
 package pt.ipp.isep.dei.project.model.sensor;
 
-import pt.ipp.isep.dei.project.model.RoomReading;
-import pt.ipp.isep.dei.project.utils.Utils;
-
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
 @Entity
 public class RoomSensor {
-    @Id
-    private String id;
+    @EmbeddedId
+    private RoomSensorId id;
     private String sensorName;
     private LocalDateTime startingDate;
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "RoomReading",
-            joinColumns = @JoinColumn(name = "SENSOR_ID"))
-    private List<RoomReading> listOfRoomReadings = new ArrayList<>();
-
     @Embedded
-    private SensorType sensorType;
+    private SensorTypeId sensorTypeId;
 
     private String units;
 
     @Embedded
     private SensorState isActive;
 
-    public RoomSensor(String id, String sensorName, LocalDateTime startingDate, SensorType sensorType, String units) {
-        this.id = id;
+    public RoomSensor(String id, String sensorName, LocalDateTime startingDate, SensorTypeId sensorTypeId, String units) {
+        this.id = new RoomSensorId(id);
         this.sensorName = sensorName;
         this.startingDate = startingDate;
-        this.sensorType = sensorType;
+        this.sensorTypeId = sensorTypeId;
         this.units = units;
         this.isActive = new SensorState();
     }
@@ -43,7 +31,7 @@ public class RoomSensor {
         // empty
     }
 
-    public String getId() {
+    public RoomSensorId getId() {
         return id;
     }
 
@@ -51,15 +39,15 @@ public class RoomSensor {
         return startingDate;
     }
 
-    public SensorType getSensorType() {
-        return sensorType;
+    public SensorTypeId getSensorType() {
+        return sensorTypeId;
     }
 
     public boolean isActive() {
         return isActive.isActive();
     }
 
-    public double getMaximumValueOfDay(LocalDate date) {
+    /*public double getMaximumValueOfDay(LocalDate date) {
         if (!getDailyMeasurement(date).isEmpty()) {
             double maximumValueOfDay = getDailyMeasurement(date).get(0).getValue();
             for (RoomReading reading : getDailyMeasurement(date)) {
@@ -94,8 +82,8 @@ public class RoomSensor {
     }
 
     public boolean sensorTypeEqualsSensorType(SensorType type) {
-        String tipoDoSensorPedido = type.getType();
-        return (this.getSensorType().getType().equals(tipoDoSensorPedido));
+        String tipoDoSensorPedido = type.getSensorType();
+        return (this.getSensorType().getSensorType().equals(tipoDoSensorPedido));
     }
 
     public RoomReading getLastMeasurement() {
@@ -145,5 +133,5 @@ public class RoomSensor {
     @Override
     public int hashCode() {
         return Objects.hash(this.id);
-    }
+    }*/
 }

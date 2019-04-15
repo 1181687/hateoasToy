@@ -1,9 +1,5 @@
 package pt.ipp.isep.dei.project.model.house.housegrid;
 
-import pt.ipp.isep.dei.project.model.house.Room;
-import pt.ipp.isep.dei.project.model.house.RoomDTO;
-import pt.ipp.isep.dei.project.model.house.RoomMapper;
-
 public final class HouseGridMapper {
 
     protected HouseGridMapper() {
@@ -14,6 +10,7 @@ public final class HouseGridMapper {
         return new HouseGridDTO();
     }
 
+    /*
     public static HouseGrid mapToEntity(HouseGridDTO gridDTO){
         HouseGrid houseGrid = new HouseGrid(gridDTO.getName());
         if (!gridDTO.getRoomDTOS().isEmpty()) {
@@ -24,6 +21,6 @@ public final class HouseGridMapper {
         }
         return houseGrid;
     }
-
+    */
 }
 

@@ -57,13 +57,13 @@ public class GeographicalAreaTypeList {
      * method that get the list of geo area types
      * @return a list of geo area types.
      */
-    public List<String> getListOfGeoAreaTypes() {
+    /*public List<String> getListOfGeoAreaTypes() {
         List<String> listOfGeoAreaTypes = new ArrayList<>();
         for (GeographicalAreaType object : geoAreaTypeList) {
             listOfGeoAreaTypes.add(object.getStringOfTypeOfGeoArea());
         }
         return listOfGeoAreaTypes;
-    }
+    }*/
 
 }
 

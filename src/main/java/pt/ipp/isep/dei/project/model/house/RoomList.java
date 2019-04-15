@@ -1,6 +1,5 @@
 package pt.ipp.isep.dei.project.model.house;
 
-import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
 
 import javax.persistence.Transient;
@@ -72,13 +71,13 @@ public class RoomList {
      * @param width      given width number to the new room
      * @return the new room
      */
-    public Room newRoom(String id, String description, int housefloor, double height, double length, double width) {
+   /* public Room newRoom(String id, String description, int housefloor, double height, double length, double width) {
         if (isNameExistant(id)) {
             throw new RuntimeException("Name already exists. Please write a new one.");
         }
         Dimension newDimension = new Dimension(height, length, width);
         return new Room(id, description, housefloor, newDimension);
-    }
+    }*/
 
     /**
      * method that displays the List of Rooms
@@ -234,23 +233,23 @@ public class RoomList {
      * @param position position of the room in the room list
      * @return list of devices of a room
      */
-    public String getDeviceListContentByPosition(int position) {
+   /* public String getDeviceListContentByPosition(int position) {
         return listOfRooms.get(position).getDeviceListToString();
-    }
+    }*/
 
     /**
      * Method that checks if the Device List of the room is empty
      * @param position chosen room
      */
-    public boolean isDeviceListEmpty(int position) {
+   /* public boolean isDeviceListEmpty(int position) {
         return listOfRooms.get(position).isDeviceListEmpty();
-    }
+    }*/
 
     /**
      * method that checks if there are no devices in the RoomList
      * @return true if there aren't devices. False if there are devices
      */
-    public boolean isDeviceListOfAllRoomsEmpty() {
+   /* public boolean isDeviceListOfAllRoomsEmpty() {
 
         for (int i = 0; i < listOfRooms.size(); i++) {
             if (!isDeviceListEmpty(i)) {
@@ -258,7 +257,7 @@ public class RoomList {
             }
         }
         return true;
-    }
+    }*/
 
     /*
      */
@@ -288,7 +287,7 @@ public class RoomList {
      * method that gets a list of devices in all rooms of roomlist
      * @return DeviceList
      */
-    public List<Device> getAllDevicesList() {
+   /* public List<Device> getAllDevicesList() {
         List<Device> roomDeviceList;
         List<Device> allDeviceList = new ArrayList<>();
         Device dev;
@@ -301,7 +300,7 @@ public class RoomList {
             }
         }
         return allDeviceList;
-    }
+    }*/
 
     /**
      * get the list of rooms to string.
@@ -321,20 +320,20 @@ public class RoomList {
      * method that get all devices of a type.
      * @return list with a devices type.
      */
-    public List<Device> getAllDevicesOfAType(String type) {
+   /* public List<Device> getAllDevicesOfAType(String type) {
         List<Device> listWithDevicesOfAType = new ArrayList<>();
         for (Room room : this.listOfRooms) {
             listWithDevicesOfAType.addAll(room.getAllDevicesOfAType(type));
         }
         return listWithDevicesOfAType;
-    }
+    }*/
 
     /**
      * Method that returns the content of all the devices present in all the rooms in the list.
      *
      * @return String with the list of devices content.
      */
-    public String getAllDevicesToString() {
+   /* public String getAllDevicesToString() {
         StringBuilder content = new StringBuilder();
         int numberInTheList = 1;
         List<Device> deviceList = getAllDevicesList();
@@ -353,5 +352,5 @@ public class RoomList {
         }
         return null;
     }
-
+*/
 }

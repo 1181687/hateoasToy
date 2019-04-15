@@ -1,14 +1,13 @@
 package pt.ipp.isep.dei.project.model.house.powersource;
 
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
 import java.util.Objects;
 
+@Entity
 public class PowerSourceType {
-
-
-    private Long id;
-
-
-    private String typeOfPowerSource;
+    @EmbeddedId
+    private PowerSourceTypeId typeOfPowerSource;
 
     /**
      * constructor that receives a power source type (String)
@@ -16,7 +15,10 @@ public class PowerSourceType {
      * @param typeOfPowerSource type of Power Source
      */
     public PowerSourceType(String typeOfPowerSource) {
-        this.typeOfPowerSource = typeOfPowerSource;
+        this.typeOfPowerSource = new PowerSourceTypeId(typeOfPowerSource);
+    }
+
+    protected PowerSourceType() {
     }
 
     /**
@@ -24,7 +26,7 @@ public class PowerSourceType {
      * @return typeOfPowerSource
      */
     public String getTypeOfPowerSource() {
-        return typeOfPowerSource;
+        return typeOfPowerSource.getPowerSourceTypeId();
     }
 
     /**
@@ -41,7 +43,6 @@ public class PowerSourceType {
      * @param obj receives an object
      * @return boolean
      */
-
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -52,7 +53,6 @@ public class PowerSourceType {
         }
 
         PowerSourceType type = (PowerSourceType) obj;
-        return this.typeOfPowerSource.equalsIgnoreCase(type.typeOfPowerSource);
-
+        return this.typeOfPowerSource.getPowerSourceTypeId().equalsIgnoreCase(type.typeOfPowerSource.getPowerSourceTypeId());
     }
 }

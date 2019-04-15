@@ -40,7 +40,7 @@ public final class GeographicalAreaMapper {
      * @param geographicalArea GeoArea to be used.
      * @return GeoAreaDTO.
      */
-    public static GeographicalAreaDTO mapToDTOwithSensors(GeographicalArea geographicalArea) {
+  /*  public static GeographicalAreaDTO mapToDTOwithSensors(GeographicalArea geographicalArea) {
         if (Objects.isNull(geographicalArea)) {
             return null;
         }
@@ -56,7 +56,7 @@ public final class GeographicalAreaMapper {
         geoDTO.addAllSensors(geographicalArea.getSensorListInTheGeographicArea().getListOfSensors());
         return geoDTO;
     }
-
+*/
     /**
      * Method that turns a GeoAreaDTO into a GeoArea.
      *
@@ -69,8 +69,9 @@ public final class GeographicalAreaMapper {
         }
         GeographicalAreaType geoType = new GeographicalAreaType(geographicalAreaDTO.getType());
         Location loc = new Location(geographicalAreaDTO.getLatitude(), geographicalAreaDTO.getLongitude(), geographicalAreaDTO.getElevation());
-        AreaShape areaShape = new AreaShape(geographicalAreaDTO.getWidth(), geographicalAreaDTO.getLength(), loc);
-        return new GeographicalArea(geographicalAreaDTO.getId(), geographicalAreaDTO.getDescription(), geoType, loc, areaShape);
+        AreaShape areaShape = new AreaShape(geographicalAreaDTO.getWidth(), geographicalAreaDTO.getLength());
+        GeoAreaId geoAreaId = new GeoAreaId(geographicalAreaDTO.getId(),loc,geoType.getGeoAreaType());
+        return new GeographicalArea(geoAreaId, geographicalAreaDTO.getDescription(), areaShape);
     }
 
 

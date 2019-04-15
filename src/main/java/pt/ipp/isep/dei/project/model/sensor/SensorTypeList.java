@@ -70,7 +70,7 @@ public class SensorTypeList {
     public String getSensorTypeListToString() {
         StringBuilder content = new StringBuilder();
         for (int i = 1; i <= this.listOfSensorTypes.size(); i++) {
-            content.append(i + " - sensor Type: " + this.listOfSensorTypes.get(i - 1).getType());
+            content.append(i + " - sensor Type: " + this.listOfSensorTypes.get(i - 1).getSensorType());
             content.append("\n");
         }
         return content.toString();
