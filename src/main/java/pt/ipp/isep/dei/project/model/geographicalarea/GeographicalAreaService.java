@@ -172,7 +172,7 @@ public class GeographicalAreaService {
      */
     public GeographicalArea newGeographicalArea(String geoID, String geoAreaName, String geoAreaTypeName, Location location, double height, double length) {
         GeographicalAreaType geographicalAreaType = new GeographicalAreaType(geoAreaTypeName);
-        AreaShape rectangleArea = new AreaShape(height, length, location);
+        AreaShape rectangleArea = new AreaShape(height, length);
         return new GeographicalArea(geoID, geoAreaName, geographicalAreaType, location, rectangleArea);
     }
 
