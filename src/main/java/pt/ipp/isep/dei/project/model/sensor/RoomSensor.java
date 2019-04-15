@@ -1,13 +1,7 @@
 package pt.ipp.isep.dei.project.model.sensor;
 
-import pt.ipp.isep.dei.project.utils.Utils;
-
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
 @Entity
 public class RoomSensor {
@@ -37,9 +31,9 @@ public class RoomSensor {
         // empty
     }
 
-    /*public String getId() {
+    public RoomSensorId getId() {
         return id;
-    }*/
+    }
 
     public LocalDateTime getStartingDate() {
         return startingDate;
