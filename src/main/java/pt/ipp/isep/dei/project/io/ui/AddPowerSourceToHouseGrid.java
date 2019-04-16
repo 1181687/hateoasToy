@@ -15,7 +15,7 @@ public class AddPowerSourceToHouseGrid {
 
     private AddPowerSourceToHouseGridController controller;
     private List<HouseGridDTO> houseGridDTOS;
-
+/*
     public AddPowerSourceToHouseGrid(HouseService houseService) {
         this.controller = new AddPowerSourceToHouseGridController(houseService);
     }
@@ -86,6 +86,9 @@ public class AddPowerSourceToHouseGrid {
     private HouseGridDTO getGridDTOByPosition(int position) {
         return this.houseGridDTOS.get(position);
     }
+
+
+ */
 }
 
 

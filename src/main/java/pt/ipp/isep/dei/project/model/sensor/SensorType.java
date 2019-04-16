@@ -25,8 +25,8 @@ public class SensorType {
      *
      * @return sensorType of sensor
      */
-    public String getSensorType() {
-        return sensorType.getSensorTypeId();
+    public SensorTypeId getSensorType() {
+        return sensorType;
     }
 
     /**

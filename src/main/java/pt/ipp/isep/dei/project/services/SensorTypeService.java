@@ -6,6 +6,9 @@ import pt.ipp.isep.dei.project.SensorTypeRepository;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class SensorTypeService {
     @Autowired
@@ -20,6 +23,14 @@ public class SensorTypeService {
             return true;
         }
         return false;
+    }
+
+    public List<SensorType> getSensorTypeList() {
+        List<SensorType> sensorTypeList = new ArrayList<>();
+        for (SensorType sensorType : sensorTypeRepository.findAll()) {
+            sensorTypeList.add(sensorType);
+        }
+        return sensorTypeList;
     }
 
 

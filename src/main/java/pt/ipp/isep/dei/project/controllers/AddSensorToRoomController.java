@@ -2,12 +2,7 @@ package pt.ipp.isep.dei.project.controllers;
 
 public class AddSensorToRoomController {
 
-    /*private SensorTypeList sensorTypeList;
-    private RoomList roomList;
-    private House house;
-    private Room selectedRoom;
-    private SensorType sensorType;
-    private Location locationOfTheHouse;
+    /*private
 
     @Autowired
     private RoomSensorService roomSensorService;

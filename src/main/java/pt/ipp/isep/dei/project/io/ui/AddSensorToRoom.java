@@ -13,13 +13,13 @@ public class AddSensorToRoom {
     this.controller = new AddSensorToRoomController(roomSensorService);
 }
 
-    /*public AddSensorToRoom(House house, RoomList roomList, SensorTypeList listSensorsType) {
+    public AddSensorToRoom(House house, RoomList roomList, SensorTypeList listSensorsType) {
         controller = new AddSensorToRoomController(listSensorsType, roomList, house);
-    }*/
+    }
 
-    /*public void run() {
-
-        Scanner read = new Scanner(System.in);
+    public void run() {
+        controller.
+    }
 
        /* if (controller.isRoomListEmpty()) {
             System.out.println("There are no rooms in the house. Please create a room");
