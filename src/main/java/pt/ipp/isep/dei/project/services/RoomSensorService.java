@@ -6,7 +6,9 @@ import pt.ipp.isep.dei.project.RoomSensorRepository;
 import pt.ipp.isep.dei.project.model.house.RoomId;
 import pt.ipp.isep.dei.project.model.readings.RoomReading;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
+import pt.ipp.isep.dei.project.model.sensor.RoomSensorId;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
+import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +23,20 @@ public class RoomSensorService {
     @Autowired
     private RoomReadingService roomReadingService;
 
+    public boolean isRoomWithoutSensorByType(RoomId roomId, SensorTypeId sensorTypeId){
+        List<RoomSensor> roomSensors = this.roomSensorRepository.findByRoomIdAndSensorType(roomId,sensorTypeId);
+        if(roomSensors.isEmpty()){
+            return true;
+        }
+        return false;
+    }
+
+    public List<RoomSensor> getListOfRoomSensorByRoomByType(RoomId roomId, SensorTypeId sensorTypeId) {
+        return this.roomSensorRepository.findByRoomIdAndSensorType(roomId, sensorTypeId);
+    }
+    public List<RoomReading> getListOfRoomReadingByRoomSensorId (RoomSensorId roomSensorId) {
+        return roomReadingService.getListOfRoomReadingByRoomSensorId(roomSensorId);
+    }
 
 /*
     public boolean getRoomById(Room room){
@@ -100,4 +116,6 @@ public class RoomSensorService {
         }
         return false;
     }
-}*/
+
+ */
+}
