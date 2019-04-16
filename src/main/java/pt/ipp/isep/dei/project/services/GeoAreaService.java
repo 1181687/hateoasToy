@@ -3,9 +3,12 @@ package pt.ipp.isep.dei.project.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.GeoAreaRepository;
+import pt.ipp.isep.dei.project.model.Location;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaId;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
+import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,6 +63,14 @@ public class GeoAreaService {
      */
     public List<SensorType> getSensorTypeList() {
         return geoAreaSensorService.getSensorTypeList();
+    }
+
+    public boolean addSensor(String id, String sensorName, SensorTypeId sensorTypeId, Location location, String units, GeoAreaId geoAreaId) {
+        return geoAreaSensorService.addSensor(id, sensorName, sensorTypeId, location, units, geoAreaId);
+    }
+
+    public boolean isNameExistant(String id) {
+        return geoAreaSensorService.isNameExistant(id);
     }
 
     /**
