@@ -50,6 +50,13 @@ package pt.ipp.isep.dei.project.controllers;
  * <p>
  * Method that checks if a room isn't already in the list of rooms.
  * @return true or false.
+ * <p>
+ * This method create and add a sensor to the list of sensors in the room.
+ * @param name of the new sensor.
+ * @return a new sensor added in the list of sensors in the room.
+ * <p>
+ * Method that checks if a room isn't already in the list of rooms.
+ * @return true or false.
  */
     /*public void getSensorTypeByIndex (int position) {
         sensorType = this.sensorTypeList.getSensorTypeByPosition(position);

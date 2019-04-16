@@ -8,8 +8,6 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaTypeId;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.HouseService;
 import pt.ipp.isep.dei.project.services.*;
@@ -77,11 +75,15 @@ public class Main {
     public CommandLineRunner mainRun() {
 
         return (args) -> {
-            GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("City");
+           /* GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("City");
             GeographicalAreaType geographicalAreaType = new GeographicalAreaType(geoAreaTypeId);
-            geoAreaTypeService.createGeoAreaType(geographicalAreaType);
+            geoAreaTypeService.createGeoAreaType(geoAreaTypeId);
             GetListOfTypeOfGeoArea getListOfTypeOfGeoArea = new GetListOfTypeOfGeoArea(geoAreaService);
-            getListOfTypeOfGeoArea.run();
+            getListOfTypeOfGeoArea.run(); */
+
+            AddNewGeographicalAreaType addNewGeographicalAreaType = new AddNewGeographicalAreaType(geoAreaTypeService);
+            addNewGeographicalAreaType.run();
+
         };
     }
 /*

@@ -120,6 +120,9 @@ public class HouseService {
 
 
    public RoomSensorService getAllSensors() {
+
+
+   /* public RoomSensorService getAllSensors() {
         RoomSensorService roomSensorList = new RoomSensorService();
         for (Room room : roomRepository.findAll()) {
             roomSensorList.getListOfSensors().addAll(room.getSensorList().getListOfSensors());

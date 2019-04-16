@@ -22,7 +22,7 @@ public class AddRoom {
     }
 
     /**
-     * method that creats and adds a new room to the house. First asks the user to give the valid parameters necessary
+     * method that creates and adds a new room to the housegrid. First asks the user to give the valid parameters necessary
      * to create the new room and then invokes the controller methods newroom and addRoom. Finally if the
      * addRoom returns true, a informative message of the sucess of it, is apresented to the user.
      */
@@ -56,7 +56,7 @@ public class AddRoom {
         StringBuilder content = new StringBuilder();
         content.append("The new room ");
         content.append(id);
-        content.append(" was created with sucess!\n");
+        content.append(" was created with success!\n");
         System.out.println(content.toString());
     }
 }

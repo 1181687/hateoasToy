@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.project.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.GeoAreaTypeRepository;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaTypeId;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 
 import java.util.ArrayList;
@@ -88,9 +89,9 @@ public class GeoAreaTypeService {
         }
         return listOfGeoAreaTypes;
     }*/
-    public boolean createGeoAreaType(GeographicalAreaType geographicalAreaType) {
-        if (!geoAreaTypeRepository.existsById(geographicalAreaType.getGeoAreaType())) {
-            geoAreaTypeRepository.save(new GeographicalAreaType(geographicalAreaType.getGeoAreaType()));
+    public boolean createGeoAreaType(String geoAreaTypeId) {
+        if (!geoAreaTypeRepository.existsById(new GeoAreaTypeId(geoAreaTypeId))) {
+            geoAreaTypeRepository.save(new GeographicalAreaType(new GeoAreaTypeId(geoAreaTypeId)));
             return true;
         }
         return false;
