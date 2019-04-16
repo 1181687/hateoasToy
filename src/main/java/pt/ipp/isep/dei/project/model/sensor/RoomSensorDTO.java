@@ -8,10 +8,10 @@ public class RoomSensorDTO {
     private String id;
     private String name;
     private LocalDate startingDate;
-    private String type;
-    private String RoomId;
+    private String typeId;
     private String units;
     private boolean isActive = true;
+    private String RoomId;
 
     public RoomSensorDTO() {
     }
@@ -40,12 +40,12 @@ public class RoomSensorDTO {
         this.startingDate = startingDate;
     }
 
-    public String getSensorType() {
-        return type;
+    public String getSensorTypeId() {
+        return typeId;
     }
 
-    public void setSensorType(String sensorType) {
-        this.type = sensorType;
+    public void setSensorTypeId(String sensorType) {
+        this.typeId = sensorType;
     }
 
     public String getRoomId() {

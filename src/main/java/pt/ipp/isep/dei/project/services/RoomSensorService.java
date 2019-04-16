@@ -10,6 +10,17 @@ import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensorId;
 
 import java.util.List;
+import pt.ipp.isep.dei.project.model.house.RoomId;
+import pt.ipp.isep.dei.project.model.readings.RoomReading;
+import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
+import pt.ipp.isep.dei.project.model.sensor.RoomSensorId;
+import pt.ipp.isep.dei.project.model.sensor.SensorType;
+import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Service
 public class RoomSensorService {
@@ -19,7 +30,21 @@ public class RoomSensorService {
 
     @Autowired
     private RoomReadingService roomReadingService;
+}
 
+
+    public boolean addRoomSensor(RoomSensor sensor){
+        if(this.roomSensorRepository.existsById(sensor.getId())){
+            this.roomSensorRepository.save(sensor);
+            return true;
+        }
+        return false;
+    }
+
+/*
+    public boolean getRoomById(Room room){
+        return roomSensorRepository.
+    }
 
     public RoomSensor getSensorById(RoomSensorId roomSensorId) {
         return roomSensorRepository.findById(roomSensorId).orElse(null);
@@ -55,8 +80,9 @@ public class RoomSensorService {
         }
         return Double.NaN;
     }
-
-    public RoomReading getLatestMeasurementBySensorType(SensorType type) {
+*/
+/*
+    public RoomReading getLatestMeasurementBySensorType(SensorType type, RoomId roomId) {
         List<RoomReading> listOfLatestReadings = getListOfLatestMeasurementsBySensorType(type);
         if (getListOfLatestMeasurementsBySensorType(type).isEmpty()) {
             return null;
@@ -101,3 +127,6 @@ public class RoomSensorService {
         }
         return false;
     }*/
+    }
+    */
+}
