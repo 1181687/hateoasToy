@@ -10,7 +10,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.HouseService;
-import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceTypeList;
 import pt.ipp.isep.dei.project.services.*;
 
 @EnableJpaRepositories(basePackages = "pt.ipp.isep.dei.project")
@@ -39,7 +38,7 @@ public class Main {
     private static final String ENERGY_CONSUMPTION = "Energy Consumption";
 
     private House houseEdificioB;
-    private PowerSourceTypeList powerSourceTypeList;
+    private PowerSourceTypeService powerSourceTypeList;
     //private SensorTypeList sensorTypeList;
     @Autowired
     private GeoAreaTypeService geoAreaTypeService;
@@ -63,6 +62,7 @@ public class Main {
     // HouseGrid Repository Injection
     @Autowired
     private HouseGridService houseGridService;
+
 
 
     public static void main(String[] args) {
@@ -525,7 +525,7 @@ public class Main {
         // POWER SOURCES
         PowerSourceType powerSourceType1 = new PowerSourceType("Battery");
         PowerSourceType powerSourceType2 = new PowerSourceType("Public electric grid");
-        powerSourceTypeList = new PowerSourceTypeList();
+        powerSourceTypeList = new PowerSourceTypeService();
         powerSourceTypeList.addPowerSourceType(powerSourceType1);
         powerSourceTypeList.addPowerSourceType(powerSourceType2);
 
