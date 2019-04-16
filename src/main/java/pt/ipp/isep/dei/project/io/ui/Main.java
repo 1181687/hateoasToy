@@ -84,8 +84,8 @@ public class Main {
             GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("City");
             GeographicalAreaType geographicalAreaType = new GeographicalAreaType(geoAreaTypeId);
             geoAreaTypeService.createGeoAreaType(geographicalAreaType);
-            GetListOfTypeOfGeoArea getListOfTypeOfGeoArea = new GetListOfTypeOfGeoArea(geoAreaService);
-            getListOfTypeOfGeoArea.run();
+            GetListGeoAreaTypes getListGeoAreaTypes = new GetListGeoAreaTypes(geoAreaTypeService);
+            getListGeoAreaTypes.run();
         };
     }
 /*
