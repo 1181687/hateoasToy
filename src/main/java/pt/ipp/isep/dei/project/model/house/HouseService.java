@@ -6,9 +6,11 @@ import pt.ipp.isep.dei.project.model.LocationDTO;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceType;
+import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.services.HouseGridService;
 import pt.ipp.isep.dei.project.services.PowerSourceTypeService;
 import pt.ipp.isep.dei.project.services.RoomService;
+import pt.ipp.isep.dei.project.services.SensorTypeService;
 
 import java.util.List;
 
@@ -24,9 +26,21 @@ public class HouseService {
     @Autowired
     private PowerSourceTypeService sourceTypeService;
 
+    @Autowired
+    private SensorTypeService sensorTypeService;
+
     public void configureHouseLocation(LocationDTO locationDTO) {
 
 
+    }
+
+    /**
+     * method that get a list of sensor types
+     *
+     * @return a list of sensor types.
+     */
+    public List<SensorType> getSensorTypeList() {
+        return sensorTypeService.getSensorTypeList();
     }
 
     public boolean isGridRepositoryEmpty() {
