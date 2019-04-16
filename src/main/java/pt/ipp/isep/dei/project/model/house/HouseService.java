@@ -92,7 +92,7 @@ public class HouseService {
     }
 
   /*  public void updateHouseWithRoomsAndGrids(HouseDTO houseDTO, House house) {
-        Address houseAddress = AddressMapper.mapToEntity(houseDTO.getAddressDTO());
+        Address houseAddress = AddressMapper.mapToGeoAraReadingEntity(houseDTO.getAddressDTO());
         if (Objects.isNull(houseAddress.getLocation())) {
             houseAddress.setLocation(house.getLocation());
         }
@@ -102,12 +102,12 @@ public class HouseService {
         house.setAddress(houseAddress);
 
         for (RoomDTO roomDTO : houseDTO.getRoomDTOList()) {
-            Room room = RoomMapper.mapToEntity(roomDTO);
+            Room room = RoomMapper.mapToGeoAraReadingEntity(roomDTO);
             house.addRoom(room);
             roomRepository.save(room);
         }
         for (HouseGridDTO houseGridDTO : houseDTO.getHouseGridDTOList()) {
-            HouseGrid houseGrid = HouseGridMapper.mapToEntity(houseGridDTO);
+            HouseGrid houseGrid = HouseGridMapper.mapToGeoAraReadingEntity(houseGridDTO);
             house.addGrid(houseGrid);
             houseGridRepository.save(houseGrid);
             for (Room room : houseGrid.getRoomList().getListOfRooms()) {

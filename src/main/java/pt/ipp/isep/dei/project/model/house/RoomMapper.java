@@ -60,7 +60,7 @@ public final class RoomMapper {
      * @param roomDTO to be used.
      * @return room with the required information.
      */
-   /* public static Room mapToEntity(RoomDTO roomDTO) {
+   /* public static Room mapToGeoAraReadingEntity(RoomDTO roomDTO) {
         if (Objects.isNull(roomDTO)) {
             return null;
         }

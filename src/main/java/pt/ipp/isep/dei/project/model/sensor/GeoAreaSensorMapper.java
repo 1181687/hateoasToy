@@ -42,9 +42,9 @@ public final class GeoAreaSensorMapper {
      * @param sensorDTO GeoAreaSensor to be used.
      * @return GeoAreaSensor with the required information.
      */
-   /* public static GeoAreaSensor mapToEntity(GeoAreaSensorDTO sensorDTO) {
+   /* public static GeoAreaSensor mapToGeoAraReadingEntity(GeoAreaSensorDTO sensorDTO) {
         SensorType sensorType = new SensorType(sensorDTO.getSensorType());
-        Location location = LocationMapper.mapToEntity(sensorDTO.getLocation());
+        Location location = LocationMapper.mapToGeoAraReadingEntity(sensorDTO.getLocation());
         GeoAreaSensor newSensor = new GeoAreaSensor(sensorDTO.getId(), sensorDTO.getName(), sensorDTO.getStartingDate().atStartOfDay(), sensorType, location, sensorDTO.getUnits());
         //newSensor.deactivateDevice(sensorDTO.isActive());
         return newSensor;
