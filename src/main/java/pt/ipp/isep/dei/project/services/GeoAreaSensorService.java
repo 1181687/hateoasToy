@@ -45,5 +45,10 @@ public class GeoAreaSensorService {
         return geoAreaSensorRepository.existsById(new GeoAreaSensorId(id));
     }
 
+    public GeoAreaSensor getSensorById(GeoAreaSensorId geoAreaSensorId){
+        return geoAreaSensorRepository.findById(geoAreaSensorId).orElse(null);
+    }
+
+
 
 }

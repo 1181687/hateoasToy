@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.project.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.RoomSensorRepository;
+import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.RoomId;
 import pt.ipp.isep.dei.project.model.readings.RoomReading;
 import pt.ipp.isep.dei.project.model.readings.RoomReadingId;
@@ -10,6 +11,7 @@ import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensorId;
 
 import java.util.List;
+
 import pt.ipp.isep.dei.project.model.house.RoomId;
 import pt.ipp.isep.dei.project.model.readings.RoomReading;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
@@ -30,20 +32,14 @@ public class RoomSensorService {
 
     @Autowired
     private RoomReadingService roomReadingService;
-}
 
 
-    public boolean addRoomSensor(RoomSensor sensor){
-        if(this.roomSensorRepository.existsById(sensor.getId())){
+    public boolean addRoomSensor(RoomSensor sensor) {
+        if (this.roomSensorRepository.existsById(sensor.getId())) {
             this.roomSensorRepository.save(sensor);
             return true;
         }
         return false;
-    }
-
-/*
-    public boolean getRoomById(Room room){
-        return roomSensorRepository.
     }
 
     public RoomSensor getSensorById(RoomSensorId roomSensorId) {
@@ -127,6 +123,3 @@ public class RoomSensorService {
         }
         return false;
     }*/
-    }
-    */
-}

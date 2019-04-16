@@ -3,8 +3,12 @@ package pt.ipp.isep.dei.project.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.GeoAreaRepository;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaId;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaTypeId;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorId;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 
 import java.util.ArrayList;
@@ -78,12 +82,12 @@ public class GeoAreaService {
      * @return a list of geo areas by type
      */
     public List<GeographicalArea> getGeoAreasByType(String type) {
-        List<GeographicalArea> geographicalAreas = new ArrayList<>();
-        for (GeographicalArea geographicalArea : geoAreaRepository.findAll()) {
-            if (geographicalArea.getId().getGeographicalAreaType().getGeoAreaTypeId().equals(type)) {
-                geographicalAreas.add(geographicalArea);
-            }
-        }
-        return geographicalAreas;
+        GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId(type);
+        return geoAreaRepository.findById_GeographicalAreaTypeId(geoAreaTypeId);
     }
+
+    public GeoAreaSensor getSensorById(GeoAreaSensorId geoAreaSensorId){
+        return geoAreaSensorService.getSensorById(geoAreaSensorId);
+    }
+
 }

@@ -10,5 +10,8 @@ public class GeoAreaSensorReadingsService {
     @Autowired
     GeoAreaSensorReadingsRepository geoAreaSensorReadingsRepository;
 
-    
+    public GeoAreaSensorReadingsService() {
+    }
+
+    public boolean addReading(Reading reading)
 }
