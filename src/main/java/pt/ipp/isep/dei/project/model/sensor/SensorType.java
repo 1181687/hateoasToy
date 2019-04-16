@@ -14,10 +14,10 @@ public class SensorType {
     /**
      * Constructor of SensorType
      *
-     * @param tipoSensor Type of sensor
+     * @param sensorTypeId
      */
-    public SensorType(String tipoSensor) {
-        this.sensorType = new SensorTypeId(tipoSensor);
+    public SensorType(SensorTypeId sensorTypeId) {
+        this.sensorType = sensorTypeId;
     }
 
     /**
@@ -25,8 +25,8 @@ public class SensorType {
      *
      * @return sensorType of sensor
      */
-    public String getSensorType() {
-        return sensorType.getSensorTypeId();
+    public SensorTypeId getSensorType() {
+        return sensorType;
     }
 
     /**

@@ -1,7 +1,6 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.AddPowerSourceToHouseGridController;
-import pt.ipp.isep.dei.project.model.house.HouseService;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridDTO;
 
 import java.util.List;
@@ -15,7 +14,7 @@ public class AddPowerSourceToHouseGrid {
 
     private AddPowerSourceToHouseGridController controller;
     private List<HouseGridDTO> houseGridDTOS;
-
+/*
     public AddPowerSourceToHouseGrid(HouseService houseService) {
         this.controller = new AddPowerSourceToHouseGridController(houseService);
     }
@@ -86,6 +85,9 @@ public class AddPowerSourceToHouseGrid {
     private HouseGridDTO getGridDTOByPosition(int position) {
         return this.houseGridDTOS.get(position);
     }
+
+
+ */
 }
 
 
