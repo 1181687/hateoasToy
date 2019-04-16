@@ -13,10 +13,11 @@ public class AddNewGeographicalAreaTypeController {
     /**
      * Creates a new geo area type and adds it to the list of available geo area types.
      *
-     * @param geoAreaType type
+     * @param geoAreaTypeId Id
      * @return true or false
      */
-    public boolean createAndAddGeoAreaType(String geoAreaType) {
-        return geoAreaTypeService.createAndAddGeoAreaType(geoAreaType);
+    public boolean createGeoAreaType(String geoAreaTypeId) {
+        return geoAreaTypeService.createGeoAreaType(geoAreaTypeId);
     }
+
 }

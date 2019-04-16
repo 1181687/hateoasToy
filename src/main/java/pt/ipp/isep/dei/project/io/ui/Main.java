@@ -8,13 +8,10 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaTypeList;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.HouseService;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceTypeList;
-import pt.ipp.isep.dei.project.services.GeoAreaService;
-import pt.ipp.isep.dei.project.services.RoomService;
-import pt.ipp.isep.dei.project.services.SensorTypeService;
+import pt.ipp.isep.dei.project.services.*;
 
 @EnableJpaRepositories(basePackages = "pt.ipp.isep.dei.project")
 @EntityScan(basePackages = "pt.ipp.isep.dei.project")
@@ -44,7 +41,8 @@ public class Main {
     private House houseEdificioB;
     private PowerSourceTypeList powerSourceTypeList;
     //private SensorTypeList sensorTypeList;
-    private GeographicalAreaTypeList geographicalAreaTypeList;
+    @Autowired
+    private GeoAreaTypeService geoAreaTypeService;
 
     //GeographicalArea Repository Injection
     @Autowired
@@ -57,8 +55,14 @@ public class Main {
     //SensorType Repository Injection
     @Autowired
     private SensorTypeService sensorTypeService;
+
+    // Room Repository Injection
     @Autowired
     private RoomService roomService;
+
+    // HouseGrid Repository Injection
+    @Autowired
+    private HouseGridService houseGridService;
 
 
     public static void main(String[] args) {
@@ -71,11 +75,15 @@ public class Main {
     public CommandLineRunner mainRun() {
 
         return (args) -> {
-            //DefineSensorType defineSensorType = new DefineSensorType(sensorTypeService);
-            //defineSensorType.run();
+           /* GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("City");
+            GeographicalAreaType geographicalAreaType = new GeographicalAreaType(geoAreaTypeId);
+            geoAreaTypeService.createGeoAreaType(geoAreaTypeId);
+            GetListOfTypeOfGeoArea getListOfTypeOfGeoArea = new GetListOfTypeOfGeoArea(geoAreaService);
+            getListOfTypeOfGeoArea.run(); */
 
-            AddRoom addRoom= new AddRoom(roomService);
-            addRoom.run();
+            AddNewGeographicalAreaType addNewGeographicalAreaType = new AddNewGeographicalAreaType(geoAreaTypeService);
+            addNewGeographicalAreaType.run();
+
         };
     }
 /*
