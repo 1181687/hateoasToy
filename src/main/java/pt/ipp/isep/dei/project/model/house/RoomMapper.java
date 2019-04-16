@@ -37,23 +37,22 @@ public final class RoomMapper {
      * Method that creates a RoomDTO based on a existing Room.
      *
      * @param room Room to be used.
-     * @return GeoAreaDTO.
+     * @return RoomDTO.
      */
-   /* public static RoomDTO mapToDTO(Room room) {
+    public static RoomDTO mapToDTO(Room room) {
         if (Objects.isNull(room)) {
             return null;
         }
         RoomDTO roomDTO = new RoomDTO();
-
-        roomDTO.setRoomId(room.getRoomId());
+        roomDTO.setId(room.getRoomId());
         roomDTO.setDescription(room.getDescription());
         roomDTO.setHouseFloor(room.getHouseFloor());
         roomDTO.setWidth(room.getDimension().getWidth());
         roomDTO.setLength(room.getDimension().getLength());
         roomDTO.setHeight(room.getDimension().getHeight());
-
+        roomDTO.setGridId(room.getHouseGridId().getId());
         return roomDTO;
-    }*/
+    }
 
     /**
      * Method that turns a RoomDTO into a Room.

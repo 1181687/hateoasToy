@@ -6,7 +6,6 @@ import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaTypeDTO;
 import pt.ipp.isep.dei.project.services.GeoAreaService;
 
 import java.util.List;
-import java.util.Scanner;
 
 public class GetListOfTypeOfGeoArea {
 

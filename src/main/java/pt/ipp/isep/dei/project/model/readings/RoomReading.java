@@ -1,9 +1,7 @@
-package pt.ipp.isep.dei.project.model;
+package pt.ipp.isep.dei.project.model.readings;
 
-import javax.persistence.Embeddable;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import java.time.LocalDateTime;
 
 @Entity
 public class RoomReading {

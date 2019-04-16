@@ -28,12 +28,41 @@ public class HouseService {
 
     }
 
-    public boolean isGridRepositoryEmpty(){
+    public boolean isGridRepositoryEmpty() {
         return this.houseGridService.isGridRepositoryEmpty();
     }
 
     public List<HouseGrid> getAllGrids() {
         return this.houseGridService.getAllGrids();
+    }
+
+    /**
+     * Method that searches for a grid by its Id. If it exists in the repo, the grid is returned, if not, null is returned.
+     *
+     * @param id Id to be used.
+     * @return HouseGrid or null.
+     */
+    public HouseGrid getGridById(HouseGridId id) {
+        return houseGridService.getGridById(id);
+    }
+
+    /**
+     * Method that returns all the rooms in the house repo.
+     *
+     * @return List of Room.
+     */
+    public List<Room> getAllRooms() {
+        return this.roomService.getAllRooms();
+    }
+
+    /**
+     * Method that searches for a room by its Id. If it exists in the repo, the room is returned, if not, null is returned.
+     *
+     * @param id Id to be used.
+     * @return Room or null.
+     */
+    public Room getRoomById(RoomId id) {
+        return roomService.getRoomById(id);
     }
 
     public List<PowerSourceType> getAllPowerSourceTypes(){
@@ -129,6 +158,9 @@ public class HouseService {
 
 
    public RoomSensorService getAllSensors() {
+
+
+   /* public RoomSensorService getAllSensors() {
         RoomSensorService roomSensorList = new RoomSensorService();
         for (Room room : roomRepository.findAll()) {
             roomSensorList.getListOfSensors().addAll(room.getSensorList().getListOfSensors());

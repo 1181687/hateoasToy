@@ -1,21 +1,21 @@
 package pt.ipp.isep.dei.project.model.house;
 
-import pt.ipp.isep.dei.project.model.GeoAreaReading;
 import pt.ipp.isep.dei.project.model.Measurable;
-import pt.ipp.isep.dei.project.model.RoomReading;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
-import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
-import pt.ipp.isep.dei.project.model.sensor.SensorType;
 
-import javax.persistence.*;
-import java.time.LocalDate;
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 import static java.util.Objects.isNull;
 
 @Entity
-public class Room implements Measurable {
+public class Room /*implements Measurable*/ {
 
     //@Id
     @Column(name = "RoomID", insertable = false, updatable = false)
@@ -30,23 +30,23 @@ public class Room implements Measurable {
     @Embedded
     private Dimension dimension;
 
-  //  @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-   // @JoinColumn
-   // private RoomSensorService sensorList;
+    //  @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    // @JoinColumn
+    // private RoomSensorService sensorList;
 
-  //  @Transient
-  //  private List<Device> deviceList;
+    //  @Transient
+    //  private List<Device> deviceList;
 
     /**
      * constructor that receives name, houseFloor, dimension
      * throw an exception if any of the parameters is invalid.
      * Invalid parameters if Dimension is null or name is null or empty
-     *
+     * <p>
      * //@param roomId
      * //@param houseFloor
      * //@param dimension
      */
-   public Room(String roomId, String description, int houseFloor, Dimension dimension) {
+    public Room(String roomId, String description, int houseFloor, Dimension dimension) {
         validateName(roomId);
         validateDimensions(dimension);
         this.roomId = new RoomId(roomId.trim());
@@ -86,6 +86,24 @@ public class Room implements Measurable {
         if (isNull(dimension)) {
             throw new RuntimeException("Dimension should not be null");
         }
+    }
+
+    /**
+     * Get method.
+     *
+     * @return String with the description.
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * Get method.
+     *
+     * @return HouseGridId.
+     */
+    public HouseGridId getHouseGridId() {
+        return houseGridId;
     }
 
     /**
@@ -157,6 +175,7 @@ public class Room implements Measurable {
         return content.toString();
     }
 
+    /*
     @Override
     public double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
         return 0;
@@ -181,6 +200,7 @@ public class Room implements Measurable {
     public double getNominalPower() {
         return 0;
     }
+    */
 
     /**
      * method that creates the same hashcode to rooms with the same attribute name.
@@ -226,9 +246,9 @@ public class Room implements Measurable {
 
 
 /**
-     * This method gets the sensor list.
-     *
-     * @return the list of sensors.
+ * This method gets the sensor list.
+ *
+ * @return the list of sensors.
  */
 /*
 public RoomSensorService getSensorList() {
@@ -237,9 +257,9 @@ public RoomSensorService getSensorList() {
 */
 
 /**
-     * @param type of sensor (temperature)
-     * @param date any given day
-     * @return maximum temperature
+ * @param type of sensor (temperature)
+ * @param date any given day
+ * @return maximum temperature
  */
 
   /*  public double getMaximumMeasurementInGivenDay(SensorType type, LocalDate date) {
@@ -248,10 +268,10 @@ public RoomSensorService getSensorList() {
 
 
 /**
-     * Method that gets the latest measurement by type of sensor
-     *
-     * @param type type of sensor
-     * @return latest measurement by sensor type
+ * Method that gets the latest measurement by type of sensor
+ *
+ * @param type type of sensor
+ * @return latest measurement by sensor type
  */
 
 /*public RoomReading getLatestMeasurementBySensorType(SensorType type) {
@@ -279,9 +299,9 @@ public RoomSensorService getSensorList() {
     /*
      */
 /**
-     * method that displays the content of the list of sesnsors
-     *
-     * @return sensor list content
+ * method that displays the content of the list of sesnsors
+ *
+ * @return sensor list content
  *//*
 
     public String getSensorListContent() {
@@ -290,7 +310,7 @@ public RoomSensorService getSensorList() {
 
     */
 /**
-     * method that check if the sensor list of the room is empty
+ * method that check if the sensor list of the room is empty
  *//*
 
     public boolean isSensorListEmpty() {
@@ -345,12 +365,14 @@ public RoomSensorService getSensorList() {
      *
      * @return String
      */
+    /*
     @Override
     public String getNameToString() {
         StringBuilder name = new StringBuilder();
         name.append("Room: " + this.roomId + "\n");
         return name.toString();
     }
+    */
 
     /**
      * method that get the enery consumption of the room in an interval

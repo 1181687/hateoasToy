@@ -3,23 +3,18 @@ package pt.ipp.isep.dei.project.utils;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import pt.ipp.isep.dei.project.model.LocationDTO;
 import pt.ipp.isep.dei.project.model.ProjectFileReader;
-import pt.ipp.isep.dei.project.model.ReadingDTO;
-import pt.ipp.isep.dei.project.model.ReadingMapper;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapper;
-import pt.ipp.isep.dei.project.model.house.*;
-import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridDTO;
-import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridMapper;
+import pt.ipp.isep.dei.project.model.readings.ReadingDTO;
+import pt.ipp.isep.dei.project.model.readings.ReadingMapper;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorDTO;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensorDTO;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensorMapper;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -151,7 +146,7 @@ public class JSONReaderGeoAreasSensors implements ProjectFileReader {
     }*/
 
 
-    private static RoomDTO getRoomDtoById(List<RoomDTO> listRoomDto, String id) {
+/*    private static RoomDTO getRoomDtoById(List<RoomDTO> listRoomDto, String id) {
         for (RoomDTO room : listRoomDto) {
             if (room.getRoomId().equals(id)) {
                 return room;
@@ -159,7 +154,7 @@ public class JSONReaderGeoAreasSensors implements ProjectFileReader {
         }
 
         return null;
-    }
+    }*/
 
     private static List<Object> parseJsonObjects(JsonElement areaGeo) throws NumberFormatException, DateTimeParseException, NullPointerException {
         List<Object> areaGeolist = new ArrayList<>();

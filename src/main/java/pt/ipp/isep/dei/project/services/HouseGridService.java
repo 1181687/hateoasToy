@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.HouseGridRepository;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,6 +44,16 @@ public class HouseGridService {
         List<HouseGrid> grids = new ArrayList<>();
         gridIterables.forEach(grids::add);
         return grids;
+    }
+
+    /**
+     * Method that searches for a grid by its Id. If it exists in the repo, the grid is returned, if not, null is returned.
+     *
+     * @param id Id to be used.
+     * @return HouseGrid or null.
+     */
+    public HouseGrid getGridById(HouseGridId id) {
+        return houseGridRepository.findById(id).orElse(null);
     }
 
     public boolean newPowerSource(String powerSourceId, String typeId, String gridId){

@@ -8,16 +8,8 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaTypeId;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
-import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
-import pt.ipp.isep.dei.project.services.GeoAreaTypeService;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.HouseService;
-import pt.ipp.isep.dei.project.services.GeoAreaService;
-import pt.ipp.isep.dei.project.services.HouseGridService;
-import pt.ipp.isep.dei.project.services.RoomService;
-import pt.ipp.isep.dei.project.services.SensorTypeService;
 import pt.ipp.isep.dei.project.services.*;
 
 @EnableJpaRepositories(basePackages = "pt.ipp.isep.dei.project")
@@ -86,16 +78,12 @@ public class Main {
         return (args) -> {
            /* GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("City");
             GeographicalAreaType geographicalAreaType = new GeographicalAreaType(geoAreaTypeId);
-            geoAreaTypeService.createGeoAreaType(geographicalAreaType);
+            geoAreaTypeService.createGeoAreaType(geoAreaTypeId);
             GetListOfTypeOfGeoArea getListOfTypeOfGeoArea = new GetListOfTypeOfGeoArea(geoAreaService);
-            getListOfTypeOfGeoArea.run();*/
+            getListOfTypeOfGeoArea.run(); */
 
-           this.powerSourceTypeService.newPowerSourceType("Battery");
-           this.powerSourceTypeService.newPowerSourceType("badabadabada");
-           this.houseGridService.createHouseGrid(new HouseGridId("main"));
-
-           AddPowerSourceToHouseGrid ui = new AddPowerSourceToHouseGrid(this.houseService);
-           ui.run();
+            AddNewGeographicalAreaType addNewGeographicalAreaType = new AddNewGeographicalAreaType(geoAreaTypeService);
+            addNewGeographicalAreaType.run();
 
         };
     }
