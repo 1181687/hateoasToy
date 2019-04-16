@@ -2,10 +2,7 @@ package pt.ipp.isep.dei.project.services;
 
 import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.PowerSourceRepository;
-import pt.ipp.isep.dei.project.model.house.powersource.PowerSource;
 
-import java.util.ArrayList;
-import java.util.List;
 @Service
 public class PowerSourceService {
 
@@ -16,7 +13,7 @@ public class PowerSourceService {
      * Power Source List constructor
      */
     public PowerSourceService() {
-       //empty
+        //empty
     }
 
     /**

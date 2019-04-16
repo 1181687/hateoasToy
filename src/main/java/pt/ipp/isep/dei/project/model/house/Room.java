@@ -1,16 +1,17 @@
 package pt.ipp.isep.dei.project.model.house;
 
-import pt.ipp.isep.dei.project.model.GeoAreaReading;
 import pt.ipp.isep.dei.project.model.Measurable;
-import pt.ipp.isep.dei.project.model.RoomReading;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
-import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
-import pt.ipp.isep.dei.project.model.sensor.SensorType;
+import pt.ipp.isep.dei.project.model.readings.GeoAreaReading;
 
-import javax.persistence.*;
-import java.time.LocalDate;
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 import static java.util.Objects.isNull;
 

@@ -1,11 +1,8 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.AddPowerSourceToHouseGridController;
-import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.HouseService;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridDTO;
-import pt.ipp.isep.dei.project.services.HouseGridService;
-import pt.ipp.isep.dei.project.services.PowerSourceTypeService;
 
 import java.util.List;
 
@@ -31,7 +28,7 @@ public class AddPowerSourceToHouseGrid {
             String label1 = "Please select the grid to which you want to add the Power Source: \n" + getGridListToString();
             int positionOfHouseGrid = InputValidator.getIntRange(label1, 1, getGridListSize());
 
-            String gridId = getGridDTOByPosition(positionOfHouseGrid-1).getId();
+            String gridId = getGridDTOByPosition(positionOfHouseGrid - 1).getId();
 
             controller.getHouseGridFromListByPosition(positionOfHouseGrid);
 
@@ -66,7 +63,7 @@ public class AddPowerSourceToHouseGrid {
         }
     }
 
-    private String getGridListToString(){
+    private String getGridListToString() {
         this.houseGridDTOS = this.controller.getGridList();
         int number = 1;
 
@@ -82,11 +79,11 @@ public class AddPowerSourceToHouseGrid {
         return content.toString();
     }
 
-    private int getGridListSize(){
+    private int getGridListSize() {
         return this.houseGridDTOS.size();
     }
 
-    private HouseGridDTO getGridDTOByPosition(int position){
+    private HouseGridDTO getGridDTOByPosition(int position) {
         return this.houseGridDTOS.get(position);
     }
 

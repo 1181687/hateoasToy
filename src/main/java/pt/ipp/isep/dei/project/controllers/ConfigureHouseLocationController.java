@@ -10,7 +10,6 @@ public class ConfigureHouseLocationController {
         this.houseService = houseService;
     }
 
-
 }
 
 

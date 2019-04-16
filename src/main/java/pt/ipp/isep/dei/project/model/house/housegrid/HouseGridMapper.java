@@ -10,7 +10,7 @@ public final class HouseGridMapper {
         return new HouseGridDTO();
     }
 
-    public static HouseGridDTO mapToDTO(HouseGrid grid){
+    public static HouseGridDTO mapToDTO(HouseGrid grid) {
         HouseGridDTO gridDTO = new HouseGridDTO();
         gridDTO.setId(grid.getHouseGridId().getId());
         return gridDTO;

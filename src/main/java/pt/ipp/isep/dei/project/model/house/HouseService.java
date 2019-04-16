@@ -2,11 +2,8 @@ package pt.ipp.isep.dei.project.model.house;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pt.ipp.isep.dei.project.HouseGridRepository;
-import pt.ipp.isep.dei.project.RoomRepository;
 import pt.ipp.isep.dei.project.model.LocationDTO;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
-import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 import pt.ipp.isep.dei.project.services.HouseGridService;
 import pt.ipp.isep.dei.project.services.PowerSourceTypeService;
 import pt.ipp.isep.dei.project.services.RoomService;
@@ -30,7 +27,7 @@ public class HouseService {
 
     }
 
-    public boolean isGridRepositoryEmpty(){
+    public boolean isGridRepositoryEmpty() {
         return this.houseGridService.isGridRepositoryEmpty();
     }
 
@@ -123,6 +120,9 @@ public class HouseService {
 
 
    public RoomSensorService getAllSensors() {
+
+
+   /* public RoomSensorService getAllSensors() {
         RoomSensorService roomSensorList = new RoomSensorService();
         for (Room room : roomRepository.findAll()) {
             roomSensorList.getListOfSensors().addAll(room.getSensorList().getListOfSensors());

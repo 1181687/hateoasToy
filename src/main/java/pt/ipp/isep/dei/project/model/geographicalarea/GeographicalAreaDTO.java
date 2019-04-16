@@ -1,12 +1,5 @@
 package pt.ipp.isep.dei.project.model.geographicalarea;
 
-import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
-import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorDTO;
-import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorMapper;
-
-import java.util.ArrayList;
-import java.util.List;
-
 public class GeographicalAreaDTO {
 
     private String id;

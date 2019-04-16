@@ -1,19 +1,27 @@
 package pt.ipp.isep.dei.project.controllers;
 
-/*public class AddSensorToRoomController {
+public class AddSensorToRoomController {
 
-    private SensorTypeList sensorTypeList;
+    /*private SensorTypeList sensorTypeList;
     private RoomList roomList;
     private House house;
     private Room selectedRoom;
     private SensorType sensorType;
     private Location locationOfTheHouse;
 
-    public AddSensorToRoomController(SensorTypeList sensorTypeList, RoomList roomList, House house) {
+    @Autowired
+    private RoomSensorService roomSensorService;
+
+    public AddSensorToRoomController (RoomSensorService roomSensorService){
+    this.roomSensorService = roomSensorService;}
+}
+
+
+    /*public AddSensorToRoomController(SensorTypeList sensorTypeList, RoomList roomList, House house) {
         this.sensorTypeList = sensorTypeList;
         this.roomList = roomList;
         this.house = house;
-    }
+    }*/
 
     /**
      * This method display the rooms of the housegrid
@@ -43,6 +51,13 @@ package pt.ipp.isep.dei.project.controllers;
  * This method get de position of the sensor type in the list of sensors type.
  *
  * @param position of sensors type in the sensors type list.
+ * <p>
+ * This method create and add a sensor to the list of sensors in the room.
+ * @param name of the new sensor.
+ * @return a new sensor added in the list of sensors in the room.
+ * <p>
+ * Method that checks if a room isn't already in the list of rooms.
+ * @return true or false.
  * <p>
  * This method create and add a sensor to the list of sensors in the room.
  * @param name of the new sensor.
@@ -86,5 +101,5 @@ package pt.ipp.isep.dei.project.controllers;
      */
     /*public boolean isSensorTypeListEmpty() {
         return sensorTypeList.isEmpty();
-    }
-}*/
+    }*/
+}
