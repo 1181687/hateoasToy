@@ -44,12 +44,8 @@ public class AddPowerSourceToHouseGridController {
         return gridDTOS;
     }
 
-/*
-    public void getHouseGridById(String id) {
-        HouseGridId gridId = new HouseGridId(id);
-        this.houseService
-    }
 
+/*
     *//**
      * Method that creates a powersource and adds it to the PowerSourceService in the selected housegrid.
      * @param name of the Power Source.
