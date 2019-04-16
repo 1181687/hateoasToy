@@ -45,4 +45,8 @@ public class HouseGridService {
         return grids;
     }
 
+    public boolean newPowerSource(String powerSourceId, String typeId, String gridId){
+        return this.powerSourceService.newPowerSource(powerSourceId,typeId,gridId);
+    }
+
 }

@@ -10,6 +10,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaTypeId;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
+import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 import pt.ipp.isep.dei.project.services.GeoAreaTypeService;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.HouseService;
@@ -45,7 +46,8 @@ public class Main {
     private static final String ENERGY_CONSUMPTION = "Energy Consumption";
 
     private House houseEdificioB;
-    private PowerSourceTypeService powerSourceTypeList;
+    @Autowired
+    private PowerSourceTypeService powerSourceTypeService;
     //private SensorTypeList sensorTypeList;
     @Autowired
     private GeoAreaTypeService geoAreaTypeService;
@@ -82,11 +84,19 @@ public class Main {
     public CommandLineRunner mainRun() {
 
         return (args) -> {
-            GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("City");
+           /* GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("City");
             GeographicalAreaType geographicalAreaType = new GeographicalAreaType(geoAreaTypeId);
             geoAreaTypeService.createGeoAreaType(geographicalAreaType);
             GetListOfTypeOfGeoArea getListOfTypeOfGeoArea = new GetListOfTypeOfGeoArea(geoAreaService);
-            getListOfTypeOfGeoArea.run();
+            getListOfTypeOfGeoArea.run();*/
+
+           this.powerSourceTypeService.newPowerSourceType("Battery");
+           this.powerSourceTypeService.newPowerSourceType("badabadabada");
+           this.houseGridService.createHouseGrid(new HouseGridId("main"));
+
+           AddPowerSourceToHouseGrid ui = new AddPowerSourceToHouseGrid(this.houseService);
+           ui.run();
+
         };
     }
 /*

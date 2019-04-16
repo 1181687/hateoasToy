@@ -6,7 +6,7 @@ public final class PowerSourceTypeMapper {
         //empty
     }
 
-    public PowerSourceTypeDTO mapToDTO(PowerSourceType powerSourceType){
+    public static PowerSourceTypeDTO mapToDTO(PowerSourceType powerSourceType){
         PowerSourceTypeDTO dto = new PowerSourceTypeDTO();
         dto.setType(powerSourceType.getTypeOfPowerSource());
         return dto;
