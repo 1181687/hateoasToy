@@ -2,7 +2,8 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.AddPowerSourceToHouseGridController;
 import pt.ipp.isep.dei.project.model.house.House;
-import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceTypeList;
+import pt.ipp.isep.dei.project.services.HouseGridService;
+import pt.ipp.isep.dei.project.services.PowerSourceTypeService;
 
 /**
  * US135 As an Administrator, I want to add a power source to a housegrid grid, so that the
@@ -13,16 +14,16 @@ public class AddPowerSourceToHouseGrid {
 
     private AddPowerSourceToHouseGridController controller;
 
-    public AddPowerSourceToHouseGrid(House house, PowerSourceTypeList powerSourceTypeList) {
-        this.controller = new AddPowerSourceToHouseGridController(house, powerSourceTypeList);
+    public AddPowerSourceToHouseGrid(HouseGridService houseGridService, PowerSourceTypeService powerSourceTypeService) {
+        this.controller = new AddPowerSourceToHouseGridController( powerSourceTypeService,houseGridService);
     }
 
     public void run() {
-        if (controller.isHouseGridListEmpty()) {
-            System.out.println("There are no housegrid grids in your housegrid. Please insert a new housegrid grid." + "\n");
+        if (controller.isHouseGridRepositoryEmpty()) {
+            System.out.println("There are no grids in your house. Please insert a new grid. \n");
         } else {
 
-            String label1 = "Please select the House Grid you want to add the Power Source: \n" + controller.getHouseGridListToString();
+            String label1 = "Please select the grid to which you want to add the Power Source: \n" + controller.getHouseGridListToString();
             int positionOfHouseGrid = InputValidator.getIntRange(label1, 1, controller.getHouseGridListSize()) - 1;
             controller.getHouseGridFromListByPosition(positionOfHouseGrid);
 

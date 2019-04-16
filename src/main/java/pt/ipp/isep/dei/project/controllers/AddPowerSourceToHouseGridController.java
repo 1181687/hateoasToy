@@ -2,25 +2,25 @@ package pt.ipp.isep.dei.project.controllers;
 
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
+import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridDTO;
+import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridMapper;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSource;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceType;
-import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceTypeList;
+import pt.ipp.isep.dei.project.services.HouseGridService;
+import pt.ipp.isep.dei.project.services.PowerSourceTypeService;
+
+import java.util.List;
 
 public class AddPowerSourceToHouseGridController {
 
-    private House house;
-    private PowerSourceTypeList powerSourceTypeList;
-    private HouseGrid selectedHouseGrid;
-    private PowerSourceType selectedPowerSourceType;
+    private PowerSourceTypeService powerSourceTypeService;
+    private HouseGridService houseGridService;
 
-    /**
-     * this is the construtor of the controller, with the housegrid and the PowerSourceTypeList
-     * @param house
-     * @param powerSourceTypeList
-     */
-    public AddPowerSourceToHouseGridController(House house, PowerSourceTypeList powerSourceTypeList) {
-        this.house = house;
-        this.powerSourceTypeList = powerSourceTypeList;
+
+    public AddPowerSourceToHouseGridController(PowerSourceTypeService powerSourceTypeService, HouseGridService houseGridService) {
+
+        this.powerSourceTypeService = powerSourceTypeService;
+        this.houseGridService=houseGridService;
     }
 
     /**
@@ -28,8 +28,8 @@ public class AddPowerSourceToHouseGridController {
      *
      * @return boolean
      */
-    public boolean isHouseGridListEmpty() {
-        return house.isHouseGridListEmpty();
+    public boolean isHouseGridRepositoryEmpty() {
+        return this.houseGridService.isGridRepositoryEmpty();
     }
 
 
@@ -38,8 +38,11 @@ public class AddPowerSourceToHouseGridController {
      *
      * @return String
      */
-    public String getHouseGridListToString() {
-        return house.getHouseGridListToString();
+    public List<HouseGridDTO> getGridList() {
+        List<HouseGrid> grids = this.houseGridService.getAllGrids();
+        for (HouseGrid grid : grids) {
+            HouseGridMapper
+        }
     }
 
     /**
@@ -61,7 +64,7 @@ public class AddPowerSourceToHouseGridController {
     }
 
     /**
-     * Method that creates a powersource and adds it to the PowerSourceList in the selected housegrid.
+     * Method that creates a powersource and adds it to the PowerSourceService in the selected housegrid.
      * @param name of the Power Source.
      * @return true if the Power Source is created and added with success to the housegrid or false if the powersource is not added
      */
@@ -76,25 +79,25 @@ public class AddPowerSourceToHouseGridController {
      * @return String
      */
     public String getPowerSourceTypeListToString() {
-        return powerSourceTypeList.getPowerSourceTypeListToString();
+        return powerSourceTypeService.getPowerSourceTypeListToString();
     }
 
     /**
-     * Returns the number of elements contained in the PowerSourceTypeList.
+     * Returns the number of elements contained in the PowerSourceTypeService.
      *
      * @return
      */
     public int getPowerSourceTypeListSize() {
-        return powerSourceTypeList.getSize();
+        return powerSourceTypeService.getSize();
     }
 
     /**
-     * Method that, given a position, retrieves a PowerSourceType from a PowerSourceTypeList.
+     * Method that, given a position, retrieves a PowerSourceType from a PowerSourceTypeService.
      *
      * @param position
      */
     public void getPowerSourceTypeByPosition(int position) {
-        this.selectedPowerSourceType = this.powerSourceTypeList.getPowerSourceTypeFromASpecificPosition(position);
+        this.selectedPowerSourceType = this.powerSourceTypeService.getPowerSourceTypeFromASpecificPosition(position);
     }
 
     /**
@@ -106,7 +109,7 @@ public class AddPowerSourceToHouseGridController {
     }
 
     /**
-     * Returns a list of PowerSources that have been added to the housegrid's PowerSourceList.
+     * Returns a list of PowerSources that have been added to the housegrid's PowerSourceService.
      * @return
      */
     public String listPowerSourcesConnectedToGrid(){

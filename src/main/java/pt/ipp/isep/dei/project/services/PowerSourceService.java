@@ -1,17 +1,22 @@
-package pt.ipp.isep.dei.project.model.house.powersource;
+package pt.ipp.isep.dei.project.services;
+
+import org.springframework.stereotype.Service;
+import pt.ipp.isep.dei.project.PowerSourceRepository;
+import pt.ipp.isep.dei.project.model.house.powersource.PowerSource;
 
 import java.util.ArrayList;
 import java.util.List;
+@Service
+public class PowerSourceService {
 
-public class PowerSourceList {
-    private List<PowerSource> listOfPowerSources;
+    private PowerSourceRepository powerSourceRepository;
 
 
     /**
      * Power Source List constructor
      */
-    public PowerSourceList() {
-        this.listOfPowerSources = new ArrayList<>();
+    public PowerSourceService() {
+       //empty
     }
 
     /**

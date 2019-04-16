@@ -1,14 +1,22 @@
 package pt.ipp.isep.dei.project.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.HouseGridRepository;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 
+import java.util.ArrayList;
+import java.util.List;
+
+@Service
 public class HouseGridService {
 
     @Autowired
     private HouseGridRepository houseGridRepository;
+
+    @Autowired
+    private PowerSourceService powerSourceService;
 
     /**
      * Method that creates a house grid and adds it to the repo.
@@ -25,5 +33,16 @@ public class HouseGridService {
             return true;
         }
         return false;
+    }
+
+    public boolean isGridRepositoryEmpty() {
+        return this.houseGridRepository.count() == 0;
+    }
+
+    public List<HouseGrid> getAllGrids() {
+        Iterable<HouseGrid> gridIterables = this.houseGridRepository.findAll();
+        List<HouseGrid> grids = new ArrayList<>();
+        gridIterables.forEach(grids::add);
+        return grids;
     }
 }
