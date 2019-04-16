@@ -51,6 +51,7 @@ public class GeoAreaService {
         return this.geoAreaRepository.count() == 0;
     }
 
+
     /**
      * method that gel a list of all geo area types
      *
