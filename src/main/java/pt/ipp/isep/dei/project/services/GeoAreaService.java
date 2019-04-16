@@ -101,7 +101,7 @@ public class GeoAreaService {
      *
      * @return a boolean
      */
-    public boolean isGridRepositoryEmpty() {
+    public boolean isGeoAreaRepositoryEmpty() {
         return this.geoAreaRepository.count() == 0;
     }
 
@@ -113,6 +113,15 @@ public class GeoAreaService {
     public List<SensorType> getSensorTypeList() {
         return geoAreaSensorService.getSensorTypeList();
     }
+
+    /*public boolean addSensorDTO(String id, String sensorName, String sensorTypeId, LocationDTO location, String units) {
+        return geoAreaSensorService.addSensorDTO(id, sensorName, sensorTypeId, location, units);
+    }*/
+
+    public boolean isNameExistant(String id) {
+        return geoAreaSensorService.isNameExistant(id);
+    }
+
 
     /**
      * method that gel a list of all geo area types
