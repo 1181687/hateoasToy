@@ -2,25 +2,38 @@ package pt.ipp.isep.dei.project.model.house;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pt.ipp.isep.dei.project.HouseGridRepository;
-import pt.ipp.isep.dei.project.RoomRepository;
 import pt.ipp.isep.dei.project.model.LocationDTO;
-import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
+import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
+import pt.ipp.isep.dei.project.services.HouseGridService;
+import pt.ipp.isep.dei.project.services.PowerSourceTypeService;
+import pt.ipp.isep.dei.project.services.RoomService;
+
+import java.util.List;
 
 @Service
 public class HouseService {
 
     @Autowired
-    private RoomRepository roomRepository;
+    private RoomService roomService;
 
     @Autowired
-    private HouseGridRepository houseGridRepository;
+    private HouseGridService houseGridService;
+
+    @Autowired
+    private PowerSourceTypeService sourceTypeService;
 
     public void configureHouseLocation(LocationDTO locationDTO) {
 
 
     }
 
+    public boolean isGridRepositoryEmpty() {
+        return this.houseGridService.isGridRepositoryEmpty();
+    }
+
+    public List<HouseGrid> getAllGrids() {
+        return this.houseGridService.getAllGrids();
+    }
 
   /*  public void updateHouseWithRoomsAndGrids(HouseDTO houseDTO, House house) {
         Address houseAddress = AddressMapper.mapToEntity(houseDTO.getAddressDTO());
@@ -47,7 +60,7 @@ public class HouseService {
 
         }
 
-    }*/
+    }
 
     public boolean addRoomToHouseGrid(HouseGridId houseGridId, Room room) {
         if (houseGridRepository.existsById(houseGridId)) {
@@ -58,7 +71,7 @@ public class HouseService {
         return false;
 
     }
-
+*/
   /* public boolean addSensorToRoom(RoomSensor sensor, RoomId roomId){
         Room room = getRoomById(roomId);
         if(Objects.nonNull(room)){
@@ -70,7 +83,7 @@ public class HouseService {
         return false;
     }*/
 
-    public Room getRoomById(RoomId roomId) {
+/*    public Room getRoomById(RoomId roomId) {
         if (this.roomRepository.findById(roomId).isPresent()) {
             return this.roomRepository.findById(roomId).get();
         }
@@ -85,7 +98,7 @@ public class HouseService {
         return houseGridRepository.existsById(gridId);
     }
 
-   /* public Room getRoomWithRightSensor(String sensorId) {
+   public Room getRoomWithRightSensor(String sensorId) {
         for (Room room : roomRepository.findAll()) {
             if (Objects.nonNull(room.getSensorById(sensorId))) {
                 return room;
@@ -99,11 +112,14 @@ public class HouseService {
             return getRoomWithRightSensor(sensorId).getSensorById(sensorId);
         }
         return null;
-    }*/
+    }
 
     public void updateRepository(Room room) {
         roomRepository.save(room);
     }
+
+
+   public RoomSensorService getAllSensors() {
 
 
    /* public RoomSensorService getAllSensors() {
