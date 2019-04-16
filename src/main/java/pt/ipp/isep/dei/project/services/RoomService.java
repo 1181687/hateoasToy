@@ -7,6 +7,7 @@ import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.RoomId;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
+import pt.ipp.isep.dei.project.model.sensor.SensorType;
 
 import javax.persistence.Transient;
 import java.util.ArrayList;
@@ -17,6 +18,9 @@ import java.util.Objects;
 public class RoomService {
     @Autowired
     RoomRepository roomRepository;
+
+    @Autowired
+    private RoomSensorService roomSensorService;
 
     public boolean addRoom(String id, String description, int housefloor, double height, double length, double width) {
         Dimension dimensions = new Dimension(height, length, width);
@@ -34,7 +38,18 @@ public class RoomService {
         }
         return false;
     }
+/*
+    public Room getRoomSensorByType (SensorType sensorType, RoomId roomId){
+        Room room = roomRepository.findById(roomId).orElse(null);
+        for (RoomSensor sensor:
+             ) {
 
+            roomRepository
+
+        }
+
+    }
+*/
 
     /**
      * Method that gets the room in a specific position in the list.
