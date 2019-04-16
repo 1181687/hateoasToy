@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.project.controllers;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapper;
+import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.services.GeoAreaService;
 
 import java.util.ArrayList;
@@ -31,6 +32,9 @@ public class AddSensorToGeoAreaController {
         return geographicalAreaDTOList;
     }
 
+    public List<SensorType> getSensorTypeList() {
+        return geoAreaService.getSensorTypeList();
+    }
 
 
 

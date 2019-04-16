@@ -7,7 +7,6 @@ import pt.ipp.isep.dei.project.model.LocationDTO;
 import pt.ipp.isep.dei.project.model.ProjectFileReader;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapper;
-import pt.ipp.isep.dei.project.model.house.RoomDTO;
 import pt.ipp.isep.dei.project.model.readings.ReadingDTO;
 import pt.ipp.isep.dei.project.model.readings.ReadingMapper;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorDTO;
@@ -147,7 +146,7 @@ public class JSONReaderGeoAreasSensors implements ProjectFileReader {
     }*/
 
 
-    private static RoomDTO getRoomDtoById(List<RoomDTO> listRoomDto, String id) {
+/*    private static RoomDTO getRoomDtoById(List<RoomDTO> listRoomDto, String id) {
         for (RoomDTO room : listRoomDto) {
             if (room.getRoomId().equals(id)) {
                 return room;
@@ -155,7 +154,7 @@ public class JSONReaderGeoAreasSensors implements ProjectFileReader {
         }
 
         return null;
-    }
+    }*/
 
     private static List<Object> parseJsonObjects(JsonElement areaGeo) throws NumberFormatException, DateTimeParseException, NullPointerException {
         List<Object> areaGeolist = new ArrayList<>();

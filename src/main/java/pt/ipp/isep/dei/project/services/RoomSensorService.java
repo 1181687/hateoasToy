@@ -67,11 +67,7 @@ public class RoomSensorService {
             }
         }
         return latestReading;
-
     }
-
-
-
 
     public List<RoomReading> getListOfLatestMeasurementsBySensorType(SensorType type) {
         List<RoomReading> listOfLatestReadings = new ArrayList<>();
@@ -104,6 +100,4 @@ public class RoomSensorService {
         }
         return false;
     }
-
- */
-}
+}*/

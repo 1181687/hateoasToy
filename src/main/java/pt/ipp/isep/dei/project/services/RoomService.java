@@ -9,10 +9,8 @@ import pt.ipp.isep.dei.project.model.house.RoomId;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 
-import javax.persistence.Transient;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class RoomService {
@@ -33,10 +31,19 @@ public class RoomService {
     }
 
     public boolean isNameExistant (String id){
-        if (roomRepository.existsById(new RoomId(id))){
-            return true;
-        }
-        return false;
+        return roomRepository.existsById(new RoomId(id));
+    }
+
+    /**
+     * Method that returns all the rooms in the repo.
+     *
+     * @return List of Room.
+     */
+    public List<Room> getAllRooms() {
+        Iterable<Room> roomIterable = this.roomRepository.findAll();
+        List<Room> rooms = new ArrayList<>();
+        roomIterable.forEach(rooms::add);
+        return rooms;
     }
 /*
     public Room getRoomSensorByType (SensorType sensorType, RoomId roomId){
@@ -46,10 +53,24 @@ public class RoomService {
 
             roomRepository
 
-        }
-
+    /**
+     * Method that searches for a room by its Id. If it exists in the repo, the room is returned, if not, null is returned.
+     *
+     * @param id Id to be used.
+     * @return Room or null.
+     */
+    public Room getRoomById(RoomId id) {
+        return roomRepository.findById(id).orElse(null);
     }
-*/
+
+    /**
+     * Method that stores a room in the db. If it already exists, it updates it.
+     *
+     * @param room Room to be stored.
+     */
+    public void updateRoomRepository(Room room) {
+        roomRepository.save(room);
+    }
 
     /**
      * Method that gets the room in a specific position in the list.
