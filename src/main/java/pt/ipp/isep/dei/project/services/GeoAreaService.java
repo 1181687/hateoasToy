@@ -11,6 +11,12 @@ import pt.ipp.isep.dei.project.model.readings.GeoAreaReading;
 import pt.ipp.isep.dei.project.model.readings.GeoAreaReadingId;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorId;
+import pt.ipp.isep.dei.project.model.Location;
+import pt.ipp.isep.dei.project.model.geographicalarea.*;
+import pt.ipp.isep.dei.project.model.readings.GeoAreaReading;
+import pt.ipp.isep.dei.project.model.readings.GeoAreaReadingId;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorId;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 
 import java.util.ArrayList;
@@ -40,6 +46,58 @@ public class GeoAreaService {
         // empty
     }
 
+
+    public boolean addGeographicalArea(String geoAreaId, String geoAreaTypeId, double latitude, double longitude, double elevation, String description, double width, double length) {
+        Location geoLocation = new Location(latitude, longitude, elevation);
+        GeoAreaTypeId geographicalAreaTypeId = new GeoAreaTypeId(geoAreaTypeId);
+        GeoAreaId geographicalAreaId = new GeoAreaId(geoAreaId, geoLocation, geographicalAreaTypeId);
+        AreaShape areaShape = new AreaShape(width, length);
+        GeographicalArea geoArea = new GeographicalArea(geographicalAreaId, description, areaShape);
+        if (!geoAreaRepository.existsById(new GeoAreaId(geoAreaId, geoLocation, geographicalAreaTypeId))) {
+            geoAreaRepository.save(geoArea);
+            return true;
+        }
+        return false;
+    }
+
+
+    public boolean isGeoAreaExistant(String geoAreaId, double latitude, double longitude, double elevation, String geoAreaTypeId) {
+        Location geoLocation = new Location(latitude, longitude, elevation);
+        GeoAreaTypeId geographicalAreaTypeId = new GeoAreaTypeId(geoAreaTypeId);
+        return geoAreaRepository.existsById(new GeoAreaId(geoAreaId, geoLocation, geographicalAreaTypeId));
+
+    }
+
+    /*
+     *//**
+     * method that add a geographical area to the list of geographical areas.
+     * @param geoArea
+     * @return boolean
+     *//*
+    public boolean addGeoArea(GeographicalArea geoArea) {
+        if (!(geoAreaRepository.existsById(geoArea.getId()))) {
+            geoAreaList.add(geoArea);
+            geoAreaRepository.save(geoArea);
+            return true;
+        }
+        return false;
+    }
+
+    */
+
+    /**
+     * get a geographical area of a geographical areas list.
+     *
+     * @param
+     * @return a geoArea if exists on the list. If not, return null.
+     *//*
+    public GeographicalArea getGeographicalArea(GeographicalArea geographicalArea) {
+        for (GeographicalArea area : geoAreaList) {
+            if (area.equals(geographicalArea)) {
+                return area;
+            }
+        }
+        return null;
     /**
      * method that get a list of all geographical areas
      *
@@ -57,7 +115,7 @@ public class GeoAreaService {
      *
      * @return a boolean
      */
-    public boolean isGridRepositoryEmpty() {
+    public boolean isGeoAreaRepositoryEmpty() {
         return this.geoAreaRepository.count() == 0;
     }
 
@@ -69,6 +127,15 @@ public class GeoAreaService {
     public List<SensorType> getSensorTypeList() {
         return geoAreaSensorService.getSensorTypeList();
     }
+
+    /*public boolean addSensorDTO(String id, String sensorName, String sensorTypeId, LocationDTO location, String units) {
+        return geoAreaSensorService.addSensorDTO(id, sensorName, sensorTypeId, location, units);
+    }*/
+
+    public boolean isNameExistant(String id) {
+        return geoAreaSensorService.isNameExistant(id);
+    }
+
 
     /**
      * method that gel a list of all geo area types
@@ -102,4 +169,8 @@ public class GeoAreaService {
         return geoAreaSensorReadingsService.addReading(geoAreaReading);
     }
 
+
+    public List<GeographicalAreaType> listOfGeoAreaTypes() {
+        return geoAreaTypeService.getListOfGeoAreaTypes();
+    }
 }

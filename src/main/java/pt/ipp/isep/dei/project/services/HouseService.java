@@ -1,14 +1,18 @@
-package pt.ipp.isep.dei.project.model.house;
+package pt.ipp.isep.dei.project.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.model.LocationDTO;
+import pt.ipp.isep.dei.project.model.house.Room;
+import pt.ipp.isep.dei.project.model.house.RoomId;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceType;
+import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.services.HouseGridService;
 import pt.ipp.isep.dei.project.services.PowerSourceTypeService;
 import pt.ipp.isep.dei.project.services.RoomService;
+import pt.ipp.isep.dei.project.services.SensorTypeService;
 
 import java.util.List;
 
@@ -24,9 +28,21 @@ public class HouseService {
     @Autowired
     private PowerSourceTypeService sourceTypeService;
 
+    @Autowired
+    private SensorTypeService sensorTypeService;
+
     public void configureHouseLocation(LocationDTO locationDTO) {
 
 
+    }
+
+    /**
+     * method that get a list of sensor types
+     *
+     * @return a list of sensor types.
+     */
+    public List<SensorType> getSensorTypeList() {
+        return sensorTypeService.getSensorTypeList();
     }
 
     public boolean isGridRepositoryEmpty() {
@@ -83,12 +99,12 @@ public class HouseService {
         roomService.updateRoomRepository(room);
     }
 
-    public List<PowerSourceType> getAllPowerSourceTypes(){
+    public List<PowerSourceType> getAllPowerSourceTypes() {
         return this.sourceTypeService.getAllPowerSourceTypes();
     }
 
-    public boolean newPowerSource(String powerSourceId, String typeId, String gridId){
-        return this.houseGridService.newPowerSource(powerSourceId,typeId,gridId);
+    public boolean newPowerSource(String powerSourceId, String typeId, String gridId) {
+        return this.houseGridService.newPowerSource(powerSourceId, typeId, gridId);
     }
 
   /*  public void updateHouseWithRoomsAndGrids(HouseDTO houseDTO, House house) {

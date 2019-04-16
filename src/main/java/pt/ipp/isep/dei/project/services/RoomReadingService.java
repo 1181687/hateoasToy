@@ -4,6 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.RoomSensorReadingsRepository;
 import pt.ipp.isep.dei.project.model.readings.RoomReading;
+import pt.ipp.isep.dei.project.model.sensor.RoomSensorId;
+
+import java.util.List;
+import pt.ipp.isep.dei.project.model.readings.RoomReading;
 import pt.ipp.isep.dei.project.model.readings.RoomReadingId;
 
 @Service
@@ -25,5 +29,8 @@ public class RoomReadingService {
         }
         roomSensorReadingsRepository.save(roomReading);
         return true;
+    }
+    public List<RoomReading> getListOfRoomReadingByRoomSensorId (RoomSensorId roomSensorId) {
+        return roomSensorReadingsRepository.findByRoomReadingId_RoomSensorId(roomSensorId);
     }
 }
