@@ -4,8 +4,8 @@ import pt.ipp.isep.dei.project.controllers.AddRoomController;
 import pt.ipp.isep.dei.project.services.RoomService;
 
 /**
- * US105 As an Administrator, I want to add a new room to the housegrid, in order to configure
- * it (name, housegrid floor and dimensions).
+ * US105 As an Administrator, I want to add a new room to the house, in order to configure
+ * it (name, house floor and dimensions).
  */
 
 public class AddRoom {
