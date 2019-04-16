@@ -11,7 +11,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaTypeList;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.HouseService;
-import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceTypeList;
 import pt.ipp.isep.dei.project.services.GeoAreaService;
 import pt.ipp.isep.dei.project.services.HouseGridService;
 import pt.ipp.isep.dei.project.services.RoomService;
@@ -68,8 +67,6 @@ public class Main {
     @Autowired
     private HouseGridService houseGridService;
 
-    @Autowired
-    private PowerSourceTypeService powerSourceTypeService;
 
 
     public static void main(String[] args) {

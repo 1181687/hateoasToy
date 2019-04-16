@@ -44,4 +44,5 @@ public class HouseGridService {
         gridIterables.forEach(grids::add);
         return grids;
     }
+
 }

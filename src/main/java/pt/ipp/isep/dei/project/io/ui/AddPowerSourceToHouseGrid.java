@@ -2,8 +2,12 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.AddPowerSourceToHouseGridController;
 import pt.ipp.isep.dei.project.model.house.House;
+import pt.ipp.isep.dei.project.model.house.HouseService;
+import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridDTO;
 import pt.ipp.isep.dei.project.services.HouseGridService;
 import pt.ipp.isep.dei.project.services.PowerSourceTypeService;
+
+import java.util.List;
 
 /**
  * US135 As an Administrator, I want to add a power source to a housegrid grid, so that the
@@ -13,9 +17,10 @@ import pt.ipp.isep.dei.project.services.PowerSourceTypeService;
 public class AddPowerSourceToHouseGrid {
 
     private AddPowerSourceToHouseGridController controller;
+    private List<HouseGridDTO> houseGridDTOS;
 
-    public AddPowerSourceToHouseGrid(HouseGridService houseGridService, PowerSourceTypeService powerSourceTypeService) {
-        this.controller = new AddPowerSourceToHouseGridController( powerSourceTypeService,houseGridService);
+    public AddPowerSourceToHouseGrid(HouseService houseService) {
+        this.controller = new AddPowerSourceToHouseGridController(houseService);
     }
 
     public void run() {
@@ -23,8 +28,11 @@ public class AddPowerSourceToHouseGrid {
             System.out.println("There are no grids in your house. Please insert a new grid. \n");
         } else {
 
-            String label1 = "Please select the grid to which you want to add the Power Source: \n" + controller.getHouseGridListToString();
-            int positionOfHouseGrid = InputValidator.getIntRange(label1, 1, controller.getHouseGridListSize()) - 1;
+            String label1 = "Please select the grid to which you want to add the Power Source: \n" + getGridListToString();
+            int positionOfHouseGrid = InputValidator.getIntRange(label1, 1, getGridListSize());
+
+            String gridId = getGridDTOByPosition(positionOfHouseGrid-1).getId();
+
             controller.getHouseGridFromListByPosition(positionOfHouseGrid);
 
             String powerSourceName;
@@ -36,6 +44,7 @@ public class AddPowerSourceToHouseGrid {
 
                 String label3 = "Please select the power source type: \n" + controller.getPowerSourceTypeListToString();
                 int positionOfPowerSource = InputValidator.getIntRange(label3, 1, controller.getPowerSourceTypeListSize()) - 1;
+
                 controller.getPowerSourceTypeByPosition(positionOfPowerSource);
 
                 try {
@@ -55,6 +64,30 @@ public class AddPowerSourceToHouseGrid {
                 System.out.println(controller.listPowerSourcesConnectedToGrid());
             }
         }
+    }
+
+    private String getGridListToString(){
+        this.houseGridDTOS = this.controller.getGridList();
+        int number = 1;
+
+        StringBuilder content = new StringBuilder();
+
+        for (HouseGridDTO grid : this.houseGridDTOS) {
+            content.append(number);
+            content.append(" - ");
+            content.append(grid.getId());
+            content.append("\n");
+            number++;
+        }
+        return content.toString();
+    }
+
+    private int getGridListSize(){
+        return this.houseGridDTOS.size();
+    }
+
+    private HouseGridDTO getGridDTOByPosition(int position){
+        return this.houseGridDTOS.get(position);
     }
 }
 
