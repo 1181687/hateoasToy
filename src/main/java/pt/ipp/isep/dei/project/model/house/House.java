@@ -408,7 +408,7 @@ public class House {
      *
      * @return True or false.
      */
-   /* public boolean isHouseGridListEmpty() {
+   /* public boolean isHouseGridRepositoryEmpty() {
         return listHouseGrids.isEmpty();
     }*/
 
