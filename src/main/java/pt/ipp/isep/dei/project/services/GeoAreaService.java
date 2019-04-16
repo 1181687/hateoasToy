@@ -3,12 +3,9 @@ package pt.ipp.isep.dei.project.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.GeoAreaRepository;
-import pt.ipp.isep.dei.project.model.Location;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaId;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
-import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +49,7 @@ public class GeoAreaService {
      *
      * @return a boolean
      */
-    public boolean isGridRepositoryEmpty() {
+    public boolean isGeoAreaRepositoryEmpty() {
         return this.geoAreaRepository.count() == 0;
     }
 
@@ -65,13 +62,14 @@ public class GeoAreaService {
         return geoAreaSensorService.getSensorTypeList();
     }
 
-    public boolean addSensor(String id, String sensorName, SensorTypeId sensorTypeId, Location location, String units, GeoAreaId geoAreaId) {
-        return geoAreaSensorService.addSensor(id, sensorName, sensorTypeId, location, units, geoAreaId);
-    }
+    /*public boolean addSensorDTO(String id, String sensorName, String sensorTypeId, LocationDTO location, String units) {
+        return geoAreaSensorService.addSensorDTO(id, sensorName, sensorTypeId, location, units);
+    }*/
 
     public boolean isNameExistant(String id) {
         return geoAreaSensorService.isNameExistant(id);
     }
+
 
     /**
      * method that gel a list of all geo area types

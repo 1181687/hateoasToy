@@ -1,13 +1,10 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.Location;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaId;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapper;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeDTO;
-import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeMapper;
 import pt.ipp.isep.dei.project.services.GeoAreaService;
 
@@ -24,7 +21,7 @@ public class AddSensorToGeoAreaController {
     }
 
     public boolean isGeoAreaRepositoryEmpty() {
-        return this.geoAreaService.isGridRepositoryEmpty();
+        return this.geoAreaService.isGeoAreaRepositoryEmpty();
     }
 
     public List<GeographicalAreaDTO> getGeographicalAreaDTOList() {
@@ -47,9 +44,9 @@ public class AddSensorToGeoAreaController {
         return sensorTypeDTOList;
     }
 
-    public void addSensor(String id, String sensorName, SensorTypeId sensorTypeId, Location location, String units, GeoAreaId geoAreaId) {
-        geoAreaService.addSensor(id, sensorName, sensorTypeId, location, units, geoAreaId);
-    }
+    /*public void addSensorDTO(String id, String sensorName, SensorTypeId sensorTypeId, Location location, String units, GeoAreaId geoAreaId) {
+        geoAreaService.addSensorDTO(id, sensorName, sensorTypeId, location, units, geoAreaId);
+    }*/
 
     public boolean isNameExistant(String name) {
         return this.geoAreaService.isNameExistant(name);
