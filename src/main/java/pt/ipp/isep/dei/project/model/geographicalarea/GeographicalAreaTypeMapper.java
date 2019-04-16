@@ -9,11 +9,11 @@ public final class GeographicalAreaTypeMapper {
         // empty
     }
 
-    public static GeographicalAreaTypeDTO mapToDTO(GeographicalAreaType geographicalAreaType){
+    public static GeographicalAreaTypeDTO mapToDTO(GeographicalAreaType geographicalAreaType) {
         return new GeographicalAreaTypeDTO(geographicalAreaType.getGeoAreaType().getGeoAreaTypeId());
     }
 
-    public static GeographicalAreaType mapToEntity(GeographicalAreaTypeDTO geographicalAreaTypeDTO){
+    public static GeographicalAreaType mapToEntity(GeographicalAreaTypeDTO geographicalAreaTypeDTO) {
         GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId(geographicalAreaTypeDTO.getGeoAreaType());
         return new GeographicalAreaType(geoAreaTypeId);
     }

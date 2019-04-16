@@ -9,10 +9,8 @@ import pt.ipp.isep.dei.project.model.house.RoomId;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
 
-import javax.persistence.Transient;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class RoomService {
@@ -30,12 +28,30 @@ public class RoomService {
     }
 
     public boolean isNameExistant (String id){
-        if (roomRepository.existsById(new RoomId(id))){
-            return true;
-        }
-        return false;
+        return roomRepository.existsById(new RoomId(id));
     }
 
+    /**
+     * Method that returns all the rooms in the repo.
+     *
+     * @return List of Room.
+     */
+    public List<Room> getAllRooms() {
+        Iterable<Room> roomIterable = this.roomRepository.findAll();
+        List<Room> rooms = new ArrayList<>();
+        roomIterable.forEach(rooms::add);
+        return rooms;
+    }
+
+    /**
+     * Method that searches for a room by its Id. If it exists in the repo, the room is returned, if not, null is returned.
+     *
+     * @param id Id to be used.
+     * @return Room or null.
+     */
+    public Room getRoomById(RoomId id) {
+        return roomRepository.findById(id).orElse(null);
+    }
     public List<Room> getRoomsOfAHouseGrid(HouseGridId houseGridId){
         return roomRepository.findAllByHouseGridIdEquals(houseGridId);
     }

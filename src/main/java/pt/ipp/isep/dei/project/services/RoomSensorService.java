@@ -12,8 +12,14 @@ public class RoomSensorService {
     private RoomSensorRepository roomSensorRepository;
 
     @Autowired
-    private RoomSensorReadingsRepository roomSensorReadingsRepository;
+    private RoomReadingService roomReadingService;
 
+
+/*
+    public boolean getRoomById(Room room){
+        return roomSensorRepository.
+    }
+*/
     /*public boolean addSensor(RoomSensor sensor) {
         if (listOfSensors.contains(sensor) || Objects.isNull(sensor)) {
             return false;
@@ -80,5 +86,5 @@ public class RoomSensorService {
 
         }
         return false;
-    }*/
-}
+    }
+}*/
