@@ -64,6 +64,10 @@ public class Main {
     @Autowired
     private HouseGridService houseGridService;
 
+    // RoomSensor Service Injection
+    @Autowired
+    private RoomSensorService roomSensorService;
+
 
     public static void main(String[] args) {
 
@@ -92,6 +96,9 @@ public class Main {
             DetachRoomFromHouseGrid detachRoomFromHouseGrid = new DetachRoomFromHouseGrid(houseService);
             detachRoomFromHouseGrid.run();
             */
+            ImportReadings importReadings = new ImportReadings(geoAreaService, roomSensorService);
+            importReadings.run(1);
+
 
         };
     }

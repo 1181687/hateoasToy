@@ -7,6 +7,8 @@ import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaId;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaTypeId;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
+import pt.ipp.isep.dei.project.model.readings.GeoAreaReading;
+import pt.ipp.isep.dei.project.model.readings.GeoAreaReadingId;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorId;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
@@ -27,6 +29,8 @@ public class GeoAreaService {
     private GeoAreaTypeService geoAreaTypeService;
     @Autowired
     private GeoAreaSensorService geoAreaSensorService;
+    @Autowired
+    private GeoAreaSensorReadingsService geoAreaSensorReadingsService;
 
 
     /**
@@ -88,6 +92,14 @@ public class GeoAreaService {
 
     public GeoAreaSensor getSensorById(GeoAreaSensorId geoAreaSensorId){
         return geoAreaSensorService.getSensorById(geoAreaSensorId);
+    }
+
+    public boolean isReadingDuplicated(GeoAreaReadingId geoAreaReadingId){
+        return geoAreaSensorReadingsService.isReadingDuplicated(geoAreaReadingId);
+    }
+
+    public boolean addReading(GeoAreaReading geoAreaReading){
+        return geoAreaSensorReadingsService.addReading(geoAreaReading);
     }
 
 }
