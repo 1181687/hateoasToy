@@ -23,6 +23,8 @@ public class RoomSensorService {
 
     @Autowired
     private RoomReadingService roomReadingService;
+}
+
 
     public boolean addRoomSensor(RoomSensor sensor){
         if(this.roomSensorRepository.existsById(sensor.getId())){
