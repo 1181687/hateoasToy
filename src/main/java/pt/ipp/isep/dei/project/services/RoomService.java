@@ -8,7 +8,9 @@ import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.RoomId;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
+import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,6 +46,10 @@ public class RoomService {
         List<Room> rooms = new ArrayList<>();
         roomIterable.forEach(rooms::add);
         return rooms;
+    }
+
+    public boolean addRoomSensor(RoomSensor sensor){
+        return this.roomSensorService.addRoomSensor(sensor);
     }
 /*
     public Room getRoomSensorByType (SensorType sensorType, RoomId roomId){

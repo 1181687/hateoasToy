@@ -1,8 +1,6 @@
 package pt.ipp.isep.dei.project.controllers.importroomsensors;
 
 import pt.ipp.isep.dei.project.model.ProjectFileReader;
-import pt.ipp.isep.dei.project.model.house.HouseService;
-import pt.ipp.isep.dei.project.model.house.RoomId;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensorDTO;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensorMapper;
 import pt.ipp.isep.dei.project.services.RoomService;
@@ -64,16 +62,15 @@ public class ImportRoomSensorsController {
         boolean imported = false;
         for (Object object : this.DTOList) {
             RoomSensorDTO sensorDTO = (RoomSensorDTO) object;
-            RoomId roomId = new RoomId(sensorDTO.getRoomId());
-            if (!this.houseService.roomExists(roomId)) {
+            String roomId = sensorDTO.getRoomId();
+            if (!this.roomService.isNameExistant(sensorDTO.getRoomId())) {
                 numberOfNotImportedReadings++;
-                String invalidInfo = "id: " + sensorDTO.getId() + ".";
-                LOGGER.log(Level.WARNING, "Sensor was not imported because " + roomId.getId() + " doesn't exist: " + invalidInfo);
+                LOGGER.log(Level.WARNING, "Sensor " + sensorDTO.getId()+" was not imported because " + roomId + " doesn't exist.");
                 continue;
-            } else if (this.houseService.addSensorToRoom(RoomSensorMapper.mapToEntity(sensorDTO), roomId)) {
+            } else if (this.roomService.addRoomSensor(RoomSensorMapper.mapToEntity(sensorDTO))) {
                 imported = true;
             } else {
-                LOGGER.log(Level.WARNING, "Sensor was not imported because room " + roomId.getId() + " already has a sensor with the same id: Sensor id" + sensorDTO.getId() + ".");
+                LOGGER.log(Level.WARNING, "Sensor was not imported because room " + roomId+ " already has a sensor with the same id: Sensor id" + sensorDTO.getId() + ".");
                 numberOfNotImportedReadings++;
             }
         }
