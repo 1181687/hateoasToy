@@ -23,9 +23,7 @@ public class GetListOfTypeOfGeoAreaController {
 
     public List<GeographicalAreaDTO> getListOfGeographicalAreasByType(String type) {
         List<GeographicalAreaDTO> geographicalAreaDTOS = new ArrayList<>();
-        GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId(type);
-        GeographicalAreaType geographicalAreaType = new GeographicalAreaType(geoAreaTypeId);
-        for (GeographicalArea geographicalArea : geoAreaService.getGeoAreasByType(geographicalAreaType)) {
+        for (GeographicalArea geographicalArea : geoAreaService.getGeoAreasByType(type)) {
             geographicalAreaDTOS.add(GeographicalAreaMapper.mapToDTO(geographicalArea));
         }
         return geographicalAreaDTOS;

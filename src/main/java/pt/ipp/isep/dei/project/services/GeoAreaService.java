@@ -24,7 +24,7 @@ public class GeoAreaService {
 
 
     /*
-    *//**
+     *//**
      * method that add a geographical area to the list of geographical areas.
      * @param geoArea
      * @return boolean
@@ -197,7 +197,9 @@ public class GeoAreaService {
         return false;
     }
 
-    *//**
+    */
+
+    /**
      * Method that returns a geographical area by searching for it by its id. If it's not on the list it returns null.
      *
      * @param /geoAreaId Id of the geographical area.
@@ -221,12 +223,17 @@ public class GeoAreaService {
             geoAreaRepository.save(geoArea);
         }
     }*/
-
-    public List<GeographicalAreaType> getListOfGeoAreaTypes(){
+    public List<GeographicalAreaType> getListOfGeoAreaTypes() {
         return geoAreaTypeService.getListOfGeoAreaTypes();
     }
 
-    public List<GeographicalArea> getGeoAreasByType(GeographicalAreaType type){
-        return geoAreaRepository.findByGeoAreaTypeId(type);
+    public List<GeographicalArea> getGeoAreasByType(String type) {
+        List<GeographicalArea> geographicalAreas = new ArrayList<>();
+        for (GeographicalArea geographicalArea : geoAreaRepository.findAll()) {
+            if (geographicalArea.getId().getGeographicalAreaType().getGeoAreaTypeId().equals(type)) {
+                geographicalAreas.add(geographicalArea);
+            }
+        }
+        return geographicalAreas;
     }
 }

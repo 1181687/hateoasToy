@@ -8,10 +8,4 @@ import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import java.util.List;
 
 public interface GeoAreaRepository extends CrudRepository<GeographicalArea, GeoAreaId> {
-
-    List<GeographicalArea> findByGeoAreaTypeId(GeographicalAreaType geographicalAreaType);
-
-    //boolean existsGeographicalAreaByGeoAreaTypeId(GeographicalAreaType geographicalAreaType);
-
-    boolean existsByGeoAreaTypeId(String geoType);
 }

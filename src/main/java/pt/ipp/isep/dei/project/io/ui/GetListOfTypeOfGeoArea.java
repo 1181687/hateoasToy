@@ -10,7 +10,9 @@ import java.util.Scanner;
 
 public class GetListOfTypeOfGeoArea {
 
-    /** US004 As an Administrator, I want to get a list of existing geographical areas of a given type. */
+    /**
+     * US004 As an Administrator, I want to get a list of existing geographical areas of a given type.
+     */
     private GetListOfTypeOfGeoAreaController controller;
 
 
@@ -19,21 +21,27 @@ public class GetListOfTypeOfGeoArea {
     }
 
     public void run() {
+        String exitMenu = "0 - Return to the previous menu";
         List<GeographicalAreaTypeDTO> geographicalAreaTypeDTOS = controller.getListOfGeoAreaTypes();
-        if (geographicalAreaTypeDTOS.isEmpty()){
+        if (geographicalAreaTypeDTOS.isEmpty()) {
             System.out.println("There are no geographical area types defined. Please create a new type.");
-
+            return;
         }
+        System.out.println("Choose the Geographical Area type you wish to see: ");
         int listIterator = 1;
         for (GeographicalAreaTypeDTO geographicalAreaTypeDTO : geographicalAreaTypeDTOS) {
-            System.out.println(listIterator+" - "+ geographicalAreaTypeDTO.getGeoAreaType());
+            System.out.println(listIterator + " - " + geographicalAreaTypeDTO.getGeoAreaType());
             listIterator++;
         }
+        System.out.println(exitMenu);
 
-        int option = InputValidator.getIntRange("Choose the Geographical Area type you wish to see: ",1,geographicalAreaTypeDTOS.size())-1;
+        int option = InputValidator.getIntRange("\nChoose an option", 1, geographicalAreaTypeDTOS.size()) - 1;
+
+        if (option == -1) {
+            return;
+        }
 
         String chosenType = geographicalAreaTypeDTOS.get(option).getGeoAreaType();
-
 
         List<GeographicalAreaDTO> geoAreaByType = controller.getListOfGeographicalAreasByType(chosenType);
 
