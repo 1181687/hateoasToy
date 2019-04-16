@@ -38,7 +38,8 @@ public class Main {
     private static final String ENERGY_CONSUMPTION = "Energy Consumption";
 
     private House houseEdificioB;
-    private PowerSourceTypeService powerSourceTypeList;
+    @Autowired
+    private PowerSourceTypeService powerSourceTypeService;
     //private SensorTypeList sensorTypeList;
     @Autowired
     private GeoAreaTypeService geoAreaTypeService;
