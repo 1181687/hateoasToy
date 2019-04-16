@@ -12,14 +12,6 @@ public class HouseGrid /*implements Measurable*/ {
     @EmbeddedId
     private HouseGridId houseGridId;
 
-    /*
-    @Transient
-    private PowerSourceService powerSourceList;
-
-    @Transient
-    private RoomService roomList;
-    */
-
     /**
      * Constructor.
      *
