@@ -23,7 +23,7 @@ public class RoomSensorService {
 
     @Autowired
     private RoomReadingService roomReadingService;
-}
+
 
 
     public boolean addRoomSensor(RoomSensor sensor){
