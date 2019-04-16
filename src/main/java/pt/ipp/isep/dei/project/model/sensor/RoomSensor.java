@@ -25,8 +25,8 @@ public class RoomSensor {
     @Embedded
     private RoomId roomId;
 
-    public RoomSensor(String id, String sensorName, LocalDateTime startingDate, SensorTypeId sensorTypeId, String units, RoomId roomId) {
-        this.id = new RoomSensorId(id);
+    public RoomSensor(RoomSensorId id, String sensorName, LocalDateTime startingDate, SensorTypeId sensorTypeId, String units, RoomId roomId) {
+        this.id = id;
         this.sensorName = sensorName;
         this.startingDate = startingDate;
         this.sensorTypeId = sensorTypeId;

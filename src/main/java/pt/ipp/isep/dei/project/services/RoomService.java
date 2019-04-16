@@ -6,6 +6,7 @@ import pt.ipp.isep.dei.project.RoomRepository;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.RoomId;
+import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,9 @@ import java.util.List;
 public class RoomService {
     @Autowired
     RoomRepository roomRepository;
+
+    @Autowired
+    private RoomSensorService roomSensorService;
 
     public boolean addRoom(String id, String description, int housefloor, double height, double length, double width) {
         Dimension dimensions = new Dimension(height, length, width);
@@ -40,6 +44,17 @@ public class RoomService {
         roomIterable.forEach(rooms::add);
         return rooms;
     }
+
+    public boolean addRoomSensor(RoomSensor sensor){
+        return this.roomSensorService.addRoomSensor(sensor);
+    }
+/*
+    public Room getRoomSensorByType (SensorType sensorType, RoomId roomId){
+        Room room = roomRepository.findById(roomId).orElse(null);
+        for (RoomSensor sensor:
+             ) {
+
+            roomRepository
 
     /**
      * Method that searches for a room by its Id. If it exists in the repo, the room is returned, if not, null is returned.
