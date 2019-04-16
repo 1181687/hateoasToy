@@ -2,20 +2,17 @@ package pt.ipp.isep.dei.project.services;
 
 import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.PowerSourceTypeRepository;
-import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceType;
 
-import java.util.ArrayList;
-import java.util.List;
 @Service
 public class PowerSourceTypeService {
 
     private PowerSourceTypeRepository powerSourceTypeRepository;
 
     public PowerSourceTypeService() {
-       //empty
+        //empty
     }
-/*
-    *//**
+    /*
+     *//**
      * Method that adds a new Type of Power Source to the Power Source Type List
      *
      * @param newPowerSourceType new Power Source Type

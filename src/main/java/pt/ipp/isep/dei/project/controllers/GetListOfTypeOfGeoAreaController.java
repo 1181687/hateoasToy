@@ -13,7 +13,7 @@ public class GetListOfTypeOfGeoAreaController {
         this.geoAreaService = geoAreaService;
     }
 
-    public List<GeographicalAreaTypeDTO> getListOfGeoAreaTypes(){
+    public List<GeographicalAreaTypeDTO> getListOfGeoAreaTypes() {
         List<GeographicalAreaTypeDTO> geographicalAreaTypeDTOS = new ArrayList<>();
         for (GeographicalAreaType geographicalAreaType : geoAreaService.getListOfGeoAreaTypes()) {
             geographicalAreaTypeDTOS.add(GeographicalAreaTypeMapper.mapToDTO(geographicalAreaType));

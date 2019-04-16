@@ -1,25 +1,28 @@
 package pt.ipp.isep.dei.project.io.ui;
 
-
 /**
  * US253 As an Administrator, I want to add a new sensor to a room from the list of available
  * sensor types, in order to configure it.
  */
 
-/*public class AddSensorToRoom {
+public class AddSensorToRoom {
 
-    private AddSensorToRoomController controller;
+    /*private AddSensorToRoomController controller;
+
+    public AddSensorToRoom (RoomSensorService roomSensorService){
+    this.controller = new AddSensorToRoomController(roomSensorService);
+}
 
     public AddSensorToRoom(House house, RoomList roomList, SensorTypeList listSensorsType) {
         controller = new AddSensorToRoomController(listSensorsType, roomList, house);
     }
 
     public void run() {
-
-        Scanner read = new Scanner(System.in);
+        controller.
+    }
 
        /* if (controller.isRoomListEmpty()) {
-            System.out.println("There are no rooms in the housegrid. Please create a room");
+            System.out.println("There are no rooms in the house. Please create a room");
         } else if (controller.isSensorTypeListEmpty()) {
             System.out.println("There are no sensor types created. Please create one.");
         } else {
@@ -50,6 +53,5 @@ package pt.ipp.isep.dei.project.io.ui;
 
         }
 
-    }
-
-}*/
+    }*/
+}

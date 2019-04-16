@@ -1,6 +1,5 @@
 package pt.ipp.isep.dei.project.model.house;
 
-import pt.ipp.isep.dei.project.model.GeoAreaReading;
 import pt.ipp.isep.dei.project.model.Measurable;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 
@@ -16,7 +15,7 @@ import java.util.Objects;
 import static java.util.Objects.isNull;
 
 @Entity
-public class Room implements Measurable {
+public class Room /*implements Measurable*/ {
 
     //@Id
     @Column(name = "RoomID", insertable = false, updatable = false)
@@ -176,6 +175,7 @@ public class Room implements Measurable {
         return content.toString();
     }
 
+    /*
     @Override
     public double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
         return 0;
@@ -200,6 +200,7 @@ public class Room implements Measurable {
     public double getNominalPower() {
         return 0;
     }
+    */
 
     /**
      * method that creates the same hashcode to rooms with the same attribute name.
@@ -364,12 +365,14 @@ public RoomSensorService getSensorList() {
      *
      * @return String
      */
+    /*
     @Override
     public String getNameToString() {
         StringBuilder name = new StringBuilder();
         name.append("Room: " + this.roomId + "\n");
         return name.toString();
     }
+    */
 
     /**
      * method that get the enery consumption of the room in an interval
