@@ -67,11 +67,25 @@ public final class GeographicalAreaMapper {
         if (Objects.isNull(geographicalAreaDTO)) {
             return null;
         }
-        GeographicalAreaType geoType = new GeographicalAreaType(geographicalAreaDTO.getType());
+        GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId(geographicalAreaDTO.getType());
+        GeographicalAreaType geoType = new GeographicalAreaType(geoAreaTypeId);
         Location loc = new Location(geographicalAreaDTO.getLatitude(), geographicalAreaDTO.getLongitude(), geographicalAreaDTO.getElevation());
         AreaShape areaShape = new AreaShape(geographicalAreaDTO.getWidth(), geographicalAreaDTO.getLength());
         GeoAreaId geoAreaId = new GeoAreaId(geographicalAreaDTO.getId(),loc,geoType.getGeoAreaType());
         return new GeographicalArea(geoAreaId, geographicalAreaDTO.getDescription(), areaShape);
+    }
+
+    public static GeographicalAreaDTO mapToDTO(GeographicalArea geographicalArea){
+        GeographicalAreaDTO geographicalAreaDTO = newGeoAreaDTO();
+        geographicalAreaDTO.setId(geographicalArea.getId().getId());
+        geographicalAreaDTO.setLongitude(geographicalArea.getLocation().getLongitude());
+        geographicalAreaDTO.setLatitude(geographicalArea.getLocation().getLatitude());
+        geographicalAreaDTO.setElevation(geographicalArea.getLocation().getElevation());
+        geographicalAreaDTO.setDescription(geographicalArea.getDescription());
+        geographicalAreaDTO.setLength(geographicalArea.getAreaShape().getLength());
+        geographicalAreaDTO.setWidth(geographicalArea.getAreaShape().getWidth());
+        geographicalAreaDTO.setType(geographicalArea.getId().getGeographicalAreaType().getGeoAreaTypeId());
+        return geographicalAreaDTO;
     }
 
 

@@ -4,6 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.GeoAreaRepository;
 import pt.ipp.isep.dei.project.GeoAreaTypeRepository;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class GeoAreaService {
@@ -12,7 +17,7 @@ public class GeoAreaService {
     private GeoAreaRepository geoAreaRepository;
 
     @Autowired
-    private GeoAreaTypeRepository geoAreaTypeRepository;
+    private GeoAreaTypeService geoAreaTypeService;
 
     public GeoAreaService() {
     }
@@ -195,7 +200,7 @@ public class GeoAreaService {
     *//**
      * Method that returns a geographical area by searching for it by its id. If it's not on the list it returns null.
      *
-     * @param geoAreaId Id of the geographical area.
+     * @param /geoAreaId Id of the geographical area.
      * @return Geographical area corresponding to the id (or null).
      *//*
     public GeographicalArea getGeoAreaById(String geoAreaId) {
@@ -216,4 +221,12 @@ public class GeoAreaService {
             geoAreaRepository.save(geoArea);
         }
     }*/
+
+    public List<GeographicalAreaType> getListOfGeoAreaTypes(){
+        return geoAreaTypeService.getListOfGeoAreaTypes();
+    }
+
+    public List<GeographicalArea> getGeoAreasByType(GeographicalAreaType type){
+        return geoAreaRepository.findByGeoAreaTypeId(type);
+    }
 }

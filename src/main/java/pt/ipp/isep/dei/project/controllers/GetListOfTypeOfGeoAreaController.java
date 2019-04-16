@@ -1,39 +1,34 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaService;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaTypeDTO;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaTypeList;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaTypeMapper;
-import pt.ipp.isep.dei.project.services.GeoAreaTypeService;
-import pt.ipp.isep.dei.project.services.SensorTypeService;
+import pt.ipp.isep.dei.project.model.geographicalarea.*;
+import pt.ipp.isep.dei.project.services.GeoAreaService;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class GetListOfTypeOfGeoAreaController {
-    private GeoAreaTypeService geoAreaTypeService;
+    private GeoAreaService geoAreaService;
 
-    public GetListOfTypeOfGeoAreaController(GeoAreaTypeService geoAreaTypeService) {
-        this.geoAreaTypeService = geoAreaTypeService;
+    public GetListOfTypeOfGeoAreaController(GeoAreaService geoAreaService) {
+        this.geoAreaService = geoAreaService;
     }
 
     public List<GeographicalAreaTypeDTO> getListOfGeoAreaTypes(){
         List<GeographicalAreaTypeDTO> geographicalAreaTypeDTOS = new ArrayList<>();
-        for (GeographicalAreaType geographicalAreaType : geoAreaTypeService.getListOfGeoAreaTypes()) {
+        for (GeographicalAreaType geographicalAreaType : geoAreaService.getListOfGeoAreaTypes()) {
             geographicalAreaTypeDTOS.add(GeographicalAreaTypeMapper.mapToDTO(geographicalAreaType));
         }
         return geographicalAreaTypeDTOS;
     }
 
-    public List<String> getListaAGPorTipo(String tipo) {
-        return this.geographicalAreaService.getListOfGeographicalAreasByType(tipo);
+    public List<GeographicalAreaDTO> getListOfGeographicalAreasByType(String type) {
+        List<GeographicalAreaDTO> geographicalAreaDTOS = new ArrayList<>();
+        GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId(type);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType(geoAreaTypeId);
+        for (GeographicalArea geographicalArea : geoAreaService.getGeoAreasByType(geographicalAreaType)) {
+            geographicalAreaDTOS.add(GeographicalAreaMapper.mapToDTO(geographicalArea));
+        }
+        return geographicalAreaDTOS;
     }
-
-    public List<String> getListaDosTiposDeAG(){
-        return geographicalAreaTypeList.getListOfGeoAreaTypes();
-    }
-
-
 
 }

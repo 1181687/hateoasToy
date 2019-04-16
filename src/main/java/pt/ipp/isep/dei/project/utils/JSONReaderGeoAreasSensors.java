@@ -230,7 +230,7 @@ public class JSONReaderGeoAreasSensors implements ProjectFileReader {
                     areaSensor1.setStartingDate(startingDate);
                     areaSensor1.setUnits(sensorUnits);
 
-                    geoAreaDTO.addSensor(areaSensor1);
+                    //geoAreaDTO.addSensor(areaSensor1);
 
                 }
                 areaGeolist.add(geoAreaDTO);

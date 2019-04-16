@@ -78,8 +78,8 @@ public class Main {
     public CommandLineRunner mainRun() {
 
         return (args) -> {
-            DefineSensorType defineSensorType = new DefineSensorType(sensorTypeService);
-            defineSensorType.run();
+            GetListOfTypeOfGeoArea getListOfTypeOfGeoArea = new GetListOfTypeOfGeoArea(geoAreaService);
+            getListOfTypeOfGeoArea.run();
         };
     }
 /*

@@ -17,7 +17,6 @@ public class GeographicalAreaDTO {
     private double latitude;
     private double longitude;
     private double elevation;
-    private List<GeoAreaSensorDTO> sensors = new ArrayList<>();
 
     public GeographicalAreaDTO() {
         // empty
@@ -87,17 +86,4 @@ public class GeographicalAreaDTO {
         this.elevation = elevation;
     }
 
-    public List<GeoAreaSensorDTO> getSensors() {
-        return sensors;
-    }
-
-    public void addSensor(GeoAreaSensorDTO sensor) {
-        this.sensors.add(sensor);
-    }
-
-  /*  public void addAllSensors(List<GeoAreaSensor> sensorList) {
-        for (GeoAreaSensor sensor : sensorList) {
-            this.sensors.add(GeoAreaSensorMapper.mapToDTO(sensor));
-        }
-    }*/
 }
