@@ -38,6 +38,14 @@ public class HouseService {
         return this.houseGridService.getAllGrids();
     }
 
+    public List<Room> getRoomsOfAHouseGrid(HouseGridId houseGridId){
+        return roomService.getRoomsOfAHouseGrid(houseGridId);
+    }
+
+    public boolean detachRoomFromHouseGrid(RoomId roomId){
+        roomService
+    }
+
   /*  public void updateHouseWithRoomsAndGrids(HouseDTO houseDTO, House house) {
         Address houseAddress = AddressMapper.mapToEntity(houseDTO.getAddressDTO());
         if (Objects.isNull(houseAddress.getLocation())) {

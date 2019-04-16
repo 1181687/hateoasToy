@@ -6,6 +6,7 @@ import pt.ipp.isep.dei.project.RoomRepository;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.RoomId;
+import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
 
 import javax.persistence.Transient;
@@ -33,6 +34,17 @@ public class RoomService {
             return true;
         }
         return false;
+    }
+
+    public List<Room> getRoomsOfAHouseGrid(HouseGridId houseGridId){
+        return roomRepository.findAllByHouseGridIdEquals(houseGridId);
+    }
+
+    public boolean detachRoomFromHouseGrid(RoomId roomId){
+        Room room = roomRepository.findById(roomId).orElse(null);
+        if (Objects.nonNull(room.getHouseGridId())){
+            room.
+        }
     }
 
 
