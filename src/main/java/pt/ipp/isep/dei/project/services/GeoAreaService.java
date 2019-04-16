@@ -13,12 +13,13 @@ import java.util.List;
 @Service
 public class GeoAreaService {
 
+    // Repository
     @Autowired
     private GeoAreaRepository geoAreaRepository;
 
+    // Services
     @Autowired
     private GeoAreaTypeService geoAreaTypeService;
-
     @Autowired
     private GeoAreaSensorService geoAreaSensorService;
 

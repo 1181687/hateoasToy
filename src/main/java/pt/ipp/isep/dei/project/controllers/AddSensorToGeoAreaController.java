@@ -34,6 +34,7 @@ public class AddSensorToGeoAreaController {
 
 
 
+
     /*public void addSensor(String id, String sensorName, LocalDateTime startingDate, SensorTypeId sensorTypeId, Location location, String units, GeoAreaId geoAreaId) {
         geoAreaSensorService.addSensor(id, sensorName, startingDate, sensorTypeId, location, units, geoAreaId);
     }

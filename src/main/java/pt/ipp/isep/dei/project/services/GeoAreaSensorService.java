@@ -7,9 +7,11 @@ import pt.ipp.isep.dei.project.GeoAreaSensorRepository;
 @Service
 public class GeoAreaSensorService {
 
+    // Repository
     @Autowired
     GeoAreaSensorRepository geoAreaSensorRepository;
 
+    // Services
     @Autowired
     GeoAreaSensorReadingsService geoAreaSensorReadingsService;
 
