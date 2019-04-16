@@ -6,8 +6,11 @@ import pt.ipp.isep.dei.project.RoomSensorRepository;
 import pt.ipp.isep.dei.project.model.house.RoomId;
 import pt.ipp.isep.dei.project.model.readings.RoomReading;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
+import pt.ipp.isep.dei.project.model.sensor.RoomSensorId;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
+import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +26,13 @@ public class RoomSensorService {
 }
 
 
+    public boolean addRoomSensor(RoomSensor sensor){
+        if(this.roomSensorRepository.existsById(sensor.getId())){
+            this.roomSensorRepository.save(sensor);
+            return true;
+        }
+        return false;
+    }
 
 /*
     public boolean getRoomById(Room room){
@@ -102,4 +112,5 @@ public class RoomSensorService {
         }
         return false;
     }
-}*/
+    */
+}
