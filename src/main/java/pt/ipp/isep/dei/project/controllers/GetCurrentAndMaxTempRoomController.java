@@ -18,7 +18,7 @@ public class GetCurrentAndMaxTempRoomController {
         this.roomSensorService = roomSensorService;
         this.sensorType = type;
     }
-
+/*
     public SensorType getType() {
         return sensorType;
     }
@@ -31,7 +31,7 @@ public class GetCurrentAndMaxTempRoomController {
      */
 /*
     public RoomReading getLatestMeasurementByRoomName(RoomId roomId) {
-        return this.roomSensorService.
+        return this.roomSensorService.getLatestMeasurementBySensorType()
                 .getLatestMeasurementBySensorType(roomId, sensorType);
     }
 
@@ -56,7 +56,7 @@ public class GetCurrentAndMaxTempRoomController {
     public int getRoomListSize() {
         return this.house.getRoomListSize();
     }
-/*
+
     /**
      * gets the room name, by a specific position
      *

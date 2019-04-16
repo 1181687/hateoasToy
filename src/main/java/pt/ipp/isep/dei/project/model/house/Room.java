@@ -535,7 +535,7 @@ public RoomSensorService getSensorList() {
     /**
      * method that deactivate the device.
      *
-     * @param device
+     * @param
      * @return true if the device was deactivated. False, if not.
      */
    /* public boolean deactivateDevice(String device) {
@@ -546,17 +546,13 @@ public RoomSensorService getSensorList() {
             }
         }
         return false;
-    }
-
-    public String getDescription() {
-        return description;
-    }
+    }*/
 
     public void setDescription(String description) {
         this.description = description;
     }
 
-    public RoomSensor getSensorById(String sensorId) {
+    /*public RoomSensor getSensorById(String sensorId) {
         if (!Objects.isNull(sensorList.getSensorById(sensorId))) {
             return sensorList.getSensorById(sensorId);
         }

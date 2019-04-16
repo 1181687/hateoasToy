@@ -496,7 +496,7 @@ public class House {
      * @param room Specified room.
      * @return Grid where the room is is connected to.
      */
-   /* public HouseGrid getTheGridWhereTheRoomIsConnected(Room room) {
+   /* public HouseGrid getGridWhereRoomIsConnected(Room room) {
         for (HouseGrid houseGrid : listHouseGrids) {
             if (houseGrid.checkIfRoomIsInHouseGrid(room)) {
                 return houseGrid;

@@ -323,7 +323,7 @@ public class JSONReaderGeoAreasSensors implements ProjectFileReader {
                 RoomSensorDTO roomSensorDTO = RoomSensorMapper.newRoomSensorDTO();
                 roomSensorDTO.setId(sensorId);
                 roomSensorDTO.setName(sensorName);
-                roomSensorDTO.setSensorType(sensorType);
+                roomSensorDTO.setSensorTypeId(sensorType);
                 roomSensorDTO.setRoomId(room);
                 roomSensorDTO.setStartingDate(startingDate);
                 roomSensorDTO.setUnits(sensorUnits);
