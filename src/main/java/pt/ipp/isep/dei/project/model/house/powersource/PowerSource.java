@@ -32,9 +32,10 @@ public class PowerSource {
      * @param id Id to be used.
      * @param typeId Type Id to be used.
      */
-    public PowerSource(PowerSourceId id, PowerSourceTypeId typeId) {
+    public PowerSource(PowerSourceId id, PowerSourceTypeId typeId, HouseGridId gridId) {
         this.powerSourceId = id;
         this.powerSourceTypeId = typeId;
+        this.houseGridId = gridId;
     }
 
     /**

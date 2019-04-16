@@ -12,14 +12,6 @@ public class HouseGrid /*implements Measurable*/ {
     @EmbeddedId
     private HouseGridId houseGridId;
 
-    /*
-    @Transient
-    private PowerSourceList powerSourceList;
-
-    @Transient
-    private RoomService roomList;
-    */
-
     /**
      * Constructor.
      *
@@ -30,7 +22,7 @@ public class HouseGrid /*implements Measurable*/ {
         this.houseGridId = houseGridId;
         /*
         this.roomList = new RoomService();
-        this.powerSourceList = new PowerSourceList();
+        this.powerSourceList = new PowerSourceService();
         */
     }
 
@@ -103,7 +95,7 @@ public class HouseGrid /*implements Measurable*/ {
      * method that get the list of power sources.
      */
     /*
-    public PowerSourceList getPowerSourceList() {
+    public PowerSourceService getPowerSourceList() {
         return powerSourceList;
     }
     */

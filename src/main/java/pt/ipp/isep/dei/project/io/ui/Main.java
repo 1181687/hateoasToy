@@ -8,14 +8,11 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaTypeList;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaTypeId;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.HouseService;
-import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceTypeList;
-import pt.ipp.isep.dei.project.services.GeoAreaService;
-import pt.ipp.isep.dei.project.services.HouseGridService;
-import pt.ipp.isep.dei.project.services.RoomService;
-import pt.ipp.isep.dei.project.services.SensorTypeService;
+import pt.ipp.isep.dei.project.services.*;
 
 @EnableJpaRepositories(basePackages = "pt.ipp.isep.dei.project")
 @EntityScan(basePackages = "pt.ipp.isep.dei.project")
@@ -43,9 +40,10 @@ public class Main {
     private static final String ENERGY_CONSUMPTION = "Energy Consumption";
 
     private House houseEdificioB;
-    private PowerSourceTypeList powerSourceTypeList;
+    private PowerSourceTypeService powerSourceTypeList;
     //private SensorTypeList sensorTypeList;
-    private GeographicalAreaTypeList geographicalAreaTypeList;
+    @Autowired
+    private GeoAreaTypeService geoAreaTypeService;
 
     //GeographicalArea Repository Injection
     @Autowired
@@ -68,6 +66,7 @@ public class Main {
     private HouseGridService houseGridService;
 
 
+
     public static void main(String[] args) {
 
         SpringApplication.run(Main.class, args);
@@ -78,8 +77,11 @@ public class Main {
     public CommandLineRunner mainRun() {
 
         return (args) -> {
-            CreateHouseGrid createHouseGrid = new CreateHouseGrid(houseGridService);
-            createHouseGrid.run();
+            GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("City");
+            GeographicalAreaType geographicalAreaType = new GeographicalAreaType(geoAreaTypeId);
+            geoAreaTypeService.createGeoAreaType(geographicalAreaType);
+            GetListOfTypeOfGeoArea getListOfTypeOfGeoArea = new GetListOfTypeOfGeoArea(geoAreaService);
+            getListOfTypeOfGeoArea.run();
         };
     }
 /*
@@ -521,7 +523,7 @@ public class Main {
         // POWER SOURCES
         PowerSourceType powerSourceType1 = new PowerSourceType("Battery");
         PowerSourceType powerSourceType2 = new PowerSourceType("Public electric grid");
-        powerSourceTypeList = new PowerSourceTypeList();
+        powerSourceTypeList = new PowerSourceTypeService();
         powerSourceTypeList.addPowerSourceType(powerSourceType1);
         powerSourceTypeList.addPowerSourceType(powerSourceType2);
 

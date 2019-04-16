@@ -11,10 +11,10 @@ public class GeographicalAreaType {
 
     /**
      * constructor that receives a type of geographical area.
-     * @param geoAreaType
+     * @param geoAreaTypeId
      */
-    public GeographicalAreaType(String geoAreaType) {
-        this.geoAreaType = new GeoAreaTypeId(geoAreaType);
+    public GeographicalAreaType(GeoAreaTypeId geoAreaTypeId) {
+        this.geoAreaType = geoAreaTypeId;
     }
 
     protected GeographicalAreaType() {
