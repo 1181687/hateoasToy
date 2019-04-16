@@ -22,6 +22,7 @@ public class DefineSensorType {
             System.out.println("Success!");
         } else {
             System.out.println("Try another sensor type!");
+            return;
         }
     }
 }

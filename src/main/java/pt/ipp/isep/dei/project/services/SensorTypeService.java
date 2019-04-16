@@ -15,8 +15,8 @@ public class SensorTypeService {
     //}
 
     public boolean createAndAddSensorType(String sensorTypeId) {
-        if (!sensorTypeRepository.existsById(new SensorTypeId(sensorTypeId)) || sensorTypeId == null) {
-            this.sensorTypeRepository.save(new SensorType(sensorTypeId));
+        if (!sensorTypeRepository.existsById(new SensorTypeId(sensorTypeId))) {
+            this.sensorTypeRepository.save(new SensorType(new SensorTypeId(sensorTypeId)));
             return true;
         }
         return false;

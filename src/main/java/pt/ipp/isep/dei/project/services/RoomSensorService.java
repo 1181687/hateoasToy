@@ -1,11 +1,6 @@
 package pt.ipp.isep.dei.project.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import pt.ipp.isep.dei.project.RoomSensorReadingsRepository;
-import pt.ipp.isep.dei.project.RoomSensorRepository;
-
-@Service
+/*@Service
 public class RoomSensorService {
 
     @Autowired
@@ -13,6 +8,11 @@ public class RoomSensorService {
 
     @Autowired
     private RoomSensorReadingsRepository roomSensorReadingsRepository;
+
+
+    public boolean getRoomById(Room room){
+        return roomSensorRepository.
+    }
 
     /*public boolean addSensor(RoomSensor sensor) {
         if (listOfSensors.contains(sensor) || Objects.isNull(sensor)) {
@@ -80,5 +80,5 @@ public class RoomSensorService {
 
         }
         return false;
-    }*/
-}
+    }
+}*/
