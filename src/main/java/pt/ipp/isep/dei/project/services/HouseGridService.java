@@ -55,4 +55,9 @@ public class HouseGridService {
     public HouseGrid getGridById(HouseGridId id) {
         return houseGridRepository.findById(id).orElse(null);
     }
+
+    public boolean newPowerSource(String powerSourceId, String typeId, String gridId){
+        return this.powerSourceService.newPowerSource(powerSourceId,typeId,gridId);
+    }
+
 }
