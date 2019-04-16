@@ -16,17 +16,15 @@ public final class HouseGridMapper {
         return gridDTO;
     }
 
-    /*
-    public static HouseGrid mapToEntity(HouseGridDTO gridDTO){
-        HouseGrid houseGrid = new HouseGrid(gridDTO.getName());
-        if (!gridDTO.getRoomDTOS().isEmpty()) {
-            for (RoomDTO roomDTO : gridDTO.getRoomDTOS()) {
-                Room room = RoomMapper.mapToEntity(roomDTO);
-                houseGrid.addRoom(room);
-            }
-        }
-        return houseGrid;
+    /**
+     * Method that turns a house grid dto into a house grid.
+     *
+     * @param gridDTO GridDTO to be used.
+     * @return HouseGrid with the same info as the gridDTO.
+     */
+    public static HouseGrid mapToEntity(HouseGridDTO gridDTO) {
+        HouseGridId houseGridId = new HouseGridId(gridDTO.getId());
+        return new HouseGrid(houseGridId);
     }
-    */
 }
 
