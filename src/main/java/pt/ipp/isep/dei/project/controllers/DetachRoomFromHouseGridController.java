@@ -48,8 +48,8 @@ public class DetachRoomFromHouseGridController {
     }
 
     public boolean detachRoomFromHouseGrid(RoomDTO roomDTO){
-        RoomId roomId = new RoomId(roomDTO.getRoomId());
-
+        RoomId roomId = new RoomId(roomDTO.getId());
+        return houseService.detachRoomFromHouseGrid(roomId);
     }
 
 

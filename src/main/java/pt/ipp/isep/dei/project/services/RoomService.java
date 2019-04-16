@@ -11,6 +11,7 @@ import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class RoomService {
@@ -58,9 +59,7 @@ public class RoomService {
 
     public boolean detachRoomFromHouseGrid(RoomId roomId){
         Room room = roomRepository.findById(roomId).orElse(null);
-        if (Objects.nonNull(room.getHouseGridId())){
-            room.
-        }
+        return (room.detachRoomFromHouseGrid());
     }
 
 

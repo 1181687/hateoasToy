@@ -232,6 +232,14 @@ public class Room /*implements Measurable*/ {
         return this.roomId.getId().equalsIgnoreCase(roomOne.roomId.getId());
     }
 
+    public boolean detachRoomFromHouseGrid(){
+        if (Objects.isNull(this.houseGridId)){
+            return false;
+        }
+        this.houseGridId = null;
+        return true;
+    }
+
 
     /**
      * This method add a new sensor to the list of sensors in the room

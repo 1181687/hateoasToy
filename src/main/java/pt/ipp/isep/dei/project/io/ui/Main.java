@@ -64,7 +64,6 @@ public class Main {
     private HouseGridService houseGridService;
 
 
-
     public static void main(String[] args) {
 
         SpringApplication.run(Main.class, args);
@@ -80,13 +79,17 @@ public class Main {
             geoAreaTypeService.createGeoAreaType(geoAreaTypeId);
             GetListOfTypeOfGeoArea getListOfTypeOfGeoArea = new GetListOfTypeOfGeoArea(geoAreaService);
             getListOfTypeOfGeoArea.run(); */
-
+/*
             AddNewGeographicalAreaType addNewGeographicalAreaType = new AddNewGeographicalAreaType(geoAreaTypeService);
             addNewGeographicalAreaType.run();
-
+            */
+/*
             geoAreaTypeService.createGeoAreaType(geographicalAreaType);
             GetListGeoAreaTypes getListGeoAreaTypes = new GetListGeoAreaTypes(geoAreaTypeService);
-            getListGeoAreaTypes.run();
+            getListGeoAreaTypes.run();*/
+            DetachRoomFromHouseGrid detachRoomFromHouseGrid = new DetachRoomFromHouseGrid(houseService);
+            detachRoomFromHouseGrid.run();
+
         };
     }
 /*

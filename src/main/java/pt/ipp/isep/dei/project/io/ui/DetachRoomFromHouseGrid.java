@@ -1,15 +1,10 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.DetachRoomFromHouseGridController;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
-import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.HouseService;
 import pt.ipp.isep.dei.project.model.house.RoomDTO;
-import pt.ipp.isep.dei.project.model.house.RoomList;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridDTO;
-import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,20 +18,6 @@ public class DetachRoomFromHouseGrid {
 
     public DetachRoomFromHouseGrid(HouseService houseService) {
         this.controller = new DetachRoomFromHouseGridController(houseService);
-    }
-
-    public void showFinalList(int firstOption) {
-        String label = "Do you want to see the list of room(s) on the selected Grid? (Y/N)";
-        String answer = InputValidator.confirmValidation(label);
-        if ("y".equals(answer) || "Y".equals(answer)) {
-            if (controller.getListOfRoomsInACertainHouseGrid(firstOption).isEmpty()) {
-                System.out.println("There's no rooms in this list now.");
-            } else {
-                System.out.println(controller.getListOfRoomsInACertainHouseGrid(firstOption));
-            }
-        } else {
-            return;
-        }
     }
 
     public void run() {
@@ -69,12 +50,11 @@ public class DetachRoomFromHouseGrid {
                 }
                 int roomIterator = 1;
                 for (RoomDTO roomDTO : houseGridRooms) {
-                    System.out.println(roomIterator + " - " + roomDTO.getRoomId());
+                    System.out.println(roomIterator + " - " + roomDTO.getId());
                     roomIterator++;
                 }
-                if (controller.detachRoomFromGridList((controller.getHouseGridFromTheList(firstOption)), controller.getRoomFromTheListOfRoomByAPosition(secondOption))) {
+                if (controller.detachRoomFromHouseGrid(houseGridRooms.get(secondOption))) {
                     System.out.println("The room has been detached from the grid.");
-                    showFinalList(firstOption);
                 } else {
                     System.out.println("Please select a valid room to detach.");
                 }

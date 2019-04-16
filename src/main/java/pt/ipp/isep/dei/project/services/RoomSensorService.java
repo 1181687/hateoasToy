@@ -13,6 +13,7 @@ public class RoomSensorService {
 
     @Autowired
     private RoomReadingService roomReadingService;
+}
 
 
 /*
