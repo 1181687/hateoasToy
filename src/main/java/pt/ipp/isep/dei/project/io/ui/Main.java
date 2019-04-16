@@ -88,8 +88,10 @@ public class Main {
             geoAreaTypeService.createGeoAreaType(geographicalAreaType);
             GetListGeoAreaTypes getListGeoAreaTypes = new GetListGeoAreaTypes(geoAreaTypeService);
             getListGeoAreaTypes.run();*/
+/*
             DetachRoomFromHouseGrid detachRoomFromHouseGrid = new DetachRoomFromHouseGrid(houseService);
             detachRoomFromHouseGrid.run();
+            */
 
         };
     }

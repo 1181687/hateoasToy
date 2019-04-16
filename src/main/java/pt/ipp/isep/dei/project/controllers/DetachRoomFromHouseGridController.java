@@ -49,7 +49,11 @@ public class DetachRoomFromHouseGridController {
 
     public boolean detachRoomFromHouseGrid(RoomDTO roomDTO){
         RoomId roomId = new RoomId(roomDTO.getId());
-        return houseService.detachRoomFromHouseGrid(roomId);
+        if (houseService.detachRoomFromHouseGrid(roomId)){
+            houseService.updateRoomRepository(houseService.getRoomById(roomId));
+            return true;
+        }
+        return false;
     }
 
 
