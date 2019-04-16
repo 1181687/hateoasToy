@@ -8,8 +8,10 @@ import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import java.util.List;
 
 
-/** US605 As a Regular User, I want to get the current temperature in a room, in order to check
-if it meets my personal comfort requirements.*/
+/**
+ * US605 As a Regular User, I want to get the current temperature in a room, in order to check
+ * if it meets my personal comfort requirements.
+ */
 
 public class GetCurrentTemperatureRoom {
 

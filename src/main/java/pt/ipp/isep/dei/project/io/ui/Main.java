@@ -82,8 +82,15 @@ public class Main {
             GetListOfTypeOfGeoArea getListOfTypeOfGeoArea = new GetListOfTypeOfGeoArea(geoAreaService);
             getListOfTypeOfGeoArea.run(); */
 
-            AddNewGeographicalAreaType addNewGeographicalAreaType = new AddNewGeographicalAreaType(geoAreaTypeService);
-            addNewGeographicalAreaType.run();
+            //AddNewGeographicalAreaType addNewGeographicalAreaType = new AddNewGeographicalAreaType(geoAreaTypeService);
+            //addNewGeographicalAreaType.run();
+
+            GetListOfExistingRooms getListOfExistingRooms = new GetListOfExistingRooms(roomService);
+            getListOfExistingRooms.run();
+            AddNewGeographicalArea addNewGeographicalArea = new AddNewGeographicalArea(geoAreaService);
+            addNewGeographicalArea.run();
+
+
 
         };
     }

@@ -30,7 +30,7 @@ public class GeoAreaSensorService {
     public List<SensorType> getSensorTypeList() {
         return sensorTypeService.getSensorTypeList();
     }
-    
+
 
     public boolean addSensor(String id, String sensorName, LocalDateTime startingDate, SensorTypeId sensorTypeId, Location location, String units, GeoAreaId geoAreaId) {
         if (!geoAreaSensorRepository.existsById(new GeoAreaSensorId(id))) {

@@ -75,12 +75,12 @@ public class HouseService {
         roomService.updateRoomRepository(room);
     }
 
-    public List<PowerSourceType> getAllPowerSourceTypes(){
+    public List<PowerSourceType> getAllPowerSourceTypes() {
         return this.sourceTypeService.getAllPowerSourceTypes();
     }
 
-    public boolean newPowerSource(String powerSourceId, String typeId, String gridId){
-        return this.houseGridService.newPowerSource(powerSourceId,typeId,gridId);
+    public boolean newPowerSource(String powerSourceId, String typeId, String gridId) {
+        return this.houseGridService.newPowerSource(powerSourceId, typeId, gridId);
     }
 
   /*  public void updateHouseWithRoomsAndGrids(HouseDTO houseDTO, House house) {

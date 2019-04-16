@@ -24,7 +24,7 @@ public class RoomSensorService {
     private RoomReadingService roomReadingService;
 
     public boolean isRoomWithoutSensorByType(RoomId roomId, SensorTypeId sensorTypeId){
-        List<RoomSensor> roomSensors = this.roomSensorRepository.findByRoomIdAndSensorType(roomId,sensorTypeId);
+        List<RoomSensor> roomSensors = this.roomSensorRepository.findByRoomIdAndSensorTypeId(roomId,sensorTypeId);
         if(roomSensors.isEmpty()){
             return true;
         }
@@ -32,10 +32,18 @@ public class RoomSensorService {
     }
 
     public List<RoomSensor> getListOfRoomSensorByRoomByType(RoomId roomId, SensorTypeId sensorTypeId) {
-        return this.roomSensorRepository.findByRoomIdAndSensorType(roomId, sensorTypeId);
+        return this.roomSensorRepository.findByRoomIdAndSensorTypeId(roomId, sensorTypeId);
     }
     public List<RoomReading> getListOfRoomReadingByRoomSensorId (RoomSensorId roomSensorId) {
         return roomReadingService.getListOfRoomReadingByRoomSensorId(roomSensorId);
+    }
+
+    public boolean addRoomSensor(RoomSensor sensor) {
+        if (this.roomSensorRepository.existsById(sensor.getId())) {
+            this.roomSensorRepository.save(sensor);
+            return true;
+        }
+        return false;
     }
 
 /*

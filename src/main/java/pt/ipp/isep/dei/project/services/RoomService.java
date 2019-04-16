@@ -61,20 +61,25 @@ public class RoomService {
         roomIterable.forEach(rooms::add);
         return rooms;
     }
-/*
-    public Room getRoomSensorByType (SensorType sensorType, RoomId roomId){
-        Room room = roomRepository.findById(roomId).orElse(null);
-        for (RoomSensor sensor:
-             ) {
 
-            roomRepository
+    public boolean addRoomSensor(RoomSensor sensor) {
+        return this.roomSensorService.addRoomSensor(sensor);
+    }
 
-    /**
-     * Method that searches for a room by its Id. If it exists in the repo, the room is returned, if not, null is returned.
-     *
-     * @param id Id to be used.
-     * @return Room or null.
-     */
+    /*
+        public Room getRoomSensorByType (SensorType sensorType, RoomId roomId){
+            Room room = roomRepository.findById(roomId).orElse(null);
+            for (RoomSensor sensor:
+                 ) {
+
+                roomRepository
+
+        /**
+         * Method that searches for a room by its Id. If it exists in the repo, the room is returned, if not, null is returned.
+         *
+         * @param id Id to be used.
+         * @return Room or null.
+         */
     public Room getRoomById(RoomId id) {
         return roomRepository.findById(id).orElse(null);
     }

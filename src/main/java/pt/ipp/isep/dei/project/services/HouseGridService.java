@@ -56,8 +56,8 @@ public class HouseGridService {
         return houseGridRepository.findById(id).orElse(null);
     }
 
-    public boolean newPowerSource(String powerSourceId, String typeId, String gridId){
-        return this.powerSourceService.newPowerSource(powerSourceId,typeId,gridId);
+    public boolean newPowerSource(String powerSourceId, String typeId, String gridId) {
+        return this.powerSourceService.newPowerSource(powerSourceId, typeId, gridId);
     }
 
 }

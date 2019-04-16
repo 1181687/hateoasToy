@@ -11,7 +11,7 @@ public class AddNewGeographicalAreaTypeController {
     }
 
     /**
-     * Creates a new geo area type and adds it to the list of available geo area types.
+     * Method that creates a new geo area type and adds it to the list of available geo area types.
      *
      * @param geoAreaTypeId Id
      * @return true or false
