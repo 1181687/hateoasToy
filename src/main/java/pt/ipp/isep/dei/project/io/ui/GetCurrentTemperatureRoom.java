@@ -1,6 +1,11 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.GetCurrentAndMaxTempRoomController;
+import pt.ipp.isep.dei.project.model.house.House;
+import pt.ipp.isep.dei.project.model.house.RoomDTO;
+import pt.ipp.isep.dei.project.model.sensor.SensorType;
+
+import java.util.List;
 
 
 /**
@@ -11,6 +16,7 @@ import pt.ipp.isep.dei.project.controllers.GetCurrentAndMaxTempRoomController;
 public class GetCurrentTemperatureRoom {
 
     private GetCurrentAndMaxTempRoomController controller;
+    private List<RoomDTO> roomDTOS;
 
     /**
      * constructor that receives a House and a SensorType
