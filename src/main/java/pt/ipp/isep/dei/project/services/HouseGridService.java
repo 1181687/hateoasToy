@@ -46,4 +46,13 @@ public class HouseGridService {
         return grids;
     }
 
+    /**
+     * Method that searches for a grid by its Id. If it exists in the repo, the grid is returned, if not, null is returned.
+     *
+     * @param id Id to be used.
+     * @return HouseGrid or null.
+     */
+    public HouseGrid getGridById(HouseGridId id) {
+        return houseGridRepository.findById(id).orElse(null);
+    }
 }
