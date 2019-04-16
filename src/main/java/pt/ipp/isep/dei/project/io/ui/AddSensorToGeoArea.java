@@ -21,8 +21,8 @@ public class AddSensorToGeoArea {
         String label = "Introduce the name of the new sensor.";
         String label10 = "Introduce the ID of the new sensor.";
         String label20 = "Introduce the units of the new sensor.";
-        Scanner ler = new Scanner(System.in);
-        String nome = InputValidator.getString(label);
+        Scanner read = new Scanner(System.in);
+        String name = InputValidator.getString(label);
         String id = InputValidator.getString(label10);
         String units = InputValidator.getString(label20);
 
