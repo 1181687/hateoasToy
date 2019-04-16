@@ -9,6 +9,7 @@ import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceType;
 import pt.ipp.isep.dei.project.services.HouseGridService;
 import pt.ipp.isep.dei.project.services.PowerSourceTypeService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AddPowerSourceToHouseGridController {
@@ -40,9 +41,12 @@ public class AddPowerSourceToHouseGridController {
      */
     public List<HouseGridDTO> getGridList() {
         List<HouseGrid> grids = this.houseGridService.getAllGrids();
+        List<HouseGridDTO> gridDTOS = new ArrayList<>();
         for (HouseGrid grid : grids) {
-            HouseGridMapper
+            HouseGridDTO gridDTO = HouseGridMapper.mapToDTO(grid);
+            gridDTOS.add(gridDTO);
         }
+        return gridDTOS;
     }
 
     /**
