@@ -11,6 +11,11 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaTypeList;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.HouseService;
+import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceTypeList;
+import pt.ipp.isep.dei.project.services.GeoAreaService;
+import pt.ipp.isep.dei.project.services.HouseGridService;
+import pt.ipp.isep.dei.project.services.RoomService;
+import pt.ipp.isep.dei.project.services.SensorTypeService;
 import pt.ipp.isep.dei.project.services.*;
 
 @EnableJpaRepositories(basePackages = "pt.ipp.isep.dei.project")
@@ -55,11 +60,17 @@ public class Main {
     @Autowired
     private SensorTypeService sensorTypeService;
 
+    // Room Repository Injection
+    @Autowired
+    private RoomService roomService;
+
+    // HouseGrid Repository Injection
+    @Autowired
+    private HouseGridService houseGridService;
+
     @Autowired
     private PowerSourceTypeService powerSourceTypeService;
 
-    @Autowired
-    private HouseGridService houseGridService;
 
     public static void main(String[] args) {
 
@@ -71,8 +82,8 @@ public class Main {
     public CommandLineRunner mainRun() {
 
         return (args) -> {
-            DefineSensorType defineSensorType = new DefineSensorType(sensorTypeService);
-            defineSensorType.run();
+            CreateHouseGrid createHouseGrid = new CreateHouseGrid(houseGridService);
+            createHouseGrid.run();
         };
     }
 /*

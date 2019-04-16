@@ -28,6 +28,13 @@ public class RoomService {
         return false;
     }
 
+    public boolean isNameExistant (String id){
+        if (roomRepository.existsById(new RoomId(id))){
+            return true;
+        }
+        return false;
+    }
+
 
     /**
      * Method that gets the room in a specific position in the list.
@@ -46,7 +53,7 @@ public class RoomService {
      * @param room the room to be added
      * @return true if it adds, false if it doesn't add, because it already contains it or the room is null
      */
-    public boolean addRoom(Room room) {
+    /*public boolean addRoom(Room room) {
         if (room == null) {
             return false;
         }
@@ -55,7 +62,7 @@ public class RoomService {
             return true;
         }
         return false;
-    }
+    }*/
 
     /**
      * method that creates a new room
@@ -80,7 +87,7 @@ public class RoomService {
      *
      * @return Content of Room List
      */
-    public String getRoomListContent() {
+   /* public String getRoomListContent() {
         StringBuilder content = new StringBuilder();
         int numberInTheList = 1;
         for (int i = 0; i < listOfRooms.size(); i++) {
@@ -92,25 +99,25 @@ public class RoomService {
             numberInTheList++;
         }
         return content.toString();
-    }
+    }*/
 
     /**
      * Method that checks if a Room List is Empty
      *
      * @return true if it is empty
      */
-    public boolean isEmpty() {
+    /*public boolean isEmpty() {
         return listOfRooms.isEmpty();
-    }
+    }*/
 
     /**
      * Method that gives us the size of the Room List
      *
      * @return Room List size
      */
-    public int getLength() {
+    /*public int getLength() {
         return listOfRooms.size();
-    }
+    }*/
 
     /**
      * Method that displays a choosen Room (in a specific position) with its characteristics (name, housegrid floor, height, length and width)
@@ -118,7 +125,7 @@ public class RoomService {
      * @param position position of the Room in the Room List
      * @return Content of the Room
      */
-    public String getChosenRoomToString(int position) {
+   /* public String getChosenRoomToString(int position) {
         StringBuilder content = new StringBuilder();
         content.append("1 - Name: " + listOfRooms.get(position).getRoomId());
         content.append("\n");
@@ -131,7 +138,7 @@ public class RoomService {
         content.append("5 - Dimension - Width: " + listOfRooms.get(position).getDimension().getWidth());
         content.append("\n");
         return content.toString();
-    }
+    }*/
 
     /**
      * Method that changes the name of a Room
@@ -139,9 +146,9 @@ public class RoomService {
      * @param chosenRoom room that you want to change
      * @param changeName new name for the room
      */
-    public void changeRoomName(int chosenRoom, String changeName) {
+    /*public void changeRoomName(int chosenRoom, String changeName) {
         listOfRooms.get(chosenRoom).setRoomId(changeName);
-    }
+    }*/
 
     /**
      * Method that changes the housegrid floor of a Room
@@ -149,9 +156,9 @@ public class RoomService {
      * @param chosenRoom       room that you want to change
      * @param changeHouseFloor new housegrid floor for the room
      */
-    public void setRoomFloor(int chosenRoom, int changeHouseFloor) {
+   /* public void setRoomFloor(int chosenRoom, int changeHouseFloor) {
         listOfRooms.get(chosenRoom).setHouseFloor(changeHouseFloor);
-    }
+    }*/
 
     /**
      * Method that changes the dimensions of a Room
@@ -160,7 +167,7 @@ public class RoomService {
      * @param chosenFeature   Dimension that you want to change (Height, Length, Width)
      * @param changeDimension New value (double) for the chosen dimension (Height, Length, Width)
      */
-    public void setRoomDimensions(int chosenRoom, int chosenFeature, double changeDimension) {
+   /* public void setRoomDimensions(int chosenRoom, int chosenFeature, double changeDimension) {
         if (chosenFeature == 3) {
             listOfRooms.get(chosenRoom).getDimension().setHeight(changeDimension);
         } else listOfRooms.get(chosenRoom).getDimension().getHeight();
@@ -170,7 +177,7 @@ public class RoomService {
         if (chosenFeature == 5) {
             listOfRooms.get(chosenRoom).getDimension().setWidth(changeDimension);
         } else listOfRooms.get(chosenRoom).getDimension().getWidth();
-    }
+    }*/
 
     /**
      * Method that goes through the room list and shows the room by name if that name matches a room with the same name in the list
@@ -179,7 +186,7 @@ public class RoomService {
      * @return room
      */
 
-    public Room getRoomByName(String name) {
+    /*public Room getRoomByName(String name) {
 
         for (Room room : listOfRooms) {
             if (room.getRoomId().equals(name)) {
@@ -187,7 +194,7 @@ public class RoomService {
             }
         }
         return null;
-    }
+    }*/
 
     /**
      * Method that gets the name of the chosen room in a specific position in the room list
@@ -196,12 +203,12 @@ public class RoomService {
      * @return if the List is empty, returns null. Else returns the name of room in that position
      */
 
-    public String getRoomNameByPosition(int position) {
+   /* public String getRoomNameByPosition(int position) {
         if (listOfRooms.isEmpty()) {
             return null;
         }
         return listOfRooms.get(position).getRoomId();
-    }
+    }*/
 
     /*
      */
@@ -224,7 +231,7 @@ public class RoomService {
      * @param name
      * @return boolean
      */
-    public boolean isNameExistant(String name) {
+   /* public boolean isNameExistant(String name) {
 
         for (int i = 0; i < listOfRooms.size(); i++) {
             if (listOfRooms.get(i).getRoomId().equalsIgnoreCase(name)) {
@@ -313,7 +320,7 @@ public class RoomService {
      *
      * @return the content of the list by string.
      */
-    public String getRoomListToString() {
+  /*  public String getRoomListToString() {
         StringBuilder content = new StringBuilder();
         for (int i = 1; i <= listOfRooms.size(); i++) {
             content.append(i + " - Name: " + listOfRooms.get(i - 1).getRoomId());
