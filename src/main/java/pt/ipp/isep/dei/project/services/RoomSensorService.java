@@ -16,8 +16,8 @@ public class RoomSensorService {
     private RoomReadingService roomReadingService;
 
 
-    public boolean addRoomSensor(RoomSensor sensor){
-        if(this.roomSensorRepository.existsById(sensor.getId())){
+    public boolean addRoomSensor(RoomSensor sensor) {
+        if (this.roomSensorRepository.existsById(sensor.getId())) {
             this.roomSensorRepository.save(sensor);
             return true;
         }

@@ -65,12 +65,12 @@ public class ImportRoomSensorsController {
             String roomId = sensorDTO.getRoomId();
             if (!this.roomService.isNameExistant(sensorDTO.getRoomId())) {
                 numberOfNotImportedReadings++;
-                LOGGER.log(Level.WARNING, "Sensor " + sensorDTO.getId()+" was not imported because " + roomId + " doesn't exist.");
+                LOGGER.log(Level.WARNING, "Sensor " + sensorDTO.getId() + " was not imported because " + roomId + " doesn't exist.");
                 continue;
             } else if (this.roomService.addRoomSensor(RoomSensorMapper.mapToEntity(sensorDTO))) {
                 imported = true;
             } else {
-                LOGGER.log(Level.WARNING, "Sensor was not imported because room " + roomId+ " already has a sensor with the same id: Sensor id" + sensorDTO.getId() + ".");
+                LOGGER.log(Level.WARNING, "Sensor was not imported because room " + roomId + " already has a sensor with the same id: Sensor id" + sensorDTO.getId() + ".");
                 numberOfNotImportedReadings++;
             }
         }

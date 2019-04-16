@@ -87,6 +87,11 @@ public class Main {
 
             GetListOfExistingRooms getListOfExistingRooms = new GetListOfExistingRooms(roomService);
             getListOfExistingRooms.run();
+            AddNewGeographicalArea addNewGeographicalArea = new AddNewGeographicalArea(geoAreaService);
+            addNewGeographicalArea.run();
+
+
+
         };
     }
 /*
