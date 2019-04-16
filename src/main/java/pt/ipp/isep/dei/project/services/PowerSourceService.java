@@ -20,7 +20,7 @@ public class PowerSourceService {
      * Power Source List constructor
      */
     public PowerSourceService() {
-       //empty
+        //empty
     }
 
 
@@ -28,10 +28,10 @@ public class PowerSourceService {
 
         PowerSourceId id = new PowerSourceId(powerSourceId);
 
-        if(!this.powerSourceRepository.existsById(id)){
+        if (!this.powerSourceRepository.existsById(id)) {
             PowerSourceTypeId type = new PowerSourceTypeId(typeId);
             HouseGridId grid = new HouseGridId(gridId);
-            PowerSource powerSource = new PowerSource(id,type,grid);
+            PowerSource powerSource = new PowerSource(id, type, grid);
             this.powerSourceRepository.save(powerSource);
             return true;
         }

@@ -3,7 +3,15 @@ package pt.ipp.isep.dei.project.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.RoomSensorRepository;
+import pt.ipp.isep.dei.project.model.house.RoomId;
+import pt.ipp.isep.dei.project.model.readings.RoomReading;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
+import pt.ipp.isep.dei.project.model.sensor.RoomSensorId;
+import pt.ipp.isep.dei.project.model.sensor.SensorType;
+import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Service
@@ -15,9 +23,23 @@ public class RoomSensorService {
     @Autowired
     private RoomReadingService roomReadingService;
 
+    public boolean isRoomWithoutSensorByType(RoomId roomId, SensorTypeId sensorTypeId){
+        List<RoomSensor> roomSensors = this.roomSensorRepository.findByRoomIdAndSensorTypeId(roomId,sensorTypeId);
+        if(roomSensors.isEmpty()){
+            return true;
+        }
+        return false;
+    }
 
-    public boolean addRoomSensor(RoomSensor sensor){
-        if(this.roomSensorRepository.existsById(sensor.getId())){
+    public List<RoomSensor> getListOfRoomSensorByRoomByType(RoomId roomId, SensorTypeId sensorTypeId) {
+        return this.roomSensorRepository.findByRoomIdAndSensorTypeId(roomId, sensorTypeId);
+    }
+    public List<RoomReading> getListOfRoomReadingByRoomSensorId (RoomSensorId roomSensorId) {
+        return roomReadingService.getListOfRoomReadingByRoomSensorId(roomSensorId);
+    }
+
+    public boolean addRoomSensor(RoomSensor sensor) {
+        if (this.roomSensorRepository.existsById(sensor.getId())) {
             this.roomSensorRepository.save(sensor);
             return true;
         }
@@ -102,5 +124,6 @@ public class RoomSensorService {
         }
         return false;
     }
-    */
+
+ */
 }
