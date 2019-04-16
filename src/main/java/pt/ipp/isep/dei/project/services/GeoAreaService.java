@@ -3,8 +3,8 @@ package pt.ipp.isep.dei.project.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.GeoAreaRepository;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
+import pt.ipp.isep.dei.project.model.Location;
+import pt.ipp.isep.dei.project.model.geographicalarea.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +21,27 @@ public class GeoAreaService {
     public GeoAreaService() {
     }
 
+
+    public boolean addGeographicalArea(String geoAreaId, String geoAreaTypeId, double latitude, double longitude, double elevation, String description, double width, double length) {
+        Location geoLocation = new Location(latitude, longitude, elevation);
+        GeoAreaTypeId geographicalAreaTypeId = new GeoAreaTypeId(geoAreaTypeId);
+        GeoAreaId geographicalAreaId = new GeoAreaId(geoAreaId, geoLocation, geographicalAreaTypeId);
+        AreaShape areaShape = new AreaShape(width, length);
+        GeographicalArea geoArea = new GeographicalArea(geographicalAreaId, description, areaShape);
+        if (!geoAreaRepository.existsById(new GeoAreaId(geoAreaId, geoLocation, geographicalAreaTypeId))) {
+            geoAreaRepository.save(geoArea);
+            return true;
+        }
+        return false;
+    }
+
+
+    public boolean isGeoAreaExistant(String geoAreaId, double latitude, double longitude, double elevation, String geoAreaTypeId) {
+        Location geoLocation = new Location(latitude, longitude, elevation);
+        GeoAreaTypeId geographicalAreaTypeId = new GeoAreaTypeId(geoAreaTypeId);
+        return geoAreaRepository.existsById(new GeoAreaId(geoAreaId, geoLocation, geographicalAreaTypeId));
+
+    }
 
     /*
      *//**
