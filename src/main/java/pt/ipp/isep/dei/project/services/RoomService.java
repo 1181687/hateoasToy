@@ -6,8 +6,6 @@ import pt.ipp.isep.dei.project.RoomRepository;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.RoomId;
-import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
-import pt.ipp.isep.dei.project.model.sensor.SensorType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,16 +31,7 @@ public class RoomService {
     public boolean isNameExistant (String id){
         return roomRepository.existsById(new RoomId(id));
     }
-
-    public List<Room> getRoomList() {
-        List<Room> roomList = new ArrayList<>();
-        for (Room room : roomRepository.findAll()) {
-            roomList.add(room);
-        }
-        return roomList;
-        return roomRepository.existsById(new RoomId(id));
-    }
-
+    
     /**
      * Method that returns all the rooms in the repo.
      *
