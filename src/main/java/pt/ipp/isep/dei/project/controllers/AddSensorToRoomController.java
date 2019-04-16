@@ -1,19 +1,27 @@
 package pt.ipp.isep.dei.project.controllers;
 
-/*public class AddSensorToRoomController {
+public class AddSensorToRoomController {
 
-    private SensorTypeList sensorTypeList;
+    /*private SensorTypeList sensorTypeList;
     private RoomList roomList;
     private House house;
     private Room selectedRoom;
     private SensorType sensorType;
     private Location locationOfTheHouse;
 
-    public AddSensorToRoomController(SensorTypeList sensorTypeList, RoomList roomList, House house) {
+    @Autowired
+    private RoomSensorService roomSensorService;
+
+    public AddSensorToRoomController (RoomSensorService roomSensorService){
+    this.roomSensorService = roomSensorService;}
+}
+
+
+    /*public AddSensorToRoomController(SensorTypeList sensorTypeList, RoomList roomList, House house) {
         this.sensorTypeList = sensorTypeList;
         this.roomList = roomList;
         this.house = house;
-    }
+    }*/
 
     /**
      * This method display the rooms of the housegrid
@@ -93,5 +101,5 @@ package pt.ipp.isep.dei.project.controllers;
      */
     /*public boolean isSensorTypeListEmpty() {
         return sensorTypeList.isEmpty();
-    }
-}*/
+    }*/
+}
