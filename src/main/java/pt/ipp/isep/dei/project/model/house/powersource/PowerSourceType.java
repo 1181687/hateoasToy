@@ -14,8 +14,8 @@ public class PowerSourceType {
      *
      * @param typeOfPowerSource type of Power Source
      */
-    public PowerSourceType(String typeOfPowerSource) {
-        this.typeOfPowerSource = new PowerSourceTypeId(typeOfPowerSource);
+    public PowerSourceType(PowerSourceTypeId typeOfPowerSource) {
+        this.typeOfPowerSource = typeOfPowerSource;
     }
 
     protected PowerSourceType() {

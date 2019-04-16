@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.model.LocationDTO;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
+import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceType;
 import pt.ipp.isep.dei.project.services.HouseGridService;
 import pt.ipp.isep.dei.project.services.PowerSourceTypeService;
 import pt.ipp.isep.dei.project.services.RoomService;
@@ -72,6 +73,14 @@ public class HouseService {
      */
     public void updateRoomRepository(Room room) {
         roomService.updateRoomRepository(room);
+    }
+
+    public List<PowerSourceType> getAllPowerSourceTypes(){
+        return this.sourceTypeService.getAllPowerSourceTypes();
+    }
+
+    public boolean newPowerSource(String powerSourceId, String typeId, String gridId){
+        return this.houseGridService.newPowerSource(powerSourceId,typeId,gridId);
     }
 
   /*  public void updateHouseWithRoomsAndGrids(HouseDTO houseDTO, House house) {

@@ -1,11 +1,18 @@
 package pt.ipp.isep.dei.project.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.PowerSourceRepository;
+import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
+import pt.ipp.isep.dei.project.model.house.powersource.PowerSource;
+import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceId;
+import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceTypeId;
+
 
 @Service
 public class PowerSourceService {
 
+    @Autowired
     private PowerSourceRepository powerSourceRepository;
 
 
@@ -13,61 +20,22 @@ public class PowerSourceService {
      * Power Source List constructor
      */
     public PowerSourceService() {
-        //empty
+       //empty
     }
 
-    /**
-     * Method that creates a new Power Source
-     *
-     * @param powerSourceName name of Power Source (String)
-     * @param type            type of Power Source
-     * @return new Power Source
-     */
-    /*public PowerSource createNewPowerSource(String powerSourceName, PowerSourceType type){
-        if(!this.powerSourceNameAlreadyExists(powerSourceName)){
-            return new PowerSource(powerSourceName, type);
 
-        }
-        throw new RuntimeException("Name already exists. Please, write a new one.");
-    }
+    public boolean newPowerSource(String powerSourceId, String typeId, String gridId) {
 
-    public boolean powerSourceNameAlreadyExists(String name){
-        int listSize = this.listOfPowerSources.size();
+        PowerSourceId id = new PowerSourceId(powerSourceId);
 
-        for (int i = 0; i < listSize; i++) {
-            if (this.listOfPowerSources.get(i).getName().equalsIgnoreCase(name)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * Method that adds a new Power Source to the Power Source List.
-     *
-     * @param newPowerSource new Power Source
-     * @return true if the adds a power source or false if it doesn't
-     */
-    /*public boolean addPowerSource(PowerSource newPowerSource){
-
-        if (!(this.listOfPowerSources.contains(newPowerSource))) {
-            this.listOfPowerSources.add(newPowerSource);
+        if(!this.powerSourceRepository.existsById(id)){
+            PowerSourceTypeId type = new PowerSourceTypeId(typeId);
+            HouseGridId grid = new HouseGridId(gridId);
+            PowerSource powerSource = new PowerSource(id,type,grid);
+            this.powerSourceRepository.save(powerSource);
             return true;
-
         }
         return false;
     }
 
-    public String getPowerSourcesListToString() {
-        StringBuilder content = new StringBuilder();
-        int numberInTheList = 1;
-        for (int i = 0; i < listOfPowerSources.size(); i++) {
-            String powerSourceName = listOfPowerSources.get(i).getName();
-            content.append(numberInTheList + "- ");
-            content.append(powerSourceName);
-            content.append("\n");
-            numberInTheList++;
-        }
-        return content.toString();
-    }*/
 }
