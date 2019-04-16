@@ -7,6 +7,7 @@ import javax.persistence.Embedded;
 import javax.persistence.EmbeddedId;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.Objects;
 
 import static java.util.Objects.isNull;
 
@@ -21,7 +22,7 @@ public class GeoAreaId implements Serializable {
     @Embedded
     private GeoAreaTypeId geographicalAreaTypeId;
 
-    public GeoAreaId( @NotNull String id,@NotNull Location location, @NotNull GeoAreaTypeId geographicalAreaTypeId) {
+    public GeoAreaId(@NotNull String id, @NotNull Location location, @NotNull GeoAreaTypeId geographicalAreaTypeId) {
         validateId(id);
         this.location = location;
         this.id = id;
@@ -41,7 +42,7 @@ public class GeoAreaId implements Serializable {
         }
     }
 
-    protected GeoAreaId(){
+    protected GeoAreaId() {
         //empty
     }
 
@@ -55,6 +56,23 @@ public class GeoAreaId implements Serializable {
 
     public GeoAreaTypeId getGeographicalAreaType() {
         return geographicalAreaTypeId;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof GeographicalArea)) {
+            return false;
+        }
+        GeoAreaId geoAreaId = (GeoAreaId) obj;
+        return this.id.equals(geoAreaId.id) && this.geographicalAreaTypeId.equals(geoAreaId.geographicalAreaTypeId) && this.location.equals(geoAreaId.location);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.id);
     }
 
 }
