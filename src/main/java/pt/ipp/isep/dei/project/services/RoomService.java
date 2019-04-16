@@ -64,6 +64,15 @@ public class RoomService {
 
 
     /**
+     * Method that stores a room in the db. If it already exists, it updates it.
+     *
+     * @param room Room to be stored.
+     */
+    public void updateRoomRepository(Room room) {
+        roomRepository.save(room);
+    }
+
+    /**
      * Method that gets the room in a specific position in the list.
      *
      * @param position Specifies the position of the room in the list.

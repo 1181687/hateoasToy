@@ -74,6 +74,15 @@ public class HouseService {
         return roomService.getRoomById(id);
     }
 
+    /**
+     * Method that stores a room in the db. If it already exists, it updates it.
+     *
+     * @param room Room to be stored.
+     */
+    public void updateRoomRepository(Room room) {
+        roomService.updateRoomRepository(room);
+    }
+
     public List<PowerSourceType> getAllPowerSourceTypes(){
         return this.sourceTypeService.getAllPowerSourceTypes();
     }
