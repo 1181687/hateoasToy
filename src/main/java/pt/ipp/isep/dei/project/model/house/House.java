@@ -9,7 +9,7 @@ public class House {
     //@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     //@JoinColumn
     //@Transient
-    //private RoomList roomList;
+    //private RoomService roomList;
 
     //@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     //@Fetch(value = FetchMode.SUBSELECT)
@@ -32,7 +32,7 @@ public class House {
 
 
    /* public House(List<String> deviceTypeList, int meteringPeriodGrid, int meteringPeriodDevice) {
-        this.roomList = new RoomList();
+        this.roomList = new RoomService();
         this.listHouseGrids = new ArrayList<>();
         this.deviceTypeList = new ArrayList<>();
         createDeviceTypes(deviceTypeList);
@@ -410,19 +410,6 @@ public class House {
      */
    /* public boolean isHouseGridListEmpty() {
         return listHouseGrids.isEmpty();
-    }*/
-
-    /**
-     * Method that creates a housegrid grid.
-     *
-     * @param grid Name of the grid.
-     * @return New object of the class housegrid.
-     */
-   /* public boolean createHouseGrid(HouseGrid grid) {
-        if (!this.gridNameAlreadyExists(grid.getName())) {
-            return this.addGrid(grid);
-        }
-        throw new RuntimeException("Name already exists. Please, write a new one.");
     }*/
 
    /* public boolean gridNameAlreadyExists(String name) {
