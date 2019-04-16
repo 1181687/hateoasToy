@@ -39,7 +39,7 @@ public final class RoomMapper {
      * @param room Room to be used.
      * @return GeoAreaDTO.
      */
-   /* public static RoomDTO mapToDTO(Room room) {
+    public static RoomDTO mapToDTO(Room room) {
         if (Objects.isNull(room)) {
             return null;
         }
@@ -53,7 +53,7 @@ public final class RoomMapper {
         roomDTO.setHeight(room.getDimension().getHeight());
 
         return roomDTO;
-    }*/
+    }
 
     /**
      * Method that turns a RoomDTO into a Room.

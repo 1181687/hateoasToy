@@ -6,12 +6,9 @@ import pt.ipp.isep.dei.project.RoomRepository;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.RoomId;
-import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
 
-import javax.persistence.Transient;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class RoomService {
@@ -29,10 +26,15 @@ public class RoomService {
     }
 
     public boolean isNameExistant (String id){
-        if (roomRepository.existsById(new RoomId(id))){
-            return true;
+        return roomRepository.existsById(new RoomId(id));
+    }
+
+    public List<Room> getRoomList() {
+        List<Room> roomList = new ArrayList<>();
+        for (Room room : roomRepository.findAll()) {
+            roomList.add(room);
         }
-        return false;
+        return roomList;
     }
 
 
