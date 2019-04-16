@@ -15,19 +15,19 @@ public class PowerSourceTypeService {
     private PowerSourceTypeRepository powerSourceTypeRepository;
 
     public PowerSourceTypeService() {
-       //empty
+        //empty
     }
 
-    public List<PowerSourceType> getAllPowerSourceTypes(){
+    public List<PowerSourceType> getAllPowerSourceTypes() {
         Iterable<PowerSourceType> iterTypes = this.powerSourceTypeRepository.findAll();
         List<PowerSourceType> types = new ArrayList<>();
         iterTypes.forEach(types::add);
         return types;
     }
 
-    public boolean newPowerSourceType(String id){
+    public boolean newPowerSourceType(String id) {
         PowerSourceTypeId typeId = new PowerSourceTypeId(id);
-        if(!this.powerSourceTypeRepository.existsById(typeId)){
+        if (!this.powerSourceTypeRepository.existsById(typeId)) {
             PowerSourceType powerSourceType = new PowerSourceType(typeId);
             this.powerSourceTypeRepository.save(powerSourceType);
             return true;

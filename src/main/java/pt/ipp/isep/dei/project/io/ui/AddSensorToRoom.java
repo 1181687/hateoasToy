@@ -1,11 +1,51 @@
 package pt.ipp.isep.dei.project.io.ui;
 
+import pt.ipp.isep.dei.project.controllers.AddSensorToRoomController;
+import pt.ipp.isep.dei.project.model.house.HouseService;
+import pt.ipp.isep.dei.project.model.house.RoomDTO;
+
+import java.util.List;
+
 /**
  * US253 As an Administrator, I want to add a new sensor to a room from the list of available
  * sensor types, in order to configure it.
  */
 
 public class AddSensorToRoom {
+
+    private AddSensorToRoomController controller;
+
+    public AddSensorToRoom(HouseService houseService) {
+        this.controller = new AddSensorToRoomController(houseService);
+    }
+
+    public void run() {
+
+        List<RoomDTO> getRoomListDTO = controller.getRoomDTOList();
+
+        if (getRoomListDTO.isEmpty()) {
+            System.out.println("\nThere are no rooms in the house. Please create a new room.");
+            return;
+        }
+        String label1 = "Please select which type of sensor you want to create: \n" + getRoomDTOListToString();
+        int positionOfSensorType = InputValidator.getIntRange(label1, 1, getRoomListDTO.size() - 1);
+
+    }
+
+    public String getRoomDTOListToString() {
+        List<RoomDTO> getRoomListDTO = controller.getRoomDTOList();
+        StringBuilder content = new StringBuilder();
+        int listOrderByNumber = 1;
+        for (RoomDTO roomDTO : getRoomListDTO) {
+            content.append(listOrderByNumber);
+            content.append(" - Id: ");
+            content.append(roomDTO.getId());
+            content.append(", Description: ");
+            content.append(roomDTO.getDescription());
+            listOrderByNumber++;
+        }
+        return content.toString();
+    }
 
     /*private AddSensorToRoomController controller;
 

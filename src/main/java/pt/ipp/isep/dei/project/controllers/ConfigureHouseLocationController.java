@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.house.HouseService;
+import pt.ipp.isep.dei.project.services.HouseService;
 
 public class ConfigureHouseLocationController {
 

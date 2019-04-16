@@ -9,7 +9,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import pt.ipp.isep.dei.project.model.house.House;
-import pt.ipp.isep.dei.project.model.house.HouseService;
 import pt.ipp.isep.dei.project.services.*;
 
 @EnableJpaRepositories(basePackages = "pt.ipp.isep.dei.project")
@@ -82,8 +81,15 @@ public class Main {
             GetListOfTypeOfGeoArea getListOfTypeOfGeoArea = new GetListOfTypeOfGeoArea(geoAreaService);
             getListOfTypeOfGeoArea.run(); */
 
-            AddNewGeographicalAreaType addNewGeographicalAreaType = new AddNewGeographicalAreaType(geoAreaTypeService);
-            addNewGeographicalAreaType.run();
+            //AddNewGeographicalAreaType addNewGeographicalAreaType = new AddNewGeographicalAreaType(geoAreaTypeService);
+            //addNewGeographicalAreaType.run();
+
+            GetListOfExistingRooms getListOfExistingRooms = new GetListOfExistingRooms(roomService);
+            getListOfExistingRooms.run();
+            AddNewGeographicalArea addNewGeographicalArea = new AddNewGeographicalArea(geoAreaService);
+            addNewGeographicalArea.run();
+
+
 
         };
     }
