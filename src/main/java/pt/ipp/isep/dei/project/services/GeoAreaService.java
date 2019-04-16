@@ -3,6 +3,10 @@ package pt.ipp.isep.dei.project.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.GeoAreaRepository;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class GeoAreaService {
@@ -10,6 +14,21 @@ public class GeoAreaService {
 
     @Autowired
     private GeoAreaRepository geoAreaRepository;
+
+    @Autowired
+    private GeoAreaSensorService geoAreaSensorService;
+
+
+    public List<GeographicalArea> getGeoAreaList() {
+
+        Iterable<GeographicalArea> iterable = new ArrayList<>();
+        for (GeographicalArea geoArea : iterable) {
+
+            
+        }
+
+    }
+
 
 /*
     *//**

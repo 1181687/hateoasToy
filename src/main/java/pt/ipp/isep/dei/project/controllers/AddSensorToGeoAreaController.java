@@ -1,60 +1,39 @@
 package pt.ipp.isep.dei.project.controllers;
 
+import pt.ipp.isep.dei.project.model.Location;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaId;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
+import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 import pt.ipp.isep.dei.project.services.GeoAreaSensorService;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AddSensorToGeoAreaController {
 
     GeoAreaSensorService geoAreaSensorService;
 
 
-
-
-
-
-    /*
     public AddSensorToGeoAreaController(GeoAreaSensorService geoAreaSensorService) {
         this.geoAreaSensorService = geoAreaSensorService;
     }
 
-    public void getTipoSensorPorPosicao (int posicao) {
-        sensorType = sensorTypeList.getSensorTypeByPosition(posicao);
+    public List<GeographicalAreaDTO> getGeographicalAreaList() {
+
+        List<GeographicalAreaDTO> geographicalAreaDTOList = new ArrayList<>();
+
+
+
     }
 
-    public String getNomeAreaGeograficaPorIndice (int posicao) {
-        return geographicalAreaService.getGeographicalAreaNameByPosition(posicao);
+
+    public void addSensor(String id, String sensorName, LocalDateTime startingDate, SensorTypeId sensorTypeId, Location location, String units, GeoAreaId geoAreaId) {
+        geoAreaSensorService.addSensor(id, sensorName, startingDate, sensorTypeId, location, units, geoAreaId);
     }
 
-    public void getAreaGeograficaNaListaPorPosicao(int posicao) {
-        geographicalArea = geographicalAreaService.getGeoAreaList().get(posicao);
+    public boolean isNameExistant(String name) {
+        return this.geoAreaSensorService.isNameExistant(name);
     }
-
-    public int numeroElementosDaListaAreaGeografica () {
-        return geographicalAreaService.getGeoAreaList().size();
-    }
-
-    public int numeroElementosDaListaTipoDeSensor () {
-        return sensorTypeList.getListOfSensorTypes().size();
-    }
-
-    public String getNomeTipoSensorPorIndice (int posicao) {
-        return sensorTypeList.getSensorTypeByPosition(posicao).getType();
-    }
-
-    public boolean adicionarSensorAAreaGeografica(GeoAreaSensor sensor) {
-        if ((!(this.geographicalAreaService.getGeographicalArea(this.geographicalArea).getSensorListInTheGeographicArea().getListOfSensors().contains(sensor)))) {
-            geographicalAreaService.getGeographicalArea(this.geographicalArea).getSensorListInTheGeographicArea().addSensor(sensor);
-            return true;
-        }
-        return false;
-    }
-
-    public void criarNovaLocalizacao(double mAltitude, double mLatitude, double mLongitude) {
-        location = this.geographicalAreaService.getGeographicalArea(this.geographicalArea).newLocation(mAltitude, mLatitude, mLongitude);
-    }
-
-    public GeoAreaSensor criarNovoSensor(String id, String nome, String units) {
-        return this.geographicalArea.newSensor(id, nome, this.sensorType, this.location, units);
-    }
-    */
 
 }
