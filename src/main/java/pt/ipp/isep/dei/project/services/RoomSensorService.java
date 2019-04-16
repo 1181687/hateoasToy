@@ -3,6 +3,14 @@ package pt.ipp.isep.dei.project.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.RoomSensorRepository;
+import pt.ipp.isep.dei.project.model.house.RoomId;
+import pt.ipp.isep.dei.project.model.readings.RoomReading;
+import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
+import pt.ipp.isep.dei.project.model.sensor.SensorType;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Service
 public class RoomSensorService {
@@ -15,6 +23,11 @@ public class RoomSensorService {
 }
 
 
+
+/*
+    public boolean getRoomById(Room room){
+        return roomSensorRepository.
+    }
 
 /*
     public boolean getRoomById(Room room){
@@ -42,8 +55,9 @@ public class RoomSensorService {
         }
         return Double.NaN;
     }
-
-    public RoomReading getLatestMeasurementBySensorType(SensorType type) {
+*/
+/*
+    public RoomReading getLatestMeasurementBySensorType(SensorType type, RoomId roomId) {
         List<RoomReading> listOfLatestReadings = getListOfLatestMeasurementsBySensorType(type);
         if (getListOfLatestMeasurementsBySensorType(type).isEmpty()) {
             return null;

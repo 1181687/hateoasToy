@@ -1,8 +1,7 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.AddSensorToGeoAreaController;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaService;
-import pt.ipp.isep.dei.project.model.sensor.SensorTypeList;
+import pt.ipp.isep.dei.project.services.GeoAreaService;
 
 import java.util.Scanner;
 
@@ -14,16 +13,16 @@ import java.util.Scanner;
 public class AddSensorToGeoArea {
     private AddSensorToGeoAreaController controller;
 
-    public AddSensorToGeoArea(GeographicalAreaService geographicalAreaService, SensorTypeList sensorTypeList) {
-        this.controller = new AddSensorToGeoAreaController(sensorTypeList, geographicalAreaService);
+    public AddSensorToGeoArea(GeoAreaService geoAreaService) {
+        this.controller = new AddSensorToGeoAreaController(geoAreaService);
     }
 
     public void run() {
         String label = "Introduce the name of the new sensor.";
         String label10 = "Introduce the ID of the new sensor.";
         String label20 = "Introduce the units of the new sensor.";
-        Scanner ler = new Scanner(System.in);
-        String nome = InputValidator.getString(label);
+        Scanner read = new Scanner(System.in);
+        String name = InputValidator.getString(label);
         String id = InputValidator.getString(label10);
         String units = InputValidator.getString(label20);
 
@@ -37,6 +36,12 @@ public class AddSensorToGeoArea {
         double altitude = InputValidator.getInt(label3);
 
         System.out.println("Introduce the type of sensor");
+
+
+
+
+
+        /*
         int posicao1 = -1;
         do {
             for (int i = 0; i < controller.numeroElementosDaListaTipoDeSensor(); i++) {
@@ -66,6 +71,9 @@ public class AddSensorToGeoArea {
         } else {
             System.out.println("This sensor already exists in this geographical area.");
         }
+
+         */
     }
+
 
 }

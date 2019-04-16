@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.model.LocationDTO;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
+import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
+import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceType;
 import pt.ipp.isep.dei.project.services.HouseGridService;
 import pt.ipp.isep.dei.project.services.PowerSourceTypeService;
 import pt.ipp.isep.dei.project.services.RoomService;
@@ -33,6 +35,52 @@ public class HouseService {
 
     public List<HouseGrid> getAllGrids() {
         return this.houseGridService.getAllGrids();
+    }
+
+    /**
+     * Method that searches for a grid by its Id. If it exists in the repo, the grid is returned, if not, null is returned.
+     *
+     * @param id Id to be used.
+     * @return HouseGrid or null.
+     */
+    public HouseGrid getGridById(HouseGridId id) {
+        return houseGridService.getGridById(id);
+    }
+
+    /**
+     * Method that returns all the rooms in the house repo.
+     *
+     * @return List of Room.
+     */
+    public List<Room> getAllRooms() {
+        return this.roomService.getAllRooms();
+    }
+
+    /**
+     * Method that searches for a room by its Id. If it exists in the repo, the room is returned, if not, null is returned.
+     *
+     * @param id Id to be used.
+     * @return Room or null.
+     */
+    public Room getRoomById(RoomId id) {
+        return roomService.getRoomById(id);
+    }
+
+    /**
+     * Method that stores a room in the db. If it already exists, it updates it.
+     *
+     * @param room Room to be stored.
+     */
+    public void updateRoomRepository(Room room) {
+        roomService.updateRoomRepository(room);
+    }
+
+    public List<PowerSourceType> getAllPowerSourceTypes(){
+        return this.sourceTypeService.getAllPowerSourceTypes();
+    }
+
+    public boolean newPowerSource(String powerSourceId, String typeId, String gridId){
+        return this.houseGridService.newPowerSource(powerSourceId,typeId,gridId);
     }
 
   /*  public void updateHouseWithRoomsAndGrids(HouseDTO houseDTO, House house) {

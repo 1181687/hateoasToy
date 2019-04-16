@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.GeoAreaRepository;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
+import pt.ipp.isep.dei.project.model.sensor.SensorType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,12 +14,13 @@ import java.util.List;
 @Service
 public class GeoAreaService {
 
+    // Repository
     @Autowired
     private GeoAreaRepository geoAreaRepository;
 
+    // Services
     @Autowired
     private GeoAreaTypeService geoAreaTypeService;
-
     @Autowired
     private GeoAreaSensorService geoAreaSensorService;
 
@@ -51,6 +53,14 @@ public class GeoAreaService {
         return this.geoAreaRepository.count() == 0;
     }
 
+    /**
+     * method that get a list of sensor types
+     *
+     * @return a list of sensor types.
+     */
+    public List<SensorType> getSensorTypeList() {
+        return geoAreaSensorService.getSensorTypeList();
+    }
 
     /**
      * method that gel a list of all geo area types

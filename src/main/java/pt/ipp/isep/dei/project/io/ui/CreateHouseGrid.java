@@ -26,7 +26,7 @@ public class CreateHouseGrid {
                 System.out.println("Your house grid was successfully created!\n");
                 flag = false;
             } else {
-                System.out.println("A house grid with that id already exists.\n");
+                System.out.println("A house grid with that id already exists.");
             }
         }
     }
