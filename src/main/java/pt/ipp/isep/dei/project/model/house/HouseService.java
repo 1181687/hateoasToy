@@ -65,6 +65,15 @@ public class HouseService {
         return roomService.getRoomById(id);
     }
 
+    /**
+     * Method that stores a room in the db. If it already exists, it updates it.
+     *
+     * @param room Room to be stored.
+     */
+    public void updateRoomRepository(Room room) {
+        roomService.updateRoomRepository(room);
+    }
+
   /*  public void updateHouseWithRoomsAndGrids(HouseDTO houseDTO, House house) {
         Address houseAddress = AddressMapper.mapToEntity(houseDTO.getAddressDTO());
         if (Objects.isNull(houseAddress.getLocation())) {
