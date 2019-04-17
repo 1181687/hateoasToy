@@ -66,6 +66,9 @@ public class Main {
     @Autowired
     private HouseGridService houseGridService;
 
+    // RoomSensor Service Injection
+    @Autowired
+    private RoomSensorService roomSensorService;
 
 
     public static void main(String[] args) {

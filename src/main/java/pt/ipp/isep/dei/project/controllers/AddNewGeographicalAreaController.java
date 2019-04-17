@@ -1,8 +1,6 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaTypeDTO;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaTypeMapper;
+import pt.ipp.isep.dei.project.model.geographicalarea.*;
 import pt.ipp.isep.dei.project.services.GeoAreaService;
 
 import java.util.ArrayList;
@@ -16,9 +14,8 @@ public class AddNewGeographicalAreaController {
         this.geoAreaService = geoAreaService;
     }
 
-    public void addGeographicalArea(String geoAreaId, String geoAreaTypeId, double latitude, double longitude,
-                                    double elevation, String description, double width, double length) {
-        geoAreaService.addGeographicalArea(geoAreaId, geoAreaTypeId, latitude, longitude, elevation, description, width, length);
+    public void addGeographicalArea(GeographicalAreaDTO geographicalAreaDTO) {
+        geoAreaService.addGeographicalArea(GeographicalAreaMapper.mapToEntity(geographicalAreaDTO));
     }
 
 

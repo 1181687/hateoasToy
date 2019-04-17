@@ -53,6 +53,14 @@ public class HouseService {
         return this.houseGridService.getAllGrids();
     }
 
+    public List<Room> getRoomsOfAHouseGrid(HouseGridId houseGridId){
+        return roomService.getRoomsOfAHouseGrid(houseGridId);
+    }
+
+    public boolean detachRoomFromHouseGrid(RoomId roomId){
+        return roomService.detachRoomFromHouseGrid(roomId);
+    }
+
     /**
      * Method that searches for a grid by its Id. If it exists in the repo, the grid is returned, if not, null is returned.
      *

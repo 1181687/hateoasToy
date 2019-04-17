@@ -4,7 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.GeoAreaRepository;
 import pt.ipp.isep.dei.project.model.Location;
-import pt.ipp.isep.dei.project.model.geographicalarea.*;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaId;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaTypeId;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
+import pt.ipp.isep.dei.project.model.readings.GeoAreaReading;
+import pt.ipp.isep.dei.project.model.readings.GeoAreaReadingId;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorId;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 
 import java.util.ArrayList;
@@ -23,6 +30,8 @@ public class GeoAreaService {
     private GeoAreaTypeService geoAreaTypeService;
     @Autowired
     private GeoAreaSensorService geoAreaSensorService;
+    @Autowired
+    private GeoAreaSensorReadingsService geoAreaSensorReadingsService;
 
 
     /**
@@ -32,14 +41,16 @@ public class GeoAreaService {
         // empty
     }
 
-
-    public boolean addGeographicalArea(String geoAreaId, String geoAreaTypeId, double latitude, double longitude, double elevation, String description, double width, double length) {
-        Location geoLocation = new Location(latitude, longitude, elevation);
-        GeoAreaTypeId geographicalAreaTypeId = new GeoAreaTypeId(geoAreaTypeId);
-        GeoAreaId geographicalAreaId = new GeoAreaId(geoAreaId, geoLocation, geographicalAreaTypeId);
-        AreaShape areaShape = new AreaShape(width, length);
-        GeographicalArea geoArea = new GeographicalArea(geographicalAreaId, description, areaShape);
-        if (!geoAreaRepository.existsById(new GeoAreaId(geoAreaId, geoLocation, geographicalAreaTypeId))) {
+    /**
+     * **
+     * Method that adds a geographical area to the geoAreaRepository.
+     * If it doesn't exist in the repository, it adds the area and return true.
+     * If it does, then it just returns true
+     @param geoArea
+     * @return
+     */
+    public boolean addGeographicalArea(GeographicalArea geoArea) {
+        if (!geoAreaRepository.existsById(geoArea.getId())) {
             geoAreaRepository.save(geoArea);
             return true;
         }
@@ -148,14 +159,22 @@ public class GeoAreaService {
      * @return a list of geo areas by type
      */
     public List<GeographicalArea> getGeoAreasByType(String type) {
-        List<GeographicalArea> geographicalAreas = new ArrayList<>();
-        for (GeographicalArea geographicalArea : geoAreaRepository.findAll()) {
-            if (geographicalArea.getId().getGeographicalAreaType().getGeoAreaTypeId().equals(type)) {
-                geographicalAreas.add(geographicalArea);
-            }
-        }
-        return geographicalAreas;
+        GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId(type);
+        return geoAreaRepository.findById_GeographicalAreaTypeId(geoAreaTypeId);
     }
+
+    public GeoAreaSensor getSensorById(GeoAreaSensorId geoAreaSensorId){
+        return geoAreaSensorService.getSensorById(geoAreaSensorId);
+    }
+
+    public boolean isReadingDuplicated(GeoAreaReadingId geoAreaReadingId){
+        return geoAreaSensorReadingsService.isReadingDuplicated(geoAreaReadingId);
+    }
+
+    public boolean addReading(GeoAreaReading geoAreaReading){
+        return geoAreaSensorReadingsService.addReading(geoAreaReading);
+    }
+
 
     public List<GeographicalAreaType> listOfGeoAreaTypes() {
         return geoAreaTypeService.getListOfGeoAreaTypes();

@@ -25,4 +25,5 @@ public class GetListOfExistingRoomsController {
         }
         return roomDTOList;
     }
+
 }

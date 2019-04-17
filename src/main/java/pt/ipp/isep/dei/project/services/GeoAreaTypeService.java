@@ -90,21 +90,20 @@ public class GeoAreaTypeService {
         return listOfGeoAreaTypes;
     }*/
     public boolean createGeoAreaType(String geoAreaTypeId) {
-        GeoAreaTypeId idGeoAreaType = new GeoAreaTypeId(geoAreaTypeId);
-        if (!geoAreaTypeRepository.existsById(idGeoAreaType)) {
-            geoAreaTypeRepository.save(new GeographicalAreaType(idGeoAreaType));
+        GeoAreaTypeId newIdGeoAreaType = new GeoAreaTypeId(geoAreaTypeId);
+        if (!geoAreaTypeRepository.existsById(newIdGeoAreaType)) {
+            geoAreaTypeRepository.save(new GeographicalAreaType(newIdGeoAreaType));
             return true;
         }
         return false;
     }
-    public List<GeographicalAreaType> getListOfGeoAreaTypes() {
-        List<GeographicalAreaType> geographicalAreaTypeList = new ArrayList<>();
-        for (GeographicalAreaType geographicalAreaType : geoAreaTypeRepository.findAll()) {
-            geographicalAreaTypeList.add(geographicalAreaType);
-        }
-        return geographicalAreaTypeList;
-    }
 
+    public List<GeographicalAreaType> getListOfGeoAreaTypes(){
+        Iterable<GeographicalAreaType> gridIterables = this.geoAreaTypeRepository.findAll();
+        List<GeographicalAreaType> grids = new ArrayList<>();
+        gridIterables.forEach(grids::add);
+        return grids;
+    }
 
 }
 

@@ -77,8 +77,8 @@ public class GeoAreaSensor {
     }
 
 
-    public String getId() {
-        return id.getSensorId();
+    public GeoAreaSensorId getId() {
+        return id;
     }
 
     public void setId(GeoAreaSensorId id) {
@@ -113,6 +113,10 @@ public class GeoAreaSensor {
 
     public SensorTypeId getSensorType() {
         return sensorTypeId;
+    }
+
+    public LocalDateTime getStartingDate() {
+        return startingDate;
     }
 
     /**

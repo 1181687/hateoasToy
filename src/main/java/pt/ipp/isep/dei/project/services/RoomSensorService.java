@@ -3,8 +3,18 @@ package pt.ipp.isep.dei.project.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.RoomSensorRepository;
+import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.RoomId;
 import pt.ipp.isep.dei.project.model.readings.RoomReading;
+import pt.ipp.isep.dei.project.model.readings.RoomReadingId;
+import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
+import pt.ipp.isep.dei.project.model.sensor.RoomSensorId;
+
+import java.util.List;
+
+import pt.ipp.isep.dei.project.model.house.RoomId;
+import pt.ipp.isep.dei.project.model.readings.RoomReading;
+import pt.ipp.isep.dei.project.model.readings.RoomReadingId;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensorId;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
@@ -12,6 +22,7 @@ import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 @Service
@@ -23,17 +34,36 @@ public class RoomSensorService {
     @Autowired
     private RoomReadingService roomReadingService;
 
+    /**
+     * method that return true if a given room have a Sensor of a given type
+     * or return false if it don't have
+     * @param roomId given room
+     * @param sensorTypeId type of sensor
+     * @return
+     */
     public boolean isRoomWithoutSensorByType(RoomId roomId, SensorTypeId sensorTypeId){
-        List<RoomSensor> roomSensors = this.roomSensorRepository.findByRoomIdAndSensorTypeId(roomId,sensorTypeId);
-        if(roomSensors.isEmpty()){
+        RoomSensor roomSensor = this.getRoomSensorByRoomByType(roomId,sensorTypeId);
+        if(Objects.isNull(roomSensor)){
             return true;
         }
         return false;
     }
 
-    public List<RoomSensor> getListOfRoomSensorByRoomByType(RoomId roomId, SensorTypeId sensorTypeId) {
+    /**
+     * method that get RoomSensor of a given type for a given room
+     * @param roomId room name
+     * @param sensorTypeId sensor type
+     * @return roomSensor
+     */
+    public RoomSensor getRoomSensorByRoomByType(RoomId roomId, SensorTypeId sensorTypeId) {
         return this.roomSensorRepository.findByRoomIdAndSensorTypeId(roomId, sensorTypeId);
     }
+
+    /**
+     * method that get the list of readings of a given room sensor
+     * @param roomSensorId id of the room sensor
+     * @return List<RoomReading>
+     */
     public List<RoomReading> getListOfRoomReadingByRoomSensorId (RoomSensorId roomSensorId) {
         return roomReadingService.getListOfRoomReadingByRoomSensorId(roomSensorId);
     }
@@ -46,16 +76,18 @@ public class RoomSensorService {
         return false;
     }
 
-/*
-    public boolean getRoomById(Room room){
-        return roomSensorRepository.
+    public RoomSensor getSensorById(RoomSensorId roomSensorId) {
+        return roomSensorRepository.findById(roomSensorId).orElse(null);
     }
 
-/*
-    public boolean getRoomById(Room room){
-        return roomSensorRepository.
+    public boolean isReadingDuplicated(RoomReadingId roomReadingId){
+        return roomReadingService.isReadingDuplicated(roomReadingId);
     }
-*/
+
+    public boolean addReading(RoomReading roomReading){
+        return roomReadingService.addReading(roomReading);
+    }
+
     /*public boolean addSensor(RoomSensor sensor) {
         if (listOfSensors.contains(sensor) || Objects.isNull(sensor)) {
             return false;

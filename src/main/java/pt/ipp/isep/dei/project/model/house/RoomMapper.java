@@ -32,6 +32,7 @@ public final class RoomMapper {
             return null;
         }
         RoomDTO roomDTO = new RoomDTO();
+
         roomDTO.setId(room.getRoomId().getId());
         roomDTO.setDescription(room.getDescription());
         roomDTO.setHouseFloor(room.getHouseFloor());
