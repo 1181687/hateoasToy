@@ -10,4 +10,6 @@ import java.util.List;
 public interface GeoAreaSensorRepository extends CrudRepository<GeoAreaSensor, GeoAreaSensorId> {
 
     List<GeoAreaSensor> findBySensorTypeId(SensorTypeId typeId);
+
+
 }

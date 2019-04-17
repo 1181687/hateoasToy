@@ -34,20 +34,16 @@ public class GeoAreaSensorService {
     public List<SensorType> getSensorTypeList() {
         return sensorTypeService.getSensorTypeList();
     }
-    
 
-    public boolean addSensor(String id, String sensorName, LocalDateTime startingDate, SensorTypeId sensorTypeId, Location location, String units, GeoAreaId geoAreaId) {
-        if (!geoAreaSensorRepository.existsById(new GeoAreaSensorId(id))) {
-            GeoAreaSensor geoAreaSensor = new GeoAreaSensor(id, sensorName, startingDate, sensorTypeId, location, units, geoAreaId);
-            geoAreaSensorRepository.save(geoAreaSensor);
-            return true;
-        }
-        return false;
-    }
 
     public boolean isNameExistant(String id) {
         return geoAreaSensorRepository.existsById(new GeoAreaSensorId(id));
     }
+
+    public GeoAreaSensor getSensorById(GeoAreaSensorId geoAreaSensorId){
+        return geoAreaSensorRepository.findById(geoAreaSensorId).orElse(null);
+    }
+
 
 
     /**

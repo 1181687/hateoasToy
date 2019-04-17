@@ -11,7 +11,6 @@ public class GeoAreaSensorDTO {
     private String sensorType;
     private LocationDTO location;
     private String units;
-    private boolean isActive = true;
 
     /**
      * Constructor.
@@ -108,11 +107,4 @@ public class GeoAreaSensorDTO {
         this.units = units;
     }
 
-    public boolean getIsActive() {
-        return this.isActive;
-    }
-
-    public void setActive(boolean active) {
-        isActive = active;
-    }
 }

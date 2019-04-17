@@ -115,6 +115,10 @@ public class GeoAreaSensor {
         return sensorTypeId;
     }
 
+    public LocalDateTime getStartingDate() {
+        return startingDate;
+    }
+
     /**
      * Get method
      *

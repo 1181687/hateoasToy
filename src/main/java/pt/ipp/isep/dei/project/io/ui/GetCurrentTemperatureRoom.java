@@ -2,34 +2,42 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.GetCurrentAndMaxTempRoomController;
 import pt.ipp.isep.dei.project.model.house.House;
+import pt.ipp.isep.dei.project.model.house.RoomDTO;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 
+import java.util.List;
 
-/** US605 As a Regular User, I want to get the current temperature in a room, in order to check
-if it meets my personal comfort requirements.*/
+
+/**
+ * US605 As a Regular User, I want to get the current temperature in a room, in order to check
+ * if it meets my personal comfort requirements.
+ */
 
 public class GetCurrentTemperatureRoom {
 
     private GetCurrentAndMaxTempRoomController controller;
-/*
+    private List<RoomDTO> roomDTOS;
+
     /**
      * constructor that receives a House and a SensorType
      *
      * @param house          House
      * @param sensorType   SensorType
      */
-    /*
-    public GetCurrentTemperatureRoom(House house, SensorType sensorType) {
+/*
+    public GetCurrentTemperatureRoom(Room, SensorType sensorType) {
         this.controller = new GetCurrentAndMaxTempRoomController(house, sensorType);
     }
 
-    /**
+    **
      * outputs the latest temperature with date, of the room
      *
      * @param roomName given String room name
      * @param temp     given double temperature
      * @param dateTime given string date and time
      */
+
+/*
     public void displayResults(String roomName, double temp, String dateTime) {
         StringBuilder content = new StringBuilder();
         content.append("The latest temperature of the room ");
@@ -46,9 +54,11 @@ public class GetCurrentTemperatureRoom {
      * method that displays the rooms available to the user, so he can choose one
      * to get the current temperature.
      */
+
+/*
     public void run() {
 
-       /* if (controller.getRoomListContent().isEmpty()) {
+        if (controller.getRoomListContent().isEmpty()) {
             System.out.println("There are no rooms available\n");
             return;
         }
@@ -64,7 +74,7 @@ public class GetCurrentTemperatureRoom {
             return;
         }
 
-        displayResults(roomName, temp.getValue(), temp.getDateTime().toString());*/
+        displayResults(roomName, temp.getValue(), temp.getDateTime().toString());
     }
-
+   */
 }

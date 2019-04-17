@@ -3,10 +3,14 @@ package pt.ipp.isep.dei.project.utils;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import pt.ipp.isep.dei.project.model.LocationDTO;
 import pt.ipp.isep.dei.project.model.ProjectFileReader;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapper;
+import pt.ipp.isep.dei.project.model.house.*;
+import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridDTO;
+import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridMapper;
 import pt.ipp.isep.dei.project.model.readings.ReadingDTO;
 import pt.ipp.isep.dei.project.model.readings.ReadingMapper;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorDTO;
@@ -15,6 +19,7 @@ import pt.ipp.isep.dei.project.model.sensor.RoomSensorMapper;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -30,11 +35,9 @@ public class JSONReaderGeoAreasSensors implements ProjectFileReader {
         // empty
     }
 
-    @Override
-    public List<Object> readFile(File file) throws FileNotFoundException {
-        return null;
-    }
-/* private static List<Object> parseJsonObjectsHouse(JsonElement house) throws NumberFormatException, NullPointerException {
+
+
+    private static List<Object> parseJsonObjectsHouse(JsonElement house) throws NumberFormatException, NullPointerException {
         List<Object> houseObject = new ArrayList<>();
 
         // Get address attributes
@@ -81,7 +84,7 @@ public class JSONReaderGeoAreasSensors implements ProjectFileReader {
 
                 RoomDTO roomDTO = RoomMapper.newRoomDTO();
 
-                roomDTO.setRoomId(id);
+                roomDTO.setId(id);
                 roomDTO.setDescription(description);
                 roomDTO.setHouseFloor(floor);
                 roomDTO.setWidth(width);
@@ -114,7 +117,7 @@ public class JSONReaderGeoAreasSensors implements ProjectFileReader {
                 // create HouseGridDTO
                 HouseGridDTO houseGridDTO = HouseGridMapper.newHouseGridDTO();
 
-                houseGridDTO.setName(gridName);
+                houseGridDTO.setId(gridName);
 
                 //array of room inside the grid
                 JsonArray roomsGridArray = object.get("rooms").getAsJsonArray();
@@ -128,7 +131,7 @@ public class JSONReaderGeoAreasSensors implements ProjectFileReader {
 
                 for (String roomId : roomsGridList) {
                     RoomDTO dto = getRoomDtoById(roomDTOS, roomId);
-                    houseGridDTO.addRoomDTO(dto);
+                    dto.setGridId(gridName);
                 }
 
                 houseGridDTOS.add(houseGridDTO);
@@ -143,18 +146,18 @@ public class JSONReaderGeoAreasSensors implements ProjectFileReader {
         }
 
         return houseObject;
-    }*/
+    }
 
 
-/*    private static RoomDTO getRoomDtoById(List<RoomDTO> listRoomDto, String id) {
+    private static RoomDTO getRoomDtoById(List<RoomDTO> listRoomDto, String id) {
         for (RoomDTO room : listRoomDto) {
-            if (room.getRoomId().equals(id)) {
+            if (room.getId().equals(id)) {
                 return room;
             }
         }
 
         return null;
-    }*/
+    }
 
     private static List<Object> parseJsonObjects(JsonElement areaGeo) throws NumberFormatException, DateTimeParseException, NullPointerException {
         List<Object> areaGeolist = new ArrayList<>();
@@ -323,7 +326,7 @@ public class JSONReaderGeoAreasSensors implements ProjectFileReader {
                 RoomSensorDTO roomSensorDTO = RoomSensorMapper.newRoomSensorDTO();
                 roomSensorDTO.setId(sensorId);
                 roomSensorDTO.setName(sensorName);
-                roomSensorDTO.setSensorType(sensorType);
+                roomSensorDTO.setSensorTypeId(sensorType);
                 roomSensorDTO.setRoomId(room);
                 roomSensorDTO.setStartingDate(startingDate);
                 roomSensorDTO.setUnits(sensorUnits);
@@ -335,7 +338,7 @@ public class JSONReaderGeoAreasSensors implements ProjectFileReader {
         return roomSensorsDTO;
     }
 
-   /* @Override
+    @Override
     @SuppressWarnings("unchecked")
     public List<Object> readFile(File file) throws FileNotFoundException {
         FileReader fileReader = new FileReader(file);
@@ -362,5 +365,6 @@ public class JSONReaderGeoAreasSensors implements ProjectFileReader {
             finalList = null;
         }
         return finalList;
-    }*/
+    }
 }
+
