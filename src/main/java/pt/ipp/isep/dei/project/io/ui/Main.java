@@ -83,8 +83,8 @@ public class Main {
             GetListOfTypeOfGeoArea getListOfTypeOfGeoArea = new GetListOfTypeOfGeoArea(geoAreaService);
             getListOfTypeOfGeoArea.run();
 */
-            AddNewGeographicalAreaType addNewGeographicalAreaType = new AddNewGeographicalAreaType(geoAreaTypeService);
-            addNewGeographicalAreaType.run();
+            //AddNewGeographicalAreaType addNewGeographicalAreaType = new AddNewGeographicalAreaType(geoAreaTypeService);
+            //addNewGeographicalAreaType.run();
 
 
             /*GetListOfExistingRooms getListOfExistingRooms = new GetListOfExistingRooms(roomService);
@@ -92,9 +92,12 @@ public class Main {
             */
             boolean flag = true;
             while (flag) {
-                AddNewGeographicalArea addNewGeographicalArea = new AddNewGeographicalArea(geoAreaService);
-                addNewGeographicalArea.run();
+                AddRoom addRoom = new AddRoom(roomService);
+                addRoom.run();
             }
+
+            /*AddNewGeographicalArea addNewGeographicalArea = new AddNewGeographicalArea(geoAreaService);
+            addNewGeographicalArea.run();*/
 
 /*
             AddNewGeographicalAreaType addNewGeographicalAreaType = new AddNewGeographicalAreaType(geoAreaTypeService);
