@@ -107,33 +107,21 @@ public class HouseService {
         return this.houseGridService.newPowerSource(powerSourceId, typeId, gridId);
     }
 
-  /*  public void updateHouseWithRoomsAndGrids(HouseDTO houseDTO, House house) {
-        Address houseAddress = AddressMapper.mapToGeoAraReadingEntity(houseDTO.getAddressDTO());
-        if (Objects.isNull(houseAddress.getLocation())) {
-            houseAddress.setLocation(house.getLocation());
-        }
-        if (Objects.isNull(houseAddress.getInsertedGeoArea())) {
-            houseAddress.setInsertedGeoArea(house.getInsertedGeoArea());
-        }
-        house.setAddress(houseAddress);
-
-        for (RoomDTO roomDTO : houseDTO.getRoomDTOList()) {
-            Room room = RoomMapper.mapToGeoAraReadingEntity(roomDTO);
-            house.addRoom(room);
-            roomRepository.save(room);
-        }
-        for (HouseGridDTO houseGridDTO : houseDTO.getHouseGridDTOList()) {
-            HouseGrid houseGrid = HouseGridMapper.mapToGeoAraReadingEntity(houseGridDTO);
-            house.addGrid(houseGrid);
-            houseGridRepository.save(houseGrid);
-            for (Room room : houseGrid.getRoomList().getListOfRooms()) {
-                addRoomToHouseGrid(houseGrid.getHouseGridId(), room);
-            }
-
-        }
-
+    public boolean roomExists(String id){
+        return this.roomService.isNameExistant(id);
     }
 
+    public boolean gridExists(String id){
+        return this.houseGridService.gridExists(id);
+    }
+
+    public boolean addGrid(String id){
+        HouseGridId gridId = new HouseGridId(id);
+        return this.houseGridService.createHouseGrid(gridId);
+    }
+
+
+/*
     public boolean addRoomToHouseGrid(HouseGridId houseGridId, Room room) {
         if (houseGridRepository.existsById(houseGridId)) {
             room.setHouseGridId(houseGridId);
