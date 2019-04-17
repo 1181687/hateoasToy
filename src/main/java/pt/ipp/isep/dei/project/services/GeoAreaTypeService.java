@@ -90,9 +90,9 @@ public class GeoAreaTypeService {
         return listOfGeoAreaTypes;
     }*/
     public boolean createGeoAreaType(String geoAreaTypeId) {
-        GeoAreaTypeId idGeoAreaType = new GeoAreaTypeId(geoAreaTypeId);
-        if (!geoAreaTypeRepository.existsById(idGeoAreaType)) {
-            geoAreaTypeRepository.save(new GeographicalAreaType(idGeoAreaType));
+        GeoAreaTypeId newIdGeoAreaType = new GeoAreaTypeId(geoAreaTypeId);
+        if (!geoAreaTypeRepository.existsById(newIdGeoAreaType)) {
+            geoAreaTypeRepository.save(new GeographicalAreaType(newIdGeoAreaType));
             return true;
         }
         return false;

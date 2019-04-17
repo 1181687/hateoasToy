@@ -78,20 +78,23 @@ public class Main {
     public CommandLineRunner mainRun() {
 
         return (args) -> {
-           /* GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("City");
-            GeographicalAreaType geographicalAreaType = new GeographicalAreaType(geoAreaTypeId);
-            geoAreaTypeService.createGeoAreaType(geoAreaTypeId);
+            /*GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("City");
+            geoAreaTypeService.createGeoAreaType(geoAreaTypeId.getGeoAreaTypeId());
             GetListOfTypeOfGeoArea getListOfTypeOfGeoArea = new GetListOfTypeOfGeoArea(geoAreaService);
-            getListOfTypeOfGeoArea.run(); */
-
-            //AddNewGeographicalAreaType addNewGeographicalAreaType = new AddNewGeographicalAreaType(geoAreaTypeService);
-            //addNewGeographicalAreaType.run();
-            /*
-            GetListOfExistingRooms getListOfExistingRooms = new GetListOfExistingRooms(roomService);
-            getListOfExistingRooms.run();
-            AddNewGeographicalArea addNewGeographicalArea = new AddNewGeographicalArea(geoAreaService);
-            addNewGeographicalArea.run();
+            getListOfTypeOfGeoArea.run();
 */
+            AddNewGeographicalAreaType addNewGeographicalAreaType = new AddNewGeographicalAreaType(geoAreaTypeService);
+            addNewGeographicalAreaType.run();
+
+
+            /*GetListOfExistingRooms getListOfExistingRooms = new GetListOfExistingRooms(roomService);
+            getListOfExistingRooms.run();
+            */
+            boolean flag = true;
+            while (flag) {
+                AddNewGeographicalArea addNewGeographicalArea = new AddNewGeographicalArea(geoAreaService);
+                addNewGeographicalArea.run();
+            }
 
 /*
             AddNewGeographicalAreaType addNewGeographicalAreaType = new AddNewGeographicalAreaType(geoAreaTypeService);
@@ -105,13 +108,12 @@ public class Main {
             DetachRoomFromHouseGrid detachRoomFromHouseGrid = new DetachRoomFromHouseGrid(houseService);
             detachRoomFromHouseGrid.run();
             */
-            ImportReadings importReadings = new ImportReadings(geoAreaService, roomSensorService);
+          /*  ImportReadings importReadings = new ImportReadings(geoAreaService, roomSensorService);
             importReadings.run(1);
 
 
         };
     }
-/*
             data();
 
             //UI levels
@@ -557,4 +559,6 @@ public class Main {
     }
 
 */
+        };
+    }
 }
