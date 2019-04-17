@@ -34,6 +34,14 @@ public class RoomReading {
         return value;
     }
 
+    /**
+     * gets roomReadingID
+     * @return roomReadingId object
+     */
+    public RoomReadingId getRoomReadingId() {
+        return roomReadingId;
+    }
+
     public void setValue(double value) {
         this.value = value;
     }
