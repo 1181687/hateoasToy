@@ -9,7 +9,6 @@ import pt.ipp.isep.dei.project.model.house.RoomId;
 import pt.ipp.isep.dei.project.model.readings.RoomReading;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensorId;
-import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 
 import java.util.ArrayList;
@@ -40,15 +39,39 @@ public class RoomService {
     public boolean isRoomWithoutSensorByType(RoomId roomId, SensorTypeId sensorTypeId){
         return this.roomSensorService.isRoomWithoutSensorByType(roomId, sensorTypeId);
     }
-
-    public List<RoomSensor> getListOfRoomSensorByRoomByType(RoomId roomId, SensorTypeId sensorTypeId) {
-        return this.roomSensorService.getListOfRoomSensorByRoomByType(roomId, sensorTypeId);
+    /**
+     * method that get RoomSensor of a given type for a given room
+     * @param roomId room name
+     * @param sensorTypeId sensor type
+     * @return roomSensor
+     */
+    public RoomSensor getRoomSensorByRoomByType(RoomId roomId, SensorTypeId sensorTypeId) {
+        return this.roomSensorService.getRoomSensorByRoomByType(roomId, sensorTypeId);
     }
 
     public List<RoomReading> getListOfRoomReadingByRoomSensorId (RoomSensorId roomSensorId) {
         return roomSensorService.getListOfRoomReadingByRoomSensorId(roomSensorId);
     }
 
+    /**
+     * method that gets the latest temperature reading of a given roomSensor
+     * @param roomSensorId id of the sensor
+     * @return latest roomReading
+     */
+    public RoomReading getLatestTemperatureReading(RoomSensorId roomSensorId) {
+
+        List<RoomReading> roomReadings = this.getListOfRoomReadingByRoomSensorId(roomSensorId);
+        if (roomReadings.isEmpty()) {
+            return null;
+        }
+        RoomReading latestReading = roomReadings.get(0);
+        for (RoomReading reading : roomReadings) {
+            if (reading.getRoomReadingId().getLocalDateTime().isAfter(latestReading.getRoomReadingId().getLocalDateTime())) {
+                latestReading = reading;
+            }
+        }
+        return latestReading;
+    }
 
     /**
      * Method that returns all the rooms in the repo.

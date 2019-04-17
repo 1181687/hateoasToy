@@ -7,13 +7,11 @@ import pt.ipp.isep.dei.project.model.house.RoomMapper;
 import pt.ipp.isep.dei.project.model.readings.RoomReading;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensorId;
-import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
-import pt.ipp.isep.dei.project.model.sensor.RoomSensorId;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
-import pt.ipp.isep.dei.project.services.RoomSensorService;
 import pt.ipp.isep.dei.project.services.RoomService;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +21,7 @@ public class GetCurrentAndMaxTempRoomController {
     private SensorTypeId sensorTypeId = new SensorTypeId("temperature");
     private SensorType sensorType = new SensorType(sensorTypeId);
     private RoomId choosenRoomId;
+    private RoomReading latestRoomReading;
 
 
 
@@ -69,17 +68,47 @@ public class GetCurrentAndMaxTempRoomController {
         return roomService.isRoomWithoutSensorByType(this.choosenRoomId, this.sensorTypeId);
     }
 
-    public List<RoomSensor> getListOfRoomSensorByRoomByType() {
-     return roomService.getListOfRoomSensorByRoomByType(this.choosenRoomId, this.sensorTypeId);
+    /**
+     * method that get RoomSensor of the given type of the given room saved in attributtes of this class
+     * @return roomSensor
+     */
+    public RoomSensor getRoomSensorByRoomByType() {
+     return roomService.getRoomSensorByRoomByType(this.choosenRoomId, this.sensorTypeId);
     }
 
+    /**
+     * method that get RoomSensorId
+     * @return roomSensorId
+     */
     public RoomSensorId getRoomSensorId(){
-        return this.getListOfRoomSensorByRoomByType().get(0).getId();
+        return this.getRoomSensorByRoomByType().getId();
     }
 
-    public List<RoomReading> getListOfRoomReadingByRoomSensorId () {
-        return roomService.getListOfRoomReadingByRoomSensorId(this.getRoomSensorId());
+    /**
+     * method that gets the latest temperature reading of a given roomSensor saved in attributtes of this class
+     * @return latest roomReading
+     */
+    public void latestTemperatureReading(){
+       latestRoomReading = this.roomService.getLatestTemperatureReading(this.getRoomSensorId());
     }
+
+    /**
+     * method that gets LocalDateTime of the latest Room Reading saved in attribute of this class
+     * @return LocalDateTime
+     */
+    public LocalDateTime getLocalDateTime(){
+        return latestRoomReading.getRoomReadingId().getLocalDateTime();
+    }
+
+    /**
+     * method that gets value of the latest Room Reading saved in attribute of this class
+     * @return double
+     */
+    public double getvalue(){
+        return latestRoomReading.getValue();
+    }
+
+
 
 
     /*
@@ -91,10 +120,6 @@ public class GetCurrentAndMaxTempRoomController {
         return rooms;
 
     }
-
-
-
-
 
 /*
     public SensorType getType() {

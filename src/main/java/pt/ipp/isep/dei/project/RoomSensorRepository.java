@@ -10,6 +10,6 @@ import java.util.List;
 
 public interface RoomSensorRepository extends CrudRepository<RoomSensor, RoomSensorId> {
 
-    List<RoomSensor> findByRoomIdAndSensorTypeId(RoomId roomId, SensorTypeId sensorTypeId);
+    RoomSensor findByRoomIdAndSensorTypeId(RoomId roomId, SensorTypeId sensorTypeId);
 
 }
