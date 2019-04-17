@@ -204,4 +204,8 @@ public class GeoAreaService {
     public List<GeographicalAreaType> listOfGeoAreaTypes() {
         return geoAreaTypeService.getListOfGeoAreaTypes();
     }
+
+    public boolean addGeoAreaSensor(GeoAreaSensor geoAreaSensor){
+        return geoAreaSensorService.addSensor(geoAreaSensor);
+    }
 }

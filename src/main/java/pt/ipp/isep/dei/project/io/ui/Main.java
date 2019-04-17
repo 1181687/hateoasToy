@@ -105,8 +105,15 @@ public class Main {
             DetachRoomFromHouseGrid detachRoomFromHouseGrid = new DetachRoomFromHouseGrid(houseService);
             detachRoomFromHouseGrid.run();
             */
+
+
+            ImportGeoAreasFromJSONOrXML importGeoAreasFromJSONOrXML = new ImportGeoAreasFromJSONOrXML(geoAreaService);
+            importGeoAreasFromJSONOrXML.run();
+
             ImportReadings importReadings = new ImportReadings(geoAreaService, roomSensorService);
             importReadings.run(1);
+
+            return;
 
 
         };

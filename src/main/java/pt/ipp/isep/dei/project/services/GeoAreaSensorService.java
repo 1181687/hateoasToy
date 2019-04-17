@@ -36,6 +36,13 @@ public class GeoAreaSensorService {
         return geoAreaSensorRepository.findById(geoAreaSensorId).orElse(null);
     }
 
+    public boolean addSensor(GeoAreaSensor geoAreaSensor){
+        if (!geoAreaSensorRepository.existsById(geoAreaSensor.getId())) {
+            geoAreaSensorRepository.save(geoAreaSensor);
+            return true;
+        }
+        return false;
+    }
 
 
 }

@@ -6,6 +6,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import pt.ipp.isep.dei.project.model.LocationDTO;
 import pt.ipp.isep.dei.project.model.ProjectFileReader;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaIdDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapper;
 import pt.ipp.isep.dei.project.model.house.*;
@@ -227,8 +228,13 @@ public class JSONReaderGeoAreasSensors implements ProjectFileReader {
                     areaSensor1.setLocation(sensorLocation);
                     areaSensor1.setStartingDate(startingDate);
                     areaSensor1.setUnits(sensorUnits);
+                    GeoAreaIdDTO geoAreaIdDTO = new GeoAreaIdDTO();
+                    geoAreaIdDTO.setId(geoAreaDTO.getId());
+                    geoAreaIdDTO.setGeoAreaType(geoAreaDTO.getType());
+                    geoAreaIdDTO.setLocationDTO(areaLocation);
+                    areaSensor1.setParentGeoArea(geoAreaIdDTO);
 
-                    //geoAreaDTO.addSensor(areaSensor1);
+                    geoAreaDTO.addSensor(areaSensor1);
 
                 }
                 areaGeolist.add(geoAreaDTO);
