@@ -22,18 +22,6 @@ public final class RoomMapper {
 
 
     /**
-     * Method that creates a RoomTO based on a set of information.
-     *
-     * @return RoomDTO.
-     */
-    public static RoomDTO newDTO() {
-
-        RoomDTO roomDTO = new RoomDTO();
-        return roomDTO;
-    }
-
-
-    /**
      * Method that creates a RoomDTO based on a existing Room.
      *
      * @param room Room to be used.
@@ -44,7 +32,8 @@ public final class RoomMapper {
             return null;
         }
         RoomDTO roomDTO = new RoomDTO();
-        roomDTO.setId(room.getRoomId());
+
+        roomDTO.setId(room.getRoomId().getId());
         roomDTO.setDescription(room.getDescription());
         roomDTO.setHouseFloor(room.getHouseFloor());
         roomDTO.setWidth(room.getDimension().getWidth());
@@ -60,15 +49,15 @@ public final class RoomMapper {
      * @param roomDTO to be used.
      * @return room with the required information.
      */
-   /* public static Room mapToEntity(RoomDTO roomDTO) {
+    public static Room mapToEntity(RoomDTO roomDTO) {
         if (Objects.isNull(roomDTO)) {
             return null;
         }
 
         Dimension dimension = new Dimension(roomDTO.getWidth(), roomDTO.getLength(), roomDTO.getHeight());
 
-        return new Room(roomDTO.getRoomId(), roomDTO.getDescription(), roomDTO.getHouseFloor(), dimension);
+        return new Room(new RoomId(roomDTO.getId()), roomDTO.getDescription(), roomDTO.getHouseFloor(), dimension);
 
-    }*/
+    }
 
 }

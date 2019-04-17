@@ -48,11 +48,7 @@ public class AddSensorToGeoAreaController {
 
 
     public boolean addGeoAreaSensor(GeoAreaSensorDTO geoAreaSensorDTO) {
-
-        return geoAreaService.addGeoAreaSensor(GeoAreaSensorMapper.)
-
-
-        this.roomService.addRoomSensor(RoomSensorMapper.mapToEntity(sensorDTO))
+        return geoAreaService.addGeoAreaSensor(GeoAreaSensorMapper.mapToEntity(geoAreaSensorDTO));
     }
 
 

@@ -23,10 +23,11 @@ public class HouseGridService {
      * If there isn't already a house grid with that id in the repo, a new house grid is created and added to it.
      * Else, no house grid is created and/or sent to the repo.
      *
-     * @param id HouseGridId to be used.
+     * @param gridId Id to be used.
      * @return True or false.
      */
-    public boolean createHouseGrid(HouseGridId id) {
+    public boolean createHouseGrid(String gridId) {
+        HouseGridId id = new HouseGridId(gridId);
         if (!houseGridRepository.existsById(id)) {
             HouseGrid houseGrid = new HouseGrid(id);
             houseGridRepository.save(houseGrid);
@@ -58,6 +59,10 @@ public class HouseGridService {
 
     public boolean newPowerSource(String powerSourceId, String typeId, String gridId) {
         return this.powerSourceService.newPowerSource(powerSourceId, typeId, gridId);
+    }
+
+    public boolean gridExists(String id) {
+        return this.houseGridRepository.existsById(new HouseGridId(id));
     }
 
 }

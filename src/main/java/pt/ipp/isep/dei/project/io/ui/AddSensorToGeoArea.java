@@ -40,8 +40,7 @@ public class AddSensorToGeoArea {
 
 
         // Type
-        String listOfSensorTypeDTO = this.getSensorTypeDTOListToString();
-        String label3 = "Please select the sensor type: \n" + listOfSensorTypeDTO;
+        String label3 = "Please select the sensor type: \n" + this.getSensorTypeDTOListToString();
         int positionOfSensorType = InputValidator.getIntRange(label3, 1, this.getSensorTypeListSize()) - 1;
 
         String sensorTypeId = this.getSensorTypeByPosition(positionOfSensorType).getSensorType();
@@ -49,8 +48,6 @@ public class AddSensorToGeoArea {
 
 
         // Location
-        LocationDTO locationDTO = new LocationDTO();
-
         String label4 = "Introduce the latitude of the new sensor (valid numbers between -90 and 90).";
         double latitude = InputValidator.getDoubleRange(label4, -90, 90);
 
@@ -60,6 +57,7 @@ public class AddSensorToGeoArea {
         String label6 = "Introduce the altitude of the new sensor.";
         double altitude = InputValidator.getInt(label6);
 
+        LocationDTO locationDTO = new LocationDTO();
         locationDTO.setLatitude(latitude);
         locationDTO.setLongitude(longitude);
         locationDTO.setElevation(altitude);
@@ -80,15 +78,12 @@ public class AddSensorToGeoArea {
         String geoArea = this.getGeoAreaDTOByPosition(positionOfGeoArea).getId();
         geoAreaSensorDTO.setGeoAreaId(geoArea);
 
-
         // Create sensorDTO
-
-
-      /*  if (controller.adicionarSensorAAreaGeografica(geoAreaSensorDTO) {
+        if (controller.addGeoAreaSensor(geoAreaSensorDTO)) {
             System.out.println("Success! A sensor was created.");
         } else {
             System.out.println("This sensor already exists in this geographical area.");
-        }*/
+        }
     }
 
 

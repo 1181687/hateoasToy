@@ -1,22 +1,28 @@
 package pt.ipp.isep.dei.project.controllers;
 
+import pt.ipp.isep.dei.project.model.house.Room;
+import pt.ipp.isep.dei.project.model.house.RoomDTO;
+import pt.ipp.isep.dei.project.model.house.RoomMapper;
+import pt.ipp.isep.dei.project.services.HouseService;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class AddSensorToRoomController {
 
-    /*private
+    private HouseService houseService;
 
-    @Autowired
-    private RoomSensorService roomSensorService;
+    public AddSensorToRoomController(HouseService houseService) {
+        this.houseService = houseService;
+    }
 
-    public AddSensorToRoomController (RoomSensorService roomSensorService){
-    this.roomSensorService = roomSensorService;}
-}
-
-
-    /*public AddSensorToRoomController(SensorTypeList sensorTypeList, RoomList roomList, House house) {
-        this.sensorTypeList = sensorTypeList;
-        this.roomList = roomList;
-        this.house = house;
-    }*/
+    public List<RoomDTO> getRoomDTOList() {
+        List<RoomDTO> roomDTOList = new ArrayList<>();
+        for (Room room : houseService.getAllRooms()) {
+            roomDTOList.add(RoomMapper.mapToDTO(room));
+        }
+        return roomDTOList;
+    }
 
     /**
      * This method display the rooms of the housegrid

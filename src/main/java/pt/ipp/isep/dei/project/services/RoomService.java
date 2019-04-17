@@ -3,10 +3,13 @@ package pt.ipp.isep.dei.project.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.RoomRepository;
-import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.RoomId;
+import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
+import pt.ipp.isep.dei.project.model.readings.RoomReading;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
+import pt.ipp.isep.dei.project.model.sensor.RoomSensorId;
+import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,10 +22,14 @@ public class RoomService {
     @Autowired
     private RoomSensorService roomSensorService;
 
-    public boolean addRoom(String id, String description, int housefloor, double height, double length, double width) {
-        Dimension dimensions = new Dimension(height, length, width);
-        if (!roomRepository.existsById(new RoomId(id))) {
-            Room room = new Room(id, description, housefloor, dimensions);
+    /*
+        public boolean addRoom(String id, String description, int housefloor, double height, double length, double width) {
+            Dimension dimensions = new Dimension(height, length, width);
+            if (!roomRepository.existsById(new RoomId(id))) {
+                Room room = new Room(id, description, housefloor, dimensions);
+       */
+    public boolean addRoom(Room room) {
+        if (!roomRepository.existsById(room.getRoomId())) {
             roomRepository.save(room);
             return true;
         }
@@ -31,6 +38,46 @@ public class RoomService {
 
     public boolean isNameExistant (String id){
         return roomRepository.existsById(new RoomId(id));
+    }
+
+    public boolean isRoomWithoutSensorByType(RoomId roomId, SensorTypeId sensorTypeId) {
+        return this.roomSensorService.isRoomWithoutSensorByType(roomId, sensorTypeId);
+    }
+
+    /**
+     * method that get RoomSensor of a given type for a given room
+     *
+     * @param roomId       room name
+     * @param sensorTypeId sensor type
+     * @return roomSensor
+     */
+    public RoomSensor getRoomSensorByRoomByType(RoomId roomId, SensorTypeId sensorTypeId) {
+        return this.roomSensorService.getRoomSensorByRoomByType(roomId, sensorTypeId);
+    }
+
+    public List<RoomReading> getListOfRoomReadingByRoomSensorId(RoomSensorId roomSensorId) {
+        return roomSensorService.getListOfRoomReadingByRoomSensorId(roomSensorId);
+    }
+
+    /**
+     * method that gets the latest temperature reading of a given roomSensor
+     *
+     * @param roomSensorId id of the sensor
+     * @return latest roomReading
+     */
+    public RoomReading getLatestTemperatureReading(RoomSensorId roomSensorId) {
+
+        List<RoomReading> roomReadings = this.getListOfRoomReadingByRoomSensorId(roomSensorId);
+        if (roomReadings.isEmpty()) {
+            return null;
+        }
+        RoomReading latestReading = roomReadings.get(0);
+        for (RoomReading reading : roomReadings) {
+            if (reading.getRoomReadingId().getLocalDateTime().isAfter(latestReading.getRoomReadingId().getLocalDateTime())) {
+                latestReading = reading;
+            }
+        }
+        return latestReading;
     }
 
     /**
@@ -66,6 +113,16 @@ public class RoomService {
     public Room getRoomById(RoomId id) {
         return roomRepository.findById(id).orElse(null);
     }
+
+    public List<Room> getRoomsOfAHouseGrid(HouseGridId houseGridId) {
+        return roomRepository.findAllByHouseGridIdEquals(houseGridId);
+    }
+
+    public boolean detachRoomFromHouseGrid(RoomId roomId) {
+        Room room = roomRepository.findById(roomId).orElse(null);
+        return (room.detachRoomFromHouseGrid());
+    }
+
 
     /**
      * Method that stores a room in the db. If it already exists, it updates it.

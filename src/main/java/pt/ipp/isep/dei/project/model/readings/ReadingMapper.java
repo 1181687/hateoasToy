@@ -1,6 +1,7 @@
 package pt.ipp.isep.dei.project.model.readings;
 
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorId;
+import pt.ipp.isep.dei.project.model.sensor.RoomSensorId;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -27,12 +28,27 @@ public final class ReadingMapper {
      * @param readingDTO GeoAreaReading to be used.
      * @return GeoAreaReading with the required information.
      */
-    public static GeoAreaReading mapToEntity(ReadingDTO readingDTO) {
+    public static GeoAreaReading mapToGeoAraReadingEntity(ReadingDTO readingDTO) {
         if (Objects.isNull(readingDTO)) {
             return null;
         }
         GeoAreaSensorId geoAreaSensorId = new GeoAreaSensorId(readingDTO.getId());
         return new GeoAreaReading(geoAreaSensorId,readingDTO.getDateTime(), readingDTO.getValue());
+    }
+
+    /**
+     * Method that turns a ReadingDTO into a RoomReading.
+     *
+     * @param readingDTO GeoAreaReading to be used.
+     * @return GeoAreaReading with the required information.
+     */
+    public static RoomReading mapToRoomReadingEntity(ReadingDTO readingDTO) {
+        if (Objects.isNull(readingDTO)) {
+            return null;
+        }
+        RoomSensorId roomSensorId = new RoomSensorId(readingDTO.getId());
+        RoomReadingId roomReadingId = new RoomReadingId(roomSensorId, readingDTO.getDateTime());
+        return new RoomReading(roomReadingId, readingDTO.getValue());
     }
 
     /**

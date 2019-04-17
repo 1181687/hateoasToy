@@ -1,11 +1,11 @@
 package pt.ipp.isep.dei.project.model.house;
 
+import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 
-import javax.persistence.Column;
-import javax.persistence.Embedded;
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import static java.util.Objects.isNull;
@@ -30,8 +30,8 @@ public class Room /*implements Measurable*/ {
     // @JoinColumn
     // private RoomSensorService sensorList;
 
-    //  @Transient
-    //  private List<Device> deviceList;
+    @Transient
+    private List<Device> deviceList;
 
     /**
      * constructor that receives name, houseFloor, dimension
@@ -42,14 +42,14 @@ public class Room /*implements Measurable*/ {
      * //@param houseFloor
      * //@param dimension
      */
-    public Room(String roomId, String description, int houseFloor, Dimension dimension) {
-        validateName(roomId);
+    public Room(RoomId roomId, String description, int houseFloor, Dimension dimension) {
+        validateName(roomId.getId());
         validateDimensions(dimension);
-        this.roomId = new RoomId(roomId.trim());
+        this.roomId = new RoomId(roomId.getId().trim());
         this.description = description;
         this.houseFloor = houseFloor;
         this.dimension = dimension;
-        //this.deviceList = new ArrayList<>();
+        this.deviceList = new ArrayList<>();
     }
 
     protected Room() {
@@ -107,18 +107,10 @@ public class Room /*implements Measurable*/ {
      *
      * @return name
      */
-    public String getRoomId() {
-        return roomId.getId();
+    public RoomId getRoomId() {
+        return this.roomId;
     }
 
-    /**
-     * Method that defines the name of the room
-     *
-     * @param name name of a room (string)
-     */
-    public void setRoomId(String name) {
-        this.roomId = new RoomId(name);
-    }
 
     /**
      * Get Method
@@ -171,32 +163,7 @@ public class Room /*implements Measurable*/ {
         return content.toString();
     }
 
-    /*
-    @Override
-    public double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
-        return 0;
-    }
 
-    @Override
-    public Map<LocalDateTime, Double> getDataSeries(LocalDateTime startDate, LocalDateTime endDate) {
-        return null;
-    }
-
-    @Override
-    public List<GeoAreaReading> getReadings() {
-        return null;
-    }
-
-    @Override
-    public List<GeoAreaReading> getReadingsListInInterval(LocalDateTime startDate, LocalDateTime endDate) {
-        return null;
-    }
-
-    @Override
-    public double getNominalPower() {
-        return 0;
-    }
-    */
 
     /**
      * method that creates the same hashcode to rooms with the same attribute name.
@@ -226,6 +193,14 @@ public class Room /*implements Measurable*/ {
         }
         Room roomOne = (Room) obj;
         return this.roomId.getId().equalsIgnoreCase(roomOne.roomId.getId());
+    }
+
+    public boolean detachRoomFromHouseGrid() {
+        if (Objects.isNull(this.houseGridId)) {
+            return false;
+        }
+        this.houseGridId = null;
+        return true;
     }
 
 
@@ -345,7 +320,7 @@ public RoomSensorService getSensorList() {
      * @param device the device to be added
      * @return true if it adds, false if it doesn't add
      */
-    /*public boolean addDevice(Device device) {
+    public boolean addDevice(Device device) {
         if (Objects.isNull(device)) {
             throw new RuntimeException("Device is null.");
         }
@@ -354,7 +329,7 @@ public RoomSensorService getSensorList() {
         }
         this.deviceList.add(device);
         return true;
-    }*/
+    }
 
     /**
      * method that returns the name of room
@@ -408,9 +383,9 @@ public RoomSensorService getSensorList() {
      *
      * @return List<Device>
      */
-    /*public List<Device> getDeviceList() {
+    public List<Device> getDeviceList() {
         return this.deviceList;
-    }*/
+    }
 
     /**
      * get size of list of devices
@@ -436,7 +411,7 @@ public RoomSensorService getSensorList() {
      * @param name name of device
      * @return boolean true if exists, false if it doesn't
      */
-    /*public boolean isDeviceNameExistant(String name) {
+    public boolean isDeviceNameExistant(String name) {
         for (int i = 0; i < this.deviceList.size(); i++) {
             if (isNull(this.deviceList.get(i).getName())) {
                 break;
@@ -446,7 +421,7 @@ public RoomSensorService getSensorList() {
             }
         }
         return false;
-    }*/
+    }
 
     /**
      * method that check if the device list is empty

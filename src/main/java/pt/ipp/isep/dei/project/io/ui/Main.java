@@ -8,8 +8,10 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
-import pt.ipp.isep.dei.project.model.house.HouseService;
+import pt.ipp.isep.dei.project.model.house.Room;
+import pt.ipp.isep.dei.project.model.house.RoomId;
 import pt.ipp.isep.dei.project.services.*;
 
 @EnableJpaRepositories(basePackages = "pt.ipp.isep.dei.project")
@@ -64,6 +66,9 @@ public class Main {
     @Autowired
     private HouseGridService houseGridService;
 
+    // RoomSensor Service Injection
+    @Autowired
+    private RoomSensorService roomSensorService;
 
 
     public static void main(String[] args) {
@@ -85,11 +90,55 @@ public class Main {
             //AddNewGeographicalAreaType addNewGeographicalAreaType = new AddNewGeographicalAreaType(geoAreaTypeService);
             //addNewGeographicalAreaType.run();
 
-            GetListOfExistingRooms getListOfExistingRooms = new GetListOfExistingRooms(roomService);
+           /* GetListOfExistingRooms getListOfExistingRooms = new GetListOfExistingRooms(roomService);
             getListOfExistingRooms.run();
             AddNewGeographicalArea addNewGeographicalArea = new AddNewGeographicalArea(geoAreaService);
-            addNewGeographicalArea.run();
+            addNewGeographicalArea.run();*/
 
+            Dimension dim = new Dimension(2, 2, 2);
+            Room room1 = new Room(new RoomId("B405"), "cenas", 1, dim);
+            Room room2 = new Room(new RoomId("B106"), "cenas", 1, dim);
+            Room room3 = new Room(new RoomId("B107"), "cenas", 1, dim);
+            Room room4 = new Room(new RoomId("B109"), "cenas", 1, dim);
+
+            this.roomService.addRoom(room1);
+            this.roomService.addRoom(room2);
+            this.roomService.addRoom(room3);
+            this.roomService.addRoom(room4);
+
+            AddNewGeographicalAreaType ui3 = new AddNewGeographicalAreaType(this.geoAreaTypeService);
+            ui3.run();
+
+            AddNewGeographicalArea ui2 = new AddNewGeographicalArea(this.geoAreaService);
+            ui2.run();
+
+            DefineSensorType ui = new DefineSensorType(this.sensorTypeService);
+            ui.run();
+
+            AddSensorToGeoArea ui1 = new AddSensorToGeoArea(this.geoAreaService);
+            ui1.run();
+
+           /*ImportRoomSensors ui = new ImportRoomSensors(this.roomService);
+           ui.run();*/
+
+/*
+            AddNewGeographicalAreaType addNewGeographicalAreaType = new AddNewGeographicalAreaType(geoAreaTypeService);
+            addNewGeographicalAreaType.run();
+            */
+/*
+            geoAreaTypeService.createGeoAreaType(geographicalAreaType);
+            GetListGeoAreaTypes getListGeoAreaTypes = new GetListGeoAreaTypes(geoAreaTypeService);
+            getListGeoAreaTypes.run();*/
+/*
+            DetachRoomFromHouseGrid detachRoomFromHouseGrid = new DetachRoomFromHouseGrid(houseService);
+            detachRoomFromHouseGrid.run();
+            */
+
+            GetCurrentTemperatureRoom getCurrentTemperatureRoom = new GetCurrentTemperatureRoom(roomService);
+            getCurrentTemperatureRoom.run();
+
+            //ImportReadings importReadings = new ImportReadings(geoAreaService, roomSensorService);
+            //importReadings.run(1);
 
 
         };

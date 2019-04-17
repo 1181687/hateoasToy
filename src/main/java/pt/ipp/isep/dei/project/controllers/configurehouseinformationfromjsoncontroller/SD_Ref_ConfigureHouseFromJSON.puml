@@ -1,0 +1,42 @@
+@startuml
+skinparam sequenceMessageAlign center
+skinparam sequence {
+	ArrowColor Black
+	ActorBorderColor DarkBlue
+	LifeLineBorderColor black
+	LifeLineBackgroundColor LightGrey
+
+	ParticipantBorderColor Black
+	ParticipantBackgroundColor LightGrey
+	ParticipantFontStyle Bold
+
+	ActorBackgroundColor DimGrey
+	ActorFontColor DeepSkyBlue
+	ActorFontStyle Bold
+	ActorFontSize 17
+	ActorFontName Aapex
+}
+autonumber
+
+activate "JSONReader"
+JSONReader -> AddressMapper: mapToDTO (street, number, zip, town, country)
+activate "AddressMapper"
+"AddressMapper" --> JSONReader : addressDTO
+loop parseRooms
+
+JSONReader -> "RoomMapper": newRoomDTO (id, description, houseFloor, length, width, height)
+activate "RoomMapper"
+"RoomMapper" --> JSONReader: roomDTO
+deactivate "RoomMapper"
+end
+loop parseGrids
+activate "JSONReader"
+JSONReader -> "HouseGridMapper": newHouseGridDTO (name)
+activate "HouseGridMapper"
+"HouseGridMapper" --> JSONReader: houseGridDTO
+deactivate "HouseGridMapper"
+loop for each roomDTO
+JSONReader <-- JSONReader: addRoomDTO\nToGridDTO(roomDTO)
+end
+end
+@enduml

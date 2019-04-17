@@ -2,6 +2,8 @@ package pt.ipp.isep.dei.project.model.sensor;
 
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.LocationMapper;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaId;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaTypeId;
 
 public final class GeoAreaSensorMapper {
 
@@ -43,12 +45,13 @@ public final class GeoAreaSensorMapper {
      * @return GeoAreaSensor with the required information.
      */
     public static GeoAreaSensor mapToEntity(GeoAreaSensorDTO sensorDTO) {
-
         GeoAreaSensorId geoAreaSensorId = new GeoAreaSensorId();
-        Location geoLocation = LocationMapper.mapToEntity(sensorDTO.getLocation());
-        SensorTypeId sensorTypeId = new SensorTypeId(sensorDTO.getSensorType());
+        SensorTypeId sensorTypeId = new SensorTypeId();
+        Location location = LocationMapper.mapToEntity(sensorDTO.getLocation());
+        GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("");
+        GeoAreaId geoAreaId = new GeoAreaId(sensorDTO.getGeoAreaId(), location, geoAreaTypeId);
 
-        GeoAreaSensor newSensor = new GeoAreaSensor(geoAreaSensorId, sensorDTO.getName(), sensorDTO.getStartingDate().atStartOfDay(), sensorTypeId, geoLocation, sensorDTO.getUnits());
+        GeoAreaSensor newSensor = new GeoAreaSensor(geoAreaSensorId, sensorDTO.getName(), sensorDTO.getStartingDate().atStartOfDay(), sensorTypeId, location, sensorDTO.getUnits(), geoAreaId);
         return newSensor;
     }
 }

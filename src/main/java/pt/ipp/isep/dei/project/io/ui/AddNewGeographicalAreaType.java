@@ -20,6 +20,7 @@ public class AddNewGeographicalAreaType {
     public void run() {
         String label = "Introduce a new Geographical Area type.";
         String id = InputValidator.getString(label);
+
         if (this.controller.createGeoAreaType(id)) {
             System.out.println("Success!");
         } else {

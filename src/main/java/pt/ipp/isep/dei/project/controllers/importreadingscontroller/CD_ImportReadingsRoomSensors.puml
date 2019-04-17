@@ -1,0 +1,121 @@
+@startuml
+skinparam linetype ortho
+
+skinparam class {
+	BackgroundColor PaleTurquoise
+	ArrowColor Black
+	BorderColor Black
+	FontStyle Bold
+}
+
+hide circle
+
+ImportReadings "1" --> "1" ImportReadingsController
+ImportReadingsController "1" -right-> "1" HouseService
+ImportReadingsController "1" --> "1" ReadingMapper :uses
+ImportReadingsController "1" -> "1" RoomSensorList
+ImportReadingsController "1" -> "1" RoomSensor
+ImportReadingsController "1" -> "1" "<<ProjectFileReader>>"
+ReadingMapper "1" -up-> "1" ReadingDTO : creates
+HouseService "1" -down-> "*" RoomSensorList
+RoomSensorList "1" -down-> "0*" RoomSensor
+XMLReader -left-* "<<ProjectFileReader>>" : implements
+CSVReader -left-* "<<ProjectFileReader>>" : implements
+JSONReader -left-* "<<ProjectFileReader>>" : implements
+XMLReader -up-> ReadingMapper : uses
+CSVReader -up-> ReadingMapper : uses
+JSONReader -up-> ReadingMapper : uses
+
+Class ImportReadings {
+-controller: ImportReadingsController
++run()
+}
+
+Class ImportReadingsController {
+-geographicalAreaService: geographicalAreaService
+-HouseService: houseService
+-GeoAreaSensor geoAreaSensor;
+-RoomSensor roomSensor;
+-allSensorInTheGeoAreas: RoomSensorList
+-readingDTOList : List<Object>
++createReader()
++readFile()
++importReadings()
++checkIfSensorExistsById()
++isDateTimeBeforeSensorStartingDate()
++isDateTimeBeforeRoomSensorStartingDate()
+}
+
+
+Class XMLReader {
+-readerName : String
++readFile()
++getTypeName()w
+-readReadingsFile()
+-getReadingDTO()
+-getTagValue()
+-getTag()
+}
+
+Class ReadingMapper {
++mapToEntity()
++mapToDTO()
+}
+Class CSVReader {
+-readerName : String
++readFile()
++getTypeName()
+-parseLine()
+}
+
+Class JSONReader {
+-readerName : String
++readFile()
++getTypeName()
+-parseReadings()
+}
+
+Class HouseService {
+-RoomRepository: roomRepository
+-HouseGridRepository: houseGridRepository
++getAllSensors()
++mapToEntity()
++getRoomById()
++getRoomWithRightSensor()
++getSensorById()
++updateRepository()
+}
+
+Class RoomSensorList {
+-listOfSensors: List<RoomSensor>
++getSensorById()
+}
+
+Class RoomSensor {
+-id: String;
+-startingDate LocalDateTime
+-listOfGeoAreaReadings: List<Reading>
++addReading()
+}
+
+Class ReadingDTO {
+-id: String
+-value: double
+-dateTime: LocalDateTime
+-unit: String
++getValue()
++setValue()
++getDateTime()
++setDateTime()
++getId()
++setId()
++getUnit()
++setUnit()
+}
+
+
+Interface "<<ProjectFileReader>>" {
++getTypeName()
++readFile()
+}
+@enduml
