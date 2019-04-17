@@ -46,7 +46,23 @@ public class GeoAreaService {
         // empty
     }
 
-
+    /**
+     * ESTE METODO DEVERIA ESTAR A ADICIONAR JÁ UM OBJECTO. E NÃO A CRIAR UM COM UM COMBOIO DE INFORMAÇÕES
+     *
+     * NA UI DEVE SER CRIADO UM DTO E FEITO OS SETS NECESSÁRIOS, E DEPOIS PASSAR PARA O CONTROLLER O DTO.
+     *
+     * NO CONTROLLER PODEMOS ENTÃO MAPEAR PARA UM OBJECTO DO MODELO E TENTAR ADICIONAR.
+     *
+     * @param geoAreaId
+     * @param geoAreaTypeId
+     * @param latitude
+     * @param longitude
+     * @param elevation
+     * @param description
+     * @param width
+     * @param length
+     * @return
+     */
     public boolean addGeographicalArea(String geoAreaId, String geoAreaTypeId, double latitude, double longitude, double elevation, String description, double width, double length) {
         Location geoLocation = new Location(latitude, longitude, elevation);
         GeoAreaTypeId geographicalAreaTypeId = new GeoAreaTypeId(geoAreaTypeId);
@@ -55,6 +71,21 @@ public class GeoAreaService {
         GeographicalArea geoArea = new GeographicalArea(geographicalAreaId, description, areaShape);
         if (!geoAreaRepository.existsById(new GeoAreaId(geoAreaId, geoLocation, geographicalAreaTypeId))) {
             geoAreaRepository.save(geoArea);
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Method that adds a geographical area to the geoAreaRepository.
+     * If it doesn't exist in the repository, it adds the area and return true.
+     * If it does, then it just returns true
+     * @param geographicalArea
+     * @return
+     */
+    public boolean addGeoArea(GeographicalArea geographicalArea){
+        if (!geoAreaRepository.existsById(geographicalArea.getId())) {
+            geoAreaRepository.save(geographicalArea);
             return true;
         }
         return false;
