@@ -25,10 +25,6 @@ public class RoomReading {
         // empty
     }
 
-    public RoomReadingId getRoomReadingId() {
-        return roomReadingId;
-    }
-
     /**
      * Get method
      *

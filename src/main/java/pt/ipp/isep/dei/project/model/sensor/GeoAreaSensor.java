@@ -26,8 +26,8 @@ public class GeoAreaSensor {
 
     private String units;
 
-    @Transient
-    private boolean isActive;
+    @Embedded
+    private SensorState isActive;
 
     @Embedded
     private GeoAreaId geoAreaId;
@@ -48,7 +48,7 @@ public class GeoAreaSensor {
         this.sensorTypeId = sensorTypeId;
         this.location = location;
         this.units = units;
-        this.isActive = true;
+        this.isActive = new SensorState();
         this.geoAreaId = geoAreaId;
     }
 
@@ -67,7 +67,7 @@ public class GeoAreaSensor {
         this.sensorTypeId = sensorTypeId;
         this.location = location;
         this.units = units;
-        this.isActive = true;
+        this.isActive = new SensorState();
         this.geoAreaId = geoAreaId;
     }
 
@@ -77,8 +77,8 @@ public class GeoAreaSensor {
     }
 
 
-    public String getId() {
-        return id.getSensorId();
+    public GeoAreaSensorId getId() {
+        return id;
     }
 
     public void setId(GeoAreaSensorId id) {
@@ -138,7 +138,7 @@ public class GeoAreaSensor {
     }
 
     public boolean isActive() {
-        return isActive;
+        return isActive.isActive();
     }
 
     /**
@@ -150,8 +150,8 @@ public class GeoAreaSensor {
      */
 
     public boolean deactivateDevice() {
-        if (isActive) {
-            isActive = false;
+        if (isActive.isActive()) {
+            isActive.deactivateSensor();
             return true;
         }
         return false;

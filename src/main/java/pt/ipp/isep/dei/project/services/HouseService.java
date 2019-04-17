@@ -120,7 +120,9 @@ public class HouseService {
         return this.houseGridService.createHouseGrid(gridId);
     }
 
-
+    public boolean addRoom(Room room){
+       return this.roomService.addRoom(room);
+    }
 /*
     public boolean addRoomToHouseGrid(HouseGridId houseGridId, Room room) {
         if (houseGridRepository.existsById(houseGridId)) {
