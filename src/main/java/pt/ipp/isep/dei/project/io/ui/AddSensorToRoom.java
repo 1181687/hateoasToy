@@ -1,11 +1,5 @@
 package pt.ipp.isep.dei.project.io.ui;
 
-import pt.ipp.isep.dei.project.controllers.AddSensorToRoomController;
-import pt.ipp.isep.dei.project.model.house.RoomDTO;
-import pt.ipp.isep.dei.project.services.HouseService;
-
-import java.util.List;
-
 /**
  * US253 As an Administrator, I want to add a new sensor to a room from the list of available
  * sensor types, in order to configure it.
@@ -13,7 +7,7 @@ import java.util.List;
 
 public class AddSensorToRoom {
 
-    private AddSensorToRoomController controller;
+   /* private AddSensorToRoomController controller;
 
     public AddSensorToRoom(HouseService houseService) {
         this.controller = new AddSensorToRoomController(houseService);

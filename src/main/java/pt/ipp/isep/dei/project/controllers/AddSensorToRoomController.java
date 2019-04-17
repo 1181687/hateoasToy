@@ -1,16 +1,9 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.house.Room;
-import pt.ipp.isep.dei.project.model.house.RoomDTO;
-import pt.ipp.isep.dei.project.model.house.RoomMapper;
-import pt.ipp.isep.dei.project.services.HouseService;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class AddSensorToRoomController {
 
-    private HouseService houseService;
+    /*private HouseService houseService;
 
     public AddSensorToRoomController(HouseService houseService) {
         this.houseService = houseService;
