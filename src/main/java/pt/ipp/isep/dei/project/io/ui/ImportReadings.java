@@ -2,7 +2,6 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.importreadingscontroller.ImportGeoAreaReadingsController;
 import pt.ipp.isep.dei.project.controllers.importreadingscontroller.ImportRoomReadingsController;
-import pt.ipp.isep.dei.project.model.house.HouseService;
 import pt.ipp.isep.dei.project.services.GeoAreaService;
 import pt.ipp.isep.dei.project.services.RoomSensorService;
 

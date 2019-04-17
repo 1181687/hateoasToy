@@ -17,7 +17,7 @@ public class GetListOfExistingRoomsController {
     public GetListOfExistingRoomsController(RoomService roomService) {
         this.roomService = roomService;
     }
-/*
+
     public List<RoomDTO> getRoomDTOList() {
         List<RoomDTO> roomDTOList = new ArrayList<>();
         for (Room room : roomService.getAllRooms()) {
@@ -25,5 +25,5 @@ public class GetListOfExistingRoomsController {
         }
         return roomDTOList;
     }
-    */
+
 }
