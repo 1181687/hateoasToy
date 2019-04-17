@@ -1,14 +1,18 @@
-package pt.ipp.isep.dei.project.model.house;
+package pt.ipp.isep.dei.project.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.model.LocationDTO;
+import pt.ipp.isep.dei.project.model.house.Room;
+import pt.ipp.isep.dei.project.model.house.RoomId;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceType;
+import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.services.HouseGridService;
 import pt.ipp.isep.dei.project.services.PowerSourceTypeService;
 import pt.ipp.isep.dei.project.services.RoomService;
+import pt.ipp.isep.dei.project.services.SensorTypeService;
 
 import java.util.List;
 
@@ -24,9 +28,21 @@ public class HouseService {
     @Autowired
     private PowerSourceTypeService sourceTypeService;
 
+    @Autowired
+    private SensorTypeService sensorTypeService;
+
     public void configureHouseLocation(LocationDTO locationDTO) {
 
 
+    }
+
+    /**
+     * method that get a list of sensor types
+     *
+     * @return a list of sensor types.
+     */
+    public List<SensorType> getSensorTypeList() {
+        return sensorTypeService.getSensorTypeList();
     }
 
     public boolean isGridRepositoryEmpty() {
@@ -35,6 +51,14 @@ public class HouseService {
 
     public List<HouseGrid> getAllGrids() {
         return this.houseGridService.getAllGrids();
+    }
+
+    public List<Room> getRoomsOfAHouseGrid(HouseGridId houseGridId){
+        return roomService.getRoomsOfAHouseGrid(houseGridId);
+    }
+
+    public boolean detachRoomFromHouseGrid(RoomId roomId){
+        return roomService.detachRoomFromHouseGrid(roomId);
     }
 
     /**
@@ -83,33 +107,21 @@ public class HouseService {
         return this.houseGridService.newPowerSource(powerSourceId, typeId, gridId);
     }
 
-  /*  public void updateHouseWithRoomsAndGrids(HouseDTO houseDTO, House house) {
-        Address houseAddress = AddressMapper.mapToEntity(houseDTO.getAddressDTO());
-        if (Objects.isNull(houseAddress.getLocation())) {
-            houseAddress.setLocation(house.getLocation());
-        }
-        if (Objects.isNull(houseAddress.getInsertedGeoArea())) {
-            houseAddress.setInsertedGeoArea(house.getInsertedGeoArea());
-        }
-        house.setAddress(houseAddress);
-
-        for (RoomDTO roomDTO : houseDTO.getRoomDTOList()) {
-            Room room = RoomMapper.mapToEntity(roomDTO);
-            house.addRoom(room);
-            roomRepository.save(room);
-        }
-        for (HouseGridDTO houseGridDTO : houseDTO.getHouseGridDTOList()) {
-            HouseGrid houseGrid = HouseGridMapper.mapToEntity(houseGridDTO);
-            house.addGrid(houseGrid);
-            houseGridRepository.save(houseGrid);
-            for (Room room : houseGrid.getRoomList().getListOfRooms()) {
-                addRoomToHouseGrid(houseGrid.getHouseGridId(), room);
-            }
-
-        }
-
+    public boolean roomExists(String id){
+        return this.roomService.isNameExistant(id);
     }
 
+    public boolean gridExists(String id){
+        return this.houseGridService.gridExists(id);
+    }
+
+    public boolean addGrid(String id){
+        HouseGridId gridId = new HouseGridId(id);
+        return this.houseGridService.createHouseGrid(gridId);
+    }
+
+
+/*
     public boolean addRoomToHouseGrid(HouseGridId houseGridId, Room room) {
         if (houseGridRepository.existsById(houseGridId)) {
             room.setHouseGridId(houseGridId);

@@ -1,12 +1,12 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.house.HouseService;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridDTO;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridMapper;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceType;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceTypeDTO;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceTypeMapper;
+import pt.ipp.isep.dei.project.services.HouseService;
 
 import java.util.ArrayList;
 import java.util.List;

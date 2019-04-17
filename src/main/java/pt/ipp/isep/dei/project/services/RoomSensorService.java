@@ -3,8 +3,18 @@ package pt.ipp.isep.dei.project.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.RoomSensorRepository;
+import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.RoomId;
 import pt.ipp.isep.dei.project.model.readings.RoomReading;
+import pt.ipp.isep.dei.project.model.readings.RoomReadingId;
+import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
+import pt.ipp.isep.dei.project.model.sensor.RoomSensorId;
+
+import java.util.List;
+
+import pt.ipp.isep.dei.project.model.house.RoomId;
+import pt.ipp.isep.dei.project.model.readings.RoomReading;
+import pt.ipp.isep.dei.project.model.readings.RoomReadingId;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensorId;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
@@ -66,16 +76,18 @@ public class RoomSensorService {
         return false;
     }
 
-/*
-    public boolean getRoomById(Room room){
-        return roomSensorRepository.
+    public RoomSensor getSensorById(RoomSensorId roomSensorId) {
+        return roomSensorRepository.findById(roomSensorId).orElse(null);
     }
 
-/*
-    public boolean getRoomById(Room room){
-        return roomSensorRepository.
+    public boolean isReadingDuplicated(RoomReadingId roomReadingId){
+        return roomReadingService.isReadingDuplicated(roomReadingId);
     }
-*/
+
+    public boolean addReading(RoomReading roomReading){
+        return roomReadingService.addReading(roomReading);
+    }
+
     /*public boolean addSensor(RoomSensor sensor) {
         if (listOfSensors.contains(sensor) || Objects.isNull(sensor)) {
             return false;

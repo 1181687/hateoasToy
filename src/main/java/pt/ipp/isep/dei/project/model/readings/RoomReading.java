@@ -16,13 +16,17 @@ public class RoomReading {
      * @param value    value
      *
      */
-    public RoomReading(double value, RoomReadingId roomReadingId) {
+    public RoomReading(RoomReadingId roomReadingId,double value) {
         this.value = value;
         this.roomReadingId=roomReadingId;
     }
 
     protected RoomReading() {
         // empty
+    }
+
+    public RoomReadingId getRoomReadingId() {
+        return roomReadingId;
     }
 
     /**

@@ -6,6 +6,7 @@ import pt.ipp.isep.dei.project.RoomRepository;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.RoomId;
+import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 import pt.ipp.isep.dei.project.model.readings.RoomReading;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensorId;
@@ -106,6 +107,15 @@ public class RoomService {
     public Room getRoomById(RoomId id) {
         return roomRepository.findById(id).orElse(null);
     }
+    public List<Room> getRoomsOfAHouseGrid(HouseGridId houseGridId){
+        return roomRepository.findAllByHouseGridIdEquals(houseGridId);
+    }
+
+    public boolean detachRoomFromHouseGrid(RoomId roomId){
+        Room room = roomRepository.findById(roomId).orElse(null);
+        return (room.detachRoomFromHouseGrid());
+    }
+
 
     /**
      * Method that stores a room in the db. If it already exists, it updates it.

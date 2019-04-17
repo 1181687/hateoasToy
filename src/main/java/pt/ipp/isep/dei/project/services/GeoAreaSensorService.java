@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.project.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.GeoAreaSensorRepository;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorId;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 
@@ -30,5 +31,11 @@ public class GeoAreaSensorService {
     public boolean isNameExistant(String id) {
         return geoAreaSensorRepository.existsById(new GeoAreaSensorId(id));
     }
+
+    public GeoAreaSensor getSensorById(GeoAreaSensorId geoAreaSensorId){
+        return geoAreaSensorRepository.findById(geoAreaSensorId).orElse(null);
+    }
+
+
 
 }
