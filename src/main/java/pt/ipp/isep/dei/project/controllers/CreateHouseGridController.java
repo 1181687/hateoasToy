@@ -1,7 +1,6 @@
 package pt.ipp.isep.dei.project.controllers;
 
 
-import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 import pt.ipp.isep.dei.project.services.HouseGridService;
 
 
@@ -27,8 +26,7 @@ public class CreateHouseGridController {
      * @return True or false.
      */
     public boolean createANewHouseGrid(String gridId) {
-        HouseGridId id = new HouseGridId(gridId);
-        return houseGridService.createHouseGrid(id);
+        return houseGridService.createHouseGrid(gridId);
     }
 
 }
