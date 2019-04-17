@@ -1,4 +1,7 @@
 package pt.ipp.isep.dei.project.controllers;
+import pt.ipp.isep.dei.project.model.house.Dimension;
+import pt.ipp.isep.dei.project.model.house.Room;
+import pt.ipp.isep.dei.project.model.house.RoomId;
 import pt.ipp.isep.dei.project.services.RoomService;
 
 public class AddRoomController {
@@ -24,7 +27,10 @@ public class AddRoomController {
      * @param housefloor given housefloor number to the new room
      */
     public void addRoom(String id, String description,  int housefloor, double height, double length, double width) {
-       roomService.addRoom(id, description, housefloor, height, length, width);
+        Dimension dimension = new Dimension(height,length,width);
+        RoomId roomId = new RoomId(id);
+        Room room = new Room(roomId,description,housefloor,dimension);
+        roomService.addRoom(room);
     }
 
 

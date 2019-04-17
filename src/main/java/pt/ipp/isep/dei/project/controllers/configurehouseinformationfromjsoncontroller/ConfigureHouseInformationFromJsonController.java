@@ -183,8 +183,8 @@ public class ConfigureHouseInformationFromJsonController {
             }
         }
     }
-/*
-    public void updateHouseWithRoomsAndGrids(HouseDTO houseDTO) {
+
+/*    public void updateHouseWithRoomsAndGrids(HouseDTO houseDTO) {
         Address houseAddress = AddressMapper.mapToEntity(houseDTO.getAddressDTO());
         if (Objects.isNull(houseAddress.getLocation())) {
             houseAddress.setLocation(house.getLocation());
@@ -196,8 +196,9 @@ public class ConfigureHouseInformationFromJsonController {
 
         for (RoomDTO roomDTO : houseDTO.getRoomDTOList()) {
             Room room = RoomMapper.mapToEntity(roomDTO);
-            house.addRoom(room);
-            roomRepository.save(room);
+
+            this.houseService.addRoom(room);
+
         }
         for (HouseGridDTO houseGridDTO : houseDTO.getHouseGridDTOList()) {
             this.houseService.addGrid(houseGridDTO.getId());

@@ -32,7 +32,7 @@ public final class RoomMapper {
             return null;
         }
         RoomDTO roomDTO = new RoomDTO();
-        roomDTO.setId(room.getRoomId());
+        roomDTO.setId(room.getRoomId().getId());
         roomDTO.setDescription(room.getDescription());
         roomDTO.setHouseFloor(room.getHouseFloor());
         roomDTO.setWidth(room.getDimension().getWidth());
@@ -55,7 +55,7 @@ public final class RoomMapper {
 
         Dimension dimension = new Dimension(roomDTO.getWidth(), roomDTO.getLength(), roomDTO.getHeight());
 
-        return new Room(roomDTO.getId(), roomDTO.getDescription(), roomDTO.getHouseFloor(), dimension);
+        return new Room(new RoomId(roomDTO.getId()), roomDTO.getDescription(), roomDTO.getHouseFloor(), dimension);
 
     }
 

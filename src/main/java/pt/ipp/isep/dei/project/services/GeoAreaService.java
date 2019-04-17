@@ -54,6 +54,15 @@ public class GeoAreaService {
 
     }
 
+    public List<GeoAreaId> getAllGeoAreasId(){
+        Iterable<GeographicalArea> geoAreas = this.geoAreaRepository.findAll();
+        List<GeoAreaId> geoAreaIdList = new ArrayList<>();
+        for (GeographicalArea geoArea : geoAreas) {
+            geoAreaIdList.add(geoArea.getId());
+        }
+        return geoAreaIdList;
+    }
+
     /*
      *//**
      * method that add a geographical area to the list of geographical areas.

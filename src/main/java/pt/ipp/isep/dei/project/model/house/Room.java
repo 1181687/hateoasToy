@@ -42,10 +42,10 @@ public class Room /*implements Measurable*/ {
      * //@param houseFloor
      * //@param dimension
      */
-    public Room(String roomId, String description, int houseFloor, Dimension dimension) {
-        validateName(roomId);
+    public Room(RoomId roomId, String description, int houseFloor, Dimension dimension) {
+        validateName(roomId.getId());
         validateDimensions(dimension);
-        this.roomId = new RoomId(roomId.trim());
+        this.roomId = new RoomId(roomId.getId().trim());
         this.description = description;
         this.houseFloor = houseFloor;
         this.dimension = dimension;
@@ -107,18 +107,10 @@ public class Room /*implements Measurable*/ {
      *
      * @return name
      */
-    public String getRoomId() {
-        return roomId.getId();
+    public RoomId getRoomId() {
+        return roomId;
     }
 
-    /**
-     * Method that defines the name of the room
-     *
-     * @param name name of a room (string)
-     */
-    public void setRoomId(String name) {
-        this.roomId = new RoomId(name);
-    }
 
     /**
      * Get Method
