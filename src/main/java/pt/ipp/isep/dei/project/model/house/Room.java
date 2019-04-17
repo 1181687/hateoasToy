@@ -107,8 +107,8 @@ public class Room /*implements Measurable*/ {
      *
      * @return name
      */
-    public String getRoomId() {
-        return roomId.getId();
+    public RoomId getRoomId() {
+        return this.roomId;
     }
 
     /**
@@ -171,32 +171,7 @@ public class Room /*implements Measurable*/ {
         return content.toString();
     }
 
-    /*
-    @Override
-    public double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
-        return 0;
-    }
 
-    @Override
-    public Map<LocalDateTime, Double> getDataSeries(LocalDateTime startDate, LocalDateTime endDate) {
-        return null;
-    }
-
-    @Override
-    public List<GeoAreaReading> getReadings() {
-        return null;
-    }
-
-    @Override
-    public List<GeoAreaReading> getReadingsListInInterval(LocalDateTime startDate, LocalDateTime endDate) {
-        return null;
-    }
-
-    @Override
-    public double getNominalPower() {
-        return 0;
-    }
-    */
 
     /**
      * method that creates the same hashcode to rooms with the same attribute name.

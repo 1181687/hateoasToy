@@ -22,11 +22,14 @@ public class RoomService {
 
     @Autowired
     private RoomSensorService roomSensorService;
-
+/*
     public boolean addRoom(String id, String description, int housefloor, double height, double length, double width) {
         Dimension dimensions = new Dimension(height, length, width);
         if (!roomRepository.existsById(new RoomId(id))) {
             Room room = new Room(id, description, housefloor, dimensions);
+   */
+    public boolean addRoom(Room room) {
+        if (!roomRepository.existsById(room.getRoomId())) {
             roomRepository.save(room);
             return true;
         }

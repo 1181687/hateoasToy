@@ -1,6 +1,8 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.AddRoomController;
+import pt.ipp.isep.dei.project.model.house.House;
+import pt.ipp.isep.dei.project.model.house.RoomDTO;
 import pt.ipp.isep.dei.project.services.RoomService;
 
 /**
@@ -28,8 +30,11 @@ public class AddRoom {
      */
     public void run() {
 
+        RoomDTO roomDTO = new RoomDTO();
+
         String label1 = "What is the name of the room you want to add to the house?";
         String id = InputValidator.getString(label1);
+        roomDTO.setId(id);
 
         while (controller.isNameExistant(id)) {
             System.out.println("Name already exists. Please write a new one.");
@@ -38,20 +43,25 @@ public class AddRoom {
 
         String label11 = "What is the description of the room you want to add to the house?";
         String description = InputValidator.getString(label11);
+        roomDTO.setDescription(description);
 
         String label2 = "Write the number of housefloor's room";
         int houseFloor = InputValidator.getInt(label2);
+        roomDTO.setHouseFloor(houseFloor);
 
         String label3 = "Write the height of the room";
         double height = InputValidator.getDoublePos(label3);
+        roomDTO.setHeight(height);
 
         String label4 = "Write the length of the room";
         double length = InputValidator.getDoublePos(label4);
+        roomDTO.setLength(length);
 
         String label5 = "Write the width of the room";
         double width = InputValidator.getDoublePos(label5);
+        roomDTO.setWidth(width);
 
-        controller.addRoom(id, description, houseFloor, height, length, width);
+        controller.addRoom(roomDTO);
 
         StringBuilder content = new StringBuilder();
         content.append("The new room ");
