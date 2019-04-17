@@ -41,8 +41,8 @@ public class GeoAreaSensor {
      * @param sensorTypeId   ID of the type of sensor
      * @param location     Location of the sensor
      */
-    public GeoAreaSensor(String id, String sensorName, LocalDateTime startingDate, SensorTypeId sensorTypeId, Location location, String units, GeoAreaId geoAreaId) {
-        this.id = new GeoAreaSensorId(id);
+    public GeoAreaSensor(GeoAreaSensorId id, String sensorName, LocalDateTime startingDate, SensorTypeId sensorTypeId, Location location, String units, GeoAreaId geoAreaId) {
+        this.id = id;
         this.sensorName = sensorName;
         this.startingDate = startingDate;
         this.sensorTypeId = sensorTypeId;
@@ -60,8 +60,8 @@ public class GeoAreaSensor {
      * @param location   Location of the sensor
      */
 
-    public GeoAreaSensor(String id, String sensorName, SensorTypeId sensorTypeId, Location location, String units, GeoAreaId geoAreaId) {
-        this.id = new GeoAreaSensorId(id);
+    public GeoAreaSensor(GeoAreaSensorId id, String sensorName, SensorTypeId sensorTypeId, Location location, String units, GeoAreaId geoAreaId) {
+        this.id = id;
         this.sensorName = sensorName;
         this.startingDate = LocalDateTime.now();
         this.sensorTypeId = sensorTypeId;
@@ -77,8 +77,8 @@ public class GeoAreaSensor {
     }
 
 
-    public String getId() {
-        return id.getSensorId();
+    public GeoAreaSensorId getId() {
+        return id;
     }
 
     public void setId(GeoAreaSensorId id) {
@@ -115,6 +115,14 @@ public class GeoAreaSensor {
         return sensorTypeId;
     }
 
+    public LocalDateTime getStartingDate() {
+        return startingDate;
+    }
+
+    public void setStartingDate(LocalDateTime startingDate) {
+        this.startingDate = startingDate;
+    }
+
     /**
      * Get method
      *
@@ -135,6 +143,10 @@ public class GeoAreaSensor {
 
     public boolean isActive() {
         return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
     }
 
     /**

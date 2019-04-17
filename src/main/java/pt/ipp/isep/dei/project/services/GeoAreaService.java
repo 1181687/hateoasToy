@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.GeoAreaRepository;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.*;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 
 import java.util.ArrayList;
@@ -54,36 +55,11 @@ public class GeoAreaService {
 
     }
 
-    /*
-     *//**
-     * method that add a geographical area to the list of geographical areas.
-     * @param geoArea
-     * @return boolean
-     *//*
-    public boolean addGeoArea(GeographicalArea geoArea) {
-        if (!(geoAreaRepository.existsById(geoArea.getId()))) {
-            geoAreaList.add(geoArea);
-            geoAreaRepository.save(geoArea);
-            return true;
-        }
-        return false;
+    public boolean addGeoAreaSensor(GeoAreaSensor geoAreaSensor) {
+        return geoAreaSensorService.addGeoAreaSensor(geoAreaSensor);
     }
 
-    */
 
-    /**
-     * get a geographical area of a geographical areas list.
-     *
-     * @param
-     * @return a geoArea if exists on the list. If not, return null.
-     *//*
-    public GeographicalArea getGeographicalArea(GeographicalArea geographicalArea) {
-        for (GeographicalArea area : geoAreaList) {
-            if (area.equals(geographicalArea)) {
-                return area;
-            }
-        }
-        return null;
     /**
      * method that get a list of all geographical areas
      *
