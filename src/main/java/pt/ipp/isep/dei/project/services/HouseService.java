@@ -117,7 +117,7 @@ public class HouseService {
 
     public boolean addGrid(String id){
         HouseGridId gridId = new HouseGridId(id);
-        return this.houseGridService.createHouseGrid(gridId);
+        return this.houseGridService.createHouseGrid(gridId.getId());
     }
 
     public boolean addRoom(Room room){
