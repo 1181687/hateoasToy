@@ -72,12 +72,12 @@ public class GetCurrentTemperatureRoom {
     public void run() {
 
         if (controller.isListofRoomEmpty()) {
-            System.out.println("There are no rooms available in the house\n");
+            System.out.println("There are no rooms available in the house.\n");
             return;
         }
         System.out.println(this.getRoomListToString());
 
-        String label0 = "Choose the room you want to get the current temperature";
+        String label0 = "Choose the room you want to get the current temperature:";
         int option = InputValidator.getIntRange(label0, 1, roomDTOS.size()-1);
         if (option == -1) {
             return;
@@ -87,7 +87,7 @@ public class GetCurrentTemperatureRoom {
         controller.newChoosenRoomId(roomId);
 
         if (controller.isRoomWithoutTemperatureSensor()){
-            System.out.println("There are no temperature sensor available in the choosen room\n");
+            System.out.println("There are no temperature sensor available in the choosen room.\n");
             return;
         }
 
@@ -96,7 +96,7 @@ public class GetCurrentTemperatureRoom {
         LocalDateTime localDateTime = controller.getLocalDateTime();
 
         if(controller.isLatestTemperatureReadingNull()){
-            System.out.println ("There are no temperature values available");
+            System.out.println ("There are no temperature values available.");
             return;
         }
 

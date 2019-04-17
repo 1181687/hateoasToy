@@ -105,8 +105,12 @@ public class Main {
             DetachRoomFromHouseGrid detachRoomFromHouseGrid = new DetachRoomFromHouseGrid(houseService);
             detachRoomFromHouseGrid.run();
             */
-            ImportReadings importReadings = new ImportReadings(geoAreaService, roomSensorService);
-            importReadings.run(1);
+
+            GetCurrentTemperatureRoom getCurrentTemperatureRoom = new GetCurrentTemperatureRoom(roomService);
+            getCurrentTemperatureRoom.run();
+
+            //ImportReadings importReadings = new ImportReadings(geoAreaService, roomSensorService);
+            //importReadings.run(1);
 
 
         };
