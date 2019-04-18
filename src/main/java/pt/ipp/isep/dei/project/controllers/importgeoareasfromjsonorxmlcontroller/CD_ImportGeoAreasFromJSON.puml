@@ -35,7 +35,7 @@ Class GeographicalAreaMapper {
 }
 
 Class GeographicalAreaList {
-- List <GeographicalArea> geoAreaList
+- List <GeographicalArea> geoAreaService
 + addGeoArea(geographicalArea)
 }
 

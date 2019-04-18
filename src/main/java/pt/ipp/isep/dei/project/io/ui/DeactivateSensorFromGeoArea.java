@@ -2,8 +2,10 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.deactivatesensorfromgeoarea.DeactivateSensorFromGeoAreaController;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
-import pt.ipp.isep.dei.project.services.GeoAreaService;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorDTO;
+import pt.ipp.isep.dei.project.services.GeoAreaAggregateService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DeactivateSensorFromGeoArea {
@@ -12,11 +14,11 @@ public class DeactivateSensorFromGeoArea {
     private List<GeographicalAreaDTO> geographicalAreaDTOS;
     private GeographicalAreaDTO geographicalAreaDTO;
 
-    public DeactivateSensorFromGeoArea(GeoAreaService geographicalAreaService) {
+    public DeactivateSensorFromGeoArea(GeoAreaAggregateService geographicalAreaService) {
         this.ctrl = new DeactivateSensorFromGeoAreaController(geographicalAreaService);
-        //this.geographicalAreaDTOS = ctrl.listOfGeographicalAreas();
+        this.geographicalAreaDTOS = ctrl.listOfGeographicalAreas();
     }
-/*
+
     public void run() {
         if (geographicalAreaDTOS.isEmpty()) {
             System.out.println("\nThere are no geographical areas in the system. Please create or import some.\n");
@@ -72,7 +74,7 @@ public class DeactivateSensorFromGeoArea {
     private List<GeoAreaSensorDTO> getListOfActiveSensors() {
         List<GeoAreaSensorDTO> activeList = new ArrayList<>();
         for (GeoAreaSensorDTO sensorDTO : geographicalAreaDTO.getSensors()) {
-            if (sensorDTO.getIsActive()) {
+            if (sensorDTO.isActive()) {
                 activeList.add(sensorDTO);
             }
         }
@@ -96,6 +98,6 @@ public class DeactivateSensorFromGeoArea {
         return false;
     }
 
-*/
+
 
 }
