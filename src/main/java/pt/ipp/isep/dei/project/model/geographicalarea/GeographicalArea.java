@@ -2,7 +2,10 @@ package pt.ipp.isep.dei.project.model.geographicalarea;
 
 import pt.ipp.isep.dei.project.model.Location;
 
-import javax.persistence.*;
+import javax.persistence.Embedded;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.Transient;
 
 @Entity
 public class GeographicalArea {
@@ -147,7 +150,7 @@ public class GeographicalArea {
         GeoAreaSensorService listOfInsertedSensors = new GeoAreaSensorService();
         for (GeoAreaSensor sensor : this.geoAreaSensorService.getListOfSensors()) {
             if (checkIfSensorInInsideOfGeoArea(sensor) && sensor.getSensorType().equals(sensorType)) {
-                listOfInsertedSensors.addSensor(sensor);
+                listOfInsertedSensors.addGeoAreaSensor(sensor);
             }
         }
         return listOfInsertedSensors;
@@ -168,7 +171,7 @@ public class GeographicalArea {
 
         for (GeoAreaSensor sensor : listOfSensorsInGeoAreaByType.getListOfSensors()) {
             if (sensor.checkMeasurementExistenceBetweenDates(startDate, endDate)) {
-                listOfSensorsOfATypeDuringAPeriod.addSensor(sensor);
+                listOfSensorsOfATypeDuringAPeriod.addGeoAreaSensor(sensor);
             }
         }
         return listOfSensorsOfATypeDuringAPeriod;
@@ -187,7 +190,7 @@ public class GeographicalArea {
 
         for (GeoAreaSensor sensor : geoAreaSensorListByTypeInAGeoArea.getListOfSensors()) {
             if (sensor.checkMeasurementExistenceBetweenDates(day, day)) {
-                geoAreaSensorListByTypeInADay.addSensor(sensor);
+                geoAreaSensorListByTypeInADay.addGeoAreaSensor(sensor);
             }
         }
         return geoAreaSensorListByTypeInADay;
@@ -456,8 +459,8 @@ public class GeographicalArea {
     }
 
 
-    public boolean addSensor(GeoAreaSensor sensor) {
-        return this.geoAreaSensorService.addSensor(sensor);
+    public boolean addGeoAreaSensor(GeoAreaSensor sensor) {
+        return this.geoAreaSensorService.addGeoAreaSensor(sensor);
     }
 
     *//**

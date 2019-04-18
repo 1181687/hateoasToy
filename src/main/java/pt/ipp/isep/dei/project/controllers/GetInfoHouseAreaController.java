@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 
 
-public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaController {
+public class GetInfoHouseAreaController {
     private Location houseLocation;
     private GeoAreaAggregateService geoAreaAggregateService;
     private SensorTypeId rainfall;
@@ -23,7 +23,7 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaController {
      * @param house                House to be used.
      * @param geoAreaAggregateService Service to be used.
      */
-    public GetTotalAndAverageRainfallAndCurrentTempHouseAreaController(House house, GeoAreaAggregateService geoAreaAggregateService) {
+    public GetInfoHouseAreaController(House house, GeoAreaAggregateService geoAreaAggregateService) {
         this.houseLocation = house.getAddress().getLocation();
         this.geoAreaAggregateService = geoAreaAggregateService;
         rainfall = new SensorTypeId("Rainfall");

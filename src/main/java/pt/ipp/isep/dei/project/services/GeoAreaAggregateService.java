@@ -233,8 +233,9 @@ public class GeoAreaAggregateService {
      * Method that adds a geographical area to the geoAreaRepository.
      * If it doesn't exist in the repository, it adds the area and return true.
      * If it does, then it just returns true
-     @param geoArea
-      * @return
+     *
+     * @param geoArea
+     * @return
      */
     public boolean addGeographicalArea(GeographicalArea geoArea) {
         if (!geoAreaAggregateRepo.existGeoAreaById(geoArea.getId())) {
@@ -252,7 +253,7 @@ public class GeoAreaAggregateService {
 
     }
 
-    public List<GeoAreaId> getAllGeoAreasId(){
+    public List<GeoAreaId> getAllGeoAreasId() {
         Iterable<GeographicalArea> geoAreas = this.geoAreaAggregateRepo.findAllGeoAreas();
         List<GeoAreaId> geoAreaIdList = new ArrayList<>();
         for (GeographicalArea geoArea : geoAreas) {
@@ -313,19 +314,19 @@ public class GeoAreaAggregateService {
     }
 
 
-    public boolean isReadingDuplicated(GeoAreaReadingId geoAreaReadingId){
+    public boolean isReadingDuplicated(GeoAreaReadingId geoAreaReadingId) {
         return geoAreaAggregateRepo.isReadingDuplicated(geoAreaReadingId);
     }
 
-    public boolean addReading(GeoAreaReading geoAreaReading){
-        if (!isReadingDuplicated(geoAreaReading.getReadingId())){
+    public boolean addReading(GeoAreaReading geoAreaReading) {
+        if (!isReadingDuplicated(geoAreaReading.getReadingId())) {
             geoAreaAggregateRepo.saveReading(geoAreaReading);
             return true;
         }
         return false;
     }
 
-    public GeographicalArea getGeoAreaById(GeoAreaId geoAreaId){
+    public GeographicalArea getGeoAreaById(GeoAreaId geoAreaId) {
         return geoAreaAggregateRepo.getGeoAreaById(geoAreaId);
     }
 
@@ -333,13 +334,13 @@ public class GeoAreaAggregateService {
         return geoAreaAggregateRepo.doesSensorExist(geoAreaSensorId);
     }
 
-    public GeoAreaSensor getSensorById(GeoAreaSensorId geoAreaSensorId){
+    public GeoAreaSensor getSensorById(GeoAreaSensorId geoAreaSensorId) {
         return geoAreaAggregateRepo.getSensorById(geoAreaSensorId);
     }
 
-    public boolean addSensor(GeoAreaSensor geoAreaSensor){
+    public boolean addGeoAreaSensor(GeoAreaSensor geoAreaSensor) {
         if (!geoAreaAggregateRepo.doesSensorExist(geoAreaSensor.getId())) {
-            geoAreaAggregateRepo.saveSensor(geoAreaSensor);
+            geoAreaAggregateRepo.saveGeoAreaSensor(geoAreaSensor);
             return true;
         }
         return false;

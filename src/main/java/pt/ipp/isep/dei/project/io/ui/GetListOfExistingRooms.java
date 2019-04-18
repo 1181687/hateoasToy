@@ -2,7 +2,7 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.GetListOfExistingRoomsController;
 import pt.ipp.isep.dei.project.model.house.RoomDTO;
-import pt.ipp.isep.dei.project.services.RoomService;
+import pt.ipp.isep.dei.project.services.RoomAggregateService;
 
 import java.util.List;
 
@@ -10,8 +10,8 @@ public class GetListOfExistingRooms {
 
     private GetListOfExistingRoomsController controller;
 
-    public GetListOfExistingRooms(RoomService roomService) {
-        this.controller = new GetListOfExistingRoomsController(roomService);
+    public GetListOfExistingRooms(RoomAggregateService roomAggregateService) {
+        this.controller = new GetListOfExistingRoomsController(roomAggregateService);
     }
 
     public void run() {
