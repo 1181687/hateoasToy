@@ -70,6 +70,9 @@ public class Main {
     @Autowired
     private RoomSensorService roomSensorService;
 
+    @Autowired
+    private RoomAggregateService roomAggregateService;
+
 
     public static void main(String[] args) {
 
@@ -135,13 +138,13 @@ public class Main {
             */
 
 
-            ImportGeoAreasFromJSONOrXML importGeoAreasFromJSONOrXML = new ImportGeoAreasFromJSONOrXML(geoAreaService);
-            importGeoAreasFromJSONOrXML.run();
+            //ImportGeoAreasFromJSONOrXML importGeoAreasFromJSONOrXML = new ImportGeoAreasFromJSONOrXML(geoAreaService);
+            //importGeoAreasFromJSONOrXML.run();
 
             ImportReadings importReadings = new ImportReadings(geoAreaService, roomSensorService);
             importReadings.run(1);
 
-            GetCurrentTemperatureRoom getCurrentTemperatureRoom = new GetCurrentTemperatureRoom(roomService);
+            GetCurrentTemperatureRoom getCurrentTemperatureRoom = new GetCurrentTemperatureRoom(roomAggregateService);
             getCurrentTemperatureRoom.run();
             // GetCurrentTemperatureRoom getCurrentTemperatureRoom = new GetCurrentTemperatureRoom(roomService);
             // getCurrentTemperatureRoom.run();

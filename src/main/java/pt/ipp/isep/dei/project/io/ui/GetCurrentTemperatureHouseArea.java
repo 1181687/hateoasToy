@@ -13,7 +13,6 @@ public class GetCurrentTemperatureHouseArea {
      * Constructor.
      *
      * @param house                House to be used.
-     * @param geoAreaSensorService Service to be used.
      */
     public GetCurrentTemperatureHouseArea(House house, GeoAreaAggregateService geoAreaAggregateService) {
         this.controller = new GetTotalAndAverageRainfallAndCurrentTempHouseAreaController(house, geoAreaAggregateService);
