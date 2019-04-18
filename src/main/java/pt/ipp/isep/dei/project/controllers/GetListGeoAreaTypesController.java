@@ -19,7 +19,7 @@ public class GetListGeoAreaTypesController {
     }
 
 
-    public List<GeographicalAreaTypeDTO> getListOfGeoAreaTypes (){
+    public List<GeographicalAreaTypeDTO> getListOfGeoAreaTypes() {
         List<GeographicalAreaTypeDTO> geographicalAreaTypeDTOList = new ArrayList<>();
         for (GeographicalAreaType geographicalAreaType : geoAreaTypeService.getListOfGeoAreaTypes()) {
             geographicalAreaTypeDTOList.add(GeographicalAreaTypeMapper.mapToDTO(geographicalAreaType));

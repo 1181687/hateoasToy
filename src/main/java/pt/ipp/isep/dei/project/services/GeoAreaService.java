@@ -46,7 +46,8 @@ public class GeoAreaService {
      * Method that adds a geographical area to the geoAreaRepository.
      * If it doesn't exist in the repository, it adds the area and return true.
      * If it does, then it just returns true
-     @param geoArea
+     *
+     * @param geoArea
      * @return
      */
     public boolean addGeographicalArea(GeographicalArea geoArea) {
@@ -65,7 +66,7 @@ public class GeoAreaService {
 
     }
 
-    public List<GeoAreaId> getAllGeoAreasId(){
+    public List<GeoAreaId> getAllGeoAreasId() {
         Iterable<GeographicalArea> geoAreas = this.geoAreaRepository.findAll();
         List<GeoAreaId> geoAreaIdList = new ArrayList<>();
         for (GeographicalArea geoArea : geoAreas) {
@@ -74,41 +75,7 @@ public class GeoAreaService {
         return geoAreaIdList;
     }
 
-    /*
-     *//**
-     * method that add a geographical area to the list of geographical areas.
-     * @param geoArea
-     * @return boolean
-     *//*
-    public boolean addGeoArea(GeographicalArea geoArea) {
-        if (!(geoAreaRepository.existsById(geoArea.getId()))) {
-            geoAreaList.add(geoArea);
-            geoAreaRepository.save(geoArea);
-            return true;
-        }
-        return false;
-    }
 
-    */
-
-    /**
-     * get a geographical area of a geographical areas list.
-     *
-     * @param
-     * @return a geoArea if exists on the list. If not, return null.
-     *//*
-    public GeographicalArea getGeographicalArea(GeographicalArea geographicalArea) {
-        for (GeographicalArea area : geoAreaList) {
-            if (area.equals(geographicalArea)) {
-                return area;
-            }
-        }
-        return null;
-    /**
-     * method that get a list of all geographical areas
-     *
-     * @return a list of geo areas
-     */
     public List<GeographicalArea> getAllGeoAreas() {
         Iterable<GeographicalArea> geoAreaIterables = this.geoAreaRepository.findAll();
         List<GeographicalArea> geographicalAreaList = new ArrayList<>();
@@ -142,6 +109,10 @@ public class GeoAreaService {
         return geoAreaSensorService.isNameExistant(id);
     }
 
+    public boolean addGeoAreaSensor(GeoAreaSensor geoAreaSensor) {
+        return geoAreaSensorService.addGeoAreaSensor(geoAreaSensor);
+    }
+
 
     /**
      * method that gel a list of all geo area types
@@ -163,15 +134,15 @@ public class GeoAreaService {
         return geoAreaRepository.findById_GeographicalAreaTypeId(geoAreaTypeId);
     }
 
-    public GeoAreaSensor getSensorById(GeoAreaSensorId geoAreaSensorId){
+    public GeoAreaSensor getSensorById(GeoAreaSensorId geoAreaSensorId) {
         return geoAreaSensorService.getSensorById(geoAreaSensorId);
     }
 
-    public boolean isReadingDuplicated(GeoAreaReadingId geoAreaReadingId){
+    public boolean isReadingDuplicated(GeoAreaReadingId geoAreaReadingId) {
         return geoAreaSensorReadingsService.isReadingDuplicated(geoAreaReadingId);
     }
 
-    public boolean addReading(GeoAreaReading geoAreaReading){
+    public boolean addReading(GeoAreaReading geoAreaReading) {
         return geoAreaSensorReadingsService.addReading(geoAreaReading);
     }
 

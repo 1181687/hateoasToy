@@ -32,7 +32,6 @@ public class Kettle implements Device {
      *
      * @param location
      * @return false if the location is equals to another device. True if not.
-     *
      */
     @Override
     public boolean setLocation(Room location) {
@@ -56,7 +55,6 @@ public class Kettle implements Device {
      *
      * @param name String given name
      * @return true if sets false if don't
-     *
      */
     @Override
     public boolean setName(String name) {

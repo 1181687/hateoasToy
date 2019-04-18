@@ -1,12 +1,7 @@
 package pt.ipp.isep.dei.project.model.house.housegrid;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import pt.ipp.isep.dei.project.services.RoomService;
-
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Transient;
 import java.util.Objects;
 
 import static java.util.Objects.isNull;

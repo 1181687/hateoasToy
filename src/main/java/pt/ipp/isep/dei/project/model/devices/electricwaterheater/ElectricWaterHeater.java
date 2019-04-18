@@ -88,6 +88,7 @@ public class ElectricWaterHeater implements Device {
 
     /**
      * method that gets the Device Specifications
+     *
      * @return DeviceSpecs
      */
     @Override

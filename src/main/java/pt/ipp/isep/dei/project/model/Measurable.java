@@ -1,11 +1,8 @@
 package pt.ipp.isep.dei.project.model;
 
 import pt.ipp.isep.dei.project.model.devices.DeviceReading;
-import pt.ipp.isep.dei.project.model.readings.GeoAreaReading;
-import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
