@@ -12,6 +12,7 @@ import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorId;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -99,7 +100,15 @@ public class GeoAreaAggregateRepository {
     }
 
     public List<GeoAreaSensor> getActiveSensors(){
-        return this.geoAreaSensorRepo.findGeoAreaSensorsByActiveIsTrue();
+        Iterable<GeoAreaSensor> sensors= this.geoAreaSensorRepo.findAll();
+        List<GeoAreaSensor> activeSensors = new ArrayList<>();
+
+        for (GeoAreaSensor sensor : sensors) {
+            if(sensor.isActive()){
+                activeSensors.add(sensor);
+            }
+        }
+        return activeSensors;
     }
 
     public boolean deactivateSensorById(GeoAreaSensorId id){

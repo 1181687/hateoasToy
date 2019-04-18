@@ -1,7 +1,5 @@
 package pt.ipp.isep.dei.project.io.ui;
 
-import pt.ipp.isep.dei.project.controllers.getlastcoldestdayhouseareacontroller.GetLastColdestDayHouseAreaController;
-import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.readings.ReadingDTO;
 import pt.ipp.isep.dei.project.utils.Utils;
@@ -10,15 +8,15 @@ import java.time.LocalDate;
 
 public class GetLastColdestDayHouseArea {
 
-    private GetLastColdestDayHouseAreaController controller;
+   /* private GetLastColdestDayHouseAreaController controller;
     private ReadingDTO readingDTO;
     private LocalDate firstDate;
-    private LocalDate lastDate;
+    private LocalDate lastDate;*/
 
     public GetLastColdestDayHouseArea(House house) {
-        this.controller = new GetLastColdestDayHouseAreaController(house);
+        //this.controller = new GetLastColdestDayHouseAreaController(house);
     }
-
+/*
     public void run() {
 
         if (!controller.hasSensorsOfGivenTypeInGeoArea()) {
@@ -81,5 +79,5 @@ public class GetLastColdestDayHouseArea {
         content.append(" Celsius.\n");
 
         System.out.println(content.toString());
-    }
+    }*/
 }
