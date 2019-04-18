@@ -2,15 +2,13 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.deactivatesensorfromgeoarea.DeactivateSensorFromGeoAreaController;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
-import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorDTO;
 import pt.ipp.isep.dei.project.services.GeoAreaService;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class DeactivateSensorFromGeoArea {
-    private DeactivateSensorFromGeoAreaController ctrl;
     private static final String EXIT = "\r0 - Exit";
+    private DeactivateSensorFromGeoAreaController ctrl;
     private List<GeographicalAreaDTO> geographicalAreaDTOS;
     private GeographicalAreaDTO geographicalAreaDTO;
 

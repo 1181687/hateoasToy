@@ -4,6 +4,8 @@ import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.LocationMapper;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaId;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapper;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaId;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaTypeId;
 
 public final class GeoAreaSensorMapper {
 

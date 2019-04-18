@@ -195,8 +195,8 @@ public class Room /*implements Measurable*/ {
         return this.roomId.getId().equalsIgnoreCase(roomOne.roomId.getId());
     }
 
-    public boolean detachRoomFromHouseGrid(){
-        if (Objects.isNull(this.houseGridId)){
+    public boolean detachRoomFromHouseGrid() {
+        if (Objects.isNull(this.houseGridId)) {
             return false;
         }
         this.houseGridId = null;

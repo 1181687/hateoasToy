@@ -3,9 +3,7 @@ package pt.ipp.isep.dei.project.controllers;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapper;
-import pt.ipp.isep.dei.project.model.sensor.SensorType;
-import pt.ipp.isep.dei.project.model.sensor.SensorTypeDTO;
-import pt.ipp.isep.dei.project.model.sensor.SensorTypeMapper;
+import pt.ipp.isep.dei.project.model.sensor.*;
 import pt.ipp.isep.dei.project.services.GeoAreaService;
 
 import java.util.ArrayList;
@@ -44,12 +42,14 @@ public class AddSensorToGeoAreaController {
         return sensorTypeDTOList;
     }
 
-    /*public void addSensorDTO(String id, String sensorName, SensorTypeId sensorTypeId, Location location, String units, GeoAreaId geoAreaId) {
-        geoAreaService.addSensorDTO(id, sensorName, sensorTypeId, location, units, geoAreaId);
-    }*/
-
     public boolean isNameExistant(String name) {
         return this.geoAreaService.isNameExistant(name);
     }
+
+
+    public boolean addGeoAreaSensor(GeoAreaSensorDTO geoAreaSensorDTO) {
+        return geoAreaService.addGeoAreaSensor(GeoAreaSensorMapper.mapToEntity(geoAreaSensorDTO));
+    }
+
 
 }

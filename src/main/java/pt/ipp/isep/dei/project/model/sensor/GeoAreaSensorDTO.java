@@ -14,6 +14,7 @@ public class GeoAreaSensorDTO {
     private String sensorType;
     private LocationDTO location;
     private String units;
+    private String geoAreaId;
     private boolean isActive;
 
     /**
@@ -119,6 +120,13 @@ public class GeoAreaSensorDTO {
         this.units = units;
     }
 
+    public String getGeoAreaId() {
+        return geoAreaId;
+    }
+
+    public void setGeoAreaId(String geoAreaId) {
+        this.geoAreaId = geoAreaId;
+    }
     public boolean isActive() {
         return isActive;
     }

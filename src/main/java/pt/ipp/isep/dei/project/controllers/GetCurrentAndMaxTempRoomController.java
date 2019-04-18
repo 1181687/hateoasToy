@@ -25,7 +25,6 @@ public class GetCurrentAndMaxTempRoomController {
     private RoomReading latestRoomReading;
 
 
-
     public GetCurrentAndMaxTempRoomController(RoomService roomService) {
         this.roomService = roomService;
     }
@@ -36,87 +35,93 @@ public class GetCurrentAndMaxTempRoomController {
      *
      * @return List of roomDTO.
      */
-    public List <RoomDTO> getListRoomDTo(){
+    public List<RoomDTO> getListRoomDTo() {
         List<RoomDTO> roomDTOS = new ArrayList<>();
-        for (Room room: roomService.getAllRooms()){
-             roomDTOS.add(RoomMapper.mapToDTO(room));
+        for (Room room : roomService.getAllRooms()) {
+            roomDTOS.add(RoomMapper.mapToDTO(room));
         }
         return roomDTOS;
     }
 
     /**
      * checks if there aren't rooms
+     *
      * @return true if there aren't rooms, false if are.
      */
-    public boolean isListofRoomEmpty(){
+    public boolean isListofRoomEmpty() {
         return (this.getListRoomDTo().isEmpty());
     }
 
     /**
      * receives a string roomId and creates a RoomId object
      * that is saved in the controller
+     *
      * @param roomId
      */
-    public void newChoosenRoomId (String roomId){
-     this.choosenRoomId = new RoomId((roomId));
+    public void newChoosenRoomId(String roomId) {
+        this.choosenRoomId = new RoomId((roomId));
     }
 
     /**
      * checks if there aren't temperature sensors by saved roomId
+     *
      * @return true if there aren't temperature sensors, false if are.
      */
-    public boolean isRoomWithoutTemperatureSensor(){
+    public boolean isRoomWithoutTemperatureSensor() {
         return roomService.isRoomWithoutSensorByType(this.choosenRoomId, this.sensorTypeId);
     }
 
     /**
      * method that get RoomSensor of the given type of the given room saved in attributtes of this class
+     *
      * @return roomSensor
      */
     public RoomSensor getRoomSensorByRoomByType() {
-     return roomService.getRoomSensorByRoomByType(this.choosenRoomId, this.sensorTypeId);
+        return roomService.getRoomSensorByRoomByType(this.choosenRoomId, this.sensorTypeId);
     }
 
     /**
      * method that get RoomSensorId
+     *
      * @return roomSensorId
      */
-    public RoomSensorId getRoomSensorId(){
+    public RoomSensorId getRoomSensorId() {
         return this.getRoomSensorByRoomByType().getId();
     }
 
     /**
      * method that gets the latest temperature reading of a given roomSensor saved in attributtes of this class
+     *
      * @return latest roomReading
      */
-    public void latestTemperatureReading(){
-       latestRoomReading = this.roomService.getLatestTemperatureReading(this.getRoomSensorId());
+    public void latestTemperatureReading() {
+        latestRoomReading = this.roomService.getLatestTemperatureReading(this.getRoomSensorId());
     }
 
     /**
      * method that checks if temperatureReading is null
+     *
      * @return true if it is null, false if it is not
      */
-    public boolean isLatestTemperatureReadingNull(){
-        if(Objects.isNull(this.latestRoomReading)){
-            return true;
-        }
-        return false;
+    public boolean isLatestTemperatureReadingNull() {
+        return Objects.isNull(this.latestRoomReading);
     }
 
     /**
      * method that gets LocalDateTime of the latest Room Reading saved in attribute of this class
+     *
      * @return LocalDateTime
      */
-    public LocalDateTime getLocalDateTime(){
+    public LocalDateTime getLocalDateTime() {
         return latestRoomReading.getRoomReadingId().getLocalDateTime();
     }
 
     /**
      * method that gets value of the latest Room Reading saved in attribute of this class
+     *
      * @return double
      */
-    public double getvalue(){
+    public double getvalue() {
         return latestRoomReading.getValue();
     }
 

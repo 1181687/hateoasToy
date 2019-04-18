@@ -81,7 +81,7 @@ public interface Device extends Measurable {
      *
      * @return String with the attributes.
      */
-    default String getDevSpecsAttributesToString(){
+    default String getDevSpecsAttributesToString() {
         return getSpecs().getAttributesToString();
     }
 
@@ -90,7 +90,7 @@ public interface Device extends Measurable {
      *
      * @return the device attributes.
      */
-    default String getAttributesToString(){
+    default String getAttributesToString() {
 
         StringBuilder attributes = new StringBuilder();
         attributes.append("1 - Name: " + getName() + "\n");
@@ -107,7 +107,7 @@ public interface Device extends Measurable {
      * @param value
      * @return the position of an attribute and the value of it.
      */
-    default boolean setAttributesDevType(String attribute, Object value){
+    default boolean setAttributesDevType(String attribute, Object value) {
         return this.getSpecs().setAttributeValue(attribute, value);
     }
 
@@ -117,7 +117,7 @@ public interface Device extends Measurable {
      *
      * @return the number of attributes.
      */
-    default int getNumberOfSpecsAttributes()  {
+    default int getNumberOfSpecsAttributes() {
         return getSpecs().getNumberOfAttributes();
     }
 
@@ -138,7 +138,7 @@ public interface Device extends Measurable {
      *
      * @param reading Reading to be added.
      */
-    default void addReadingsToTheList(DeviceReading reading)  {
+    default void addReadingsToTheList(DeviceReading reading) {
         this.getReadings().add(reading);
     }
 /*
@@ -189,10 +189,9 @@ public interface Device extends Measurable {
     /**
      * Method that gets the energy consumption in a day.
      *
-     * @return
-     * consumption of the device in a given day.
+     * @return consumption of the device in a given day.
      */
-    default double getEnergyConsumptionInADay(){
+    default double getEnergyConsumptionInADay() {
         return getSpecs().getEnergyConsumptionInADay();
     }
 
@@ -205,23 +204,23 @@ public interface Device extends Measurable {
         return map;
     }
 
-    default  Object getAttributeValue(String attributeName){
+    default Object getAttributeValue(String attributeName) {
         return getSpecs().getAttributeValue(attributeName);
     }
 
-    default List<String> getSpecsList(){
+    default List<String> getSpecsList() {
         return getSpecs().getSpecsList();
     }
 
-    default  String getSpecsToString(){
+    default String getSpecsToString() {
         return getSpecs().getAttributesToString();
     }
 
-    default String getAttributeDataType(String attributeName){
-       return getSpecs().getAttributeDataType(attributeName);
+    default String getAttributeDataType(String attributeName) {
+        return getSpecs().getAttributeDataType(attributeName);
     }
 
-    default double getNominalPower(){
+    default double getNominalPower() {
         return getSpecs().getNominalPower();
     }
 

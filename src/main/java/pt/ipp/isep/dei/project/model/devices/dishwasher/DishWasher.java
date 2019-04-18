@@ -88,9 +88,9 @@ public class DishWasher implements Device {
     }
 
 
-
     /**
      * method that gets the Device Specifications
+     *
      * @return DeviceSpecs
      */
     @Override
@@ -141,7 +141,6 @@ public class DishWasher implements Device {
     public LocalDateTime getDeactivationDate() {
         return this.deactivationDate;
     }
-
 
 
     /**
