@@ -1,6 +1,7 @@
 package pt.ipp.isep.dei.project.controllers.importreadingscontroller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import pt.ipp.isep.dei.project.model.ProjectFileReader;
 import pt.ipp.isep.dei.project.model.readings.ReadingDTO;
 import pt.ipp.isep.dei.project.model.readings.ReadingMapper;
 import pt.ipp.isep.dei.project.model.readings.RoomReadingId;
@@ -9,6 +10,8 @@ import pt.ipp.isep.dei.project.model.sensor.RoomSensorId;
 import pt.ipp.isep.dei.project.services.RoomSensorService;
 import pt.ipp.isep.dei.project.utils.Utils;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -123,5 +126,15 @@ public class ImportRoomReadingsController {
             return false;
         }
         return false;
+    }
+
+    public ProjectFileReader createReader(String path) {
+        return Utils.createReader(path);
+    }
+
+    public List<Object> readFile(File file, String path) throws FileNotFoundException {
+        ProjectFileReader fileReader = createReader(path);
+        readingDTOList = fileReader.readFile(file);
+        return readingDTOList;
     }
 }

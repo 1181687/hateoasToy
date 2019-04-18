@@ -3,7 +3,7 @@ package pt.ipp.isep.dei.project.model.sensor;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.LocationMapper;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaId;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaTypeId;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapper;
 
 public final class GeoAreaSensorMapper {
 
@@ -34,7 +34,7 @@ public final class GeoAreaSensorMapper {
         sensorDTO.setSensorType(sensor.getSensorType().getSensorTypeId());
         sensorDTO.setLocation(LocationMapper.mapToDTO(sensor.getLocation()));
         sensorDTO.setUnits(sensor.getUnits());
-        //sensorDTO.setActive(sensor.isActive());
+        sensorDTO.setActive(sensor.isActive());
         return sensorDTO;
     }
 
@@ -45,13 +45,10 @@ public final class GeoAreaSensorMapper {
      * @return GeoAreaSensor with the required information.
      */
     public static GeoAreaSensor mapToEntity(GeoAreaSensorDTO sensorDTO) {
+        Location sensorLocation = LocationMapper.mapToEntity(sensorDTO.getLocation());
+        GeoAreaId geoAreaId = GeographicalAreaMapper.mapGeoAreaIdToDTO(sensorDTO.getParentGeoArea());
         GeoAreaSensorId geoAreaSensorId = new GeoAreaSensorId(sensorDTO.getId());
         SensorTypeId sensorTypeId = new SensorTypeId(sensorDTO.getSensorType());
-        Location location = LocationMapper.mapToEntity(sensorDTO.getLocation());
-        GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId(sensorDTO.getGeoAreaId());
-        GeoAreaId geoAreaId = new GeoAreaId(sensorDTO.getGeoAreaId(), location, geoAreaTypeId);
-
-        GeoAreaSensor newSensor = new GeoAreaSensor(geoAreaSensorId, sensorDTO.getName(), sensorDTO.getStartingDate().atStartOfDay(), sensorTypeId, location, sensorDTO.getUnits(), geoAreaId);
-        return newSensor;
+        return new GeoAreaSensor(geoAreaSensorId,sensorDTO.getName(),sensorDTO.getStartingDate().atStartOfDay(),sensorTypeId,sensorLocation, sensorDTO.getUnits(),geoAreaId);
     }
 }

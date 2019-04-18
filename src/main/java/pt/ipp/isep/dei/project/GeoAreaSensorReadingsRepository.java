@@ -12,5 +12,7 @@ public interface GeoAreaSensorReadingsRepository extends CrudRepository<GeoAreaR
 
     List<GeoAreaReading> findByGeoAreaReadingId_GeoAreaSensorId(GeoAreaSensorId id);
 
-    List<GeoAreaReading> findByDateTime_DateAAndSensorId(LocalDate localDate, GeoAreaSensorId id);
+    boolean existsGeoAreaReadingByDateTime_DateAndGeoAreaReadingId_GeoAreaSensorId(LocalDate localDate, GeoAreaSensorId id);
+
+    List<GeoAreaReading> findByDateTime_DateAndGeoAreaReadingId_GeoAreaSensorId(LocalDate localDate, GeoAreaSensorId id);
 }

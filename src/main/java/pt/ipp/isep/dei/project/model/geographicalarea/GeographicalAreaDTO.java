@@ -1,5 +1,10 @@
 package pt.ipp.isep.dei.project.model.geographicalarea;
 
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorDTO;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class GeographicalAreaDTO {
 
     private String id;
@@ -10,6 +15,7 @@ public class GeographicalAreaDTO {
     private double latitude;
     private double longitude;
     private double elevation;
+    private List<GeoAreaSensorDTO> sensorDTOList = new ArrayList<>();
 
     public GeographicalAreaDTO() {
         // empty
@@ -79,4 +85,11 @@ public class GeographicalAreaDTO {
         this.elevation = elevation;
     }
 
+    public List<GeoAreaSensorDTO> getSensors() {
+        return sensorDTOList;
+    }
+
+    public void addSensor(GeoAreaSensorDTO geoAreaSensorDTO) {
+        this.sensorDTOList.add(geoAreaSensorDTO);
+    }
 }

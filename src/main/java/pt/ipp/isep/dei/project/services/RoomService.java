@@ -110,7 +110,7 @@ public class RoomService {
      * @return the new room
      */
    /* public Room newRoom(String id, String description, int housefloor, double height, double length, double width) {
-        if (isNameExistant(id)) {
+        if (doesSensorExist(id)) {
             throw new RuntimeException("Name already exists. Please write a new one.");
         }
         Dimension newDimension = new Dimension(height, length, width);
@@ -266,7 +266,7 @@ public class RoomService {
      * @param name
      * @return boolean
      */
-   /* public boolean isNameExistant(String name) {
+   /* public boolean doesSensorExist(String name) {
 
         for (int i = 0; i < listOfRooms.size(); i++) {
             if (listOfRooms.get(i).getRoomId().equalsIgnoreCase(name)) {

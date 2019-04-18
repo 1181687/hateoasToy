@@ -4,10 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.ProjectFileReader;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
-import pt.ipp.isep.dei.project.model.house.Address;
-import pt.ipp.isep.dei.project.model.house.AddressMapper;
-import pt.ipp.isep.dei.project.model.house.HouseDTO;
-import pt.ipp.isep.dei.project.model.house.RoomDTO;
+import pt.ipp.isep.dei.project.model.house.*;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridDTO;
 import pt.ipp.isep.dei.project.services.HouseService;
 import pt.ipp.isep.dei.project.utils.Utils;
@@ -86,7 +83,7 @@ public class ConfigureHouseInformationFromJsonController {
         checkForInvalidGridInfo(houseDTO);
         if (!(numberOfNotImportedGrids == houseDTO.getHouseGridDTOList().size()
                 && numberOfNotImportedRooms == houseDTO.getRoomDTOList().size())) {
-            //updateHouseWithRoomsAndGrids(houseDTO);
+            updateHouseWithRoomsAndGrids(houseDTO);
             imported = true;
         }
         Address address = AddressMapper.mapToEntity(houseDTO.getAddressDTO());
@@ -127,7 +124,7 @@ public class ConfigureHouseInformationFromJsonController {
 
     private void checkForInvalidGridInfo(HouseDTO houseDTO) {
         List<HouseGridDTO> houseGridDTOS = houseDTO.getHouseGridDTOList();
-        List<RoomDTO> roomDTOS = houseDTO.getRoomDTOList();
+        //List<RoomDTO> roomDTOS = houseDTO.getRoomDTOList();
         for (Iterator<HouseGridDTO> houseGridDTOIterator = houseGridDTOS.iterator(); houseGridDTOIterator.hasNext(); ) {
             HouseGridDTO houseGridDTO = houseGridDTOIterator.next();
             String houseGridId = houseGridDTO.getId();
@@ -187,15 +184,15 @@ public class ConfigureHouseInformationFromJsonController {
         }
     }
 
-/*    public void updateHouseWithRoomsAndGrids(HouseDTO houseDTO) {
+    public void updateHouseWithRoomsAndGrids(HouseDTO houseDTO) {
         Address houseAddress = AddressMapper.mapToEntity(houseDTO.getAddressDTO());
-        if (Objects.isNull(houseAddress.getLocation())) {
-            houseAddress.setLocation(house.getLocation());
+        if (Objects.isNull(houseAddress.getLocation())&& Objects.nonNull(this.houseService.getAddress())) {
+            houseAddress.setLocation(this.houseService.getLocation());
         }
-        if (Objects.isNull(houseAddress.getInsertedGeoArea())) {
-            houseAddress.setInsertedGeoArea(house.getInsertedGeoArea());
+        if (Objects.isNull(houseAddress.getInsertedGeoArea())&& Objects.nonNull(this.houseService.getAddress())) {
+            houseAddress.setInsertedGeoArea(this.houseService.getInsertedGeoArea());
         }
-        house.setAddress(houseAddress);
+        this.houseService.setAddress(houseAddress);
 
         for (RoomDTO roomDTO : houseDTO.getRoomDTOList()) {
             Room room = RoomMapper.mapToEntity(roomDTO);
@@ -208,7 +205,7 @@ public class ConfigureHouseInformationFromJsonController {
 
         }
 
-    }*/
+    }
 }
 
 

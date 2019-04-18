@@ -296,8 +296,8 @@ public class House {
      *
      * @param name
      */
-    /*public boolean isNameExistant(String name) {
-        return this.roomList.isNameExistant(name);
+    /*public boolean doesSensorExist(String name) {
+        return this.roomList.doesSensorExist(name);
     }*/
 
     /**
