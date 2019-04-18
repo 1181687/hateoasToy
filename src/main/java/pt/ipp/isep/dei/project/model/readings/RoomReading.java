@@ -25,10 +25,6 @@ public class RoomReading {
         // empty
     }
 
-    public RoomReadingId getRoomReadingId() {
-        return roomReadingId;
-    }
-
     /**
      * Get method
      *
@@ -36,6 +32,14 @@ public class RoomReading {
      */
     public double getValue() {
         return value;
+    }
+
+    /**
+     * gets roomReadingID
+     * @return roomReadingId object
+     */
+    public RoomReadingId getRoomReadingId() {
+        return roomReadingId;
     }
 
     public void setValue(double value) {
