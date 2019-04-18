@@ -83,7 +83,7 @@ public class GeoAreaAggregateService {
      * @param id Id of the sensor type..
      * @return List of GeoAreaSensor.
      */
-    private List<GeoAreaSensor> getGeoAreasByType(SensorTypeId id) {
+    private List<GeoAreaSensor> getGeoAreaSensorByType(SensorTypeId id) {
         return geoAreaAggregateRepo.findBySensorTypeId(id);
     }
 
@@ -142,8 +142,16 @@ public class GeoAreaAggregateService {
      */
     public HashMap<LocalDateTime, Double> getLatestMeasurementByTypeAndLocation(Location location, SensorTypeId typeId) {
         HashMap<LocalDateTime, Double> map = new HashMap<>();
+        GeoAreaReading latestGeoAreaReading = getLatestGeoAreaReading(location, typeId);
+        if (Objects.nonNull(latestGeoAreaReading)) {
+            map.put(latestGeoAreaReading.getDateTime(), latestGeoAreaReading.getValue());
+        }
+        return map;
+    }
+
+    public GeoAreaReading getLatestGeoAreaReading (Location location, SensorTypeId typeId) {
         GeoAreaReading latestGeoAreaReading = null;
-        List<GeoAreaSensor> geoAreaSensorsOfType = getGeoAreasByType(typeId);
+        List<GeoAreaSensor> geoAreaSensorsOfType = getGeoAreaSensorByType(typeId);
         if (!geoAreaSensorsOfType.isEmpty()) {
             List<GeoAreaSensor> nearestSensors = getNearestSensorsToLocation(location, geoAreaSensorsOfType);
             for (GeoAreaSensor sensor : nearestSensors) {
@@ -155,11 +163,9 @@ public class GeoAreaAggregateService {
                 }
             }
         }
-        if (Objects.nonNull(latestGeoAreaReading)) {
-            map.put(latestGeoAreaReading.getDateTime(), latestGeoAreaReading.getValue());
-        }
-        return map;
+        return latestGeoAreaReading;
     }
+
 
     /**
      * Method that returns the list of sensors of a given type that have readings in a specific date.
@@ -171,7 +177,7 @@ public class GeoAreaAggregateService {
      */
     public List<GeoAreaSensor> getSensorsWithReadingsInAPeriodByType(SensorTypeId typeId, LocalDate startDate, LocalDate endDate) {
         List<GeoAreaSensor> result = new ArrayList<>();
-        for (GeoAreaSensor sensor : getGeoAreasByType(typeId)) {
+        for (GeoAreaSensor sensor : getGeoAreaSensorByType(typeId)) {
             if (geoAreaAggregateRepo.
                     existsByDateTime_DateBetweenAndGeoAreaReadingId_GeoAreaSensorId(startDate, endDate, sensor.getId())) {
                 result.add(sensor);
@@ -261,6 +267,42 @@ public class GeoAreaAggregateService {
         }
         return geoAreaIdList;
     }
+
+
+
+    /**
+     * Method that returns the sensor, of a given type, that is closest to the given location and has the most recent
+     * reading
+     *
+     * @param typeId     sensor type
+     * @param location location of the house area
+     * @return
+     */
+    public GeoAreaSensor getNearestSensorWithMostRecentReading(SensorTypeId typeId, Location location) {
+        return getSensorById(getLatestGeoAreaReading(location, typeId).getSensorId());
+    }
+
+
+    /**
+     * Method that returns the last lowest maximum GeoAreaReading in a given period. It takes in consideration the readings
+     * of the nearest sensor of a given type that has the most recent reading. If there are no sensors available
+     * in the geographical area, the method return a null.
+     *
+     * @param location   location of the house area
+     * @param sensorTypeId the type of the sensor
+     * @param startDate  LocalDate of the beginning of the period
+     * @param endDate    LocalDate of the ending of the period
+     * @return
+     */
+    //GABIX
+    /*public GeoAreaReading getLastLowestMaximumReading(Location location, SensorTypeId sensorTypeId, LocalDate startDate, LocalDate endDate) {
+        GeoAreaSensor sensor = getNearestSensorWithMostRecentReading(sensorTypeId, location);
+        if (Objects.isNull(sensor)) {
+            return null;
+        }
+        List<GeoAreaReading> geoAreaReadings = sensor.getDailyMaxReadingsInAnInterval(startDate, endDate);
+        return sensor.getLastLowestReading(geoAreaReadings);
+    }*/
 
     /*
      *//**

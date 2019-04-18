@@ -56,4 +56,6 @@ public class GeoAreaSensorService {
         }
         return allSensors;
     }
+
+
 }
