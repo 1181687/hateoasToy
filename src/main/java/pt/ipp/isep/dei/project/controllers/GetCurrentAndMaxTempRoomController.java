@@ -9,7 +9,7 @@ import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensorId;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
-import pt.ipp.isep.dei.project.services.RoomService;
+import pt.ipp.isep.dei.project.services.RoomAggregateService;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ import java.util.Objects;
 
 public class GetCurrentAndMaxTempRoomController {
 
-    private RoomService roomService;
+    private RoomAggregateService roomAggregateService;
     private SensorTypeId sensorTypeId = new SensorTypeId("temperature");
     private SensorType sensorType = new SensorType(sensorTypeId);
     private RoomId choosenRoomId;
@@ -26,8 +26,8 @@ public class GetCurrentAndMaxTempRoomController {
     private RoomReading maximumRoomReading;
 
 
-    public GetCurrentAndMaxTempRoomController(RoomService roomService) {
-        this.roomService = roomService;
+    public GetCurrentAndMaxTempRoomController(RoomAggregateService roomAggregateService) {
+        this.roomAggregateService = roomAggregateService;
     }
 
     /**
@@ -38,7 +38,7 @@ public class GetCurrentAndMaxTempRoomController {
      */
     public List<RoomDTO> getListRoomDTo() {
         List<RoomDTO> roomDTOS = new ArrayList<>();
-        for (Room room : roomService.getAllRooms()) {
+        for (Room room : roomAggregateService.getAllRooms()) {
             roomDTOS.add(RoomMapper.mapToDTO(room));
         }
         return roomDTOS;
@@ -69,7 +69,7 @@ public class GetCurrentAndMaxTempRoomController {
      * @return true if there aren't temperature sensors, false if are.
      */
     public boolean isRoomWithoutTemperatureSensor() {
-        return roomService.isRoomWithoutSensorByType(this.choosenRoomId, this.sensorTypeId);
+        return roomAggregateService.isRoomWithoutSensorByType(this.choosenRoomId, this.sensorTypeId);
     }
 
     /**
@@ -78,7 +78,7 @@ public class GetCurrentAndMaxTempRoomController {
      * @return roomSensor
      */
     public RoomSensor getRoomSensorByRoomByType() {
-        return roomService.getRoomSensorByRoomByType(this.choosenRoomId, this.sensorTypeId);
+        return roomAggregateService.getRoomSensorByRoomByType(this.choosenRoomId, this.sensorTypeId);
     }
 
     /**
@@ -97,7 +97,7 @@ public class GetCurrentAndMaxTempRoomController {
      * @return latest roomReading
      */
     public void latestTemperatureReading() {
-        latestRoomReading = this.roomService.getLatestTemperatureReading(this.getRoomSensorId());
+        latestRoomReading = this.roomAggregateService.getLatestTemperatureReading(this.getRoomSensorId());
     }
 
     /**
@@ -131,7 +131,7 @@ public class GetCurrentAndMaxTempRoomController {
 
 /*
     public double getMaximumTemperatureOfRoomInADay() {
-        this.maximumRoomReading = this.roomService.(this.getRoomSensorId());
+        this.maximumRoomReading = this.roomAggregateService.(this.getRoomSensorId());
     }
 */
 
@@ -139,7 +139,7 @@ public class GetCurrentAndMaxTempRoomController {
     /*
 
     public RoomReading getLatestMeasurementByRoom(){
-        Iterable<RoomReading> roomReadingsIterable = this.roomService..findAll();
+        Iterable<RoomReading> roomReadingsIterable = this.roomAggregateService..findAll();
         List<Room> rooms = new ArrayList<>();
         roomIterable.forEach(rooms::add);
         return rooms;

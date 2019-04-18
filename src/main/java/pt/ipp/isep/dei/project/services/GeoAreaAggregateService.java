@@ -165,14 +165,15 @@ public class GeoAreaAggregateService {
      * Method that returns the list of sensors of a given type that have readings in a specific date.
      *
      * @param typeId Id of the sensor type.
-     * @param date   Given date.
+     * @param startDate Given start date.
+     * @param endDate Given end date.
      * @return List of sensors with readings in the specific date.
      */
-    public List<GeoAreaSensor> getSensorsWithReadingsInADayByType(SensorTypeId typeId, LocalDate date) {
+    public List<GeoAreaSensor> getSensorsWithReadingsInAPeriodByType(SensorTypeId typeId, LocalDate startDate, LocalDate endDate) {
         List<GeoAreaSensor> result = new ArrayList<>();
         for (GeoAreaSensor sensor : getGeoAreasByType(typeId)) {
             if (geoAreaAggregateRepo.
-                    existsGeoAreaReadingByDateTime_DateAndGeoAreaReadingId_GeoAreaSensorId(date, sensor.getId())) {
+                    existsByDateTime_DateBetweenAndGeoAreaReadingId_GeoAreaSensorId(startDate, endDate, sensor.getId())) {
                 result.add(sensor);
             }
         }
@@ -180,15 +181,16 @@ public class GeoAreaAggregateService {
     }
 
     /**
-     * Method that returns the latest reading of a sensor in a specific day.
+     * Method that returns the latest reading of a sensor in a specific period (for example, a day, a week, a month).
      * @param geoAreaSensorId Id of the sensor.
-     * @param day Given date.
-     * @return Latest reading in the day.
+     * @param startDate Given start date.
+     * @param endDate Given end date.
+     * @return Latest reading in the period.
      */
-    public GeoAreaReading getLatestMeasurementInADay(GeoAreaSensorId geoAreaSensorId, LocalDate day) {
+    public GeoAreaReading getLatestMeasurementInAPeriod(GeoAreaSensorId geoAreaSensorId, LocalDate startDate, LocalDate endDate) {
         GeoAreaReading latestReading = null;
         List<GeoAreaReading> readings = geoAreaAggregateRepo.
-                findByDateTime_DateAndGeoAreaReadingId_GeoAreaSensorId(day, geoAreaSensorId);
+                findByDateTime_DateBetweenAndGeoAreaReadingId_GeoAreaSensorId(startDate, endDate, geoAreaSensorId);
         for (GeoAreaReading reading : readings) {
             if (Objects.isNull(latestReading) || reading.getDateTime().isAfter(latestReading.getDateTime())) {
                 latestReading = reading;
@@ -205,15 +207,15 @@ public class GeoAreaAggregateService {
      * @param location Location to have in consideration.
      * @param typeId   Type of sensor to search for.
      * @param day Given date.
-     * @return
+     * @return Total daily reading value.
      */
     public Double getTotalDailyMeasurement(Location location, SensorTypeId typeId, LocalDate day) {
         GeoAreaReading latestGeoAreaReading = null;
-        List<GeoAreaSensor> geoAreaSensors = getSensorsWithReadingsInADayByType(typeId, day);
+        List<GeoAreaSensor> geoAreaSensors = getSensorsWithReadingsInAPeriodByType(typeId, day, day);
         if (!geoAreaSensors.isEmpty()) {
             List<GeoAreaSensor> nearestSensors = getNearestSensorsToLocation(location, geoAreaSensors);
             for (GeoAreaSensor sensor : nearestSensors) {
-                GeoAreaReading sensorsLatestReading = getLatestMeasurementInADay(sensor.getId(), day);
+                GeoAreaReading sensorsLatestReading = getLatestMeasurementInAPeriod(sensor.getId(), day, day);
                 if (Objects.isNull(latestGeoAreaReading)
                         || sensorsLatestReading.getDateTime().isAfter(latestGeoAreaReading.getDateTime())) {
                     latestGeoAreaReading = sensorsLatestReading;
@@ -231,8 +233,9 @@ public class GeoAreaAggregateService {
      * Method that adds a geographical area to the geoAreaRepository.
      * If it doesn't exist in the repository, it adds the area and return true.
      * If it does, then it just returns true
-     @param geoArea
-      * @return
+     *
+     * @param geoArea
+     * @return
      */
     public boolean addGeographicalArea(GeographicalArea geoArea) {
         if (!geoAreaAggregateRepo.existGeoAreaById(geoArea.getId())) {
@@ -250,7 +253,7 @@ public class GeoAreaAggregateService {
 
     }
 
-    public List<GeoAreaId> getAllGeoAreasId(){
+    public List<GeoAreaId> getAllGeoAreasId() {
         Iterable<GeographicalArea> geoAreas = this.geoAreaAggregateRepo.findAllGeoAreas();
         List<GeoAreaId> geoAreaIdList = new ArrayList<>();
         for (GeographicalArea geoArea : geoAreas) {
@@ -311,19 +314,19 @@ public class GeoAreaAggregateService {
     }
 
 
-    public boolean isReadingDuplicated(GeoAreaReadingId geoAreaReadingId){
+    public boolean isReadingDuplicated(GeoAreaReadingId geoAreaReadingId) {
         return geoAreaAggregateRepo.isReadingDuplicated(geoAreaReadingId);
     }
 
-    public boolean addReading(GeoAreaReading geoAreaReading){
-        if (!isReadingDuplicated(geoAreaReading.getReadingId())){
+    public boolean addReading(GeoAreaReading geoAreaReading) {
+        if (!isReadingDuplicated(geoAreaReading.getReadingId())) {
             geoAreaAggregateRepo.saveReading(geoAreaReading);
             return true;
         }
         return false;
     }
 
-    public GeographicalArea getGeoAreaById(GeoAreaId geoAreaId){
+    public GeographicalArea getGeoAreaById(GeoAreaId geoAreaId) {
         return geoAreaAggregateRepo.getGeoAreaById(geoAreaId);
     }
 
@@ -331,13 +334,13 @@ public class GeoAreaAggregateService {
         return geoAreaAggregateRepo.doesSensorExist(geoAreaSensorId);
     }
 
-    public GeoAreaSensor getSensorById(GeoAreaSensorId geoAreaSensorId){
+    public GeoAreaSensor getSensorById(GeoAreaSensorId geoAreaSensorId) {
         return geoAreaAggregateRepo.getSensorById(geoAreaSensorId);
     }
 
-    public boolean addSensor(GeoAreaSensor geoAreaSensor){
+    public boolean addGeoAreaSensor(GeoAreaSensor geoAreaSensor) {
         if (!geoAreaAggregateRepo.doesSensorExist(geoAreaSensor.getId())) {
-            geoAreaAggregateRepo.saveSensor(geoAreaSensor);
+            geoAreaAggregateRepo.saveGeoAreaSensor(geoAreaSensor);
             return true;
         }
         return false;
@@ -347,9 +350,45 @@ public class GeoAreaAggregateService {
     public List<GeoAreaSensor> getActiveSensors(){
         return this.geoAreaAggregateRepo.getActiveSensors();
     }
+    /*
+    public GeoAreaSensorService getSensorListByTypeInADay(SensorType type, LocalDate day) {
+        GeoAreaSensorService geoAreaSensorListByTypeInAGeoArea = getSensorsByType(type);
+        GeoAreaSensorService geoAreaSensorListByTypeInADay = new GeoAreaSensorService();
+        for (GeoAreaSensor sensor : geoAreaSensorListByTypeInAGeoArea.getListOfSensors()) {
+            if (sensor.checkMeasurementExistenceBetweenDates(day, day)) {
+                geoAreaSensorListByTypeInADay.addSensor(sensor);
+            }
+        }
+        return geoAreaSensorListByTypeInADay;
+    }
+    */
 
     public boolean deactivateSensor(GeoAreaSensorId id){
         return this.geoAreaAggregateRepo.deactivateSensorById(id);
     }
 
+    /*
+    public Double getDailyAverageMeasurement(SensorType sensorType, Location location, LocalDate startDate, LocalDate endDate) {
+        List<Double> listOfDailyAverages = new ArrayList<>();
+        GeoAreaSensorService nearestSensorsWithRightTypeDuringPeriod = getSensorListByTypeInAPeriod(sensorType, startDate, endDate).getNearestSensorsToLocation(location);
+        if (nearestSensorsWithRightTypeDuringPeriod.isEmpty()) {
+            return listOfDailyAverages;
+        }
+        GeoAreaSensor nearestSensor = nearestSensorsWithRightTypeDuringPeriod.getSensorWithMostRecentReading(nearestSensorsWithRightTypeDuringPeriod);
+        for (LocalDate dateIterator = startDate; dateIterator.isBefore(endDate); dateIterator = dateIterator.plusDays(1)) {
+            double dailyAverage = getDailyAverageOfASensor(nearestSensor, dateIterator);
+            if (!Double.isNaN(dailyAverage)) {
+                listOfDailyAverages.add(getDailyAverageOfASensor(nearestSensor, dateIterator));
+            }
+        }
+        double sum = 0;
+        if (listOfDailyAverages.isEmpty()) {
+            return 0.0;
+        }
+        for (int i = 0; i < listOfDailyAverages.size(); i++) {
+            sum += listOfDailyAverages.get(i);
+        }
+        return sum / listOfDailyAverages.size();
+    }
+    */
 }

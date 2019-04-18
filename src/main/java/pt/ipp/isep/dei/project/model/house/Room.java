@@ -212,7 +212,7 @@ public class Room /*implements Measurable*/ {
      */
 
    /* public boolean addSensorToListOfSensorsInRoom(RoomSensor newSensor) {
-        return this.sensorList.addSensor(newSensor);
+        return this.sensorList.addGeoAreaSensor(newSensor);
     }*/
 
 

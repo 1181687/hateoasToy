@@ -5,7 +5,7 @@ import pt.ipp.isep.dei.project.model.LocationDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorDTO;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeDTO;
-import pt.ipp.isep.dei.project.services.GeoAreaService;
+import pt.ipp.isep.dei.project.services.GeoAreaAggregateService;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -20,8 +20,8 @@ public class AddSensorToGeoArea {
     private List<GeographicalAreaDTO> geographicalAreaDTOList;
     private List<SensorTypeDTO> sensorTypeDTOList;
 
-    public AddSensorToGeoArea(GeoAreaService geoAreaService) {
-        this.controller = new AddSensorToGeoAreaController(geoAreaService);
+    public AddSensorToGeoArea(GeoAreaAggregateService geoAreaAggregateService) {
+        this.controller = new AddSensorToGeoAreaController(geoAreaAggregateService);
     }
 
     public void run() {
