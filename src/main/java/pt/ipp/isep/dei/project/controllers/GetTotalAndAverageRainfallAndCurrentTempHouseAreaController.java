@@ -45,13 +45,13 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaController {
      * @return Map with the date time and value of the reading.
      */
     public HashMap<LocalDateTime, Double> getCurrentTemperature() {
-        return geoAreaAggregateService.getLatestMeasurement(houseLocation, temperature);
+        return geoAreaAggregateService.getLatestMeasurementByTypeAndLocation(houseLocation, temperature);
     }
 
     /**
      * Method that returns the total daily rainfall reading of the closest sensor to the house.
      *
-     * @return Map with the date time and value of the reading.
+     * @return Double with the value of the total rainfall in the selected day.
      */
     public Double getTotalRainfallInTheHouseAreaInTheSelectedDay(LocalDate day) {
         return geoAreaAggregateService.getTotalDailyMeasurement(houseLocation, rainfall, day);
@@ -60,6 +60,4 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaController {
     public double getAverageDailyRainfall(LocalDate date1, LocalDate date2) {
         return house.getAverageDailyMeasurementInHouseArea(rainfall, date1, date2);
     }*/
-
-
 }

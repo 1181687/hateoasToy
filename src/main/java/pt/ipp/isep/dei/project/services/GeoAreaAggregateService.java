@@ -205,7 +205,7 @@ public class GeoAreaAggregateService {
      * @param location Location to have in consideration.
      * @param typeId   Type of sensor to search for.
      * @param day Given date.
-     * @return
+     * @return Total daily reading value.
      */
     public Double getTotalDailyMeasurement(Location location, SensorTypeId typeId, LocalDate day) {
         GeoAreaReading latestGeoAreaReading = null;
