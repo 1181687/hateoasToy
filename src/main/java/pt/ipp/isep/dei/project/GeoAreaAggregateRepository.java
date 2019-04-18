@@ -50,8 +50,8 @@ public class GeoAreaAggregateRepository {
         return this.geoAreaReadingRepo.findByGeoAreaReadingId_GeoAreaSensorId(id);
     }
 
-    public boolean existsGeoAreaReadingByDateTime_DateAndGeoAreaReadingId_GeoAreaSensorId(LocalDate localDate, GeoAreaSensorId id) {
-        return this.geoAreaReadingRepo.existsGeoAreaReadingByDateTime_DateAndGeoAreaReadingId_GeoAreaSensorId(localDate, id);
+    public boolean existsByDateTime_DateBetweenAndGeoAreaReadingId_GeoAreaSensorId(LocalDate startDate, LocalDate endDate, GeoAreaSensorId id) {
+        return this.geoAreaReadingRepo.existsByDateTime_DateBetweenAndGeoAreaReadingId_GeoAreaSensorId(startDate, endDate, id);
     }
 
     public Iterable<GeographicalArea> findAllGeoAreas(){
@@ -86,8 +86,8 @@ public class GeoAreaAggregateRepository {
         this.geoAreaSensorRepo.save(geoAreaSensor);
     }
 
-    public List<GeoAreaReading> findByDateTime_DateAndGeoAreaReadingId_GeoAreaSensorId(LocalDate day, GeoAreaSensorId geoAreaSensorId) {
-        return this.geoAreaReadingRepo.findByDateTime_DateAndGeoAreaReadingId_GeoAreaSensorId(day, geoAreaSensorId);
+    public List<GeoAreaReading> findByDateTime_DateBetweenAndGeoAreaReadingId_GeoAreaSensorId(LocalDate startDate, LocalDate endDate, GeoAreaSensorId geoAreaSensorId) {
+        return this.geoAreaReadingRepo.findByDateTime_DateBetweenAndGeoAreaReadingId_GeoAreaSensorId(startDate, endDate, geoAreaSensorId);
     }
 
     public boolean existGeoAreaById(GeoAreaId id) {
