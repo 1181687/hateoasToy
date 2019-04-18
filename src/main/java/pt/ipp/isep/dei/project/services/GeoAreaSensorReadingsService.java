@@ -5,6 +5,10 @@ import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.GeoAreaSensorReadingsRepository;
 import pt.ipp.isep.dei.project.model.readings.GeoAreaReading;
 import pt.ipp.isep.dei.project.model.readings.GeoAreaReadingId;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorId;
+
+import java.util.List;
+import java.util.Objects;
 
 @Service
 public class GeoAreaSensorReadingsService {
@@ -15,7 +19,7 @@ public class GeoAreaSensorReadingsService {
     public GeoAreaSensorReadingsService() {
     }
 
-    public boolean isReadingDuplicated(GeoAreaReadingId geoAreaReadingId){
+    public boolean isReadingDuplicated(GeoAreaReadingId geoAreaReadingId) {
         return geoAreaSensorReadingsRepository.existsById(geoAreaReadingId);
     }
 

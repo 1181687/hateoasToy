@@ -9,10 +9,6 @@ import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceType;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
-import pt.ipp.isep.dei.project.services.HouseGridService;
-import pt.ipp.isep.dei.project.services.PowerSourceTypeService;
-import pt.ipp.isep.dei.project.services.RoomService;
-import pt.ipp.isep.dei.project.services.SensorTypeService;
 
 import java.util.List;
 
@@ -53,11 +49,11 @@ public class HouseService {
         return this.houseGridService.getAllGrids();
     }
 
-    public List<Room> getRoomsOfAHouseGrid(HouseGridId houseGridId){
+    public List<Room> getRoomsOfAHouseGrid(HouseGridId houseGridId) {
         return roomService.getRoomsOfAHouseGrid(houseGridId);
     }
 
-    public boolean detachRoomFromHouseGrid(RoomId roomId){
+    public boolean detachRoomFromHouseGrid(RoomId roomId) {
         return roomService.detachRoomFromHouseGrid(roomId);
     }
 
@@ -107,20 +103,22 @@ public class HouseService {
         return this.houseGridService.newPowerSource(powerSourceId, typeId, gridId);
     }
 
-    public boolean roomExists(String id){
+    public boolean roomExists(String id) {
         return this.roomService.isNameExistant(id);
     }
 
-    public boolean gridExists(String id){
+    public boolean gridExists(String id) {
         return this.houseGridService.gridExists(id);
     }
 
-    public boolean addGrid(String id){
+    public boolean addGrid(String id) {
         HouseGridId gridId = new HouseGridId(id);
-        return this.houseGridService.createHouseGrid(gridId);
+        return this.houseGridService.createHouseGrid(gridId.getId());
     }
 
-
+    public boolean addRoom(Room room) {
+        return this.roomService.addRoom(room);
+    }
 /*
     public boolean addRoomToHouseGrid(HouseGridId houseGridId, Room room) {
         if (houseGridRepository.existsById(houseGridId)) {

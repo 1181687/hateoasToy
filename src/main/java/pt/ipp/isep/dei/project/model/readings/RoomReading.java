@@ -16,7 +16,7 @@ public class RoomReading {
      * @param value    value
      *
      */
-    public RoomReading(RoomReadingId roomReadingId,double value) {
+    public RoomReading(RoomReadingId roomReadingId, double value) {
         this.value = value;
         this.roomReadingId=roomReadingId;
     }
@@ -34,6 +34,11 @@ public class RoomReading {
         return value;
     }
 
+    /**
+     * gets roomReadingID
+     *
+     * @return roomReadingId object
+     */
     public RoomReadingId getRoomReadingId() {
         return roomReadingId;
     }

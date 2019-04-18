@@ -127,6 +127,7 @@ public class LampSpecs implements DeviceSpecs {
 
     /**
      * get method
+     *
      * @return list os specs of lamp
      */
     @Override
@@ -140,8 +141,9 @@ public class LampSpecs implements DeviceSpecs {
 
     /**
      * get method
+     *
      * @param attributeName string name of the attribute
-     * @return  attribute
+     * @return attribute
      */
 
     @Override
@@ -160,7 +162,8 @@ public class LampSpecs implements DeviceSpecs {
 
     /**
      * set method
-     * @param attributeName string name of the attribute
+     *
+     * @param attributeName  string name of the attribute
      * @param attributeValue value of the attribute
      * @return
      */

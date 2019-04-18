@@ -36,7 +36,6 @@ public class JSONReaderGeoAreasSensors implements ProjectFileReader {
     }
 
 
-
     private static List<Object> parseJsonObjectsHouse(JsonElement house) throws NumberFormatException, NullPointerException {
         List<Object> houseObject = new ArrayList<>();
 

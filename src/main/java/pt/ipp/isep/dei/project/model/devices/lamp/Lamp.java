@@ -69,6 +69,7 @@ public class Lamp implements Device {
 
     /**
      * method that gets the Device Specifications
+     *
      * @return DeviceSpecs
      */
     @Override

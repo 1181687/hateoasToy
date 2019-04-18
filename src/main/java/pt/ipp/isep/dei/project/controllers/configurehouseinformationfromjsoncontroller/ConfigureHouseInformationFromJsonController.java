@@ -4,7 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.ProjectFileReader;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
-import pt.ipp.isep.dei.project.model.house.*;
+import pt.ipp.isep.dei.project.model.house.Address;
+import pt.ipp.isep.dei.project.model.house.AddressMapper;
+import pt.ipp.isep.dei.project.model.house.HouseDTO;
+import pt.ipp.isep.dei.project.model.house.RoomDTO;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridDTO;
 import pt.ipp.isep.dei.project.services.HouseService;
 import pt.ipp.isep.dei.project.utils.Utils;
@@ -183,8 +186,8 @@ public class ConfigureHouseInformationFromJsonController {
             }
         }
     }
-/*
-    public void updateHouseWithRoomsAndGrids(HouseDTO houseDTO) {
+
+/*    public void updateHouseWithRoomsAndGrids(HouseDTO houseDTO) {
         Address houseAddress = AddressMapper.mapToEntity(houseDTO.getAddressDTO());
         if (Objects.isNull(houseAddress.getLocation())) {
             houseAddress.setLocation(house.getLocation());
@@ -196,8 +199,9 @@ public class ConfigureHouseInformationFromJsonController {
 
         for (RoomDTO roomDTO : houseDTO.getRoomDTOList()) {
             Room room = RoomMapper.mapToEntity(roomDTO);
-            house.addRoom(room);
-            roomRepository.save(room);
+
+            this.houseService.addRoom(room);
+
         }
         for (HouseGridDTO houseGridDTO : houseDTO.getHouseGridDTOList()) {
             this.houseService.addGrid(houseGridDTO.getId());

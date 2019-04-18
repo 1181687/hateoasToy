@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.project.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.GeoAreaSensorRepository;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaId;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorId;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
@@ -34,5 +35,24 @@ public class GeoAreaSensorService {
 
     public GeoAreaSensor getSensorById(GeoAreaSensorId geoAreaSensorId) {
         return geoAreaSensorRepository.findById(geoAreaSensorId).orElse(null);
+    }
+
+    public List<GeoAreaSensor> findActiveSensorsByGeoAreaId(GeoAreaId geoAreaId) {
+        List<GeoAreaSensor> allSensors = this.geoAreaSensorRepository.findByGeoAreaId(geoAreaId);
+
+        for (GeoAreaSensor sensor : allSensors) {
+            if (!sensor.isActive()) {
+                allSensors.remove(sensor);
+            }
+        }
+        return allSensors;
+    }
+
+    public boolean addGeoAreaSensor(GeoAreaSensor geoAreaSensor) {
+        if (!this.geoAreaSensorRepository.existsById(geoAreaSensor.getId())) {
+            this.geoAreaSensorRepository.save(geoAreaSensor);
+            return true;
+        }
+        return false;
     }
 }

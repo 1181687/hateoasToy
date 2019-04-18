@@ -26,8 +26,8 @@ public class GeoAreaSensor {
 
     private String units;
 
-    @Transient
-    private boolean isActive;
+    @Embedded
+    private SensorState isActive;
 
     @Embedded
     private GeoAreaId geoAreaId;
@@ -41,14 +41,14 @@ public class GeoAreaSensor {
      * @param sensorTypeId   ID of the type of sensor
      * @param location     Location of the sensor
      */
-    public GeoAreaSensor(String id, String sensorName, LocalDateTime startingDate, SensorTypeId sensorTypeId, Location location, String units, GeoAreaId geoAreaId) {
-        this.id = new GeoAreaSensorId(id);
+    public GeoAreaSensor(GeoAreaSensorId id, String sensorName, LocalDateTime startingDate, SensorTypeId sensorTypeId, Location location, String units, GeoAreaId geoAreaId) {
+        this.id = id;
         this.sensorName = sensorName;
         this.startingDate = startingDate;
         this.sensorTypeId = sensorTypeId;
         this.location = location;
         this.units = units;
-        this.isActive = true;
+        this.isActive = new SensorState();
         this.geoAreaId = geoAreaId;
     }
 
@@ -60,14 +60,14 @@ public class GeoAreaSensor {
      * @param location   Location of the sensor
      */
 
-    public GeoAreaSensor(String id, String sensorName, SensorTypeId sensorTypeId, Location location, String units, GeoAreaId geoAreaId) {
-        this.id = new GeoAreaSensorId(id);
+    public GeoAreaSensor(GeoAreaSensorId id, String sensorName, SensorTypeId sensorTypeId, Location location, String units, GeoAreaId geoAreaId) {
+        this.id = id;
         this.sensorName = sensorName;
         this.startingDate = LocalDateTime.now();
         this.sensorTypeId = sensorTypeId;
         this.location = location;
         this.units = units;
-        this.isActive = true;
+        this.isActive = new SensorState();
         this.geoAreaId = geoAreaId;
     }
 
@@ -119,6 +119,10 @@ public class GeoAreaSensor {
         return startingDate;
     }
 
+    public void setStartingDate(LocalDateTime startingDate) {
+        this.startingDate = startingDate;
+    }
+
     /**
      * Get method
      *
@@ -138,7 +142,7 @@ public class GeoAreaSensor {
     }
 
     public boolean isActive() {
-        return isActive;
+        return isActive.isActive();
     }
 
     /**
@@ -150,8 +154,8 @@ public class GeoAreaSensor {
      */
 
     public boolean deactivateDevice() {
-        if (isActive) {
-            isActive = false;
+        if (isActive.isActive()) {
+            isActive.deactivateSensor();
             return true;
         }
         return false;
