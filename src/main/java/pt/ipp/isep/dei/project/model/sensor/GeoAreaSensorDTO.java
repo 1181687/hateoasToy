@@ -1,10 +1,13 @@
 package pt.ipp.isep.dei.project.model.sensor;
 
 import pt.ipp.isep.dei.project.model.LocationDTO;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaId;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaIdDTO;
 
 import java.time.LocalDate;
 
 public class GeoAreaSensorDTO {
+    private GeoAreaIdDTO parentGeoArea;
     private String id;
     private String name;
     private LocalDate startingDate;
@@ -12,12 +15,21 @@ public class GeoAreaSensorDTO {
     private LocationDTO location;
     private String units;
     private String geoAreaId;
+    private boolean isActive;
 
     /**
      * Constructor.
      */
     public GeoAreaSensorDTO() {
         //intentionally empty
+    }
+
+    public GeoAreaIdDTO getParentGeoArea() {
+        return parentGeoArea;
+    }
+
+    public void setParentGeoArea(GeoAreaIdDTO geoAreaIdDTO) {
+        this.parentGeoArea = geoAreaIdDTO;
     }
 
     public String getId() {
@@ -114,5 +126,12 @@ public class GeoAreaSensorDTO {
 
     public void setGeoAreaId(String geoAreaId) {
         this.geoAreaId = geoAreaId;
+    }
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
     }
 }

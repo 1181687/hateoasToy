@@ -10,6 +10,8 @@ import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorId;
 import java.util.List;
 import java.util.Objects;
 
+import java.util.List;
+
 @Service
 public class GeoAreaSensorReadingsService {
 
@@ -24,10 +26,6 @@ public class GeoAreaSensorReadingsService {
     }
 
     public boolean addReading(GeoAreaReading geoAreaReading) {
-        GeoAreaReadingId geoAreaReadingId = new GeoAreaReadingId(geoAreaReading.getSensorId(), geoAreaReading.getDateTime());
-        if (isReadingDuplicated(geoAreaReadingId)) {
-            return false;
-        }
         geoAreaSensorReadingsRepository.save(geoAreaReading);
         return true;
     }

@@ -37,7 +37,16 @@ public class GeoAreaSensorService {
         return geoAreaSensorRepository.findById(geoAreaSensorId).orElse(null);
     }
 
-    public List<GeoAreaSensor> findActiveSensorsByGeoAreaId(GeoAreaId geoAreaId) {
+
+    public boolean addSensor(GeoAreaSensor geoAreaSensor){
+        if (!geoAreaSensorRepository.existsById(geoAreaSensor.getId())) {
+            geoAreaSensorRepository.save(geoAreaSensor);
+            return true;
+        }
+        return false;
+    }
+
+    public List<GeoAreaSensor> findActiveSensorsByGeoAreaId(GeoAreaId geoAreaId){
         List<GeoAreaSensor> allSensors = this.geoAreaSensorRepository.findByGeoAreaId(geoAreaId);
 
         for (GeoAreaSensor sensor : allSensors) {
@@ -46,13 +55,5 @@ public class GeoAreaSensorService {
             }
         }
         return allSensors;
-    }
-
-    public boolean addGeoAreaSensor(GeoAreaSensor geoAreaSensor) {
-        if (!this.geoAreaSensorRepository.existsById(geoAreaSensor.getId())) {
-            this.geoAreaSensorRepository.save(geoAreaSensor);
-            return true;
-        }
-        return false;
     }
 }

@@ -134,11 +134,23 @@ public class Main {
             detachRoomFromHouseGrid.run();
             */
 
+
+            ImportGeoAreasFromJSONOrXML importGeoAreasFromJSONOrXML = new ImportGeoAreasFromJSONOrXML(geoAreaService);
+            importGeoAreasFromJSONOrXML.run();
+
+            ImportReadings importReadings = new ImportReadings(geoAreaService, roomSensorService);
+            importReadings.run(1);
+
             GetCurrentTemperatureRoom getCurrentTemperatureRoom = new GetCurrentTemperatureRoom(roomService);
             getCurrentTemperatureRoom.run();
 
             //ImportReadings importReadings = new ImportReadings(geoAreaService, roomSensorService);
             //importReadings.run(1);
+
+            ImportReadings importReadings2 = new ImportReadings(geoAreaService, roomSensorService);
+            importReadings2.run(1);
+
+            return;
 
 
         };

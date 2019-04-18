@@ -2,7 +2,10 @@ package pt.ipp.isep.dei.project.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.LocationDTO;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
+import pt.ipp.isep.dei.project.model.house.Address;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.RoomId;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
@@ -27,9 +30,29 @@ public class HouseService {
     @Autowired
     private SensorTypeService sensorTypeService;
 
+    private Address address;
+
+
+
     public void configureHouseLocation(LocationDTO locationDTO) {
 
 
+    }
+
+    public Address getAddress(){
+        return this.address;
+    }
+
+    public void setAddress(Address address){
+        this.address = address;
+    }
+
+    public Location getLocation(){
+        return this.address.getLocation();
+    }
+
+    public GeographicalArea getInsertedGeoArea(){
+        return this.address.getInsertedGeoArea();
     }
 
     /**
