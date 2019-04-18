@@ -1,18 +1,13 @@
 package pt.ipp.isep.dei.project.controllers.importreadingscontroller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.model.ProjectFileReader;
 import pt.ipp.isep.dei.project.model.readings.GeoAreaReadingId;
 import pt.ipp.isep.dei.project.model.readings.ReadingDTO;
 import pt.ipp.isep.dei.project.model.readings.ReadingMapper;
-import pt.ipp.isep.dei.project.model.readings.RoomReadingId;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorId;
-import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
-import pt.ipp.isep.dei.project.model.sensor.RoomSensorId;
-import pt.ipp.isep.dei.project.services.GeoAreaSensorReadingsService;
 import pt.ipp.isep.dei.project.services.GeoAreaService;
-import pt.ipp.isep.dei.project.services.RoomSensorService;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.io.File;
@@ -42,10 +37,26 @@ public class ImportGeoAreaReadingsController {
 
     /**
      * Constructor.
+     *
      * @param geographicalAreaService
      */
     public ImportGeoAreaReadingsController(GeoAreaService geographicalAreaService) {
         this.geographicalAreaService = geographicalAreaService;
+    }
+
+    /**
+     * Method that configures the log file, using a FileHandler object to send log information to the specified log file.
+     * The last line is responsible for not letting the information show up in the console.
+     */
+    private static void configLogFile() {
+        FileHandler fh;
+        try {
+            fh = new FileHandler("log/outputErrors.log");
+        } catch (IOException e) {
+            fh = null;
+        }
+        LOGGER.addHandler(fh);
+        LOGGER.setUseParentHandlers(false);
     }
 
     /**
@@ -81,7 +92,6 @@ public class ImportGeoAreaReadingsController {
         }
         return imported;
     }
-
 
     private boolean readingValidations(ReadingDTO reading) {
         GeoAreaSensorId geoAreaSensorId = new GeoAreaSensorId(reading.getId());
@@ -120,21 +130,6 @@ public class ImportGeoAreaReadingsController {
 
     public boolean isValidFormat(String fileName) {
         return fileName.endsWith(".csv") || fileName.endsWith(".json") || fileName.endsWith(".xml");
-    }
-
-    /**
-     * Method that configures the log file, using a FileHandler object to send log information to the specified log file.
-     * The last line is responsible for not letting the information show up in the console.
-     */
-    private static void configLogFile() {
-        FileHandler fh;
-        try {
-            fh = new FileHandler("log/outputErrors.log");
-        } catch (IOException e) {
-            fh = null;
-        }
-        LOGGER.addHandler(fh);
-        LOGGER.setUseParentHandlers(false);
     }
 
     public ProjectFileReader createReader(String path) {

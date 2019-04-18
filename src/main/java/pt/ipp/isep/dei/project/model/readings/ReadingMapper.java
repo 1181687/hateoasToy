@@ -38,6 +38,7 @@ public final class ReadingMapper {
 
     /**
      * Method that turns a ReadingDTO into a RoomReading.
+     *
      * @param readingDTO GeoAreaReading to be used.
      * @return GeoAreaReading with the required information.
      */
@@ -46,7 +47,7 @@ public final class ReadingMapper {
             return null;
         }
         RoomSensorId roomSensorId = new RoomSensorId(readingDTO.getId());
-        RoomReadingId roomReadingId = new RoomReadingId(roomSensorId,readingDTO.getDateTime());
+        RoomReadingId roomReadingId = new RoomReadingId(roomSensorId, readingDTO.getDateTime());
         return new RoomReading(roomReadingId, readingDTO.getValue());
     }
 

@@ -51,12 +51,12 @@ public class GetCurrentTemperatureRoom {
      * method that list to string the rooms available, so he can choose one
      * to get the current temperature.
      */
-    public String getRoomListToString(){
+    public String getRoomListToString() {
         StringBuilder list = new StringBuilder();
 
         if (roomDTOS.isEmpty()) {
-        return "\nThere are no rooms in the house. Please create a new room.";
-    }
+            return "\nThere are no rooms in the house. Please create a new room.";
+        }
         int listOrderByNumber = 1;
         for (RoomDTO roomDTO : roomDTOS) {
             list.append(listOrderByNumber);
@@ -78,7 +78,7 @@ public class GetCurrentTemperatureRoom {
         System.out.println(this.getRoomListToString());
 
         String label0 = "Choose the room you want to get the current temperature:";
-        int option = InputValidator.getIntRange(label0, 1, roomDTOS.size()-1);
+        int option = InputValidator.getIntRange(label0, 1, roomDTOS.size() - 1);
         if (option == -1) {
             return;
         }
@@ -86,7 +86,7 @@ public class GetCurrentTemperatureRoom {
         String roomId = roomDTOS.get(option).getId();
         controller.newChoosenRoomId(roomId);
 
-        if (controller.isRoomWithoutTemperatureSensor()){
+        if (controller.isRoomWithoutTemperatureSensor()) {
             System.out.println("There are no temperature sensor available in the choosen room.\n");
             return;
         }
@@ -95,8 +95,8 @@ public class GetCurrentTemperatureRoom {
         double tempValue = controller.getvalue();
         LocalDateTime localDateTime = controller.getLocalDateTime();
 
-        if(controller.isLatestTemperatureReadingNull()){
-            System.out.println ("There are no temperature values available.");
+        if (controller.isLatestTemperatureReadingNull()) {
+            System.out.println("There are no temperature values available.");
             return;
         }
 

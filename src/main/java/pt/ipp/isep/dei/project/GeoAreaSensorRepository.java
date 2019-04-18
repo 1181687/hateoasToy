@@ -8,8 +8,6 @@ import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 
 import java.util.List;
 
-import java.util.List;
-
 public interface GeoAreaSensorRepository extends CrudRepository<GeoAreaSensor, GeoAreaSensorId> {
 
     List<GeoAreaSensor> findBySensorTypeId(SensorTypeId typeId);

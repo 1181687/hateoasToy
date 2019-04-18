@@ -90,11 +90,12 @@ public class ElectricOven implements Device {
     }
 
     /**
-     -     * method that set the location (room) of a added device.
-     -     *
-     -     * @param location
-     -     * @return false if the location is equals to another device. True if not.
-     -     */
+     * -     * method that set the location (room) of a added device.
+     * -     *
+     * -     * @param location
+     * -     * @return false if the location is equals to another device. True if not.
+     * -
+     */
     @Override
     public boolean setLocation(Room location) {
         if (Objects.isNull(this.location)) {
