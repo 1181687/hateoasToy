@@ -208,4 +208,8 @@ public class GeoAreaService {
     public boolean addGeoAreaSensor(GeoAreaSensor geoAreaSensor){
         return geoAreaSensorService.addSensor(geoAreaSensor);
     }
+
+    public void addAll(List<GeoAreaReading> geoAreaReadings){
+        geoAreaSensorReadingsService.addAll(geoAreaReadings);
+    }
 }

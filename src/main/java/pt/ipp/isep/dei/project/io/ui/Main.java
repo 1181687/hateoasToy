@@ -113,6 +113,9 @@ public class Main {
             ImportReadings importReadings = new ImportReadings(geoAreaService, roomSensorService);
             importReadings.run(1);
 
+            ImportReadings importReadings2 = new ImportReadings(geoAreaService, roomSensorService);
+            importReadings2.run(1);
+
             return;
 
 

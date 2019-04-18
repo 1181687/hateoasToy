@@ -6,6 +6,8 @@ import pt.ipp.isep.dei.project.GeoAreaSensorReadingsRepository;
 import pt.ipp.isep.dei.project.model.readings.GeoAreaReading;
 import pt.ipp.isep.dei.project.model.readings.GeoAreaReadingId;
 
+import java.util.List;
+
 @Service
 public class GeoAreaSensorReadingsService {
 
@@ -26,5 +28,9 @@ public class GeoAreaSensorReadingsService {
         }
         geoAreaSensorReadingsRepository.save(geoAreaReading);
         return true;
+    }
+
+    public void addAll(List<GeoAreaReading> geoAreaReadingList){
+        geoAreaSensorReadingsRepository.saveAll(geoAreaReadingList);
     }
 }

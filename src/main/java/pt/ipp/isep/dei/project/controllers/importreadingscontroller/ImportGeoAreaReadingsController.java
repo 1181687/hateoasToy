@@ -2,10 +2,7 @@ package pt.ipp.isep.dei.project.controllers.importreadingscontroller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import pt.ipp.isep.dei.project.model.*;
-import pt.ipp.isep.dei.project.model.readings.GeoAreaReadingId;
-import pt.ipp.isep.dei.project.model.readings.ReadingDTO;
-import pt.ipp.isep.dei.project.model.readings.ReadingMapper;
-import pt.ipp.isep.dei.project.model.readings.RoomReadingId;
+import pt.ipp.isep.dei.project.model.readings.*;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorId;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
@@ -19,6 +16,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.logging.FileHandler;
@@ -64,8 +62,9 @@ public class ImportGeoAreaReadingsController {
     }
 
     public boolean addReadingToGeoAreaSensorById() {
+        List<GeoAreaReading> geoAreaReadings = new ArrayList<>();
         configLogFile();
-        boolean imported = false;
+        boolean imported = true;
         for (Object object : this.readingDTOList) {
             ReadingDTO reading = (ReadingDTO) object;
             GeoAreaSensorId geoAreaSensorId = new GeoAreaSensorId(reading.getId());
@@ -75,28 +74,18 @@ public class ImportGeoAreaReadingsController {
                 continue;
             }
 
-            if (geographicalAreaService.addReading(ReadingMapper.mapToGeoAraReadingEntity(reading))) {
+            /*if (geographicalAreaService.addReading(ReadingMapper.mapToGeoAraReadingEntity(reading))) {
                 imported = true;
-            }
+            }*/
+            geoAreaReadings.add(ReadingMapper.mapToGeoAraReadingEntity(reading));
         }
+        geographicalAreaService.addAll(geoAreaReadings);
         return imported;
     }
 
 
     private boolean readingValidations(ReadingDTO reading) {
         GeoAreaSensorId geoAreaSensorId = new GeoAreaSensorId(reading.getId());
-        if (isDateTimeBeforeStartingDate(geoAreaSensor.getStartingDate(), reading.getDateTime())) {
-            numberOfNotImportedReadings++;
-            String invalidInfo = "id: " + reading.getId() + ", value: " + reading.getValue() + ", timestamp/date: " + reading.getDateTime() + ", unit: " + reading.getUnits() + ".";
-            LOGGER.log(Level.WARNING, "GeoAreaReading not imported due to timestamp/date of reading being before starting date of sensor: " + invalidInfo);
-            return true;
-        }
-        if (geographicalAreaService.isReadingDuplicated(new GeoAreaReadingId(geoAreaSensorId, reading.getDateTime()))) {
-            numberOfNotImportedReadings++;
-            String invalidInfo = "sensor id: " + reading.getId() + ", timestamp/date: " + reading.getDateTime() + ", value: " + reading.getValue() + ".";
-            LOGGER.log(Level.WARNING, "GeoAreaReading was not imported because the following reading is duplicated: doesn't exist:\n" + invalidInfo);
-            return true;
-        }
         if (Objects.isNull(geoAreaSensor)) {
             numberOfNotImportedReadings++;
             String invalidInfo = "id: " + reading.getId() + ".";
@@ -107,6 +96,18 @@ public class ImportGeoAreaReadingsController {
             numberOfNotImportedReadings++;
             String invalidInfo = "id: " + reading.getId() + ", value: " + reading.getValue() + ", timestamp/date: " + reading.getDateTime() + ", unit: " + reading.getUnits() + ".";
             LOGGER.log(Level.WARNING, "GeoAreaReading not imported due to invalid timestamp/date " + invalidInfo);
+            return true;
+        }
+        if (isDateTimeBeforeStartingDate(geoAreaSensor.getStartingDate(), reading.getDateTime())) {
+            numberOfNotImportedReadings++;
+            String invalidInfo = "id: " + reading.getId() + ", value: " + reading.getValue() + ", timestamp/date: " + reading.getDateTime() + ", unit: " + reading.getUnits() + ".";
+            LOGGER.log(Level.WARNING, "GeoAreaReading not imported due to timestamp/date of reading being before starting date of sensor: " + invalidInfo);
+            return true;
+        }
+        if (geographicalAreaService.isReadingDuplicated(new GeoAreaReadingId(geoAreaSensorId, reading.getDateTime()))) {
+            numberOfNotImportedReadings++;
+            String invalidInfo = "sensor id: " + reading.getId() + ", timestamp/date: " + reading.getDateTime() + ", value: " + reading.getValue() + ".";
+            LOGGER.log(Level.WARNING, "GeoAreaReading was not imported because the following reading is duplicated: doesn't exist:\n" + invalidInfo);
             return true;
         }
         if (reading.getUnits().equals("F")) {

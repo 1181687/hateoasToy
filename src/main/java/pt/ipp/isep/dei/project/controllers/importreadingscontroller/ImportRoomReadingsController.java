@@ -129,4 +129,14 @@ public class ImportRoomReadingsController {
         LOGGER.addHandler(fh);
         LOGGER.setUseParentHandlers(false);
     }
+
+    public ProjectFileReader createReader(String path) {
+        return Utils.createReader(path);
+    }
+
+    public List<Object> readFile(File file, String path) throws FileNotFoundException {
+        ProjectFileReader fileReader = createReader(path);
+        readingDTOList = fileReader.readFile(file);
+        return readingDTOList;
+    }
 }
