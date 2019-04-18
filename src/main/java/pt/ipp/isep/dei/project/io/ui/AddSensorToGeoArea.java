@@ -39,6 +39,7 @@ public class AddSensorToGeoArea {
         String name = InputValidator.getString(label2);
         geoAreaSensorDTO.setName(name);
 
+
         // Date
         geoAreaSensorDTO.setStartingDate(LocalDate.now());
 
@@ -74,13 +75,17 @@ public class AddSensorToGeoArea {
 
 
         // Geographical areas
-        String listOfGeoAreaDTO = this.getGeoAreaListToString();
-        String label8 = "In which geographical area is this sensor included? \n" + listOfGeoAreaDTO;
-        int positionOfGeoArea = InputValidator.getIntRange(label8, 1, this.getGeoAreaListSize()) - 1;
+        if (controller.isGeoAreaRepositoryEmpty()) {
+            System.out.println("There are no geographical areas in the repository. Please insert a new one. \n");
+        } else {
 
-        String geoArea = this.getGeoAreaDTOByPosition(positionOfGeoArea).getId();
-        geoAreaSensorDTO.setGeoAreaId(geoArea);
+            String listOfGeoAreaDTO = this.getGeoAreaListToString();
+            String label8 = "In which geographical area is this sensor included? \n" + listOfGeoAreaDTO;
+            int positionOfGeoArea = InputValidator.getIntRange(label8, 1, this.getGeoAreaListSize()) - 1;
 
+            String geoArea = this.getGeoAreaDTOByPosition(positionOfGeoArea).getId();
+            geoAreaSensorDTO.setGeoAreaId(geoArea);
+        }
 
         // Create sensorDTO
         if (controller.addGeoAreaSensor(geoAreaSensorDTO)) {
@@ -89,7 +94,6 @@ public class AddSensorToGeoArea {
             System.out.println("This sensor already exists in this geographical area.");
         }
     }
-
 
     // Necessary methods
     private String getGeoAreaListToString() {

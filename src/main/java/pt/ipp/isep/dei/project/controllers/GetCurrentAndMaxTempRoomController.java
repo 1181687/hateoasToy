@@ -23,6 +23,7 @@ public class GetCurrentAndMaxTempRoomController {
     private SensorType sensorType = new SensorType(sensorTypeId);
     private RoomId choosenRoomId;
     private RoomReading latestRoomReading;
+    private RoomReading maximumRoomReading;
 
 
     public GetCurrentAndMaxTempRoomController(RoomService roomService) {
@@ -89,6 +90,7 @@ public class GetCurrentAndMaxTempRoomController {
         return this.getRoomSensorByRoomByType().getId();
     }
 
+    ////////////////////////////////////////////////////////////
     /**
      * method that gets the latest temperature reading of a given roomSensor saved in attributtes of this class
      *
@@ -107,6 +109,7 @@ public class GetCurrentAndMaxTempRoomController {
         return Objects.isNull(this.latestRoomReading);
     }
 
+    //////////////////////////////////////////////////////////////
     /**
      * method that gets LocalDateTime of the latest Room Reading saved in attribute of this class
      *
@@ -126,7 +129,11 @@ public class GetCurrentAndMaxTempRoomController {
     }
 
 
-
+/*
+    public double getMaximumTemperatureOfRoomInADay() {
+        this.maximumRoomReading = this.roomService.(this.getRoomSensorId());
+    }
+*/
 
 
     /*
@@ -202,4 +209,6 @@ public class GetCurrentAndMaxTempRoomController {
         return this.house.getMaximumTemperatureOfRoomInSpecificDay(name, type, date);
     }
 */
+
+
 }
