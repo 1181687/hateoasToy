@@ -188,6 +188,4 @@ public class GeoAreaService {
         return geoAreaRepository.findById(geoAreaId).orElse(null);
     }
 
-
-
 }
