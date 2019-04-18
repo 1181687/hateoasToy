@@ -11,6 +11,7 @@ import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 import pt.ipp.isep.dei.project.services.RoomAggregateService;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,7 @@ public class GetCurrentAndMaxTempRoomController {
     private RoomId choosenRoomId;
     private RoomReading latestRoomReading;
     private RoomReading maximumRoomReading;
+    private RoomSensorId roomSensorId;
 
 
     public GetCurrentAndMaxTempRoomController(RoomAggregateService roomAggregateService) {
@@ -86,18 +88,17 @@ public class GetCurrentAndMaxTempRoomController {
      *
      * @return roomSensorId
      */
-    public RoomSensorId getRoomSensorId() {
-        return this.getRoomSensorByRoomByType().getId();
+    public void setRoomSensorId() {
+        this.roomSensorId = this.getRoomSensorByRoomByType().getId();
     }
 
-    ////////////////////////////////////////////////////////////
     /**
      * method that gets the latest temperature reading of a given roomSensor saved in attributtes of this class
      *
      * @return latest roomReading
      */
     public void latestTemperatureReading() {
-        latestRoomReading = this.roomAggregateService.getLatestTemperatureReading(this.getRoomSensorId());
+        latestRoomReading = this.roomAggregateService.getLatestReadingByRoomSensorId(this.roomSensorId);
     }
 
     /**
@@ -109,7 +110,6 @@ public class GetCurrentAndMaxTempRoomController {
         return Objects.isNull(this.latestRoomReading);
     }
 
-    //////////////////////////////////////////////////////////////
     /**
      * method that gets LocalDateTime of the latest Room Reading saved in attribute of this class
      *
@@ -124,16 +124,51 @@ public class GetCurrentAndMaxTempRoomController {
      *
      * @return double
      */
-    public double getvalue() {
+    public double getValue() {
         return latestRoomReading.getValue();
     }
 
-
-/*
-    public double getMaximumTemperatureOfRoomInADay() {
-        this.maximumRoomReading = this.roomAggregateService.(this.getRoomSensorId());
+    public List<RoomReading> getListOfRoomReadingByRoomSensorIdByDay(RoomSensorId roomSensorId, LocalDate localDate) {
+        return this.roomAggregateService.getListOfRoomReadingByRoomSensorIdByDay(roomSensorId, localDate);
     }
-*/
+
+    /**
+     * method that checks if list of temperature Readings of a sensor in a given day is empty
+     *
+     * @return true if it is empty, false if it is not
+     */
+    public boolean isListOfTemperatureReadingsByDayEmpty(LocalDate localDate) {
+        return this.getListOfRoomReadingByRoomSensorIdByDay(this.roomSensorId, localDate).isEmpty();
+    }
+
+    /**
+     * method that gets the maximum temperature roomReading of a room in a given day and save it in attribute of this class,
+     * of a given roomSensor saved in attributes of this class
+     *
+     * @return maximum roomReading
+     */
+    public void setMaximumTemperatureInAroomInADay(LocalDate localDate) {
+        this.maximumRoomReading = this.roomAggregateService.getMaximumReadingBySensorIdInADay(this.roomSensorId, localDate);
+    }
+
+    /**
+     * method that gets LocalDateTime of the Maximum Room Reading saved in attribute of this class
+     *
+     * @return LocalDateTime
+     */
+    public LocalDateTime getLocalDateTimeMaximumTemperature() {
+        return maximumRoomReading.getRoomReadingId().getLocalDateTime();
+    }
+
+    /**
+     * method that gets value of the Maximum Room Reading saved in attribute of this class
+     *
+     * @return double
+     */
+    public double getValueMaximumTemperature() {
+        return maximumRoomReading.getValue();
+    }
+
 
 
     /*
