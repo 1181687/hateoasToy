@@ -42,11 +42,6 @@ public class AddSensorToGeoAreaController {
         return sensorTypeDTOList;
     }
 
-    public boolean isNameExistant(String name) {
-        return this.geoAreaService.isNameExistant(name);
-    }
-
-
     public boolean addGeoAreaSensor(GeoAreaSensorDTO geoAreaSensorDTO) {
         return geoAreaService.addGeoAreaSensor(GeoAreaSensorMapper.mapToEntity(geoAreaSensorDTO));
     }
