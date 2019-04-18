@@ -14,6 +14,7 @@ import pt.ipp.isep.dei.project.services.RoomService;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class GetCurrentAndMaxTempRoomController {
 
@@ -93,6 +94,17 @@ public class GetCurrentAndMaxTempRoomController {
     }
 
     /**
+     * method that checks if temperatureReading is null
+     * @return true if it is null, false if it is not
+     */
+    public boolean isLatestTemperatureReadingNull(){
+        if(Objects.isNull(this.latestRoomReading)){
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * method that gets LocalDateTime of the latest Room Reading saved in attribute of this class
      * @return LocalDateTime
      */
@@ -107,6 +119,7 @@ public class GetCurrentAndMaxTempRoomController {
     public double getvalue(){
         return latestRoomReading.getValue();
     }
+
 
 
 
