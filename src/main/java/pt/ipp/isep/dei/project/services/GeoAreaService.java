@@ -108,10 +108,11 @@ public class GeoAreaService {
     public boolean isNameExistant(String id) {
         return geoAreaSensorService.isNameExistant(id);
     }
-
+/*
     public boolean addGeoAreaSensor(GeoAreaSensor geoAreaSensor) {
         return geoAreaSensorService.addGeoAreaSensor(geoAreaSensor);
     }
+    */
 
 
     /**
@@ -151,9 +152,6 @@ public class GeoAreaService {
         return geoAreaTypeService.getListOfGeoAreaTypes();
     }
 
-    public boolean addGeoAreaSensor(GeoAreaSensor geoAreaSensor){
-        return geoAreaSensorService.addSensor(geoAreaSensor);
-    }
 
     public GeographicalArea getGeoAreaById(GeoAreaId geoAreaId){
         return geoAreaRepository.findById(geoAreaId).orElse(null);
