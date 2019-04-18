@@ -50,8 +50,8 @@ public class GeoAreaAggregateRepository {
         return this.geoAreaReadingRepo.findByGeoAreaReadingId_GeoAreaSensorId(id);
     }
 
-    public List<GeoAreaReading> findByDateTime_DateAAndSensorId(LocalDate localDate, GeoAreaSensorId id) {
-        return this.geoAreaReadingRepo.findByDateTime_DateAAndSensorId(localDate, id);
+    public boolean existsGeoAreaReadingByDateTime_DateAndGeoAreaReadingId_GeoAreaSensorId(LocalDate localDate, GeoAreaSensorId id) {
+        return this.geoAreaReadingRepo.existsGeoAreaReadingByDateTime_DateAndGeoAreaReadingId_GeoAreaSensorId(localDate, id);
     }
 
     public Iterable<GeographicalArea> findAllGeoAreas() {
@@ -86,5 +86,16 @@ public class GeoAreaAggregateRepository {
         this.geoAreaSensorRepo.save(geoAreaSensor);
     }
 
+    public List<GeoAreaReading> findByDateTime_DateAndGeoAreaReadingId_GeoAreaSensorId(LocalDate day, GeoAreaSensorId geoAreaSensorId) {
+        return this.geoAreaReadingRepo.findByDateTime_DateAndGeoAreaReadingId_GeoAreaSensorId(day, geoAreaSensorId);
+    }
+
+    public boolean existGeoAreaById(GeoAreaId id) {
+        return this.geoAreaRepo.existsById(id);
+    }
+
+    public void saveGeoArea(GeographicalArea geoArea) {
+        this.geoAreaRepo.save(geoArea);
+    }
 
 }
