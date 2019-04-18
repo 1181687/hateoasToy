@@ -2,24 +2,17 @@ package pt.ipp.isep.dei.project;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaId;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaTypeId;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.readings.GeoAreaReading;
 import pt.ipp.isep.dei.project.model.readings.GeoAreaReadingId;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorId;
-import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class GeoAreaAggregateRepository {
@@ -57,8 +50,8 @@ public class GeoAreaAggregateRepository {
         return this.geoAreaReadingRepo.findByGeoAreaReadingId_GeoAreaSensorId(id);
     }
 
-    public List<GeoAreaReading> findByDateTime_DateAAndSensorId(LocalDate localDate, GeoAreaSensorId id){
-        return this.geoAreaReadingRepo.findByDateTime_DateAAndSensorId(localDate,id);
+    public boolean existsGeoAreaReadingByDateTime_DateAndGeoAreaReadingId_GeoAreaSensorId(LocalDate localDate, GeoAreaSensorId id) {
+        return this.geoAreaReadingRepo.existsGeoAreaReadingByDateTime_DateAndGeoAreaReadingId_GeoAreaSensorId(localDate, id);
     }
 
     public Iterable<GeographicalArea> findAllGeoAreas(){
@@ -93,5 +86,16 @@ public class GeoAreaAggregateRepository {
         this.geoAreaSensorRepo.save(geoAreaSensor);
     }
 
+    public List<GeoAreaReading> findByDateTime_DateAndGeoAreaReadingId_GeoAreaSensorId(LocalDate day, GeoAreaSensorId geoAreaSensorId) {
+        return this.geoAreaReadingRepo.findByDateTime_DateAndGeoAreaReadingId_GeoAreaSensorId(day, geoAreaSensorId);
+    }
+
+    public boolean existGeoAreaById(GeoAreaId id) {
+        return this.geoAreaRepo.existsById(id);
+    }
+
+    public void saveGeoArea(GeographicalArea geoArea) {
+        this.geoAreaRepo.save(geoArea);
+    }
 
 }
