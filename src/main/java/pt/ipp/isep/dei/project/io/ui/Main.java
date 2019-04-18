@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import pt.ipp.isep.dei.project.controllers.importreadingscontroller.ImportRoomReadingsController;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
@@ -108,7 +109,8 @@ public class Main {
 
            ImportRoomSensors ui = new ImportRoomSensors(this.roomService);
            ui.run();
-
+            ImportReadings ui2 = new ImportReadings(this.geoAreaService,this.roomSensorService);
+            ui2.run(2);
 
         };
     }

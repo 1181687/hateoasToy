@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.project.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.model.LocationDTO;
+import pt.ipp.isep.dei.project.model.house.Address;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.RoomId;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
@@ -31,10 +32,16 @@ public class HouseService {
     @Autowired
     private SensorTypeService sensorTypeService;
 
+    private Address address;
+
+
+
     public void configureHouseLocation(LocationDTO locationDTO) {
 
 
     }
+
+    public
 
     /**
      * method that get a list of sensor types
@@ -117,7 +124,7 @@ public class HouseService {
 
     public boolean addGrid(String id){
         HouseGridId gridId = new HouseGridId(id);
-        return this.houseGridService.createHouseGrid(gridId);
+        return this.houseGridService.createHouseGrid(gridId.getId());
     }
 
     public boolean addRoom(Room room){
