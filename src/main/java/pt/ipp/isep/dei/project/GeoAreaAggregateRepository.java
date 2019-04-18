@@ -98,4 +98,16 @@ public class GeoAreaAggregateRepository {
         this.geoAreaRepo.save(geoArea);
     }
 
+    public List<GeoAreaSensor> getActiveSensors(){
+        return this.geoAreaSensorRepo.findGeoAreaSensorsByActiveIsTrue();
+    }
+
+    public boolean deactivateSensorById(GeoAreaSensorId id){
+        if(this.geoAreaSensorRepo.findById(id).isPresent()){
+            GeoAreaSensor sensor = this.geoAreaSensorRepo.findById(id).get();
+            sensor.deactivateSensor();
+            this.geoAreaSensorRepo.save(sensor);
+        }
+        return false;
+    }
 }

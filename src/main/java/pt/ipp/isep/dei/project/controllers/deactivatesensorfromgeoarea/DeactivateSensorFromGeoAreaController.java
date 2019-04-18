@@ -1,12 +1,10 @@
 package pt.ipp.isep.dei.project.controllers.deactivatesensorfromgeoarea;
 
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapper;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorDTO;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorId;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorMapper;
 import pt.ipp.isep.dei.project.services.GeoAreaAggregateService;
-import pt.ipp.isep.dei.project.services.GeoAreaService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,18 +17,17 @@ public class DeactivateSensorFromGeoAreaController {
         this.geoAreaService = geoAreaService;
     }
 
-   public List<GeographicalAreaDTO> listOfGeographicalAreas() {
-        List<GeographicalAreaDTO> dtoList = new ArrayList<>();
-        for (GeographicalArea geoArea : this.geoAreaService.getGeoAreaList()) {
-            dtoList.add(GeographicalAreaMapper.mapToDTOwithSensors(geoArea));
+    public List<GeoAreaSensorDTO> listOfActiveSensorsDTOs() {
+        List<GeoAreaSensorDTO> dtoList = new ArrayList<>();
+        for (GeoAreaSensor sensor : this.geoAreaService.getActiveSensors()) {
+            dtoList.add(GeoAreaSensorMapper.mapToDTO(sensor));
         }
         return dtoList;
     }
 
     public boolean deactivateSensor(GeoAreaSensorDTO sensorDTO) {
-        GeoAreaSensor sensor = geoAreaService.getSensorById(sensorDTO.getId());
-        if (sensor.deactivateDevice()) {
-            geoAreaService.updateRepository();
+        GeoAreaSensorId sensorId = new GeoAreaSensorId(sensorDTO.getId());
+        if (this.geoAreaService.deactivateSensor(sensorId)) {
             return true;
         }
         return false;

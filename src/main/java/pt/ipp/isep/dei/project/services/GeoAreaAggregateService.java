@@ -344,6 +344,12 @@ public class GeoAreaAggregateService {
     }
 
 
+    public List<GeoAreaSensor> getActiveSensors(){
+        return this.geoAreaAggregateRepo.getActiveSensors();
+    }
 
+    public boolean deactivateSensor(GeoAreaSensorId id){
+        return this.geoAreaAggregateRepo.deactivateSensorById(id);
+    }
 
 }

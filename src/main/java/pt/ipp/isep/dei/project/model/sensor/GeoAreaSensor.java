@@ -153,7 +153,7 @@ public class GeoAreaSensor {
      * @return
      */
 
-    public boolean deactivateDevice() {
+    public boolean deactivateSensor() {
         if (isActive.isActive()) {
             isActive.deactivateSensor();
             return true;
