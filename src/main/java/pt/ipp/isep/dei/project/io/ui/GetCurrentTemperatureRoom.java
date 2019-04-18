@@ -2,7 +2,7 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.GetCurrentAndMaxTempRoomController;
 import pt.ipp.isep.dei.project.model.house.RoomDTO;
-import pt.ipp.isep.dei.project.services.RoomService;
+import pt.ipp.isep.dei.project.services.RoomAggregateService;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
@@ -21,10 +21,10 @@ public class GetCurrentTemperatureRoom {
 
     /**
      * Constructor.
-     * @param roomService roomService to be used
+     * @param roomAggregateService roomService to be used
      */
-    public GetCurrentTemperatureRoom(RoomService roomService) {
-        this.controller = new GetCurrentAndMaxTempRoomController(roomService);
+    public GetCurrentTemperatureRoom(RoomAggregateService roomAggregateService) {
+        this.controller = new GetCurrentAndMaxTempRoomController(roomAggregateService);
         this.roomDTOS = controller.getListRoomDTo();
     }
 

@@ -6,12 +6,8 @@ import pt.ipp.isep.dei.project.RoomRepository;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.RoomId;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
-import pt.ipp.isep.dei.project.model.readings.RoomReading;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
-import pt.ipp.isep.dei.project.model.sensor.RoomSensorId;
-import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -40,69 +36,11 @@ public class RoomService {
         return roomRepository.existsById(new RoomId(id));
     }
 
-    public boolean isRoomWithoutSensorByType(RoomId roomId, SensorTypeId sensorTypeId) {
-        return this.roomSensorService.isRoomWithoutSensorByType(roomId, sensorTypeId);
-    }
 
-    /**
-     * method that get RoomSensor of a given type for a given room
-     *
-     * @param roomId       room name
-     * @param sensorTypeId sensor type
-     * @return roomSensor
-     */
-    public RoomSensor getRoomSensorByRoomByType(RoomId roomId, SensorTypeId sensorTypeId) {
-        return this.roomSensorService.getRoomSensorByRoomByType(roomId, sensorTypeId);
-    }
-
-    public List<RoomReading> getListOfRoomReadingByRoomSensorId(RoomSensorId roomSensorId) {
-        return roomSensorService.getListOfRoomReadingByRoomSensorId(roomSensorId);
-    }
-
-    /**
-     * method that gets the latest temperature reading of a given roomSensor
-     *
-     * @param roomSensorId id of the sensor
-     * @return latest roomReading
-     */
-    public RoomReading getLatestTemperatureReading(RoomSensorId roomSensorId) {
-
-        List<RoomReading> roomReadings = this.getListOfRoomReadingByRoomSensorId(roomSensorId);
-        if (roomReadings.isEmpty()) {
-            return null;
-        }
-        RoomReading latestReading = roomReadings.get(0);
-        for (RoomReading reading : roomReadings) {
-            if (reading.getRoomReadingId().getLocalDateTime().isAfter(latestReading.getRoomReadingId().getLocalDateTime())) {
-                latestReading = reading;
-            }
-        }
-        return latestReading;
-    }
-
-    /**
-     * Method that returns all the rooms in the repo.
-     *
-     * @return List of Room.
-     */
-    public List<Room> getAllRooms() {
-        Iterable<Room> roomIterable = this.roomRepository.findAll();
-        List<Room> rooms = new ArrayList<>();
-        roomIterable.forEach(rooms::add);
-        return rooms;
-    }
 
     public boolean addRoomSensor(RoomSensor sensor) {
         return this.roomSensorService.addRoomSensor(sensor);
     }
-
-    /*
-        public Room getRoomSensorByType (SensorType sensorType, RoomId roomId){
-            Room room = roomRepository.findById(roomId).orElse(null);
-            for (RoomSensor sensor:
-                 ) {
-
-                roomRepository
 
         /**
          * Method that searches for a room by its Id. If it exists in the repo, the room is returned, if not, null is returned.

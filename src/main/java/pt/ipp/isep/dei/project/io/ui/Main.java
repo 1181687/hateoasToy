@@ -101,10 +101,10 @@ public class Main {
             Room room3 = new Room(new RoomId("B107"), "cenas", 1, dim);
             Room room4 = new Room(new RoomId("B109"), "cenas", 1, dim);
 
-            this.roomService.addRoom(room1);
-            this.roomService.addRoom(room2);
-            this.roomService.addRoom(room3);
-            this.roomService.addRoom(room4);
+            // this.roomService.addRoom(room1);
+            // this.roomService.addRoom(room2);
+            // this.roomService.addRoom(room3);
+            // this.roomService.addRoom(room4);
 
             /*AddNewGeographicalAreaType ui3 = new AddNewGeographicalAreaType(this.geoAreaTypeService);
             ui3.run();*/
@@ -134,8 +134,8 @@ public class Main {
             detachRoomFromHouseGrid.run();
             */
 
-            GetCurrentTemperatureRoom getCurrentTemperatureRoom = new GetCurrentTemperatureRoom(roomService);
-            getCurrentTemperatureRoom.run();
+            // GetCurrentTemperatureRoom getCurrentTemperatureRoom = new GetCurrentTemperatureRoom(roomService);
+            // getCurrentTemperatureRoom.run();
 
             //ImportReadings importReadings = new ImportReadings(geoAreaService, roomSensorService);
             //importReadings.run(1);

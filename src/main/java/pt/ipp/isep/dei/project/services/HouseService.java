@@ -19,6 +19,9 @@ public class HouseService {
     private RoomService roomService;
 
     @Autowired
+    private RoomAggregateService roomAggregateService;
+
+    @Autowired
     private HouseGridService houseGridService;
 
     @Autowired
@@ -67,13 +70,14 @@ public class HouseService {
         return houseGridService.getGridById(id);
     }
 
+    /*
     /**
      * Method that returns all the rooms in the house repo.
      *
      * @return List of Room.
      */
     public List<Room> getAllRooms() {
-        return this.roomService.getAllRooms();
+        return this.roomAggregateService.getAllRooms();
     }
 
     /**
