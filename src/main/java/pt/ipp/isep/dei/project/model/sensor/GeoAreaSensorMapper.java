@@ -49,7 +49,8 @@ public final class GeoAreaSensorMapper {
     public static GeoAreaSensor mapToGeoAreaSensorEntity(GeoAreaSensorDTO sensorDTO) {
         Location sensorLocation = LocationMapper.mapToEntity(sensorDTO.getLocation());
         GeoAreaId geoAreaId = GeographicalAreaMapper.mapGeoAreaIdToDTO(sensorDTO.getParentGeoArea());
+        GeoAreaSensorId geoAreaSensorId = new GeoAreaSensorId(sensorDTO.getId());
         SensorTypeId sensorTypeId = new SensorTypeId(sensorDTO.getSensorType());
-        return new GeoAreaSensor(sensorDTO.getId(),sensorDTO.getName(),sensorDTO.getStartingDate().atStartOfDay(),sensorTypeId,sensorLocation, sensorDTO.getUnits(),geoAreaId);
+        return new GeoAreaSensor(geoAreaSensorId,sensorDTO.getName(),sensorDTO.getStartingDate().atStartOfDay(),sensorTypeId,sensorLocation, sensorDTO.getUnits(),geoAreaId);
     }
 }
