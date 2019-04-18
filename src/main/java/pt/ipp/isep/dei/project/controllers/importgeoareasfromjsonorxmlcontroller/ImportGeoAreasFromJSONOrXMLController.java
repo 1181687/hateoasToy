@@ -6,7 +6,6 @@ import pt.ipp.isep.dei.project.model.ProjectFileReader;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapper;
-import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorDTO;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorMapper;
 import pt.ipp.isep.dei.project.services.GeoAreaService;
@@ -44,7 +43,7 @@ public class ImportGeoAreasFromJSONOrXMLController {
                 imported = true;
             }
             for (GeoAreaSensorDTO geoAreaSensorDTO : geoDTO.getSensors()) {
-                if (geoAreaService.addGeoAreaSensor(GeoAreaSensorMapper.mapToGeoAreaSensorEntity(geoAreaSensorDTO))){
+                if (geoAreaService.addGeoAreaSensor(GeoAreaSensorMapper.mapToEntity(geoAreaSensorDTO))) {
                     imported = true;
                 }
             }

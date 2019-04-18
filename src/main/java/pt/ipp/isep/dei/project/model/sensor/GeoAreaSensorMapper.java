@@ -4,8 +4,6 @@ import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.LocationMapper;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaId;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapper;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaId;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaTypeId;
 
 public final class GeoAreaSensorMapper {
 
@@ -46,7 +44,7 @@ public final class GeoAreaSensorMapper {
      * @param sensorDTO GeoAreaSensor to be used.
      * @return GeoAreaSensor with the required information.
      */
-    public static GeoAreaSensor mapToGeoAreaSensorEntity(GeoAreaSensorDTO sensorDTO) {
+    public static GeoAreaSensor mapToEntity(GeoAreaSensorDTO sensorDTO) {
         Location sensorLocation = LocationMapper.mapToEntity(sensorDTO.getLocation());
         GeoAreaId geoAreaId = GeographicalAreaMapper.mapGeoAreaIdToDTO(sensorDTO.getParentGeoArea());
         SensorTypeId sensorTypeId = new SensorTypeId(sensorDTO.getSensorType());

@@ -6,12 +6,10 @@ import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaId;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaTypeId;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.readings.GeoAreaReading;
 import pt.ipp.isep.dei.project.model.readings.GeoAreaReadingId;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorId;
-import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 
 import java.time.LocalDate;
@@ -291,7 +289,7 @@ public class GeoAreaAggregateRepository {
         return geoAreaSensorRepo.findById(geoAreaSensorId).orElse(null);
     }
 
-    public boolean addSensor(GeoAreaSensor geoAreaSensor){
+    public boolean addGeoAreaSensor(GeoAreaSensor geoAreaSensor) {
         if (!geoAreaSensorRepo.existsById(geoAreaSensor.getId())) {
             geoAreaSensorRepo.save(geoAreaSensor);
             return true;
