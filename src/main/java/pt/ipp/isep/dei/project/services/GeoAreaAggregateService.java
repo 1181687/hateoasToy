@@ -336,9 +336,9 @@ public class GeoAreaAggregateService {
         return geoAreaAggregateRepo.getSensorById(geoAreaSensorId);
     }
 
-    public boolean addSensor(GeoAreaSensor geoAreaSensor) {
+    public boolean addGeoAreaSensor(GeoAreaSensor geoAreaSensor) {
         if (!geoAreaAggregateRepo.doesSensorExist(geoAreaSensor.getId())) {
-            geoAreaAggregateRepo.saveSensor(geoAreaSensor);
+            geoAreaAggregateRepo.saveGeoAreaSensor(geoAreaSensor);
             return true;
         }
         return false;

@@ -77,7 +77,7 @@ public class RoomSensorService {
         return roomReadingService.addReading(roomReading);
     }
 
-    /*public boolean addSensor(RoomSensor sensor) {
+    /*public boolean addGeoAreaSensor(RoomSensor sensor) {
         if (listOfSensors.contains(sensor) || Objects.isNull(sensor)) {
             return false;
         }

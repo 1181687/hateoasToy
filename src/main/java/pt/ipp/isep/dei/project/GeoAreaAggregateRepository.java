@@ -82,7 +82,7 @@ public class GeoAreaAggregateRepository {
         return geoAreaSensorRepo.findById(geoAreaSensorId).orElse(null);
     }
 
-    public void saveSensor(GeoAreaSensor geoAreaSensor) {
+    public void saveGeoAreaSensor(GeoAreaSensor geoAreaSensor) {
         this.geoAreaSensorRepo.save(geoAreaSensor);
     }
 
