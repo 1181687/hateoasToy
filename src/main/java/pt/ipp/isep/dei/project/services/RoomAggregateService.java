@@ -6,6 +6,7 @@ import pt.ipp.isep.dei.project.RoomAggregateRepository;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.RoomId;
 import pt.ipp.isep.dei.project.model.readings.RoomReading;
+import pt.ipp.isep.dei.project.model.readings.RoomReadingId;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensorId;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
@@ -86,5 +87,21 @@ public class RoomAggregateService {
         List<Room> rooms = new ArrayList<>();
         roomIterable.forEach(rooms::add);
         return rooms;
+    }
+
+    public RoomSensor getSensorById(RoomSensorId roomSensorId){
+        return this.roomAggregateRepo.getRoomById(roomSensorId);
+    }
+
+    public boolean isReadingDuplicated(RoomReadingId roomReadingId){
+        return this.roomAggregateRepo.isReadingDuplicated(roomReadingId);
+    }
+
+    public boolean addReading(RoomReading roomReading){
+        if (!isReadingDuplicated(roomReading.getRoomReadingId())) {
+            this.roomAggregateRepo.saveReading(roomReading);
+            return true;
+        }
+        return false;
     }
 }

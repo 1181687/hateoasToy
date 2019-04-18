@@ -98,4 +98,8 @@ public class GeoAreaAggregateRepository {
         this.geoAreaRepo.save(geoArea);
     }
 
+    public void removeSensor(GeoAreaSensor geoAreaSensor){
+        this.geoAreaSensorRepo.delete(geoAreaSensor);
+    }
+
 }

@@ -388,6 +388,18 @@ public class GeoAreaAggregateService {
         return false;
     }
 
+    public List<GeoAreaSensor> getSensorsFromGeoArea(GeoAreaId geoAreaId){
+        return this.geoAreaAggregateRepo.findByGeoAreaId(geoAreaId);
+    }
+
+    public boolean removeSensor(GeoAreaSensor geoAreaSensor){
+        if(geoAreaAggregateRepo.doesSensorExist(geoAreaSensor.getId())){
+            geoAreaAggregateRepo.removeSensor(geoAreaSensor);
+            return true;
+        }
+        return false;
+    }
+
     /*
     public GeoAreaSensorService getSensorListByTypeInADay(SensorType type, LocalDate day) {
         GeoAreaSensorService geoAreaSensorListByTypeInAGeoArea = getSensorsByType(type);

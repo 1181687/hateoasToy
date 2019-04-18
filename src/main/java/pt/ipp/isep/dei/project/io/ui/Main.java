@@ -46,10 +46,6 @@ public class Main {
     @Autowired
     private GeoAreaTypeService geoAreaTypeService;
 
-    //GeographicalArea Repository Injection
-    @Autowired
-    private GeoAreaService geoAreaService;
-
     //House Repository Injection
     @Autowired
     private HouseService houseService;
@@ -66,12 +62,12 @@ public class Main {
     @Autowired
     private HouseGridService houseGridService;
 
-    // RoomSensor Service Injection
-    @Autowired
-    private RoomSensorService roomSensorService;
 
     @Autowired
     private RoomAggregateService roomAggregateService;
+
+    @Autowired
+    private GeoAreaAggregateService geoAreaAggregateService;
 
 
     public static void main(String[] args) {
@@ -98,11 +94,11 @@ public class Main {
             AddNewGeographicalArea addNewGeographicalArea = new AddNewGeographicalArea(geoAreaService);
             addNewGeographicalArea.run();*/
 
-            Dimension dim = new Dimension(2, 2, 2);
+            /*Dimension dim = new Dimension(2, 2, 2);
             Room room1 = new Room(new RoomId("B405"), "cenas", 1, dim);
             Room room2 = new Room(new RoomId("B106"), "cenas", 1, dim);
             Room room3 = new Room(new RoomId("B107"), "cenas", 1, dim);
-            Room room4 = new Room(new RoomId("B109"), "cenas", 1, dim);
+            Room room4 = new Room(new RoomId("B109"), "cenas", 1, dim);*/
 
             // this.roomService.addRoom(room1);
             // this.roomService.addRoom(room2);
@@ -138,22 +134,25 @@ public class Main {
             */
 
 
-            //ImportGeoAreasFromJSONOrXML importGeoAreasFromJSONOrXML = new ImportGeoAreasFromJSONOrXML(geoAreaService);
-            //importGeoAreasFromJSONOrXML.run();
+            ImportGeoAreasFromJSONOrXML importGeoAreasFromJSONOrXML = new ImportGeoAreasFromJSONOrXML(geoAreaAggregateService);
+            importGeoAreasFromJSONOrXML.run();
 
-            ImportReadings importReadings = new ImportReadings(geoAreaService, roomSensorService);
+            ImportReadings importReadings = new ImportReadings(geoAreaAggregateService, roomAggregateService);
             importReadings.run(1);
 
-            GetCurrentTemperatureRoom getCurrentTemperatureRoom = new GetCurrentTemperatureRoom(roomAggregateService);
-            getCurrentTemperatureRoom.run();
+/*            GetCurrentTemperatureRoom getCurrentTemperatureRoom = new GetCurrentTemperatureRoom(roomAggregateService);
+            getCurrentTemperatureRoom.run();*/
             // GetCurrentTemperatureRoom getCurrentTemperatureRoom = new GetCurrentTemperatureRoom(roomService);
             // getCurrentTemperatureRoom.run();
 
             //ImportReadings importReadings = new ImportReadings(geoAreaService, roomSensorService);
             //importReadings.run(1);
 
-            ImportReadings importReadings2 = new ImportReadings(geoAreaService, roomSensorService);
-            importReadings2.run(1);
+/*            ImportReadings importReadings2 = new ImportReadings(geoAreaService, roomSensorService);
+            importReadings2.run(1);*/
+
+            RemoveSensorFromGeoArea removeSensorFromGeoArea = new RemoveSensorFromGeoArea(geoAreaAggregateService);
+            removeSensorFromGeoArea.run();
 
             return;
 

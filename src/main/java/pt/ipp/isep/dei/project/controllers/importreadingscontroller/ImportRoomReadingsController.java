@@ -7,6 +7,7 @@ import pt.ipp.isep.dei.project.model.readings.ReadingMapper;
 import pt.ipp.isep.dei.project.model.readings.RoomReadingId;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensorId;
+import pt.ipp.isep.dei.project.services.RoomAggregateService;
 import pt.ipp.isep.dei.project.services.RoomSensorService;
 import pt.ipp.isep.dei.project.utils.Utils;
 
@@ -31,17 +32,17 @@ public class ImportRoomReadingsController {
 
     private RoomSensor roomSensor;
     @Autowired
-    private RoomSensorService roomSensorService;
+    private RoomAggregateService roomAggregateService;
     private List<Object> readingDTOList;
     private int numberOfNotImportedReadings;
 
     /**
      * Constructor
      *
-     * @param roomSensorService
+     * @param roomAggregateService
      */
-    public ImportRoomReadingsController(RoomSensorService roomSensorService) {
-        this.roomSensorService = roomSensorService;
+    public ImportRoomReadingsController(RoomAggregateService roomAggregateService) {
+        this.roomAggregateService = roomAggregateService;
     }
 
     /**
@@ -80,13 +81,13 @@ public class ImportRoomReadingsController {
         for (Object object : this.readingDTOList) {
             ReadingDTO reading = (ReadingDTO) object;
             RoomSensorId roomSensorId = new RoomSensorId(reading.getId());
-            roomSensor = roomSensorService.getSensorById(roomSensorId);
+            roomSensor = roomAggregateService.getSensorById(roomSensorId);
 
             if (readingValidations(reading)) {
                 continue;
             }
 
-            if (roomSensorService.addReading(ReadingMapper.mapToRoomReadingEntity(reading))) {
+            if (roomAggregateService.addReading(ReadingMapper.mapToRoomReadingEntity(reading))) {
                 imported = true;
             }
         }
@@ -101,7 +102,7 @@ public class ImportRoomReadingsController {
             LOGGER.log(Level.WARNING, "Room reading was not imported due to timestamp/date of reading being before starting date of sensor: " + invalidInfo);
             return true;
         }
-        if (roomSensorService.isReadingDuplicated(new RoomReadingId(roomSensorId, reading.getDateTime()))) {
+        if (roomAggregateService.isReadingDuplicated(new RoomReadingId(roomSensorId, reading.getDateTime()))) {
             numberOfNotImportedReadings++;
             String invalidInfo = "sensor id: " + roomSensor.getId() + ", timestamp/date: " + reading.getDateTime() + ", value: " + reading.getValue() + ".";
             LOGGER.log(Level.WARNING, "Room reading was not imported because the following reading is duplicated: doesn't exist:\n" + invalidInfo);

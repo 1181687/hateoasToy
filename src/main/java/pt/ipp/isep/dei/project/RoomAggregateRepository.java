@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.RoomId;
 import pt.ipp.isep.dei.project.model.readings.RoomReading;
+import pt.ipp.isep.dei.project.model.readings.RoomReadingId;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensorId;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
@@ -85,5 +86,17 @@ public class RoomAggregateRepository {
      */
     public Iterable<Room> findAllRooms() {
         return this.roomRepo.findAll();
+    }
+
+    public RoomSensor getRoomById(RoomSensorId roomSensorId){
+        return this.roomSensorRepo.findById(roomSensorId).orElse(null);
+    }
+
+    public boolean isReadingDuplicated(RoomReadingId roomReadingId) {
+        return this.roomReadingRepo.existsById(roomReadingId);
+    }
+
+    public void saveReading(RoomReading roomReading){
+        this.roomReadingRepo.save(roomReading);
     }
 }

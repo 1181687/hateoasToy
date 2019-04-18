@@ -1,0 +1,48 @@
+@startuml
+skinparam linetype ortho
+
+skinparam class {
+	BackgroundColor PaleTurquoise
+	ArrowColor Black
+	BorderColor Black
+	FontStyle Bold
+}
+
+hide circle
+
+RemoveSensorFromGeoAreaUI "1" -down-> "1" RemoveSensorFromGeoAreaController
+RemoveSensorFromGeoAreaController "1" -down-> "1" GeographicalAreaList
+RemoveSensorFromGeoAreaController "1" -> "1" GeographicalArea
+GeographicalArea "1" --> "1" SensorList
+
+Class RemoveSensorFromGeoAreaUI {
+-controller: RemoveSensorFromGeoAreaController
++run()
+}
+
+Class RemoveSensorFromGeoAreaController {
+-geographicalAreaList: GeographicalAreaList
+-geographicalArea: GeographicalArea
++getGeoAreas()
++setGeoAreaById()
++getSensorList()
++removeSensor()
+}
+
+Class GeographicalAreaList {
+-geoAreaList: List<GeographicalArea>
++getGeoAreaById()
+}
+
+Class GeographicalArea {
+-id: String
+-geoAreaSensorService: SensorList
++getSensorList()
++removeSensor()
+}
+
+Class SensorList {
+-listOfSensors: List<Sensor>
++getSensorById()
+}
+@enduml
