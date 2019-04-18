@@ -1,13 +1,13 @@
 package pt.ipp.isep.dei.project.io.ui;
 
-import pt.ipp.isep.dei.project.controllers.GetTotalAndAverageRainfallAndCurrentTempHouseAreaController;
+import pt.ipp.isep.dei.project.controllers.GetInfoHouseAreaController;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.services.GeoAreaAggregateService;
 
 import java.util.Objects;
 
 public class GetCurrentTemperatureHouseArea {
-    private GetTotalAndAverageRainfallAndCurrentTempHouseAreaController controller;
+    private GetInfoHouseAreaController controller;
 
     /**
      * Constructor.
@@ -15,7 +15,7 @@ public class GetCurrentTemperatureHouseArea {
      * @param house                House to be used.
      */
     public GetCurrentTemperatureHouseArea(House house, GeoAreaAggregateService geoAreaAggregateService) {
-        this.controller = new GetTotalAndAverageRainfallAndCurrentTempHouseAreaController(house, geoAreaAggregateService);
+        this.controller = new GetInfoHouseAreaController(house, geoAreaAggregateService);
     }
 
     /**
