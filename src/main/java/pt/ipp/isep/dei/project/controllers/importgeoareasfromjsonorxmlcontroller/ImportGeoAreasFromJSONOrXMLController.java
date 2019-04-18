@@ -8,7 +8,7 @@ import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapper;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorDTO;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorMapper;
-import pt.ipp.isep.dei.project.services.GeoAreaAggregateService;
+import pt.ipp.isep.dei.project.services.GeoAreaService;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.io.File;
@@ -17,13 +17,13 @@ import java.util.List;
 
 public class ImportGeoAreasFromJSONOrXMLController {
     @Autowired
-    private GeoAreaAggregateService geoAreaAggregateService;
+    private GeoAreaService geoAreaService;
     private ProjectFileReader reader;
     private List<Object> geoAreaDTOList;
 
 
-    public ImportGeoAreasFromJSONOrXMLController(GeoAreaAggregateService geoAreaAggregateService) {
-        this.geoAreaAggregateService = geoAreaAggregateService;
+    public ImportGeoAreasFromJSONOrXMLController(GeoAreaService geoAreaService) {
+        this.geoAreaService = geoAreaService;
     }
 
 
@@ -39,11 +39,11 @@ public class ImportGeoAreasFromJSONOrXMLController {
         for (Object geoObject : this.geoAreaDTOList) {
             GeographicalAreaDTO geoDTO = (GeographicalAreaDTO) geoObject;
             GeographicalArea geoArea = GeographicalAreaMapper.mapToEntity(geoDTO);
-            if (geoAreaAggregateService.addGeoArea(geoArea)) {
+            if (geoAreaAggregateService.addGeographicalArea(geoArea)) {
                 imported = true;
             }
             for (GeoAreaSensorDTO geoAreaSensorDTO : geoDTO.getSensors()) {
-                if (geoAreaAggregateService.addGeoAreaSensor(GeoAreaSensorMapper.mapToEntity(geoAreaSensorDTO))) {
+                if (geoAreaAggregateService.addSensor(GeoAreaSensorMapper.mapToGeoAreaSensorEntity(geoAreaSensorDTO))) {
                     imported = true;
                 }
             }
