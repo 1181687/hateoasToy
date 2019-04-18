@@ -6,9 +6,9 @@ import pt.ipp.isep.dei.project.model.ProjectFileReader;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapper;
-import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorDTO;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorMapper;
+import pt.ipp.isep.dei.project.services.GeoAreaAggregateService;
 import pt.ipp.isep.dei.project.services.GeoAreaService;
 import pt.ipp.isep.dei.project.utils.Utils;
 
@@ -18,13 +18,13 @@ import java.util.List;
 
 public class ImportGeoAreasFromJSONOrXMLController {
     @Autowired
-    private GeoAreaService geoAreaService;
+    private GeoAreaAggregateService geoAreaAggregateService;
     private ProjectFileReader reader;
     private List<Object> geoAreaDTOList;
 
 
-    public ImportGeoAreasFromJSONOrXMLController(GeoAreaService geoAreaService) {
-        this.geoAreaService = geoAreaService;
+    public ImportGeoAreasFromJSONOrXMLController(GeoAreaAggregateService geoAreaAggregateService) {
+        this.geoAreaAggregateService = geoAreaAggregateService;
     }
 
 
@@ -40,11 +40,11 @@ public class ImportGeoAreasFromJSONOrXMLController {
         for (Object geoObject : this.geoAreaDTOList) {
             GeographicalAreaDTO geoDTO = (GeographicalAreaDTO) geoObject;
             GeographicalArea geoArea = GeographicalAreaMapper.mapToEntity(geoDTO);
-            if (geoAreaService.addGeoArea(geoArea)) {
+            if (geoAreaAggregateService.addGeographicalArea(geoArea)) {
                 imported = true;
             }
             for (GeoAreaSensorDTO geoAreaSensorDTO : geoDTO.getSensors()) {
-                if (geoAreaService.addGeoAreaSensor(GeoAreaSensorMapper.mapToGeoAreaSensorEntity(geoAreaSensorDTO))){
+                if (geoAreaAggregateService.addSensor(GeoAreaSensorMapper.mapToGeoAreaSensorEntity(geoAreaSensorDTO))){
                     imported = true;
                 }
             }

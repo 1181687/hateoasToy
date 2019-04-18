@@ -78,5 +78,13 @@ public class GeoAreaAggregateService {
         return geoAreaTypeService.getListOfGeoAreaTypes();
     }
 
+    public boolean addGeographicalArea(GeographicalArea geographicalArea){
+        return this.geoAreaAggregateRepo.addGeographicalArea(geographicalArea);
+    }
+
+    public boolean addSensor(GeoAreaSensor geoAreaSensor){
+        return this.geoAreaAggregateRepo.addSensor(geoAreaSensor);
+    }
+
 
 }
