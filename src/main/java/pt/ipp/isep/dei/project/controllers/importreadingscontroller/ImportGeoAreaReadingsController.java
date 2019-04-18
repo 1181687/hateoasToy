@@ -5,18 +5,13 @@ import pt.ipp.isep.dei.project.model.*;
 import pt.ipp.isep.dei.project.model.readings.*;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorId;
-import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
-import pt.ipp.isep.dei.project.model.sensor.RoomSensorId;
-import pt.ipp.isep.dei.project.services.GeoAreaSensorReadingsService;
 import pt.ipp.isep.dei.project.services.GeoAreaService;
-import pt.ipp.isep.dei.project.services.RoomSensorService;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.logging.FileHandler;
@@ -62,9 +57,8 @@ public class ImportGeoAreaReadingsController {
     }
 
     public boolean addReadingToGeoAreaSensorById() {
-        List<GeoAreaReading> geoAreaReadings = new ArrayList<>();
         configLogFile();
-        boolean imported = true;
+        boolean imported = false;
         for (Object object : this.readingDTOList) {
             ReadingDTO reading = (ReadingDTO) object;
             GeoAreaSensorId geoAreaSensorId = new GeoAreaSensorId(reading.getId());
@@ -74,12 +68,10 @@ public class ImportGeoAreaReadingsController {
                 continue;
             }
 
-            /*if (geographicalAreaService.addReading(ReadingMapper.mapToGeoAraReadingEntity(reading))) {
+            if (geographicalAreaService.addReading(ReadingMapper.mapToGeoAraReadingEntity(reading))) {
                 imported = true;
-            }*/
-            geoAreaReadings.add(ReadingMapper.mapToGeoAraReadingEntity(reading));
+            }
         }
-        geographicalAreaService.addAll(geoAreaReadings);
         return imported;
     }
 

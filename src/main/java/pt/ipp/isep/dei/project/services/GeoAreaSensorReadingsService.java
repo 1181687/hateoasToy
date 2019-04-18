@@ -22,15 +22,7 @@ public class GeoAreaSensorReadingsService {
     }
 
     public boolean addReading(GeoAreaReading geoAreaReading) {
-        GeoAreaReadingId geoAreaReadingId = new GeoAreaReadingId(geoAreaReading.getSensorId(), geoAreaReading.getDateTime());
-        if (isReadingDuplicated(geoAreaReadingId)) {
-            return false;
-        }
         geoAreaSensorReadingsRepository.save(geoAreaReading);
         return true;
-    }
-
-    public void addAll(List<GeoAreaReading> geoAreaReadingList){
-        geoAreaSensorReadingsRepository.saveAll(geoAreaReadingList);
     }
 }

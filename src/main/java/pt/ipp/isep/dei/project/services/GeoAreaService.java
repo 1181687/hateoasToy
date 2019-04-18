@@ -209,7 +209,10 @@ public class GeoAreaService {
         return geoAreaSensorService.addSensor(geoAreaSensor);
     }
 
-    public void addAll(List<GeoAreaReading> geoAreaReadings){
-        geoAreaSensorReadingsService.addAll(geoAreaReadings);
+    public GeographicalArea getGeoAreaById(GeoAreaId geoAreaId){
+        return geoAreaRepository.findById(geoAreaId).orElse(null);
     }
+
+
+
 }
