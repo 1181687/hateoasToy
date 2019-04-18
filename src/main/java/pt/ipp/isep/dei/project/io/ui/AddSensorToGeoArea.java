@@ -7,6 +7,7 @@ import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorDTO;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeDTO;
 import pt.ipp.isep.dei.project.services.GeoAreaService;
 
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -38,6 +39,8 @@ public class AddSensorToGeoArea {
         String name = InputValidator.getString(label2);
         geoAreaSensorDTO.setName(name);
 
+        // Date
+        geoAreaSensorDTO.setStartingDate(LocalDate.now());
 
         // Type
         String label3 = "Please select the sensor type: \n" + this.getSensorTypeDTOListToString();
@@ -77,6 +80,7 @@ public class AddSensorToGeoArea {
 
         String geoArea = this.getGeoAreaDTOByPosition(positionOfGeoArea).getId();
         geoAreaSensorDTO.setGeoAreaId(geoArea);
+
 
         // Create sensorDTO
         if (controller.addGeoAreaSensor(geoAreaSensorDTO)) {

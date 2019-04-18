@@ -106,17 +106,17 @@ public class Main {
             this.roomService.addRoom(room3);
             this.roomService.addRoom(room4);
 
-            AddNewGeographicalAreaType ui3 = new AddNewGeographicalAreaType(this.geoAreaTypeService);
-            ui3.run();
+            /*AddNewGeographicalAreaType ui3 = new AddNewGeographicalAreaType(this.geoAreaTypeService);
+            ui3.run();*/
 
-            AddNewGeographicalArea ui2 = new AddNewGeographicalArea(this.geoAreaService);
-            ui2.run();
+            /*AddNewGeographicalArea ui2 = new AddNewGeographicalArea(this.geoAreaService);
+            ui2.run();*/
 
-            DefineSensorType ui = new DefineSensorType(this.sensorTypeService);
-            ui.run();
+            /*DefineSensorType ui = new DefineSensorType(this.sensorTypeService);
+            ui.run();*/
 
-            AddSensorToGeoArea ui1 = new AddSensorToGeoArea(this.geoAreaService);
-            ui1.run();
+            /*AddSensorToGeoArea ui1 = new AddSensorToGeoArea(this.geoAreaService);
+            ui1.run();*/
 
            /*ImportRoomSensors ui = new ImportRoomSensors(this.roomService);
            ui.run();*/
