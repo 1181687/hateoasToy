@@ -29,6 +29,10 @@ public class GeoAreaReading {
         // empty
     }
 
+    public GeoAreaReadingId getReadingId(){
+        return this.geoAreaReadingId;
+    }
+
     /**
      * Get method
      * @return value
