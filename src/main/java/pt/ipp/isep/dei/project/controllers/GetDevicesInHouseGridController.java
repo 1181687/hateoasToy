@@ -11,23 +11,14 @@ public class GetDevicesInHouseGridController {
     private House house;
 
 
-
-
-
-
-
-
-
-    /*
-     *//**
-     * constructor that receives a House
-     *
-     * @param house House received
-     *//*
     public GetDevicesInHouseGridController(House house) {
         this.house = house;
     }
 
+
+
+
+/*
     public String getDeviceListContentNameTypeLocationByGrid(int position) {
         return house.getDeviceListContentNameTypeLocationByGrid(position);
     }

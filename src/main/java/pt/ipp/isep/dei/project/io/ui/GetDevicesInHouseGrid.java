@@ -20,12 +20,17 @@ public class GetDevicesInHouseGrid {
         this.controller = new GetDevicesInHouseGridController(house);
     }
 
-    /**
+
+
+
+
+
+    /*    *//**
      * method that shows a list of House Grids, the user select one, and then
      * it gets the list off all devices in that grid, grouped by device type and show the location of each device.
      * if there are no House Grids in the House, it shows that message
      * if there aren't devices in that House Grid, it shows that message.
-     */
+     *//*
     public void run() {
         if (controller.isHouseGridListEmpty()) {
             System.out.println("There aren't House Grids in the House.\n");
@@ -56,5 +61,5 @@ public class GetDevicesInHouseGrid {
         content.append(" is:\n\n");
         content.append(controller.getDeviceListContentNameTypeLocationByGrid(gridPosition));
         System.out.println(content.toString());
-    }
+    }*/
 }
