@@ -148,6 +148,10 @@ public class GeoAreaSensor {
         return isActive.isActive();
     }
 
+    public GeoAreaId getGeoAreaId() {
+        return geoAreaId;
+    }
+
     /**
      * Method that deactivates the sensor.
      * If the sensor is active it deactivates it, as expected and returns a positive boolean expression.
@@ -156,7 +160,7 @@ public class GeoAreaSensor {
      * @return
      */
 
-    public boolean deactivateDevice() {
+    public boolean deactivateSensor() {
         if (isActive.isActive()) {
             isActive.deactivateSensor();
             return true;

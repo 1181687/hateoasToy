@@ -73,7 +73,7 @@ Class JSONReader {
 }
 
 Class GeographicalAreaList {
--geoAreaList: GeographicalAreaList
+-geoAreaService: GeographicalAreaList
 +getAllSensors()
 }
 

@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.project.model.sensor;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.LocationMapper;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaId;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaIdMapper;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapper;
 
 public final class GeoAreaSensorMapper {
@@ -35,6 +36,7 @@ public final class GeoAreaSensorMapper {
         sensorDTO.setLocation(LocationMapper.mapToDTO(sensor.getLocation()));
         sensorDTO.setUnits(sensor.getUnits());
         sensorDTO.setActive(sensor.isActive());
+        sensorDTO.setParentGeoArea(GeoAreaIdMapper.mapToDTO(sensor.getGeoAreaId()));
         return sensorDTO;
     }
 

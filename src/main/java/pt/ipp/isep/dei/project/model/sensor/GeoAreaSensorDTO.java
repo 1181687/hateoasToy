@@ -127,6 +127,7 @@ public class GeoAreaSensorDTO {
     public void setGeoAreaId(String geoAreaId) {
         this.geoAreaId = geoAreaId;
     }
+
     public boolean isActive() {
         return isActive;
     }

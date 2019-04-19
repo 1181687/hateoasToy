@@ -12,6 +12,7 @@ import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.RoomId;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorId;
 import pt.ipp.isep.dei.project.services.*;
 
 @EnableJpaRepositories(basePackages = "pt.ipp.isep.dei.project")
@@ -46,6 +47,10 @@ public class Main {
     @Autowired
     private GeoAreaTypeService geoAreaTypeService;
 
+    //GeographicalArea Repository Injection
+    @Autowired
+    private GeoAreaService geoAreaService;
+
     //House Repository Injection
     @Autowired
     private HouseService houseService;
@@ -62,6 +67,9 @@ public class Main {
     @Autowired
     private HouseGridService houseGridService;
 
+    // RoomSensor Service Injection
+    @Autowired
+    private RoomSensorService roomSensorService;
 
     @Autowired
     private RoomAggregateService roomAggregateService;
@@ -94,12 +102,12 @@ public class Main {
             AddNewGeographicalArea addNewGeographicalArea = new AddNewGeographicalArea(geoAreaService);
             addNewGeographicalArea.run();*/
 
-            /*Dimension dim = new Dimension(2, 2, 2);
+           /* Dimension dim = new Dimension(2, 2, 2);
             Room room1 = new Room(new RoomId("B405"), "cenas", 1, dim);
             Room room2 = new Room(new RoomId("B106"), "cenas", 1, dim);
             Room room3 = new Room(new RoomId("B107"), "cenas", 1, dim);
-            Room room4 = new Room(new RoomId("B109"), "cenas", 1, dim);*/
-
+            Room room4 = new Room(new RoomId("B109"), "cenas", 1, dim);
+*/
             // this.roomService.addRoom(room1);
             // this.roomService.addRoom(room2);
             // this.roomService.addRoom(room3);
@@ -137,11 +145,11 @@ public class Main {
             ImportGeoAreasFromJSONOrXML importGeoAreasFromJSONOrXML = new ImportGeoAreasFromJSONOrXML(geoAreaAggregateService);
             importGeoAreasFromJSONOrXML.run();
 
-            /*ImportReadings importReadings = new ImportReadings(geoAreaAggregateService, roomAggregateService);
-            importReadings.run(1);*/
+          /*  ImportReadings importReadings = new ImportReadings(geoAreaService, roomSensorService);
+            importReadings.run(1);
 
-/*            GetCurrentTemperatureRoom getCurrentTemperatureRoom = new GetCurrentTemperatureRoom(roomAggregateService);
-            getCurrentTemperatureRoom.run();*/
+            GetCurrentTemperatureRoom getCurrentTemperatureRoom = new GetCurrentTemperatureRoom(roomAggregateService);
+            getCurrentTemperatureRoom.run();
             // GetCurrentTemperatureRoom getCurrentTemperatureRoom = new GetCurrentTemperatureRoom(roomService);
             // getCurrentTemperatureRoom.run();
 
@@ -154,8 +162,16 @@ public class Main {
             RemoveSensorFromGeoArea removeSensorFromGeoArea = new RemoveSensorFromGeoArea(geoAreaAggregateService);
             removeSensorFromGeoArea.run();
 
-            return;
+            return;*/
 
+            AddNewGeographicalAreaType ui1 = new AddNewGeographicalAreaType(this.geoAreaTypeService);
+            ui1.run();
+            AddNewGeographicalArea ui = new AddNewGeographicalArea(this.geoAreaService);
+            ui.run();
+            AddSensorToGeoArea ui2 = new AddSensorToGeoArea(this.geoAreaAggregateService);
+            ui2.run();
+            DeactivateSensorFromGeoArea ui3 = new DeactivateSensorFromGeoArea(this.geoAreaAggregateService);
+            ui3.run();
 
         };
     }
