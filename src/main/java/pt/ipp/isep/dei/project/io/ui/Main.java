@@ -12,7 +12,6 @@ import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.RoomId;
-import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorId;
 import pt.ipp.isep.dei.project.services.*;
 
 @EnableJpaRepositories(basePackages = "pt.ipp.isep.dei.project")
@@ -111,6 +110,9 @@ public class Main {
              this.roomService.addRoom(room3);
              this.roomService.addRoom(room4);
 
+            CreateHouseGrid ui0 = new CreateHouseGrid(houseGridService);
+            ui0.run();
+
             GetDevicesInHouseGrid ui1 = new GetDevicesInHouseGrid(roomAggregateService);
             ui1.run();
 
@@ -146,12 +148,10 @@ public class Main {
             /*ImportGeoAreasFromJSONOrXML importGeoAreasFromJSONOrXML = new ImportGeoAreasFromJSONOrXML(geoAreaAggregateService);
             importGeoAreasFromJSONOrXML.run();*/
 
-            ImportReadings importReadings = new ImportReadings(geoAreaAggregateService, roomAggregateService);
+            /*ImportReadings importReadings = new ImportReadings(geoAreaAggregateService, roomAggregateService);
             importReadings.run(2);
 
-            importReadings.run(2);/*
-
-            GetCurrentTemperatureRoom getCurrentTemperatureRoom = new GetCurrentTemperatureRoom(roomAggregateService);
+            GetCurrentTemperatureRoom getCurrentTemperatureRoom = new GetCurrentTemperatureRoom(roomService);
             getCurrentTemperatureRoom.run();
             // GetCurrentTemperatureRoom getCurrentTemperatureRoom = new GetCurrentTemperatureRoom(roomService);
             // getCurrentTemperatureRoom.run();

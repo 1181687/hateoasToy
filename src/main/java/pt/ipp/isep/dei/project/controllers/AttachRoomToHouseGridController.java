@@ -6,7 +6,6 @@ import pt.ipp.isep.dei.project.model.house.RoomId;
 import pt.ipp.isep.dei.project.model.house.RoomMapper;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridDTO;
-import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridMapper;
 import pt.ipp.isep.dei.project.services.HouseService;
 
@@ -61,10 +60,10 @@ public class AttachRoomToHouseGridController {
      *
      * @param gridId Id of the grid to be stored.
      */
-    public void setGrid(String gridId) {
+/*    public void setGrid(String gridId) {
         HouseGridId houseGridId = new HouseGridId(gridId);
         this.chosenGrid = houseService.getGridById(houseGridId);
-    }
+    }*/
 
     /**
      * Method that stores the room selected by the user into the attribute chosenRoom.

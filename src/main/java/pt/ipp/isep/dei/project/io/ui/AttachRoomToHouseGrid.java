@@ -67,7 +67,7 @@ public class AttachRoomToHouseGrid {
             return;
         }
         String gridId = gridDTOS.get(uiId).getId();
-        controller.setGrid(gridId);
+        //controller.setGrid(gridId);
     }
 
     /**

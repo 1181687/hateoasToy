@@ -72,7 +72,7 @@ public class HouseService {
     }
 
     public List<HouseGrid> getAllGrids() {
-        return this.houseGridService.getAllGrids();
+        return this.roomAggregateService.getAllGrids();
     }
 
     public List<Room> getRoomsOfAHouseGrid(HouseGridId houseGridId) {

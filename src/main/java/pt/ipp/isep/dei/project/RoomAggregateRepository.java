@@ -3,11 +3,8 @@ package pt.ipp.isep.dei.project;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.model.house.Room;
-import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
-
-import java.util.List;
-import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.RoomId;
+import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 import pt.ipp.isep.dei.project.model.readings.RoomReading;
 import pt.ipp.isep.dei.project.model.readings.RoomReadingId;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
@@ -44,7 +41,7 @@ public class RoomAggregateRepository {
      *
      * @return RoomSensorReadingsRepository.
      */
-    public RoomSensorReadingsRepository getRoomReadingRepo() {
+    public RoomSensorReadingsRepository getRoomReadingRepository() {
         return roomReadingRepository;
     }
 
