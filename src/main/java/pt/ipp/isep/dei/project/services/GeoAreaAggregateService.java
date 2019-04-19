@@ -270,17 +270,17 @@ public class GeoAreaAggregateService {
 
 
 
-    /**
+/*    *//**
      * Method that returns the sensor, of a given type, that is closest to the given location and has the most recent
      * reading
      *
      * @param typeId     sensor type
      * @param location location of the house area
      * @return
-     */
+     *//*
     public GeoAreaSensor getNearestSensorWithMostRecentReading(SensorTypeId typeId, Location location) {
         return getSensorById(getLatestGeoAreaReading(location, typeId).getSensorId());
-    }
+    }*/
 
 
     /**

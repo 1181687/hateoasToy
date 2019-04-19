@@ -58,7 +58,7 @@ public class DeactivateSensorFromGeoArea {
             content.append(" - ");
             content.append(" Id: ");
             content.append(geoArea.getId());
-            content.append(" Type ");
+            content.append(" Type: ");
             content.append(geoArea.getGeoAreaType());
             content.append( "\n");
             iterator++;
@@ -92,16 +92,6 @@ public class DeactivateSensorFromGeoArea {
         }
         return content.toString();
     }
-
-  /*  private List<GeoAreaSensorDTO> getListOfActiveSensors() {
-        List<GeoAreaSensorDTO> activeList = new ArrayList<>();
-        for (GeoAreaSensorDTO sensorDTO : geographicalAreaDTO.getSensors()) {
-            if (sensorDTO.isActive()) {
-                activeList.add(sensorDTO);
-            }
-        }
-        return activeList;
-    }*/
 
     private void deactivateSensor(GeoAreaSensorDTO sensorDTO) {
         String confirmation = InputValidator.confirmValidation("\nThe sensor is going to be deactivated. It can be reactivated on a later date.\nConfirm? (Y/N)");

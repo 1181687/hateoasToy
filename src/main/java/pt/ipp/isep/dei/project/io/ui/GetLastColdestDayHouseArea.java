@@ -22,14 +22,14 @@ public class GetLastColdestDayHouseArea {
     }
 
     public void run() {
-        if (Objects.isNull(controller.getCurrentTemperature())) {
+       /* if (Objects.isNull(controller.getCurrentTemperature())) {
             System.out.println("There are no " + controller.getTypeTemperature() + " sensors with valid measurements in the house area.");
         } else {
 
             askAndValidateFirstAndLastDate();
 
             //getLastColdestDayReadingAndDisplayResults();
-        }
+        }*/
     }
 
     private void askAndValidateFirstAndLastDate() {

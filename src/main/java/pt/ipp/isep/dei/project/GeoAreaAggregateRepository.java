@@ -116,6 +116,7 @@ public class GeoAreaAggregateRepository {
             GeoAreaSensor sensor = this.geoAreaSensorRepo.findById(id).get();
             sensor.deactivateSensor();
             this.geoAreaSensorRepo.save(sensor);
+            return true;
         }
         return false;
     }
