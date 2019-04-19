@@ -10,6 +10,7 @@ import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensorId;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -53,15 +54,27 @@ public class RoomAggregateService {
      */
     public List<RoomReading> getListOfRoomReadingByRoomSensorId(RoomSensorId roomSensorId) {
         return this.roomAggregateRepo.findByRoomReadingIdAndRoomSensorId(roomSensorId);
+
+
     }
 
     /**
-     * method that gets the latest temperature reading of a given roomSensor
+     * method that get the list of readings of a given room sensor (by id) by a given date
+     * @param localDate given date
+     * @param roomSensorId id of the room sensor
+     * @return List<RoomReading> of a day of a sensor
+     */
+    public List<RoomReading> getListOfRoomReadingByRoomSensorIdByDay(RoomSensorId roomSensorId, LocalDate localDate) {
+        return this.roomAggregateRepo.findByRoomReadingIdAndRoomSensorIdAndDay(roomSensorId, localDate);
+    }
+
+    /**
+     * method that gets the latest reading of a given roomSensor
      *
      * @param roomSensorId id of the sensor
      * @return latest roomReading
      */
-    public RoomReading getLatestTemperatureReading(RoomSensorId roomSensorId) {
+    public RoomReading getLatestReadingByRoomSensorId(RoomSensorId roomSensorId) {
 
         List<RoomReading> roomReadings = this.getListOfRoomReadingByRoomSensorId(roomSensorId);
         if (roomReadings.isEmpty()) {
@@ -87,4 +100,27 @@ public class RoomAggregateService {
         roomIterable.forEach(rooms::add);
         return rooms;
     }
+
+    /**
+     * gets the Maximum Room Reading by sensor Id in a given day
+     *
+     * @param roomSensorId sensor id
+     * @param localDate    given day
+     * @return Maximum RoomReading. If there aren't readings return null
+     */
+    public RoomReading getMaximumReadingBySensorIdInADay(RoomSensorId roomSensorId, LocalDate localDate) {
+
+        List<RoomReading> listReadingDay = this.getListOfRoomReadingByRoomSensorIdByDay(roomSensorId, localDate);
+        if (!listReadingDay.isEmpty()) {
+            RoomReading maxRoomReading = listReadingDay.get(0);
+            for (RoomReading reading : listReadingDay) {
+                if (Double.compare(reading.getValue(), maxRoomReading.getValue()) == 1) {
+                    maxRoomReading = reading;
+                }
+            }
+            return maxRoomReading;
+        }
+        return null;
+    }
+
 }

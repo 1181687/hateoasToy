@@ -9,6 +9,7 @@ import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensorId;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -85,5 +86,16 @@ public class RoomAggregateRepository {
      */
     public Iterable<Room> findAllRooms() {
         return this.roomRepo.findAll();
+    }
+
+    /**
+     * method that get the list of readings of a given room sensor by a given date
+     *
+     * @param localDate    given date
+     * @param roomSensorId id of the room sensor
+     * @return List<RoomReading>
+     */
+    public List<RoomReading> findByRoomReadingIdAndRoomSensorIdAndDay(RoomSensorId roomSensorId, LocalDate localDate) {
+        return roomReadingRepo.findByRoomReadingId_RoomSensorId_AndRoomReadingId_LocalDateTime_Date(roomSensorId, localDate);
     }
 }
