@@ -1,31 +1,34 @@
 package pt.ipp.isep.dei.project.io.ui;
 
+import pt.ipp.isep.dei.project.controllers.GetInfoHouseAreaController;
+import pt.ipp.isep.dei.project.controllers.getlastcoldestdayhouseareacontroller.GetLastColdestDayHouseAreaController;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.readings.ReadingDTO;
+import pt.ipp.isep.dei.project.services.GeoAreaAggregateService;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class GetLastColdestDayHouseArea {
 
-   /* private GetLastColdestDayHouseAreaController controller;
+    private GetInfoHouseAreaController controller;
     private ReadingDTO readingDTO;
     private LocalDate firstDate;
-    private LocalDate lastDate;*/
+    private LocalDate lastDate;
 
-    public GetLastColdestDayHouseArea(House house) {
-        //this.controller = new GetLastColdestDayHouseAreaController(house);
+    public GetLastColdestDayHouseArea(House house, GeoAreaAggregateService geoAreaAggregateService) {
+        this.controller = new GetInfoHouseAreaController(house, geoAreaAggregateService);
     }
-/*
-    public void run() {
 
-        if (!controller.hasSensorsOfGivenTypeInGeoArea()) {
-            System.out.println("There are no temperature sensors in the house area.\n");
+    public void run() {
+        if (Objects.isNull(controller.getCurrentTemperature())) {
+            System.out.println("There are no " + controller.getTypeTemperature() + " sensors with valid measurements in the house area.");
         } else {
 
             askAndValidateFirstAndLastDate();
 
-            getLastColdestDayReadingAndDisplayResults();
+            //getLastColdestDayReadingAndDisplayResults();
         }
     }
 
@@ -48,7 +51,7 @@ public class GetLastColdestDayHouseArea {
         while (flag);
     }
 
-    private void getLastColdestDayReadingAndDisplayResults() {
+   /* private void getLastColdestDayReadingAndDisplayResults() {
         if (!controller.hasReadingsBetweenDates(this.firstDate, this.lastDate)) {
             System.out.println("There are no valid readings in the nearest sensor for that period.\n");
         } else {
@@ -60,7 +63,7 @@ public class GetLastColdestDayHouseArea {
                 resultToString();
             }
         }
-    }
+    }*/
 
     private void resultToString() {
 
@@ -79,5 +82,5 @@ public class GetLastColdestDayHouseArea {
         content.append(" Celsius.\n");
 
         System.out.println(content.toString());
-    }*/
+    }
 }
