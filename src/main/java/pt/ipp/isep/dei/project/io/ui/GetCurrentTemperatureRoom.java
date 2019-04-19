@@ -91,15 +91,15 @@ public class GetCurrentTemperatureRoom {
             return;
         }
 
+        controller.setRoomSensorId();
         controller.latestTemperatureReading();
-        double tempValue = controller.getvalue();
+        double tempValue = controller.getValue();
         LocalDateTime localDateTime = controller.getLocalDateTime();
 
         if (controller.isLatestTemperatureReadingNull()) {
             System.out.println("There are no temperature values available.");
             return;
         }
-
         displayResults(roomId, tempValue, localDateTime);
     }
 }
