@@ -2,18 +2,22 @@ package pt.ipp.isep.dei.project;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pt.ipp.isep.dei.project.model.house.Room;
+import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
+
+import java.util.List;
 
 @Service
 public class RoomAggregateRepository {
 
     @Autowired
-    private RoomRepository roomRepo;
+    private RoomRepository roomRepository;
 
     @Autowired
-    private RoomSensorRepository roomSensorRepo;
+    private RoomSensorRepository roomSensorRepository;
 
     @Autowired
-    private RoomSensorReadingsRepository roomReadingRepo;
+    private RoomSensorReadingsRepository roomReadingRepository;
 
     /**
      * Constructor.
@@ -22,30 +26,8 @@ public class RoomAggregateRepository {
         // empty
     }
 
-    /**
-     * Get method.
-     *
-     * @return RoomRepository.
-     */
-    public RoomRepository getRoomRepo() {
-        return roomRepo;
+    public List<Room> findAllByHouseGridIdEquals(HouseGridId houseGridId) {
+        return roomRepository.findAllByHouseGridIdEquals(houseGridId);
     }
 
-    /**
-     * Get method.
-     *
-     * @return RoomSensorRepository.
-     */
-    public RoomSensorRepository getRoomSensorRepo() {
-        return roomSensorRepo;
-    }
-
-    /**
-     * Get method.
-     *
-     * @return RoomSensorReadingsRepository.
-     */
-    public RoomSensorReadingsRepository getRoomReadingRepo() {
-        return roomReadingRepo;
-    }
 }

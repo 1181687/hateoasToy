@@ -70,6 +70,9 @@ public class Main {
     @Autowired
     private RoomSensorService roomSensorService;
 
+    @Autowired
+    private RoomAggregateService roomAggregateService;
+
 
     public static void main(String[] args) {
 
@@ -105,6 +108,9 @@ public class Main {
             this.roomService.addRoom(room2);
             this.roomService.addRoom(room3);
             this.roomService.addRoom(room4);
+
+            GetDevicesInHouseGrid ui1 = new GetDevicesInHouseGrid(roomAggregateService);
+            ui1.run();
 
             /*AddNewGeographicalAreaType ui3 = new AddNewGeographicalAreaType(this.geoAreaTypeService);
             ui3.run();*/
