@@ -90,24 +90,16 @@ public class ImportRoomReadingsController {
             if (roomAggregateService.addReading(ReadingMapper.mapToRoomReadingEntity(reading))) {
                 imported = true;
             }
+            else{
+                numberOfNotImportedReadings++;
+                String invalidInfo = "sensor id: " + reading.getId() + ", timestamp/date: " + reading.getDateTime() + ", value: " + reading.getValue() + ".";
+                LOGGER.log(Level.WARNING, "Room reading was not imported because the following reading is duplicated: \n" + invalidInfo);
+            }
         }
         return imported;
     }
 
     private boolean readingValidations(ReadingDTO reading) {
-        RoomSensorId roomSensorId = new RoomSensorId(reading.getId());
-        if (isDateTimeBeforeStartingDate(roomSensor.getStartingDate(), reading.getDateTime())) {
-            numberOfNotImportedReadings++;
-            String invalidInfo = "id: " + reading.getId() + ", value: " + reading.getValue() + ", timestamp/date: " + reading.getDateTime() + ", unit: " + reading.getUnits() + ".";
-            LOGGER.log(Level.WARNING, "Room reading was not imported due to timestamp/date of reading being before starting date of sensor: " + invalidInfo);
-            return true;
-        }
-        if (roomAggregateService.isReadingDuplicated(new RoomReadingId(roomSensorId, reading.getDateTime()))) {
-            numberOfNotImportedReadings++;
-            String invalidInfo = "sensor id: " + roomSensor.getId() + ", timestamp/date: " + reading.getDateTime() + ", value: " + reading.getValue() + ".";
-            LOGGER.log(Level.WARNING, "Room reading was not imported because the following reading is duplicated: doesn't exist:\n" + invalidInfo);
-            return true;
-        }
         if (Objects.isNull(roomSensor)) {
             numberOfNotImportedReadings++;
             String invalidInfo = "id: " + reading.getId() + ".";
@@ -118,6 +110,12 @@ public class ImportRoomReadingsController {
             numberOfNotImportedReadings++;
             String invalidInfo = "id: " + reading.getId() + ", value: " + reading.getValue() + ", timestamp/date: " + reading.getDateTime() + ", unit: " + reading.getUnits() + ".";
             LOGGER.log(Level.WARNING, "Room reading not imported due to invalid timestamp/date " + invalidInfo);
+            return true;
+        }
+        if (isDateTimeBeforeStartingDate(roomSensor.getStartingDate(), reading.getDateTime())) {
+            numberOfNotImportedReadings++;
+            String invalidInfo = "id: " + reading.getId() + ", value: " + reading.getValue() + ", timestamp/date: " + reading.getDateTime() + ", unit: " + reading.getUnits() + ".";
+            LOGGER.log(Level.WARNING, "Room reading was not imported due to timestamp/date of reading being before starting date of sensor: " + invalidInfo);
             return true;
         }
         if (reading.getUnits().equals("F")) {

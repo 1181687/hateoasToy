@@ -21,7 +21,7 @@ public class GetLastColdestDayHouseArea {
         this.controller = new GetInfoHouseAreaController(house, geoAreaAggregateService);
     }
 
-    public void run() {
+    /*public void run() {
         if (Objects.isNull(controller.getCurrentTemperature())) {
             System.out.println("There are no " + controller.getTypeTemperature() + " sensors with valid measurements in the house area.");
         } else {
@@ -30,7 +30,7 @@ public class GetLastColdestDayHouseArea {
 
             //getLastColdestDayReadingAndDisplayResults();
         }
-    }
+    }*/
 
     private void askAndValidateFirstAndLastDate() {
         boolean flag;

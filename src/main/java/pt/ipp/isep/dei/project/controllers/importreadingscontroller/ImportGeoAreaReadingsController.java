@@ -89,12 +89,16 @@ public class ImportGeoAreaReadingsController {
             if (geoAreaAggregateService.addReading(ReadingMapper.mapToGeoAraReadingEntity(reading))) {
                 imported = true;
             }
+            else {
+                numberOfNotImportedReadings++;
+                String invalidInfo = "sensor id: " + reading.getId() + ", timestamp/date: " + reading.getDateTime() + ", value: " + reading.getValue() + ".";
+                LOGGER.log(Level.WARNING, "GeoAreaReading was not imported because the following reading is duplicated: \n" + invalidInfo);
+            }
         }
         return imported;
     }
 
     private boolean readingValidations(ReadingDTO reading) {
-        GeoAreaSensorId geoAreaSensorId = new GeoAreaSensorId(reading.getId());
         if (Objects.isNull(geoAreaSensor)) {
             numberOfNotImportedReadings++;
             String invalidInfo = "id: " + reading.getId() + ".";
@@ -111,12 +115,6 @@ public class ImportGeoAreaReadingsController {
             numberOfNotImportedReadings++;
             String invalidInfo = "id: " + reading.getId() + ", value: " + reading.getValue() + ", timestamp/date: " + reading.getDateTime() + ", unit: " + reading.getUnits() + ".";
             LOGGER.log(Level.WARNING, "GeoAreaReading not imported due to timestamp/date of reading being before starting date of sensor: " + invalidInfo);
-            return true;
-        }
-        if (geoAreaAggregateService.isReadingDuplicated(new GeoAreaReadingId(geoAreaSensorId, reading.getDateTime()))) {
-            numberOfNotImportedReadings++;
-            String invalidInfo = "sensor id: " + reading.getId() + ", timestamp/date: " + reading.getDateTime() + ", value: " + reading.getValue() + ".";
-            LOGGER.log(Level.WARNING, "GeoAreaReading was not imported because the following reading is duplicated: doesn't exist:\n" + invalidInfo);
             return true;
         }
         if (reading.getUnits().equals("F")) {

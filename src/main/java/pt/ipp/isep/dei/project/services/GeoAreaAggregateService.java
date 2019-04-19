@@ -278,9 +278,9 @@ public class GeoAreaAggregateService {
      * @param location location of the house area
      * @return
      */
-    public GeoAreaSensor getNearestSensorWithMostRecentReading(SensorTypeId typeId, Location location) {
+    /*public GeoAreaSensor getNearestSensorWithMostRecentReading(SensorTypeId typeId, Location location) {
         return getSensorById(getLatestGeoAreaReading(location, typeId).getSensorId());
-    }
+    }*/
 
 
     /**
