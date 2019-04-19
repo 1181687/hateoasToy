@@ -47,13 +47,13 @@ public class GeoAreaAggregateRepository {
         return this.geoAreaSensorRepo.findByGeoAreaId(geoAreaId);
     }
 
-    public List<GeoAreaReading> findByGeoAreaReadingId_GeoAreaSensorId(GeoAreaSensorId id) {
+/*    public List<GeoAreaReading> findByGeoAreaReadingId_GeoAreaSensorId(GeoAreaSensorId id) {
         return this.geoAreaReadingRepo.findByGeoAreaReadingId_GeoAreaSensorId(id);
     }
 
     public boolean existsByDateTime_DateBetweenAndGeoAreaReadingId_GeoAreaSensorId(LocalDate startDate, LocalDate endDate, GeoAreaSensorId id) {
         return this.geoAreaReadingRepo.existsByDateTime_DateBetweenAndGeoAreaReadingId_GeoAreaSensorId(startDate, endDate, id);
-    }
+    }*/
 
     public Iterable<GeographicalArea> findAllGeoAreas() {
         return geoAreaRepo.findAll();
@@ -87,9 +87,9 @@ public class GeoAreaAggregateRepository {
         this.geoAreaSensorRepo.save(geoAreaSensor);
     }
 
-    public List<GeoAreaReading> findByDateTime_DateBetweenAndGeoAreaReadingId_GeoAreaSensorId(LocalDate startDate, LocalDate endDate, GeoAreaSensorId geoAreaSensorId) {
+  /*  public List<GeoAreaReading> findByDateTime_DateBetweenAndGeoAreaReadingId_GeoAreaSensorId(LocalDate startDate, LocalDate endDate, GeoAreaSensorId geoAreaSensorId) {
         return this.geoAreaReadingRepo.findByDateTime_DateBetweenAndGeoAreaReadingId_GeoAreaSensorId(startDate, endDate, geoAreaSensorId);
-    }
+    }*/
 
     public boolean existGeoAreaById(GeoAreaId id) {
         return this.geoAreaRepo.existsById(id);

@@ -1,6 +1,7 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.deactivatesensorfromgeoarea.DeactivateSensorFromGeoAreaController;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaIdDTO;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorDTO;
 import pt.ipp.isep.dei.project.services.GeoAreaAggregateService;
 
@@ -11,8 +12,8 @@ public class DeactivateSensorFromGeoArea {
     private static final String EXIT = "\r0 - Exit";
     private DeactivateSensorFromGeoAreaController ctrl;
     private List<GeoAreaSensorDTO> geoAreaSensorDTOS;
-    private List<String> geoAreas;
-    private String chosenGeoAreaId;
+    private List<GeoAreaIdDTO> geoAreas;
+    private GeoAreaIdDTO chosenGeoAreaId;
 
     public DeactivateSensorFromGeoArea(GeoAreaAggregateService geographicalAreaService) {
         this.ctrl = new DeactivateSensorFromGeoAreaController(geographicalAreaService);
@@ -37,7 +38,7 @@ public class DeactivateSensorFromGeoArea {
                 System.out.println("\nThere are no active Sensors in " + geographicalAreaDTO.getId());
                 continue;
             }*/
-            String label2 = printListOfActiveSensors() + EXIT;
+            String label2 = printActiveSensorsInChosenGeoArea() + EXIT;
             int chosenSensor = InputValidator.getIntRange(label2, 0, this.geoAreaSensorDTOS.size()) - 1;
             if (chosenSensor == -1) {
                 continue;
@@ -49,24 +50,27 @@ public class DeactivateSensorFromGeoArea {
 
 
     private String printListOfGeoAreas() {
-        List<String> geoAreas = getActiveSensorsGeoAreas();
+        List<GeoAreaIdDTO> geoAreas = getActiveSensorsGeoAreas();
         StringBuilder content = new StringBuilder();
         int iterator = 1;
-        for (String geoArea : geoAreas) {
+        for (GeoAreaIdDTO geoArea : geoAreas) {
             content.append(iterator);
             content.append(" - ");
-            content.append(geoArea);
+            content.append(" Id: ");
+            content.append(geoArea.getId());
+            content.append(" Type ");
+            content.append(geoArea.getGeoAreaType());
             content.append( "\n");
             iterator++;
         }
         return content.toString();
     }
 
-    private List<String> getActiveSensorsGeoAreas(){
-        List<String> geoAreas = new ArrayList<>();
+    private List<GeoAreaIdDTO> getActiveSensorsGeoAreas(){
+        List<GeoAreaIdDTO> geoAreas = new ArrayList<>();
 
         for (GeoAreaSensorDTO sensorDTO : geoAreaSensorDTOS) {
-            String geoAreaId = sensorDTO.getGeoAreaId();
+            GeoAreaIdDTO geoAreaId = sensorDTO.getParentGeoArea();
             if(!geoAreas.contains(geoAreaId)){
                 geoAreas.add(geoAreaId);
             }
@@ -74,14 +78,15 @@ public class DeactivateSensorFromGeoArea {
         return geoAreas;
     }
 
-    private String printListOfActiveSensors() {
+    private String printActiveSensorsInChosenGeoArea() {
         if (this.geoAreaSensorDTOS.isEmpty()) {
             return ("There are no active Sensors in " + this.chosenGeoAreaId);
         }
         System.out.println("Which sensor of " + this.chosenGeoAreaId + " do you want to deactivate:");
+        List<GeoAreaSensorDTO> sensors = getSensorsInChosenGeoArea();
         StringBuilder content = new StringBuilder();
         int iterator = 1;
-        for (GeoAreaSensorDTO sensorDTO : geoAreaSensorDTOS) {
+        for (GeoAreaSensorDTO sensorDTO : sensors) {
             content.append(iterator + " - " + sensorDTO.getId() + "\n");
             iterator++;
         }
@@ -103,7 +108,7 @@ public class DeactivateSensorFromGeoArea {
         if ("N".equalsIgnoreCase(confirmation)) {
             System.out.println("\nNo changes were made.\n");
         } else {
-            sensorDTO.setActive(false);
+            //sensorDTO.setActive(false);
             if (ctrl.deactivateSensor(sensorDTO)) {
                 System.out.println("The sensor is now deactivated.\n");
             } else {
@@ -113,7 +118,15 @@ public class DeactivateSensorFromGeoArea {
         }
     }
 
-
+    private List<GeoAreaSensorDTO> getSensorsInChosenGeoArea(){
+        List<GeoAreaSensorDTO> sensorDTOS = new ArrayList<>();
+        for (GeoAreaSensorDTO sensorDTO : geoAreaSensorDTOS) {
+            if(sensorDTO.getParentGeoArea().equals(chosenGeoAreaId)){
+                sensorDTOS.add(sensorDTO);
+            }
+        }
+        return sensorDTOS;
+    }
 
 
 }

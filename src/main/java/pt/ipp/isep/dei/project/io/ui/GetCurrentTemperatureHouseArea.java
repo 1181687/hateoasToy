@@ -22,12 +22,12 @@ public class GetCurrentTemperatureHouseArea {
      * RUN!
      */
     public void run() {
-        if (Objects.isNull(controller.getCurrentTemperature())) {
+     /*   if (Objects.isNull(controller.getCurrentTemperature())) {
             System.out.println("There are no " + controller.getTypeTemperature() + " sensors with valid measurements in the house area.");
         } else {
             System.out.println("The most recent [valid] reading available in the house area for "
                     + controller.getTypeTemperature() + " is " + controller.getCurrentTemperature().keySet() + " on "
                     + controller.getCurrentTemperature().values() + ".\n");
-        }
+        }*/
     }
 }

@@ -73,10 +73,10 @@ public class GeoAreaAggregateService {
      * @param id Id of the sensor.
      * @return List of GeoAreaReading.
      */
-    public List<GeoAreaReading> getGeoAreaReadingsBySensorId(GeoAreaSensorId id) {
+ /*   public List<GeoAreaReading> getGeoAreaReadingsBySensorId(GeoAreaSensorId id) {
         return geoAreaAggregateRepo.findByGeoAreaReadingId_GeoAreaSensorId(id);
     }
-
+*/
     /**
      * Method that returns the list of sensors of a given type.
      *
@@ -95,7 +95,7 @@ public class GeoAreaAggregateService {
      * @param id Id of the sensor.
      * @return Most recent (valid) GeoAreaReading.
      */
-    public GeoAreaReading getMostRecentValidReading(GeoAreaSensorId id) {
+/*    public GeoAreaReading getMostRecentValidReading(GeoAreaSensorId id) {
         List<GeoAreaReading> readings = getGeoAreaReadingsBySensorId(id);
         GeoAreaReading mostRecentReading = null;
         for (GeoAreaReading reading : readings) {
@@ -105,7 +105,7 @@ public class GeoAreaAggregateService {
             }
         }
         return mostRecentReading;
-    }
+    }*/
 
     /**
      * Method that returns the list with the nearest sensors to a given location.
@@ -140,7 +140,7 @@ public class GeoAreaAggregateService {
      * @param typeId   Type of sensor to search for.
      * @return Map with the date time and the value of the latest [valid] reading.
      */
-    public HashMap<LocalDateTime, Double> getLatestMeasurementByTypeAndLocation(Location location, SensorTypeId typeId) {
+/*    public HashMap<LocalDateTime, Double> getLatestMeasurementByTypeAndLocation(Location location, SensorTypeId typeId) {
         HashMap<LocalDateTime, Double> map = new HashMap<>();
         GeoAreaReading latestGeoAreaReading = null;
         List<GeoAreaSensor> geoAreaSensorsOfType = getGeoAreasByType(typeId);
@@ -159,16 +159,16 @@ public class GeoAreaAggregateService {
             map.put(latestGeoAreaReading.getDateTime(), latestGeoAreaReading.getValue());
         }
         return map;
-    }
+    }*/
 
-    /**
+/*    *//**
      * Method that returns the list of sensors of a given type that have readings in a specific date.
      *
      * @param typeId Id of the sensor type.
      * @param startDate Given start date.
      * @param endDate Given end date.
      * @return List of sensors with readings in the specific date.
-     */
+     *//*
     public List<GeoAreaSensor> getSensorsWithReadingsInAPeriodByType(SensorTypeId typeId, LocalDate startDate, LocalDate endDate) {
         List<GeoAreaSensor> result = new ArrayList<>();
         for (GeoAreaSensor sensor : getGeoAreasByType(typeId)) {
@@ -180,13 +180,13 @@ public class GeoAreaAggregateService {
         return result;
     }
 
-    /**
+    *//**
      * Method that returns the latest reading of a sensor in a specific period (for example, a day, a week, a month).
      * @param geoAreaSensorId Id of the sensor.
      * @param startDate Given start date.
      * @param endDate Given end date.
      * @return Latest reading in the period.
-     */
+     *//*
     public GeoAreaReading getLatestMeasurementInAPeriod(GeoAreaSensorId geoAreaSensorId, LocalDate startDate, LocalDate endDate) {
         GeoAreaReading latestReading = null;
         List<GeoAreaReading> readings = geoAreaAggregateRepo.
@@ -197,7 +197,7 @@ public class GeoAreaAggregateService {
             }
         }
         return latestReading;
-    }
+    }*/
 
     /**
      * Method that returns the total daily measurement value of a type of sensor, having in consideration the distance
@@ -209,7 +209,7 @@ public class GeoAreaAggregateService {
      * @param day Given date.
      * @return Total daily reading value.
      */
-    public Double getTotalDailyMeasurement(Location location, SensorTypeId typeId, LocalDate day) {
+/*    public Double getTotalDailyMeasurement(Location location, SensorTypeId typeId, LocalDate day) {
         GeoAreaReading latestGeoAreaReading = null;
         List<GeoAreaSensor> geoAreaSensors = getSensorsWithReadingsInAPeriodByType(typeId, day, day);
         if (!geoAreaSensors.isEmpty()) {
@@ -226,7 +226,7 @@ public class GeoAreaAggregateService {
             return Double.NaN;
         }
         return latestGeoAreaReading.getValue();
-    }
+    }*/
 
     /**
      * **

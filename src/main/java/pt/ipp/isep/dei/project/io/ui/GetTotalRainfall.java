@@ -23,12 +23,12 @@ public class GetTotalRainfall {
      * RUN!
      */
     public void run() {
-        String label = "Please insert the date when you want to get the total rainfall (yyyy-MM-dd):";
+       /* String label = "Please insert the date when you want to get the total rainfall (yyyy-MM-dd):";
         LocalDate date = InputValidator.getStringDate(label);
         if (!(Double.isNaN(controller.getTotalRainfallInTheHouseAreaInTheSelectedDay(date)))) {
             System.out.println("The total rainfall in the house Area " + date + " is " + controller.getTotalRainfallInTheHouseAreaInTheSelectedDay(date) + "l/m2");
         } else {
             System.out.println("There's no registers for this day.");
-        }
+        }*/
     }
 }
