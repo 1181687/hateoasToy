@@ -216,7 +216,7 @@ public class JSONReaderGeoAreasSensors implements ProjectFileReader {
                     String sensorUnits = sensor.get("units").getAsString();
 
                     //Reads sensor Location
-                    JsonObject locationSensor = object.get("location").getAsJsonObject();
+                    JsonObject locationSensor = sensor1.get("location").getAsJsonObject();
 
                     LocationDTO sensorLocation = locationParser(locationSensor);
 

@@ -6,6 +6,15 @@ import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 
 import java.util.List;
+import pt.ipp.isep.dei.project.model.house.Room;
+import pt.ipp.isep.dei.project.model.house.RoomId;
+import pt.ipp.isep.dei.project.model.readings.RoomReading;
+import pt.ipp.isep.dei.project.model.readings.RoomReadingId;
+import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
+import pt.ipp.isep.dei.project.model.sensor.RoomSensorId;
+import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
+
+import java.util.List;
 
 @Service
 public class RoomAggregateRepository {
@@ -30,4 +39,54 @@ public class RoomAggregateRepository {
         return roomRepository.findAllByHouseGridIdEquals(houseGridId);
     }
 
+    /**
+     * Get method.
+     *
+     * @return RoomSensorReadingsRepository.
+     */
+    public RoomSensorReadingsRepository getRoomReadingRepo() {
+        return roomReadingRepository;
+    }
+
+    /**
+     * method that get RoomSensor of a given type for a given room
+     *
+     * @param roomId       room name
+     * @param sensorTypeId sensor type
+     * @return roomSensor
+     */
+    public RoomSensor findByRoomIdAndSensorTypeId(RoomId roomId, SensorTypeId sensorTypeId) {
+        return roomSensorRepository.findByRoomIdAndSensorTypeId(roomId, sensorTypeId);
+    }
+
+    /**
+     * method that get the list of readings of a given room sensor
+     *
+     * @param roomSensorId id of the room sensor
+     * @return List<RoomReading>
+     */
+    public List<RoomReading> findByRoomReadingIdAndRoomSensorId(RoomSensorId roomSensorId) {
+        return roomReadingRepository.findByRoomReadingId_RoomSensorId(roomSensorId);
+    }
+
+    /**
+     * Method that returns all the rooms in the repo.
+     *
+     * @return List of Room.
+     */
+    public Iterable<Room> findAllRooms() {
+        return this.roomRepository.findAll();
+    }
+
+    public RoomSensor getRoomById(RoomSensorId roomSensorId){
+        return this.roomSensorRepository.findById(roomSensorId).orElse(null);
+    }
+
+    public boolean isReadingDuplicated(RoomReadingId roomReadingId) {
+        return this.roomReadingRepository.existsById(roomReadingId);
+    }
+
+    public void saveReading(RoomReading roomReading){
+        this.roomReadingRepository.save(roomReading);
+    }
 }

@@ -73,17 +73,17 @@ public class GeoAreaAggregateService {
      * @param id Id of the sensor.
      * @return List of GeoAreaReading.
      */
-    public List<GeoAreaReading> getGeoAreaReadingsBySensorId(GeoAreaSensorId id) {
+ /*   public List<GeoAreaReading> getGeoAreaReadingsBySensorId(GeoAreaSensorId id) {
         return geoAreaAggregateRepo.findByGeoAreaReadingId_GeoAreaSensorId(id);
     }
-
+*/
     /**
      * Method that returns the list of sensors of a given type.
      *
      * @param id Id of the sensor type..
      * @return List of GeoAreaSensor.
      */
-    private List<GeoAreaSensor> getGeoAreasByType(SensorTypeId id) {
+    private List<GeoAreaSensor> getGeoAreaSensorByType(SensorTypeId id) {
         return geoAreaAggregateRepo.findBySensorTypeId(id);
     }
 
@@ -95,7 +95,7 @@ public class GeoAreaAggregateService {
      * @param id Id of the sensor.
      * @return Most recent (valid) GeoAreaReading.
      */
-    public GeoAreaReading getMostRecentValidReading(GeoAreaSensorId id) {
+/*    public GeoAreaReading getMostRecentValidReading(GeoAreaSensorId id) {
         List<GeoAreaReading> readings = getGeoAreaReadingsBySensorId(id);
         GeoAreaReading mostRecentReading = null;
         for (GeoAreaReading reading : readings) {
@@ -105,7 +105,7 @@ public class GeoAreaAggregateService {
             }
         }
         return mostRecentReading;
-    }
+    }*/
 
     /**
      * Method that returns the list with the nearest sensors to a given location.
@@ -140,10 +140,18 @@ public class GeoAreaAggregateService {
      * @param typeId   Type of sensor to search for.
      * @return Map with the date time and the value of the latest [valid] reading.
      */
-    public HashMap<LocalDateTime, Double> getLatestMeasurementByTypeAndLocation(Location location, SensorTypeId typeId) {
+/*    public HashMap<LocalDateTime, Double> getLatestMeasurementByTypeAndLocation(Location location, SensorTypeId typeId) {
         HashMap<LocalDateTime, Double> map = new HashMap<>();
+        GeoAreaReading latestGeoAreaReading = getLatestGeoAreaReading(location, typeId);
+        if (Objects.nonNull(latestGeoAreaReading)) {
+            map.put(latestGeoAreaReading.getDateTime(), latestGeoAreaReading.getValue());
+        }
+        return map;
+    }
+
+    public GeoAreaReading getLatestGeoAreaReading (Location location, SensorTypeId typeId) {
         GeoAreaReading latestGeoAreaReading = null;
-        List<GeoAreaSensor> geoAreaSensorsOfType = getGeoAreasByType(typeId);
+        List<GeoAreaSensor> geoAreaSensorsOfType = getGeoAreaSensorByType(typeId);
         if (!geoAreaSensorsOfType.isEmpty()) {
             List<GeoAreaSensor> nearestSensors = getNearestSensorsToLocation(location, geoAreaSensorsOfType);
             for (GeoAreaSensor sensor : nearestSensors) {
@@ -155,47 +163,47 @@ public class GeoAreaAggregateService {
                 }
             }
         }
-        if (Objects.nonNull(latestGeoAreaReading)) {
-            map.put(latestGeoAreaReading.getDateTime(), latestGeoAreaReading.getValue());
-        }
-        return map;
+        return latestGeoAreaReading;
     }
+*/
 
-    /**
+/*    *//**
      * Method that returns the list of sensors of a given type that have readings in a specific date.
      *
      * @param typeId Id of the sensor type.
-     * @param date   Given date.
+     * @param startDate Given start date.
+     * @param endDate Given end date.
      * @return List of sensors with readings in the specific date.
-     */
-    public List<GeoAreaSensor> getSensorsWithReadingsInADayByType(SensorTypeId typeId, LocalDate date) {
+     *//*
+    public List<GeoAreaSensor> getSensorsWithReadingsInAPeriodByType(SensorTypeId typeId, LocalDate startDate, LocalDate endDate) {
         List<GeoAreaSensor> result = new ArrayList<>();
-        for (GeoAreaSensor sensor : getGeoAreasByType(typeId)) {
+        for (GeoAreaSensor sensor : getGeoAreaSensorByType(typeId)) {
             if (geoAreaAggregateRepo.
-                    existsGeoAreaReadingByDateTime_DateAndGeoAreaReadingId_GeoAreaSensorId(date, sensor.getId())) {
+                    existsByDateTime_DateBetweenAndGeoAreaReadingId_GeoAreaSensorId(startDate, endDate, sensor.getId())) {
                 result.add(sensor);
             }
         }
         return result;
     }
 
-    /**
-     * Method that returns the latest reading of a sensor in a specific day.
+    *//**
+     * Method that returns the latest reading of a sensor in a specific period (for example, a day, a week, a month).
      * @param geoAreaSensorId Id of the sensor.
-     * @param day Given date.
-     * @return Latest reading in the day.
-     */
-    public GeoAreaReading getLatestMeasurementInADay(GeoAreaSensorId geoAreaSensorId, LocalDate day) {
+     * @param startDate Given start date.
+     * @param endDate Given end date.
+     * @return Latest reading in the period.
+     *//*
+    public GeoAreaReading getLatestMeasurementInAPeriod(GeoAreaSensorId geoAreaSensorId, LocalDate startDate, LocalDate endDate) {
         GeoAreaReading latestReading = null;
         List<GeoAreaReading> readings = geoAreaAggregateRepo.
-                findByDateTime_DateAndGeoAreaReadingId_GeoAreaSensorId(day, geoAreaSensorId);
+                findByDateTime_DateBetweenAndGeoAreaReadingId_GeoAreaSensorId(startDate, endDate, geoAreaSensorId);
         for (GeoAreaReading reading : readings) {
             if (Objects.isNull(latestReading) || reading.getDateTime().isAfter(latestReading.getDateTime())) {
                 latestReading = reading;
             }
         }
         return latestReading;
-    }
+    }*/
 
     /**
      * Method that returns the total daily measurement value of a type of sensor, having in consideration the distance
@@ -207,13 +215,13 @@ public class GeoAreaAggregateService {
      * @param day Given date.
      * @return Total daily reading value.
      */
-    public Double getTotalDailyMeasurement(Location location, SensorTypeId typeId, LocalDate day) {
+/*    public Double getTotalDailyMeasurement(Location location, SensorTypeId typeId, LocalDate day) {
         GeoAreaReading latestGeoAreaReading = null;
-        List<GeoAreaSensor> geoAreaSensors = getSensorsWithReadingsInADayByType(typeId, day);
+        List<GeoAreaSensor> geoAreaSensors = getSensorsWithReadingsInAPeriodByType(typeId, day, day);
         if (!geoAreaSensors.isEmpty()) {
             List<GeoAreaSensor> nearestSensors = getNearestSensorsToLocation(location, geoAreaSensors);
             for (GeoAreaSensor sensor : nearestSensors) {
-                GeoAreaReading sensorsLatestReading = getLatestMeasurementInADay(sensor.getId(), day);
+                GeoAreaReading sensorsLatestReading = getLatestMeasurementInAPeriod(sensor.getId(), day, day);
                 if (Objects.isNull(latestGeoAreaReading)
                         || sensorsLatestReading.getDateTime().isAfter(latestGeoAreaReading.getDateTime())) {
                     latestGeoAreaReading = sensorsLatestReading;
@@ -224,7 +232,7 @@ public class GeoAreaAggregateService {
             return Double.NaN;
         }
         return latestGeoAreaReading.getValue();
-    }
+    }*/
 
     /**
      * **
@@ -259,6 +267,42 @@ public class GeoAreaAggregateService {
         }
         return geoAreaIdList;
     }
+
+
+
+    /**
+     * Method that returns the sensor, of a given type, that is closest to the given location and has the most recent
+     * reading
+     *
+     * @param typeId     sensor type
+     * @param location location of the house area
+     * @return
+     */
+    /*public GeoAreaSensor getNearestSensorWithMostRecentReading(SensorTypeId typeId, Location location) {
+        return getSensorById(getLatestGeoAreaReading(location, typeId).getSensorId());
+    }*/
+
+
+    /**
+     * Method that returns the last lowest maximum GeoAreaReading in a given period. It takes in consideration the readings
+     * of the nearest sensor of a given type that has the most recent reading. If there are no sensors available
+     * in the geographical area, the method return a null.
+     *
+     * @param location   location of the house area
+     * @param sensorTypeId the type of the sensor
+     * @param startDate  LocalDate of the beginning of the period
+     * @param endDate    LocalDate of the ending of the period
+     * @return
+     */
+    //GABIX
+    /*public GeoAreaReading getLastLowestMaximumReading(Location location, SensorTypeId sensorTypeId, LocalDate startDate, LocalDate endDate) {
+        GeoAreaSensor sensor = getNearestSensorWithMostRecentReading(sensorTypeId, location);
+        if (Objects.isNull(sensor)) {
+            return null;
+        }
+        List<GeoAreaReading> geoAreaReadings = sensor.getDailyMaxReadingsInAnInterval(startDate, endDate);
+        return sensor.getLastLowestReading(geoAreaReadings);
+    }*/
 
     /*
      *//**
@@ -344,7 +388,61 @@ public class GeoAreaAggregateService {
         return false;
     }
 
+    public List<GeoAreaSensor> getSensorsFromGeoArea(GeoAreaId geoAreaId){
+        return this.geoAreaAggregateRepo.findByGeoAreaId(geoAreaId);
+    }
+
+    public boolean removeSensor(GeoAreaSensor geoAreaSensor){
+        if(geoAreaAggregateRepo.doesSensorExist(geoAreaSensor.getId())){
+            geoAreaAggregateRepo.removeSensor(geoAreaSensor);
+            return true;
+        }
+        return false;
+    }
 
 
+    public List<GeoAreaSensor> getActiveSensors(){
+        return this.geoAreaAggregateRepo.getActiveSensors();
+    }
+    /*
+    public GeoAreaSensorService getSensorListByTypeInADay(SensorType type, LocalDate day) {
+        GeoAreaSensorService geoAreaSensorListByTypeInAGeoArea = getSensorsByType(type);
+        GeoAreaSensorService geoAreaSensorListByTypeInADay = new GeoAreaSensorService();
+        for (GeoAreaSensor sensor : geoAreaSensorListByTypeInAGeoArea.getListOfSensors()) {
+            if (sensor.checkMeasurementExistenceBetweenDates(day, day)) {
+                geoAreaSensorListByTypeInADay.addSensor(sensor);
+            }
+        }
+        return geoAreaSensorListByTypeInADay;
+    }
+    */
 
+    public boolean deactivateSensor(GeoAreaSensorId id){
+        return this.geoAreaAggregateRepo.deactivateSensorById(id);
+    }
+
+    /*
+    public Double getDailyAverageMeasurement(SensorType sensorType, Location location, LocalDate startDate, LocalDate endDate) {
+        List<Double> listOfDailyAverages = new ArrayList<>();
+        GeoAreaSensorService nearestSensorsWithRightTypeDuringPeriod = getSensorListByTypeInAPeriod(sensorType, startDate, endDate).getNearestSensorsToLocation(location);
+        if (nearestSensorsWithRightTypeDuringPeriod.isEmpty()) {
+            return listOfDailyAverages;
+        }
+        GeoAreaSensor nearestSensor = nearestSensorsWithRightTypeDuringPeriod.getSensorWithMostRecentReading(nearestSensorsWithRightTypeDuringPeriod);
+        for (LocalDate dateIterator = startDate; dateIterator.isBefore(endDate); dateIterator = dateIterator.plusDays(1)) {
+            double dailyAverage = getDailyAverageOfASensor(nearestSensor, dateIterator);
+            if (!Double.isNaN(dailyAverage)) {
+                listOfDailyAverages.add(getDailyAverageOfASensor(nearestSensor, dateIterator));
+            }
+        }
+        double sum = 0;
+        if (listOfDailyAverages.isEmpty()) {
+            return 0.0;
+        }
+        for (int i = 0; i < listOfDailyAverages.size(); i++) {
+            sum += listOfDailyAverages.get(i);
+        }
+        return sum / listOfDailyAverages.size();
+    }
+    */
 }
