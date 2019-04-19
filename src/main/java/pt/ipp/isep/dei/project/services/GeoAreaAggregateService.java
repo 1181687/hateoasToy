@@ -38,7 +38,7 @@ public class GeoAreaAggregateService {
      * Constructor.
      */
     public GeoAreaAggregateService() {
-        // empty
+        // Empty
     }
 
     /**

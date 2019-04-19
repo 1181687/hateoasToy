@@ -3,10 +3,7 @@ package pt.ipp.isep.dei.project.model.sensor;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaId;
 
-import javax.persistence.Embedded;
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -21,7 +18,12 @@ public class GeoAreaSensor {
     @Embedded
     private SensorTypeId sensorTypeId;
 
-    @Transient
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name="latitude", column=@Column(name="sensor_latitude")),
+            @AttributeOverride(name="longitude", column=@Column(name="sensor_longitude")),
+            @AttributeOverride(name="elevation", column=@Column(name="sensor_elevation"))
+    })
     private Location location;
 
     private String units;
@@ -30,6 +32,7 @@ public class GeoAreaSensor {
     private SensorState isActive;
 
     @Embedded
+    @JoinColumn(name = "geo_area_id")
     private GeoAreaId geoAreaId;
 
 

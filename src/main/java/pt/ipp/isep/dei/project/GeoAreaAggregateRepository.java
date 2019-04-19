@@ -1,6 +1,7 @@
 package pt.ipp.isep.dei.project;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaId;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaTypeId;
@@ -12,6 +13,7 @@ import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorId;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -29,8 +31,9 @@ public class GeoAreaAggregateRepository {
     /**
      * Constructor.
      */
+    @Autowired
     public GeoAreaAggregateRepository() {
-        // empty
+        // Empty
     }
 
     public List<GeographicalArea> findById_GeographicalAreaTypeId(GeoAreaTypeId geoAreaTypeId) {
@@ -87,7 +90,7 @@ public class GeoAreaAggregateRepository {
     }
 
     public List<GeoAreaReading> findByDateTime_DateBetweenAndGeoAreaReadingId_GeoAreaSensorId(LocalDate startDate, LocalDate endDate, GeoAreaSensorId geoAreaSensorId) {
-        return this.geoAreaReadingRepo.findByDateTime_DateBetweenAndGeoAreaReadingId_GeoAreaSensorId(startDate, endDate, geoAreaSensorId);
+        return this.geoAreaReadingRepo.findByDateTime_DateBetweenAndGeoAreaReadingId_GeoAreaSensorId(startDate, endDate, geoAreaSensorId) ;
     }
 
     public boolean existGeoAreaById(GeoAreaId id) {
