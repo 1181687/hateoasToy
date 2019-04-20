@@ -1,0 +1,78 @@
+@startuml
+skinparam sequenceMessageAlign center
+skinparam sequence {
+	ArrowColor Black
+	ActorBorderColor DarkBlue
+	LifeLineBorderColor black
+	LifeLineBackgroundColor LightGrey
+
+	ParticipantBorderColor Black
+	ParticipantBackgroundColor LightGrey
+	ParticipantFontStyle Bold
+
+	ActorBackgroundColor DimGrey
+	ActorFontColor DeepSkyBlue
+	ActorFontStyle Bold
+	ActorFontSize 17
+	ActorFontName Aapex
+}
+
+activate AdminUser
+actor AdminUser
+
+AdminUser -> "ui : RemoveSensor\nFromGeoAreaUI":1 - Remove sensor \nfrom geo area
+activate "ui : RemoveSensor\nFromGeoAreaUI"
+"ui : RemoveSensor\nFromGeoAreaUI" -> "controller : RemoveSensor\nFromGeoAreaController": 1.1 - getGeoAreas()
+activate "controller : RemoveSensor\nFromGeoAreaController"
+"controller : RemoveSensor\nFromGeoAreaController" -> "geoAreaList \n: GeographicalAreaList": 1.1.1 - getList()
+activate "geoAreaList \n: GeographicalAreaList"
+"geoAreaList \n: GeographicalAreaList" --> "controller : RemoveSensor\nFromGeoAreaController": 1.1.2 - geoAreaList
+deactivate "geoAreaList \n: GeographicalAreaList"
+"controller : RemoveSensor\nFromGeoAreaController" --> "ui : RemoveSensor\nFromGeoAreaUI": 1.2 - geoAreaList
+deactivate "controller : RemoveSensor\nFromGeoAreaController"
+"ui : RemoveSensor\nFromGeoAreaUI" -> "ui : RemoveSensor\nFromGeoAreaUI":  1.3 listToString(geoAreaList)
+"ui : RemoveSensor\nFromGeoAreaUI" --> AdminUser: 2 - Show list and ask to \nchoose one geo area
+deactivate "ui : RemoveSensor\nFromGeoAreaUI"
+AdminUser -> "ui : RemoveSensor\nFromGeoAreaUI": 3 - Geo area position
+activate "ui : RemoveSensor\nFromGeoAreaUI"
+"ui : RemoveSensor\nFromGeoAreaUI" -> "ui : RemoveSensor\nFromGeoAreaUI":  3.1 positionToId(position)
+"ui : RemoveSensor\nFromGeoAreaUI" -> "controller : RemoveSensor\nFromGeoAreaController": 3.2 - setGeoAreaById(id)
+deactivate "ui : RemoveSensor\nFromGeoAreaUI"
+activate "controller : RemoveSensor\nFromGeoAreaController"
+"controller : RemoveSensor\nFromGeoAreaController" -> "geoAreaList \n: GeographicalAreaList": 3.2.1 - getGeoAreaById(id)
+activate "geoAreaList \n: GeographicalAreaList"
+"geoAreaList \n: GeographicalAreaList" -> "geoAreaList \n: GeographicalAreaList": 3.2.1.1 - searchById(id)
+"geoAreaList \n: GeographicalAreaList" -> "controller : RemoveSensor\nFromGeoAreaController": 3.2.2 - geoArea
+deactivate "geoAreaList \n: GeographicalAreaList"
+deactivate "controller : RemoveSensor\nFromGeoAreaController"
+"ui : RemoveSensor\nFromGeoAreaUI" -> "controller : RemoveSensor\nFromGeoAreaController": 3.3. getSensorList()
+activate "ui : RemoveSensor\nFromGeoAreaUI"
+activate "controller : RemoveSensor\nFromGeoAreaController"
+"controller : RemoveSensor\nFromGeoAreaController" -> "geoArea \n: GeographicalArea": 3.3.1 - getSensorList()
+activate "geoArea \n: GeographicalArea"
+"geoArea \n: GeographicalArea" --> "controller : RemoveSensor\nFromGeoAreaController": 3.3.2 - geoAreaSensorService
+deactivate "geoArea \n: GeographicalArea"
+"controller : RemoveSensor\nFromGeoAreaController" --> "ui : RemoveSensor\nFromGeoAreaUI": 3.4 - geoAreaSensorService
+deactivate "controller : RemoveSensor\nFromGeoAreaController"
+"ui : RemoveSensor\nFromGeoAreaUI" -> "ui : RemoveSensor\nFromGeoAreaUI":  3.5 listToString(geoAreaSensorService)
+"ui : RemoveSensor\nFromGeoAreaUI" --> AdminUser: 4 - Show list and ask to \nchoose one sensor to remove
+deactivate "ui : RemoveSensor\nFromGeoAreaUI"
+AdminUser -> "ui : RemoveSensor\nFromGeoAreaUI": 5 - Sensor position
+activate "ui : RemoveSensor\nFromGeoAreaUI"
+"ui : RemoveSensor\nFromGeoAreaUI" -> "ui : RemoveSensor\nFromGeoAreaUI":  5.1 positionToId(position)
+"ui : RemoveSensor\nFromGeoAreaUI" -> "controller : RemoveSensor\nFromGeoAreaController": 5.2 - removeSensor(id)
+deactivate "ui : RemoveSensor\nFromGeoAreaUI"
+activate "controller : RemoveSensor\nFromGeoAreaController"
+"controller : RemoveSensor\nFromGeoAreaController" -> "geoArea \n: GeographicalArea": 5.2.1 - removeSensor(id)
+activate "geoArea \n: GeographicalArea"
+"geoArea \n: GeographicalArea" --> "controller : RemoveSensor\nFromGeoAreaController": 5.2.2 - feedback
+deactivate "geoArea \n: GeographicalArea"
+"controller : RemoveSensor\nFromGeoAreaController" --> "ui : RemoveSensor\nFromGeoAreaUI": 5.3 - feedback
+deactivate "controller : RemoveSensor\nFromGeoAreaController"
+activate "ui : RemoveSensor\nFromGeoAreaUI"
+"ui : RemoveSensor\nFromGeoAreaUI" --> AdminUser: 6 - Give feedback
+deactivate "ui : RemoveSensor\nFromGeoAreaUI"
+
+deactivate AdminUser
+
+@enduml

@@ -6,9 +6,6 @@ import pt.ipp.isep.dei.project.HouseGridRepository;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Service
 public class HouseGridService {
 
@@ -38,13 +35,6 @@ public class HouseGridService {
 
     public boolean isGridRepositoryEmpty() {
         return this.houseGridRepository.count() == 0;
-    }
-
-    public List<HouseGrid> getAllGrids() {
-        Iterable<HouseGrid> gridIterables = this.houseGridRepository.findAll();
-        List<HouseGrid> grids = new ArrayList<>();
-        gridIterables.forEach(grids::add);
-        return grids;
     }
 
     /**

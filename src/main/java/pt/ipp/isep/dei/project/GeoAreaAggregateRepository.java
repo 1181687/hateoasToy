@@ -99,6 +99,10 @@ public class GeoAreaAggregateRepository {
         this.geoAreaRepo.save(geoArea);
     }
 
+    public void removeSensor(GeoAreaSensor geoAreaSensor){
+        this.geoAreaSensorRepo.delete(geoAreaSensor);
+    }
+
     public List<GeoAreaSensor> getActiveSensors(){
         Iterable<GeoAreaSensor> sensors= this.geoAreaSensorRepo.findAll();
         List<GeoAreaSensor> activeSensors = new ArrayList<>();

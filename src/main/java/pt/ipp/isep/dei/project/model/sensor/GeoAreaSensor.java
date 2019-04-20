@@ -32,6 +32,7 @@ public class GeoAreaSensor {
     private SensorState isActive;
 
     @Embedded
+    @JoinColumn(name = "geo_area_id")
     private GeoAreaId geoAreaId;
 
 

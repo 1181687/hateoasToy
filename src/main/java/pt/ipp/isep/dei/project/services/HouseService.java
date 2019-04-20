@@ -72,7 +72,7 @@ public class HouseService {
     }
 
     public List<HouseGrid> getAllGrids() {
-        return this.houseGridService.getAllGrids();
+        return this.roomAggregateService.getAllGrids();
     }
 
     public List<Room> getRoomsOfAHouseGrid(HouseGridId houseGridId) {
@@ -83,15 +83,6 @@ public class HouseService {
         return roomService.detachRoomFromHouseGrid(roomId);
     }
 
-    /**
-     * Method that searches for a grid by its Id. If it exists in the repo, the grid is returned, if not, null is returned.
-     *
-     * @param id Id to be used.
-     * @return HouseGrid or null.
-     */
-    public HouseGrid getGridById(HouseGridId id) {
-        return houseGridService.getGridById(id);
-    }
 
     /*
     /**

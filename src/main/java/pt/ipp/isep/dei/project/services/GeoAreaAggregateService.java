@@ -270,15 +270,15 @@ public class GeoAreaAggregateService {
 
 
 
-/*    *//**
+    /**
      * Method that returns the sensor, of a given type, that is closest to the given location and has the most recent
      * reading
      *
      * @param typeId     sensor type
      * @param location location of the house area
      * @return
-     *//*
-    public GeoAreaSensor getNearestSensorWithMostRecentReading(SensorTypeId typeId, Location location) {
+     */
+    /*public GeoAreaSensor getNearestSensorWithMostRecentReading(SensorTypeId typeId, Location location) {
         return getSensorById(getLatestGeoAreaReading(location, typeId).getSensorId());
     }*/
 
@@ -383,6 +383,18 @@ public class GeoAreaAggregateService {
     public boolean addGeoAreaSensor(GeoAreaSensor geoAreaSensor) {
         if (!geoAreaAggregateRepo.doesSensorExist(geoAreaSensor.getId())) {
             geoAreaAggregateRepo.saveGeoAreaSensor(geoAreaSensor);
+            return true;
+        }
+        return false;
+    }
+
+    public List<GeoAreaSensor> getSensorsFromGeoArea(GeoAreaId geoAreaId){
+        return this.geoAreaAggregateRepo.findByGeoAreaId(geoAreaId);
+    }
+
+    public boolean removeSensor(GeoAreaSensor geoAreaSensor){
+        if(geoAreaAggregateRepo.doesSensorExist(geoAreaSensor.getId())){
+            geoAreaAggregateRepo.removeSensor(geoAreaSensor);
             return true;
         }
         return false;

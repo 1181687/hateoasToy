@@ -2,7 +2,8 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.importreadingscontroller.ImportGeoAreaReadingsController;
 import pt.ipp.isep.dei.project.controllers.importreadingscontroller.ImportRoomReadingsController;
-import pt.ipp.isep.dei.project.services.GeoAreaService;
+import pt.ipp.isep.dei.project.services.GeoAreaAggregateService;
+import pt.ipp.isep.dei.project.services.RoomAggregateService;
 import pt.ipp.isep.dei.project.services.RoomSensorService;
 
 import java.io.File;
@@ -17,11 +18,11 @@ public class ImportReadings {
     /**
      * Constructor.
      *
-     * @param geographicalAreaService
+     * @param geoAreaAggregateService
      */
-    public ImportReadings(GeoAreaService geographicalAreaService, RoomSensorService roomSensorService) {
-        geoAreaReadingsController = new ImportGeoAreaReadingsController(geographicalAreaService);
-        roomReadingsController = new ImportRoomReadingsController(roomSensorService);
+    public ImportReadings(GeoAreaAggregateService geoAreaAggregateService, RoomAggregateService roomAggregateService) {
+        geoAreaReadingsController = new ImportGeoAreaReadingsController(geoAreaAggregateService);
+        roomReadingsController = new ImportRoomReadingsController(roomAggregateService);
     }
 
 

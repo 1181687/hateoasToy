@@ -1,15 +1,13 @@
 package pt.ipp.isep.dei.project.controllers.importreadingscontroller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import pt.ipp.isep.dei.project.model.*;
-import pt.ipp.isep.dei.project.model.readings.*;
 import pt.ipp.isep.dei.project.model.ProjectFileReader;
 import pt.ipp.isep.dei.project.model.readings.GeoAreaReadingId;
 import pt.ipp.isep.dei.project.model.readings.ReadingDTO;
 import pt.ipp.isep.dei.project.model.readings.ReadingMapper;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorId;
-import pt.ipp.isep.dei.project.services.GeoAreaService;
+import pt.ipp.isep.dei.project.services.GeoAreaAggregateService;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.io.File;
@@ -32,7 +30,7 @@ public class ImportGeoAreaReadingsController {
     */
 
     @Autowired
-    private GeoAreaService geographicalAreaService;
+    private GeoAreaAggregateService geoAreaAggregateService;
     private GeoAreaSensor geoAreaSensor;
     private List<Object> readingDTOList;
     private int numberOfNotImportedReadings;
@@ -40,10 +38,10 @@ public class ImportGeoAreaReadingsController {
     /**
      * Constructor.
      *
-     * @param geographicalAreaService
+     * @param geoAreaAggregateService
      */
-    public ImportGeoAreaReadingsController(GeoAreaService geographicalAreaService) {
-        this.geographicalAreaService = geographicalAreaService;
+    public ImportGeoAreaReadingsController(GeoAreaAggregateService geoAreaAggregateService) {
+        this.geoAreaAggregateService = geoAreaAggregateService;
     }
 
     /**
@@ -82,21 +80,25 @@ public class ImportGeoAreaReadingsController {
         for (Object object : this.readingDTOList) {
             ReadingDTO reading = (ReadingDTO) object;
             GeoAreaSensorId geoAreaSensorId = new GeoAreaSensorId(reading.getId());
-            geoAreaSensor = geographicalAreaService.getSensorById(geoAreaSensorId);
+            geoAreaSensor = geoAreaAggregateService.getSensorById(geoAreaSensorId);
 
             if (readingValidations(reading)) {
                 continue;
             }
 
-            if (geographicalAreaService.addReading(ReadingMapper.mapToGeoAraReadingEntity(reading))) {
+            if (geoAreaAggregateService.addReading(ReadingMapper.mapToGeoAraReadingEntity(reading))) {
                 imported = true;
+            }
+            else {
+                numberOfNotImportedReadings++;
+                String invalidInfo = "sensor id: " + reading.getId() + ", timestamp/date: " + reading.getDateTime() + ", value: " + reading.getValue() + ".";
+                LOGGER.log(Level.WARNING, "GeoAreaReading was not imported because the following reading is duplicated: \n" + invalidInfo);
             }
         }
         return imported;
     }
 
     private boolean readingValidations(ReadingDTO reading) {
-        GeoAreaSensorId geoAreaSensorId = new GeoAreaSensorId(reading.getId());
         if (Objects.isNull(geoAreaSensor)) {
             numberOfNotImportedReadings++;
             String invalidInfo = "id: " + reading.getId() + ".";
@@ -113,12 +115,6 @@ public class ImportGeoAreaReadingsController {
             numberOfNotImportedReadings++;
             String invalidInfo = "id: " + reading.getId() + ", value: " + reading.getValue() + ", timestamp/date: " + reading.getDateTime() + ", unit: " + reading.getUnits() + ".";
             LOGGER.log(Level.WARNING, "GeoAreaReading not imported due to timestamp/date of reading being before starting date of sensor: " + invalidInfo);
-            return true;
-        }
-        if (geographicalAreaService.isReadingDuplicated(new GeoAreaReadingId(geoAreaSensorId, reading.getDateTime()))) {
-            numberOfNotImportedReadings++;
-            String invalidInfo = "sensor id: " + reading.getId() + ", timestamp/date: " + reading.getDateTime() + ", value: " + reading.getValue() + ".";
-            LOGGER.log(Level.WARNING, "GeoAreaReading was not imported because the following reading is duplicated: doesn't exist:\n" + invalidInfo);
             return true;
         }
         if (reading.getUnits().equals("F")) {
