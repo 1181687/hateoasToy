@@ -34,10 +34,6 @@ public class DeactivateSensorFromGeoArea {
                 return;
             }
             this.chosenGeoAreaId = this.geoAreas.get(chosenGeoArea);
-         /*   if (getListOfActiveSensors().isEmpty()) {
-                System.out.println("\nThere are no active Sensors in " + geographicalAreaDTO.getId());
-                continue;
-            }*/
             String label2 = printActiveSensorsInChosenGeoArea() + EXIT;
             int chosenSensor = InputValidator.getIntRange(label2, 0, this.geoAreaSensorDTOS.size()) - 1;
             if (chosenSensor == -1) {
@@ -82,13 +78,13 @@ public class DeactivateSensorFromGeoArea {
         if (this.geoAreaSensorDTOS.isEmpty()) {
             return ("There are no active Sensors in " + this.chosenGeoAreaId);
         }
-        System.out.println("Which sensor of " + this.chosenGeoAreaId + " do you want to deactivate:");
+        System.out.println("Which sensor of " + this.chosenGeoAreaId.getId() + " do you want to deactivate:");
         List<GeoAreaSensorDTO> sensors = getSensorsInChosenGeoArea();
         StringBuilder content = new StringBuilder();
         int iterator = 1;
         for (GeoAreaSensorDTO sensorDTO : sensors) {
-            content.append(iterator + " - " + sensorDTO.getId() + "\n");
-            iterator++;
+                content.append(iterator + " - " + sensorDTO.getId() + "\n");
+                iterator++;
         }
         return content.toString();
     }
@@ -98,8 +94,8 @@ public class DeactivateSensorFromGeoArea {
         if ("N".equalsIgnoreCase(confirmation)) {
             System.out.println("\nNo changes were made.\n");
         } else {
-            //sensorDTO.setActive(false);
             if (ctrl.deactivateSensor(sensorDTO)) {
+                this.geoAreaSensorDTOS = ctrl.listOfActiveSensorsDTOs();
                 System.out.println("The sensor is now deactivated.\n");
             } else {
                 System.out.println("It was not possible to deactivate " + sensorDTO.getId() + "\n");
