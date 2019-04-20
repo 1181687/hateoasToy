@@ -120,7 +120,6 @@ public class RoomAggregateService {
     public boolean isHouseGridListEmpty() {
         return this.houseGridAggregateService.numberOfHouseGridsInRepository();
     }
-    private RoomAggregateRepository roomAggregateRepo;
 
 
     /**
@@ -144,7 +143,7 @@ public class RoomAggregateService {
      * @return roomSensor
      */
     public RoomSensor getRoomSensorByRoomByType(RoomId roomId, SensorTypeId sensorTypeId) {
-        return this.roomAggregateRepo.findByRoomIdAndSensorTypeId(roomId, sensorTypeId);
+        return this.roomAggregateRepository.findByRoomIdAndSensorTypeId(roomId, sensorTypeId);
     }
 
     /**
@@ -154,7 +153,7 @@ public class RoomAggregateService {
      * @return List<RoomReading>
      */
     public List<RoomReading> getListOfRoomReadingByRoomSensorId(RoomSensorId roomSensorId) {
-        return this.roomAggregateRepo.findByRoomReadingIdAndRoomSensorId(roomSensorId);
+        return this.roomAggregateRepository.findByRoomReadingIdAndRoomSensorId(roomSensorId);
     }
 
     /**
@@ -184,25 +183,33 @@ public class RoomAggregateService {
      * @return List of Room.
      */
     public List<Room> getAllRooms() {
-        Iterable<Room> roomIterable = this.roomAggregateRepo.findAllRooms();
+        Iterable<Room> roomIterable = this.roomAggregateRepository.findAllRooms();
         List<Room> rooms = new ArrayList<>();
         roomIterable.forEach(rooms::add);
         return rooms;
     }
 
     public RoomSensor getSensorById(RoomSensorId roomSensorId){
-        return this.roomAggregateRepo.getRoomById(roomSensorId);
+        return this.roomAggregateRepository.getRoomById(roomSensorId);
     }
 
     public boolean isReadingDuplicated(RoomReadingId roomReadingId){
-        return this.roomAggregateRepo.isReadingDuplicated(roomReadingId);
+        return this.roomAggregateRepository.isReadingDuplicated(roomReadingId);
     }
 
     public boolean addReading(RoomReading roomReading){
         if (!isReadingDuplicated(roomReading.getRoomReadingId())) {
-            this.roomAggregateRepo.saveReading(roomReading);
+            this.roomAggregateRepository.saveReading(roomReading);
             return true;
         }
         return false;
+    }
+
+    public boolean addRoomSensor(RoomSensor sensor) {
+        return this.roomAggregateRepository.addRoomSensor(sensor);
+    }
+
+    public boolean roomExists(RoomId id){
+        return this.roomAggregateRepository.roomExists(id);
     }
 }

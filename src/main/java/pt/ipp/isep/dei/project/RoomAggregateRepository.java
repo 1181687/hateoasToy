@@ -86,4 +86,16 @@ public class RoomAggregateRepository {
     public void saveReading(RoomReading roomReading){
         this.roomReadingRepository.save(roomReading);
     }
+
+    public boolean addRoomSensor(RoomSensor sensor) {
+        if (!this.roomSensorRepository.existsById(sensor.getId())) {
+            this.roomSensorRepository.save(sensor);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean roomExists (RoomId id){
+        return roomRepository.existsById(id);
+    }
 }
