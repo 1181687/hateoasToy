@@ -78,6 +78,14 @@ public class RoomAggregateService {
         return getContentNameLocationOrderedByType(deviceList);
     }
 
+    public double getGridNominalPower(HouseGridId id){
+        List<Room> rooms = getRoomListByHouseGrid(id.getId());
+        double nominalPower=0;
+        for (Room room : rooms) {
+            nominalPower+=room.getNominalPower();
+        }
+        return nominalPower;
+    }
 
     public List<Room> getRoomListByHouseGrid(String id) {
         HouseGridId houseGridId = new HouseGridId(id);
@@ -194,7 +202,7 @@ public class RoomAggregateService {
     }
 
     public RoomSensor getSensorById(RoomSensorId roomSensorId){
-        return this.roomAggregateRepository.getRoomSensorById(roomSensorId);
+        return this.roomAggregateRepository.getSensorById(roomSensorId);
     }
 
     public boolean isReadingDuplicated(RoomReadingId roomReadingId){
@@ -217,8 +225,16 @@ public class RoomAggregateService {
         return this.roomAggregateRepository.roomExists(id);
     }
 
+    public boolean roomDeviceListIsEmpty(RoomId id){
+        return this.roomAggregateRepository.roomDeviceListIsEmpty(id);
+    }
+
+    public double getRoomNominalPower(RoomId id){
+        return this.roomAggregateRepository.findRoomById(id).getNominalPower();
+    }
+
     public Room getRoomById(RoomId roomId){
-        return this.roomAggregateRepository.getRoomById(roomId);
+        return this.roomAggregateRepository.findRoomById(roomId);
     }
 
     /**

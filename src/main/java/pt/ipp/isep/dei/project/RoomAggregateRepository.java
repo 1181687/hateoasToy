@@ -75,7 +75,7 @@ public class RoomAggregateRepository {
         return this.roomRepository.findAll();
     }
 
-    public RoomSensor getRoomSensorById(RoomSensorId roomSensorId){
+    public RoomSensor getSensorById(RoomSensorId roomSensorId){
         return this.roomSensorRepository.findById(roomSensorId).orElse(null);
     }
 
@@ -99,9 +99,17 @@ public class RoomAggregateRepository {
         return roomRepository.existsById(id);
     }
 
-    public Room getRoomById(RoomId roomId){
-        if (roomExists(roomId)){
-            roomRepository.findById(roomId);
+    public boolean roomDeviceListIsEmpty(RoomId id){
+        if(this.roomRepository.findById(id).isPresent()){
+            Room room =this.roomRepository.findById(id).get();
+            return room.isDeviceListEmpty();
+        }
+        return false;
+    }
+
+    public Room findRoomById(RoomId id){
+        if(this.roomRepository.findById(id).isPresent()){
+            return this.roomRepository.findById(id).get();
         }
         return null;
     }
