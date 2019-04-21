@@ -74,6 +74,14 @@ public class RoomAggregateService {
         return getContentNameLocationOrderedByType(deviceList);
     }
 
+    public double getGridNominalPower(HouseGridId id){
+        List<Room> rooms = getRoomListByHouseGrid(id.getId());
+        double nominalPower=0;
+        for (Room room : rooms) {
+            nominalPower+=room.getNominalPower();
+        }
+        return nominalPower;
+    }
 
     public List<Room> getRoomListByHouseGrid(String id) {
         HouseGridId houseGridId = new HouseGridId(id);
