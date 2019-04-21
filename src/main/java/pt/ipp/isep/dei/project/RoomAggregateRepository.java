@@ -75,7 +75,7 @@ public class RoomAggregateRepository {
         return this.roomRepository.findAll();
     }
 
-    public RoomSensor getRoomById(RoomSensorId roomSensorId){
+    public RoomSensor getRoomSensorById(RoomSensorId roomSensorId){
         return this.roomSensorRepository.findById(roomSensorId).orElse(null);
     }
 
@@ -97,5 +97,12 @@ public class RoomAggregateRepository {
 
     public boolean roomExists (RoomId id){
         return roomRepository.existsById(id);
+    }
+
+    public Room getRoomById(RoomId roomId){
+        if (roomExists(roomId)){
+            roomRepository.findById(roomId);
+        }
+        return null;
     }
 }

@@ -178,6 +178,9 @@ public class Main {
             DeactivateSensorFromGeoArea ui3 = new DeactivateSensorFromGeoArea(this.geoAreaAggregateService);
             ui3.run();*/
 
+            AddDeviceToRoom addDeviceToRoom = new AddDeviceToRoom(this.roomAggregateService);
+            addDeviceToRoom.run();
+
         };
     }
 /*
