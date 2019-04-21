@@ -3,8 +3,7 @@ package pt.ipp.isep.dei.project.controllers;
 import pt.ipp.isep.dei.project.model.Measurable;
 import pt.ipp.isep.dei.project.model.MeasurableList;
 import pt.ipp.isep.dei.project.model.devices.Device;
-import pt.ipp.isep.dei.project.model.house.House;
-import pt.ipp.isep.dei.project.model.house.Room;
+import pt.ipp.isep.dei.project.model.house.*;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridDTO;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
@@ -15,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GetNominalPowerController {
-    private House house;
     private Room chosenRoom;
     private HouseGrid selectedHouseGrid;
     private MeasurableList measurableList;
@@ -23,9 +21,8 @@ public class GetNominalPowerController {
     private RoomAggregateService roomAggregateService;
 
     public GetNominalPowerController(RoomAggregateService roomAggregateService) {
-        this.house = house;
         //this.measurableList = house.getNewMeasurableObjList();
-
+        this.roomAggregateService = roomAggregateService;
     }
 
     public List<HouseGridDTO> getAllGrids(){
@@ -49,23 +46,29 @@ public class GetNominalPowerController {
     public double getHouseGridTotalNominalPower(String gridId) {
         return this.roomAggregateService.getGridNominalPower(new HouseGridId(gridId));
     }
-/*
-    *//**
-     * method that returns the method isHouseGridListEmpty of the model class House
-     *
-     * @return true if housegrid grid list is empty or false if it is not empty
-     *//*
-    public boolean isGridListEmpty(){
-        return this.house.isHouseGridListEmpty();
+
+    public List<RoomDTO> getAllRooms(){
+        List<Room> rooms = this.roomAggregateService.getAllRooms();
+        List<RoomDTO> roomDTOS = new ArrayList<>();
+
+        if(!rooms.isEmpty()){
+            for (Room room : rooms) {
+                roomDTOS.add(RoomMapper.mapToDTO(room));
+            }
+        }
+        return roomDTOS;
     }
 
-    *//**
-     * method that returns the method getHouseGridListContent of the model class House
-     * @return housegrid grid list content
-     *//*
-    public String getHouseGridsListToString(){
-        return this.house.getHouseGridListToString();
+    public boolean roomDeviceListIsEmpty(String id){
+        return this.roomAggregateService.roomDeviceListIsEmpty(new RoomId(id));
     }
+
+    public double getRoomNominalPower(String id){
+        return this.roomAggregateService.getRoomNominalPower(new RoomId(id));
+    }
+
+/*
+
 
     *//**
      * method that returns the method getHouseGridListSize of the model class House

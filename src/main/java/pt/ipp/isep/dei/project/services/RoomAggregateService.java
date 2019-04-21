@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.RoomId;
 import pt.ipp.isep.dei.project.model.readings.RoomReading;
 import pt.ipp.isep.dei.project.model.readings.RoomReadingId;
@@ -20,8 +19,6 @@ import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensorId;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -198,7 +195,7 @@ public class RoomAggregateService {
     }
 
     public RoomSensor getSensorById(RoomSensorId roomSensorId){
-        return this.roomAggregateRepository.getRoomById(roomSensorId);
+        return this.roomAggregateRepository.getSensorById(roomSensorId);
     }
 
     public boolean isReadingDuplicated(RoomReadingId roomReadingId){
@@ -219,5 +216,13 @@ public class RoomAggregateService {
 
     public boolean roomExists(RoomId id){
         return this.roomAggregateRepository.roomExists(id);
+    }
+
+    public boolean roomDeviceListIsEmpty(RoomId id){
+        return this.roomAggregateRepository.roomDeviceListIsEmpty(id);
+    }
+
+    public double getRoomNominalPower(RoomId id){
+        return this.roomAggregateRepository.findRoomById(id).getNominalPower();
     }
 }

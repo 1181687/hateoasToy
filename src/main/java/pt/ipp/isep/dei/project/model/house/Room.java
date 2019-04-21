@@ -242,12 +242,7 @@ public RoomSensorService getSensorList() {
     }*/
 
 
-/**
- * Method that gets the latest measurement by type of sensor
- *
- * @param type type of sensor
- * @return latest measurement by sensor type
- */
+
 
 /*public RoomReading getLatestMeasurementBySensorType(SensorType type) {
     return new RoomReading(sensorList.getLatestMeasurementBySensorType(type).getValue(), sensorList.getLatestMeasurementBySensorType(type).getDateTime());
@@ -334,9 +329,9 @@ public RoomSensorService getSensorList() {
     /**
      * method that checks if Device List of the room is empty
      */
-    /*public boolean isDeviceListEmpty() {
+    public boolean isDeviceListEmpty() {
         return this.deviceList.isEmpty();
-    }*/
+    }
 
     /**
      * Method that adds a device to the list of devices if device not null
