@@ -35,7 +35,7 @@ public class Room implements Measurable {
     // private RoomSensorService sensorList;
 
     @Transient
-    private List<Device> deviceList;
+    private List<Device> deviceList = new ArrayList<>();
 
     /**
      * constructor that receives name, houseFloor, dimension
@@ -53,7 +53,7 @@ public class Room implements Measurable {
         this.description = description;
         this.houseFloor = houseFloor;
         this.dimension = dimension;
-        this.deviceList = new ArrayList<>();
+        //this.deviceList = new ArrayList<>();
     }
 
     protected Room() {

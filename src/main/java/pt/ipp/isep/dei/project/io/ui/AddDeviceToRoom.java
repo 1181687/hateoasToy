@@ -1,6 +1,7 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.AddDeviceToRoomController;
+import pt.ipp.isep.dei.project.model.devices.DeviceDTO;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.RoomDTO;
 import pt.ipp.isep.dei.project.model.house.RoomId;
@@ -14,10 +15,12 @@ public class AddDeviceToRoom {
     private AddDeviceToRoomController controller;
     private List<RoomDTO> roomDTOList;
     private RoomDTO selectedRoom;
+    private List<String> deviceTypes;
 
     public AddDeviceToRoom(RoomAggregateService roomAggregateService) {
         this.controller = new AddDeviceToRoomController(roomAggregateService);
         this.roomDTOList = controller.getRoomListContent();
+        this.deviceTypes = controller.getDeviceTypeListToString();
     }
 
     public void run() {
@@ -27,7 +30,7 @@ public class AddDeviceToRoom {
             //SELECT A ROOM
             String exit = "\r0 - Exit";
             if (roomDTOList.size() != 0) {
-                String label2 = "Please choose a room to attach a new device: \n" + roomDTOList + exit;
+                String label2 = "Please choose a room to attach a new device: \n" + getRoomDTOListToString() + exit;
                 indexSelectedRoom = InputValidator.getIntRange(label2, 0, roomDTOList.size()) - 1;
                 if (indexSelectedRoom == -1) {
                     return;
@@ -38,113 +41,143 @@ public class AddDeviceToRoom {
                 System.out.println("There are no rooms available. Please create one\n");
             }
             //SELECT A DEVICE TYPE
-            String label0 = "Please select the Device Type: \n" + controller.getDeviceTypeListToString() + "\r0 - Exit";
-            int selectedType = InputValidator.getIntRange(label0, 0, controller.getNumberOfDeviceTypes());
-            if (selectedType == 0) {
+            String label0 = "Please select the Device Type: \n" + getDeviceTypeListToString() + "\r0 - Exit";
+            int selectedType = InputValidator.getIntRange(label0, 0, controller.getNumberOfDeviceTypes())-1;
+            if (selectedType == -1) {
                 continue;
             }
             //CREATE A DEVICE
-            createDevice(selectedType);
+            String selectedDeviceType = deviceTypes.get(selectedType);
+            createDevice(selectedDeviceType);
             flag = false;
         }
         //SHOW DEVICE LIST IN THE ROOM - Y/N?
         showUpdatedDeviceListOfRoom(selectedRoom);
     }
 
-    private void createDevice(int selectedType) {
+    private String getRoomDTOListToString() {
+        List<RoomDTO> getRoomListDTO = roomDTOList;
+        StringBuilder content = new StringBuilder();
+        int listOrderByNumber = 1;
+        for (RoomDTO roomDTO : getRoomListDTO) {
+            content.append(listOrderByNumber);
+            content.append(" - Id: ");
+            content.append(roomDTO.getId());
+            content.append(", Description: ");
+            content.append(roomDTO.getDescription()+"\n");
+            listOrderByNumber++;
+        }
+        return content.toString();
+    }
 
-        int option = selectedType;
+    private String getDeviceTypeListToString(){
+        StringBuilder content = new StringBuilder();
+        int listOrderByNumber = 1;
+        for (String type : deviceTypes) {
+            content.append(listOrderByNumber);
+            content.append(" - ");
+            content.append(type+"\n");
+            listOrderByNumber++;
+        }
+        return content.toString();
+    }
 
-        while (option != 0) {
+    private void createDevice(String selectedType) {
+
+        String option = selectedType;
+
+        String exit = "Exit";
+
+        while (!option.equals(exit)) {
             switch (option) {
-                case 1:
+                case "Fridge":
                     //CREATION OF A FRIGDE
                     creationOfFridge();
-                    option = 0;
+                    option = exit;
 
                     break;
 
-                case 2:
+                case "Lamp":
                     //CREATION OF A LAMP
                     creationOfLamp();
-                    option = 0;
+                    option = exit;
 
                     break;
 
-                case 3:
+                case "DishWasher":
                     //CREATION OF A DISH WASHER
                     creationOfDishWasher();
-                    option = 0;
+                    option = exit;
 
                     break;
-                case 4:
+                case "WashingMachine":
                     //CREATION OF A WASHING MACHINE
                     creationOfWashingMachine();
 
-                    option = 0;
+                    option = exit;
                     break;
-                case 5:
+                case "ElectricWaterHeater":
                     //CREATION OF A ELECTRIC WATER HEATER
                     creationOfElectricWaterHeater();
 
-                    option = 0;
+                    option = exit;
                     break;
-                case 6:
+                case "Kettle":
                     //CREATION OF A WATER KETTLE
                     creationOfKettle();
 
-                    option = 0;
+                    option = exit;
                     break;
-                case 7:
+                case "ElectricOven":
                     //CREATION OF A ELECTRIC OVEN
                     creationOfElectricOven();
 
-                    option = 0;
+                    option = exit;
                     break;
-                case 8:
+                case "Freezer":
                     //CREATION OF A FREEZER
                     creationOfFreezer();
 
-                    option = 0;
+                    option = exit;
                     break;
-                case 9:
+                case "MicrowaveOven":
                     //CREATION OF A MICROWAVE OVEN
                     creationOfMicrowaveOven();
 
-                    option = 0;
+                    option = exit;
                     break;
-                case 10:
+                case "Stove":
                     //CREATION OF A STOVE
                     creationOfStove();
 
-                    option = 0;
+                    option = exit;
                     break;
-                case 11:
+                case "Fan":
                     //CREATION OF A FAN
                     creationOfFan();
 
-                    option = 0;
+                    option = exit;
                     break;
-                case 12:
+                case "Television":
                     //CREATION OF A TELEVISION
                     creationOfTelevision();
 
-                    option = 0;
+                    option = exit;
                     break;
-                case 13:
+                case "WallTowelHeater":
                     //CREATION OF A WALL TOWEL HEATER
                     creationOfWallTowelHeater();
 
-                    option = 0;
+                    option = exit;
                     break;
-                case 14:
+                case "WineCooler":
                     //CREATION OF A WINE COOLER
                     creationOfWineCooler();
 
-                    option = 0;
+                    option = exit;
                     break;
                 default:
-                    System.out.println("Invalid option. Please choose a number between 1 and 5.");
+                    System.out.println("Invalid option.");
             }
         }
     }
@@ -411,7 +444,19 @@ public class AddDeviceToRoom {
         String label = "Do you want to see the list of devices of the selected Room? (Y/N)";
         String answer = InputValidator.confirmValidation(label);
         if ("y".equals(answer) || "Y".equals(answer)) {
-            System.out.println(controller.getDeviceListContentOfARoom(selectedRoom.getId()));
+            System.out.println(getDeviceListOfRoom(controller.getDeviceListContentOfARoom(selectedRoom.getId())));
         }
+    }
+
+    private String getDeviceListOfRoom(List<DeviceDTO> deviceDTOS){
+        StringBuilder content = new StringBuilder();
+        int listOrderByNumber = 1;
+        for (DeviceDTO deviceDTO : deviceDTOS) {
+            content.append(listOrderByNumber);
+            content.append(" - ");
+            content.append(deviceDTO.getName()+ " - "+ deviceDTO.getDeviceType()+"\n");
+            listOrderByNumber++;
+        }
+        return content.toString();
     }
 }
