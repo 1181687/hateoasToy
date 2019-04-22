@@ -12,6 +12,7 @@ import pt.ipp.isep.dei.project.model.sensor.RoomSensorId;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class RoomAggregateRepository {
@@ -97,5 +98,17 @@ public class RoomAggregateRepository {
 
     public boolean roomExists (RoomId id){
         return roomRepository.existsById(id);
+    }
+
+    public boolean roomDeviceListIsEmpty(RoomId id){
+        Room room = this.roomRepository.findById(id).orElse(null);
+        if(Objects.nonNull(room)){
+            return room.isDeviceListEmpty();
+        }
+        return false;
+    }
+
+    public Room findRoomById(RoomId id){
+        return this.roomRepository.findById(id).orElse(null);
     }
 }
