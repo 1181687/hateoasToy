@@ -296,8 +296,8 @@ public class House {
      *
      * @param name
      */
-    /*public boolean isNameExistant(String name) {
-        return this.roomList.isNameExistant(name);
+    /*public boolean doesSensorExist(String name) {
+        return this.roomList.doesSensorExist(name);
     }*/
 
     /**
@@ -352,56 +352,6 @@ public class House {
         return roomList.isSensorListEmpty(position);
     }
 */
-
-    /**
-     * method that gets a List of all devices in a housegrid grid, by it position in a HouseGridList
-     *
-     * @param position position of the grid in the houseGridList
-     * @return List <Device>
-     */
-   /* public List<Device> getAllDevicesListByGridPosition(int position) {
-        return this.listHouseGrids.get(position).getAllDevicesList();
-    }*/
-
-    /**
-     * method that get the String content Name and Location of all devices in the list,
-     * grouped by device type.
-     *
-     * @return String with Device Name and Location grouped by Type.
-     */
-    /*public String getContentNameLocationOrderedByType(List<Device> deviceList) {
-        StringBuilder content = new StringBuilder();
-        Map<String, List<Device>> byDeviceType = deviceList.stream()
-                .collect(Collectors.groupingBy(Device::getType));
-
-
-        for (Map.Entry<String, List<Device>> entry : byDeviceType.entrySet()) {
-            content.append(entry.getKey());
-            content.append("\n");
-            for (Device dev : entry.getValue()) {
-
-                content.append("- Device Name: ");
-                content.append(dev.getName());
-                content.append(", Location: ");
-                content.append(dev.getLocation().getRoomId());
-                content.append(".\n");
-            }
-            content.append("\n");
-        }
-        return content.toString();
-    }*/
-
-    /**
-     * method that get the String content Name and Location of all devices in the list, of a given housegrid,
-     * and grouped by device type.
-     *
-     * @param positionHG integer number relative to position of the housegrid
-     * @return String with devices Names and Location grouped by Type.
-     */
-   /* public String getDeviceListContentNameTypeLocationByGrid(int positionHG) {
-        List<Device> deviceList = getAllDevicesListByGridPosition(positionHG);
-        return getContentNameLocationOrderedByType(deviceList);
-    }*/
 
     /**
      * Method that checks if the housegrid grid's list is empty.

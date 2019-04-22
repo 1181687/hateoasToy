@@ -18,4 +18,8 @@ public class GeoAreaTypeId implements Serializable {
     public String getGeoAreaTypeId() {
         return geoAreaTypeId;
     }
+
+    public void setGeoAreaTypeId(String geoAreaTypeId) {
+        this.geoAreaTypeId = geoAreaTypeId;
+    }
 }

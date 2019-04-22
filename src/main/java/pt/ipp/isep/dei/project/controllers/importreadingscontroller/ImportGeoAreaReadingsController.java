@@ -1,18 +1,13 @@
 package pt.ipp.isep.dei.project.controllers.importreadingscontroller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.model.ProjectFileReader;
 import pt.ipp.isep.dei.project.model.readings.GeoAreaReadingId;
 import pt.ipp.isep.dei.project.model.readings.ReadingDTO;
 import pt.ipp.isep.dei.project.model.readings.ReadingMapper;
-import pt.ipp.isep.dei.project.model.readings.RoomReadingId;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorId;
-import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
-import pt.ipp.isep.dei.project.model.sensor.RoomSensorId;
-import pt.ipp.isep.dei.project.services.GeoAreaSensorReadingsService;
-import pt.ipp.isep.dei.project.services.GeoAreaService;
-import pt.ipp.isep.dei.project.services.RoomSensorService;
+import pt.ipp.isep.dei.project.services.GeoAreaAggregateService;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.io.File;
@@ -35,17 +30,33 @@ public class ImportGeoAreaReadingsController {
     */
 
     @Autowired
-    private GeoAreaService geographicalAreaService;
+    private GeoAreaAggregateService geoAreaAggregateService;
     private GeoAreaSensor geoAreaSensor;
     private List<Object> readingDTOList;
     private int numberOfNotImportedReadings;
 
     /**
      * Constructor.
-     * @param geographicalAreaService
+     *
+     * @param geoAreaAggregateService
      */
-    public ImportGeoAreaReadingsController(GeoAreaService geographicalAreaService) {
-        this.geographicalAreaService = geographicalAreaService;
+    public ImportGeoAreaReadingsController(GeoAreaAggregateService geoAreaAggregateService) {
+        this.geoAreaAggregateService = geoAreaAggregateService;
+    }
+
+    /**
+     * Method that configures the log file, using a FileHandler object to send log information to the specified log file.
+     * The last line is responsible for not letting the information show up in the console.
+     */
+    private static void configLogFile() {
+        FileHandler fh;
+        try {
+            fh = new FileHandler("log/outputErrors.log");
+        } catch (IOException e) {
+            fh = null;
+        }
+        LOGGER.addHandler(fh);
+        LOGGER.setUseParentHandlers(false);
     }
 
     /**
@@ -69,34 +80,25 @@ public class ImportGeoAreaReadingsController {
         for (Object object : this.readingDTOList) {
             ReadingDTO reading = (ReadingDTO) object;
             GeoAreaSensorId geoAreaSensorId = new GeoAreaSensorId(reading.getId());
-            geoAreaSensor = geographicalAreaService.getSensorById(geoAreaSensorId);
+            geoAreaSensor = geoAreaAggregateService.getSensorById(geoAreaSensorId);
 
             if (readingValidations(reading)) {
                 continue;
             }
 
-            if (geographicalAreaService.addReading(ReadingMapper.mapToGeoAraReadingEntity(reading))) {
+            if (geoAreaAggregateService.addReading(ReadingMapper.mapToGeoAraReadingEntity(reading))) {
                 imported = true;
+            }
+            else {
+                numberOfNotImportedReadings++;
+                String invalidInfo = "sensor id: " + reading.getId() + ", timestamp/date: " + reading.getDateTime() + ", value: " + reading.getValue() + ".";
+                LOGGER.log(Level.WARNING, "GeoAreaReading was not imported because the following reading is duplicated: \n" + invalidInfo);
             }
         }
         return imported;
     }
 
-
     private boolean readingValidations(ReadingDTO reading) {
-        GeoAreaSensorId geoAreaSensorId = new GeoAreaSensorId(reading.getId());
-        if (isDateTimeBeforeStartingDate(geoAreaSensor.getStartingDate(), reading.getDateTime())) {
-            numberOfNotImportedReadings++;
-            String invalidInfo = "id: " + reading.getId() + ", value: " + reading.getValue() + ", timestamp/date: " + reading.getDateTime() + ", unit: " + reading.getUnits() + ".";
-            LOGGER.log(Level.WARNING, "GeoAreaReading not imported due to timestamp/date of reading being before starting date of sensor: " + invalidInfo);
-            return true;
-        }
-        if (geographicalAreaService.isReadingDuplicated(new GeoAreaReadingId(geoAreaSensorId, reading.getDateTime()))) {
-            numberOfNotImportedReadings++;
-            String invalidInfo = "sensor id: " + reading.getId() + ", timestamp/date: " + reading.getDateTime() + ", value: " + reading.getValue() + ".";
-            LOGGER.log(Level.WARNING, "GeoAreaReading was not imported because the following reading is duplicated: doesn't exist:\n" + invalidInfo);
-            return true;
-        }
         if (Objects.isNull(geoAreaSensor)) {
             numberOfNotImportedReadings++;
             String invalidInfo = "id: " + reading.getId() + ".";
@@ -107,6 +109,12 @@ public class ImportGeoAreaReadingsController {
             numberOfNotImportedReadings++;
             String invalidInfo = "id: " + reading.getId() + ", value: " + reading.getValue() + ", timestamp/date: " + reading.getDateTime() + ", unit: " + reading.getUnits() + ".";
             LOGGER.log(Level.WARNING, "GeoAreaReading not imported due to invalid timestamp/date " + invalidInfo);
+            return true;
+        }
+        if (isDateTimeBeforeStartingDate(geoAreaSensor.getStartingDate(), reading.getDateTime())) {
+            numberOfNotImportedReadings++;
+            String invalidInfo = "id: " + reading.getId() + ", value: " + reading.getValue() + ", timestamp/date: " + reading.getDateTime() + ", unit: " + reading.getUnits() + ".";
+            LOGGER.log(Level.WARNING, "GeoAreaReading not imported due to timestamp/date of reading being before starting date of sensor: " + invalidInfo);
             return true;
         }
         if (reading.getUnits().equals("F")) {
@@ -120,21 +128,6 @@ public class ImportGeoAreaReadingsController {
 
     public boolean isValidFormat(String fileName) {
         return fileName.endsWith(".csv") || fileName.endsWith(".json") || fileName.endsWith(".xml");
-    }
-
-    /**
-     * Method that configures the log file, using a FileHandler object to send log information to the specified log file.
-     * The last line is responsible for not letting the information show up in the console.
-     */
-    private static void configLogFile() {
-        FileHandler fh;
-        try {
-            fh = new FileHandler("log/outputErrors.log");
-        } catch (IOException e) {
-            fh = null;
-        }
-        LOGGER.addHandler(fh);
-        LOGGER.setUseParentHandlers(false);
     }
 
     public ProjectFileReader createReader(String path) {

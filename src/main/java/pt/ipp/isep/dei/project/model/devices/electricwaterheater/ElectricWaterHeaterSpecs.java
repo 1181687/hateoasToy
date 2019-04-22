@@ -163,6 +163,7 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
 
     /**
      * get method
+     *
      * @return list os specs of electric water heater
      */
     @Override
@@ -178,8 +179,9 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
 
     /**
      * get method
+     *
      * @param attributeName string name of the attribute
-     * @return  attribute
+     * @return attribute
      */
     @Override
     public Object getAttributeValue(String attributeName) {
@@ -201,7 +203,8 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
 
     /**
      * set method
-     * @param attributeName string name of the attribute
+     *
+     * @param attributeName  string name of the attribute
      * @param attributeValue value of the attribute
      * @return
      */
@@ -228,7 +231,7 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
                 }
                 return false;
             case ATTRIBUTE_NOMINAL_POWER:
-                if (attributeValue instanceof Number){
+                if (attributeValue instanceof Number) {
                     return setNominalPower(((Number) attributeValue).doubleValue());
                 }
                 return false;

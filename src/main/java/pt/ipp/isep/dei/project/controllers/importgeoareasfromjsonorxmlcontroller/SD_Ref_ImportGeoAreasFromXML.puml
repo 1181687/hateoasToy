@@ -1,0 +1,48 @@
+@startuml
+skinparam sequenceMessageAlign center
+skinparam sequence {
+	ArrowColor Black
+	ActorBorderColor DarkBlue
+	LifeLineBorderColor black
+	LifeLineBackgroundColor LightGrey
+
+	ParticipantBorderColor Black
+	ParticipantBackgroundColor LightGrey
+	ParticipantFontStyle Bold
+
+	ActorBackgroundColor DimGrey
+	ActorFontColor DeepSkyBlue
+	ActorFontStyle Bold
+	ActorFontSize 17
+	ActorFontName Aapex
+}
+autonumber
+loop getGeographicalArea
+activate ":XMLReader"
+":XMLReader" -> "LocationMapper": mapToDTO(latitude,longitude,altitude)
+activate "LocationMapper"
+"LocationMapper" --> ":XMLReader" : locationDTO
+deactivate "LocationMapper"
+":XMLReader" -> "GeographicalAreaMapper": mapToDTO(id,description,\ntype,width,length,locationDTO)
+activate "GeographicalAreaMapper"
+"GeographicalAreaMapper" -> ":GeographicalAreaDTO" : create
+activate ":GeographicalAreaDTO"
+":GeographicalAreaDTO" --> "GeographicalAreaMapper": geographicalAreaDTO
+deactivate ":GeographicalAreaDTO"
+"GeographicalAreaMapper" --> ":XMLReader" : geographicalAreaDTO
+deactivate "GeographicalAreaMapper"
+
+loop addSensorsToGeographicalArea
+":XMLReader" -> "LocationMapper": mapToDTO(latitude,longitude,altitude)
+activate "LocationMapper"
+"LocationMapper" --> ":XMLReader" : locationDTO
+deactivate "LocationMapper"
+":XMLReader" -> ":SensorDTO": newSensorDTO()
+activate ":SensorDTO"
+":SensorDTO" --> ":XMLReader" : sensorDTO
+deactivate ":SensorDTO"
+":XMLReader" -> ":GeographicalAreaDTO" : addSensorDTO
+
+end
+end
+@enduml

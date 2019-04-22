@@ -2,6 +2,9 @@ package pt.ipp.isep.dei.project.model.sensor;
 
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.LocationMapper;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaId;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaIdMapper;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapper;
 
 public final class GeoAreaSensorMapper {
 
@@ -24,17 +27,18 @@ public final class GeoAreaSensorMapper {
      * @param sensor GeoAreaSensor to be used.
      * @return GeoAreaSensorDTO.
      */
-    /*public static GeoAreaSensorDTO mapToDTO(GeoAreaSensor sensor) {
+    public static GeoAreaSensorDTO mapToDTO(GeoAreaSensor sensor) {
         GeoAreaSensorDTO sensorDTO = newSensorDTO();
-        sensorDTO.setId(sensor.getId());
+        sensorDTO.setId(sensor.getId().getSensorId());
         sensorDTO.setName(sensor.getSensorName());
         sensorDTO.setStartingDate(sensor.getStartingDate().toLocalDate());
-        sensorDTO.setSensorType(sensor.getSensorType().getSensorType());
+        sensorDTO.setSensorType(sensor.getSensorType().getSensorTypeId());
         sensorDTO.setLocation(LocationMapper.mapToDTO(sensor.getLocation()));
         sensorDTO.setUnits(sensor.getUnits());
         sensorDTO.setActive(sensor.isActive());
+        sensorDTO.setParentGeoArea(GeoAreaIdMapper.mapToDTO(sensor.getGeoAreaId()));
         return sensorDTO;
-    }*/
+    }
 
     /**
      * Method that turns a GeoAreaSensorDTO into a GeoAreaSensor.
@@ -42,11 +46,11 @@ public final class GeoAreaSensorMapper {
      * @param sensorDTO GeoAreaSensor to be used.
      * @return GeoAreaSensor with the required information.
      */
-   /* public static GeoAreaSensor mapToGeoAraReadingEntity(GeoAreaSensorDTO sensorDTO) {
-        SensorType sensorType = new SensorType(sensorDTO.getSensorType());
-        Location location = LocationMapper.mapToGeoAraReadingEntity(sensorDTO.getLocation());
-        GeoAreaSensor newSensor = new GeoAreaSensor(sensorDTO.getId(), sensorDTO.getName(), sensorDTO.getStartingDate().atStartOfDay(), sensorType, location, sensorDTO.getUnits());
-        //newSensor.deactivateDevice(sensorDTO.isActive());
-        return newSensor;
-    }*/
+    public static GeoAreaSensor mapToEntity(GeoAreaSensorDTO sensorDTO) {
+        Location sensorLocation = LocationMapper.mapToEntity(sensorDTO.getLocation());
+        GeoAreaId geoAreaId = GeographicalAreaMapper.mapGeoAreaIdToDTO(sensorDTO.getParentGeoArea());
+        GeoAreaSensorId geoAreaSensorId = new GeoAreaSensorId(sensorDTO.getId());
+        SensorTypeId sensorTypeId = new SensorTypeId(sensorDTO.getSensorType());
+        return new GeoAreaSensor(geoAreaSensorId,sensorDTO.getName(),sensorDTO.getStartingDate().atStartOfDay(),sensorTypeId,sensorLocation, sensorDTO.getUnits(),geoAreaId);
+    }
 }

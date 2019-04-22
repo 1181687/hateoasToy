@@ -3,10 +3,7 @@ package pt.ipp.isep.dei.project.model.sensor;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaId;
 
-import javax.persistence.Embedded;
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -21,15 +18,21 @@ public class GeoAreaSensor {
     @Embedded
     private SensorTypeId sensorTypeId;
 
-    @Transient
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name="latitude", column=@Column(name="sensor_latitude")),
+            @AttributeOverride(name="longitude", column=@Column(name="sensor_longitude")),
+            @AttributeOverride(name="elevation", column=@Column(name="sensor_elevation"))
+    })
     private Location location;
 
     private String units;
 
-    @Transient
-    private boolean isActive;
+    @Embedded
+    private SensorState isActive;
 
     @Embedded
+    @JoinColumn(name = "geo_area_id")
     private GeoAreaId geoAreaId;
 
 
@@ -41,14 +44,14 @@ public class GeoAreaSensor {
      * @param sensorTypeId   ID of the type of sensor
      * @param location     Location of the sensor
      */
-    public GeoAreaSensor(String id, String sensorName, LocalDateTime startingDate, SensorTypeId sensorTypeId, Location location, String units, GeoAreaId geoAreaId) {
-        this.id = new GeoAreaSensorId(id);
+    public GeoAreaSensor(GeoAreaSensorId id, String sensorName, LocalDateTime startingDate, SensorTypeId sensorTypeId, Location location, String units, GeoAreaId geoAreaId) {
+        this.id = id;
         this.sensorName = sensorName;
         this.startingDate = startingDate;
         this.sensorTypeId = sensorTypeId;
         this.location = location;
         this.units = units;
-        this.isActive = true;
+        this.isActive = new SensorState();
         this.geoAreaId = geoAreaId;
     }
 
@@ -60,14 +63,14 @@ public class GeoAreaSensor {
      * @param location   Location of the sensor
      */
 
-    public GeoAreaSensor(String id, String sensorName, SensorTypeId sensorTypeId, Location location, String units, GeoAreaId geoAreaId) {
-        this.id = new GeoAreaSensorId(id);
+    public GeoAreaSensor(GeoAreaSensorId id, String sensorName, SensorTypeId sensorTypeId, Location location, String units, GeoAreaId geoAreaId) {
+        this.id = id;
         this.sensorName = sensorName;
         this.startingDate = LocalDateTime.now();
         this.sensorTypeId = sensorTypeId;
         this.location = location;
         this.units = units;
-        this.isActive = true;
+        this.isActive = new SensorState();
         this.geoAreaId = geoAreaId;
     }
 
@@ -119,6 +122,10 @@ public class GeoAreaSensor {
         return startingDate;
     }
 
+    public void setStartingDate(LocalDateTime startingDate) {
+        this.startingDate = startingDate;
+    }
+
     /**
      * Get method
      *
@@ -138,7 +145,11 @@ public class GeoAreaSensor {
     }
 
     public boolean isActive() {
-        return isActive;
+        return isActive.isActive();
+    }
+
+    public GeoAreaId getGeoAreaId() {
+        return geoAreaId;
     }
 
     /**
@@ -149,9 +160,9 @@ public class GeoAreaSensor {
      * @return
      */
 
-    public boolean deactivateDevice() {
-        if (isActive) {
-            isActive = false;
+    public boolean deactivateSensor() {
+        if (isActive.isActive()) {
+            isActive.deactivateSensor();
             return true;
         }
         return false;

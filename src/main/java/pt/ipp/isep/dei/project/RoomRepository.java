@@ -10,4 +10,5 @@ import java.util.List;
 public interface RoomRepository extends CrudRepository<Room, RoomId> {
 
     List<Room> findAllByHouseGridIdEquals(HouseGridId houseGridId);
+
 }

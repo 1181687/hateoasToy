@@ -2,11 +2,13 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.importreadingscontroller.ImportGeoAreaReadingsController;
 import pt.ipp.isep.dei.project.controllers.importreadingscontroller.ImportRoomReadingsController;
-import pt.ipp.isep.dei.project.services.GeoAreaService;
+import pt.ipp.isep.dei.project.services.GeoAreaAggregateService;
+import pt.ipp.isep.dei.project.services.RoomAggregateService;
 import pt.ipp.isep.dei.project.services.RoomSensorService;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ImportReadings {
@@ -16,11 +18,11 @@ public class ImportReadings {
     /**
      * Constructor.
      *
-     * @param geographicalAreaService
+     * @param geoAreaAggregateService
      */
-    public ImportReadings(GeoAreaService geographicalAreaService, RoomSensorService roomSensorService) {
-        geoAreaReadingsController = new ImportGeoAreaReadingsController(geographicalAreaService);
-        roomReadingsController = new ImportRoomReadingsController(roomSensorService);
+    public ImportReadings(GeoAreaAggregateService geoAreaAggregateService, RoomAggregateService roomAggregateService) {
+        geoAreaReadingsController = new ImportGeoAreaReadingsController(geoAreaAggregateService);
+        roomReadingsController = new ImportRoomReadingsController(roomAggregateService);
     }
 
 
@@ -35,7 +37,14 @@ public class ImportReadings {
             System.out.println("\nERROR: There's no such file with that name.\n");
             return;
         }
-        List<Object> readings = geoAreaReadingsController.readFile(file, pathFile);
+        List<Object> readings = new ArrayList<>();
+        if (option==1){
+            readings = geoAreaReadingsController.readFile(file, pathFile);
+        }
+        if (option==2){
+            readings = roomReadingsController.readFile(file, pathFile);
+        }
+
         // Import confirmation
         if (readings.isEmpty()) {
             System.out.println("\nSorry! The file is empty.\n");

@@ -98,7 +98,7 @@ public class GeoAreaTypeService {
         return false;
     }
 
-    public List<GeographicalAreaType> getListOfGeoAreaTypes(){
+    public List<GeographicalAreaType> getListOfGeoAreaTypes() {
         Iterable<GeographicalAreaType> gridIterables = this.geoAreaTypeRepository.findAll();
         List<GeographicalAreaType> grids = new ArrayList<>();
         gridIterables.forEach(grids::add);

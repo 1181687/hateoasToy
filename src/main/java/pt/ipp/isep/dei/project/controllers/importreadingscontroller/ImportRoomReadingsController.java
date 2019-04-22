@@ -1,16 +1,13 @@
 package pt.ipp.isep.dei.project.controllers.importreadingscontroller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.model.ProjectFileReader;
 import pt.ipp.isep.dei.project.model.readings.ReadingDTO;
 import pt.ipp.isep.dei.project.model.readings.ReadingMapper;
 import pt.ipp.isep.dei.project.model.readings.RoomReadingId;
-import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
-import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorId;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensorId;
-import pt.ipp.isep.dei.project.services.GeoAreaSensorReadingsService;
-import pt.ipp.isep.dei.project.services.GeoAreaService;
+import pt.ipp.isep.dei.project.services.RoomAggregateService;
 import pt.ipp.isep.dei.project.services.RoomSensorService;
 import pt.ipp.isep.dei.project.utils.Utils;
 
@@ -35,84 +32,17 @@ public class ImportRoomReadingsController {
 
     private RoomSensor roomSensor;
     @Autowired
-    private RoomSensorService roomSensorService;
+    private RoomAggregateService roomAggregateService;
     private List<Object> readingDTOList;
     private int numberOfNotImportedReadings;
 
     /**
      * Constructor
-     * @param roomSensorService
+     *
+     * @param roomAggregateService
      */
-    public ImportRoomReadingsController(RoomSensorService roomSensorService) {
-        this.roomSensorService = roomSensorService;
-    }
-
-    /**
-     * Method that checks if a given date time is before the starting date of the sensor.
-     * @param startingDate
-     * @param readingTimestamp
-     * @return
-     */
-    public boolean isDateTimeBeforeStartingDate(LocalDateTime startingDate,LocalDateTime readingTimestamp) {
-        return readingTimestamp.isBefore(startingDate);
-    }
-
-    public int getNumberOfNotImportedReadings() {
-        return this.numberOfNotImportedReadings;
-    }
-
-    public boolean addReadingToRoomSensorById() {
-        configLogFile();
-        boolean imported = false;
-        for (Object object : this.readingDTOList) {
-            ReadingDTO reading = (ReadingDTO) object;
-            RoomSensorId roomSensorId = new RoomSensorId(reading.getId());
-            roomSensor = roomSensorService.getSensorById(roomSensorId);
-
-            if(readingValidations(reading)){
-                continue;
-            }
-
-            if (roomSensorService.addReading(ReadingMapper.mapToRoomReadingEntity(reading))) {
-                imported = true;
-            }
-        }
-        return imported;
-    }
-
-    private boolean readingValidations(ReadingDTO reading) {
-        RoomSensorId roomSensorId = new RoomSensorId(reading.getId());
-        if (isDateTimeBeforeStartingDate(roomSensor.getStartingDate(),reading.getDateTime())) {
-            numberOfNotImportedReadings++;
-            String invalidInfo = "id: " + reading.getId() + ", value: " + reading.getValue() + ", timestamp/date: " + reading.getDateTime() + ", unit: " + reading.getUnits() + ".";
-            LOGGER.log(Level.WARNING, "Room reading was not imported due to timestamp/date of reading being before starting date of sensor: " + invalidInfo);
-            return true;
-        }
-        if (roomSensorService.isReadingDuplicated(new RoomReadingId(roomSensorId, reading.getDateTime()))) {
-            numberOfNotImportedReadings++;
-            String invalidInfo = "sensor id: " + roomSensor.getId() + ", timestamp/date: " + reading.getDateTime() + ", value: " + reading.getValue() + ".";
-            LOGGER.log(Level.WARNING, "Room reading was not imported because the following reading is duplicated: doesn't exist:\n" + invalidInfo);
-            return true;
-        }
-        if (Objects.isNull(roomSensor)) {
-            numberOfNotImportedReadings++;
-            String invalidInfo = "id: " + reading.getId() + ".";
-            LOGGER.log(Level.WARNING, "Room reading was not imported because the following sensor id doesn't exist: " + invalidInfo);
-            return true;
-        }
-        if (Objects.isNull(reading.getDateTime())) {
-            numberOfNotImportedReadings++;
-            String invalidInfo = "id: " + reading.getId() + ", value: " + reading.getValue() + ", timestamp/date: " + reading.getDateTime() + ", unit: " + reading.getUnits() + ".";
-            LOGGER.log(Level.WARNING, "Room reading not imported due to invalid timestamp/date " + invalidInfo);
-            return true;
-        }
-        if (reading.getUnits().equals("F")) {
-            double celsiusValue = Utils.convertFahrenheitToCelsius(reading.getValue());
-            reading.setValue(Utils.round(celsiusValue, 2));
-            reading.setUnits("C");
-            return false;
-        }
-        return false;
+    public ImportRoomReadingsController(RoomAggregateService roomAggregateService) {
+        this.roomAggregateService = roomAggregateService;
     }
 
     /**
@@ -128,5 +58,82 @@ public class ImportRoomReadingsController {
         }
         LOGGER.addHandler(fh);
         LOGGER.setUseParentHandlers(false);
+    }
+
+    /**
+     * Method that checks if a given date time is before the starting date of the sensor.
+     *
+     * @param startingDate
+     * @param readingTimestamp
+     * @return
+     */
+    public boolean isDateTimeBeforeStartingDate(LocalDateTime startingDate, LocalDateTime readingTimestamp) {
+        return readingTimestamp.isBefore(startingDate);
+    }
+
+    public int getNumberOfNotImportedReadings() {
+        return this.numberOfNotImportedReadings;
+    }
+
+    public boolean addReadingToRoomSensorById() {
+        configLogFile();
+        boolean imported = false;
+        for (Object object : this.readingDTOList) {
+            ReadingDTO reading = (ReadingDTO) object;
+            RoomSensorId roomSensorId = new RoomSensorId(reading.getId());
+            roomSensor = roomAggregateService.getSensorById(roomSensorId);
+
+            if (readingValidations(reading)) {
+                continue;
+            }
+
+            if (roomAggregateService.addReading(ReadingMapper.mapToRoomReadingEntity(reading))) {
+                imported = true;
+            }
+            else{
+                numberOfNotImportedReadings++;
+                String invalidInfo = "sensor id: " + reading.getId() + ", timestamp/date: " + reading.getDateTime() + ", value: " + reading.getValue() + ".";
+                LOGGER.log(Level.WARNING, "Room reading was not imported because the following reading is duplicated: \n" + invalidInfo);
+            }
+        }
+        return imported;
+    }
+
+    private boolean readingValidations(ReadingDTO reading) {
+        if (Objects.isNull(roomSensor)) {
+            numberOfNotImportedReadings++;
+            String invalidInfo = "id: " + reading.getId() + ".";
+            LOGGER.log(Level.WARNING, "Room reading was not imported because the following sensor id doesn't exist: " + invalidInfo);
+            return true;
+        }
+        if (Objects.isNull(reading.getDateTime())) {
+            numberOfNotImportedReadings++;
+            String invalidInfo = "id: " + reading.getId() + ", value: " + reading.getValue() + ", timestamp/date: " + reading.getDateTime() + ", unit: " + reading.getUnits() + ".";
+            LOGGER.log(Level.WARNING, "Room reading not imported due to invalid timestamp/date " + invalidInfo);
+            return true;
+        }
+        if (isDateTimeBeforeStartingDate(roomSensor.getStartingDate(), reading.getDateTime())) {
+            numberOfNotImportedReadings++;
+            String invalidInfo = "id: " + reading.getId() + ", value: " + reading.getValue() + ", timestamp/date: " + reading.getDateTime() + ", unit: " + reading.getUnits() + ".";
+            LOGGER.log(Level.WARNING, "Room reading was not imported due to timestamp/date of reading being before starting date of sensor: " + invalidInfo);
+            return true;
+        }
+        if (reading.getUnits().equals("F")) {
+            double celsiusValue = Utils.convertFahrenheitToCelsius(reading.getValue());
+            reading.setValue(Utils.round(celsiusValue, 2));
+            reading.setUnits("C");
+            return false;
+        }
+        return false;
+    }
+
+    public ProjectFileReader createReader(String path) {
+        return Utils.createReader(path);
+    }
+
+    public List<Object> readFile(File file, String path) throws FileNotFoundException {
+        ProjectFileReader fileReader = createReader(path);
+        readingDTOList = fileReader.readFile(file);
+        return readingDTOList;
     }
 }

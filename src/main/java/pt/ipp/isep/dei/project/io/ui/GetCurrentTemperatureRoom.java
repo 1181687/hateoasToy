@@ -1,10 +1,11 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.GetCurrentAndMaxTempRoomController;
-import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.RoomDTO;
-import pt.ipp.isep.dei.project.model.sensor.SensorType;
+import pt.ipp.isep.dei.project.services.RoomAggregateService;
 
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 
@@ -19,62 +20,86 @@ public class GetCurrentTemperatureRoom {
     private List<RoomDTO> roomDTOS;
 
     /**
-     * constructor that receives a House and a SensorType
-     *
-     * @param house          House
-     * @param sensorType   SensorType
+     * Constructor.
+     * @param roomAggregateService roomService to be used
      */
-/*
-    public GetCurrentTemperatureRoom(Room, SensorType sensorType) {
-        this.controller = new GetCurrentAndMaxTempRoomController(house, sensorType);
+    public GetCurrentTemperatureRoom(RoomAggregateService roomAggregateService) {
+        this.controller = new GetCurrentAndMaxTempRoomController(roomAggregateService);
+        this.roomDTOS = controller.getListRoomDTo();
     }
 
-    **
-     * outputs the latest temperature with date, of the room
+    /**
+     * outputs the latest value of temperature and its date, of the choosen room
      *
-     * @param roomName given String room name
+     * @param roomId given String room name
      * @param temp     given double temperature
-     * @param dateTime given string date and time
+     * @param localDateTime given localDateTime
      */
-
-/*
-    public void displayResults(String roomName, double temp, String dateTime) {
+    public void displayResults(String roomId, double temp, LocalDateTime localDateTime) {
         StringBuilder content = new StringBuilder();
         content.append("The latest temperature of the room ");
-        content.append(roomName);
+        content.append(roomId);
         content.append(" is ");
         content.append(temp);
         content.append(" Celsius, and was registered at ");
-        content.append(dateTime);
+        content.append(localDateTime.truncatedTo(ChronoUnit.SECONDS).toString());
         content.append(".\n");
         System.out.println(content.toString());
     }
 
     /**
-     * method that displays the rooms available to the user, so he can choose one
+     * method that list to string the rooms available, so he can choose one
      * to get the current temperature.
      */
+    public String getRoomListToString() {
+        StringBuilder list = new StringBuilder();
 
-/*
+        if (roomDTOS.isEmpty()) {
+            return "\nThere are no rooms in the house. Please create a new room.";
+        }
+        int listOrderByNumber = 1;
+        for (RoomDTO roomDTO : roomDTOS) {
+            list.append(listOrderByNumber);
+            list.append(" - Id: ");
+            list.append(roomDTO.getId());
+            list.append(", Description: ");
+            list.append(roomDTO.getDescription());
+            listOrderByNumber++;
+        }
+        return list.toString();
+    }
+
     public void run() {
 
-        if (controller.getRoomListContent().isEmpty()) {
-            System.out.println("There are no rooms available\n");
+        if (controller.isListofRoomEmpty()) {
+            System.out.println("There are no rooms available in the house.\n");
             return;
         }
-        System.out.println(controller.getRoomListContent());
+        System.out.println(this.getRoomListToString());
 
-        String label0 = "Choose the room you want to get the current temperature";
-        int option = InputValidator.getIntRange(label0, 1, controller.getRoomListSize());
-        String roomName = controller.getRoomNameByPos(option - 1);
-        Reading temp = controller.getLatestMeasurementByRoomName(roomName);
-
-        if (Objects.isNull(temp)) {
-            System.out.println("There are no temperature values available");
+        String label0 = "Choose the room you want to get the current temperature:";
+        int option = InputValidator.getIntRange(label0, 1, roomDTOS.size() - 1);
+        if (option == -1) {
             return;
         }
 
-        displayResults(roomName, temp.getValue(), temp.getDateTime().toString());
+        String roomId = roomDTOS.get(option).getId();
+        controller.newChoosenRoomId(roomId);
+
+        if (controller.isRoomWithoutTemperatureSensor()) {
+            System.out.println("There are no temperature sensor available in the choosen room.\n");
+            return;
+        }
+
+        controller.latestTemperatureReading();
+        double tempValue = controller.getvalue();
+        LocalDateTime localDateTime = controller.getLocalDateTime();
+
+        if (controller.isLatestTemperatureReadingNull()) {
+            System.out.println("There are no temperature values available.");
+            return;
+        }
+
+        displayResults(roomId, tempValue, localDateTime);
     }
-   */
 }

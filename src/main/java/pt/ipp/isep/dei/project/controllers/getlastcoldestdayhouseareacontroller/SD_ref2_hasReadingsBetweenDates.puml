@@ -1,0 +1,38 @@
+@startuml
+skinparam sequenceMessageAlign center
+skinparam sequence {
+    ArrowColor Black
+    ActorBorderColor DarkBlue
+    LifeLineBorderColor black
+    LifeLineBackgroundColor LightGrey
+
+    ParticipantBorderColor Black
+    ParticipantBackgroundColor LightGrey
+    ParticipantFontStyle Bold
+
+    ActorBackgroundColor DimGrey
+    ActorFontColor DeepSkyBlue
+    ActorFontStyle Bold
+    ActorFontSize 17
+    ActorFontName Aapex
+}
+
+activate ":GetLastColdestDay\nHouseAreaUI"
+":GetLastColdestDay\nHouseAreaUI" -> ":GetLastColdestDay\nHouseAreaController": 1-hasReadingsBetweenDates()
+activate ":GetLastColdestDay\nHouseAreaController"
+":GetLastColdestDay\nHouseAreaController" -> ":House": 1.1-hasReadingsBetweenDates()
+activate ":House"
+":House" -> ":GeographicalArea": 1.1.1-getNearestSensor\nWithTheMost\nRecentReading
+activate ":GeographicalArea"
+":GeographicalArea" --> ":House": 1.1.2-Sensor
+deactivate ":GeographicalArea"
+":House" -> ":Sensor": 1.2.1-checkMeasurement\nExistanceBetweenDates
+activate ":Sensor"
+":Sensor" --> ":GetLastColdestDay\nHouseAreaUI": 1.2.2-boolean
+deactivate ":Sensor"
+
+deactivate ":House"
+deactivate ":GetLastColdestDay\nHouseAreaController"
+deactivate ":GetLastColdestDay\nHouseAreaUI"
+
+@enduml

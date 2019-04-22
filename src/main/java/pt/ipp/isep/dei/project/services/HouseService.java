@@ -2,17 +2,16 @@ package pt.ipp.isep.dei.project.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.LocationDTO;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
+import pt.ipp.isep.dei.project.model.house.Address;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.RoomId;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceType;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
-import pt.ipp.isep.dei.project.services.HouseGridService;
-import pt.ipp.isep.dei.project.services.PowerSourceTypeService;
-import pt.ipp.isep.dei.project.services.RoomService;
-import pt.ipp.isep.dei.project.services.SensorTypeService;
 
 import java.util.List;
 
@@ -23,6 +22,9 @@ public class HouseService {
     private RoomService roomService;
 
     @Autowired
+    private RoomAggregateService roomAggregateService;
+
+    @Autowired
     private HouseGridService houseGridService;
 
     @Autowired
@@ -31,9 +33,29 @@ public class HouseService {
     @Autowired
     private SensorTypeService sensorTypeService;
 
+    private Address address;
+
+
+
     public void configureHouseLocation(LocationDTO locationDTO) {
 
 
+    }
+
+    public Address getAddress(){
+        return this.address;
+    }
+
+    public void setAddress(Address address){
+        this.address = address;
+    }
+
+    public Location getLocation(){
+        return this.address.getLocation();
+    }
+
+    public GeographicalArea getInsertedGeoArea(){
+        return this.address.getInsertedGeoArea();
     }
 
     /**
@@ -50,34 +72,26 @@ public class HouseService {
     }
 
     public List<HouseGrid> getAllGrids() {
-        return this.houseGridService.getAllGrids();
+        return this.roomAggregateService.getAllGrids();
     }
 
-    public List<Room> getRoomsOfAHouseGrid(HouseGridId houseGridId){
+    public List<Room> getRoomsOfAHouseGrid(HouseGridId houseGridId) {
         return roomService.getRoomsOfAHouseGrid(houseGridId);
     }
 
-    public boolean detachRoomFromHouseGrid(RoomId roomId){
+    public boolean detachRoomFromHouseGrid(RoomId roomId) {
         return roomService.detachRoomFromHouseGrid(roomId);
     }
 
-    /**
-     * Method that searches for a grid by its Id. If it exists in the repo, the grid is returned, if not, null is returned.
-     *
-     * @param id Id to be used.
-     * @return HouseGrid or null.
-     */
-    public HouseGrid getGridById(HouseGridId id) {
-        return houseGridService.getGridById(id);
-    }
 
+    /*
     /**
      * Method that returns all the rooms in the house repo.
      *
      * @return List of Room.
      */
     public List<Room> getAllRooms() {
-        return this.roomService.getAllRooms();
+        return this.roomAggregateService.getAllRooms();
     }
 
     /**
@@ -107,20 +121,22 @@ public class HouseService {
         return this.houseGridService.newPowerSource(powerSourceId, typeId, gridId);
     }
 
-    public boolean roomExists(String id){
+    public boolean roomExists(String id) {
         return this.roomService.isNameExistant(id);
     }
 
-    public boolean gridExists(String id){
+    public boolean gridExists(String id) {
         return this.houseGridService.gridExists(id);
     }
 
-    public boolean addGrid(String id){
+    public boolean addGrid(String id) {
         HouseGridId gridId = new HouseGridId(id);
-        return this.houseGridService.createHouseGrid(gridId);
+        return this.houseGridService.createHouseGrid(gridId.getId());
     }
 
-
+    public boolean addRoom(Room room) {
+        return this.roomService.addRoom(room);
+    }
 /*
     public boolean addRoomToHouseGrid(HouseGridId houseGridId, Room room) {
         if (houseGridRepository.existsById(houseGridId)) {
@@ -133,7 +149,7 @@ public class HouseService {
     }
 */
   /* public boolean addSensorToRoom(RoomSensor sensor, RoomId roomId){
-        Room room = getRoomById(roomId);
+        Room room = getSensorById(roomId);
         if(Objects.nonNull(room)){
             if(room.addSensorToListOfSensorsInRoom(sensor)){
                 this.roomRepository.save(room);
@@ -143,7 +159,7 @@ public class HouseService {
         return false;
     }*/
 
-/*    public Room getRoomById(RoomId roomId) {
+/*    public Room getSensorById(RoomId roomId) {
         if (this.roomRepository.findById(roomId).isPresent()) {
             return this.roomRepository.findById(roomId).get();
         }

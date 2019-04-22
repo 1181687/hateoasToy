@@ -3,16 +3,11 @@ package pt.ipp.isep.dei.project.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.RoomRepository;
-import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.RoomId;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
-import pt.ipp.isep.dei.project.model.readings.RoomReading;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
-import pt.ipp.isep.dei.project.model.sensor.RoomSensorId;
-import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -22,12 +17,13 @@ public class RoomService {
 
     @Autowired
     private RoomSensorService roomSensorService;
-/*
-    public boolean addRoom(String id, String description, int housefloor, double height, double length, double width) {
-        Dimension dimensions = new Dimension(height, length, width);
-        if (!roomRepository.existsById(new RoomId(id))) {
-            Room room = new Room(id, description, housefloor, dimensions);
-   */
+
+    /*
+        public boolean addRoom(String id, String description, int housefloor, double height, double length, double width) {
+            Dimension dimensions = new Dimension(height, length, width);
+            if (!roomRepository.existsById(new RoomId(id))) {
+                Room room = new Room(id, description, housefloor, dimensions);
+       */
     public boolean addRoom(Room room) {
         if (!roomRepository.existsById(room.getRoomId())) {
             roomRepository.save(room);
@@ -40,66 +36,11 @@ public class RoomService {
         return roomRepository.existsById(new RoomId(id));
     }
 
-    public boolean isRoomWithoutSensorByType(RoomId roomId, SensorTypeId sensorTypeId){
-        return this.roomSensorService.isRoomWithoutSensorByType(roomId, sensorTypeId);
-    }
-    /**
-     * method that get RoomSensor of a given type for a given room
-     * @param roomId room name
-     * @param sensorTypeId sensor type
-     * @return roomSensor
-     */
-    public RoomSensor getRoomSensorByRoomByType(RoomId roomId, SensorTypeId sensorTypeId) {
-        return this.roomSensorService.getRoomSensorByRoomByType(roomId, sensorTypeId);
-    }
 
-    public List<RoomReading> getListOfRoomReadingByRoomSensorId (RoomSensorId roomSensorId) {
-        return roomSensorService.getListOfRoomReadingByRoomSensorId(roomSensorId);
-    }
-
-    /**
-     * method that gets the latest temperature reading of a given roomSensor
-     * @param roomSensorId id of the sensor
-     * @return latest roomReading
-     */
-    public RoomReading getLatestTemperatureReading(RoomSensorId roomSensorId) {
-
-        List<RoomReading> roomReadings = this.getListOfRoomReadingByRoomSensorId(roomSensorId);
-        if (roomReadings.isEmpty()) {
-            return null;
-        }
-        RoomReading latestReading = roomReadings.get(0);
-        for (RoomReading reading : roomReadings) {
-            if (reading.getRoomReadingId().getLocalDateTime().isAfter(latestReading.getRoomReadingId().getLocalDateTime())) {
-                latestReading = reading;
-            }
-        }
-        return latestReading;
-    }
-
-    /**
-     * Method that returns all the rooms in the repo.
-     *
-     * @return List of Room.
-     */
-    public List<Room> getAllRooms() {
-        Iterable<Room> roomIterable = this.roomRepository.findAll();
-        List<Room> rooms = new ArrayList<>();
-        roomIterable.forEach(rooms::add);
-        return rooms;
-    }
 
     public boolean addRoomSensor(RoomSensor sensor) {
         return this.roomSensorService.addRoomSensor(sensor);
     }
-
-    /*
-        public Room getRoomSensorByType (SensorType sensorType, RoomId roomId){
-            Room room = roomRepository.findById(roomId).orElse(null);
-            for (RoomSensor sensor:
-                 ) {
-
-                roomRepository
 
         /**
          * Method that searches for a room by its Id. If it exists in the repo, the room is returned, if not, null is returned.
@@ -110,11 +51,12 @@ public class RoomService {
     public Room getRoomById(RoomId id) {
         return roomRepository.findById(id).orElse(null);
     }
-    public List<Room> getRoomsOfAHouseGrid(HouseGridId houseGridId){
+
+    public List<Room> getRoomsOfAHouseGrid(HouseGridId houseGridId) {
         return roomRepository.findAllByHouseGridIdEquals(houseGridId);
     }
 
-    public boolean detachRoomFromHouseGrid(RoomId roomId){
+    public boolean detachRoomFromHouseGrid(RoomId roomId) {
         Room room = roomRepository.findById(roomId).orElse(null);
         return (room.detachRoomFromHouseGrid());
     }
@@ -168,7 +110,7 @@ public class RoomService {
      * @return the new room
      */
    /* public Room newRoom(String id, String description, int housefloor, double height, double length, double width) {
-        if (isNameExistant(id)) {
+        if (doesSensorExist(id)) {
             throw new RuntimeException("Name already exists. Please write a new one.");
         }
         Dimension newDimension = new Dimension(height, length, width);
@@ -324,7 +266,7 @@ public class RoomService {
      * @param name
      * @return boolean
      */
-   /* public boolean isNameExistant(String name) {
+   /* public boolean doesSensorExist(String name) {
 
         for (int i = 0; i < listOfRooms.size(); i++) {
             if (listOfRooms.get(i).getRoomId().equalsIgnoreCase(name)) {

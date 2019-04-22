@@ -56,7 +56,7 @@ public final class RoomMapper {
 
         Dimension dimension = new Dimension(roomDTO.getWidth(), roomDTO.getLength(), roomDTO.getHeight());
 
-        return new Room(roomDTO.getId(), roomDTO.getDescription(), roomDTO.getHouseFloor(), dimension);
+        return new Room(new RoomId(roomDTO.getId()), roomDTO.getDescription(), roomDTO.getHouseFloor(), dimension);
 
     }
 

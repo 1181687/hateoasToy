@@ -6,9 +6,6 @@ import pt.ipp.isep.dei.project.HouseGridRepository;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Service
 public class HouseGridService {
 
@@ -40,13 +37,6 @@ public class HouseGridService {
         return this.houseGridRepository.count() == 0;
     }
 
-    public List<HouseGrid> getAllGrids() {
-        Iterable<HouseGrid> gridIterables = this.houseGridRepository.findAll();
-        List<HouseGrid> grids = new ArrayList<>();
-        gridIterables.forEach(grids::add);
-        return grids;
-    }
-
     /**
      * Method that searches for a grid by its Id. If it exists in the repo, the grid is returned, if not, null is returned.
      *
@@ -61,7 +51,7 @@ public class HouseGridService {
         return this.powerSourceService.newPowerSource(powerSourceId, typeId, gridId);
     }
 
-    public boolean gridExists(String id){
+    public boolean gridExists(String id) {
         return this.houseGridRepository.existsById(new HouseGridId(id));
     }
 

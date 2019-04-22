@@ -3,29 +3,27 @@ package pt.ipp.isep.dei.project.controllers;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapper;
-import pt.ipp.isep.dei.project.model.sensor.SensorType;
-import pt.ipp.isep.dei.project.model.sensor.SensorTypeDTO;
-import pt.ipp.isep.dei.project.model.sensor.SensorTypeMapper;
-import pt.ipp.isep.dei.project.services.GeoAreaService;
+import pt.ipp.isep.dei.project.model.sensor.*;
+import pt.ipp.isep.dei.project.services.GeoAreaAggregateService;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class AddSensorToGeoAreaController {
 
-    GeoAreaService geoAreaService;
+    GeoAreaAggregateService geoAreaAggregateService;
 
 
-    public AddSensorToGeoAreaController(GeoAreaService geoAreaService) {
-        this.geoAreaService = geoAreaService;
+    public AddSensorToGeoAreaController(GeoAreaAggregateService geoAreaAggregateService) {
+        this.geoAreaAggregateService = geoAreaAggregateService;
     }
 
     public boolean isGeoAreaRepositoryEmpty() {
-        return this.geoAreaService.isGeoAreaRepositoryEmpty();
+        return this.geoAreaAggregateService.isGeoAreaRepositoryEmpty();
     }
 
     public List<GeographicalAreaDTO> getGeographicalAreaDTOList() {
-        List<GeographicalArea> geoAreaList = this.geoAreaService.getAllGeoAreas();
+        List<GeographicalArea> geoAreaList = this.geoAreaAggregateService.getAllGeoAreas();
         List<GeographicalAreaDTO> geographicalAreaDTOList = new ArrayList<>();
         for (GeographicalArea geoArea : geoAreaList) {
             GeographicalAreaDTO geographicalAreaDTO = GeographicalAreaMapper.mapToDTO(geoArea);
@@ -35,7 +33,7 @@ public class AddSensorToGeoAreaController {
     }
 
     public List<SensorTypeDTO> getSensorTypeDTOList() {
-        List<SensorType> sensorTypeList = this.geoAreaService.getSensorTypeList();
+        List<SensorType> sensorTypeList = this.geoAreaAggregateService.getSensorTypeList();
         List<SensorTypeDTO> sensorTypeDTOList = new ArrayList<>();
         for (SensorType sensorType : sensorTypeList) {
             SensorTypeDTO sensorTypeDTO = SensorTypeMapper.mapToDto(sensorType);
@@ -44,12 +42,9 @@ public class AddSensorToGeoAreaController {
         return sensorTypeDTOList;
     }
 
-    /*public void addSensorDTO(String id, String sensorName, SensorTypeId sensorTypeId, Location location, String units, GeoAreaId geoAreaId) {
-        geoAreaService.addSensorDTO(id, sensorName, sensorTypeId, location, units, geoAreaId);
-    }*/
-
-    public boolean isNameExistant(String name) {
-        return this.geoAreaService.isNameExistant(name);
+    public boolean addGeoAreaSensor(GeoAreaSensorDTO geoAreaSensorDTO) {
+        return geoAreaAggregateService.addGeoAreaSensor(GeoAreaSensorMapper.mapToEntity(geoAreaSensorDTO));
     }
+
 
 }

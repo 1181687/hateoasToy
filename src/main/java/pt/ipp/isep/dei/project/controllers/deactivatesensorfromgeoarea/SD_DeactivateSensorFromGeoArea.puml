@@ -1,0 +1,75 @@
+@startuml
+autonumber
+skinparam sequenceMessageAlign center
+skinparam sequence {
+	ArrowColor Black
+	ActorBorderColor DarkBlue
+	LifeLineBorderColor black
+	LifeLineBackgroundColor LightGrey
+
+	ParticipantBorderColor Black
+	ParticipantBackgroundColor LightGrey
+	ParticipantFontStyle Bold
+
+	ActorBackgroundColor DimGrey
+	ActorFontColor DeepSkyBlue
+	ActorFontStyle Bold
+	ActorFontSize 17
+	ActorFontName Aapex
+}
+
+actor AdminUser
+activate AdminUser
+
+AdminUser -> "ui : DeactivateSensor\nFromGeoAreaUI" **: Deactivate sensor \nfrom geo area
+activate "ui : DeactivateSensor\nFromGeoAreaUI"
+"ui : DeactivateSensor\nFromGeoAreaUI" -> "ctrl : DeactivateSensor\nFromGeoArea\nController" **: listOfGeographicalAreas()
+activate "ctrl : DeactivateSensor\nFromGeoArea\nController"
+
+"ctrl : DeactivateSensor\nFromGeoArea\nController" -> "GeographicalAreaList": getGeoAreaList()
+activate "GeographicalAreaList"
+"GeographicalAreaList" --> "ctrl : DeactivateSensor\nFromGeoArea\nController": geoAreaService
+ref over "ctrl : DeactivateSensor\nFromGeoArea\nController"
+getGeoAreaList()
+end
+
+deactivate "GeographicalAreaList"
+"ctrl : DeactivateSensor\nFromGeoArea\nController" --> "ui : DeactivateSensor\nFromGeoAreaUI": DTOList
+deactivate "ctrl : DeactivateSensor\nFromGeoArea\nController"
+"ui : DeactivateSensor\nFromGeoAreaUI" --> AdminUser : printListOfGeoAreas()
+deactivate "ui : DeactivateSensor\nFromGeoAreaUI"
+AdminUser -> "ui : DeactivateSensor\nFromGeoAreaUI": selectGeoArea
+activate "ui : DeactivateSensor\nFromGeoAreaUI"
+"ui : DeactivateSensor\nFromGeoAreaUI" -> AdminUser: printListOfSensors()
+deactivate "ui : DeactivateSensor\nFromGeoAreaUI"
+"ui : DeactivateSensor\nFromGeoAreaUI" <- AdminUser: selectSensor
+activate "ui : DeactivateSensor\nFromGeoAreaUI"
+"ui : DeactivateSensor\nFromGeoAreaUI" --> AdminUser: confirmValidation(Y/N)
+deactivate "ui : DeactivateSensor\nFromGeoAreaUI"
+AdminUser -> "ui : DeactivateSensor\nFromGeoAreaUI": yes
+activate "ui : DeactivateSensor\nFromGeoAreaUI"
+"ui : DeactivateSensor\nFromGeoAreaUI" -> "ctrl : DeactivateSensor\nFromGeoArea\nController": deactivateSensor()
+
+activate "ctrl : DeactivateSensor\nFromGeoArea\nController"
+"ctrl : DeactivateSensor\nFromGeoArea\nController" -> "GeographicalAreaList" : getSensorById(dto.getId())
+activate "GeographicalAreaList"
+"GeographicalAreaList" --> "ctrl : DeactivateSensor\nFromGeoArea\nController": sensor
+deactivate "GeographicalAreaList"
+"ctrl : DeactivateSensor\nFromGeoArea\nController" -> Sensor: setActive(dto.isActive)
+activate Sensor
+Sensor --> "ctrl : DeactivateSensor\nFromGeoArea\nController": boolean
+deactivate Sensor
+"ctrl : DeactivateSensor\nFromGeoArea\nController" --> "ui : DeactivateSensor\nFromGeoAreaUI": boolean
+deactivate "ctrl : DeactivateSensor\nFromGeoArea\nController"
+"ui : DeactivateSensor\nFromGeoAreaUI" --> AdminUser: confirmation
+deactivate "ui : DeactivateSensor\nFromGeoAreaUI"
+
+
+
+
+
+
+
+
+
+@enduml
