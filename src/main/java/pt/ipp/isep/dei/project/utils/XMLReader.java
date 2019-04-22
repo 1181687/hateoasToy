@@ -179,7 +179,7 @@ public class XMLReader implements ProjectFileReader {
                 sensorObject.setLocation(location);
                 sensorObject.setStartingDate(startDate);
                 sensorObject.setUnits(units);
-                //geographicalAreaDTO.addGeoAreaSensor(sensorObject);
+                geographicalAreaDTO.addSensor(sensorObject);
 
             }
         }

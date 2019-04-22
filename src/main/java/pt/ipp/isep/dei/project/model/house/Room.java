@@ -406,6 +406,15 @@ public RoomSensorService getSensorList() {
         return this.deviceList;
     }
 
+    public Device getDevice(String deviceName){
+        for (Device device : deviceList) {
+            if (device.getName().equals(deviceName)){
+                return device;
+            }
+        }
+        return null;
+    }
+
     /**
      * get size of list of devices
      *
