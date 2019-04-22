@@ -12,6 +12,7 @@ import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorId;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -46,13 +47,13 @@ public class GeoAreaAggregateRepository {
         return this.geoAreaSensorRepo.findByGeoAreaId(geoAreaId);
     }
 
-    public List<GeoAreaReading> findByGeoAreaReadingId_GeoAreaSensorId(GeoAreaSensorId id) {
+/*    public List<GeoAreaReading> findByGeoAreaReadingId_GeoAreaSensorId(GeoAreaSensorId id) {
         return this.geoAreaReadingRepo.findByGeoAreaReadingId_GeoAreaSensorId(id);
     }
 
-    public boolean existsGeoAreaReadingByDateTime_DateAndGeoAreaReadingId_GeoAreaSensorId(LocalDate localDate, GeoAreaSensorId id) {
-        return this.geoAreaReadingRepo.existsGeoAreaReadingByDateTime_DateAndGeoAreaReadingId_GeoAreaSensorId(localDate, id);
-    }
+    public boolean existsByDateTime_DateBetweenAndGeoAreaReadingId_GeoAreaSensorId(LocalDate startDate, LocalDate endDate, GeoAreaSensorId id) {
+        return this.geoAreaReadingRepo.existsByDateTime_DateBetweenAndGeoAreaReadingId_GeoAreaSensorId(startDate, endDate, id);
+    }*/
 
     public Iterable<GeographicalArea> findAllGeoAreas() {
         return geoAreaRepo.findAll();
@@ -86,9 +87,9 @@ public class GeoAreaAggregateRepository {
         this.geoAreaSensorRepo.save(geoAreaSensor);
     }
 
-    public List<GeoAreaReading> findByDateTime_DateAndGeoAreaReadingId_GeoAreaSensorId(LocalDate day, GeoAreaSensorId geoAreaSensorId) {
-        return this.geoAreaReadingRepo.findByDateTime_DateAndGeoAreaReadingId_GeoAreaSensorId(day, geoAreaSensorId);
-    }
+  /*  public List<GeoAreaReading> findByDateTime_DateBetweenAndGeoAreaReadingId_GeoAreaSensorId(LocalDate startDate, LocalDate endDate, GeoAreaSensorId geoAreaSensorId) {
+        return this.geoAreaReadingRepo.findByDateTime_DateBetweenAndGeoAreaReadingId_GeoAreaSensorId(startDate, endDate, geoAreaSensorId);
+    }*/
 
     public boolean existGeoAreaById(GeoAreaId id) {
         return this.geoAreaRepo.existsById(id);
@@ -98,4 +99,29 @@ public class GeoAreaAggregateRepository {
         this.geoAreaRepo.save(geoArea);
     }
 
+    public void removeSensor(GeoAreaSensor geoAreaSensor){
+        this.geoAreaSensorRepo.delete(geoAreaSensor);
+    }
+
+    public List<GeoAreaSensor> getActiveSensors(){
+        Iterable<GeoAreaSensor> sensors= this.geoAreaSensorRepo.findAll();
+        List<GeoAreaSensor> activeSensors = new ArrayList<>();
+
+        for (GeoAreaSensor sensor : sensors) {
+            if(sensor.isActive()){
+                activeSensors.add(sensor);
+            }
+        }
+        return activeSensors;
+    }
+
+    public boolean deactivateSensorById(GeoAreaSensorId id){
+        if(this.geoAreaSensorRepo.findById(id).isPresent()){
+            GeoAreaSensor sensor = this.geoAreaSensorRepo.findById(id).get();
+            sensor.deactivateSensor();
+            this.geoAreaSensorRepo.save(sensor);
+            return true;
+        }
+        return false;
+    }
 }

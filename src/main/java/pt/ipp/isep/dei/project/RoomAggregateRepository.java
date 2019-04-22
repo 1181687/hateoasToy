@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.RoomId;
+import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 import pt.ipp.isep.dei.project.model.readings.RoomReading;
+import pt.ipp.isep.dei.project.model.readings.RoomReadingId;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensorId;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
@@ -16,13 +18,13 @@ import java.util.List;
 public class RoomAggregateRepository {
 
     @Autowired
-    private RoomRepository roomRepo;
+    private RoomRepository roomRepository;
 
     @Autowired
-    private RoomSensorRepository roomSensorRepo;
+    private RoomSensorRepository roomSensorRepository;
 
     @Autowired
-    private RoomSensorReadingsRepository roomReadingRepo;
+    private RoomSensorReadingsRepository roomReadingRepository;
 
     /**
      * Constructor.
@@ -31,22 +33,8 @@ public class RoomAggregateRepository {
         // empty
     }
 
-    /**
-     * Get method.
-     *
-     * @return RoomRepository.
-     */
-    public RoomRepository getRoomRepo() {
-        return roomRepo;
-    }
-
-    /**
-     * Get method.
-     *
-     * @return RoomSensorRepository.
-     */
-    public RoomSensorRepository getRoomSensorRepo() {
-        return roomSensorRepo;
+    public List<Room> findAllByHouseGridIdEquals(HouseGridId houseGridId) {
+        return roomRepository.findAllByHouseGridIdEquals(houseGridId);
     }
 
     /**
@@ -54,8 +42,8 @@ public class RoomAggregateRepository {
      *
      * @return RoomSensorReadingsRepository.
      */
-    public RoomSensorReadingsRepository getRoomReadingRepo() {
-        return roomReadingRepo;
+    public RoomSensorReadingsRepository getRoomReadingRepository() {
+        return roomReadingRepository;
     }
 
     /**
@@ -66,7 +54,7 @@ public class RoomAggregateRepository {
      * @return roomSensor
      */
     public RoomSensor findByRoomIdAndSensorTypeId(RoomId roomId, SensorTypeId sensorTypeId) {
-        return roomSensorRepo.findByRoomIdAndSensorTypeId(roomId, sensorTypeId);
+        return roomSensorRepository.findByRoomIdAndSensorTypeId(roomId, sensorTypeId);
     }
 
     /**
@@ -76,7 +64,7 @@ public class RoomAggregateRepository {
      * @return List<RoomReading>
      */
     public List<RoomReading> findByRoomReadingIdAndRoomSensorId(RoomSensorId roomSensorId) {
-        return roomReadingRepo.findByRoomReadingId_RoomSensorId(roomSensorId);
+        return roomReadingRepository.findByRoomReadingId_RoomSensorId(roomSensorId);
     }
 
     /**
@@ -85,7 +73,46 @@ public class RoomAggregateRepository {
      * @return List of Room.
      */
     public Iterable<Room> findAllRooms() {
-        return this.roomRepo.findAll();
+        return this.roomRepository.findAll();
+    }
+
+    public RoomSensor getSensorById(RoomSensorId roomSensorId){
+        return this.roomSensorRepository.findById(roomSensorId).orElse(null);
+    }
+
+    public boolean isReadingDuplicated(RoomReadingId roomReadingId) {
+        return this.roomReadingRepository.existsById(roomReadingId);
+    }
+
+    public void saveReading(RoomReading roomReading){
+        this.roomReadingRepository.save(roomReading);
+    }
+
+    public boolean addRoomSensor(RoomSensor sensor) {
+        if (!this.roomSensorRepository.existsById(sensor.getId())) {
+            this.roomSensorRepository.save(sensor);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean roomExists (RoomId id){
+        return roomRepository.existsById(id);
+    }
+
+    public boolean roomDeviceListIsEmpty(RoomId id){
+        if(this.roomRepository.findById(id).isPresent()){
+            Room room =this.roomRepository.findById(id).get();
+            return room.isDeviceListEmpty();
+        }
+        return false;
+    }
+
+    public Room findRoomById(RoomId id){
+        if(this.roomRepository.findById(id).isPresent()){
+            return this.roomRepository.findById(id).get();
+        }
+        return null;
     }
 
     /**

@@ -1,9 +1,10 @@
 package pt.ipp.isep.dei.project.controllers.importroomsensors;
 
 import pt.ipp.isep.dei.project.model.ProjectFileReader;
+import pt.ipp.isep.dei.project.model.house.RoomId;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensorDTO;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensorMapper;
-import pt.ipp.isep.dei.project.services.RoomService;
+import pt.ipp.isep.dei.project.services.RoomAggregateService;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.io.File;
@@ -18,9 +19,9 @@ import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
 public class ImportRoomSensorsController {
     private List<Object> DTOList;
     private int numberOfNotImportedReadings;
-    private RoomService roomService;
+    private RoomAggregateService roomService;
 
-    public ImportRoomSensorsController(RoomService roomService) {
+    public ImportRoomSensorsController(RoomAggregateService roomService) {
         this.roomService = roomService;
     }
 
@@ -63,7 +64,7 @@ public class ImportRoomSensorsController {
         for (Object object : this.DTOList) {
             RoomSensorDTO sensorDTO = (RoomSensorDTO) object;
             String roomId = sensorDTO.getRoomId();
-            if (!this.roomService.isNameExistant(sensorDTO.getRoomId())) {
+            if (!this.roomService.roomExists(new RoomId(sensorDTO.getRoomId()))) {
                 numberOfNotImportedReadings++;
                 LOGGER.log(Level.WARNING, "Sensor " + sensorDTO.getId() + " was not imported because " + roomId + " doesn't exist.");
                 continue;
