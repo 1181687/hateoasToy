@@ -133,8 +133,8 @@ public class AreaShapeTest {
     @Test
     public void testarEqualsFalseLocationLengthAltitude() {
         //arrange
-        
-        
+
+
         AreaShape area1 = new AreaShape(11, 8);
         AreaShape area2 = new AreaShape(11, 9);
 
@@ -148,7 +148,7 @@ public class AreaShapeTest {
     @Test
     public void testarEqualsFalseLocationLengthLongitude() {
         //arrange
-        
+
         Location local2 = new Location(41, -9, 95);
         AreaShape area1 = new AreaShape(11, 8);
         AreaShape area2 = new AreaShape(11, 9);

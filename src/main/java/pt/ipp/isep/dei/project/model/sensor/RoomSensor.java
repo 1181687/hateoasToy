@@ -57,6 +57,26 @@ public class RoomSensor {
         return isActive.isActive();
     }
 
+    public String getSensorName() {
+        return sensorName;
+    }
+
+    public SensorTypeId getSensorTypeId() {
+        return sensorTypeId;
+    }
+
+    public String getUnits() {
+        return units;
+    }
+
+    public SensorState getIsActive() {
+        return isActive;
+    }
+
+    public RoomId getRoomId() {
+        return roomId;
+    }
+
     /*public double getMaximumValueOfDay(LocalDate date) {
         if (!getDailyMeasurement(date).isEmpty()) {
             double maximumValueOfDay = getDailyMeasurement(date).get(0).getValue();

@@ -7,7 +7,7 @@ public final class DeviceMapper {
     public DeviceMapper() {
     }
 
-    public static DeviceDTO mapToDTO(Device device){
+    public static DeviceDTO mapToDTO(Device device) {
         DeviceDTO deviceDTO = new DeviceDTO();
         deviceDTO.setName(device.getName());
         deviceDTO.setDeviceType(device.getType());

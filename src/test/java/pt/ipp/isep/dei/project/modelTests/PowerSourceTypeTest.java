@@ -1,16 +1,14 @@
 package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSource;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceId;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceType;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceTypeId;
 
-import java.util.Objects;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class PowerSourceTypeTest {
 
@@ -32,7 +30,7 @@ public class PowerSourceTypeTest {
     }*/
 
     @Test
-    public void testingEqualsMethodPositiveTest(){
+    public void testingEqualsMethodPositiveTest() {
         //Arrange
         PowerSourceTypeId powerSourceTypeId = new PowerSourceTypeId("Battery");
         PowerSourceTypeId powerSourceTypeId2 = new PowerSourceTypeId("Battery");
@@ -47,7 +45,7 @@ public class PowerSourceTypeTest {
     }
 
     @Test
-    public void testingEqualsMethodNegativeTest(){
+    public void testingEqualsMethodNegativeTest() {
         //Arrange
         String type1 = "Battery";
         String type2 = "Wind Generator";
@@ -64,7 +62,7 @@ public class PowerSourceTypeTest {
     }
 
     @Test
-    public void testingEqualsMethodWithDifferentObjectsNegativeTest(){
+    public void testingEqualsMethodWithDifferentObjectsNegativeTest() {
         //Arrange
         String type1 = "Battery";
         String powerSourceName = "Wind Generator";
@@ -72,7 +70,7 @@ public class PowerSourceTypeTest {
         PowerSourceTypeId powerSourceTypeId = new PowerSourceTypeId(type1);
         PowerSourceType powerSourceType = new PowerSourceType(powerSourceTypeId);
         HouseGridId gridId = new HouseGridId("HG1");
-        PowerSource powerSource = new PowerSource(powerSourceId,powerSourceTypeId,gridId);
+        PowerSource powerSource = new PowerSource(powerSourceId, powerSourceTypeId, gridId);
 
         //Act
         boolean result = powerSourceType.equals(powerSource);

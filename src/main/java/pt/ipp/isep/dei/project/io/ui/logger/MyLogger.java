@@ -1,4 +1,5 @@
 package pt.ipp.isep.dei.project.io.ui.logger;
+
 import java.io.IOException;
 import java.util.logging.*;
 
@@ -33,7 +34,7 @@ public class MyLogger {
         logger.addHandler(fileTxt);
 
         // create an HTML formatter
-         formatterHTML = new MyHtmlFormatter();
+        formatterHTML = new MyHtmlFormatter();
         fileHTML.setFormatter(formatterHTML);
         logger.addHandler(fileHTML);
     }

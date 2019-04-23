@@ -1,7 +1,6 @@
 package pt.ipp.isep.dei.project.model.devices;
 
 import pt.ipp.isep.dei.project.model.house.RoomDTO;
-import pt.ipp.isep.dei.project.model.house.RoomMapper;
 
 public class DeviceDTO {
     private String name;

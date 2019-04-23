@@ -15,9 +15,11 @@ import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorId;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Objects;
 
 @Service
 public class GeoAreaAggregateService {
@@ -70,10 +72,9 @@ public class GeoAreaAggregateService {
      * @param id Id of the sensor.
      * @return List of GeoAreaReading.
      */
- /*   public List<GeoAreaReading> getGeoAreaReadingsBySensorId(GeoAreaSensorId id) {
+    public List<GeoAreaReading> getGeoAreaReadingsBySensorId(GeoAreaSensorId id) {
         return geoAreaAggregateRepo.findByGeoAreaReadingId_GeoAreaSensorId(id);
     }
-*/
 
     /**
      * Method that returns the list of sensors of a given type.
@@ -93,7 +94,7 @@ public class GeoAreaAggregateService {
      * @param id Id of the sensor.
      * @return Most recent (valid) GeoAreaReading.
      */
-/*    public GeoAreaReading getMostRecentValidReading(GeoAreaSensorId id) {
+    public GeoAreaReading getMostRecentValidReading(GeoAreaSensorId id) {
         List<GeoAreaReading> readings = getGeoAreaReadingsBySensorId(id);
         GeoAreaReading mostRecentReading = null;
         for (GeoAreaReading reading : readings) {
@@ -103,7 +104,7 @@ public class GeoAreaAggregateService {
             }
         }
         return mostRecentReading;
-    }*/
+    }
 
     /**
      * Method that returns the list with the nearest sensors to a given location.
@@ -138,7 +139,7 @@ public class GeoAreaAggregateService {
      * @param typeId   Type of sensor to search for.
      * @return Map with the date time and the value of the latest [valid] reading.
      */
-/*    public HashMap<LocalDateTime, Double> getLatestMeasurementByTypeAndLocation(Location location, SensorTypeId typeId) {
+    public HashMap<LocalDateTime, Double> getLatestMeasurementByTypeAndLocation(Location location, SensorTypeId typeId) {
         HashMap<LocalDateTime, Double> map = new HashMap<>();
         GeoAreaReading latestGeoAreaReading = getLatestGeoAreaReading(location, typeId);
         if (Objects.nonNull(latestGeoAreaReading)) {
@@ -163,7 +164,6 @@ public class GeoAreaAggregateService {
         }
         return latestGeoAreaReading;
     }
-*/
 
     /*    *//**
      * Method that returns the list of sensors of a given type that have readings in a specific date.
