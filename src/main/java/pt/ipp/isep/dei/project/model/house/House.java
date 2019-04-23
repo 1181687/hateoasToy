@@ -1,31 +1,11 @@
 package pt.ipp.isep.dei.project.model.house;
 
-import javax.persistence.Transient;
-
 public class House {
-    //@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    //@JoinTable(name="house_rooms", joinColumns=@JoinColumn(name="house_fk"),
-    //inverseJoinColumns = @JoinColumn(name="room_fk"))
-    //@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    //@JoinColumn
-    //@Transient
-    //private RoomService roomList;
 
-    //@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    //@Fetch(value = FetchMode.SUBSELECT)
-    //@Transient
-    //private List<HouseGrid> listHouseGrids;
-
-    @Transient
     private Address address;
 
-    //@Transient
-    //private List<DeviceType> deviceTypeList;
-
-    @Transient
     private int meteringPeriodGrid;
 
-    @Transient
     private int meteringPeriodDevice;
 
     private static final String CONFIG_PROPERTIES = "Configuration.properties";

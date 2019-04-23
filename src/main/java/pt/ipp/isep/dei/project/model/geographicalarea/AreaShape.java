@@ -1,7 +1,5 @@
 package pt.ipp.isep.dei.project.model.geographicalarea;
 
-import pt.ipp.isep.dei.project.model.Location;
-
 import javax.persistence.Embeddable;
 
 @Embeddable
@@ -68,19 +66,19 @@ public class AreaShape {
                 && location.getLongitude() >= upperLeftCornerLongitude);
     }
 
-    *//**
+    /**
      * method that creates the hashcode to address
-     *//*
+     */
     public int hashCode() {
         return 1;
     }
 
-    *//**
+    /**
      * Equals method to determine if two AreaShape are equal.
      * They are equals if all atributtes (length, width and locationAreaShape) are equal.
      * @param obj
      * @return boolean
-     *//*
+     */
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
@@ -92,15 +90,13 @@ public class AreaShape {
         AreaShape local = (AreaShape) obj;
         Double comparablemLength = length;
         Double comparablemWidth = width;
-        Location comparablemLocationAreaShape = locationAreaShape;
 
         Double comparableAreaShapemLength = local.length;
         Double comparableAreaShapemWidth = local.width;
-        Location comparableAreaShapemLocationAreaShape = local.locationAreaShape;
+
 
         return comparableAreaShapemLength.equals(comparablemLength)
-                && comparableAreaShapemWidth.equals(comparablemWidth)
-                && comparableAreaShapemLocationAreaShape.equals(comparablemLocationAreaShape);
-    }*/
+                && comparableAreaShapemWidth.equals(comparablemWidth);
+    }
 
 }

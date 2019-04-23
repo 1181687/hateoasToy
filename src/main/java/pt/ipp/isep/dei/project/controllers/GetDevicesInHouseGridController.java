@@ -2,9 +2,8 @@ package pt.ipp.isep.dei.project.controllers;
 
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridDTO;
-import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridMapper;
-import pt.ipp.isep.dei.project.services.RoomAggregateService;
+import pt.ipp.isep.dei.project.services.HouseService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,19 +14,19 @@ import java.util.List;
  */
 
 public class GetDevicesInHouseGridController {
-    private RoomAggregateService roomAggregateService;
+    private HouseService houseService;
 
 
-    public GetDevicesInHouseGridController(RoomAggregateService roomAggregateService) {
-        this.roomAggregateService = roomAggregateService;
+    public GetDevicesInHouseGridController(HouseService houseService) {
+        this.houseService = houseService;
     }
 
     public String getDeviceListContentNameTypeLocationByGrid(String id) {
-        return roomAggregateService.getDeviceListContentNameTypeLocationByGrid(id);
+        return houseService.getDeviceListContentNameTypeLocationByGrid(id);
     }
 
     public List<HouseGridDTO> getHouseGridDTOList() {
-        List<HouseGrid> houseGridList = this.roomAggregateService.getAllGrids();
+        List<HouseGrid> houseGridList = this.houseService.getAllGrids();
         List<HouseGridDTO> houseGridDTOList = new ArrayList<>();
         for (HouseGrid houseGrid : houseGridList) {
             HouseGridDTO houseGridDTO = HouseGridMapper.mapToDTO(houseGrid);
@@ -41,7 +40,7 @@ public class GetDevicesInHouseGridController {
      * @return True or false.
      */
     public boolean isHouseGridListEmpty() {
-        return roomAggregateService.isHouseGridListEmpty();
+        return houseService.isHouseGridListEmpty();
     }
 
     /**
@@ -49,7 +48,7 @@ public class GetDevicesInHouseGridController {
      * @return true if there aren't devices. False if there are devices
      */
     public boolean checkIfThereAreNoDevicesInGridbyId(String houseGridId) {
-        return this.roomAggregateService.getDeviceListByRoomOfGridById(houseGridId).isEmpty();
+        return this.houseService.getDeviceListByRoomOfGridById(houseGridId);
     }
 
 
@@ -59,8 +58,7 @@ public class GetDevicesInHouseGridController {
      * @return String name
      */
     public String getGridNameById(HouseGridDTO houseGridDTO) {
-        HouseGridId id = new HouseGridId(houseGridDTO.getId());
-        return this.roomAggregateService.getGridById(id).getHouseGridId().getId();
+        return this.houseService.getGridNameById(houseGridDTO.getId());
     }
 
 

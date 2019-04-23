@@ -34,10 +34,6 @@ public class DeactivateSensorFromGeoArea {
                 return;
             }
             this.chosenGeoAreaId = this.geoAreas.get(chosenGeoArea);
-         /*   if (getListOfActiveSensors().isEmpty()) {
-                System.out.println("\nThere are no active Sensors in " + geographicalAreaDTO.getId());
-                continue;
-            }*/
             String label2 = printActiveSensorsInChosenGeoArea() + EXIT;
             int chosenSensor = InputValidator.getIntRange(label2, 0, this.geoAreaSensorDTOS.size()) - 1;
             if (chosenSensor == -1) {
@@ -58,7 +54,7 @@ public class DeactivateSensorFromGeoArea {
             content.append(" - ");
             content.append(" Id: ");
             content.append(geoArea.getId());
-            content.append(" Type ");
+            content.append(" Type: ");
             content.append(geoArea.getGeoAreaType());
             content.append( "\n");
             iterator++;
@@ -82,7 +78,7 @@ public class DeactivateSensorFromGeoArea {
         if (this.geoAreaSensorDTOS.isEmpty()) {
             return ("There are no active Sensors in " + this.chosenGeoAreaId);
         }
-        System.out.println("Which sensor of " + this.chosenGeoAreaId + " do you want to deactivate:");
+        System.out.println("Which sensor of " + this.chosenGeoAreaId.getId() + " do you want to deactivate:");
         List<GeoAreaSensorDTO> sensors = getSensorsInChosenGeoArea();
         StringBuilder content = new StringBuilder();
         int iterator = 1;
@@ -93,23 +89,13 @@ public class DeactivateSensorFromGeoArea {
         return content.toString();
     }
 
-  /*  private List<GeoAreaSensorDTO> getListOfActiveSensors() {
-        List<GeoAreaSensorDTO> activeList = new ArrayList<>();
-        for (GeoAreaSensorDTO sensorDTO : geographicalAreaDTO.getSensors()) {
-            if (sensorDTO.isActive()) {
-                activeList.add(sensorDTO);
-            }
-        }
-        return activeList;
-    }*/
-
     private void deactivateSensor(GeoAreaSensorDTO sensorDTO) {
         String confirmation = InputValidator.confirmValidation("\nThe sensor is going to be deactivated. It can be reactivated on a later date.\nConfirm? (Y/N)");
         if ("N".equalsIgnoreCase(confirmation)) {
             System.out.println("\nNo changes were made.\n");
         } else {
-            //sensorDTO.setActive(false);
             if (ctrl.deactivateSensor(sensorDTO)) {
+                this.geoAreaSensorDTOS = ctrl.listOfActiveSensorsDTOs();
                 System.out.println("The sensor is now deactivated.\n");
             } else {
                 System.out.println("It was not possible to deactivate " + sensorDTO.getId() + "\n");

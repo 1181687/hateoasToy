@@ -11,34 +11,29 @@ import pt.ipp.isep.dei.project.model.house.RoomId;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceType;
-import pt.ipp.isep.dei.project.model.sensor.SensorType;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class HouseService {
 
     @Autowired
-    private RoomService roomService;
-
-    @Autowired
     private RoomAggregateService roomAggregateService;
 
     @Autowired
-    private HouseGridService houseGridService;
+    private HouseGridAggregateService houseGridAggregateService;
 
     @Autowired
     private PowerSourceTypeService sourceTypeService;
 
-    @Autowired
-    private SensorTypeService sensorTypeService;
+
 
     private Address address;
 
 
 
     public void configureHouseLocation(LocationDTO locationDTO) {
-
 
     }
 
@@ -58,33 +53,25 @@ public class HouseService {
         return this.address.getInsertedGeoArea();
     }
 
-    /**
-     * method that get a list of sensor types
-     *
-     * @return a list of sensor types.
-     */
-    public List<SensorType> getSensorTypeList() {
-        return sensorTypeService.getSensorTypeList();
-    }
 
     public boolean isGridRepositoryEmpty() {
-        return this.houseGridService.isGridRepositoryEmpty();
+        return this.houseGridAggregateService.isGridRepositoryEmpty();
     }
 
     public List<HouseGrid> getAllGrids() {
-        return this.roomAggregateService.getAllGrids();
+        return this.houseGridAggregateService.getAllGrids();
     }
 
     public List<Room> getRoomsOfAHouseGrid(HouseGridId houseGridId) {
-        return roomService.getRoomsOfAHouseGrid(houseGridId);
+        return roomAggregateService.getRoomsOfAHouseGrid(houseGridId);
     }
 
     public boolean detachRoomFromHouseGrid(RoomId roomId) {
-        return roomService.detachRoomFromHouseGrid(roomId);
+        return roomAggregateService.detachRoomFromHouseGrid(roomId);
     }
 
 
-    /*
+
     /**
      * Method that returns all the rooms in the house repo.
      *
@@ -101,7 +88,7 @@ public class HouseService {
      * @return Room or null.
      */
     public Room getRoomById(RoomId id) {
-        return roomService.getRoomById(id);
+        return roomAggregateService.getRoomById(id);
     }
 
     /**
@@ -110,7 +97,7 @@ public class HouseService {
      * @param room Room to be stored.
      */
     public void updateRoomRepository(Room room) {
-        roomService.updateRoomRepository(room);
+        roomAggregateService.updateRoom(room);
     }
 
     public List<PowerSourceType> getAllPowerSourceTypes() {
@@ -118,25 +105,80 @@ public class HouseService {
     }
 
     public boolean newPowerSource(String powerSourceId, String typeId, String gridId) {
-        return this.houseGridService.newPowerSource(powerSourceId, typeId, gridId);
+        return this.houseGridAggregateService.newPowerSource(powerSourceId, typeId, gridId);
     }
 
     public boolean roomExists(String id) {
-        return this.roomService.isNameExistant(id);
+        RoomId roomId = new RoomId(id);
+        return this.roomAggregateService.roomExists(roomId);
     }
 
     public boolean gridExists(String id) {
-        return this.houseGridService.gridExists(id);
+        HouseGridId gridId = new HouseGridId(id);
+        return (Objects.nonNull(this.houseGridAggregateService.getGridById(gridId)));
     }
 
     public boolean addGrid(String id) {
         HouseGridId gridId = new HouseGridId(id);
-        return this.houseGridService.createHouseGrid(gridId.getId());
+        return this.houseGridAggregateService.createHouseGrid(gridId.getId());
     }
 
-    public boolean addRoom(Room room) {
-        return this.roomService.addRoom(room);
+    public boolean createRoom(String roomId, String description, int houseFloor, double length, double width, double height) {
+        RoomId roomId1 = new RoomId(roomId);
+        return this.roomAggregateService.createRoom(roomId1, description, houseFloor, length, width, height);
     }
+
+    /**
+     * Calculates the nominal power of the selected housegrid.
+     *
+     * @return double
+     */
+    public double getGridNominalPower(String gridId) {
+        return this.roomAggregateService.getGridNominalPower(new HouseGridId(gridId));
+    }
+
+    public boolean roomDeviceListIsEmpty(String id) {
+        return this.roomAggregateService.roomDeviceListIsEmpty(new RoomId(id));
+    }
+
+    public double getRoomNominalPower(String id) {
+        return this.roomAggregateService.getRoomNominalPower(new RoomId(id));
+    }
+
+    public String getDeviceListContentNameTypeLocationByGrid(String id) {
+        return this.roomAggregateService.getDeviceListContentNameTypeLocationByGrid(id);
+    }
+
+    /**
+     * Method that checks if the housegrid grid's list is empty.
+     *
+     * @return True or false.
+     */
+    public boolean isHouseGridListEmpty() {
+        return this.houseGridAggregateService.isGridRepositoryEmpty();
+    }
+
+    /**
+     * method that checks if there are no devices in the RoomList
+     *
+     * @return true if there aren't devices. False if there are devices
+     */
+    public boolean getDeviceListByRoomOfGridById(String houseGridId) {
+        return this.roomAggregateService.getDeviceListByRoomOfGridById(houseGridId).isEmpty();
+    }
+
+    public String getGridNameById(String id) {
+        HouseGridId houseGridId = new HouseGridId(id);
+        return this.houseGridAggregateService.getGridById(houseGridId).getHouseGridId().getId();
+    }
+
+    public HouseGrid getGridById(String id) {
+        HouseGridId houseGridId = new HouseGridId(id);
+        return this.houseGridAggregateService.getGridById(houseGridId);
+    }
+
+
+
 /*
     public boolean addRoomToHouseGrid(HouseGridId houseGridId, Room room) {
         if (houseGridRepository.existsById(houseGridId)) {

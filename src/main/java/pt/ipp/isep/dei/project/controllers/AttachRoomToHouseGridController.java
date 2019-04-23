@@ -6,10 +6,8 @@ import pt.ipp.isep.dei.project.model.house.RoomId;
 import pt.ipp.isep.dei.project.model.house.RoomMapper;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridDTO;
-import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridMapper;
 import pt.ipp.isep.dei.project.services.HouseService;
-import pt.ipp.isep.dei.project.services.RoomAggregateService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +17,6 @@ public class AttachRoomToHouseGridController {
     private HouseService houseService;
     private HouseGrid chosenGrid;
     private Room chosenRoom;
-    private RoomAggregateService roomAggregateService;
 
     /**
      * Constructor.
@@ -64,8 +61,7 @@ public class AttachRoomToHouseGridController {
      * @param gridId Id of the grid to be stored.
      */
     public void setGrid(String gridId) {
-        HouseGridId houseGridId = new HouseGridId(gridId);
-        this.chosenGrid = roomAggregateService.getGridById(houseGridId);
+        this.chosenGrid = houseService.getGridById(gridId);
     }
 
 

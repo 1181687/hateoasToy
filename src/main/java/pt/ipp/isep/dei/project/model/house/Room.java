@@ -1,17 +1,21 @@
 package pt.ipp.isep.dei.project.model.house;
 
+import pt.ipp.isep.dei.project.model.Measurable;
 import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.devices.DeviceReading;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 import static java.util.Objects.isNull;
 
 @Entity
-public class Room /*implements Measurable*/ {
+public class Room implements Measurable {
 
     //@Id
     @Column(name = "RoomID", insertable = false, updatable = false)
@@ -31,7 +35,7 @@ public class Room /*implements Measurable*/ {
     // private RoomSensorService sensorList;
 
     @Transient
-    private List<Device> deviceList;
+    private List<Device> deviceList = new ArrayList<>();
 
     /**
      * constructor that receives name, houseFloor, dimension
@@ -49,7 +53,7 @@ public class Room /*implements Measurable*/ {
         this.description = description;
         this.houseFloor = houseFloor;
         this.dimension = dimension;
-        this.deviceList = new ArrayList<>();
+        //this.deviceList = new ArrayList<>();
     }
 
     protected Room() {
@@ -227,28 +231,36 @@ public RoomSensorService getSensorList() {
     }
 */
 
-/**
- * @param type of sensor (temperature)
- * @param date any given day
- * @return maximum temperature
- */
-
   /*  public double getMaximumMeasurementInGivenDay(SensorType type, LocalDate date) {
         return sensorList.getMaximumMeasureOfTypeOfSensorInGivenDay(type, date);
     }*/
 
 
-/**
- * Method that gets the latest measurement by type of sensor
- *
- * @param type type of sensor
- * @return latest measurement by sensor type
- */
+
 
 /*public RoomReading getLatestMeasurementBySensorType(SensorType type) {
     return new RoomReading(sensorList.getLatestMeasurementBySensorType(type).getValue(), sensorList.getLatestMeasurementBySensorType(type).getDateTime());
     }
 */
+@Override
+public String getNameToString() {
+    return null;
+}
+
+    @Override
+    public double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
+        return 0;
+    }
+
+    @Override
+    public Map<LocalDateTime, Double> getDataSeries(LocalDateTime startDate, LocalDateTime endDate) {
+        return null;
+    }
+
+    @Override
+    public List<DeviceReading> getReadings() {
+        return null;
+    }
 
     /**
      * Method that return the nominal power of the list of devices in the room.
@@ -256,16 +268,16 @@ public RoomSensorService getSensorList() {
      *
      * @return
      */
-   /* @Override
+    @Override
     public double getNominalPower() {
         double totalNominalPower = 0;
-        if (this.getSize() != 0) {
+        if (!this.deviceList.isEmpty()) {
             for (Device device : this.deviceList) {
                 totalNominalPower += device.getNominalPower();
             }
         }
         return totalNominalPower;
-    }*/
+    }
 
     /*
      */
@@ -310,9 +322,9 @@ public RoomSensorService getSensorList() {
     /**
      * method that checks if Device List of the room is empty
      */
-    /*public boolean isDeviceListEmpty() {
+    public boolean isDeviceListEmpty() {
         return this.deviceList.isEmpty();
-    }*/
+    }
 
     /**
      * Method that adds a device to the list of devices if device not null
@@ -385,6 +397,15 @@ public RoomSensorService getSensorList() {
      */
     public List<Device> getDeviceList() {
         return this.deviceList;
+    }
+
+    public Device getDevice(String deviceName) {
+        for (Device device : deviceList) {
+            if (device.getName().equals(deviceName)) {
+                return device;
+            }
+        }
+        return null;
     }
 
     /**
@@ -511,6 +532,7 @@ public RoomSensorService getSensorList() {
      * method that deactivate the device.
      *
      * @param
+     *
      * @return true if the device was deactivated. False, if not.
      */
    /* public boolean deactivateDevice(String device) {

@@ -39,6 +39,9 @@ public final class RoomMapper {
         roomDTO.setWidth(room.getDimension().getWidth());
         roomDTO.setLength(room.getDimension().getLength());
         roomDTO.setHeight(room.getDimension().getHeight());
+        if (Objects.isNull(room.getHouseGridId())) {
+            return roomDTO;
+        }
         roomDTO.setGridId(room.getHouseGridId().getId());
         return roomDTO;
     }

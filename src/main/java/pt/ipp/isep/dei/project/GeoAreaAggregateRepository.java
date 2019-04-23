@@ -11,7 +11,6 @@ import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorId;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -120,6 +119,7 @@ public class GeoAreaAggregateRepository {
             GeoAreaSensor sensor = this.geoAreaSensorRepo.findById(id).get();
             sensor.deactivateSensor();
             this.geoAreaSensorRepo.save(sensor);
+            return true;
         }
         return false;
     }

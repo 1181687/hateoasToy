@@ -4,15 +4,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.RoomAggregateRepository;
 import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.devices.DeviceType;
+import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.RoomId;
-import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 import pt.ipp.isep.dei.project.model.readings.RoomReading;
 import pt.ipp.isep.dei.project.model.readings.RoomReadingId;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensorId;
+import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
+import pt.ipp.isep.dei.project.utils.ApplicationConfiguration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +30,16 @@ public class RoomAggregateService {
     private RoomAggregateRepository roomAggregateRepository;
 
     @Autowired
-    private HouseGridAggregateService houseGridAggregateService;
+    private SensorTypeService sensorTypeService;
+
+    private String configFile = "Configuration.properties";
+
+    private List<DeviceType> deviceTypeList = ApplicationConfiguration.createDeviceTypes(configFile);
+
+
+    public List<SensorType> getSensorTypeList() {
+        return sensorTypeService.getSensorTypeList();
+    }
 
 
     /**
@@ -70,6 +82,14 @@ public class RoomAggregateService {
         return getContentNameLocationOrderedByType(deviceList);
     }
 
+    public double getGridNominalPower(HouseGridId id) {
+        List<Room> rooms = getRoomListByHouseGrid(id.getId());
+        double nominalPower = 0;
+        for (Room room : rooms) {
+            nominalPower += room.getNominalPower();
+        }
+        return nominalPower;
+    }
 
     public List<Room> getRoomListByHouseGrid(String id) {
         HouseGridId houseGridId = new HouseGridId(id);
@@ -99,26 +119,6 @@ public class RoomAggregateService {
         return deviceList;
     }
 
-    public List<HouseGrid> getAllGrids() {
-        return houseGridAggregateService.getAllGrids();
-    }
-
-    /**
-     * Method that searches for a grid by its Id. If it exists in the repo, the grid is returned, if not, null is returned.
-     *
-     * @param id Id to be used.
-     * @return HouseGrid or null.
-     */
-    public HouseGrid getGridById(HouseGridId id) {
-        return houseGridAggregateService.getGridById(id);
-    }
-
-    public boolean isHouseGridListEmpty() {
-        return this.houseGridAggregateService.numberOfHouseGridsInRepository();
-    }
-    private RoomAggregateRepository roomAggregateRepo;
-
-
     /**
      * method that return true if a given room have a Sensor of a given type
      * or return false if it don't have
@@ -140,7 +140,7 @@ public class RoomAggregateService {
      * @return roomSensor
      */
     public RoomSensor getRoomSensorByRoomByType(RoomId roomId, SensorTypeId sensorTypeId) {
-        return this.roomAggregateRepo.findByRoomIdAndSensorTypeId(roomId, sensorTypeId);
+        return this.roomAggregateRepository.findByRoomIdAndSensorTypeId(roomId, sensorTypeId);
     }
 
     /**
@@ -150,7 +150,7 @@ public class RoomAggregateService {
      * @return List<RoomReading>
      */
     public List<RoomReading> getListOfRoomReadingByRoomSensorId(RoomSensorId roomSensorId) {
-        return this.roomAggregateRepo.findByRoomReadingIdAndRoomSensorId(roomSensorId);
+        return this.roomAggregateRepository.findByRoomReadingIdAndRoomSensorId(roomSensorId);
     }
 
     /**
@@ -180,34 +180,115 @@ public class RoomAggregateService {
      * @return List of Room.
      */
     public List<Room> getAllRooms() {
-        Iterable<Room> roomIterable = this.roomAggregateRepo.findAllRooms();
+        Iterable<Room> roomIterable = this.roomAggregateRepository.findAllRooms();
         List<Room> rooms = new ArrayList<>();
         roomIterable.forEach(rooms::add);
         return rooms;
     }
 
     public RoomSensor getSensorById(RoomSensorId roomSensorId){
-        return this.roomAggregateRepo.getRoomSensorById(roomSensorId);
+        return this.roomAggregateRepository.getSensorById(roomSensorId);
     }
 
     public boolean isReadingDuplicated(RoomReadingId roomReadingId){
-        return this.roomAggregateRepo.isReadingDuplicated(roomReadingId);
+        return this.roomAggregateRepository.isReadingDuplicated(roomReadingId);
     }
 
     public boolean addReading(RoomReading roomReading){
         if (!isReadingDuplicated(roomReading.getRoomReadingId())) {
-            this.roomAggregateRepo.saveReading(roomReading);
+            this.roomAggregateRepository.saveReading(roomReading);
             return true;
         }
         return false;
     }
+
+    public boolean addRoomSensor(RoomSensor sensor) {
+        return this.roomAggregateRepository.addRoomSensor(sensor);
+    }
+
+    public boolean roomExists(RoomId id) {
+        return this.roomAggregateRepository.roomExists(id);
+    }
+
+    public boolean roomDeviceListIsEmpty(RoomId id) {
+        return this.roomAggregateRepository.roomDeviceListIsEmpty(id);
+    }
+
+    public double getRoomNominalPower(RoomId id) {
+        return this.roomAggregateRepository.findRoomById(id).getNominalPower();
+    }
+
+    public Room getRoomById(RoomId roomId) {
+        return this.roomAggregateRepository.findRoomById(roomId);
+    }
+
+    /**
+     * creates a Device and returns true if type name exists and deviceName not exists in the
+     * rooms of the housegrid
+     *
+     * @param typeName   String type name of Device
+     * @param deviceName String device name
+     * @return true if creates and false if not
+     */
+    public Device createDevice(String typeName, String deviceName, Room room) {
+        if (Objects.isNull(getDeviceType(typeName))) {
+            return null;
+        }
+        for (Room allRoom : this.roomAggregateRepository.findAllRooms()) {
+            if (allRoom.isDeviceNameExistant(deviceName)) {
+                return null;
+            }
+        }
+        Device device = getDeviceType(typeName).createDevice(deviceName);
+        device.setLocation(room);
+        return device;
+    }
+
+    public DeviceType getDeviceType(String typeName) {
+        for (DeviceType deviceType : this.deviceTypeList) {
+            if (deviceType.getTypeName().equals(typeName)) {
+                return deviceType;
+            }
+        }
+        return null;
+    }
+
+    public List<Device> getDeviceListContentRoom(RoomId roomId) {
+        return getRoomById(roomId).getDeviceList();
+    }
+
+    public int numberOfDeviceTypes() {
+        return this.deviceTypeList.size();
+    }
+
+    public List<DeviceType> getDeviceTypes() {
+        return this.deviceTypeList;
+    }
+
+    public List<Room> getRoomsOfAHouseGrid(HouseGridId houseGridId) {
+        return this.roomAggregateRepository.findAllByHouseGridIdEquals(houseGridId);
+    }
+
+    public boolean detachRoomFromHouseGrid(RoomId roomId) {
+        return this.roomAggregateRepository.detachRoomFromHouseGrid(roomId);
+    }
+
+    public void updateRoom(Room room) {
+        this.roomAggregateRepository.updateRoom(room);
+    }
+
+    public boolean createRoom(RoomId roomId, String description, int housefloor, double length, double width, double height) {
+        Dimension dimension = new Dimension(height, length, width);
+        return this.roomAggregateRepository.addRoom(roomId, description, housefloor, dimension);
+    }
+
 
     public Room getRoomdById(RoomId roomId) {
         return roomAggregateRepository.getRoomdById(roomId);
     }
 
     public List<RoomSensor> getAllRoomSensors() {
-        Iterable<RoomSensor> roomIterable = this.roomAggregateRepo.findAllRoomSensors();
+        Iterable<RoomSensor> roomIterable = this.roomAggregateRepository.findAllRoomSensors();
         List<RoomSensor> roomSensorList = new ArrayList<>();
         roomIterable.forEach(roomSensorList::add);
         return roomSensorList;
