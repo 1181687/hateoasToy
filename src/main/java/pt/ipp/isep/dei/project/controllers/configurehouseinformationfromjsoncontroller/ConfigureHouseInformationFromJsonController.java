@@ -4,7 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.ProjectFileReader;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
-import pt.ipp.isep.dei.project.model.house.*;
+import pt.ipp.isep.dei.project.model.house.Address;
+import pt.ipp.isep.dei.project.model.house.AddressMapper;
+import pt.ipp.isep.dei.project.model.house.HouseDTO;
+import pt.ipp.isep.dei.project.model.house.RoomDTO;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridDTO;
 import pt.ipp.isep.dei.project.services.HouseService;
 import pt.ipp.isep.dei.project.utils.Utils;
@@ -198,7 +201,7 @@ public class ConfigureHouseInformationFromJsonController {
         for (RoomDTO roomDTO : houseDTO.getRoomDTOList()) {
             //Room room = RoomMapper.mapToEntity(roomDTO);
 
-            this.houseService.createRoom(roomDTO.getId(),roomDTO.getDescription(),roomDTO.getHouseFloor(),roomDTO.getLength(),roomDTO.getWidth(),roomDTO.getHeight());
+            this.houseService.createRoom(roomDTO.getId(), roomDTO.getDescription(), roomDTO.getHouseFloor(), roomDTO.getLength(), roomDTO.getWidth(), roomDTO.getHeight());
 
         }
         for (HouseGridDTO houseGridDTO : houseDTO.getHouseGridDTOList()) {

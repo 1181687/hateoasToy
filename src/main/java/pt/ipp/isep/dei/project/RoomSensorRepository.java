@@ -9,6 +9,7 @@ import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 import java.util.List;
 
 public interface RoomSensorRepository extends CrudRepository<RoomSensor, RoomSensorId> {
+
     List<RoomSensor> findByRoomId(RoomId roomId);
 
     RoomSensor findByRoomIdAndSensorTypeId(RoomId roomId, SensorTypeId sensorTypeId);

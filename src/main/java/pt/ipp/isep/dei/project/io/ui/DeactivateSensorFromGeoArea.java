@@ -83,8 +83,8 @@ public class DeactivateSensorFromGeoArea {
         StringBuilder content = new StringBuilder();
         int iterator = 1;
         for (GeoAreaSensorDTO sensorDTO : sensors) {
-                content.append(iterator + " - " + sensorDTO.getId() + "\n");
-                iterator++;
+            content.append(iterator + " - " + sensorDTO.getId() + "\n");
+            iterator++;
         }
         return content.toString();
     }

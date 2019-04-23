@@ -20,7 +20,7 @@ public class LocationTest {
         Location local2 = new Location(lat2, lon2, alt2);
         double expectedResult = 1611770.043;
         double result = local1.distanceBetweenTwoLocations(local2);
-        assertEquals(expectedResult,result,0.001);
+        assertEquals(expectedResult, result, 0.001);
     }
 
     @org.junit.jupiter.api.Test
@@ -36,7 +36,7 @@ public class LocationTest {
 
         double expectedResult = Double.NaN;
         double result = local1.distanceBetweenTwoLocations(local2);
-        assertEquals(expectedResult,result,0.001);
+        assertEquals(expectedResult, result, 0.001);
     }
 
     @org.junit.jupiter.api.Test
@@ -53,7 +53,7 @@ public class LocationTest {
         double result = local.getLatitude();
 
         //assert
-        assertEquals(expectedResult,result,0.001);
+        assertEquals(expectedResult, result, 0.001);
     }
 
     @Test
@@ -70,7 +70,7 @@ public class LocationTest {
         double result = local.getLatitude();
 
         //assert
-        assertEquals(expectedResult,result,0.001);
+        assertEquals(expectedResult, result, 0.001);
     }
 
     @org.junit.jupiter.api.Test
@@ -87,7 +87,7 @@ public class LocationTest {
         double result = local.getLatitude();
 
         //assert
-        assertEquals(expectedResult,result,0.001);
+        assertEquals(expectedResult, result, 0.001);
     }
 
     @org.junit.jupiter.api.Test
@@ -104,7 +104,7 @@ public class LocationTest {
         double result = local.getLatitude();
 
         //assert
-        assertEquals(expectedResult,result,0.001);
+        assertEquals(expectedResult, result, 0.001);
     }
 
     @org.junit.jupiter.api.Test
@@ -121,7 +121,7 @@ public class LocationTest {
         double result = local.getLongitude();
 
         //assert
-        assertEquals(expectedResult,result,0.001);
+        assertEquals(expectedResult, result, 0.001);
     }
 
     @org.junit.jupiter.api.Test
@@ -138,7 +138,7 @@ public class LocationTest {
         double result = local.getLongitude();
 
         //assert
-        assertEquals(expectedResult,result,0.001);
+        assertEquals(expectedResult, result, 0.001);
     }
 
     @org.junit.jupiter.api.Test
@@ -155,7 +155,7 @@ public class LocationTest {
         double result = local.getLongitude();
 
         //assert
-        assertEquals(expectedResult,result,0.001);
+        assertEquals(expectedResult, result, 0.001);
     }
 
     @org.junit.jupiter.api.Test
@@ -172,7 +172,7 @@ public class LocationTest {
         double result = local.getLongitude();
 
         //assert
-        assertEquals(expectedResult,result,0.001);
+        assertEquals(expectedResult, result, 0.001);
     }
 
     @org.junit.jupiter.api.Test

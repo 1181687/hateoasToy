@@ -8,7 +8,6 @@ import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.RoomId;
-import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,12 +15,11 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ElectricWaterHeaterSpecsTest {
+    private static final String ELECTRIC_W_H_TYPE = "ElectricWaterHeater";
+    private static final String NOT_VALID_ATTRIBUTE = "not a valid attribute";
     private House house;
     private Room kitchen;
     private Device electricWaterHeater;
-    private static final String ELECTRIC_W_H_TYPE = "ElectricWaterHeater";
-    private static final String NOT_VALID_ATTRIBUTE = "not a valid attribute";
-
 
     @BeforeEach
     public void StartUp() {
@@ -336,8 +334,6 @@ public class ElectricWaterHeaterSpecsTest {
     }
 
 
-
-
     @Test
     public void testSetAttributeColdWaterTemperatureTrue() {
         //Arrange
@@ -421,7 +417,7 @@ public class ElectricWaterHeaterSpecsTest {
 
     @Test
     public void setAttributeVolumeOfWaterToHeatFalseTest() {
-       //Arrange
+        //Arrange
         double value = 0;
         // Act
         boolean result = electricWaterHeater.getSpecs().setAttributeValue("Volume Of Water To Heat", value);

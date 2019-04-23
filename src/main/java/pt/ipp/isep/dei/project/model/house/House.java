@@ -1,7 +1,5 @@
 package pt.ipp.isep.dei.project.model.house;
 
-import javax.persistence.Transient;
-
 public class House {
 
     private Address address;

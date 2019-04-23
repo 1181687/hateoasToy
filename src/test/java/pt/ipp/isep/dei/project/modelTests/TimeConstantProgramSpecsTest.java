@@ -4,13 +4,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.devices.TimeConstantProgramSpecs;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class TimeConstantProgramSpecsTest {
-    private TimeConstantProgramSpecs specs;
-
     private static final String DURATION = "duration";
     private static final String ENERGY_CONSUMPTION = "energyConsumption";
+    private TimeConstantProgramSpecs specs;
 
     @BeforeEach
     public void StartUp() {
@@ -19,7 +19,7 @@ public class TimeConstantProgramSpecsTest {
     }
 
     @Test
-    public void testGetDuration (){
+    public void testGetDuration() {
         //Arrange
         specs.setAttributes(DURATION, 100);
         double expectedResult = 100;
@@ -30,7 +30,7 @@ public class TimeConstantProgramSpecsTest {
     }
 
     @Test
-    public void testGetEnergyConsumption (){
+    public void testGetEnergyConsumption() {
         //Arrange
         specs.setAttributes(ENERGY_CONSUMPTION, 100);
         double expectedResult = 100;
@@ -39,7 +39,6 @@ public class TimeConstantProgramSpecsTest {
         //Assert
         assertEquals(expectedResult, result, 0.001);
     }
-
 
 
     @Test
@@ -57,7 +56,7 @@ public class TimeConstantProgramSpecsTest {
         // Arrange
         double attribute = 30;
         // Act
-        boolean result = specs.setAttributes("\0"+DURATION, attribute);
+        boolean result = specs.setAttributes("\0" + DURATION, attribute);
         // Assert
         assertFalse(result);
     }
@@ -117,7 +116,7 @@ public class TimeConstantProgramSpecsTest {
         // Arrange
         double attribute = 10;
         // Act
-        boolean result = specs.setAttributes("\0"+ENERGY_CONSUMPTION, attribute);
+        boolean result = specs.setAttributes("\0" + ENERGY_CONSUMPTION, attribute);
         // Assert
         assertFalse(result);
     }
