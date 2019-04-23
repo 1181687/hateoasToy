@@ -75,7 +75,7 @@ public class RoomAggregateRepository {
         return this.roomRepository.findAll();
     }
 
-    public RoomSensor getRoomById(RoomSensorId roomSensorId){
+    public RoomSensor getRoomSensorById(RoomSensorId roomSensorId) {
         return this.roomSensorRepository.findById(roomSensorId).orElse(null);
     }
 
@@ -85,5 +85,13 @@ public class RoomAggregateRepository {
 
     public void saveReading(RoomReading roomReading){
         this.roomReadingRepository.save(roomReading);
+    }
+
+    public Room getRoomdById(RoomId roomId) {
+        return roomRepository.findById(roomId).orElse(null);
+    }
+
+    public Iterable<RoomSensor> findAllRoomSensors() {
+        return this.roomSensorRepository.findAll();
     }
 }

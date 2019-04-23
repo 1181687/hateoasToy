@@ -5,15 +5,9 @@ import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.RoomAggregateRepository;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.house.Room;
+import pt.ipp.isep.dei.project.model.house.RoomId;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-import pt.ipp.isep.dei.project.model.house.Room;
-import pt.ipp.isep.dei.project.model.house.RoomId;
 import pt.ipp.isep.dei.project.model.readings.RoomReading;
 import pt.ipp.isep.dei.project.model.readings.RoomReadingId;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
@@ -22,7 +16,9 @@ import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 public class RoomAggregateService {
@@ -191,7 +187,7 @@ public class RoomAggregateService {
     }
 
     public RoomSensor getSensorById(RoomSensorId roomSensorId){
-        return this.roomAggregateRepo.getRoomById(roomSensorId);
+        return this.roomAggregateRepo.getRoomSensorById(roomSensorId);
     }
 
     public boolean isReadingDuplicated(RoomReadingId roomReadingId){
@@ -204,5 +200,16 @@ public class RoomAggregateService {
             return true;
         }
         return false;
+    }
+
+    public Room getRoomdById(RoomId roomId) {
+        return roomAggregateRepository.getRoomdById(roomId);
+    }
+
+    public List<RoomSensor> getAllRoomSensors() {
+        Iterable<RoomSensor> roomIterable = this.roomAggregateRepo.findAllRoomSensors();
+        List<RoomSensor> roomSensorList = new ArrayList<>();
+        roomIterable.forEach(roomSensorList::add);
+        return roomSensorList;
     }
 }

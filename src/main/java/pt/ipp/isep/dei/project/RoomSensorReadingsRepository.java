@@ -10,5 +10,7 @@ import java.util.List;
 public interface RoomSensorReadingsRepository extends CrudRepository<RoomReading, RoomReadingId> {
 
     List<RoomReading> findByRoomReadingId_RoomSensorId(RoomSensorId roomSensorId);
+
+
 }
 

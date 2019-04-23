@@ -111,6 +111,9 @@ public class Main {
              this.roomService.addRoom(room4);
 
 
+            GetListOfSensorsAndDevicesRoom ui = new GetListOfSensorsAndDevicesRoom(roomAggregateService);
+            ui.runListOfSensors();
+
             /*CreateHouseGrid ui0 = new CreateHouseGrid(houseGridService);
             ui0.run();*/
 

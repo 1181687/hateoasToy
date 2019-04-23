@@ -149,7 +149,7 @@ public class HouseService {
     }
 */
   /* public boolean addSensorToRoom(RoomSensor sensor, RoomId roomId){
-        Room room = getRoomById(roomId);
+        Room room = getRoomSensorById(roomId);
         if(Objects.nonNull(room)){
             if(room.addSensorToListOfSensorsInRoom(sensor)){
                 this.roomRepository.save(room);
@@ -159,7 +159,7 @@ public class HouseService {
         return false;
     }*/
 
-/*    public Room getRoomById(RoomId roomId) {
+/*    public Room getRoomSensorById(RoomId roomId) {
         if (this.roomRepository.findById(roomId).isPresent()) {
             return this.roomRepository.findById(roomId).get();
         }

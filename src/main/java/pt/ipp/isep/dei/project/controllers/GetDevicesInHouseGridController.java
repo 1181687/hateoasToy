@@ -22,7 +22,6 @@ public class GetDevicesInHouseGridController {
         this.roomAggregateService = roomAggregateService;
     }
 
-
     public String getDeviceListContentNameTypeLocationByGrid(String id) {
         return roomAggregateService.getDeviceListContentNameTypeLocationByGrid(id);
     }
