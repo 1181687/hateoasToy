@@ -2,10 +2,7 @@ package pt.ipp.isep.dei.project.model.geographicalarea;
 
 import pt.ipp.isep.dei.project.model.Location;
 
-import javax.persistence.Embedded;
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.Transient;
+import javax.persistence.*;
 
 @Entity
 public class GeographicalArea {
@@ -14,8 +11,8 @@ public class GeographicalArea {
     private GeoAreaId id;
     private String description;
 
-    @Transient
-    private GeoAreaId parentGeoArea;
+    @OneToOne
+    private GeographicalArea parentGeoArea;
 
     @Embedded
     private AreaShape areaShape;
@@ -101,12 +98,12 @@ public class GeographicalArea {
      *
      * @return the area inserted
      */
-    public GeoAreaId getParentGeoArea() {
+    public GeographicalArea getParentGeoArea() {
         return parentGeoArea;
     }
 
 
-    public void setParentGeoArea(GeoAreaId insertedIn) {
+    public void setParentGeoArea(GeographicalArea insertedIn) {
         this.parentGeoArea = insertedIn;
     }
 
