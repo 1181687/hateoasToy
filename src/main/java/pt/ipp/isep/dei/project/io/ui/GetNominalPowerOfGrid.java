@@ -24,8 +24,8 @@ public class GetNominalPowerOfGrid {
         } else {
             String label1 = "Please select a House Grid to see its total nominal power: \n" + getGridsToString() + exit;
             int gridListLength = numberOfGrids();
-            int position = InputValidator.getIntRange(label1, 0, gridListLength);
-            if (position == 0) {
+            int position = InputValidator.getIntRange(label1, 0, gridListLength)-1;
+            if (position == -1) {
                 return;
             }
             HouseGridDTO chosenGrid = this.gridDTOS.get(position);
