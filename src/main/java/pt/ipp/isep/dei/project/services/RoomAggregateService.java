@@ -5,8 +5,8 @@ import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.RoomAggregateRepository;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.DeviceType;
+import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.Room;
-import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 
 import java.util.ArrayList;
@@ -19,6 +19,7 @@ import pt.ipp.isep.dei.project.model.readings.RoomReading;
 import pt.ipp.isep.dei.project.model.readings.RoomReadingId;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensorId;
+import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 import pt.ipp.isep.dei.project.utils.ApplicationConfiguration;
 
@@ -31,11 +32,16 @@ public class RoomAggregateService {
     private RoomAggregateRepository roomAggregateRepository;
 
     @Autowired
-    private HouseGridAggregateService houseGridAggregateService;
+    private SensorTypeService sensorTypeService;
 
     private String configFile = "Configuration.properties";
 
     private List<DeviceType> deviceTypeList = ApplicationConfiguration.createDeviceTypes(configFile);
+
+
+    public List<SensorType> getSensorTypeList() {
+        return sensorTypeService.getSensorTypeList();
+    }
 
 
     /**
@@ -114,25 +120,6 @@ public class RoomAggregateService {
         }
         return deviceList;
     }
-
-    public List<HouseGrid> getAllGrids() {
-        return houseGridAggregateService.getAllGrids();
-    }
-
-    /**
-     * Method that searches for a grid by its Id. If it exists in the repo, the grid is returned, if not, null is returned.
-     *
-     * @param id Id to be used.
-     * @return HouseGrid or null.
-     */
-    public HouseGrid getGridById(HouseGridId id) {
-        return houseGridAggregateService.getGridById(id);
-    }
-
-    public boolean isHouseGridListEmpty() {
-        return this.houseGridAggregateService.numberOfHouseGridsInRepository();
-    }
-
 
     /**
      * method that return true if a given room have a Sensor of a given type
@@ -279,4 +266,22 @@ public class RoomAggregateService {
     public List<DeviceType> getDeviceTypes(){
         return this.deviceTypeList;
     }
+
+    public List<Room> getRoomsOfAHouseGrid(HouseGridId houseGridId) {
+        return this.roomAggregateRepository.findAllByHouseGridIdEquals(houseGridId);
+    }
+
+    public boolean detachRoomFromHouseGrid(RoomId roomId) {
+        return this.roomAggregateRepository.detachRoomFromHouseGrid(roomId);
+    }
+
+    public void updateRoom(Room room){
+        this.roomAggregateRepository.updateRoom(room);
+    }
+
+    public boolean createRoom(RoomId roomId, String description, int housefloor, double length,double width, double height){
+        Dimension dimension = new Dimension(height,length,width);
+        return this.roomAggregateRepository.addRoom(roomId,description,housefloor,dimension);
+    }
+
 }

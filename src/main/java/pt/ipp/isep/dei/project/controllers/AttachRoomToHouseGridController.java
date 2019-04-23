@@ -19,7 +19,6 @@ public class AttachRoomToHouseGridController {
     private HouseService houseService;
     private HouseGrid chosenGrid;
     private Room chosenRoom;
-    private RoomAggregateService roomAggregateService;
 
     /**
      * Constructor.
@@ -64,8 +63,7 @@ public class AttachRoomToHouseGridController {
      * @param gridId Id of the grid to be stored.
      */
     public void setGrid(String gridId) {
-        HouseGridId houseGridId = new HouseGridId(gridId);
-        this.chosenGrid = roomAggregateService.getGridById(houseGridId);
+        this.chosenGrid = houseService.getGridById(gridId);
     }
 
 

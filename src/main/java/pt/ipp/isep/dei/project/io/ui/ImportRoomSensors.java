@@ -14,8 +14,8 @@ public class ImportRoomSensors {
     private String filePath;
     private File file;
 
-    public ImportRoomSensors(RoomAggregateService roomAggregateService) {
-        this.controller = new ImportRoomSensorsController(roomAggregateService);
+    public ImportRoomSensors(RoomAggregateService roomService) {
+        this.controller = new ImportRoomSensorsController(roomService);
     }
 
     public void run() throws FileNotFoundException {

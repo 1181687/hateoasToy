@@ -231,12 +231,6 @@ public RoomSensorService getSensorList() {
     }
 */
 
-/**
- * @param type of sensor (temperature)
- * @param date any given day
- * @return maximum temperature
- */
-
   /*  public double getMaximumMeasurementInGivenDay(SensorType type, LocalDate date) {
         return sensorList.getMaximumMeasureOfTypeOfSensorInGivenDay(type, date);
     }*/
@@ -539,6 +533,7 @@ public RoomSensorService getSensorList() {
      * method that deactivate the device.
      *
      * @param
+     *
      * @return true if the device was deactivated. False, if not.
      */
    /* public boolean deactivateDevice(String device) {

@@ -16,10 +16,11 @@ import java.util.Objects;
 import java.util.Properties;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 
-import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
 
 public class ConfigureHouseInformationFromJsonController {
+    private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     @Autowired
     private HouseService houseService;
@@ -195,9 +196,9 @@ public class ConfigureHouseInformationFromJsonController {
         this.houseService.setAddress(houseAddress);
 
         for (RoomDTO roomDTO : houseDTO.getRoomDTOList()) {
-            Room room = RoomMapper.mapToEntity(roomDTO);
+            //Room room = RoomMapper.mapToEntity(roomDTO);
 
-            this.houseService.addRoom(room);
+            this.houseService.createRoom(roomDTO.getId(),roomDTO.getDescription(),roomDTO.getHouseFloor(),roomDTO.getLength(),roomDTO.getWidth(),roomDTO.getHeight());
 
         }
         for (HouseGridDTO houseGridDTO : houseDTO.getHouseGridDTOList()) {
