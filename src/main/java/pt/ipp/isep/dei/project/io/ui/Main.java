@@ -115,13 +115,10 @@ public class Main {
             AddNewGeographicalArea addNewGeographicalArea = new AddNewGeographicalArea(geoAreaService);
             addNewGeographicalArea.run();*/
 
-            Dimension dim = new Dimension(2, 2, 2);
-            Room room2 = new Room(new RoomId("B106"), "cenas", 1, dim);
-            Room room3 = new Room(new RoomId("B107"), "cenas", 1, dim);
-            Room room4 = new Room(new RoomId("B109"), "cenas", 1, dim);
-            this.houseService.addRoom(room2);
-            this.houseService.addRoom(room3);
-            this.houseService.addRoom(room4);
+            this.roomAggregateService.createRoom(new RoomId("B106"),"cenas",1,2,2,2);
+            this.roomAggregateService.createRoom(new RoomId("B107"),"cenas",1,2,2,2);
+            this.roomAggregateService.createRoom(new RoomId("B109"),"cenas",1,2,2,2);
+
             /*CreateHouseGrid ui0 = new CreateHouseGrid(houseGridService);
             ui0.run();*/
 

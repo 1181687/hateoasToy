@@ -8,6 +8,7 @@ import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridDTO;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridMapper;
+import pt.ipp.isep.dei.project.services.HouseService;
 import pt.ipp.isep.dei.project.services.RoomAggregateService;
 
 import java.util.ArrayList;
@@ -18,15 +19,15 @@ public class GetNominalPowerController {
     private HouseGrid selectedHouseGrid;
     private MeasurableList measurableList;
 
-    private RoomAggregateService roomAggregateService;
+    private HouseService houseService;
 
-    public GetNominalPowerController(RoomAggregateService roomAggregateService) {
+    public GetNominalPowerController(HouseService houseService) {
         //this.measurableList = house.getNewMeasurableObjList();
-        this.roomAggregateService = roomAggregateService;
+        this.houseService = houseService;
     }
 
     public List<HouseGridDTO> getAllGrids(){
-        List<HouseGrid> gridList = this.roomAggregateService.getAllGrids();
+        List<HouseGrid> gridList = this.houseService.getAllGrids();
         List<HouseGridDTO> gridDTOS = new ArrayList<>();
 
         if(!gridList.isEmpty()){
@@ -44,11 +45,11 @@ public class GetNominalPowerController {
      * @return double
      */
     public double getHouseGridTotalNominalPower(String gridId) {
-        return this.roomAggregateService.getGridNominalPower(new HouseGridId(gridId));
+        return this.houseService.getGridNominalPower(gridId);
     }
 
     public List<RoomDTO> getAllRooms(){
-        List<Room> rooms = this.roomAggregateService.getAllRooms();
+        List<Room> rooms = this.houseService.getAllRooms();
         List<RoomDTO> roomDTOS = new ArrayList<>();
 
         if(!rooms.isEmpty()){
@@ -60,11 +61,11 @@ public class GetNominalPowerController {
     }
 
     public boolean roomDeviceListIsEmpty(String id){
-        return this.roomAggregateService.roomDeviceListIsEmpty(new RoomId(id));
+        return this.houseService.roomDeviceListIsEmpty(id);
     }
 
     public double getRoomNominalPower(String id){
-        return this.roomAggregateService.getRoomNominalPower(new RoomId(id));
+        return this.houseService.getRoomNominalPower(id);
     }
 
 /*
