@@ -9,14 +9,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import pt.ipp.isep.dei.project.io.ui.logger.MyLogger;
-import pt.ipp.isep.dei.project.model.devices.walltowelheater.WallTowelHeater;
-import pt.ipp.isep.dei.project.model.devices.walltowelheater.WallTowelHeaterSpecs;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.RoomId;
-import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
-import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 import pt.ipp.isep.dei.project.services.*;
 
 import java.io.IOException;
@@ -135,14 +131,17 @@ public class Main {
             /*AddNewGeographicalArea ui2 = new AddNewGeographicalArea(this.geoAreaService);
             ui2.run();*/
 
-            /*DefineSensorType ui = new DefineSensorType(this.sensorTypeService);
-            ui.run();*/
+            DefineSensorType ui = new DefineSensorType(this.sensorTypeService);
+            ui.run();
 
             /*AddSensorToGeoArea ui1 = new AddSensorToGeoArea(this.geoAreaService);
             ui1.run();*/
 
-           ImportRoomSensors ui = new ImportRoomSensors(this.roomAggregateService);
-           ui.run();
+            AddSensorToRoom addSensorToRoom = new AddSensorToRoom(this.roomAggregateService);
+            addSensorToRoom.run();
+
+            //ImportRoomSensors ui = new ImportRoomSensors(this.roomAggregateService);
+            //ui.run();
 
 /*
             AddNewGeographicalAreaType addNewGeographicalAreaType = new AddNewGeographicalAreaType(geoAreaTypeService);
@@ -161,8 +160,8 @@ public class Main {
             /*ImportGeoAreasFromJSONOrXML importGeoAreasFromJSONOrXML = new ImportGeoAreasFromJSONOrXML(geoAreaAggregateService);
             importGeoAreasFromJSONOrXML.run();*/
 
-            ImportReadings importReadings = new ImportReadings(geoAreaAggregateService, roomAggregateService);
-            importReadings.run(2);
+            //ImportReadings importReadings = new ImportReadings(geoAreaAggregateService, roomAggregateService);
+            //importReadings.run(2);
 
             /*GetCurrentTemperatureRoom getCurrentTemperatureRoom = new GetCurrentTemperatureRoom(roomService);
             getCurrentTemperatureRoom.run();*/
@@ -192,7 +191,6 @@ public class Main {
 
            /* AddDeviceToRoom addDeviceToRoom = new AddDeviceToRoom(this.roomAggregateService);
             addDeviceToRoom.run();*/
-
 
 
         };

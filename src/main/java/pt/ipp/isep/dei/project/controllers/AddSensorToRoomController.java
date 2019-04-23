@@ -34,7 +34,8 @@ public class AddSensorToRoomController {
         return sensorTypeDTOList;
     }
 
-    public void addSensorToRoom(RoomSensorDTO roomSensorDTO) {
-        RoomSensorMapper.mapToEntity(roomSensorDTO);
+    public boolean addSensorToRoom(RoomSensorDTO roomSensorDTO) {
+        RoomSensor roomSensor = RoomSensorMapper.mapToEntity(roomSensorDTO);
+        return roomAggregateService.addRoomSensor(roomSensor);
     }
 }
