@@ -8,15 +8,6 @@ import pt.ipp.isep.dei.project.model.devices.DeviceType;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.RoomId;
-import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
-import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
-import pt.ipp.isep.dei.project.model.house.RoomId;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 import pt.ipp.isep.dei.project.model.readings.RoomReading;
 import pt.ipp.isep.dei.project.model.readings.RoomReadingId;
@@ -27,9 +18,6 @@ import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 import pt.ipp.isep.dei.project.utils.ApplicationConfiguration;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -266,7 +254,7 @@ public class RoomAggregateService {
     public List<RoomReading> getListOfRoomReadingByRoomSensorIdByDay(RoomSensorId roomSensorId, LocalDate localDate) {
 
         List<RoomReading> listReadingSensor = this.getListOfRoomReadingByRoomSensorId(roomSensorId);
-        if (!listReadingSensor.isEmpty()) {
+        if (Objects.nonNull(listReadingSensor)) {
             List<RoomReading> dailyRoomReading = new ArrayList<>();
             for (RoomReading reading : listReadingSensor) {
                 if (reading.getRoomReadingId().getLocalDateTime().toLocalDate().isEqual(localDate)) {
@@ -289,7 +277,7 @@ public class RoomAggregateService {
 
         List<RoomReading> dailyRoomReading = this.getListOfRoomReadingByRoomSensorIdByDay(roomSensorId, localDate);
 
-        if (!dailyRoomReading.isEmpty()) {
+        if (Objects.nonNull(dailyRoomReading) && (!dailyRoomReading.isEmpty())) {
             RoomReading maxRoomReading = dailyRoomReading.get(0);
             for (RoomReading reading : dailyRoomReading) {
                 if (Double.compare(reading.getValue(), maxRoomReading.getValue()) == 1) {

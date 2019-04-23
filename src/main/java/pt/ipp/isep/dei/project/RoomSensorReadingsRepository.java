@@ -12,5 +12,7 @@ public interface RoomSensorReadingsRepository extends CrudRepository<RoomReading
     List<RoomReading> findByRoomReadingId_RoomSensorId(RoomSensorId roomSensorId);
 
     //   List<RoomReading> findByRoomReadingId_RoomSensorIdAndRoomReadingId_LocalDateTime_Date(RoomSensorId roomSensorId, LocalDate localDate);
+
+
 }
 

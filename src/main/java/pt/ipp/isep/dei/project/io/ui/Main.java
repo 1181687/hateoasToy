@@ -165,8 +165,8 @@ public class Main {
             /*ImportGeoAreasFromJSONOrXML importGeoAreasFromJSONOrXML = new ImportGeoAreasFromJSONOrXML(geoAreaAggregateService);
             importGeoAreasFromJSONOrXML.run();*/
 
-            //  ImportReadings importReadings = new ImportReadings(geoAreaAggregateService, roomAggregateService);
-            // importReadings.run(2);
+            ImportReadings importReadings = new ImportReadings(geoAreaAggregateService, roomAggregateService);
+            importReadings.run(2);
 
             //GetCurrentTemperatureRoom getCurrentTemperatureRoom = new GetCurrentTemperatureRoom(roomAggregateService);
             //getCurrentTemperatureRoom.run();
