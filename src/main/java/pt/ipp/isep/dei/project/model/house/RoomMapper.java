@@ -1,5 +1,7 @@
 package pt.ipp.isep.dei.project.model.house;
 
+import org.omg.CORBA.Object;
+
 import java.util.Objects;
 
 public final class RoomMapper {
@@ -39,6 +41,9 @@ public final class RoomMapper {
         roomDTO.setWidth(room.getDimension().getWidth());
         roomDTO.setLength(room.getDimension().getLength());
         roomDTO.setHeight(room.getDimension().getHeight());
+        if (Objects.isNull(room.getHouseGridId())){
+            return roomDTO;
+        }
         roomDTO.setGridId(room.getHouseGridId().getId());
         return roomDTO;
     }

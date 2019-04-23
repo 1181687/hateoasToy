@@ -8,11 +8,18 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import pt.ipp.isep.dei.project.io.ui.logger.MyLogger;
+import pt.ipp.isep.dei.project.model.devices.walltowelheater.WallTowelHeater;
+import pt.ipp.isep.dei.project.model.devices.walltowelheater.WallTowelHeaterSpecs;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.RoomId;
+import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
+import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 import pt.ipp.isep.dei.project.services.*;
+
+import java.io.IOException;
 
 @EnableJpaRepositories(basePackages = "pt.ipp.isep.dei.project")
 @EntityScan(basePackages = "pt.ipp.isep.dei.project")
@@ -88,6 +95,13 @@ public class Main {
     public CommandLineRunner mainRun() {
 
         return (args) -> {
+
+            try {
+                MyLogger.setup();
+            } catch (IOException e) {
+                e.printStackTrace();
+                throw new RuntimeException("Problems with creating the log files");
+            }
            /* GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("City");
             GeographicalAreaType geographicalAreaType = new GeographicalAreaType(geoAreaTypeId);
             geoAreaTypeService.createGeoAreaType(geoAreaTypeId);
@@ -106,12 +120,9 @@ public class Main {
             Room room2 = new Room(new RoomId("B106"), "cenas", 1, dim);
             Room room3 = new Room(new RoomId("B107"), "cenas", 1, dim);
             Room room4 = new Room(new RoomId("B109"), "cenas", 1, dim);
-
-             this.roomService.addRoom(room2);
-             this.roomService.addRoom(room3);
-             this.roomService.addRoom(room4);
-
-
+            this.houseService.addRoom(room2);
+            this.houseService.addRoom(room3);
+            this.houseService.addRoom(room4);
             /*CreateHouseGrid ui0 = new CreateHouseGrid(houseGridService);
             ui0.run();*/
 
@@ -130,8 +141,8 @@ public class Main {
             /*AddSensorToGeoArea ui1 = new AddSensorToGeoArea(this.geoAreaService);
             ui1.run();*/
 
-           /*ImportRoomSensors ui = new ImportRoomSensors(this.roomService);
-           ui.run();*/
+           ImportRoomSensors ui = new ImportRoomSensors(this.roomAggregateService);
+           ui.run();
 
 /*
             AddNewGeographicalAreaType addNewGeographicalAreaType = new AddNewGeographicalAreaType(geoAreaTypeService);
@@ -150,11 +161,11 @@ public class Main {
             /*ImportGeoAreasFromJSONOrXML importGeoAreasFromJSONOrXML = new ImportGeoAreasFromJSONOrXML(geoAreaAggregateService);
             importGeoAreasFromJSONOrXML.run();*/
 
-            /*ImportReadings importReadings = new ImportReadings(geoAreaAggregateService, roomAggregateService);
+            ImportReadings importReadings = new ImportReadings(geoAreaAggregateService, roomAggregateService);
             importReadings.run(2);
 
-            GetCurrentTemperatureRoom getCurrentTemperatureRoom = new GetCurrentTemperatureRoom(roomService);
-            getCurrentTemperatureRoom.run();
+            /*GetCurrentTemperatureRoom getCurrentTemperatureRoom = new GetCurrentTemperatureRoom(roomService);
+            getCurrentTemperatureRoom.run();*/
             // GetCurrentTemperatureRoom getCurrentTemperatureRoom = new GetCurrentTemperatureRoom(roomService);
             // getCurrentTemperatureRoom.run();
 
@@ -178,6 +189,11 @@ public class Main {
             ui2.run();
             DeactivateSensorFromGeoArea ui3 = new DeactivateSensorFromGeoArea(this.geoAreaAggregateService);
             ui3.run();*/
+
+           /* AddDeviceToRoom addDeviceToRoom = new AddDeviceToRoom(this.roomAggregateService);
+            addDeviceToRoom.run();*/
+
+
 
         };
     }

@@ -4,21 +4,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.RoomAggregateRepository;
 import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.devices.DeviceType;
 import pt.ipp.isep.dei.project.model.house.Room;
-import pt.ipp.isep.dei.project.model.house.RoomId;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import pt.ipp.isep.dei.project.model.house.RoomId;
 import pt.ipp.isep.dei.project.model.readings.RoomReading;
 import pt.ipp.isep.dei.project.model.readings.RoomReadingId;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensorId;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
+import pt.ipp.isep.dei.project.utils.ApplicationConfiguration;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 @Service
 public class RoomAggregateService {
@@ -28,6 +32,11 @@ public class RoomAggregateService {
 
     @Autowired
     private HouseGridAggregateService houseGridAggregateService;
+
+    private String configFile = "Configuration.properties";
+
+    private List<DeviceType> deviceTypeList = ApplicationConfiguration.createDeviceTypes(configFile);
+
 
     /**
      * method that get the String content Name and Location of all devices in the list,
@@ -222,5 +231,52 @@ public class RoomAggregateService {
 
     public double getRoomNominalPower(RoomId id){
         return this.roomAggregateRepository.findRoomById(id).getNominalPower();
+    }
+
+    public Room getRoomById(RoomId roomId){
+        return this.roomAggregateRepository.findRoomById(roomId);
+    }
+
+    /**
+     * creates a Device and returns true if type name exists and deviceName not exists in the
+     * rooms of the housegrid
+     *
+     * @param typeName   String type name of Device
+     * @param deviceName String device name
+     * @return true if creates and false if not
+     */
+    public Device createDevice(String typeName, String deviceName, Room room) {
+        if (Objects.isNull(getDeviceType(typeName))) {
+            return null;
+        }
+        for (Room allRoom : this.roomAggregateRepository.findAllRooms()) {
+            if (allRoom.isDeviceNameExistant(deviceName)){
+                return null;
+            }
+        }
+        Device device = getDeviceType(typeName).createDevice(deviceName);
+        device.setLocation(room);
+        return device;
+    }
+
+    public DeviceType getDeviceType(String typeName){
+        for (DeviceType deviceType : this.deviceTypeList) {
+            if (deviceType.getTypeName().equals(typeName)) {
+                return deviceType;
+            }
+        }
+        return null;
+    }
+
+    public List<Device> getDeviceListContentRoom (RoomId roomId){
+        return getRoomById(roomId).getDeviceList();
+    }
+
+    public int numberOfDeviceTypes(){
+        return this.deviceTypeList.size();
+    }
+
+    public List<DeviceType> getDeviceTypes(){
+        return this.deviceTypeList;
     }
 }
