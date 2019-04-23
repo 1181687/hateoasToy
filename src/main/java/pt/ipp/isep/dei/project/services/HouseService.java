@@ -30,8 +30,7 @@ public class HouseService {
     @Autowired
     private PowerSourceTypeService sourceTypeService;
 
-    @Autowired
-    private SensorTypeService sensorTypeService;
+
 
     private Address address;
 
@@ -58,14 +57,6 @@ public class HouseService {
         return this.address.getInsertedGeoArea();
     }
 
-    /**
-     * method that get a list of sensor types
-     *
-     * @return a list of sensor types.
-     */
-    public List<SensorType> getSensorTypeList() {
-        return sensorTypeService.getSensorTypeList();
-    }
 
     public boolean isGridRepositoryEmpty() {
         return this.houseGridService.isGridRepositoryEmpty();
