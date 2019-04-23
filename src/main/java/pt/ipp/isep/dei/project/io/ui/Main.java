@@ -68,6 +68,7 @@ public class Main {
 
     // RoomSensor Service Injection
     @Autowired
+
     private RoomSensorService roomSensorService;
 
     @Autowired

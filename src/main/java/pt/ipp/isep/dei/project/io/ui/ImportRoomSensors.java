@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.importroomsensors.ImportRoomSensorsController;
-import pt.ipp.isep.dei.project.services.RoomService;
+import pt.ipp.isep.dei.project.services.RoomAggregateService;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -13,7 +13,7 @@ public class ImportRoomSensors {
     private String filePath;
     private File file;
 
-    public ImportRoomSensors(RoomService roomService) {
+    public ImportRoomSensors(RoomAggregateService roomService) {
         this.controller = new ImportRoomSensorsController(roomService);
     }
 
