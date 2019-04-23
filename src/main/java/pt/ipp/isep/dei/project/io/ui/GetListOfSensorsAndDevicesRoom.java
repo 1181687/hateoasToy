@@ -40,7 +40,7 @@ public class GetListOfSensorsAndDevicesRoom {
             System.out.println("The list is empty. Please, add a sensor.");
 
         } else {
-            System.out.println("This is the list of existing sensors in the room" + roomChoosed + ":");
+            System.out.println("This is the list of existing sensors in the room" + "> ");
         }
         System.out.println(listOfSensors);
     }
@@ -108,8 +108,10 @@ public class GetListOfSensorsAndDevicesRoom {
 
         for (RoomSensorDTO roomSensorDTO : this.roomSensorDTOList) {
             content.append(number);
-            content.append(" - ");
+            content.append(" - ID: ");
             content.append(roomSensorDTO.getId());
+            content.append(", name: ");
+            content.append(roomSensorDTO.getName());
             content.append("\n");
             number++;
         }
