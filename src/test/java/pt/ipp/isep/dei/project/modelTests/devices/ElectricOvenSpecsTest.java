@@ -2,7 +2,6 @@ package pt.ipp.isep.dei.project.modelTests.devices;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import pt.ipp.isep.dei.project.model.devices.*;
 import pt.ipp.isep.dei.project.model.devices.electricoven.ElectricOvenSpecs;
 import pt.ipp.isep.dei.project.model.devices.electricoven.ElectricOvenType;
@@ -10,8 +9,6 @@ import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.RoomId;
-import pt.ipp.isep.dei.project.services.RoomAggregateService;
-import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -119,7 +116,7 @@ public class ElectricOvenSpecsTest {
         double nominalPower = 30;
 
         //Act
-        boolean result = specs.setAttributeValue("\0"+ATTRIBUTE_NOMINAL_POWER, nominalPower);
+        boolean result = specs.setAttributeValue("\0" + ATTRIBUTE_NOMINAL_POWER, nominalPower);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -205,12 +202,11 @@ public class ElectricOvenSpecsTest {
         double maxVolWater = 2;
 
         //Act
-        boolean result = specs.setAttributeValue("\0"+ATTRIBUTE_TIME, maxVolWater);
+        boolean result = specs.setAttributeValue("\0" + ATTRIBUTE_TIME, maxVolWater);
 
         //Assert
         assertEquals(expectedResult, result);
     }
-
 
 
     /**
@@ -369,11 +365,11 @@ public class ElectricOvenSpecsTest {
      * when inserted an null character attribute.
      */
     @Test
-    public void testGetAttributeValue_NullCharacterTime (){
+    public void testGetAttributeValue_NullCharacterTime() {
         //Arrange
         String expectedResult = "not a valid attribute";
         //Act
-        Object result = specs.getAttributeValue("\0"+ATTRIBUTE_TIME);
+        Object result = specs.getAttributeValue("\0" + ATTRIBUTE_TIME);
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -384,11 +380,11 @@ public class ElectricOvenSpecsTest {
      * when inserted an null character attribute.
      */
     @org.junit.jupiter.api.Test
-    public void testGetAttributeValue_NullCharacterNomPower (){
+    public void testGetAttributeValue_NullCharacterNomPower() {
         //Arrange
         String expectedResult = "not a valid attribute";
         //Act
-        Object result = specs.getAttributeValue("\0"+ATTRIBUTE_NOMINAL_POWER);
+        Object result = specs.getAttributeValue("\0" + ATTRIBUTE_NOMINAL_POWER);
         //Assert
         assertEquals(expectedResult, result);
     }

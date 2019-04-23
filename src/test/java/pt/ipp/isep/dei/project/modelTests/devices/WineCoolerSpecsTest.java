@@ -2,15 +2,12 @@ package pt.ipp.isep.dei.project.modelTests.devices;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.winecooler.WineCoolerType;
 import pt.ipp.isep.dei.project.model.house.Dimension;
-import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.RoomId;
-import pt.ipp.isep.dei.project.services.RoomAggregateService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,9 +15,9 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class WineCoolerSpecsTest {
+    private static final String NOT_VALID_ATTRIBUTE = "not a valid attribute";
     private Room kitchen;
     private Device wineCooler;
-    private static final String NOT_VALID_ATTRIBUTE = "not a valid attribute";
 
     @BeforeEach
     public void StartUp() {
@@ -205,11 +202,11 @@ public class WineCoolerSpecsTest {
      * when inserted an null character attribute.
      */
     @Test
-    public void testGetAttributeValue_NullNumberOfBottles (){
+    public void testGetAttributeValue_NullNumberOfBottles() {
         //Arrange
         String expectedResult = NOT_VALID_ATTRIBUTE;
         //Act
-        Object result = wineCooler.getSpecs().getAttributeValue("\0"+ "Number of Bottles");
+        Object result = wineCooler.getSpecs().getAttributeValue("\0" + "Number of Bottles");
 
         //Assert
         assertEquals(expectedResult, result);
@@ -270,7 +267,7 @@ public class WineCoolerSpecsTest {
         double numberOfBottles = 30;
 
         //Act
-        boolean result = wineCooler.getSpecs().setAttributeValue("\0"+ "Number of Bottles", numberOfBottles);
+        boolean result = wineCooler.getSpecs().setAttributeValue("\0" + "Number of Bottles", numberOfBottles);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -283,7 +280,7 @@ public class WineCoolerSpecsTest {
         double numberOfBottles = 0;
 
         //Act
-        boolean result = wineCooler.getSpecs().setAttributeValue("Number of Bottles",numberOfBottles);
+        boolean result = wineCooler.getSpecs().setAttributeValue("Number of Bottles", numberOfBottles);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -330,10 +327,10 @@ public class WineCoolerSpecsTest {
     public void testSetEnergyConsumption_NullCharacter_False() {
         //Arrange
         boolean expectedResult = false;
-        double energyConsumption= 30;
+        double energyConsumption = 30;
 
         //Act
-        boolean result = wineCooler.getSpecs().setAttributeValue("\0"+ "Energy Consumption", energyConsumption);
+        boolean result = wineCooler.getSpecs().setAttributeValue("\0" + "Energy Consumption", energyConsumption);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -346,7 +343,7 @@ public class WineCoolerSpecsTest {
         double energyConsumption = 0;
 
         //Act
-        boolean result = wineCooler.getSpecs().setAttributeValue("Energy Consumption",energyConsumption);
+        boolean result = wineCooler.getSpecs().setAttributeValue("Energy Consumption", energyConsumption);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -390,10 +387,10 @@ public class WineCoolerSpecsTest {
     public void testSetNominalPower_NullCharacter_False() {
         //Arrange
         boolean expectedResult = false;
-        double nominalPower= 30;
+        double nominalPower = 30;
 
         //Act
-        boolean result = wineCooler.getSpecs().setAttributeValue("\0"+ "Nominal Power", nominalPower);
+        boolean result = wineCooler.getSpecs().setAttributeValue("\0" + "Nominal Power", nominalPower);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -406,11 +403,12 @@ public class WineCoolerSpecsTest {
         double nominalPower = 0;
 
         //Act
-        boolean result = wineCooler.getSpecs().setAttributeValue("Nominal Power",nominalPower);
+        boolean result = wineCooler.getSpecs().setAttributeValue("Nominal Power", nominalPower);
 
         //Assert
         assertEquals(expectedResult, result);
     }
+
     @Test
     public void getAttributeDataTypeTest() {
         // arrange
@@ -423,10 +421,6 @@ public class WineCoolerSpecsTest {
         assertEquals(attributeDataType, result);
     }
 
-    @Configuration
-    static class Config {
-    }
-
     @Test
     public void testIfDeviceIsProgrammableReturnsFalseBecauseItsNotProgrammable() {
         //Arrange
@@ -435,5 +429,9 @@ public class WineCoolerSpecsTest {
         boolean result = wineCooler.getSpecs().isProgrammable();
         //Assert
         assertFalse(result);
+    }
+
+    @Configuration
+    static class Config {
     }
 }

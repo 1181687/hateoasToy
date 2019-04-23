@@ -11,11 +11,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 
 public class TimeConstantProgramTest {
-    private TimeConstantProgram timeConstantProgram;
-    private TimeConstantProgramSpecs specs;
-
     private static final String DURATION = "duration";
     private static final String ENERGY_CONSUMPTION = "energyConsumption";
+    private TimeConstantProgram timeConstantProgram;
+    private TimeConstantProgramSpecs specs;
 
     @BeforeEach
     public void StartUp() {
@@ -53,7 +52,7 @@ public class TimeConstantProgramTest {
         // Arrange
         String attribute = "stuff";
         // Act
-        boolean result = timeConstantProgram.setProgramAttributes("\0"+DURATION, attribute);
+        boolean result = timeConstantProgram.setProgramAttributes("\0" + DURATION, attribute);
         // Assert
         assertFalse(result);
     }
@@ -103,7 +102,7 @@ public class TimeConstantProgramTest {
         // Arrange
         String attribute = "stuff";
         // Act
-        boolean result = timeConstantProgram.setProgramAttributes("\0"+ENERGY_CONSUMPTION, attribute);
+        boolean result = timeConstantProgram.setProgramAttributes("\0" + ENERGY_CONSUMPTION, attribute);
         // Assert
         assertFalse(result);
     }

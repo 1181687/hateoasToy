@@ -2,15 +2,12 @@ package pt.ipp.isep.dei.project.modelTests.devices;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import pt.ipp.isep.dei.project.model.devices.*;
 import pt.ipp.isep.dei.project.model.devices.fan.FanSpecs;
 import pt.ipp.isep.dei.project.model.devices.fan.FanType;
 import pt.ipp.isep.dei.project.model.house.Dimension;
-import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.RoomId;
-import pt.ipp.isep.dei.project.services.RoomAggregateService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,11 +15,10 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class FanSpecsTest {
+    private static final String NOT_VALID_ATTRIBUTE = "not a valid attribute";
     private Room kitchen;
     private Device fan;
     private DeviceSpecs fanSpecs;
-    private static final String NOT_VALID_ATTRIBUTE = "not a valid attribute";
-
 
     @BeforeEach
     public void StartUp() {

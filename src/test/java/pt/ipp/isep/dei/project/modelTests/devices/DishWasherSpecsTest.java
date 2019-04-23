@@ -2,16 +2,12 @@ package pt.ipp.isep.dei.project.modelTests.devices;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import pt.ipp.isep.dei.project.model.devices.*;
 import pt.ipp.isep.dei.project.model.devices.dishwasher.DishWasherSpecs;
 import pt.ipp.isep.dei.project.model.devices.dishwasher.DishWasherType;
 import pt.ipp.isep.dei.project.model.house.Dimension;
-import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.RoomId;
-import pt.ipp.isep.dei.project.services.RoomAggregateService;
-import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,11 +15,10 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class DishWasherSpecsTest {
+    private static final String NOT_VALID_ATTRIBUTE = "not a valid attribute";
     private Room kitchen;
     private Device dishWasher;
     private DeviceSpecs dishWasherSpecs;
-    private static final String NOT_VALID_ATTRIBUTE = "not a valid attribute";
-
 
     @BeforeEach
     public void StartUp() {
@@ -372,7 +367,7 @@ public class DishWasherSpecsTest {
     }
 
     @Test
-    public void testAsProgrammable_device(){
+    public void testAsProgrammable_device() {
         Programmable expectedResult = (Programmable) dishWasherSpecs;
         Programmable result = dishWasherSpecs.asProgrammable();
         assertEquals(expectedResult, result);

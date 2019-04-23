@@ -2,7 +2,6 @@ package pt.ipp.isep.dei.project.modelTests.devices;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
 import pt.ipp.isep.dei.project.model.devices.Programmable;
@@ -11,8 +10,6 @@ import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.RoomId;
-import pt.ipp.isep.dei.project.services.RoomAggregateService;
-import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -126,7 +123,7 @@ public class KettleSpecsTest {
         double nominalPower = 30;
 
         //Act
-        boolean result = kettleSpecs.setAttributeValue("\0"+ATTRIBUTE_NOMINAL_POWER, nominalPower);
+        boolean result = kettleSpecs.setAttributeValue("\0" + ATTRIBUTE_NOMINAL_POWER, nominalPower);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -212,12 +209,11 @@ public class KettleSpecsTest {
         double maxVolWater = 2;
 
         //Act
-        boolean result = kettleSpecs.setAttributeValue("\0"+ATTRIBUTE_MAXIMUM_VOLUME_WATER, maxVolWater);
+        boolean result = kettleSpecs.setAttributeValue("\0" + ATTRIBUTE_MAXIMUM_VOLUME_WATER, maxVolWater);
 
         //Assert
         assertEquals(expectedResult, result);
     }
-
 
 
     /**
@@ -300,7 +296,7 @@ public class KettleSpecsTest {
         double perfRatio = 0.9;
 
         //Act
-        boolean result = kettleSpecs.setAttributeValue("\0"+ATTRIBUTE_PERFORMANCE_RATIO, perfRatio);
+        boolean result = kettleSpecs.setAttributeValue("\0" + ATTRIBUTE_PERFORMANCE_RATIO, perfRatio);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -404,7 +400,7 @@ public class KettleSpecsTest {
         double volWater = -1;
 
         //Act
-        boolean result = kettleSpecs.setAttributeValue("\0"+VOLUME_OF_WATER_TO_HEAT, volWater);
+        boolean result = kettleSpecs.setAttributeValue("\0" + VOLUME_OF_WATER_TO_HEAT, volWater);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -488,10 +484,10 @@ public class KettleSpecsTest {
     public void testSetColdWaterTemperature_NullCharacter_False() {
         //Arrange
         boolean expectedResult = false;
-        String  coldWaterTemp = "101";
+        String coldWaterTemp = "101";
 
         //Act
-        boolean result = kettleSpecs.setAttributeValue("\0"+COLD_WATER_TEMPERATURE, coldWaterTemp);
+        boolean result = kettleSpecs.setAttributeValue("\0" + COLD_WATER_TEMPERATURE, coldWaterTemp);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -666,11 +662,11 @@ public class KettleSpecsTest {
      * when inserted an null character attribute.
      */
     @org.junit.jupiter.api.Test
-    public void testGetAttributeValue_NullCharacterMaxVolWater (){
+    public void testGetAttributeValue_NullCharacterMaxVolWater() {
         //Arrange
         String expectedResult = "not a valid attribute";
         //Act
-        Object result = kettleSpecs.getAttributeValue("\0"+ATTRIBUTE_MAXIMUM_VOLUME_WATER);
+        Object result = kettleSpecs.getAttributeValue("\0" + ATTRIBUTE_MAXIMUM_VOLUME_WATER);
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -680,11 +676,11 @@ public class KettleSpecsTest {
      * when inserted an null character attribute.
      */
     @Test
-    public void testGetAttributeValue_NullCharacterPerfRatio (){
+    public void testGetAttributeValue_NullCharacterPerfRatio() {
         //Arrange
         String expectedResult = "not a valid attribute";
         //Act
-        Object result = kettleSpecs.getAttributeValue("\0"+ATTRIBUTE_PERFORMANCE_RATIO);
+        Object result = kettleSpecs.getAttributeValue("\0" + ATTRIBUTE_PERFORMANCE_RATIO);
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -694,11 +690,11 @@ public class KettleSpecsTest {
      * when inserted an null character attribute.
      */
     @org.junit.jupiter.api.Test
-    public void testGetAttributeValue_NullCharacterColdWaterTemp (){
+    public void testGetAttributeValue_NullCharacterColdWaterTemp() {
         //Arrange
         String expectedResult = "not a valid attribute";
         //Act
-        Object result = kettleSpecs.getAttributeValue("\0"+COLD_WATER_TEMPERATURE);
+        Object result = kettleSpecs.getAttributeValue("\0" + COLD_WATER_TEMPERATURE);
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -708,11 +704,11 @@ public class KettleSpecsTest {
      * when inserted an null character attribute.
      */
     @org.junit.jupiter.api.Test
-    public void testGetAttributeValue_NullCharacterNomPower (){
+    public void testGetAttributeValue_NullCharacterNomPower() {
         //Arrange
         String expectedResult = "not a valid attribute";
         //Act
-        Object result = kettleSpecs.getAttributeValue("\0"+ATTRIBUTE_NOMINAL_POWER);
+        Object result = kettleSpecs.getAttributeValue("\0" + ATTRIBUTE_NOMINAL_POWER);
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -722,11 +718,11 @@ public class KettleSpecsTest {
      * when inserted an null character attribute.
      */
     @org.junit.jupiter.api.Test
-    public void testGetAttributeValue_NullVolWaterHeat (){
+    public void testGetAttributeValue_NullVolWaterHeat() {
         //Arrange
         String expectedResult = "not a valid attribute";
         //Act
-        Object result = kettleSpecs.getAttributeValue("\0"+VOLUME_OF_WATER_TO_HEAT);
+        Object result = kettleSpecs.getAttributeValue("\0" + VOLUME_OF_WATER_TO_HEAT);
         //Assert
         assertEquals(expectedResult, result);
     }

@@ -2,19 +2,11 @@ package pt.ipp.isep.dei.project.modelTests.devices;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
-import org.springframework.test.context.support.AnnotationConfigContextLoader;
-import pt.ipp.isep.dei.project.io.ui.Main;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.television.TelevisionType;
 import pt.ipp.isep.dei.project.model.house.Dimension;
-import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.RoomId;
-import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,9 +14,9 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TelevisionSpecsTest {
+    private static final String NOT_VALID_ATTRIBUTE = "not a valid attribute";
     private Room livingRoom;
     private Device television;
-    private static final String NOT_VALID_ATTRIBUTE = "not a valid attribute";
 
     @BeforeEach
     public void StartUp() {
@@ -142,11 +134,11 @@ public class TelevisionSpecsTest {
      * when inserted an null character attribute.
      */
     @Test
-    public void testGetAttributeValue_NullNominalPower (){
+    public void testGetAttributeValue_NullNominalPower() {
         //Arrange
         String expectedResult = NOT_VALID_ATTRIBUTE;
         //Act
-        Object result = television.getSpecs().getAttributeValue("\0"+ "Nominal Power");
+        Object result = television.getSpecs().getAttributeValue("\0" + "Nominal Power");
 
         //Assert
         assertEquals(expectedResult, result);
@@ -169,7 +161,7 @@ public class TelevisionSpecsTest {
      * when inserted an null character attribute.
      */
     @Test
-    public void testGetAttributeValue_NullStandbyPower (){
+    public void testGetAttributeValue_NullStandbyPower() {
         //Arrange
         String expectedResult = NOT_VALID_ATTRIBUTE;
         //Act
@@ -184,11 +176,11 @@ public class TelevisionSpecsTest {
      * when inserted an null character attribute.
      */
     @Test
-    public void testGetAttributeValue_NullTime (){
+    public void testGetAttributeValue_NullTime() {
         //Arrange
         String expectedResult = NOT_VALID_ATTRIBUTE;
         //Act
-        Object result = television.getSpecs().getAttributeValue("\0"+ "Time");
+        Object result = television.getSpecs().getAttributeValue("\0" + "Time");
 
         //Assert
         assertEquals(expectedResult, result);
@@ -262,7 +254,7 @@ public class TelevisionSpecsTest {
         double nominalPower = 30;
 
         //Act
-        boolean result = television.getSpecs().setAttributeValue("\0"+ "Nominal Power", nominalPower);
+        boolean result = television.getSpecs().setAttributeValue("\0" + "Nominal Power", nominalPower);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -281,7 +273,7 @@ public class TelevisionSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-        @Test
+    @Test
     public void testSetAttributeStandbyPowerValueValidType() {
         // Arrange
         double standbyPower = 20.4;
@@ -324,7 +316,7 @@ public class TelevisionSpecsTest {
         double standbyPower = 30;
 
         //Act
-        boolean result = television.getSpecs().setAttributeValue("\0"+ "Standby Power", standbyPower);
+        boolean result = television.getSpecs().setAttributeValue("\0" + "Standby Power", standbyPower);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -386,7 +378,7 @@ public class TelevisionSpecsTest {
         double time = 30;
 
         //Act
-        boolean result = television.getSpecs().setAttributeValue("\0"+ "Time", time);
+        boolean result = television.getSpecs().setAttributeValue("\0" + "Time", time);
 
         //Assert
         assertEquals(expectedResult, result);

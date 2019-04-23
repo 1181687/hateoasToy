@@ -8,7 +8,6 @@ import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.RoomId;
-import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,11 +15,10 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class FridgeSpecsTest {
+    private static final String NOT_VALID_ATTRIBUTE = "not a valid attribute";
     private Room kitchen;
     private Device fridge;
     private House house;
-    private static final String NOT_VALID_ATTRIBUTE = "not a valid attribute";
-
 
     @BeforeEach
     public void StartUp() {
@@ -266,6 +264,7 @@ public class FridgeSpecsTest {
         // Assert
         assertFalse(result);
     }
+
     @Test
     public void testSetAttributeRefrigeratorCapacityValueValidType() {
         // Arrange

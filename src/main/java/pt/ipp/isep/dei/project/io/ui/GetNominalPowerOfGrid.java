@@ -1,10 +1,8 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.GetNominalPowerController;
-import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridDTO;
 import pt.ipp.isep.dei.project.services.HouseService;
-import pt.ipp.isep.dei.project.services.RoomAggregateService;
 
 import java.util.List;
 
@@ -25,7 +23,7 @@ public class GetNominalPowerOfGrid {
         } else {
             String label1 = "Please select a House Grid to see its total nominal power: \n" + getGridsToString() + exit;
             int gridListLength = numberOfGrids();
-            int position = InputValidator.getIntRange(label1, 0, gridListLength)-1;
+            int position = InputValidator.getIntRange(label1, 0, gridListLength) - 1;
             if (position == -1) {
                 return;
             }
@@ -38,15 +36,15 @@ public class GetNominalPowerOfGrid {
         }
     }
 
-    private boolean isGridListEmpty(){
+    private boolean isGridListEmpty() {
         return this.gridDTOS.isEmpty();
     }
 
-    private int numberOfGrids(){
+    private int numberOfGrids() {
         return this.gridDTOS.size();
     }
 
-    private String getGridsToString(){
+    private String getGridsToString() {
         StringBuilder content = new StringBuilder();
         int iterator = 1;
 

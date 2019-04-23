@@ -6,7 +6,6 @@ import pt.ipp.isep.dei.project.model.devices.*;
 import pt.ipp.isep.dei.project.model.devices.washingmachine.WashingMachineSpecs;
 import pt.ipp.isep.dei.project.model.devices.washingmachine.WashingMachineType;
 import pt.ipp.isep.dei.project.model.house.Dimension;
-import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.RoomId;
 
@@ -17,17 +16,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 public class WashingMachineSpecsTest {
+    private static final String ATTRIBUTE_CAPACITY = "Capacity";
+    private static final String ATTRIBUTE_NOMINAL_POWER = "Nominal Power";
+    private static final String NOT_VALID_ATTRIBUTE = "not a valid attribute";
     private Room kitchen;
     private Device washingMachine;
     private DeviceSpecs washingMachineSpecs;
     private Programmable washingMachineProgrammable;
     private List<Program> programList;
-
-    private static final String ATTRIBUTE_CAPACITY = "Capacity";
-    private static final String ATTRIBUTE_NOMINAL_POWER = "Nominal Power";
-
-    private static final String NOT_VALID_ATTRIBUTE = "not a valid attribute";
-
 
     @BeforeEach
     public void StartUp() {
@@ -342,7 +338,7 @@ public class WashingMachineSpecsTest {
     }
 
     @Test
-    public void testAsProgrammable_device(){
+    public void testAsProgrammable_device() {
         Programmable expectedResult = (Programmable) washingMachineSpecs;
         Programmable result = washingMachineSpecs.asProgrammable();
         assertEquals(expectedResult, result);
