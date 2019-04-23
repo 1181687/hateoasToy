@@ -27,7 +27,7 @@ public class GetListOfSensorsAndDevicesRoomController {
         }
         return roomDTOList;
     }
-    
+
     public List<RoomSensorDTO> getRoomSensorDTOList() {
         List<RoomSensorDTO> roomSensorDTOList = new ArrayList<>();
         for (RoomSensor roomSensor : roomAggregateService.getAllRoomSensors()) {
@@ -37,7 +37,7 @@ public class GetListOfSensorsAndDevicesRoomController {
     }
 
 
-    /*    *//**
+    /* /**
      * method that returns the method getDeviceListContentByPosition of the class House
      *
      * @param position
@@ -47,7 +47,7 @@ public class GetListOfSensorsAndDevicesRoomController {
         return this.house.getDeviceListContentRoom(position);
     }
 
-    *//**
+    /**
      * method that returns the method deviceListEmpty of the Class House
      * @param position
      *//*
