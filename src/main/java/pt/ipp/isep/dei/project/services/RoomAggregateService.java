@@ -19,6 +19,7 @@ import pt.ipp.isep.dei.project.model.readings.RoomReading;
 import pt.ipp.isep.dei.project.model.readings.RoomReadingId;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensorId;
+import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 import pt.ipp.isep.dei.project.utils.ApplicationConfiguration;
 
@@ -30,9 +31,17 @@ public class RoomAggregateService {
     @Autowired
     private RoomAggregateRepository roomAggregateRepository;
 
+    @Autowired
+    private SensorTypeService sensorTypeService;
+
     private String configFile = "Configuration.properties";
 
     private List<DeviceType> deviceTypeList = ApplicationConfiguration.createDeviceTypes(configFile);
+
+
+    public List<SensorType> getSensorTypeList() {
+        return sensorTypeService.getSensorTypeList();
+    }
 
 
     /**
