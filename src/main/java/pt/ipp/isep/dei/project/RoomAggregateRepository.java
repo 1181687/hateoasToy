@@ -77,12 +77,7 @@ public class RoomAggregateRepository {
         return this.roomRepository.findAll();
     }
 
-    public RoomSensor getRoomById(RoomSensorId roomSensorId) {
-        return this.roomSensorRepository.findById(roomSensorId).orElse(null);
-    }
-
-
-    public RoomSensor getSensorById(RoomSensorId roomSensorId){
+    public RoomSensor getSensorById(RoomSensorId roomSensorId) {
         return this.roomSensorRepository.findById(roomSensorId).orElse(null);
     }
 
@@ -94,6 +89,14 @@ public class RoomAggregateRepository {
         this.roomReadingRepository.save(roomReading);
     }
 
+    public Room getRoomdById(RoomId roomId) {
+        return roomRepository.findById(roomId).orElse(null);
+    }
+
+    public Iterable<RoomSensor> findAllRoomSensors() {
+        return this.roomSensorRepository.findAll();
+    }
+
     public boolean addRoomSensor(RoomSensor sensor) {
         if (!this.roomSensorRepository.existsById(sensor.getId())) {
             this.roomSensorRepository.save(sensor);
@@ -102,25 +105,25 @@ public class RoomAggregateRepository {
         return false;
     }
 
-    public boolean roomExists (RoomId id){
+    public boolean roomExists(RoomId id) {
         return roomRepository.existsById(id);
     }
 
-    public boolean roomDeviceListIsEmpty(RoomId id){
+    public boolean roomDeviceListIsEmpty(RoomId id) {
         Room room = this.roomRepository.findById(id).orElse(null);
-        if(Objects.nonNull(room)){
+        if (Objects.nonNull(room)) {
             return room.isDeviceListEmpty();
         }
         return false;
     }
 
-    public Room findRoomById(RoomId id){
+    public Room findRoomById(RoomId id) {
         return this.roomRepository.findById(id).orElse(null);
     }
 
     public boolean detachRoomFromHouseGrid(RoomId roomId) {
         Room room = this.roomRepository.findById(roomId).orElse(null);
-        if (Objects.nonNull(room)){
+        if (Objects.nonNull(room)) {
             return room.detachRoomFromHouseGrid();
         }
         return false;
@@ -148,11 +151,11 @@ public class RoomAggregateRepository {
         this.roomRepository.save(room);
     }
 
-    public boolean addRoom(RoomId roomId, String description, int housefloor, Dimension dimension){
-        if (roomExists(roomId)){
+    public boolean addRoom(RoomId roomId, String description, int housefloor, Dimension dimension) {
+        if (roomExists(roomId)) {
             return false;
         }
-        Room room = new Room(roomId,description,housefloor,dimension);
+        Room room = new Room(roomId, description, housefloor, dimension);
         this.roomRepository.save(room);
         return true;
     }

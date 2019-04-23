@@ -17,6 +17,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import pt.ipp.isep.dei.project.model.house.RoomId;
+import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 import pt.ipp.isep.dei.project.model.readings.RoomReading;
 import pt.ipp.isep.dei.project.model.readings.RoomReadingId;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
@@ -26,6 +27,9 @@ import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 import pt.ipp.isep.dei.project.utils.ApplicationConfiguration;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -49,7 +53,6 @@ public class RoomAggregateService {
     public List<SensorType> getSensorTypeList() {
         return sensorTypeService.getSensorTypeList();
     }
-
 
 
     /**
@@ -92,11 +95,11 @@ public class RoomAggregateService {
         return getContentNameLocationOrderedByType(deviceList);
     }
 
-    public double getGridNominalPower(HouseGridId id){
+    public double getGridNominalPower(HouseGridId id) {
         List<Room> rooms = getRoomListByHouseGrid(id.getId());
-        double nominalPower=0;
+        double nominalPower = 0;
         for (Room room : rooms) {
-            nominalPower+=room.getNominalPower();
+            nominalPower += room.getNominalPower();
         }
         return nominalPower;
     }
@@ -227,15 +230,15 @@ public class RoomAggregateService {
         return this.roomAggregateRepository.addRoomSensor(sensor);
     }
 
-    public boolean roomExists(RoomId id){
+    public boolean roomExists(RoomId id) {
         return this.roomAggregateRepository.roomExists(id);
     }
 
-    public boolean roomDeviceListIsEmpty(RoomId id){
+    public boolean roomDeviceListIsEmpty(RoomId id) {
         return this.roomAggregateRepository.roomDeviceListIsEmpty(id);
     }
 
-    public double getRoomNominalPower(RoomId id){
+    public double getRoomNominalPower(RoomId id) {
         return this.roomAggregateRepository.findRoomById(id).getNominalPower();
     }
 
@@ -315,7 +318,7 @@ public class RoomAggregateService {
             return null;
         }
         for (Room allRoom : this.roomAggregateRepository.findAllRooms()) {
-            if (allRoom.isDeviceNameExistant(deviceName)){
+            if (allRoom.isDeviceNameExistant(deviceName)) {
                 return null;
             }
         }
@@ -324,7 +327,7 @@ public class RoomAggregateService {
         return device;
     }
 
-    public DeviceType getDeviceType(String typeName){
+    public DeviceType getDeviceType(String typeName) {
         for (DeviceType deviceType : this.deviceTypeList) {
             if (deviceType.getTypeName().equals(typeName)) {
                 return deviceType;
@@ -333,15 +336,15 @@ public class RoomAggregateService {
         return null;
     }
 
-    public List<Device> getDeviceListContentRoom (RoomId roomId){
+    public List<Device> getDeviceListContentRoom(RoomId roomId) {
         return getRoomById(roomId).getDeviceList();
     }
 
-    public int numberOfDeviceTypes(){
+    public int numberOfDeviceTypes() {
         return this.deviceTypeList.size();
     }
 
-    public List<DeviceType> getDeviceTypes(){
+    public List<DeviceType> getDeviceTypes() {
         return this.deviceTypeList;
     }
 
@@ -353,13 +356,24 @@ public class RoomAggregateService {
         return this.roomAggregateRepository.detachRoomFromHouseGrid(roomId);
     }
 
-    public void updateRoom(Room room){
+    public void updateRoom(Room room) {
         this.roomAggregateRepository.updateRoom(room);
     }
 
-    public boolean createRoom(RoomId roomId, String description, int housefloor, double length,double width, double height){
-        Dimension dimension = new Dimension(height,length,width);
-        return this.roomAggregateRepository.addRoom(roomId,description,housefloor,dimension);
+    public boolean createRoom(RoomId roomId, String description, int housefloor, double length, double width, double height) {
+        Dimension dimension = new Dimension(height, length, width);
+        return this.roomAggregateRepository.addRoom(roomId, description, housefloor, dimension);
     }
 
+
+    public Room getRoomdById(RoomId roomId) {
+        return roomAggregateRepository.getRoomdById(roomId);
+    }
+
+    public List<RoomSensor> getAllRoomSensors() {
+        Iterable<RoomSensor> roomIterable = this.roomAggregateRepository.findAllRoomSensors();
+        List<RoomSensor> roomSensorList = new ArrayList<>();
+        roomIterable.forEach(roomSensorList::add);
+        return roomSensorList;
+    }
 }

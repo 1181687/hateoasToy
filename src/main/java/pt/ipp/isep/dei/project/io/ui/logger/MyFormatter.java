@@ -15,13 +15,14 @@ public class MyFormatter extends Formatter {
     public String format(LogRecord record) {
         StringBuilder builder = new StringBuilder(1000);
         builder.append(df.format(new Date(record.getMillis()))).append(" - ");
-        builder.append("[").append(String.format("%1$-10s",record.getLevel())).append("] - ");
+        builder.append("[").append(String.format("%1$-10s", record.getLevel())).append("] - ");
         builder.append("[").append(record.getSourceClassName()).append(".");
         builder.append(record.getSourceMethodName()).append("] - ");
         builder.append(record.getMessage());
         builder.append("\n");
         return builder.toString();
     }
+
     public String getHead(Handler h) {
         return super.getHead(h);
     }

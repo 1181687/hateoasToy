@@ -110,9 +110,18 @@ public class Main {
             AddNewGeographicalArea addNewGeographicalArea = new AddNewGeographicalArea(geoAreaService);
             addNewGeographicalArea.run();*/
 
-            this.roomAggregateService.createRoom(new RoomId("B106"),"cenas",1,2,2,2);
-            this.roomAggregateService.createRoom(new RoomId("B107"),"cenas",1,2,2,2);
-            this.roomAggregateService.createRoom(new RoomId("B109"),"cenas",1,2,2,2);
+            this.roomAggregateService.createRoom(new RoomId("B106"), "cenas", 1, 2, 2, 2);
+            this.roomAggregateService.createRoom(new RoomId("B107"), "cenas", 1, 2, 2, 2);
+            this.roomAggregateService.createRoom(new RoomId("B109"), "cenas", 1, 2, 2, 2);
+
+            /*DefineSensorType ui1 = new DefineSensorType(this.sensorTypeService);
+            ui1.run();*/
+
+            /*AddSensorToRoom addSensorToRoom = new AddSensorToRoom(this.roomAggregateService);
+            addSensorToRoom.run();*/
+
+            /*GetListOfSensorsAndDevicesRoom ui = new GetListOfSensorsAndDevicesRoom(roomAggregateService);
+            ui.runListOfSensors();*/
 
             /*CreateHouseGrid ui0 = new CreateHouseGrid(houseGridService);
             ui0.run();*/
@@ -128,6 +137,7 @@ public class Main {
 
             //DefineSensorType ui = new DefineSensorType(this.sensorTypeService);
             //ui.run();
+
 
             /*AddSensorToGeoArea ui1 = new AddSensorToGeoArea(this.geoAreaService);
             ui1.run();*/

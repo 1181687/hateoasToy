@@ -3,9 +3,10 @@ package pt.ipp.isep.dei.project.modelTests;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.devices.*;
-import pt.ipp.isep.dei.project.model.devices.fan.FanSpecs;
-import pt.ipp.isep.dei.project.model.devices.fan.FanType;
+import pt.ipp.isep.dei.project.model.devices.stove.StoveSpecs;
+import pt.ipp.isep.dei.project.model.devices.stove.StoveType;
 import pt.ipp.isep.dei.project.model.house.Dimension;
+import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.RoomId;
 
@@ -14,11 +15,12 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class FanSpecsTest {
-    private static final String NOT_VALID_ATTRIBUTE = "not a valid attribute";
+public class StoveSpecsTest {
+
     private Room kitchen;
-    private Device fan;
-    private DeviceSpecs fanSpecs;
+    private Device stove;
+    private House house;
+    private DeviceSpecs stoveSpecs;
 
     @BeforeEach
     public void StartUp() {
@@ -26,14 +28,11 @@ public class FanSpecsTest {
         Dimension dim = new Dimension(3, 5, 6);
         RoomId roomId = new RoomId("kitchen");
         this.kitchen = new Room(roomId, "room", 1, dim);
-        FanType fanType = new FanType();
-        this.fan = fanType.createDevice("Fan200");
-        kitchen.addDevice(fan);
-        this.fan.setAttributesDevType("Nominal Power", 30);
-        this.fan.setAttributesDevType("Time", 30);
-
-        //DeviceSpecs
-        this.fanSpecs = fan.getSpecs();
+        StoveType stoveType = new StoveType();
+        this.stove = stoveType.createDevice("Stove200");
+        kitchen.addDevice(stove);
+        this.stove.setAttributesDevType("Nominal Power", 30);
+        this.stoveSpecs = stove.getSpecs();
 
     }
 
@@ -41,10 +40,10 @@ public class FanSpecsTest {
     @Test
     public void testGetTypeName() {
         //Arrange
-        String expectedResult = "Fan";
+        String expectedResult = "Stove";
 
         //Act
-        String result = fan.getSpecs().getTypeName();
+        String result = stove.getSpecs().getTypeName();
 
         //Assert
         assertEquals(expectedResult, result);
@@ -57,7 +56,7 @@ public class FanSpecsTest {
         double expectedResult = 30;
 
         //Act
-        double result = fan.getSpecs().getNominalPower();
+        double result = stove.getSpecs().getNominalPower();
 
         //Assert
         assertEquals(expectedResult, result, 0.001);
@@ -66,12 +65,12 @@ public class FanSpecsTest {
     @Test
     public void testEmptyConstructor() {
         //Arrange
-        fan.setAttributesDevType("Nominal Power", 30);
+        stove.setAttributesDevType("Nominal Power", 30);
 
         double expectedResult = 30;
 
         //Act
-        double result = fan.getSpecs().getNominalPower();
+        double result = stove.getSpecs().getNominalPower();
 
         //Assert
         assertEquals(expectedResult, result, 0.001);
@@ -85,7 +84,7 @@ public class FanSpecsTest {
         String expectedResult = "1 - Nominal Power: 30.0\n";
 
         //Act
-        String result = fan.getSpecs().getAttributesToString();
+        String result = stove.getSpecs().getAttributesToString();
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -98,7 +97,7 @@ public class FanSpecsTest {
 
         //Act
 
-        int result = fan.getSpecs().getNumberOfAttributes();
+        int result = stove.getSpecs().getNumberOfAttributes();
 
         //Assert
         assertEquals(expectedResult, result);
@@ -110,7 +109,7 @@ public class FanSpecsTest {
         double expectedResult = 0;
 
         //Act
-        double result = fan.getSpecs().getEnergyConsumptionInADay();
+        double result = stove.getSpecs().getEnergyConsumptionInADay();
 
         //Assert
         assertEquals(expectedResult, result, 0.001);
@@ -123,7 +122,7 @@ public class FanSpecsTest {
         expectedResult.add("Nominal Power");
 
         // Act
-        List<String> result = fan.getSpecs().getSpecsList();
+        List<String> result = stove.getSpecs().getSpecsList();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -132,96 +131,90 @@ public class FanSpecsTest {
     @Test
     public void testGetAttributeValueNominalPower() {
         // Arrange
-        fan.setAttributesDevType("Nominal Power", 100.0);
+        stove.setAttributesDevType("Nominal Power", 100.0);
 
         Object expectedResult = 100.0;
         // Act
-        Object result = fan.getSpecs().getAttributeValue("Nominal Power");
+        Object result = stove.getSpecs().getAttributeValue("Nominal Power");
         // Assert
         assertEquals(expectedResult, result);
     }
 
     @Test
-    public void testGetAttributeValueNotAValidSpec() {
+    public void testGetAttributeValue_notAValidSpec() {
         // Arrange
-        Object expectedResult = NOT_VALID_ATTRIBUTE;
+        Object expectedResult = "not a valid attribute";
         // Act
-        Object result = fan.getSpecs().getAttributeValue("Not Valid");
+        Object result = stove.getSpecs().getAttributeValue("Not Valid");
         // Assert
         assertEquals(expectedResult, result);
     }
 
     @Test
-    public void testSetAttributeTimeValueNotAValidType() {
+    public void testSetAttributeNominalPowerValue_NotAValidType() {
         // Arrange
         String attribute = "stuff";
         // Act
-        boolean result = fan.getSpecs().setAttributeValue("Time", attribute);
+        boolean result = stove.getSpecs().setAttributeValue("Nominal Power", attribute);
         // Assert
         assertFalse(result);
     }
 
     @Test
-    public void testSetAttributeNominalPowerValueNotAValidType() {
-        // Arrange
-        String attribute = "stuff";
+    public void testSetAttributeNominalPower_ValidValue() {
         // Act
-        boolean result = fan.getSpecs().setAttributeValue("Nominal Power", attribute);
-        // Assert
-        assertFalse(result);
-    }
-
-    @Test
-    public void testSetAttributeNominalPowerValidValue() {
-        // Act
-        boolean result = fan.getSpecs().setAttributeValue("Nominal Power", 1.3);
+        boolean result = stove.getSpecs().setAttributeValue("Nominal Power", 1.3);
         // Assert
         assertTrue(result);
     }
 
     @Test
-    public void testSetAttributeNotAValidAttribute() {
+    public void testSetAttribute_NotAValidAttribute() {
         // Act
-        boolean result = fan.getSpecs().setAttributeValue("Wrong Attribute", 1.3);
+        boolean result = stove.getSpecs().setAttributeValue("Wrong Attribute", 1.3);
         // Assert
         assertFalse(result);
     }
 
     @Test
-    public void testSetAttributeNominalPowerSameValue() {
+    public void testSetAttributeNominalPower_SameValue() {
         // Arrange
-        fan.setAttributesDevType("Nominal Power", 100.0);
+        stove.setAttributesDevType("Nominal Power", 100.0);
         // Act
-        boolean result = fan.getSpecs().setAttributeValue("Nominal Power", 100.0);
+        boolean result = stove.getSpecs().setAttributeValue("Nominal Power", 100.0);
         // Assert
         assertFalse(result);
     }
 
+
     @Test
-    public void testSetAttributeNominalPowerSameValueZero() {
-        // Arrange
-        fan.setAttributesDevType("Nominal Power", 0);
-        // Act
-        boolean result = fan.getSpecs().setAttributeValue("Nominal Power", 0);
-        // Assert
-        assertFalse(result);
+    public void getAttributeDataTypeTest_notValidAttributte() {
+        // arrange
+        String expectedResult = "not a valid attribute";
+        // act
+        String result = stove.getSpecs().getAttributeDataType("wrong attribute name");
+        // assert
+        assertEquals(expectedResult, result);
     }
 
     @Test
-    public void testSetAttributeTimeValueZero() {
-        // Act
-        boolean result = fan.getSpecs().setAttributeValue("Time", 0);
-        // Assert
-        assertFalse(result);
+    public void getAttributeDataTypeTest() {
+        // arrange
+        String expectedResult = "Double";
+        // act
+        String result = stove.getSpecs().getAttributeDataType("Nominal Power");
+        // assert
+        assertEquals(expectedResult, result);
     }
+
 
     @Test
     public void testAddProgram_WithNullProgram_ShouldReturnFalse() {
         //Arrange
         boolean expectedResult = false;
-        DeviceSpecs fanSpecs = fan.getSpecs();
+        DeviceSpecs stoveSpecs = stove.getSpecs();
         //Act
-        boolean result = ((FanSpecs) fanSpecs).addProgram(null);
+        boolean result = ((StoveSpecs) stoveSpecs).addProgram(null);
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -230,19 +223,19 @@ public class FanSpecsTest {
     public void testAddProgram_ProgramAlreadyInTheList_ShouldReturnFalse() {
         //Arrange
         String programName = "fast";
-        Programmable programmable = this.fanSpecs.asProgrammable();
+        Programmable programmable = this.stoveSpecs.asProgrammable();
         TimeVariableProgramSpecs programASpecs = new TimeVariableProgramSpecs();
         programASpecs.setTime(30.0);
         programASpecs.setProgramNominalPower(50.0);
         Program programA = programmable.createNewProgram(programName);
         programmable.addProgram(programA);
 
-        DeviceSpecs fanSpecs = fan.getSpecs();
+        DeviceSpecs stoveSpecs = stove.getSpecs();
 
         boolean expectedResult = false;
 
         //Act
-        boolean result = ((FanSpecs) fanSpecs).addProgram(programA);
+        boolean result = ((StoveSpecs) stoveSpecs).addProgram(programA);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -252,18 +245,18 @@ public class FanSpecsTest {
     public void testAddProgram_ProgramIsNotInTheList_ShouldReturnTrue() {
         //Arrange
         String programName = "fast";
-        Programmable programmable = this.fanSpecs.asProgrammable();
+        Programmable programmable = this.stoveSpecs.asProgrammable();
         TimeVariableProgramSpecs programASpecs = new TimeVariableProgramSpecs();
         programASpecs.setTime(30.0);
         programASpecs.setProgramNominalPower(50.0);
         Program programA = programmable.createNewProgram(programName);
 
-        DeviceSpecs fanSpecs = fan.getSpecs();
+        DeviceSpecs stoveSpecs = stove.getSpecs();
 
         boolean expectedResult = true;
 
         //Act
-        boolean result = ((FanSpecs) fanSpecs).addProgram(programA);
+        boolean result = ((StoveSpecs) stoveSpecs).addProgram(programA);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -273,19 +266,19 @@ public class FanSpecsTest {
     public void testGetProgramList() {
         //Arrange
         String programName = "fast";
-        Programmable programmable = this.fanSpecs.asProgrammable();
+        Programmable programmable = this.stoveSpecs.asProgrammable();
         TimeVariableProgramSpecs programASpecs = new TimeVariableProgramSpecs();
         programASpecs.setTime(30.0);
         programASpecs.setProgramNominalPower(50.0);
         Program programA = programmable.createNewProgram(programName);
-        DeviceSpecs fanSpecs = fan.getSpecs();
-        ((FanSpecs) fanSpecs).addProgram(programA);
+        DeviceSpecs stoveSpecs = stove.getSpecs();
+        ((StoveSpecs) stoveSpecs).addProgram(programA);
 
         List<Program> expectedResult = new ArrayList<>();
         expectedResult.add(programA);
 
         //Act
-        List<Program> result = ((FanSpecs) fanSpecs).getProgramList();
+        List<Program> result = ((StoveSpecs) stoveSpecs).getProgramList();
 
         //Assert
         assertEquals(expectedResult, result);
@@ -294,7 +287,7 @@ public class FanSpecsTest {
     @Test
     public void testIsProgrammable() {
         //Act
-        boolean result = fanSpecs.isProgrammable();
+        boolean result = stoveSpecs.isProgrammable();
 
         //Assert
         assertTrue(result);
@@ -304,10 +297,10 @@ public class FanSpecsTest {
     @Test
     public void testAsProgrammable() {
         //Arrange
-        Programmable expectedResult = (Programmable) fanSpecs;
+        Programmable expectedResult = (Programmable) stoveSpecs;
 
         //Act
-        Programmable result = fanSpecs.asProgrammable();
+        Programmable result = stoveSpecs.asProgrammable();
 
         //Assert
         assertEquals(expectedResult, result);

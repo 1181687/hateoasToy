@@ -23,7 +23,6 @@ public final class ApplicationConfiguration {
 
     /**
      * This method create device types using a path and a class name.
-     *
      */
     public static List<DeviceType> createDeviceTypes(String configFile) {
         List<String> deviceTypeListReader = Utils.readConfigFileToList(configFile, "devicetype.count", "devicetype.name");

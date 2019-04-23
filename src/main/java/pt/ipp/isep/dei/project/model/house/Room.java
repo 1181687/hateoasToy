@@ -242,11 +242,10 @@ public RoomSensorService getSensorList() {
     return new RoomReading(sensorList.getLatestMeasurementBySensorType(type).getValue(), sensorList.getLatestMeasurementBySensorType(type).getDateTime());
     }
 */
-
-    @Override
-    public String getNameToString() {
-        return null;
-    }
+@Override
+public String getNameToString() {
+    return null;
+}
 
     @Override
     public double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
@@ -400,9 +399,9 @@ public RoomSensorService getSensorList() {
         return this.deviceList;
     }
 
-    public Device getDevice(String deviceName){
+    public Device getDevice(String deviceName) {
         for (Device device : deviceList) {
-            if (device.getName().equals(deviceName)){
+            if (device.getName().equals(deviceName)) {
                 return device;
             }
         }
