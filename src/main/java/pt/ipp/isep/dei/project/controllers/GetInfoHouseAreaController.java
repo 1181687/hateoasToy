@@ -39,6 +39,10 @@ public class GetInfoHouseAreaController {
         return temperature.getSensorTypeId();
     }
 
+    public boolean hasSensorsOfGivenTypeInGeoArea (SensorTypeId id){
+        return geoAreaAggregateService.hasSensorsOfGivenTypeInGeoArea(id);
+    }
+
     /**
      * Method that returns the most recent [valid] temperature reading of the closest sensor to the house.
      *

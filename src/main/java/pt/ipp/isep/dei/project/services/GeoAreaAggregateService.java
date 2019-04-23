@@ -85,6 +85,14 @@ public class GeoAreaAggregateService {
         return geoAreaAggregateRepo.findBySensorTypeId(id);
     }
 
+    public boolean hasSensorsOfGivenTypeInGeoArea (SensorTypeId id){
+        List<GeoAreaSensor> listOfSensors = getGeoAreaSensorByType(id);
+        if (listOfSensors.size()==0){
+            return false;
+        }
+        return true;
+    }
+
     /**
      * Method that returns the most recent valid reading from a set of readings of a sensor. If the most recent
      * doesn't have a valid value (for example, NaN), it is not accepted as a valid result and, therefore, doesn't get
@@ -172,7 +180,7 @@ public class GeoAreaAggregateService {
      * @param startDate Given start date.
      * @param endDate Given end date.
      * @return List of sensors with readings in the specific date.
-     *//*
+     */
     public List<GeoAreaSensor> getSensorsWithReadingsInAPeriodByType(SensorTypeId typeId, LocalDate startDate, LocalDate endDate) {
         List<GeoAreaSensor> result = new ArrayList<>();
         for (GeoAreaSensor sensor : getGeoAreaSensorByType(typeId)) {
@@ -184,7 +192,7 @@ public class GeoAreaAggregateService {
         return result;
     }
 
-    *//**
+    /**
      * Method that returns the latest reading of a sensor in a specific period (for example, a day, a week, a month).
      * @param geoAreaSensorId Id of the sensor.
      * @param startDate Given start date.
