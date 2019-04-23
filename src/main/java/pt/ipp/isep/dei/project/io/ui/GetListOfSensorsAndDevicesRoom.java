@@ -80,6 +80,7 @@ public class GetListOfSensorsAndDevicesRoom {
     }*/
 
 
+    // Necessary methods
     public String getRoomListToString() {
         this.roomDTOList = this.controller.getRoomDTOList();
         int number = 1;
