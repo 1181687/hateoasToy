@@ -1,19 +1,13 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import pt.ipp.isep.dei.project.io.ui.logger.MyLogger;
 import pt.ipp.isep.dei.project.model.house.House;
-import pt.ipp.isep.dei.project.model.house.RoomId;
 import pt.ipp.isep.dei.project.services.*;
-
-import java.io.IOException;
 
 @EnableJpaRepositories(basePackages = "pt.ipp.isep.dei.project")
 @EntityScan(basePackages = "pt.ipp.isep.dei.project")
@@ -84,8 +78,9 @@ public class Main {
         SpringApplication.run(Main.class, args);
 
     }
+}
 
-    @Bean
+   /* @Bean
     public CommandLineRunner mainRun() {
 
         return (args) -> {
@@ -102,14 +97,18 @@ public class Main {
             GetListOfTypeOfGeoArea getListOfTypeOfGeoArea = new GetListOfTypeOfGeoArea(geoAreaService);
             getListOfTypeOfGeoArea.run(); */
 
-            //AddNewGeographicalAreaType addNewGeographicalAreaType = new AddNewGeographicalAreaType(geoAreaTypeService);
-            //addNewGeographicalAreaType.run();
+            /*AddNewGeographicalAreaType addNewGeographicalAreaType = new AddNewGeographicalAreaType(geoAreaTypeService);
+            addNewGeographicalAreaType.run();
 
            /* GetListOfExistingRooms getListOfExistingRooms = new GetListOfExistingRooms(roomService);
             getListOfExistingRooms.run();
             AddNewGeographicalArea addNewGeographicalArea = new AddNewGeographicalArea(geoAreaService);
-            addNewGeographicalArea.run();*/
+            addNewGeographicalArea.run();
 
+           /* Dimension dim = new Dimension(2, 2, 2);
+            Room room2 = new Room(new RoomId("B106"), "cenas", 1, dim);
+            Room room3 = new Room(new RoomId("B107"), "cenas", 1, dim);
+            Room room4 = new Room(new RoomId("B109"), "cenas", 1, dim);
             this.roomAggregateService.createRoom(new RoomId("B106"), "cenas", 1, 2, 2, 2);
             this.roomAggregateService.createRoom(new RoomId("B107"), "cenas", 1, 2, 2, 2);
             this.roomAggregateService.createRoom(new RoomId("B109"), "cenas", 1, 2, 2, 2);
@@ -133,16 +132,23 @@ public class Main {
             ui3.run();*/
 
             /*AddNewGeographicalArea ui2 = new AddNewGeographicalArea(this.geoAreaService);
-            ui2.run();*/
+            ui2.run();
 
+            ConfigureHouseLocation ui = new ConfigureHouseLocation(this.houseService);
+            ui.run();
+
+            //DefineSensorType ui = new DefineSensorType(this.sensorTypeService);
+            //ui.run();
 
 
             /*AddSensorToGeoArea ui1 = new AddSensorToGeoArea(this.geoAreaService);
             ui1.run();*/
 
+//AddSensorToRoom addSensorToRoom = new AddSensorToRoom(this.roomAggregateService);
+//addSensorToRoom.run();
 
-            //ImportRoomSensors ui = new ImportRoomSensors(this.roomAggregateService);
-            //ui.run();
+            /*ImportRoomSensors ui = new ImportRoomSensors(this.roomAggregateService);
+            ui.run();
 
 /*
             AddNewGeographicalAreaType addNewGeographicalAreaType = new AddNewGeographicalAreaType(geoAreaTypeService);
@@ -161,14 +167,16 @@ public class Main {
             /*ImportGeoAreasFromJSONOrXML importGeoAreasFromJSONOrXML = new ImportGeoAreasFromJSONOrXML(geoAreaAggregateService);
             importGeoAreasFromJSONOrXML.run();*/
 
-            //ImportReadings importReadings = new ImportReadings(geoAreaAggregateService, roomAggregateService);
-            //importReadings.run(2);
+            /*ImportReadings importReadings = new ImportReadings(geoAreaAggregateService, roomAggregateService);
+            importReadings.run(2);
 
-            /*GetCurrentTemperatureRoom getCurrentTemperatureRoom = new GetCurrentTemperatureRoom(roomService);
-            getCurrentTemperatureRoom.run();*/
+            //GetCurrentTemperatureRoom getCurrentTemperatureRoom = new GetCurrentTemperatureRoom(roomAggregateService);
+            //getCurrentTemperatureRoom.run();
             // GetCurrentTemperatureRoom getCurrentTemperatureRoom = new GetCurrentTemperatureRoom(roomService);
             // getCurrentTemperatureRoom.run();
 
+            GetMaxTemperatureRoom getMaxTemperatureRoom = new GetMaxTemperatureRoom(roomAggregateService);
+            getMaxTemperatureRoom.run();
             //ImportReadings importReadings = new ImportReadings(geoAreaService, roomSensorService);
             //importReadings.run(1);
 
@@ -190,13 +198,15 @@ public class Main {
             DeactivateSensorFromGeoArea ui3 = new DeactivateSensorFromGeoArea(this.geoAreaAggregateService);
             ui3.run();*/
 
+            /*AddDeviceToRoom addDeviceToRoom = new AddDeviceToRoom(this.roomAggregateService);
+            addDeviceToRoom.run();
            /* AddDeviceToRoom addDeviceToRoom = new AddDeviceToRoom(this.roomAggregateService);
-            addDeviceToRoom.run();*/
+            addDeviceToRoom.run();
 
 
         };
     }
-/*
+
             data();
 
             //UI levels
@@ -262,9 +272,9 @@ public class Main {
         Address address = new Address("4200-072", houseLocation, insertedGeoArea);
         houseEdificioB = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
         //houseEdificioB.setAddress(address);
-/*
 
-        // READINGS
+
+       // READINGS
         // Electric Water Heater B107/B109
         LocalDateTime ewhDate = LocalDateTime.of(2018, 12, 31, 8, 00, 00);
         LocalDateTime ewhDate1 = LocalDateTime.of(2018, 12, 31, 8, 15, 00);
@@ -638,8 +648,4 @@ public class Main {
         powerSourceTypeList = new PowerSourceTypeService();
         powerSourceTypeList.addPowerSourceType(powerSourceType1);
         powerSourceTypeList.addPowerSourceType(powerSourceType2);
-
-    }
-
-*/
-}
+       */

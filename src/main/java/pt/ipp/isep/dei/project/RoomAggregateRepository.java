@@ -134,6 +134,22 @@ public class RoomAggregateRepository {
         return false;
     }
 
+    /*
+
+     */
+
+    /**
+     * method that get the list of readings of a given room sensor by a given date
+     *
+     * @param
+     * @param
+     * @return List<RoomReading>
+     *//*
+
+    public List<RoomReading> findByRoomReadingIdAndRoomSensorIdAndDay(RoomSensorId roomSensorId, LocalDate localDate) {
+        return roomReadingRepository.findByRoomReadingId_RoomSensorIdAndRoomReadingId_LocalDateTime_Date(roomSensorId, localDate);
+    }
+*/
     public void updateRoom(Room room) {
         this.roomRepository.save(room);
     }

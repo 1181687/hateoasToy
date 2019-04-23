@@ -231,6 +231,12 @@ public RoomSensorService getSensorList() {
     }
 */
 
+/**
+ * @param
+ * @param
+ * @return maximum temperature
+ */
+
   /*  public double getMaximumMeasurementInGivenDay(SensorType type, LocalDate date) {
         return sensorList.getMaximumMeasureOfTypeOfSensorInGivenDay(type, date);
     }*/
