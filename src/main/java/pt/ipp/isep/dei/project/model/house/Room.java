@@ -232,8 +232,8 @@ public RoomSensorService getSensorList() {
 */
 
 /**
- * @param type of sensor (temperature)
- * @param date any given day
+ * @param
+ * @param
  * @return maximum temperature
  */
 

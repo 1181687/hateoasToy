@@ -1,17 +1,12 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
-import pt.ipp.isep.dei.project.model.house.Room;
-import pt.ipp.isep.dei.project.model.house.RoomId;
 import pt.ipp.isep.dei.project.services.*;
 
 @EnableJpaRepositories(basePackages = "pt.ipp.isep.dei.project")
@@ -82,8 +77,9 @@ public class Main {
         SpringApplication.run(Main.class, args);
 
     }
+}
 
-    @Bean
+   /* @Bean
     public CommandLineRunner mainRun() {
 
         return (args) -> {
@@ -93,15 +89,15 @@ public class Main {
             GetListOfTypeOfGeoArea getListOfTypeOfGeoArea = new GetListOfTypeOfGeoArea(geoAreaService);
             getListOfTypeOfGeoArea.run(); */
 
-            //AddNewGeographicalAreaType addNewGeographicalAreaType = new AddNewGeographicalAreaType(geoAreaTypeService);
-            //addNewGeographicalAreaType.run();
+            /*AddNewGeographicalAreaType addNewGeographicalAreaType = new AddNewGeographicalAreaType(geoAreaTypeService);
+            addNewGeographicalAreaType.run();
 
            /* GetListOfExistingRooms getListOfExistingRooms = new GetListOfExistingRooms(roomService);
             getListOfExistingRooms.run();
             AddNewGeographicalArea addNewGeographicalArea = new AddNewGeographicalArea(geoAreaService);
-            addNewGeographicalArea.run();*/
+            addNewGeographicalArea.run();
 
-            Dimension dim = new Dimension(2, 2, 2);
+           /* Dimension dim = new Dimension(2, 2, 2);
             Room room2 = new Room(new RoomId("B106"), "cenas", 1, dim);
             Room room3 = new Room(new RoomId("B107"), "cenas", 1, dim);
             Room room4 = new Room(new RoomId("B109"), "cenas", 1, dim);
@@ -121,7 +117,10 @@ public class Main {
             ui3.run();*/
 
             /*AddNewGeographicalArea ui2 = new AddNewGeographicalArea(this.geoAreaService);
-            ui2.run();*/
+            ui2.run();
+
+            ConfigureHouseLocation ui = new ConfigureHouseLocation(this.houseService);
+            ui.run();
 
             /*DefineSensorType ui = new DefineSensorType(this.sensorTypeService);
             ui.run();*/
@@ -178,12 +177,12 @@ public class Main {
             DeactivateSensorFromGeoArea ui3 = new DeactivateSensorFromGeoArea(this.geoAreaAggregateService);
             ui3.run();*/
 
-            AddDeviceToRoom addDeviceToRoom = new AddDeviceToRoom(this.roomAggregateService);
+            /*AddDeviceToRoom addDeviceToRoom = new AddDeviceToRoom(this.roomAggregateService);
             addDeviceToRoom.run();
 
         };
     }
-/*
+
             data();
 
             //UI levels
@@ -249,9 +248,9 @@ public class Main {
         Address address = new Address("4200-072", houseLocation, insertedGeoArea);
         houseEdificioB = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
         //houseEdificioB.setAddress(address);
-/*
 
-        // READINGS
+
+       // READINGS
         // Electric Water Heater B107/B109
         LocalDateTime ewhDate = LocalDateTime.of(2018, 12, 31, 8, 00, 00);
         LocalDateTime ewhDate1 = LocalDateTime.of(2018, 12, 31, 8, 15, 00);
@@ -625,8 +624,4 @@ public class Main {
         powerSourceTypeList = new PowerSourceTypeService();
         powerSourceTypeList.addPowerSourceType(powerSourceType1);
         powerSourceTypeList.addPowerSourceType(powerSourceType2);
-
-    }
-
-*/
-}
+       */
