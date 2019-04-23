@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * US610 As a Regular User, I want to get the maximum temperature in a room in a given day,
@@ -99,7 +100,7 @@ public class GetMaxTemperatureRoom {
         double tempMaxValue = controller.getValueMaximumTemperature();
         LocalDateTime localDateTime = controller.getLocalDateTimeMaximumTemperature();
 
-        if (controller.isListOfTemperatureReadingsByDayEmpty(date) || Double.isNaN(tempMaxValue)) {
+        if (controller.isListOfTemperatureReadingsByDayEmpty(date) || Double.isNaN(tempMaxValue) || (Objects.isNull(localDateTime))) {
             System.out.println("There are no temperature values available.");
             return;
         }

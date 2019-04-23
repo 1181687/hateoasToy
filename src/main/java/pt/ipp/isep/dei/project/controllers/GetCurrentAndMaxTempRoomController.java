@@ -164,7 +164,10 @@ public class GetCurrentAndMaxTempRoomController {
      * @return LocalDateTime
      */
     public LocalDateTime getLocalDateTimeMaximumTemperature() {
-        return maximumRoomReading.getRoomReadingId().getLocalDateTime();
+        if (Objects.nonNull(this.maximumRoomReading)) {
+            return maximumRoomReading.getRoomReadingId().getLocalDateTime();
+        }
+        return null;
     }
 
     /**
@@ -173,7 +176,10 @@ public class GetCurrentAndMaxTempRoomController {
      * @return double
      */
     public double getValueMaximumTemperature() {
-        return maximumRoomReading.getValue();
+        if (Objects.nonNull(this.maximumRoomReading)) {
+            return maximumRoomReading.getValue();
+        }
+        return Double.NaN;
     }
 
 
