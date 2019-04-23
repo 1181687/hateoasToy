@@ -143,16 +143,16 @@ public class Main {
 /*
             DetachRoomFromHouseGrid detachRoomFromHouseGrid = new DetachRoomFromHouseGrid(houseService);
             detachRoomFromHouseGrid.run();
-            */
 
 
-            /*ImportGeoAreasFromJSONOrXML importGeoAreasFromJSONOrXML = new ImportGeoAreasFromJSONOrXML(geoAreaAggregateService);
+
+            ImportGeoAreasFromJSONOrXML importGeoAreasFromJSONOrXML = new ImportGeoAreasFromJSONOrXML(geoAreaAggregateService);
             importGeoAreasFromJSONOrXML.run();*/
-
-            /*ImportReadings importReadings = new ImportReadings(geoAreaAggregateService, roomAggregateService);
+/*
+            ImportReadings importReadings = new ImportReadings(geoAreaAggregateService, roomAggregateService);
             importReadings.run(2);
-
-            GetCurrentTemperatureRoom getCurrentTemperatureRoom = new GetCurrentTemperatureRoom(roomService);
+*/
+            GetCurrentTemperatureRoom getCurrentTemperatureRoom = new GetCurrentTemperatureRoom(roomAggregateService);
             getCurrentTemperatureRoom.run();
             // GetCurrentTemperatureRoom getCurrentTemperatureRoom = new GetCurrentTemperatureRoom(roomService);
             // getCurrentTemperatureRoom.run();
@@ -160,8 +160,9 @@ public class Main {
             //ImportReadings importReadings = new ImportReadings(geoAreaService, roomSensorService);
             //importReadings.run(1);
 
-/*            ImportReadings importReadings2 = new ImportReadings(geoAreaService, roomSensorService);
-            importReadings2.run(1);*/
+            /*
+            ImportReadings importReadings2 = new ImportReadings(geoAreaService, roomSensorService);
+            importReadings2.run(1);
 
 /*            RemoveSensorFromGeoArea removeSensorFromGeoArea = new RemoveSensorFromGeoArea(geoAreaAggregateService);
             removeSensorFromGeoArea.run();

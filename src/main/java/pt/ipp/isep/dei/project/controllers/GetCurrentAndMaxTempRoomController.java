@@ -128,9 +128,16 @@ public class GetCurrentAndMaxTempRoomController {
         return latestRoomReading.getValue();
     }
 
+    /*
     public List<RoomReading> getListOfRoomReadingByRoomSensorIdByDay(RoomSensorId roomSensorId, LocalDate localDate) {
         return this.roomAggregateService.getListOfRoomReadingByRoomSensorIdByDay(roomSensorId, localDate);
     }
+    */
+
+    public List<RoomReading> getListOfRoomReadingByRoomSensorIdByDay(RoomSensorId roomSensorId, LocalDate localDate) {
+        return this.roomAggregateService.getListOfRoomReadingByRoomSensorIdByDay(roomSensorId, localDate);
+    }
+
 
     /**
      * method that checks if list of temperature Readings of a sensor in a given day is empty

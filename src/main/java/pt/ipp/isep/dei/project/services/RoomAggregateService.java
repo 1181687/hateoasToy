@@ -5,14 +5,9 @@ import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.RoomAggregateRepository;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.house.Room;
+import pt.ipp.isep.dei.project.model.house.RoomId;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-import pt.ipp.isep.dei.project.model.house.RoomId;
 import pt.ipp.isep.dei.project.model.readings.RoomReading;
 import pt.ipp.isep.dei.project.model.readings.RoomReadingId;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
@@ -22,7 +17,9 @@ import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 public class RoomAggregateService {
@@ -32,6 +29,7 @@ public class RoomAggregateService {
 
     @Autowired
     private HouseGridAggregateService houseGridAggregateService;
+
 
 
     /**
@@ -164,16 +162,17 @@ public class RoomAggregateService {
         return this.roomAggregateRepository.findByRoomReadingIdAndRoomSensorId(roomSensorId);
     }
 
-    /**
+    /*
+     *//**
      * method that get the list of readings of a given room sensor (by id) by a given date
      * @param localDate given date
      * @param roomSensorId id of the room sensor
      * @return List<RoomReading> of a day of a sensor
-     */
+     *//*
     public List<RoomReading> getListOfRoomReadingByRoomSensorIdByDay(RoomSensorId roomSensorId, LocalDate localDate) {
         return this.roomAggregateRepository.findByRoomReadingIdAndRoomSensorIdAndDay(roomSensorId, localDate);
     }
-
+*/
     /**
      * method that gets the latest reading of a given roomSensor
      *
@@ -245,7 +244,7 @@ public class RoomAggregateService {
      * @param roomSensorId sensor id
      * @param localDate    given day
      * @return Maximum RoomReading. If there aren't readings return null
-     */
+     *//*
     public RoomReading getMaximumReadingBySensorIdInADay(RoomSensorId roomSensorId, LocalDate localDate) {
 
         List<RoomReading> listReadingDay = this.getListOfRoomReadingByRoomSensorIdByDay(roomSensorId, localDate);
@@ -259,6 +258,42 @@ public class RoomAggregateService {
             return maxRoomReading;
         }
         return null;
+    }*/
+    public List<RoomReading> getListOfRoomReadingByRoomSensorIdByDay(RoomSensorId roomSensorId, LocalDate localDate) {
+
+        List<RoomReading> listReadingSensor = this.getListOfRoomReadingByRoomSensorId(roomSensorId);
+        if (!listReadingSensor.isEmpty()) {
+            List<RoomReading> dailyRoomReading = new ArrayList<>();
+            for (RoomReading reading : listReadingSensor) {
+                if (reading.getRoomReadingId().getLocalDateTime().toLocalDate().isEqual(localDate)) {
+                    dailyRoomReading.add(reading);
+                }
+            }
+            return dailyRoomReading;
+        }
+        return null;
     }
 
+    /**
+     * gets the Maximum Room Reading by sensor Id in a given day
+     *
+     * @param roomSensorId sensor id
+     * @param localDate    given day
+     * @return Maximum RoomReading. If there aren't readings return null
+     */
+    public RoomReading getMaximumReadingBySensorIdInADay(RoomSensorId roomSensorId, LocalDate localDate) {
+
+        List<RoomReading> dailyRoomReading = this.getListOfRoomReadingByRoomSensorIdByDay(roomSensorId, localDate);
+
+        if (!dailyRoomReading.isEmpty()) {
+            RoomReading maxRoomReading = dailyRoomReading.get(0);
+            for (RoomReading reading : dailyRoomReading) {
+                if (Double.compare(reading.getValue(), maxRoomReading.getValue()) == 1) {
+                    maxRoomReading = reading;
+                }
+            }
+            return maxRoomReading;
+        }
+        return null;
+    }
 }
