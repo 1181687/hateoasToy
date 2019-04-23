@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.project;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.RoomId;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
@@ -12,6 +13,7 @@ import pt.ipp.isep.dei.project.model.sensor.RoomSensorId;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class RoomAggregateRepository {
@@ -105,18 +107,23 @@ public class RoomAggregateRepository {
     }
 
     public boolean roomDeviceListIsEmpty(RoomId id){
-        if(this.roomRepository.findById(id).isPresent()){
-            Room room =this.roomRepository.findById(id).get();
+        Room room = this.roomRepository.findById(id).orElse(null);
+        if(Objects.nonNull(room)){
             return room.isDeviceListEmpty();
         }
         return false;
     }
 
     public Room findRoomById(RoomId id){
-        if(this.roomRepository.findById(id).isPresent()){
-            return this.roomRepository.findById(id).get();
+        return this.roomRepository.findById(id).orElse(null);
+    }
+
+    public boolean detachRoomFromHouseGrid(RoomId roomId) {
+        Room room = this.roomRepository.findById(roomId).orElse(null);
+        if (Objects.nonNull(room)){
+            return room.detachRoomFromHouseGrid();
         }
-        return null;
+        return false;
     }
 
 
@@ -130,4 +137,19 @@ public class RoomAggregateRepository {
     public List<RoomReading> findByRoomReadingIdAndRoomSensorIdAndDay(RoomSensorId roomSensorId, LocalDate localDate) {
         return roomReadingRepository.findByRoomReadingId_RoomSensorIdAndRoomReadingId_LocalDateTime_Date(roomSensorId, localDate);
     }*/
+}
+
+    public void updateRoom(Room room){
+        this.roomRepository.save(room);
+    }
+
+    public boolean addRoom(RoomId roomId, String description, int housefloor, Dimension dimension){
+        if (roomExists(roomId)){
+            return false;
+        }
+        Room room = new Room(roomId,description,housefloor,dimension);
+        this.roomRepository.save(room);
+        return true;
+    }
+
 }

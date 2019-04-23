@@ -17,10 +17,7 @@ import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Service
 public class GeoAreaAggregateService {
@@ -77,6 +74,7 @@ public class GeoAreaAggregateService {
         return geoAreaAggregateRepo.findByGeoAreaReadingId_GeoAreaSensorId(id);
     }
 */
+
     /**
      * Method that returns the list of sensors of a given type.
      *
@@ -167,7 +165,7 @@ public class GeoAreaAggregateService {
     }
 */
 
-/*    *//**
+    /*    *//**
      * Method that returns the list of sensors of a given type that have readings in a specific date.
      *
      * @param typeId Id of the sensor type.
@@ -267,7 +265,6 @@ public class GeoAreaAggregateService {
         }
         return geoAreaIdList;
     }
-
 
 
     /**
@@ -388,20 +385,19 @@ public class GeoAreaAggregateService {
         return false;
     }
 
-    public List<GeoAreaSensor> getSensorsFromGeoArea(GeoAreaId geoAreaId){
+    public List<GeoAreaSensor> getSensorsFromGeoArea(GeoAreaId geoAreaId) {
         return this.geoAreaAggregateRepo.findByGeoAreaId(geoAreaId);
     }
 
-    public boolean removeSensor(GeoAreaSensor geoAreaSensor){
-        if(geoAreaAggregateRepo.doesSensorExist(geoAreaSensor.getId())){
+    public boolean removeSensor(GeoAreaSensor geoAreaSensor) {
+        if (geoAreaAggregateRepo.doesSensorExist(geoAreaSensor.getId())) {
             geoAreaAggregateRepo.removeSensor(geoAreaSensor);
             return true;
         }
         return false;
     }
 
-
-    public List<GeoAreaSensor> getActiveSensors(){
+    public List<GeoAreaSensor> getActiveSensors() {
         return this.geoAreaAggregateRepo.getActiveSensors();
     }
     /*
@@ -417,7 +413,7 @@ public class GeoAreaAggregateService {
     }
     */
 
-    public boolean deactivateSensor(GeoAreaSensorId id){
+    public boolean deactivateSensor(GeoAreaSensorId id) {
         return this.geoAreaAggregateRepo.deactivateSensorById(id);
     }
 
