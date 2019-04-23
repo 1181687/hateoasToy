@@ -4,7 +4,7 @@ import pt.ipp.isep.dei.project.controllers.AddSensorToRoomController;
 import pt.ipp.isep.dei.project.model.house.RoomDTO;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensorDTO;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeDTO;
-import pt.ipp.isep.dei.project.services.HouseService;
+import pt.ipp.isep.dei.project.services.RoomAggregateService;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -18,8 +18,8 @@ public class AddSensorToRoom {
 
     private AddSensorToRoomController controller;
 
-    public AddSensorToRoom(HouseService houseService) {
-        this.controller = new AddSensorToRoomController(houseService);
+    public AddSensorToRoom(RoomAggregateService roomAggregateService) {
+        this.controller = new AddSensorToRoomController(roomAggregateService);
     }
 
     public void run() {

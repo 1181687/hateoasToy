@@ -6,23 +6,22 @@ import pt.ipp.isep.dei.project.RoomAggregateRepository;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.DeviceType;
 import pt.ipp.isep.dei.project.model.house.Room;
+import pt.ipp.isep.dei.project.model.house.RoomId;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
-import pt.ipp.isep.dei.project.model.house.RoomId;
 import pt.ipp.isep.dei.project.model.readings.RoomReading;
 import pt.ipp.isep.dei.project.model.readings.RoomReadingId;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensorId;
+import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 import pt.ipp.isep.dei.project.utils.ApplicationConfiguration;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 public class RoomAggregateService {
@@ -31,12 +30,19 @@ public class RoomAggregateService {
     private RoomAggregateRepository roomAggregateRepository;
 
     @Autowired
+    private SensorTypeService sensorTypeService;
+
+    @Autowired
     private HouseGridAggregateService houseGridAggregateService;
 
     private String configFile = "Configuration.properties";
 
     private List<DeviceType> deviceTypeList = ApplicationConfiguration.createDeviceTypes(configFile);
 
+
+    public List<SensorType> getSensorTypeList() {
+        return sensorTypeService.getSensorTypeList();
+    }
 
     /**
      * method that get the String content Name and Location of all devices in the list,
