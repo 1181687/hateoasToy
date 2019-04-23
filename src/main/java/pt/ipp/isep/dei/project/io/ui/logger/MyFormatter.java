@@ -22,10 +22,13 @@ public class MyFormatter extends Formatter {
         builder.append("\n");
         return builder.toString();
     }
+
+    @Override
     public String getHead(Handler h) {
         return super.getHead(h);
     }
 
+    @Override
     public String getTail(Handler h) {
         return super.getTail(h);
     }

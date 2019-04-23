@@ -128,15 +128,15 @@ public class Main {
             /*AddNewGeographicalArea ui2 = new AddNewGeographicalArea(this.geoAreaService);
             ui2.run();*/
 
-            DefineSensorType ui = new DefineSensorType(this.sensorTypeService);
-            ui.run();
+         /*   DefineSensorType ui = new DefineSensorType(this.sensorTypeService);
+            ui.run();*/
 
             /*AddSensorToGeoArea ui1 = new AddSensorToGeoArea(this.geoAreaService);
             ui1.run();*/
 
-            AddSensorToRoom addSensorToRoom = new AddSensorToRoom(this.roomAggregateService);
+           /* AddSensorToRoom addSensorToRoom = new AddSensorToRoom(this.roomAggregateService);
             addSensorToRoom.run();
-
+*/
             //ImportRoomSensors ui = new ImportRoomSensors(this.roomAggregateService);
             //ui.run();
 
@@ -157,8 +157,8 @@ public class Main {
             /*ImportGeoAreasFromJSONOrXML importGeoAreasFromJSONOrXML = new ImportGeoAreasFromJSONOrXML(geoAreaAggregateService);
             importGeoAreasFromJSONOrXML.run();*/
 
-            //ImportReadings importReadings = new ImportReadings(geoAreaAggregateService, roomAggregateService);
-            //importReadings.run(2);
+            ImportReadings importReadings = new ImportReadings(geoAreaAggregateService, roomAggregateService);
+            importReadings.run(2);
 
             /*GetCurrentTemperatureRoom getCurrentTemperatureRoom = new GetCurrentTemperatureRoom(roomService);
             getCurrentTemperatureRoom.run();*/
