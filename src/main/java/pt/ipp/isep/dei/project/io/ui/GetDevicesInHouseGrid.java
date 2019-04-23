@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.GetDevicesInHouseGridController;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridDTO;
+import pt.ipp.isep.dei.project.services.HouseService;
 import pt.ipp.isep.dei.project.services.RoomAggregateService;
 
 import java.util.List;
@@ -18,10 +19,10 @@ public class GetDevicesInHouseGrid {
     /**
      * method constructor that receives a housegrid
      *
-     * @param roomAggregateService roomAggregateService received
+     * @param houseService houseService received
      */
-    public GetDevicesInHouseGrid(RoomAggregateService roomAggregateService) {
-        this.controller = new GetDevicesInHouseGridController(roomAggregateService);
+    public GetDevicesInHouseGrid(HouseService houseService) {
+        this.controller = new GetDevicesInHouseGridController(houseService);
     }
 
     /**

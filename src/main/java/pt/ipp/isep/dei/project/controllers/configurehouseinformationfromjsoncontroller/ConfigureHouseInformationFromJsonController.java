@@ -196,9 +196,9 @@ public class ConfigureHouseInformationFromJsonController {
         this.houseService.setAddress(houseAddress);
 
         for (RoomDTO roomDTO : houseDTO.getRoomDTOList()) {
-            Room room = RoomMapper.mapToEntity(roomDTO);
+            //Room room = RoomMapper.mapToEntity(roomDTO);
 
-            this.houseService.addRoom(room);
+            this.houseService.createRoom(roomDTO.getId(),roomDTO.getDescription(),roomDTO.getHouseFloor(),roomDTO.getLength(),roomDTO.getWidth(),roomDTO.getHeight());
 
         }
         for (HouseGridDTO houseGridDTO : houseDTO.getHouseGridDTOList()) {

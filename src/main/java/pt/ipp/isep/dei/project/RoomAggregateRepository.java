@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.project;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.RoomId;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
@@ -111,4 +112,26 @@ public class RoomAggregateRepository {
     public Room findRoomById(RoomId id){
         return this.roomRepository.findById(id).orElse(null);
     }
+
+    public boolean detachRoomFromHouseGrid(RoomId roomId) {
+        Room room = this.roomRepository.findById(roomId).orElse(null);
+        if (Objects.nonNull(room)){
+            return room.detachRoomFromHouseGrid();
+        }
+        return false;
+    }
+
+    public void updateRoom(Room room){
+        this.roomRepository.save(room);
+    }
+
+    public boolean addRoom(RoomId roomId, String description, int housefloor, Dimension dimension){
+        if (roomExists(roomId)){
+            return false;
+        }
+        Room room = new Room(roomId,description,housefloor,dimension);
+        this.roomRepository.save(room);
+        return true;
+    }
+
 }

@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.GetNominalPowerController;
 import pt.ipp.isep.dei.project.model.house.RoomDTO;
+import pt.ipp.isep.dei.project.services.HouseService;
 import pt.ipp.isep.dei.project.services.RoomAggregateService;
 
 import java.util.List;
@@ -11,8 +12,8 @@ public class GetNominalPowerOfARoom {
     private List<RoomDTO> roomDTOS;
 
 
-    public GetNominalPowerOfARoom(RoomAggregateService roomAggregateService) {
-        this.controller = new GetNominalPowerController(roomAggregateService);
+    public GetNominalPowerOfARoom(HouseService houseService) {
+        this.controller = new GetNominalPowerController(houseService);
     }
 
     public void run() {

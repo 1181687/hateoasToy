@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.project.io.ui;
 import pt.ipp.isep.dei.project.controllers.GetNominalPowerController;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridDTO;
+import pt.ipp.isep.dei.project.services.HouseService;
 import pt.ipp.isep.dei.project.services.RoomAggregateService;
 
 import java.util.List;
@@ -12,8 +13,8 @@ public class GetNominalPowerOfGrid {
     private GetNominalPowerController controller;
     private List<HouseGridDTO> gridDTOS;
 
-    public GetNominalPowerOfGrid(RoomAggregateService roomAggregateService) {
-        this.controller = new GetNominalPowerController(roomAggregateService);
+    public GetNominalPowerOfGrid(HouseService houseService) {
+        this.controller = new GetNominalPowerController(houseService);
     }
 
     public void run() {
