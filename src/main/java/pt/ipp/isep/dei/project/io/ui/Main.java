@@ -126,8 +126,8 @@ public class Main {
             /*CreateHouseGrid ui0 = new CreateHouseGrid(houseGridService);
             ui0.run();*/
 
-            /*GetDevicesInHouseGrid ui1 = new GetDevicesInHouseGrid(roomAggregateService);
-            ui1.run();*/
+            GetDevicesInHouseGrid ui1 = new GetDevicesInHouseGrid(houseService);
+            ui1.run();
 
             /*AddNewGeographicalAreaType ui3 = new AddNewGeographicalAreaType(this.geoAreaTypeService);
             ui3.run();*/

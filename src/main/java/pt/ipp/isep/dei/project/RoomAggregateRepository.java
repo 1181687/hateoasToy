@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.project;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.RoomId;
@@ -95,6 +96,10 @@ public class RoomAggregateRepository {
 
     public Iterable<RoomSensor> findAllRoomSensors() {
         return this.roomSensorRepository.findAll();
+    }
+
+    public Iterable<Device> findAllDevices(RoomId roomId) {
+        return this.roomRepository.findByDeviceListIn(roomId);
     }
 
     public boolean addRoomSensor(RoomSensor sensor) {
