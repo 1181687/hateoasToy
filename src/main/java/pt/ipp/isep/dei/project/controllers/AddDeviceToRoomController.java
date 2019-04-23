@@ -357,7 +357,7 @@ public class AddDeviceToRoomController {
     public List<DeviceDTO> getDeviceListContentOfARoom(String roomId) {
         RoomId roomId1 = new RoomId(roomId);
         List<DeviceDTO> deviceDTOList = new ArrayList<>();
-        for (Device dev : roomAggregateService.getDeviceListContentRoom(roomId1)) {
+        for (Device dev : room.getDeviceList()) {
             deviceDTOList.add(DeviceMapper.mapToDTO(dev));
         }
         return deviceDTOList;
@@ -373,7 +373,6 @@ public class AddDeviceToRoomController {
         programmableDevice = devSpecs.asProgrammable();
         return programmableDevice;
     }
-
 
     public boolean isProgrammable() {
         if (getDevSpecs().isProgrammable()) {
