@@ -4,11 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import pt.ipp.isep.dei.project.model.ProjectFileReader;
 import pt.ipp.isep.dei.project.model.readings.ReadingDTO;
 import pt.ipp.isep.dei.project.model.readings.ReadingMapper;
-import pt.ipp.isep.dei.project.model.readings.RoomReadingId;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensorId;
 import pt.ipp.isep.dei.project.services.RoomAggregateService;
-import pt.ipp.isep.dei.project.services.RoomSensorService;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.io.File;
@@ -22,13 +20,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ImportRoomReadingsController {
-    private static final Logger LOGGER = Logger.getLogger(ImportRoomReadingsController.class.getName());
+    //private static final Logger LOGGER = Logger.getLogger(ImportRoomReadingsController.class.getName());
     /*private static final String READING_MESSAGE_ERROR = "GeoAreaReading not imported: date of reading is before starting date of sensor. ";
     private static final String DUPLICATE_READING_MESSAGE_ERROR = "GeoAreaReading not imported: duplicate reading ";
     private static final String SENSOR_NOT_ACTIVE = "GeoAreaReading not imported: Sensor is deactive on the specific date.";
     private static final String SENSOR_NOT_EXISTS = "GeoAreaReading not imported: Sensor does not exist.";
     private static final String DATE_INVALID = "GeoAreaReading not imported: Invalid date. ";
     */
+    private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     private RoomSensor roomSensor;
     @Autowired

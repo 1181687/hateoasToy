@@ -5,24 +5,24 @@ import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.RoomAggregateRepository;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.DeviceType;
+import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.Room;
-import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
-import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
 import pt.ipp.isep.dei.project.model.house.RoomId;
+import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 import pt.ipp.isep.dei.project.model.readings.RoomReading;
 import pt.ipp.isep.dei.project.model.readings.RoomReadingId;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensorId;
+import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 import pt.ipp.isep.dei.project.utils.ApplicationConfiguration;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 public class RoomAggregateService {
@@ -31,11 +31,16 @@ public class RoomAggregateService {
     private RoomAggregateRepository roomAggregateRepository;
 
     @Autowired
-    private HouseGridAggregateService houseGridAggregateService;
+    private SensorTypeService sensorTypeService;
 
     private String configFile = "Configuration.properties";
 
     private List<DeviceType> deviceTypeList = ApplicationConfiguration.createDeviceTypes(configFile);
+
+
+    public List<SensorType> getSensorTypeList() {
+        return sensorTypeService.getSensorTypeList();
+    }
 
 
     /**
@@ -78,11 +83,11 @@ public class RoomAggregateService {
         return getContentNameLocationOrderedByType(deviceList);
     }
 
-    public double getGridNominalPower(HouseGridId id){
+    public double getGridNominalPower(HouseGridId id) {
         List<Room> rooms = getRoomListByHouseGrid(id.getId());
-        double nominalPower=0;
+        double nominalPower = 0;
         for (Room room : rooms) {
-            nominalPower+=room.getNominalPower();
+            nominalPower += room.getNominalPower();
         }
         return nominalPower;
     }
@@ -114,25 +119,6 @@ public class RoomAggregateService {
         }
         return deviceList;
     }
-
-    public List<HouseGrid> getAllGrids() {
-        return houseGridAggregateService.getAllGrids();
-    }
-
-    /**
-     * Method that searches for a grid by its Id. If it exists in the repo, the grid is returned, if not, null is returned.
-     *
-     * @param id Id to be used.
-     * @return HouseGrid or null.
-     */
-    public HouseGrid getGridById(HouseGridId id) {
-        return houseGridAggregateService.getGridById(id);
-    }
-
-    public boolean isHouseGridListEmpty() {
-        return this.houseGridAggregateService.numberOfHouseGridsInRepository();
-    }
-
 
     /**
      * method that return true if a given room have a Sensor of a given type
@@ -168,13 +154,24 @@ public class RoomAggregateService {
         return this.roomAggregateRepository.findByRoomReadingIdAndRoomSensorId(roomSensorId);
     }
 
+    /*
+     *//**
+     * method that get the list of readings of a given room sensor (by id) by a given date
+     * @param localDate given date
+     * @param roomSensorId id of the room sensor
+     * @return List<RoomReading> of a day of a sensor
+     *//*
+    public List<RoomReading> getListOfRoomReadingByRoomSensorIdByDay(RoomSensorId roomSensorId, LocalDate localDate) {
+        return this.roomAggregateRepository.findByRoomReadingIdAndRoomSensorIdAndDay(roomSensorId, localDate);
+    }
+*/
     /**
-     * method that gets the latest temperature reading of a given roomSensor
+     * method that gets the latest reading of a given roomSensor
      *
      * @param roomSensorId id of the sensor
      * @return latest roomReading
      */
-    public RoomReading getLatestTemperatureReading(RoomSensorId roomSensorId) {
+    public RoomReading getLatestReadingByRoomSensorId(RoomSensorId roomSensorId) {
 
         List<RoomReading> roomReadings = this.getListOfRoomReadingByRoomSensorId(roomSensorId);
         if (roomReadings.isEmpty()) {
@@ -221,16 +218,75 @@ public class RoomAggregateService {
         return this.roomAggregateRepository.addRoomSensor(sensor);
     }
 
-    public boolean roomExists(RoomId id){
+    public boolean roomExists(RoomId id) {
         return this.roomAggregateRepository.roomExists(id);
     }
 
-    public boolean roomDeviceListIsEmpty(RoomId id){
+    public boolean roomDeviceListIsEmpty(RoomId id) {
         return this.roomAggregateRepository.roomDeviceListIsEmpty(id);
     }
 
-    public double getRoomNominalPower(RoomId id){
+    public double getRoomNominalPower(RoomId id) {
         return this.roomAggregateRepository.findRoomById(id).getNominalPower();
+    }
+
+    /**
+     * gets the Maximum Room Reading by sensor Id in a given day
+     *
+     * @param roomSensorId sensor id
+     * @param localDate    given day
+     * @return Maximum RoomReading. If there aren't readings return null
+     *//*
+    public RoomReading getMaximumReadingBySensorIdInADay(RoomSensorId roomSensorId, LocalDate localDate) {
+
+        List<RoomReading> listReadingDay = this.getListOfRoomReadingByRoomSensorIdByDay(roomSensorId, localDate);
+        if (!listReadingDay.isEmpty()) {
+            RoomReading maxRoomReading = listReadingDay.get(0);
+            for (RoomReading reading : listReadingDay) {
+                if (Double.compare(reading.getValue(), maxRoomReading.getValue()) == 1) {
+                    maxRoomReading = reading;
+                }
+            }
+            return maxRoomReading;
+        }
+        return null;
+    }*/
+    public List<RoomReading> getListOfRoomReadingByRoomSensorIdByDay(RoomSensorId roomSensorId, LocalDate localDate) {
+
+        List<RoomReading> listReadingSensor = this.getListOfRoomReadingByRoomSensorId(roomSensorId);
+        if (Objects.nonNull(listReadingSensor)) {
+            List<RoomReading> dailyRoomReading = new ArrayList<>();
+            for (RoomReading reading : listReadingSensor) {
+                if (reading.getRoomReadingId().getLocalDateTime().toLocalDate().isEqual(localDate)) {
+                    dailyRoomReading.add(reading);
+                }
+            }
+            return dailyRoomReading;
+        }
+        return null;
+    }
+
+    /**
+     * gets the Maximum Room Reading by sensor Id in a given day
+     *
+     * @param roomSensorId sensor id
+     * @param localDate    given day
+     * @return Maximum RoomReading. If there aren't readings return null
+     */
+    public RoomReading getMaximumReadingBySensorIdInADay(RoomSensorId roomSensorId, LocalDate localDate) {
+
+        List<RoomReading> dailyRoomReading = this.getListOfRoomReadingByRoomSensorIdByDay(roomSensorId, localDate);
+
+        if (Objects.nonNull(dailyRoomReading) && (!dailyRoomReading.isEmpty())) {
+            RoomReading maxRoomReading = dailyRoomReading.get(0);
+            for (RoomReading reading : dailyRoomReading) {
+                if (Double.compare(reading.getValue(), maxRoomReading.getValue()) == 1) {
+                    maxRoomReading = reading;
+                }
+            }
+            return maxRoomReading;
+        }
+        return null;
     }
 
     public Room getRoomById(RoomId roomId){
@@ -250,7 +306,7 @@ public class RoomAggregateService {
             return null;
         }
         for (Room allRoom : this.roomAggregateRepository.findAllRooms()) {
-            if (allRoom.isDeviceNameExistant(deviceName)){
+            if (allRoom.isDeviceNameExistant(deviceName)) {
                 return null;
             }
         }
@@ -259,7 +315,7 @@ public class RoomAggregateService {
         return device;
     }
 
-    public DeviceType getDeviceType(String typeName){
+    public DeviceType getDeviceType(String typeName) {
         for (DeviceType deviceType : this.deviceTypeList) {
             if (deviceType.getTypeName().equals(typeName)) {
                 return deviceType;
@@ -268,15 +324,44 @@ public class RoomAggregateService {
         return null;
     }
 
-    public List<Device> getDeviceListContentRoom (RoomId roomId){
+    public List<Device> getDeviceListContentRoom(RoomId roomId) {
         return getRoomById(roomId).getDeviceList();
     }
 
-    public int numberOfDeviceTypes(){
+    public int numberOfDeviceTypes() {
         return this.deviceTypeList.size();
     }
 
-    public List<DeviceType> getDeviceTypes(){
+    public List<DeviceType> getDeviceTypes() {
         return this.deviceTypeList;
+    }
+
+    public List<Room> getRoomsOfAHouseGrid(HouseGridId houseGridId) {
+        return this.roomAggregateRepository.findAllByHouseGridIdEquals(houseGridId);
+    }
+
+    public boolean detachRoomFromHouseGrid(RoomId roomId) {
+        return this.roomAggregateRepository.detachRoomFromHouseGrid(roomId);
+    }
+
+    public void updateRoom(Room room) {
+        this.roomAggregateRepository.updateRoom(room);
+    }
+
+    public boolean createRoom(RoomId roomId, String description, int housefloor, double length, double width, double height) {
+        Dimension dimension = new Dimension(height, length, width);
+        return this.roomAggregateRepository.addRoom(roomId, description, housefloor, dimension);
+    }
+
+
+    public Room getRoomdById(RoomId roomId) {
+        return roomAggregateRepository.getRoomdById(roomId);
+    }
+
+    public List<RoomSensor> getAllRoomSensors() {
+        Iterable<RoomSensor> roomIterable = this.roomAggregateRepository.findAllRoomSensors();
+        List<RoomSensor> roomSensorList = new ArrayList<>();
+        roomIterable.forEach(roomSensorList::add);
+        return roomSensorList;
     }
 }

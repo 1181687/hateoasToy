@@ -5,6 +5,7 @@ import pt.ipp.isep.dei.project.model.house.RoomId;
 import javax.persistence.Embedded;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import java.time.LocalDateTime;
 
 @Entity
@@ -23,6 +24,7 @@ public class RoomSensor {
     private SensorState isActive;
 
     @Embedded
+    @JoinColumn(name = "room_id")
     private RoomId roomId;
 
     public RoomSensor(RoomSensorId id, String sensorName, LocalDateTime startingDate, SensorTypeId sensorTypeId, String units, RoomId roomId) {
@@ -53,6 +55,26 @@ public class RoomSensor {
 
     public boolean isActive() {
         return isActive.isActive();
+    }
+
+    public String getSensorName() {
+        return sensorName;
+    }
+
+    public SensorTypeId getSensorTypeId() {
+        return sensorTypeId;
+    }
+
+    public String getUnits() {
+        return units;
+    }
+
+    public SensorState getIsActive() {
+        return isActive;
+    }
+
+    public RoomId getRoomId() {
+        return roomId;
     }
 
     /*public double getMaximumValueOfDay(LocalDate date) {

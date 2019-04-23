@@ -9,26 +9,27 @@ import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.List;
-import java.util.logging.FileHandler;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 
-import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
 
 public class ImportRoomSensorsController {
     private List<Object> DTOList;
     private int numberOfNotImportedReadings;
+    private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
     private RoomAggregateService roomService;
 
     public ImportRoomSensorsController(RoomAggregateService roomService) {
         this.roomService = roomService;
     }
 
+    /*    */
+
     /**
      * Method that configures the log file, using a FileHandler object to send log information to the specified log file.
      * The last line is responsible for not letting the information show up in the console.
-     */
+     *//*
     private static void configLogFile() {
         FileHandler fh;
         try {
@@ -38,7 +39,7 @@ public class ImportRoomSensorsController {
         }
         LOGGER.addHandler(fh);
         LOGGER.setUseParentHandlers(false);
-    }
+    }*/
 
     public boolean isValidFormat(String fileName) {
         return fileName.endsWith(".csv") || fileName.endsWith(".json") || fileName.endsWith(".xml");
@@ -59,7 +60,6 @@ public class ImportRoomSensorsController {
     }
 
     public boolean importSensorsToRooms() {
-        configLogFile();
         boolean imported = false;
         for (Object object : this.DTOList) {
             RoomSensorDTO sensorDTO = (RoomSensorDTO) object;

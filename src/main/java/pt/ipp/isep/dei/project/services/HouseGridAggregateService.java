@@ -26,4 +26,16 @@ public class HouseGridAggregateService {
         return houseGridAggregateRepository.getGridById(houseGridId);
     }
 
+    public boolean isGridRepositoryEmpty() {
+        return this.houseGridAggregateRepository.isGridRepositoryEmpty();
+    }
+
+    public boolean newPowerSource(String powerSourceId, String typeId, String gridId) {
+        return this.houseGridAggregateRepository.newPowerSource(powerSourceId, typeId, gridId);
+    }
+
+    public boolean createHouseGrid(String gridId) {
+        return this.houseGridAggregateRepository.createHouseGrid(gridId);
+    }
+
 }

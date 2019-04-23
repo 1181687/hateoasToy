@@ -2,7 +2,10 @@ package pt.ipp.isep.dei.project.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import pt.ipp.isep.dei.project.model.devices.*;
-import pt.ipp.isep.dei.project.model.house.*;
+import pt.ipp.isep.dei.project.model.house.Room;
+import pt.ipp.isep.dei.project.model.house.RoomDTO;
+import pt.ipp.isep.dei.project.model.house.RoomId;
+import pt.ipp.isep.dei.project.model.house.RoomMapper;
 import pt.ipp.isep.dei.project.services.RoomAggregateService;
 
 import java.util.ArrayList;
@@ -10,13 +13,6 @@ import java.util.List;
 import java.util.Objects;
 
 public class AddDeviceToRoomController {
-    @Autowired
-    private RoomAggregateService roomAggregateService;
-    private Device device;
-    private Room room;
-    private Programmable programmableDevice;
-    private DeviceSpecs devSpecs;
-    private Program program;
     private static final String NOMINAL_POWER = "Nominal Power";
     private static final String LUMINOUS_FLUX = "Luminous Flux";
     private static final String ANNUAL_ENERGY_CONSUMPTION = "Annual Energy Consumption";
@@ -32,6 +28,13 @@ public class AddDeviceToRoomController {
     private static final String ATTRIBUTE_TIME = "Time";
     private static final String ATTRIBUTE_STANDBY_POWER = "Standby Power";
     private static final String ATTRIBUTE_NUMBER_OF_BOTTLES = "Number of Bottles";
+    @Autowired
+    private RoomAggregateService roomAggregateService;
+    private Device device;
+    private Room room;
+    private Programmable programmableDevice;
+    private DeviceSpecs devSpecs;
+    private Program program;
 
 
     /**
@@ -320,8 +323,8 @@ public class AddDeviceToRoomController {
         return true;
     }
 
-    public boolean createNewStove(String name,double nominalPower){
-        device = roomAggregateService.createDevice("Stove",name,getSelectedRoom());
+    public boolean createNewStove(String name, double nominalPower) {
+        device = roomAggregateService.createDevice("Stove", name, getSelectedRoom());
         if (Objects.isNull(device)) {
             return false;
         }
@@ -355,9 +358,8 @@ public class AddDeviceToRoomController {
      * @return list of devices of a roomMethod that displays the content
      */
     public List<DeviceDTO> getDeviceListContentOfARoom(String roomId) {
-        RoomId roomId1 = new RoomId(roomId);
         List<DeviceDTO> deviceDTOList = new ArrayList<>();
-        for (Device dev : roomAggregateService.getDeviceListContentRoom(roomId1)) {
+        for (Device dev : room.getDeviceList()) {
             deviceDTOList.add(DeviceMapper.mapToDTO(dev));
         }
         return deviceDTOList;
@@ -373,7 +375,6 @@ public class AddDeviceToRoomController {
         programmableDevice = devSpecs.asProgrammable();
         return programmableDevice;
     }
-
 
     public boolean isProgrammable() {
         if (getDevSpecs().isProgrammable()) {
@@ -394,7 +395,6 @@ public class AddDeviceToRoomController {
     public boolean addProgram() {
         return programmableDevice.addProgram(program);
     }
-
 
 
 }

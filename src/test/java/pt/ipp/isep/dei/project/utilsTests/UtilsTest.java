@@ -62,22 +62,23 @@ public class UtilsTest {
         double result = Utils.round(valueToBeRounded, decimalPlaces);
 
         // Assert
-        assertEquals(expectedResult, result,0.001);
+        assertEquals(expectedResult, result, 0.001);
     }
-/*
-    @Test
-    public void roundTestIllegalArgumentException() {
-        // Arrange
-        double valueToBeRounded = 3.7654;
-        int decimalPlaces = -1;
 
-        // Act
-        Throwable exception = assertThrows(IllegalArgumentException.class, () ->
-                Utils.round(valueToBeRounded, decimalPlaces)
-        );
-        assertEquals("Please insert a positive value.", exception.getMessage());
-    }
-*/
+    /*
+        @Test
+        public void roundTestIllegalArgumentException() {
+            // Arrange
+            double valueToBeRounded = 3.7654;
+            int decimalPlaces = -1;
+
+            // Act
+            Throwable exception = assertThrows(IllegalArgumentException.class, () ->
+                    Utils.round(valueToBeRounded, decimalPlaces)
+            );
+            assertEquals("Please insert a positive value.", exception.getMessage());
+        }
+    */
     @Test
     public void testGetMeteringPeriod() {
         //Arrange

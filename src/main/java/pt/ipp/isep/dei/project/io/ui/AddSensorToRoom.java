@@ -2,8 +2,11 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.AddSensorToRoomController;
 import pt.ipp.isep.dei.project.model.house.RoomDTO;
-import pt.ipp.isep.dei.project.services.HouseService;
+import pt.ipp.isep.dei.project.model.sensor.RoomSensorDTO;
+import pt.ipp.isep.dei.project.model.sensor.SensorTypeDTO;
+import pt.ipp.isep.dei.project.services.RoomAggregateService;
 
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -15,22 +18,56 @@ public class AddSensorToRoom {
 
     private AddSensorToRoomController controller;
 
-    public AddSensorToRoom(HouseService houseService) {
-        this.controller = new AddSensorToRoomController(houseService);
+    public AddSensorToRoom(RoomAggregateService roomAggregateService) {
+        this.controller = new AddSensorToRoomController(roomAggregateService);
     }
 
     public void run() {
-
         List<RoomDTO> getRoomListDTO = controller.getRoomDTOList();
-
+        List<SensorTypeDTO> getSensorTypeListDTO = controller.getSensorTypeList();
         if (getRoomListDTO.isEmpty()) {
-            System.out.println("\nThere are no rooms in the house. Please create a new room.");
+            System.out.println("\nThere are no rooms in the house. Please add one.");
             return;
         }
-        String label1 = "Please select which type of sensor you want to create: \n" + getRoomDTOListToString();
-        int positionOfSensorType = InputValidator.getIntRange(label1, 1, getRoomListDTO.size() - 1);
+        if (getSensorTypeListDTO.isEmpty()) {
+            System.out.println("\nThere are no sensor types available. Please add one.");
+            return;
+        }
+        String label1 = "Please select which type of sensor you would like to create: \n" + getSensorTypeDTOListToString();
+        int positionOfSensorType = InputValidator.getIntRange(label1, 1, getSensorTypeListDTO.size());
+        SensorTypeDTO selectedSensorType = getSensorTypeListDTO.get(positionOfSensorType - 1);
 
+        RoomSensorDTO roomSensorDTO = new RoomSensorDTO();
+
+        roomSensorDTO.setSensorTypeId(selectedSensorType.getSensorType());
+
+        String label2 = "Please type down the id of the new sensor.";
+        String sensorId = InputValidator.getString(label2);
+        roomSensorDTO.setId(sensorId);
+
+        String label3 = "Please insert the name of the new sensor.";
+        String sensorName = InputValidator.getString(label3);
+        roomSensorDTO.setName(sensorName);
+
+        roomSensorDTO.setStartingDate(LocalDate.now());
+
+        String label4 = "Please insert the unit of measurement of the sensor you're now creating.";
+        String sensorUnits = InputValidator.getString(label4);
+        roomSensorDTO.setUnits(sensorUnits);
+
+        String label5 = "To which room would you like to add this sensor to?: \n" + getRoomDTOListToString();
+        int positionOfRoom = InputValidator.getIntRange(label5, 1, getRoomListDTO.size());
+        RoomDTO roomWhereSensorIs = getRoomListDTO.get(positionOfRoom);
+        roomSensorDTO.setRoomId(roomWhereSensorIs.getId());
+
+
+        if (controller.addSensorToRoom(roomSensorDTO)) {
+            System.out.println("Success! A new sensor was created with the following features:\n" + getSensorFeatures(roomSensorDTO));
+        } else {
+            System.out.println("This sensor already exists in this room.");
+        }
     }
+
 
     public String getRoomDTOListToString() {
         List<RoomDTO> getRoomListDTO = controller.getRoomDTOList();
@@ -47,51 +84,27 @@ public class AddSensorToRoom {
         return content.toString();
     }
 
-    /*private AddSensorToRoomController controller;
-
-    public AddSensorToRoom (RoomSensorService roomSensorService){
-    this.controller = new AddSensorToRoomController(roomSensorService);
-}
-
-    public AddSensorToRoom(House house, RoomList roomList, SensorTypeList listSensorsType) {
-        controller = new AddSensorToRoomController(listSensorsType, roomList, house);
-    }
-
-    public void run() {
-        controller.
-    }
-
-       /* if (controller.isRoomListEmpty()) {
-            System.out.println("There are no rooms in the house. Please create a room");
-        } else if (controller.isSensorTypeListEmpty()) {
-            System.out.println("There are no sensor types created. Please create one.");
-        } else {
-            System.out.println("To which room do you want to add a sensor?");
-            System.out.println(controller.getRoomListContent());
-            int positionOfTheRoom = read.nextInt() - 1;
-            read.nextLine();
-            controller.getRoomByIndex(positionOfTheRoom);
-
-            System.out.println("What's the name of the new sensor?");
-            String nameOfSensor = read.nextLine();
-            String idOfSensor = read.nextLine();
-            String units = read.nextLine();
-
-            System.out.println("Please, select a sensor type");
-            System.out.println(controller.displayListOfSensorsType());
-            int positionOfTheSensorType = read.nextInt() - 1;
-            read.nextLine();
-            controller.getSensorTypeByIndex(positionOfTheSensorType);
-
-            controller.getLocationOfTheHouse();
-
-            if (controller.createAndAddSensorToTheList(idOfSensor, nameOfSensor, units)) {
-                System.out.println("A sensor was added to the room.");
-            } else {
-                System.out.println("sensor was not created.");
-            }
-
+    public String getSensorTypeDTOListToString() {
+        List<SensorTypeDTO> sensorTypeListDTO = controller.getSensorTypeList();
+        StringBuilder content = new StringBuilder();
+        int listOrderByNumber = 1;
+        for (SensorTypeDTO sensorTypeDTO : sensorTypeListDTO) {
+            content.append(listOrderByNumber);
+            content.append(" - Id: ");
+            content.append(sensorTypeDTO.getSensorType());
+            listOrderByNumber++;
         }
+        return content.toString();
+    }
 
-    }*/
+    public String getSensorFeatures(RoomSensorDTO roomSensorDTO) {
+        StringBuilder content = new StringBuilder();
+        content.append("Id: " + roomSensorDTO.getId() + "\n");
+        content.append("Name: " + roomSensorDTO.getName() + "\n");
+        content.append("Sensor type: " + roomSensorDTO.getSensorTypeId() + "\n");
+        content.append("Activation date: " + roomSensorDTO.getStartingDate() + "\n");
+        content.append("Units: " + roomSensorDTO.getUnits() + "\n");
+        content.append("Room where the sensor is placed: " + roomSensorDTO.getRoomId() + "\n");
+        return content.toString();
+    }
 }

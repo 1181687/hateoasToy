@@ -2,7 +2,7 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.GetNominalPowerController;
 import pt.ipp.isep.dei.project.model.house.RoomDTO;
-import pt.ipp.isep.dei.project.services.RoomAggregateService;
+import pt.ipp.isep.dei.project.services.HouseService;
 
 import java.util.List;
 
@@ -11,8 +11,8 @@ public class GetNominalPowerOfARoom {
     private List<RoomDTO> roomDTOS;
 
 
-    public GetNominalPowerOfARoom(RoomAggregateService roomAggregateService) {
-        this.controller = new GetNominalPowerController(roomAggregateService);
+    public GetNominalPowerOfARoom(HouseService houseService) {
+        this.controller = new GetNominalPowerController(houseService);
     }
 
     public void run() {
@@ -24,11 +24,11 @@ public class GetNominalPowerOfARoom {
 
             int roomListLength = this.roomDTOS.size();
             String label1 = "Please select a room to see its total nominal power: \n" + getRoomsToString() + exit;
-            int position = InputValidator.getIntRange(label1, 0, roomListLength)-1;
+            int position = InputValidator.getIntRange(label1, 0, roomListLength) - 1;
             if (position == -1) {
                 return;
             }
-            RoomDTO roomDTO =this.roomDTOS.get(position);
+            RoomDTO roomDTO = this.roomDTOS.get(position);
             if (controller.roomDeviceListIsEmpty(roomDTO.getId())) {
                 System.out.println("There are no devices in the room. Please, add one first");
             } else {
@@ -38,7 +38,7 @@ public class GetNominalPowerOfARoom {
         }
     }
 
-    private String getRoomsToString(){
+    private String getRoomsToString() {
         StringBuilder content = new StringBuilder();
         int iterator = 1;
 

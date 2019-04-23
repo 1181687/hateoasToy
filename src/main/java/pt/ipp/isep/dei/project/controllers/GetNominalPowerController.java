@@ -1,14 +1,13 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.Measurable;
 import pt.ipp.isep.dei.project.model.MeasurableList;
-import pt.ipp.isep.dei.project.model.devices.Device;
-import pt.ipp.isep.dei.project.model.house.*;
+import pt.ipp.isep.dei.project.model.house.Room;
+import pt.ipp.isep.dei.project.model.house.RoomDTO;
+import pt.ipp.isep.dei.project.model.house.RoomMapper;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridDTO;
-import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridMapper;
-import pt.ipp.isep.dei.project.services.RoomAggregateService;
+import pt.ipp.isep.dei.project.services.HouseService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,18 +17,18 @@ public class GetNominalPowerController {
     private HouseGrid selectedHouseGrid;
     private MeasurableList measurableList;
 
-    private RoomAggregateService roomAggregateService;
+    private HouseService houseService;
 
-    public GetNominalPowerController(RoomAggregateService roomAggregateService) {
+    public GetNominalPowerController(HouseService houseService) {
         //this.measurableList = house.getNewMeasurableObjList();
-        this.roomAggregateService = roomAggregateService;
+        this.houseService = houseService;
     }
 
-    public List<HouseGridDTO> getAllGrids(){
-        List<HouseGrid> gridList = this.roomAggregateService.getAllGrids();
+    public List<HouseGridDTO> getAllGrids() {
+        List<HouseGrid> gridList = this.houseService.getAllGrids();
         List<HouseGridDTO> gridDTOS = new ArrayList<>();
 
-        if(!gridList.isEmpty()){
+        if (!gridList.isEmpty()) {
 
             for (HouseGrid grid : gridList) {
                 gridDTOS.add(HouseGridMapper.mapToDTO(grid));
@@ -44,14 +43,14 @@ public class GetNominalPowerController {
      * @return double
      */
     public double getHouseGridTotalNominalPower(String gridId) {
-        return this.roomAggregateService.getGridNominalPower(new HouseGridId(gridId));
+        return this.houseService.getGridNominalPower(gridId);
     }
 
-    public List<RoomDTO> getAllRooms(){
-        List<Room> rooms = this.roomAggregateService.getAllRooms();
+    public List<RoomDTO> getAllRooms() {
+        List<Room> rooms = this.houseService.getAllRooms();
         List<RoomDTO> roomDTOS = new ArrayList<>();
 
-        if(!rooms.isEmpty()){
+        if (!rooms.isEmpty()) {
             for (Room room : rooms) {
                 roomDTOS.add(RoomMapper.mapToDTO(room));
             }
@@ -59,18 +58,18 @@ public class GetNominalPowerController {
         return roomDTOS;
     }
 
-    public boolean roomDeviceListIsEmpty(String id){
-        return this.roomAggregateService.roomDeviceListIsEmpty(new RoomId(id));
+    public boolean roomDeviceListIsEmpty(String id) {
+        return this.houseService.roomDeviceListIsEmpty(id);
     }
 
-    public double getRoomNominalPower(String id){
-        return this.roomAggregateService.getRoomNominalPower(new RoomId(id));
+    public double getRoomNominalPower(String id) {
+        return this.houseService.getRoomNominalPower(id);
     }
 
-/*
+    /*
 
 
-    *//**
+     *//**
      * method that returns the method getHouseGridListSize of the model class House
      * @return an integer that matches the housegrid grid list size
      *//*
