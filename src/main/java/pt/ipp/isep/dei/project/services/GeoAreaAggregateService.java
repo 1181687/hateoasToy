@@ -54,14 +54,6 @@ public class GeoAreaAggregateService {
         return geoAreaSensorService.addSensorDTO(id, sensorName, sensorTypeId, location, units);
     }*/
 
-    /**
-     * method that gel a list of all geo area types
-     *
-     * @return a list of geo area types
-     */
-    public List<GeographicalAreaType> getListOfGeoAreaTypes() {
-        return geoAreaTypeService.getListOfGeoAreaTypes();
-    }
 
     public List<GeographicalAreaType> listOfGeoAreaTypes() {
         return geoAreaTypeService.getListOfGeoAreaTypes();
@@ -475,4 +467,6 @@ public class GeoAreaAggregateService {
         }
         return mostRecentReading;
     }
+
+
 }
