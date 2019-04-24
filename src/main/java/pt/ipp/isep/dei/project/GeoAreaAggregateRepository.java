@@ -123,4 +123,8 @@ public class GeoAreaAggregateRepository {
         }
         return false;
     }
+
+    public List<GeoAreaSensor> findByGeoAreaIdAndSensorTypeId(GeoAreaId geoAreaId, SensorTypeId sensorTypeId) {
+        return geoAreaSensorRepo.findByGeoAreaIdAndSensorTypeId(geoAreaId, sensorTypeId);
+    }
 }

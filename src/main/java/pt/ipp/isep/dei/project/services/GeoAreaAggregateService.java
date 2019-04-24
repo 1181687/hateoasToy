@@ -76,94 +76,6 @@ public class GeoAreaAggregateService {
         return geoAreaAggregateRepo.findByGeoAreaReadingId_GeoAreaSensorId(id);
     }
 
-    /**
-     * Method that returns the list of sensors of a given type.
-     *
-     * @param id Id of the sensor type..
-     * @return List of GeoAreaSensor.
-     */
-    private List<GeoAreaSensor> getGeoAreaSensorByType(SensorTypeId id) {
-        return geoAreaAggregateRepo.findBySensorTypeId(id);
-    }
-
-    /**
-     * Method that returns the most recent valid reading from a set of readings of a sensor. If the most recent
-     * doesn't have a valid value (for example, NaN), it is not accepted as a valid result and, therefore, doesn't get
-     * stored as the most recent reading.
-     *
-     * @param id Id of the sensor.
-     * @return Most recent (valid) GeoAreaReading.
-     */
-    public GeoAreaReading getMostRecentValidReading(GeoAreaSensorId id) {
-        List<GeoAreaReading> readings = getGeoAreaReadingsBySensorId(id);
-        GeoAreaReading mostRecentReading = null;
-        for (GeoAreaReading reading : readings) {
-            if (Objects.isNull(mostRecentReading)
-                    || reading.getDateTime().isAfter(mostRecentReading.getDateTime()) && !Double.isNaN(reading.getValue())) {
-                mostRecentReading = reading;
-            }
-        }
-        return mostRecentReading;
-    }
-
-    /**
-     * Method that returns the list with the nearest sensors to a given location.
-     *
-     * @param location Location used.
-     * @return A list with the nearest sensor (or more, if there are more than one with the same distance).
-     */
-    public List<GeoAreaSensor> getNearestSensorsToLocation(Location location, List<GeoAreaSensor> geoAreaSensors) {
-        List<GeoAreaSensor> nearestSensors = new ArrayList<>();
-        Double shortestDistance = Double.NaN;
-        for (GeoAreaSensor sensor : geoAreaSensors) {
-            Double distance = sensor.getLocation().distanceBetweenTwoLocations(location);
-            if (Double.isNaN(shortestDistance) || shortestDistance > distance) {
-                shortestDistance = distance;
-                nearestSensors.clear();
-                nearestSensors.add(sensor);
-            } else {
-                if (shortestDistance.equals(distance)) {
-                    nearestSensors.add(sensor);
-                }
-            }
-        }
-        return nearestSensors;
-    }
-
-    /**
-     * Method that returns the most recent value of a type of sensor, having in consideration the distance between a sensor
-     * and a given location. If there is more than one sensor at the same distance, the one with the most recent
-     * [valid] reading is considered to be the most adequate.
-     *
-     * @param location Location to have in consideration.
-     * @param typeId   Type of sensor to search for.
-     * @return Map with the date time and the value of the latest [valid] reading.
-     */
-    public HashMap<LocalDateTime, Double> getLatestMeasurementByTypeAndLocation(Location location, SensorTypeId typeId) {
-        HashMap<LocalDateTime, Double> map = new HashMap<>();
-        GeoAreaReading latestGeoAreaReading = getLatestGeoAreaReading(location, typeId);
-        if (Objects.nonNull(latestGeoAreaReading)) {
-            map.put(latestGeoAreaReading.getDateTime(), latestGeoAreaReading.getValue());
-        }
-        return map;
-    }
-
-    public GeoAreaReading getLatestGeoAreaReading (Location location, SensorTypeId typeId) {
-        GeoAreaReading latestGeoAreaReading = null;
-        List<GeoAreaSensor> geoAreaSensorsOfType = getGeoAreaSensorByType(typeId);
-        if (!geoAreaSensorsOfType.isEmpty()) {
-            List<GeoAreaSensor> nearestSensors = getNearestSensorsToLocation(location, geoAreaSensorsOfType);
-            for (GeoAreaSensor sensor : nearestSensors) {
-                GeoAreaReading sensorsMostRecentReading = getMostRecentValidReading(sensor.getId());
-                if ((Objects.isNull(latestGeoAreaReading))
-                        || Objects.nonNull(sensorsMostRecentReading)
-                        && sensorsMostRecentReading.getDateTime().isAfter(latestGeoAreaReading.getDateTime())) {
-                    latestGeoAreaReading = sensorsMostRecentReading;
-                }
-            }
-        }
-        return latestGeoAreaReading;
-    }
 
     /*    *//**
      * Method that returns the list of sensors of a given type that have readings in a specific date.
@@ -266,20 +178,25 @@ public class GeoAreaAggregateService {
         return geoAreaIdList;
     }
 
-
-    /**
-     * Method that returns the sensor, of a given type, that is closest to the given location and has the most recent
-     * reading
-     *
-     * @param typeId     sensor type
-     * @param location location of the house area
-     * @return
-     */
-    /*public GeoAreaSensor getNearestSensorWithMostRecentReading(SensorTypeId typeId, Location location) {
-        return getSensorById(getLatestGeoAreaReading(location, typeId).getSensorId());
-    }*/
+    public GeoAreaSensor getNearestSensorWithMostRecentReading(Location location, GeoAreaId geoAreaId, SensorTypeId sensorTypeId) {
+        return getSensorById(getLatestGeoAreaReading(location, geoAreaId, sensorTypeId).getSensorId());
+    }
 
 
+    public GeoAreaReading getReadingWithTheHighestTemperature(Location location, GeoAreaId geoAreaId, SensorTypeId sensorTypeId) {
+        GeoAreaSensor geoAreaSensor = getNearestSensorWithMostRecentReading(location, geoAreaId, sensorTypeId);
+        List<GeoAreaReading> sensorReadings = getGeoAreaReadingsBySensorId(geoAreaSensor.getId());
+        GeoAreaReading readingWithHighestTemperature = sensorReadings.get(0);
+        for (GeoAreaReading geoAreaReading : sensorReadings) {
+            if (geoAreaReading.getValue() > readingWithHighestTemperature.getValue()) {
+                readingWithHighestTemperature = geoAreaReading;
+            }
+        }
+        return readingWithHighestTemperature;
+    }
+
+
+    /*
     /**
      * Method that returns the last lowest maximum GeoAreaReading in a given period. It takes in consideration the readings
      * of the nearest sensor of a given type that has the most recent reading. If there are no sensors available
@@ -441,4 +358,100 @@ public class GeoAreaAggregateService {
         return sum / listOfDailyAverages.size();
     }
     */
+
+
+    /**
+     * Method that returns the most recent value of a type of sensor, having in consideration the distance between a sensor
+     * and a given location. If there is more than one sensor at the same distance, the one with the most recent
+     * [valid] reading is considered to be the most adequate.
+     *
+     * @param location Location to have in consideration.
+     * @param typeId   Type of sensor to search for.
+     * @return Map with the date time and the value of the latest [valid] reading.
+     */
+    public HashMap<LocalDateTime, Double> getLatestMeasurement(Location location, GeoAreaId geoAreaId, SensorTypeId typeId) {
+        HashMap<LocalDateTime, Double> map = new HashMap<>();
+        GeoAreaReading latestGeoAreaReading = getLatestGeoAreaReading(location, geoAreaId, typeId);
+        if (Objects.nonNull(latestGeoAreaReading)) {
+            map.put(latestGeoAreaReading.getDateTime(), latestGeoAreaReading.getValue());
+        }
+        return map;
+    }
+
+    /**
+     * Method that returns the latest reading of a type of sensor, having in consideration the distance between the sensor
+     * and a given location.
+     * First, the method tries to have a list of sensors of the required type, then filters the list in order to have
+     * the sensors that are the nearest to the given location, and then tries to get the most recent [valid] reading.
+     *
+     * @param typeId   Type of sensor to search for.
+     * @param location Location to have in consideration.
+     * @return Latest reading.
+     */
+    public GeoAreaReading getLatestGeoAreaReading(Location location, GeoAreaId geoAreaId, SensorTypeId typeId) {
+        GeoAreaReading latestGeoAreaReading = null;
+        List<GeoAreaSensor> nearestSensors = getNearestSensors(location, geoAreaId, typeId);
+        if (!nearestSensors.isEmpty()) {
+            for (GeoAreaSensor sensor : nearestSensors) {
+                GeoAreaReading sensorsMostRecentReading = getMostRecentValidReading(sensor.getId());
+                if ((Objects.isNull(latestGeoAreaReading))
+                        || Objects.nonNull(sensorsMostRecentReading)
+                        && sensorsMostRecentReading.getDateTime().isAfter(latestGeoAreaReading.getDateTime())) {
+                    latestGeoAreaReading = sensorsMostRecentReading;
+                }
+            }
+        }
+        return latestGeoAreaReading;
+    }
+
+    /**
+     * Method that returns the list with the nearest sensors to a given location.
+     *
+     * @param location Location used.
+     * @return A list with the nearest sensor (or more, if there are more than one with the same distance).
+     */
+    public List<GeoAreaSensor> getNearestSensors(Location location, GeoAreaId geoAreaId, SensorTypeId sensorTypeId) {
+        List<GeoAreaSensor> nearestSensors = new ArrayList<>();
+        Double shortestDistance = Double.NaN;
+        List<GeoAreaSensor> selectedGeoAreaSensor = getSensorsByGeoAreaIdAndSensorTypeId(geoAreaId, sensorTypeId);
+        if (!selectedGeoAreaSensor.isEmpty()) {
+            for (GeoAreaSensor sensor : selectedGeoAreaSensor) {
+                Double distance = sensor.getLocation().distanceBetweenTwoLocations(location);
+                if (Double.isNaN(shortestDistance) || shortestDistance > distance) {
+                    shortestDistance = distance;
+                    nearestSensors.clear();
+                    nearestSensors.add(sensor);
+                } else {
+                    if (shortestDistance.equals(distance)) {
+                        nearestSensors.add(sensor);
+                    }
+                }
+            }
+        }
+        return nearestSensors;
+    }
+
+    public List<GeoAreaSensor> getSensorsByGeoAreaIdAndSensorTypeId(GeoAreaId geoAreaId, SensorTypeId sensorTypeId) {
+        return geoAreaAggregateRepo.findByGeoAreaIdAndSensorTypeId(geoAreaId, sensorTypeId);
+    }
+
+    /**
+     * Method that returns the most recent valid reading from a set of readings of a sensor. If the most recent
+     * doesn't have a valid value (for example, NaN), it is not accepted as a valid result and, therefore, doesn't get
+     * stored as the most recent reading.
+     *
+     * @param id Id of the sensor.
+     * @return Most recent (valid) GeoAreaReading.
+     */
+    public GeoAreaReading getMostRecentValidReading(GeoAreaSensorId id) {
+        List<GeoAreaReading> readings = getGeoAreaReadingsBySensorId(id);
+        GeoAreaReading mostRecentReading = null;
+        for (GeoAreaReading reading : readings) {
+            if (Objects.isNull(mostRecentReading)
+                    || reading.getDateTime().isAfter(mostRecentReading.getDateTime()) && !Double.isNaN(reading.getValue())) {
+                mostRecentReading = reading;
+            }
+        }
+        return mostRecentReading;
+    }
 }
