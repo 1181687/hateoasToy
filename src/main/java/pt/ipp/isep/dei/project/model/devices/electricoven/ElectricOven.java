@@ -66,7 +66,7 @@ public class ElectricOven implements Device {
      */
     @Override
     public boolean getIsActive() {
-        return false;
+        return this.isActive;
     }
 
     /**

@@ -105,7 +105,7 @@ public class WallTowelHeater implements Device {
 
     /**
      * method that set the given name only if the name don't exists in DeviceList
-     * and if it is different than the name that the Device1 has.
+     * and if it is different than the name that the Device has.
      *
      * @param name String given name
      * @return true if sets false if don't

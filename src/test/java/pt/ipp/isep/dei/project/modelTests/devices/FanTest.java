@@ -1,0 +1,398 @@
+package pt.ipp.isep.dei.project.modelTests.devices;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.devices.DeviceReading;
+import pt.ipp.isep.dei.project.model.devices.fan.FanType;
+import pt.ipp.isep.dei.project.model.house.Dimension;
+import pt.ipp.isep.dei.project.model.house.Room;
+import pt.ipp.isep.dei.project.model.house.RoomId;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.*;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+public class FanTest {
+    private Room kitchen;
+    private Room laundry;
+    private Device fan;
+    private Map<LocalDateTime, Double> map;
+    private DeviceReading reading0;
+    private DeviceReading reading1;
+    private DeviceReading reading2;
+
+
+    @BeforeEach
+    public void StartUp() {
+        // Rooms
+        Dimension dim = new Dimension(3, 5, 6);
+        RoomId kitchenId = new RoomId("Kitchen");
+        RoomId laundryId = new RoomId("Laundry");
+        kitchen = new Room(kitchenId, "room", 1, dim);
+        laundry = new Room(laundryId, "room", 1, dim);
+
+        // devices
+        FanType fanType = new FanType();
+        Device dummyFan = fanType.createDevice("Fan200");
+        fan = fanType.createDevice("Fan300");
+        dummyFan.setLocation(kitchen);
+        fan.setLocation(kitchen);
+        fan.setAttributesDevType("Time", 2);
+        fan.setAttributesDevType("Nominal Power", 1200);
+
+        // Reading
+        LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
+        reading0 = new DeviceReading(3, time0);
+        LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
+        reading1 = new DeviceReading(5, time1);
+        LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
+        reading2 = new DeviceReading(7, time2);
+        fan.addReadingsToTheList(reading0);
+        fan.addReadingsToTheList(reading1);
+        fan.addReadingsToTheList(reading2);
+
+        // Maps
+        map = new TreeMap<>();
+        map.put(time1, 5.0);
+        map.put(time2, 7.0);
+    }
+
+    @Test
+    public void getNominalPowerTest() {
+        //Arrange
+        double expectedResult = 1200.0;
+
+        //Act
+        double result = fan.getNominalPower();
+
+        //Assert
+        assertEquals(expectedResult, result, 0.001);
+    }
+
+    @Test
+    public void testGetLocation() {
+        // Arrange
+        Room expectedResult = kitchen;
+
+        // Act
+        Room result = fan.getLocation();
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testGetName() {
+        // Arrange
+        String expectedResult = "Fan300";
+
+        // Act
+        String result = fan.getName();
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void getTypeTest() {
+        // Arrange
+        String expectedResult = "Fan";
+
+        // act
+        String result = fan.getType();
+
+        // assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void setLocationFalseTest() {
+        // Act
+        boolean result = fan.setLocation(kitchen);
+
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void setLocationTrueTest() {
+        // Act
+        boolean result = fan.setLocation(laundry);
+
+        // Assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void setLocationTrueTestNullValue() {
+        // Act
+        FanType fanType = new FanType();
+        Device maquina = fanType.createDevice("nome");
+
+        boolean result = maquina.setLocation(laundry);
+
+
+        // Assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void getIsActiveTrueTest() {
+        // Act
+        boolean result = fan.getIsActive();
+
+        // Assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void getIsActiveFalseTest() {
+        // arrange
+        fan.setDeactivateDevice();
+
+        // Act
+        boolean result = fan.getIsActive();
+
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testSetDeactivationDate_True() {
+        // act
+        boolean result = fan.setDeactivateDevice();
+        // assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void testGetDeactivationDate_False() {
+        // arrange
+        fan.setDeactivateDevice();
+        // act
+        boolean result = fan.setDeactivateDevice();
+        // assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void setNameWithSameNameTest() {
+        Throwable exception = assertThrows(RuntimeException.class, () -> fan.setName("Fan300"));
+        assertEquals("Name already exists. Please write a new one.", exception.getMessage());
+    }
+
+    @Test
+    public void setNameAlreadyInListTest() {
+        Throwable exception = assertThrows(RuntimeException.class, () -> fan.setName("Fan200"));
+        assertEquals("Name already exists. Please write a new one.", exception.getMessage());
+    }
+
+    @Test
+    public void setNameFalseTest() {
+        // Act
+        boolean result = fan.setName("");
+
+        // Assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void setNameTrueTest() {
+        // Act
+        boolean result = fan.setName("Fan400");
+
+        // Assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void equalsDifferentObjectTest() {
+        // Arrange
+        Object object = new Object();
+
+        // Act
+        boolean result = fan.equals(object);
+
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testHashCode() {
+        // Arrange
+        int expectedResult = Objects.hash(fan.getName());
+
+        // Act
+        int result = fan.hashCode();
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+
+    @Test
+    public void testGetReadings() {
+        //Arrange
+        List<DeviceReading> expectedResult = new ArrayList<>();
+        expectedResult.add(reading0);
+        expectedResult.add(reading1);
+        expectedResult.add(reading2);
+
+        //Act
+        List<DeviceReading> result = fan.getReadings();
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void getDevSpecsAttributesToStringTest() {
+        // Arrange
+        String expectedResult = "1 - Nominal Power: 1200.0\n";
+        // Act
+        String result = fan.getDevSpecsAttributesToString();
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void getAttributesToStringTest() {
+        // Arrange
+        String expectedResult = "1 - Name: Fan300\n" +
+                "2 - Device Specifications \n" +
+                "3 - Location: Kitchen\n";
+        // Act
+        String result = fan.getAttributesToString();
+
+        // Assert
+        assertEquals(expectedResult, result);
+
+    }
+
+    @Test
+    public void setSetAttributesDevTypeTrue() {
+        //Act
+        boolean result = fan.setAttributesDevType("Nominal Power", 15);
+        //Assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void setSetAttributesDevTypeFalse() {
+        //Act
+        boolean result = fan.setAttributesDevType("Nominal Power", "fh");
+        //Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void getNumberOfSpecsAttributesTest() {
+        // Arrange
+        int expectedResult = 1;
+
+        // Act
+        int result = fan.getNumberOfSpecsAttributes();
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void getNameToStringTest() {
+        // Arrange
+        String expectedResult = "Device: Fan300, located in room: Kitchen\n";
+
+        // Act
+        String result = fan.getNameToString();
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void getDateDeactivateDeviceToString() {
+        // arrange
+        String date = LocalDate.now().toString() + " " + LocalTime.now().toString().substring(0, 5);
+        fan.setDeactivateDevice();
+        // act
+        String result = fan.getDateDeactivateDeviceToString();
+        // assert
+        assertEquals(date, result);
+    }
+
+    @Test
+    public void getDataSeriesTest() {
+        // Assert
+        LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
+        LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
+
+        Map<LocalDateTime, Double> expectedResult = map;
+
+        // Act
+        Map<LocalDateTime, Double> result = fan.getDataSeries(time0, time2);
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void getSpecsListTest() {
+        // Assert
+        List<String> expectedResult = new ArrayList<>();
+        expectedResult.add("Nominal Power");
+
+        // Act
+        List<String> result = fan.getSpecsList();
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+
+    @Test
+    public void getAttributeValueTest() {
+        // Assert
+        double expectedResult = 1200.0;
+
+        // Act
+        Object result = fan.getAttributeValue("Nominal Power");
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testGetSpecs(){
+    }
+
+    @Test
+    public void getEnergyConsumptionInADayTest() {
+
+    }
+
+
+    @Test
+    public void getTotalEnergyConsumptionInAnIntervalWithoutSolutionsTest() {
+
+    }
+
+    @Test
+    public void getTotalEnergyConsumptionInAnIntervalWithOneSolutionTest() {
+
+    }
+
+    @Test
+    public void getTotalEnergyConsumptionInAnIntervalWithOneSolutionTest2() {
+
+    }
+
+    @Test
+    public void getTotalEnergyConsumptionInAnIntervalWithThreeSolutionsTest() {
+
+    }
+}
