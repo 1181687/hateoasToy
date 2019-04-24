@@ -102,8 +102,8 @@ public class Main {
             GetListOfTypeOfGeoArea getListOfTypeOfGeoArea = new GetListOfTypeOfGeoArea(geoAreaService);
             getListOfTypeOfGeoArea.run(); */
 
-            //AddNewGeographicalAreaType addNewGeographicalAreaType = new AddNewGeographicalAreaType(geoAreaTypeService);
-            //addNewGeographicalAreaType.run();
+            /*AddNewGeographicalAreaType addNewGeographicalAreaType = new AddNewGeographicalAreaType(geoAreaTypeService);
+            addNewGeographicalAreaType.run();
 
            /* GetListOfExistingRooms getListOfExistingRooms = new GetListOfExistingRooms(roomService);
             getListOfExistingRooms.run();
@@ -195,12 +195,12 @@ public class Main {
             ui3.run();*/
 
            /* AddDeviceToRoom addDeviceToRoom = new AddDeviceToRoom(this.roomAggregateService);
-            addDeviceToRoom.run();*/
+            addDeviceToRoom.run();
 
 
         };
     }
-/*
+
             data();
 
             //UI levels
@@ -266,7 +266,7 @@ public class Main {
         Address address = new Address("4200-072", houseLocation, insertedGeoArea);
         houseEdificioB = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
         //houseEdificioB.setAddress(address);
-/*
+
 
         // READINGS
         // Electric Water Heater B107/B109

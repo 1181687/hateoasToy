@@ -95,7 +95,7 @@ public interface Device extends Measurable {
         StringBuilder attributes = new StringBuilder();
         attributes.append("1 - Name: " + getName() + "\n");
         attributes.append("2 - Device Specifications \n");
-        attributes.append("3 - Location: " + getLocation().getRoomId() + "\n");
+        attributes.append("3 - Location: " + getLocation().getRoomId().getId() + "\n");
         return attributes.toString();
     }
 
@@ -129,7 +129,7 @@ public interface Device extends Measurable {
     default String getNameToString() {
         StringBuilder nameLocation = new StringBuilder();
         nameLocation.append("Device: " + getName());
-        nameLocation.append(", located in room: " + getLocation().getRoomId() + "\n");
+        nameLocation.append(", located in room: " + getLocation().getRoomId().getId() + "\n");
         return nameLocation.toString();
     }
 
@@ -141,19 +141,6 @@ public interface Device extends Measurable {
     default void addReadingsToTheList(DeviceReading reading) {
         this.getReadings().add(reading);
     }
-/*
-
-    /*
-
-    default double getSumOfTheReadings(List<DeviceReading> readingList) {
-        double sum = 0;
-        for (DeviceReading reading : readingList) {
-            sum += reading.getValue();
-        }
-        return sum;
-    }
-*/
-
 
     default String getDateDeactivateDeviceToString() {
         return this.getDeactivationDate().toLocalDate().toString() + " " + this.getDeactivationDate().toLocalTime().toString();
@@ -170,11 +157,25 @@ public interface Device extends Measurable {
      */
     default double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
         double totalEnergyConsumption = 0;
-       /* List<DeviceReading> validReadings = getReadingsListInInterval(startDate, endDate);
+        List<DeviceReading> validReadings = getReadingsListInInterval(startDate, endDate);
         if (!(validReadings.isEmpty())) {
             totalEnergyConsumption = getSumOfTheReadings(validReadings);
-        }*/
+        }
         return totalEnergyConsumption;
+    }
+
+    /**
+     * Method that calculates the sum of the value in each Reading in a given Reading list.
+     *
+     * @param readingList List with Readingss.
+     * @return Double with the required sum.
+     */
+    default double getSumOfTheReadings(List<DeviceReading> readingList) {
+        double sum = 0;
+        for (DeviceReading reading : readingList) {
+            sum += reading.getValue();
+        }
+        return sum;
     }
 
     /**
@@ -197,10 +198,10 @@ public interface Device extends Measurable {
 
     default Map<LocalDateTime, Double> getDataSeries(LocalDateTime startDate, LocalDateTime endDate) {
         Map<LocalDateTime, Double> map = new TreeMap<>();
-      /*  List<DeviceReading> validReadingList = getReadingsListInInterval(startDate, endDate);
+        List<DeviceReading> validReadingList = getReadingsListInInterval(startDate, endDate);
         for (DeviceReading reading : validReadingList) {
-            map.put(reading.getDateTime(), reading.getValue());
-        }*/
+            map.put(reading.getLocalDateTime(), reading.getValue());
+        }
         return map;
     }
 

@@ -364,4 +364,11 @@ public class RoomAggregateService {
         roomIterable.forEach(roomSensorList::add);
         return roomSensorList;
     }
+
+    public List<Device> getAllDevices(RoomId roomId) {
+        Iterable<Device> deviceIterable = this.roomAggregateRepository.findAllDevices(roomId);
+        List<Device> deviceList = new ArrayList<>();
+        deviceIterable.forEach(deviceList::add);
+        return deviceList;
+    }
 }

@@ -1,7 +1,11 @@
 package pt.ipp.isep.dei.project.controllers;
 
+import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.devices.DeviceDTO;
+import pt.ipp.isep.dei.project.model.devices.DeviceMapper;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.RoomDTO;
+import pt.ipp.isep.dei.project.model.house.RoomId;
 import pt.ipp.isep.dei.project.model.house.RoomMapper;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensorDTO;
@@ -34,6 +38,20 @@ public class GetListOfSensorsAndDevicesRoomController {
             roomSensorDTOList.add(RoomSensorMapper.mapToDTO(roomSensor));
         }
         return roomSensorDTOList;
+    }
+
+    public List<DeviceDTO> getDeviceDTOList(String id) {
+        RoomId roomId = new RoomId(id);
+        List<DeviceDTO> deviceDTOList = new ArrayList<>();
+        for (Device device : roomAggregateService.getAllDevices(roomId)) {
+            deviceDTOList.add(DeviceMapper.mapToDTO(device));
+        }
+        return deviceDTOList;
+    }
+
+
+    public Room getRoomdById(RoomId roomId) {
+        return roomAggregateService.getRoomdById(roomId);
     }
 
 
