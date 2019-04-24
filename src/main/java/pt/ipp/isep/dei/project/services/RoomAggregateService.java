@@ -71,7 +71,10 @@ public class RoomAggregateService {
         return content.toString();
     }
 
-
+    public boolean addRoom(RoomId id, String description, int houseFloor, Dimension dimension){
+        return this.roomAggregateRepository.addRoom(id,description,houseFloor,dimension);
+    }
+    
     /**
      * method that get the String content Name and Location of all devices in the list, of a given housegrid,
      * and grouped by device type.
