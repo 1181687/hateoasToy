@@ -73,7 +73,7 @@ public class GeoAreaAggregateService {
      * @return List of GeoAreaReading.
      */
     public List<GeoAreaReading> getGeoAreaReadingsBySensorId(GeoAreaSensorId id) {
-        return geoAreaAggregateRepo.findByGeoAreaReadingId_GeoAreaSensorId(id);
+        return geoAreaAggregateRepo.findByGeoAreaReadingIdGeoAreaSensorId(id);
     }
 
     /**
