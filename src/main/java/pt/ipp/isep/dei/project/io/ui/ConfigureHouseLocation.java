@@ -97,6 +97,12 @@ public class ConfigureHouseLocation {
         return content.toString();
     }
 
+
+    /**
+     * get method
+     *
+     * @return the size of the geo area list
+     */
     private int getGeoAreaListSize() {
         return this.geoAreaDTOS.size();
     }
