@@ -168,9 +168,7 @@ public class Main {
             ImportReadings importReadings = new ImportReadings(geoAreaAggregateService, roomAggregateService);
             importReadings.run(2);
 
-            //GetCurrentTemperatureRoom getCurrentTemperatureRoom = new GetCurrentTemperatureRoom(roomAggregateService);
-            //getCurrentTemperatureRoom.run();
-            // GetCurrentTemperatureRoom getCurrentTemperatureRoom = new GetCurrentTemperatureRoom(roomService);
+            // GetCurrentTemperatureRoom getCurrentTemperatureRoom = new GetCurrentTemperatureRoom(roomAggregateService);
             // getCurrentTemperatureRoom.run();
 
             GetMaxTemperatureRoom getMaxTemperatureRoom = new GetMaxTemperatureRoom(roomAggregateService);

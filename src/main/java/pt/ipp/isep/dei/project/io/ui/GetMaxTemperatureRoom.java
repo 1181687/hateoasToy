@@ -6,7 +6,6 @@ import pt.ipp.isep.dei.project.services.RoomAggregateService;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Objects;
 
@@ -39,12 +38,14 @@ public class GetMaxTemperatureRoom {
         content.append("The maximum temperature of the room ");
         content.append(roomId);
         content.append(" in the date ");
-        content.append(localDateTime.truncatedTo(ChronoUnit.SECONDS).toString());
+        content.append(localDateTime.toLocalDate());
+        //content.append(localDateTime.truncatedTo(ChronoUnit.SECONDS).toString());
         content.append(" is ");
         content.append(temp);
         content.append(" Celsius, and was registered at ");
-        content.append(localDateTime.toLocalTime().toString());
-        content.append(".\n");
+        // content.append(localDateTime.toLocalTime().toString());
+        content.append(localDateTime.toString().substring(11));
+        content.append("h.\n");
         System.out.println(content.toString());
     }
 
@@ -65,6 +66,7 @@ public class GetMaxTemperatureRoom {
             list.append(roomDTO.getId());
             list.append(", Description: ");
             list.append(roomDTO.getDescription());
+            list.append("\n");
             listOrderByNumber++;
         }
         return list.toString();
@@ -79,7 +81,7 @@ public class GetMaxTemperatureRoom {
         System.out.println(this.getRoomListToString());
 
         String label0 = "Choose the room you want to get the maximum temperature:";
-        int option = InputValidator.getIntRange(label0, 1, roomDTOS.size() - 1);
+        int option = InputValidator.getIntRange(label0, 1, roomDTOS.size()) - 1;
         if (option == -1) {
             return;
         }
