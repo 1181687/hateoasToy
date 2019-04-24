@@ -2,8 +2,8 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2019-04-23T14:39:55</date>
-  <millis>1556026795984</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187815</millis>
   <sequence>5</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -13,8 +13,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:55</date>
-  <millis>1556026795985</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187816</millis>
   <sequence>6</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -24,8 +24,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:55</date>
-  <millis>1556026795986</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187817</millis>
   <sequence>7</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -35,8 +35,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:55</date>
-  <millis>1556026795987</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187818</millis>
   <sequence>8</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -46,8 +46,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:55</date>
-  <millis>1556026795987</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187819</millis>
   <sequence>9</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -57,8 +57,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:55</date>
-  <millis>1556026795988</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187820</millis>
   <sequence>10</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -68,8 +68,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:55</date>
-  <millis>1556026795989</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187821</millis>
   <sequence>11</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -79,8 +79,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:55</date>
-  <millis>1556026795990</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187822</millis>
   <sequence>12</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -90,8 +90,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:55</date>
-  <millis>1556026795991</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187822</millis>
   <sequence>13</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -101,8 +101,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:55</date>
-  <millis>1556026795992</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187823</millis>
   <sequence>14</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -112,8 +112,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:55</date>
-  <millis>1556026795993</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187824</millis>
   <sequence>15</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -123,8 +123,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:55</date>
-  <millis>1556026795993</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187825</millis>
   <sequence>16</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -134,8 +134,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:55</date>
-  <millis>1556026795994</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187826</millis>
   <sequence>17</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -145,8 +145,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:55</date>
-  <millis>1556026795995</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187827</millis>
   <sequence>18</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -156,8 +156,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:55</date>
-  <millis>1556026795996</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187828</millis>
   <sequence>19</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -167,8 +167,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:55</date>
-  <millis>1556026795997</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187829</millis>
   <sequence>20</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -178,8 +178,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:55</date>
-  <millis>1556026795998</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187830</millis>
   <sequence>21</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -189,8 +189,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:55</date>
-  <millis>1556026795999</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187831</millis>
   <sequence>22</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -200,8 +200,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796000</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187832</millis>
   <sequence>23</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -211,8 +211,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796001</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187833</millis>
   <sequence>24</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -222,8 +222,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796002</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187833</millis>
   <sequence>25</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -233,8 +233,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796003</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187834</millis>
   <sequence>26</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -244,8 +244,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796003</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187835</millis>
   <sequence>27</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -255,8 +255,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796004</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187836</millis>
   <sequence>28</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -266,8 +266,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796005</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187836</millis>
   <sequence>29</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -277,8 +277,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796006</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187837</millis>
   <sequence>30</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -288,8 +288,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796007</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187838</millis>
   <sequence>31</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -299,8 +299,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796007</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187839</millis>
   <sequence>32</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -310,8 +310,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796008</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187840</millis>
   <sequence>33</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -321,8 +321,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796009</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187841</millis>
   <sequence>34</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -332,8 +332,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796010</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187841</millis>
   <sequence>35</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -343,8 +343,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796010</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187842</millis>
   <sequence>36</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -354,8 +354,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796011</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187844</millis>
   <sequence>37</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -365,8 +365,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796012</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187844</millis>
   <sequence>38</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -376,8 +376,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796012</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187845</millis>
   <sequence>39</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -387,8 +387,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796013</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187846</millis>
   <sequence>40</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -398,8 +398,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796014</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187846</millis>
   <sequence>41</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -409,8 +409,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796015</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187847</millis>
   <sequence>42</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -420,8 +420,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796015</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187848</millis>
   <sequence>43</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -431,8 +431,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796016</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187849</millis>
   <sequence>44</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -442,8 +442,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796017</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187849</millis>
   <sequence>45</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -453,8 +453,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796018</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187850</millis>
   <sequence>46</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -464,8 +464,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796018</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187851</millis>
   <sequence>47</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -475,8 +475,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796019</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187851</millis>
   <sequence>48</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -486,8 +486,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796019</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187852</millis>
   <sequence>49</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -497,8 +497,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796020</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187853</millis>
   <sequence>50</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -508,8 +508,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796021</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187853</millis>
   <sequence>51</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -519,8 +519,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796022</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187854</millis>
   <sequence>52</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -530,8 +530,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796022</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187855</millis>
   <sequence>53</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -541,8 +541,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796023</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187856</millis>
   <sequence>54</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -552,8 +552,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796024</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187857</millis>
   <sequence>55</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -563,8 +563,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796024</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187858</millis>
   <sequence>56</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -574,8 +574,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796025</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187858</millis>
   <sequence>57</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -585,8 +585,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796025</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187859</millis>
   <sequence>58</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -596,8 +596,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796026</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187860</millis>
   <sequence>59</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -607,8 +607,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796027</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187861</millis>
   <sequence>60</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -618,8 +618,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796027</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187862</millis>
   <sequence>61</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -629,8 +629,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796028</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187862</millis>
   <sequence>62</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -640,8 +640,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796029</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187863</millis>
   <sequence>63</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -651,8 +651,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796029</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187864</millis>
   <sequence>64</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -662,8 +662,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796030</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187864</millis>
   <sequence>65</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -673,8 +673,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796031</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187865</millis>
   <sequence>66</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -684,8 +684,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796031</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187866</millis>
   <sequence>67</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -695,8 +695,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796032</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187866</millis>
   <sequence>68</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -706,8 +706,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796033</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187867</millis>
   <sequence>69</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -717,8 +717,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796034</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187867</millis>
   <sequence>70</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -728,8 +728,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796034</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187868</millis>
   <sequence>71</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -739,8 +739,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796035</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187869</millis>
   <sequence>72</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -750,8 +750,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796036</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187869</millis>
   <sequence>73</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -761,8 +761,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796036</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187870</millis>
   <sequence>74</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -772,8 +772,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796037</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187871</millis>
   <sequence>75</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -783,8 +783,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796038</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187871</millis>
   <sequence>76</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -794,8 +794,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796038</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187872</millis>
   <sequence>77</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -805,8 +805,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796039</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187873</millis>
   <sequence>78</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -816,8 +816,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796039</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187873</millis>
   <sequence>79</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -827,8 +827,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796040</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187874</millis>
   <sequence>80</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -838,8 +838,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796041</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187875</millis>
   <sequence>81</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -849,8 +849,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796041</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187875</millis>
   <sequence>82</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -860,8 +860,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796042</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187876</millis>
   <sequence>83</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -871,8 +871,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796043</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187877</millis>
   <sequence>84</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -882,8 +882,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796044</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187877</millis>
   <sequence>85</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -893,8 +893,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796044</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187878</millis>
   <sequence>86</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -904,8 +904,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796045</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187879</millis>
   <sequence>87</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -915,8 +915,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796046</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187879</millis>
   <sequence>88</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -926,8 +926,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796046</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187880</millis>
   <sequence>89</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -937,8 +937,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796047</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187880</millis>
   <sequence>90</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -948,8 +948,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796048</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187881</millis>
   <sequence>91</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -959,8 +959,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796049</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187882</millis>
   <sequence>92</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -970,8 +970,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796049</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187882</millis>
   <sequence>93</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -981,8 +981,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796050</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187883</millis>
   <sequence>94</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -992,8 +992,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796050</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187884</millis>
   <sequence>95</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1003,8 +1003,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796051</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187884</millis>
   <sequence>96</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1014,8 +1014,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796052</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187885</millis>
   <sequence>97</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1025,8 +1025,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796052</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187886</millis>
   <sequence>98</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1036,8 +1036,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796053</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187886</millis>
   <sequence>99</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1047,8 +1047,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796053</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187887</millis>
   <sequence>100</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1058,8 +1058,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796054</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187887</millis>
   <sequence>101</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1069,8 +1069,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796055</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187888</millis>
   <sequence>102</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1080,8 +1080,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796055</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187889</millis>
   <sequence>103</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1091,8 +1091,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796056</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187889</millis>
   <sequence>104</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1102,8 +1102,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796057</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187890</millis>
   <sequence>105</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1113,8 +1113,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796057</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187890</millis>
   <sequence>106</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1124,8 +1124,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796058</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187891</millis>
   <sequence>107</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1135,8 +1135,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796058</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187892</millis>
   <sequence>108</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1146,8 +1146,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796059</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187892</millis>
   <sequence>109</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1157,8 +1157,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796060</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187893</millis>
   <sequence>110</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1168,8 +1168,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796060</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187894</millis>
   <sequence>111</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1179,8 +1179,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796061</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187894</millis>
   <sequence>112</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1190,8 +1190,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796061</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187895</millis>
   <sequence>113</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1201,8 +1201,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796062</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187895</millis>
   <sequence>114</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1212,8 +1212,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796063</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187896</millis>
   <sequence>115</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1223,8 +1223,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796064</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187897</millis>
   <sequence>116</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1234,8 +1234,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796064</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187898</millis>
   <sequence>117</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1245,8 +1245,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796065</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187898</millis>
   <sequence>118</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1256,8 +1256,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796065</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187899</millis>
   <sequence>119</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1267,8 +1267,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796066</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187899</millis>
   <sequence>120</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1278,8 +1278,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796067</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187900</millis>
   <sequence>121</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1289,8 +1289,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796067</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187901</millis>
   <sequence>122</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1300,8 +1300,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796068</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187901</millis>
   <sequence>123</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1311,8 +1311,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796068</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187902</millis>
   <sequence>124</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1322,8 +1322,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796069</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187902</millis>
   <sequence>125</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1333,8 +1333,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796070</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187903</millis>
   <sequence>126</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1344,8 +1344,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796070</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187904</millis>
   <sequence>127</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1355,8 +1355,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796071</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187904</millis>
   <sequence>128</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1366,8 +1366,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796071</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187905</millis>
   <sequence>129</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1377,8 +1377,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796072</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187905</millis>
   <sequence>130</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1388,8 +1388,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796073</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187906</millis>
   <sequence>131</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1399,8 +1399,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796073</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187907</millis>
   <sequence>132</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1410,8 +1410,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796074</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187907</millis>
   <sequence>133</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1421,8 +1421,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796074</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187908</millis>
   <sequence>134</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1432,8 +1432,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796075</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187908</millis>
   <sequence>135</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1443,8 +1443,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796075</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187909</millis>
   <sequence>136</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1454,8 +1454,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796076</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187909</millis>
   <sequence>137</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1465,8 +1465,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796077</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187910</millis>
   <sequence>138</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1476,8 +1476,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796077</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187911</millis>
   <sequence>139</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1487,8 +1487,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796078</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187911</millis>
   <sequence>140</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1498,8 +1498,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796078</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187912</millis>
   <sequence>141</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1509,8 +1509,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796079</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187912</millis>
   <sequence>142</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1520,8 +1520,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796079</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187913</millis>
   <sequence>143</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1531,8 +1531,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796080</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187913</millis>
   <sequence>144</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1542,8 +1542,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796080</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187914</millis>
   <sequence>145</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1553,8 +1553,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796081</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187914</millis>
   <sequence>146</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1564,8 +1564,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796082</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187915</millis>
   <sequence>147</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1575,8 +1575,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796082</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187916</millis>
   <sequence>148</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1586,8 +1586,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796083</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187916</millis>
   <sequence>149</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1597,8 +1597,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796083</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187917</millis>
   <sequence>150</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1608,8 +1608,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796084</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187917</millis>
   <sequence>151</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1619,8 +1619,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796084</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187918</millis>
   <sequence>152</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1630,8 +1630,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796085</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187918</millis>
   <sequence>153</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1641,8 +1641,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796086</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187919</millis>
   <sequence>154</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1652,8 +1652,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796086</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187920</millis>
   <sequence>155</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1663,8 +1663,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796087</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187920</millis>
   <sequence>156</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1674,8 +1674,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796087</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187921</millis>
   <sequence>157</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1685,8 +1685,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796088</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187922</millis>
   <sequence>158</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1696,8 +1696,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796089</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187922</millis>
   <sequence>159</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1707,8 +1707,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796089</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187923</millis>
   <sequence>160</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1718,8 +1718,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796090</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187923</millis>
   <sequence>161</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1729,8 +1729,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796090</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187924</millis>
   <sequence>162</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1740,8 +1740,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796091</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187925</millis>
   <sequence>163</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1751,8 +1751,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796092</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187925</millis>
   <sequence>164</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1762,8 +1762,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796092</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187926</millis>
   <sequence>165</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1773,8 +1773,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796093</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187926</millis>
   <sequence>166</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1784,8 +1784,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796093</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187927</millis>
   <sequence>167</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1795,8 +1795,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796094</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187927</millis>
   <sequence>168</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1806,8 +1806,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796094</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187928</millis>
   <sequence>169</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1817,8 +1817,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796095</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187928</millis>
   <sequence>170</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1828,8 +1828,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796095</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187929</millis>
   <sequence>171</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1839,8 +1839,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796096</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187929</millis>
   <sequence>172</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1850,8 +1850,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796096</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187930</millis>
   <sequence>173</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1861,8 +1861,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796097</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187931</millis>
   <sequence>174</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1872,8 +1872,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796098</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187931</millis>
   <sequence>175</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1883,8 +1883,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796098</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187932</millis>
   <sequence>176</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1894,8 +1894,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796099</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187932</millis>
   <sequence>177</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1905,8 +1905,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796099</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187933</millis>
   <sequence>178</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1916,8 +1916,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796100</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187933</millis>
   <sequence>179</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1927,8 +1927,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796100</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187934</millis>
   <sequence>180</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1938,8 +1938,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796101</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187934</millis>
   <sequence>181</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1949,8 +1949,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796102</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187935</millis>
   <sequence>182</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1960,8 +1960,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796102</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187936</millis>
   <sequence>183</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1971,8 +1971,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796103</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187936</millis>
   <sequence>184</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1982,8 +1982,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796103</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187937</millis>
   <sequence>185</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -1993,8 +1993,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796104</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187937</millis>
   <sequence>186</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2004,8 +2004,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796104</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187938</millis>
   <sequence>187</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2015,8 +2015,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796105</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187938</millis>
   <sequence>188</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2026,8 +2026,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796105</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187939</millis>
   <sequence>189</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2037,8 +2037,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796106</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187939</millis>
   <sequence>190</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2048,8 +2048,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796106</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187940</millis>
   <sequence>191</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2059,8 +2059,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796107</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187940</millis>
   <sequence>192</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2070,8 +2070,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796108</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187941</millis>
   <sequence>193</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2081,8 +2081,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796108</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187941</millis>
   <sequence>194</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2092,8 +2092,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796109</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187942</millis>
   <sequence>195</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2103,8 +2103,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796109</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187942</millis>
   <sequence>196</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2114,8 +2114,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796110</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187943</millis>
   <sequence>197</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2125,8 +2125,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796110</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187943</millis>
   <sequence>198</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2136,8 +2136,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796111</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187944</millis>
   <sequence>199</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2147,8 +2147,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796111</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187944</millis>
   <sequence>200</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2158,8 +2158,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796112</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187945</millis>
   <sequence>201</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2169,8 +2169,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796113</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187945</millis>
   <sequence>202</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2180,8 +2180,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796113</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187946</millis>
   <sequence>203</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2191,8 +2191,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796114</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187946</millis>
   <sequence>204</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2202,8 +2202,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796114</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187947</millis>
   <sequence>205</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2213,8 +2213,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796115</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187947</millis>
   <sequence>206</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2224,8 +2224,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796115</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187948</millis>
   <sequence>207</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2235,8 +2235,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796116</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187948</millis>
   <sequence>208</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2246,8 +2246,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796116</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187949</millis>
   <sequence>209</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2257,8 +2257,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796117</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187949</millis>
   <sequence>210</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2268,8 +2268,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796117</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187950</millis>
   <sequence>211</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2279,8 +2279,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796118</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187950</millis>
   <sequence>212</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2290,8 +2290,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796118</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187951</millis>
   <sequence>213</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2301,8 +2301,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796119</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187951</millis>
   <sequence>214</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2312,8 +2312,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796119</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187952</millis>
   <sequence>215</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2323,8 +2323,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796120</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187952</millis>
   <sequence>216</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2334,8 +2334,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796120</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187953</millis>
   <sequence>217</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2345,8 +2345,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796121</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187953</millis>
   <sequence>218</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2356,8 +2356,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796121</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187954</millis>
   <sequence>219</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2367,8 +2367,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796122</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187954</millis>
   <sequence>220</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2378,8 +2378,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796122</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187955</millis>
   <sequence>221</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2389,8 +2389,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796123</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187955</millis>
   <sequence>222</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2400,8 +2400,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796123</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187956</millis>
   <sequence>223</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2411,8 +2411,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796124</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187956</millis>
   <sequence>224</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2422,8 +2422,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796124</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187957</millis>
   <sequence>225</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2433,8 +2433,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796125</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187957</millis>
   <sequence>226</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2444,8 +2444,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796125</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187958</millis>
   <sequence>227</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2455,8 +2455,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796126</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187958</millis>
   <sequence>228</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2466,8 +2466,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796126</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187959</millis>
   <sequence>229</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2477,8 +2477,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796127</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187959</millis>
   <sequence>230</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2488,8 +2488,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796127</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187960</millis>
   <sequence>231</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2499,8 +2499,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796128</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187960</millis>
   <sequence>232</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2510,8 +2510,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796128</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187961</millis>
   <sequence>233</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2521,8 +2521,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796129</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187961</millis>
   <sequence>234</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2532,8 +2532,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796129</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187962</millis>
   <sequence>235</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2543,8 +2543,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796130</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187962</millis>
   <sequence>236</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2554,8 +2554,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796130</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187963</millis>
   <sequence>237</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2565,8 +2565,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796131</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187963</millis>
   <sequence>238</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2576,8 +2576,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796131</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187964</millis>
   <sequence>239</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2587,8 +2587,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796132</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187964</millis>
   <sequence>240</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2598,8 +2598,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796133</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187965</millis>
   <sequence>241</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2609,8 +2609,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796133</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187965</millis>
   <sequence>242</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2620,8 +2620,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796134</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187966</millis>
   <sequence>243</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2631,8 +2631,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796134</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187967</millis>
   <sequence>244</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2642,8 +2642,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796135</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187967</millis>
   <sequence>245</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2653,8 +2653,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796136</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187968</millis>
   <sequence>246</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2664,8 +2664,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796136</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187968</millis>
   <sequence>247</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2675,8 +2675,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796137</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187969</millis>
   <sequence>248</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2686,8 +2686,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796137</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187969</millis>
   <sequence>249</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2697,8 +2697,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796138</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187970</millis>
   <sequence>250</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2708,8 +2708,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796138</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187970</millis>
   <sequence>251</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2719,8 +2719,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796139</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187971</millis>
   <sequence>252</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2730,8 +2730,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796140</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187971</millis>
   <sequence>253</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2741,8 +2741,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796140</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187972</millis>
   <sequence>254</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2752,8 +2752,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796141</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187972</millis>
   <sequence>255</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2763,8 +2763,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796141</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187973</millis>
   <sequence>256</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2774,8 +2774,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796142</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187973</millis>
   <sequence>257</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2785,8 +2785,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796142</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187974</millis>
   <sequence>258</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2796,8 +2796,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796143</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187974</millis>
   <sequence>259</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2807,8 +2807,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796143</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187974</millis>
   <sequence>260</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2818,8 +2818,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796144</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187975</millis>
   <sequence>261</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2829,8 +2829,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796144</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187975</millis>
   <sequence>262</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2840,8 +2840,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796145</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187976</millis>
   <sequence>263</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2851,8 +2851,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796145</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187976</millis>
   <sequence>264</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2862,8 +2862,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796146</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187977</millis>
   <sequence>265</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2873,8 +2873,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796146</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187977</millis>
   <sequence>266</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2884,8 +2884,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796147</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187978</millis>
   <sequence>267</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2895,8 +2895,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796147</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187978</millis>
   <sequence>268</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2906,8 +2906,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796157</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187979</millis>
   <sequence>269</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2917,8 +2917,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796158</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187979</millis>
   <sequence>270</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2928,8 +2928,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796158</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187980</millis>
   <sequence>271</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2939,8 +2939,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796159</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187980</millis>
   <sequence>272</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2950,8 +2950,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796159</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187980</millis>
   <sequence>273</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2961,8 +2961,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796160</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187981</millis>
   <sequence>274</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2972,8 +2972,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796160</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187981</millis>
   <sequence>275</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2983,8 +2983,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796160</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187982</millis>
   <sequence>276</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -2994,8 +2994,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796161</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187982</millis>
   <sequence>277</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -3005,8 +3005,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796161</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187983</millis>
   <sequence>278</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -3016,8 +3016,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796162</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187983</millis>
   <sequence>279</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -3027,8 +3027,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796162</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187984</millis>
   <sequence>280</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -3038,8 +3038,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796163</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187984</millis>
   <sequence>281</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -3049,8 +3049,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796163</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187985</millis>
   <sequence>282</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -3060,8 +3060,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796164</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187985</millis>
   <sequence>283</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -3071,8 +3071,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796164</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187985</millis>
   <sequence>284</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -3082,8 +3082,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796164</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187986</millis>
   <sequence>285</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -3093,8 +3093,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796165</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187986</millis>
   <sequence>286</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -3104,8 +3104,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796165</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187987</millis>
   <sequence>287</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -3115,8 +3115,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796166</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187987</millis>
   <sequence>288</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -3126,8 +3126,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796166</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187988</millis>
   <sequence>289</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -3137,8 +3137,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796167</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187988</millis>
   <sequence>290</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -3148,8 +3148,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796167</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187989</millis>
   <sequence>291</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -3159,8 +3159,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796168</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187989</millis>
   <sequence>292</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -3170,8 +3170,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796168</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187989</millis>
   <sequence>293</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -3181,8 +3181,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796168</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187990</millis>
   <sequence>294</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -3192,8 +3192,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796169</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187990</millis>
   <sequence>295</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -3203,8 +3203,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796169</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187991</millis>
   <sequence>296</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -3214,8 +3214,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796170</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187991</millis>
   <sequence>297</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -3225,8 +3225,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796170</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187992</millis>
   <sequence>298</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -3236,8 +3236,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796171</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187992</millis>
   <sequence>299</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -3247,8 +3247,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796171</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187993</millis>
   <sequence>300</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -3258,8 +3258,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796172</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187993</millis>
   <sequence>301</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -3269,8 +3269,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796172</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187993</millis>
   <sequence>302</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -3280,8 +3280,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796173</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187994</millis>
   <sequence>303</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -3291,8 +3291,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796173</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187994</millis>
   <sequence>304</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -3302,8 +3302,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796173</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187995</millis>
   <sequence>305</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -3313,8 +3313,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796174</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187995</millis>
   <sequence>306</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -3324,8 +3324,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796174</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187996</millis>
   <sequence>307</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -3335,8 +3335,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796175</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187996</millis>
   <sequence>308</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -3346,8 +3346,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796175</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187997</millis>
   <sequence>309</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -3357,8 +3357,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796176</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187997</millis>
   <sequence>310</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -3368,8 +3368,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796176</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187997</millis>
   <sequence>311</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -3379,8 +3379,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796177</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187998</millis>
   <sequence>312</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -3390,8 +3390,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796177</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187998</millis>
   <sequence>313</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -3401,8 +3401,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796177</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187999</millis>
   <sequence>314</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -3412,8 +3412,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796178</millis>
+  <date>2019-04-24T10:46:27</date>
+  <millis>1556099187999</millis>
   <sequence>315</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -3423,8 +3423,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796178</millis>
+  <date>2019-04-24T10:46:28</date>
+  <millis>1556099188000</millis>
   <sequence>316</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -3434,8 +3434,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796179</millis>
+  <date>2019-04-24T10:46:28</date>
+  <millis>1556099188000</millis>
   <sequence>317</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -3445,8 +3445,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796179</millis>
+  <date>2019-04-24T10:46:28</date>
+  <millis>1556099188001</millis>
   <sequence>318</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -3456,8 +3456,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796180</millis>
+  <date>2019-04-24T10:46:28</date>
+  <millis>1556099188001</millis>
   <sequence>319</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -3467,8 +3467,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796180</millis>
+  <date>2019-04-24T10:46:28</date>
+  <millis>1556099188001</millis>
   <sequence>320</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -3478,8 +3478,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796181</millis>
+  <date>2019-04-24T10:46:28</date>
+  <millis>1556099188002</millis>
   <sequence>321</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -3489,8 +3489,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796181</millis>
+  <date>2019-04-24T10:46:28</date>
+  <millis>1556099188002</millis>
   <sequence>322</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -3500,8 +3500,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796181</millis>
+  <date>2019-04-24T10:46:28</date>
+  <millis>1556099188003</millis>
   <sequence>323</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -3511,8 +3511,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796182</millis>
+  <date>2019-04-24T10:46:28</date>
+  <millis>1556099188003</millis>
   <sequence>324</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -3522,8 +3522,8 @@
   <message>Room reading was not imported because the following sensor id doesn't exist: id: TT12345OA.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796880</millis>
+  <date>2019-04-24T10:46:28</date>
+  <millis>1556099188718</millis>
   <sequence>325</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -3533,8 +3533,8 @@
   <message>Room reading was not imported due to timestamp/date of reading being before starting date of sensor: id: TT1236AC, value: 13.1, timestamp/date: 2015-01-20T02:00, unit: C.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796881</millis>
+  <date>2019-04-24T10:46:28</date>
+  <millis>1556099188719</millis>
   <sequence>326</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -3544,8 +3544,8 @@
   <message>Room reading was not imported due to timestamp/date of reading being before starting date of sensor: id: TT1236AC, value: 14.2, timestamp/date: 2015-01-20T08:00, unit: C.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796881</millis>
+  <date>2019-04-24T10:46:28</date>
+  <millis>1556099188719</millis>
   <sequence>327</sequence>
   <logger>global</logger>
   <level>WARNING</level>
@@ -3555,8 +3555,8 @@
   <message>Room reading was not imported due to timestamp/date of reading being before starting date of sensor: id: TT1236AC, value: 13.2, timestamp/date: 2015-01-20T14:00, unit: C.</message>
 </record>
 <record>
-  <date>2019-04-23T14:39:56</date>
-  <millis>1556026796881</millis>
+  <date>2019-04-24T10:46:28</date>
+  <millis>1556099188720</millis>
   <sequence>328</sequence>
   <logger>global</logger>
   <level>WARNING</level>

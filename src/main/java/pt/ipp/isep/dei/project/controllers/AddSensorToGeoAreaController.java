@@ -11,7 +11,7 @@ import java.util.List;
 
 public class AddSensorToGeoAreaController {
 
-    GeoAreaAggregateService geoAreaAggregateService;
+    private GeoAreaAggregateService geoAreaAggregateService;
 
 
     public AddSensorToGeoAreaController(GeoAreaAggregateService geoAreaAggregateService) {

@@ -33,7 +33,7 @@ public class GeoAreaAggregateRepository {
         // empty
     }
 
-    public List<GeographicalArea> findById_GeographicalAreaTypeId(GeoAreaTypeId geoAreaTypeId) {
+    public List<GeographicalArea> findByIdGeographicalAreaTypeId(GeoAreaTypeId geoAreaTypeId) {
         return geoAreaRepo.findById_GeographicalAreaTypeId(geoAreaTypeId);
     }
 
@@ -46,7 +46,7 @@ public class GeoAreaAggregateRepository {
         return this.geoAreaSensorRepo.findByGeoAreaId(geoAreaId);
     }
 
-    public List<GeoAreaReading> findByGeoAreaReadingId_GeoAreaSensorId(GeoAreaSensorId id) {
+    public List<GeoAreaReading> findByGeoAreaReadingIdGeoAreaSensorId(GeoAreaSensorId id) {
         return this.geoAreaReadingRepo.findByGeoAreaReadingId_GeoAreaSensorId(id);
     }
 
@@ -122,5 +122,9 @@ public class GeoAreaAggregateRepository {
             return true;
         }
         return false;
+    }
+
+    public List<GeoAreaSensor> findByGeoAreaIdAndSensorTypeId(GeoAreaId geoAreaId, SensorTypeId sensorTypeId) {
+        return geoAreaSensorRepo.findByGeoAreaIdAndSensorTypeId(geoAreaId, sensorTypeId);
     }
 }
