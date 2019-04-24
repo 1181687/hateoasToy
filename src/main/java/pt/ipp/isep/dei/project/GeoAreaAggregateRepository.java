@@ -11,6 +11,7 @@ import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorId;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -126,5 +127,10 @@ public class GeoAreaAggregateRepository {
 
     public List<GeoAreaSensor> findByGeoAreaIdAndSensorTypeId(GeoAreaId geoAreaId, SensorTypeId sensorTypeId) {
         return geoAreaSensorRepo.findByGeoAreaIdAndSensorTypeId(geoAreaId, sensorTypeId);
+    }
+
+
+    public boolean existsReadingBySensorIdAndInterval(GeoAreaSensorId sensorId, LocalDateTime startDate, LocalDateTime endDate) {
+        return geoAreaReadingRepo.existsByGeoAreaReadingId_GeoAreaSensorIdAndGeoAreaReadingId_LocalDateTimeBetween(sensorId, startDate, endDate);
     }
 }
