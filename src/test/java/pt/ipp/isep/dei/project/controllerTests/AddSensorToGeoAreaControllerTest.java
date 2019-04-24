@@ -91,7 +91,7 @@ class AddSensorToGeoAreaControllerTest {
     public void getSensorTypeDTOList() {
 
         // Sensor type
-        SensorTypeId sensorTypeId = new SensorTypeId("Humilty");
+        SensorTypeId sensorTypeId = new SensorTypeId("Humidity");
         SensorType sensorType = new SensorType(sensorTypeId);
         
         // Sensor type list
@@ -110,7 +110,7 @@ class AddSensorToGeoAreaControllerTest {
         SensorTypeDTO sensorTypeDTO1 = sensorTypeDTOList.get(0);
         SensorTypeDTO sensorTypeResult = result.get(0);
 
-        //assertEquals(geographicalAreaDTOList, result);
+        //assert
         assertEquals(sensorTypeDTO1.getSensorType(), sensorTypeResult.getSensorType());
     }
 
