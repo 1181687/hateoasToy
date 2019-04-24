@@ -195,12 +195,12 @@ public class Main {
             ui3.run();*/
 
            /* AddDeviceToRoom addDeviceToRoom = new AddDeviceToRoom(this.roomAggregateService);
-            addDeviceToRoom.run();
+            addDeviceToRoom.run();*/
 
 
         };
     }
-
+/*
             data();
 
             //UI levels
