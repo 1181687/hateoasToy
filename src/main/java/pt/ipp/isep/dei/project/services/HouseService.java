@@ -27,7 +27,6 @@ public class HouseService {
     private PowerSourceTypeService sourceTypeService;
 
 
-
     @Autowired
     private GeoAreaService geoAreaService;
 
