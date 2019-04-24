@@ -1,0 +1,36 @@
+NUMBER: US063
+
+DESCRIPTION: As a Product Owner, I want that sensor data import of large datasets (num of records>1000) to be fast,
+i.e. t < [num of records]/200
+
+TEAM MEMBERS: Developer - Luís Almeida; QA - Ricardo Araújo;
+
+ACCEPTANCE CRITERIA:
+
+General Criteria:
+- Correct Sequence and Class Diagrams.
+- JavaDoc documentation in both code and tests.
+- JUnit conventions in code and tests. (eg. tests should be named like this:
+                                        testNameOfTheMethod_conditionThatIsBeingTested_expectedResult).
+- All code, comments and documentation are in proper English.
+
+Specific Criteria:
+- given -
+- when -
+- then:
+
+- but -
+
+
+
+Test Criteria:
+- All unit tests with "Process finished with exit code 0" message.
+
+
+
+Acceptance Tests:
+
+
+ASSUMPTIONS:
+
+
