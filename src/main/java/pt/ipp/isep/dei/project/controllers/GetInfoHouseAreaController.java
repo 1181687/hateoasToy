@@ -35,6 +35,7 @@ public class GetInfoHouseAreaController {
         return temperature.getSensorTypeId();
     }
 
+
     /**
      * Method that returns the most recent [valid] temperature reading of the closest sensor to the house.
      *
