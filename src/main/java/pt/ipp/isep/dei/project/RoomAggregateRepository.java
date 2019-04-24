@@ -99,7 +99,7 @@ public class RoomAggregateRepository {
     }
 
     public Iterable<Device> findAllDevices(RoomId roomId) {
-        return this.roomRepository.findByDeviceListIn(roomId);
+        return this.getRoomdById(roomId).getDeviceList();
     }
 
     public boolean addRoomSensor(RoomSensor sensor) {
