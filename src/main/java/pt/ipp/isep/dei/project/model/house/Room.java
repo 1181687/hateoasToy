@@ -1,5 +1,8 @@
 package pt.ipp.isep.dei.project.model.house;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Configurable;
+import pt.ipp.isep.dei.project.RoomSensorRepository;
 import pt.ipp.isep.dei.project.model.Measurable;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.DeviceReading;
@@ -15,6 +18,7 @@ import java.util.Objects;
 import static java.util.Objects.isNull;
 
 @Entity
+@Configurable
 public class Room implements Measurable {
 
     //@Id
@@ -29,6 +33,9 @@ public class Room implements Measurable {
 
     @Embedded
     private Dimension dimension;
+
+    @Autowired
+    private transient RoomSensorRepository repo;
 
     //  @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     // @JoinColumn
@@ -231,6 +238,12 @@ public RoomSensorService getSensorList() {
     }
 */
 
+/**
+ * @param
+ * @param
+ * @return maximum temperature
+ */
+
   /*  public double getMaximumMeasurementInGivenDay(SensorType type, LocalDate date) {
         return sensorList.getMaximumMeasureOfTypeOfSensorInGivenDay(type, date);
     }*/
@@ -242,11 +255,10 @@ public RoomSensorService getSensorList() {
     return new RoomReading(sensorList.getLatestMeasurementBySensorType(type).getValue(), sensorList.getLatestMeasurementBySensorType(type).getDateTime());
     }
 */
-
-    @Override
-    public String getNameToString() {
-        return null;
-    }
+@Override
+public String getNameToString() {
+    return null;
+}
 
     @Override
     public double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
@@ -400,9 +412,9 @@ public RoomSensorService getSensorList() {
         return this.deviceList;
     }
 
-    public Device getDevice(String deviceName){
+    public Device getDevice(String deviceName) {
         for (Device device : deviceList) {
-            if (device.getName().equals(deviceName)){
+            if (device.getName().equals(deviceName)) {
                 return device;
             }
         }

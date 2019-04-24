@@ -17,15 +17,16 @@ import java.util.logging.Logger;
 public class ImportRoomSensorsController {
     private List<Object> DTOList;
     private int numberOfNotImportedReadings;
+    private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
     private RoomAggregateService roomService;
 
     public ImportRoomSensorsController(RoomAggregateService roomService) {
         this.roomService = roomService;
     }
 
-    private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+    /*    */
 
-/*    *//**
+    /**
      * Method that configures the log file, using a FileHandler object to send log information to the specified log file.
      * The last line is responsible for not letting the information show up in the console.
      *//*

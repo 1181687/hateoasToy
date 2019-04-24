@@ -2,13 +2,9 @@ package pt.ipp.isep.dei.project.utilsTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.readings.ReadingDTO;
-import pt.ipp.isep.dei.project.model.readings.ReadingMapper;
-import pt.ipp.isep.dei.project.model.readings.RoomReading;
 import pt.ipp.isep.dei.project.utils.CSVReader;
 
 import java.io.File;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -26,8 +22,8 @@ public class CSVReaderTest {
         String path = "datasets/sensorReadings/csv/DataSet_sp05_SensorData.csv";
         file = new File(path);
     }
-/*
-    *//**
+    /*
+     *//**
      * Test that tries to read a valid file (with valid information) and see if the result of the
      * importation (List of Object) has the expected size and if it contains a certain Reading.
      *//*

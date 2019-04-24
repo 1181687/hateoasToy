@@ -5,8 +5,8 @@ import pt.ipp.isep.dei.project.model.house.RoomDTO;
 import pt.ipp.isep.dei.project.services.RoomAggregateService;
 
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.Objects;
 
 
 /**
@@ -42,8 +42,10 @@ public class GetCurrentTemperatureRoom {
         content.append(" is ");
         content.append(temp);
         content.append(" Celsius, and was registered at ");
-        content.append(localDateTime.truncatedTo(ChronoUnit.SECONDS).toString());
-        content.append(".\n");
+        content.append(localDateTime.toLocalDate());
+        content.append(" ");
+        content.append(localDateTime.toString().substring(11));
+        content.append("h.\n");
         System.out.println(content.toString());
     }
 
@@ -64,6 +66,7 @@ public class GetCurrentTemperatureRoom {
             list.append(roomDTO.getId());
             list.append(", Description: ");
             list.append(roomDTO.getDescription());
+            list.append("\n");
             listOrderByNumber++;
         }
         return list.toString();
@@ -78,7 +81,7 @@ public class GetCurrentTemperatureRoom {
         System.out.println(this.getRoomListToString());
 
         String label0 = "Choose the room you want to get the current temperature:";
-        int option = InputValidator.getIntRange(label0, 1, roomDTOS.size() - 1);
+        int option = InputValidator.getIntRange(label0, 1, roomDTOS.size()) - 1;
         if (option == -1) {
             return;
         }
@@ -91,15 +94,16 @@ public class GetCurrentTemperatureRoom {
             return;
         }
 
+        controller.setRoomSensorId();
         controller.latestTemperatureReading();
-        double tempValue = controller.getvalue();
+        double tempValue = controller.getValue();
         LocalDateTime localDateTime = controller.getLocalDateTime();
 
-        if (controller.isLatestTemperatureReadingNull()) {
+        if (controller.isLatestTemperatureReadingNull() || Double.isNaN(tempValue) || (Objects.isNull(localDateTime))) {
             System.out.println("There are no temperature values available.");
             return;
         }
-
         displayResults(roomId, tempValue, localDateTime);
     }
+
 }

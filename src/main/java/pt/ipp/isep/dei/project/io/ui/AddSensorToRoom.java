@@ -62,7 +62,7 @@ public class AddSensorToRoom {
 
 
         if (controller.addSensorToRoom(roomSensorDTO)) {
-            System.out.println("Success! A new sensor was created with the following features:\n"+getSensorFeatures(roomSensorDTO));
+            System.out.println("Success! A new sensor was created with the following features:\n" + getSensorFeatures(roomSensorDTO));
         } else {
             System.out.println("This sensor already exists in this room.");
         }

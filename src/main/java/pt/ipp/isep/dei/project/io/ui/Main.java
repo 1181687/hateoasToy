@@ -9,9 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import pt.ipp.isep.dei.project.io.ui.logger.MyLogger;
-import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
-import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.RoomId;
 import pt.ipp.isep.dei.project.services.*;
 
@@ -104,17 +102,26 @@ public class Main {
             GetListOfTypeOfGeoArea getListOfTypeOfGeoArea = new GetListOfTypeOfGeoArea(geoAreaService);
             getListOfTypeOfGeoArea.run(); */
 
-            //AddNewGeographicalAreaType addNewGeographicalAreaType = new AddNewGeographicalAreaType(geoAreaTypeService);
-            //addNewGeographicalAreaType.run();
+            /*AddNewGeographicalAreaType addNewGeographicalAreaType = new AddNewGeographicalAreaType(geoAreaTypeService);
+            addNewGeographicalAreaType.run();
 
            /* GetListOfExistingRooms getListOfExistingRooms = new GetListOfExistingRooms(roomService);
             getListOfExistingRooms.run();
             AddNewGeographicalArea addNewGeographicalArea = new AddNewGeographicalArea(geoAreaService);
             addNewGeographicalArea.run();*/
 
-            this.roomAggregateService.createRoom(new RoomId("B106"),"cenas",1,2,2,2);
-            this.roomAggregateService.createRoom(new RoomId("B107"),"cenas",1,2,2,2);
-            this.roomAggregateService.createRoom(new RoomId("B109"),"cenas",1,2,2,2);
+            this.roomAggregateService.createRoom(new RoomId("B106"), "cenas", 1, 2, 2, 2);
+            this.roomAggregateService.createRoom(new RoomId("B107"), "cenas", 1, 2, 2, 2);
+            this.roomAggregateService.createRoom(new RoomId("B109"), "cenas", 1, 2, 2, 2);
+
+            /*DefineSensorType ui1 = new DefineSensorType(this.sensorTypeService);
+            ui1.run();*/
+
+            /*AddSensorToRoom addSensorToRoom = new AddSensorToRoom(this.roomAggregateService);
+            addSensorToRoom.run();*/
+
+            /*GetListOfSensorsAndDevicesRoom ui = new GetListOfSensorsAndDevicesRoom(roomAggregateService);
+            ui.runListOfSensors();*/
 
             /*CreateHouseGrid ui0 = new CreateHouseGrid(houseGridService);
             ui0.run();*/
@@ -128,17 +135,18 @@ public class Main {
             /*AddNewGeographicalArea ui2 = new AddNewGeographicalArea(this.geoAreaService);
             ui2.run();*/
 
-            DefineSensorType ui = new DefineSensorType(this.sensorTypeService);
-            ui.run();
+            //DefineSensorType ui = new DefineSensorType(this.sensorTypeService);
+            //ui.run();
+
 
             /*AddSensorToGeoArea ui1 = new AddSensorToGeoArea(this.geoAreaService);
             ui1.run();*/
 
-            AddSensorToRoom addSensorToRoom = new AddSensorToRoom(this.roomAggregateService);
-            addSensorToRoom.run();
+            //AddSensorToRoom addSensorToRoom = new AddSensorToRoom(this.roomAggregateService);
+            //addSensorToRoom.run();
 
-            //ImportRoomSensors ui = new ImportRoomSensors(this.roomAggregateService);
-            //ui.run();
+            ImportRoomSensors ui = new ImportRoomSensors(this.roomAggregateService);
+            ui.run();
 
 /*
             AddNewGeographicalAreaType addNewGeographicalAreaType = new AddNewGeographicalAreaType(geoAreaTypeService);
@@ -157,14 +165,14 @@ public class Main {
             /*ImportGeoAreasFromJSONOrXML importGeoAreasFromJSONOrXML = new ImportGeoAreasFromJSONOrXML(geoAreaAggregateService);
             importGeoAreasFromJSONOrXML.run();*/
 
-            //ImportReadings importReadings = new ImportReadings(geoAreaAggregateService, roomAggregateService);
-            //importReadings.run(2);
+            ImportReadings importReadings = new ImportReadings(geoAreaAggregateService, roomAggregateService);
+            importReadings.run(2);
 
-            /*GetCurrentTemperatureRoom getCurrentTemperatureRoom = new GetCurrentTemperatureRoom(roomService);
-            getCurrentTemperatureRoom.run();*/
-            // GetCurrentTemperatureRoom getCurrentTemperatureRoom = new GetCurrentTemperatureRoom(roomService);
+            // GetCurrentTemperatureRoom getCurrentTemperatureRoom = new GetCurrentTemperatureRoom(roomAggregateService);
             // getCurrentTemperatureRoom.run();
 
+            GetMaxTemperatureRoom getMaxTemperatureRoom = new GetMaxTemperatureRoom(roomAggregateService);
+            getMaxTemperatureRoom.run();
             //ImportReadings importReadings = new ImportReadings(geoAreaService, roomSensorService);
             //importReadings.run(1);
 
@@ -258,7 +266,7 @@ public class Main {
         Address address = new Address("4200-072", houseLocation, insertedGeoArea);
         houseEdificioB = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
         //houseEdificioB.setAddress(address);
-/*
+
 
         // READINGS
         // Electric Water Heater B107/B109

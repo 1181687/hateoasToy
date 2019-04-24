@@ -2,9 +2,7 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.AddDeviceToRoomController;
 import pt.ipp.isep.dei.project.model.devices.DeviceDTO;
-import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.RoomDTO;
-import pt.ipp.isep.dei.project.model.house.RoomId;
 import pt.ipp.isep.dei.project.services.RoomAggregateService;
 
 import java.util.List;
@@ -42,7 +40,7 @@ public class AddDeviceToRoom {
             }
             //SELECT A DEVICE TYPE
             String label0 = "Please select the Device Type: \n" + getDeviceTypeListToString() + "\r0 - Exit";
-            int selectedType = InputValidator.getIntRange(label0, 0, controller.getNumberOfDeviceTypes())-1;
+            int selectedType = InputValidator.getIntRange(label0, 0, controller.getNumberOfDeviceTypes()) - 1;
             if (selectedType == -1) {
                 continue;
             }
@@ -64,19 +62,19 @@ public class AddDeviceToRoom {
             content.append(" - Id: ");
             content.append(roomDTO.getId());
             content.append(", Description: ");
-            content.append(roomDTO.getDescription()+"\n");
+            content.append(roomDTO.getDescription() + "\n");
             listOrderByNumber++;
         }
         return content.toString();
     }
 
-    private String getDeviceTypeListToString(){
+    private String getDeviceTypeListToString() {
         StringBuilder content = new StringBuilder();
         int listOrderByNumber = 1;
         for (String type : deviceTypes) {
             content.append(listOrderByNumber);
             content.append(" - ");
-            content.append(type+"\n");
+            content.append(type + "\n");
             listOrderByNumber++;
         }
         return content.toString();
@@ -220,7 +218,7 @@ public class AddDeviceToRoom {
         String label03 = "What is the electric powered on time (s)?";
         double ElectricOvenTime = InputValidator.getDoublePos(label03);
 
-        controller.createNewElectricOven(ElectricOvenDeviceName, ElectricOvenNominalPower,ElectricOvenTime);
+        controller.createNewElectricOven(ElectricOvenDeviceName, ElectricOvenNominalPower, ElectricOvenTime);
 
         if (controller.isProgrammable()) {
             creationOfTimeVariablePrograms();
@@ -258,11 +256,11 @@ public class AddDeviceToRoom {
         String label55 = "What is the performance ratio (tipically 0.9)?";
         double kettlePerformanceRatio = InputValidator.getDoublePos(label55);
 
-        controller.createNewKettle(ketleDeviceName, kettleNominalPower,kettleMaximumVolumeOfWater,kettleTemperatureColdWater,kettleVolumeOfWaterToHeat,kettlePerformanceRatio);
+        controller.createNewKettle(ketleDeviceName, kettleNominalPower, kettleMaximumVolumeOfWater, kettleTemperatureColdWater, kettleVolumeOfWaterToHeat, kettlePerformanceRatio);
 
         System.out.println("The Kettle was successfully created and added to the selected room.");
     }
-    
+
     private void creationOfFridge() {
         String label11 = "What is the name of the fridge?";
         String fridgeDeviceName = InputValidator.getString(label11);
@@ -334,7 +332,7 @@ public class AddDeviceToRoom {
         double wineCoolerAnnualConsumption = InputValidator.getDoublePos(label34);
 
         controller.createNewWineCooler(wineCoolerDeviceName, wineCoolerNominalPower,
-                wineCoolerCapacity,wineCoolerAnnualConsumption);
+                wineCoolerCapacity, wineCoolerAnnualConsumption);
 
         System.out.println("The Wine cooler was successfully created and added to the selected room.");
     }
@@ -448,13 +446,13 @@ public class AddDeviceToRoom {
         }
     }
 
-    private String getDeviceListOfRoom(List<DeviceDTO> deviceDTOS){
+    private String getDeviceListOfRoom(List<DeviceDTO> deviceDTOS) {
         StringBuilder content = new StringBuilder();
         int listOrderByNumber = 1;
         for (DeviceDTO deviceDTO : deviceDTOS) {
             content.append(listOrderByNumber);
             content.append(" - ");
-            content.append(deviceDTO.getName()+ " - "+ deviceDTO.getDeviceType()+"\n");
+            content.append(deviceDTO.getName() + " - " + deviceDTO.getDeviceType() + "\n");
             listOrderByNumber++;
         }
         return content.toString();

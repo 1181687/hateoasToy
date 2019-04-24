@@ -44,8 +44,8 @@ public class RoomSensorDTO {
         return typeId;
     }
 
-    public void setSensorTypeId(String sensorType) {
-        this.typeId = sensorType;
+    public void setSensorTypeId(String typeId) {
+        this.typeId = typeId;
     }
 
     public String getRoomId() {
@@ -71,4 +71,5 @@ public class RoomSensorDTO {
     public void setActive(boolean active) {
         isActive = active;
     }
+
 }

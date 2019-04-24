@@ -66,6 +66,7 @@ public class GeoAreaService {
 
     }
 
+
     public List<GeoAreaId> getAllGeoAreasId() {
         Iterable<GeographicalArea> geoAreas = this.geoAreaRepository.findAll();
         List<GeoAreaId> geoAreaIdList = new ArrayList<>();

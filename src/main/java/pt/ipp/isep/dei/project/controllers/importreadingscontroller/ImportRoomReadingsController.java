@@ -4,11 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import pt.ipp.isep.dei.project.model.ProjectFileReader;
 import pt.ipp.isep.dei.project.model.readings.ReadingDTO;
 import pt.ipp.isep.dei.project.model.readings.ReadingMapper;
-import pt.ipp.isep.dei.project.model.readings.RoomReadingId;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensorId;
 import pt.ipp.isep.dei.project.services.RoomAggregateService;
-import pt.ipp.isep.dei.project.services.RoomSensorService;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.io.File;
