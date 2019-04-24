@@ -33,4 +33,20 @@ Acceptance Tests:
 
 ASSUMPTIONS:
 
+USER COMFORT
+EN 15251:2006 provides recommendations for acceptable indoor temperatures for design of buildings without mechanical
+cooling systems. The following formulas are given in annex A.2
 
+- Category I:  Upper limit ti max = 0.33 to + 18.8 + 2
+               Lower limit ti max = 0.33 to + 18.8 − 2
+
+- Category II: Upper limit ti max = 0.33 to + 18.8 + 3
+               Lower limit ti max = 0.33 to + 18.8 − 3
+
+- Category III: Upper limit ti max = 0.33 to + 18.8 + 4
+                Lower limit ti max = 0.33 to + 18.8 − 4
+
+When this user story is executed, the user (Power User or Room Owner) chooses the category he/she wishes to associate to
+the room and the math regarding the US are made considering the chosen category.
+
+It is assumed that "to" in the formula to calculate the temperature is the outside temperature in the house area.
