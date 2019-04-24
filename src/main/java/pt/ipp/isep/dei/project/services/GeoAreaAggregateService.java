@@ -178,20 +178,25 @@ public class GeoAreaAggregateService {
         return geoAreaIdList;
     }
 
-
-    /**
-     * Method that returns the sensor, of a given type, that is closest to the given location and has the most recent
-     * reading
-     *
-     * @param typeId     sensor type
-     * @param location location of the house area
-     * @return
-     */
-    /*public GeoAreaSensor getNearestSensorWithMostRecentReading(SensorTypeId typeId, Location location) {
-        return getSensorById(getLatestGeoAreaReading(location, typeId).getSensorId());
-    }*/
+    public GeoAreaSensor getNearestSensorWithMostRecentReading(Location location, GeoAreaId geoAreaId, SensorTypeId sensorTypeId) {
+        return getSensorById(getLatestGeoAreaReading(location, geoAreaId, sensorTypeId).getSensorId());
+    }
 
 
+    public GeoAreaReading getReadingWithTheHighestTemperature(Location location, GeoAreaId geoAreaId, SensorTypeId sensorTypeId) {
+        GeoAreaSensor geoAreaSensor = getNearestSensorWithMostRecentReading(location, geoAreaId, sensorTypeId);
+        List<GeoAreaReading> sensorReadings = getGeoAreaReadingsBySensorId(geoAreaSensor.getId());
+        GeoAreaReading readingWithHighestTemperature = sensorReadings.get(0);
+        for (GeoAreaReading geoAreaReading : sensorReadings) {
+            if (geoAreaReading.getValue() > readingWithHighestTemperature.getValue()) {
+                readingWithHighestTemperature = geoAreaReading;
+            }
+        }
+        return readingWithHighestTemperature;
+    }
+
+
+    /*
     /**
      * Method that returns the last lowest maximum GeoAreaReading in a given period. It takes in consideration the readings
      * of the nearest sensor of a given type that has the most recent reading. If there are no sensors available

@@ -1,13 +1,18 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import pt.ipp.isep.dei.project.io.ui.logger.MyLogger;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.services.*;
+
+import java.io.IOException;
 
 @EnableJpaRepositories(basePackages = "pt.ipp.isep.dei.project")
 @EntityScan(basePackages = "pt.ipp.isep.dei.project")
@@ -78,9 +83,8 @@ public class Main {
         SpringApplication.run(Main.class, args);
 
     }
-}
 
-   /* @Bean
+    @Bean
     public CommandLineRunner mainRun() {
 
         return (args) -> {
@@ -125,8 +129,8 @@ public class Main {
             /*CreateHouseGrid ui0 = new CreateHouseGrid(houseGridService);
             ui0.run();*/
 
-            GetDevicesInHouseGrid ui1 = new GetDevicesInHouseGrid(houseService);
-            ui1.run();
+            //GetDevicesInHouseGrid ui1 = new GetDevicesInHouseGrid(houseService);
+            //ui1.run();
 
             /*AddNewGeographicalAreaType ui3 = new AddNewGeographicalAreaType(this.geoAreaTypeService);
             ui3.run();*/
@@ -167,18 +171,21 @@ public class Main {
             /*ImportGeoAreasFromJSONOrXML importGeoAreasFromJSONOrXML = new ImportGeoAreasFromJSONOrXML(geoAreaAggregateService);
             importGeoAreasFromJSONOrXML.run();*/
 
-            /*ImportReadings importReadings = new ImportReadings(geoAreaAggregateService, roomAggregateService);
+            ImportReadings importReadings = new ImportReadings(geoAreaAggregateService, roomAggregateService);
             importReadings.run(2);
+        };
+    }
+}
 
-            //GetCurrentTemperatureRoom getCurrentTemperatureRoom = new GetCurrentTemperatureRoom(roomAggregateService);
-            //getCurrentTemperatureRoom.run();
-            // GetCurrentTemperatureRoom getCurrentTemperatureRoom = new GetCurrentTemperatureRoom(roomService);
-            // getCurrentTemperatureRoom.run();
+//GetCurrentTemperatureRoom getCurrentTemperatureRoom = new GetCurrentTemperatureRoom(roomAggregateService);
+//getCurrentTemperatureRoom.run();
+// GetCurrentTemperatureRoom getCurrentTemperatureRoom = new GetCurrentTemperatureRoom(roomService);
+// getCurrentTemperatureRoom.run();
 
-            GetMaxTemperatureRoom getMaxTemperatureRoom = new GetMaxTemperatureRoom(roomAggregateService);
-            getMaxTemperatureRoom.run();
-            //ImportReadings importReadings = new ImportReadings(geoAreaService, roomSensorService);
-            //importReadings.run(1);
+//GetMaxTemperatureRoom getMaxTemperatureRoom = new GetMaxTemperatureRoom(roomAggregateService);
+//getMaxTemperatureRoom.run();
+//ImportReadings importReadings = new ImportReadings(geoAreaService, roomSensorService);
+//importReadings.run(1);
 
 /*            ImportReadings importReadings2 = new ImportReadings(geoAreaService, roomSensorService);
             importReadings2.run(1);*/
