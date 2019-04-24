@@ -116,7 +116,10 @@ public class GetCurrentAndMaxTempRoomController {
      * @return LocalDateTime
      */
     public LocalDateTime getLocalDateTime() {
-        return latestRoomReading.getRoomReadingId().getLocalDateTime();
+        if (Objects.nonNull(this.latestRoomReading)) {
+            return latestRoomReading.getRoomReadingId().getLocalDateTime();
+        }
+        return null;
     }
 
     /**
@@ -125,7 +128,10 @@ public class GetCurrentAndMaxTempRoomController {
      * @return double
      */
     public double getValue() {
-        return latestRoomReading.getValue();
+        if (Objects.nonNull(this.latestRoomReading)) {
+            return latestRoomReading.getValue();
+        }
+        return Double.NaN;
     }
 
     /*
