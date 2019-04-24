@@ -15,15 +15,8 @@ public class DeviceReading {
         return value;
     }
 
-    public void setValue(double value) {
-        this.value = value;
-    }
-
     public LocalDateTime getLocalDateTime() {
         return localDateTime;
     }
 
-    public void setLocalDateTime(LocalDateTime localDateTime) {
-        this.localDateTime = localDateTime;
-    }
 }
