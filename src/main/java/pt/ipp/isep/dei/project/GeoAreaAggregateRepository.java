@@ -51,6 +51,10 @@ public class GeoAreaAggregateRepository {
         return this.geoAreaReadingRepo.findByGeoAreaReadingId_GeoAreaSensorId(id);
     }
 
+    public List<GeoAreaReading> findByGeoAreaReadingIdGeoAreaSensorIdInInterval(GeoAreaSensorId id, LocalDateTime startDate, LocalDateTime endDate) {
+        return this.geoAreaReadingRepo.findByGeoAreaReadingId_GeoAreaSensorIdAndGeoAreaReadingId_LocalDateTimeBetween(id, startDate, endDate);
+    }
+
     /*public boolean existsByDateTime_DateBetweenAndGeoAreaReadingId_GeoAreaSensorId(LocalDate startDate, LocalDate endDate, GeoAreaSensorId id) {
         return this.geoAreaReadingRepo.existsByDateTime_DateBetweenAndGeoAreaReadingId_GeoAreaSensorId(startDate, endDate, id);
     }*/
