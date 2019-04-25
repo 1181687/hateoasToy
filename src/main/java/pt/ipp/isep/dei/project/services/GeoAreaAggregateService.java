@@ -315,7 +315,7 @@ public class GeoAreaAggregateService {
      * @param sensors   List of sensors to be analyzed.
      * @param startDate Start date.
      * @param endDate   End date.
-     * @return
+     * @return Nearest sensor.
      */
     public GeoAreaSensor getNearestSensorWithMostRecentReading(Location location, List<GeoAreaSensor> sensors, LocalDate startDate, LocalDate endDate) {
         List<GeoAreaSensor> nearestSensors = this.getNearestSensors(location, sensors);
@@ -342,7 +342,7 @@ public class GeoAreaAggregateService {
             if (Objects.nonNull(geographicalArea.getParentGeoArea())) {
                 sensors = geoAreaAggregateRepo.getSensorsByGeoAreaIdAndSensorTypeId(geographicalArea.getParentGeoArea().getId(), typeId);
             } else {
-                return sensors;
+                return new ArrayList<>();
             }
         }
         return sensors;
