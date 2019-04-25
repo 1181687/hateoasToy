@@ -19,7 +19,7 @@ public class ConfigureHouseLocationController {
     }
 
     public void configureHouseLocation(AddressDTO addressDTO) {
-        houseService.configureHouseLocation(AddressMapper.mapToEntity(addressDTO));
+        houseService.setAddress(AddressMapper.mapToEntity(addressDTO));
     }
 
 

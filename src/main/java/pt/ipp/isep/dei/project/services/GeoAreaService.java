@@ -3,7 +3,6 @@ package pt.ipp.isep.dei.project.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.GeoAreaRepository;
-import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaId;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaTypeId;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
@@ -41,30 +40,7 @@ public class GeoAreaService {
         // empty
     }
 
-    /**
-     * **
-     * Method that adds a geographical area to the geoAreaRepository.
-     * If it doesn't exist in the repository, it adds the area and return true.
-     * If it does, then it just returns true
-     *
-     * @param geoArea
-     * @return
-     */
-    public boolean addGeographicalArea(GeographicalArea geoArea) {
-        if (!geoAreaRepository.existsById(geoArea.getId())) {
-            geoAreaRepository.save(geoArea);
-            return true;
-        }
-        return false;
-    }
 
-
-    public boolean isGeoAreaExistant(String geoAreaId, double latitude, double longitude, double elevation, String geoAreaTypeId) {
-        Location geoLocation = new Location(latitude, longitude, elevation);
-        GeoAreaTypeId geographicalAreaTypeId = new GeoAreaTypeId(geoAreaTypeId);
-        return geoAreaRepository.existsById(new GeoAreaId(geoAreaId, geoLocation, geographicalAreaTypeId));
-
-    }
 
 
     public List<GeoAreaId> getAllGeoAreasId() {

@@ -3,7 +3,7 @@ package pt.ipp.isep.dei.project.io.ui;
 import pt.ipp.isep.dei.project.controllers.AddNewGeographicalAreaController;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaTypeDTO;
-import pt.ipp.isep.dei.project.services.GeoAreaService;
+import pt.ipp.isep.dei.project.services.GeoAreaAggregateService;
 
 import java.util.List;
 
@@ -17,10 +17,10 @@ public class AddNewGeographicalArea {
     /**
      * method constructor that receives a geoAreaService
      *
-     * @param geoAreaService
+     * @param geoAreaAggregateService
      */
-    public AddNewGeographicalArea(GeoAreaService geoAreaService) {
-        this.controller = new AddNewGeographicalAreaController(geoAreaService);
+    public AddNewGeographicalArea(GeoAreaAggregateService geoAreaAggregateService) {
+        this.controller = new AddNewGeographicalAreaController(geoAreaAggregateService);
         this.geoAreaTypeDTO = this.controller.getGeoAreaTypeList();
     }
 
@@ -31,8 +31,6 @@ public class AddNewGeographicalArea {
 
         GeographicalAreaDTO geoAreaDTO = new GeographicalAreaDTO();
 
-        //boolean flag = controller.isGeoAreaExistant(geoAreaDTO.getId(), geoAreaDTO.getLatitude(), geoAreaDTO.getLongitude(),
-        //geoAreaDTO.getElevation(), geoAreaDTO.getType());
 
         do {
 

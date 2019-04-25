@@ -23,7 +23,7 @@ public class GetInfoHouseAreaController {
     /**
      * Constructor.
      *
-     * @param house                   House to be used.
+     * @param house                House to be used.
      * @param geoAreaAggregateService Service to be used.
      */
     public GetInfoHouseAreaController(House house, GeoAreaAggregateService geoAreaAggregateService) {
@@ -35,7 +35,7 @@ public class GetInfoHouseAreaController {
     }
 
     /**
-     * Method that returns the most recent [valid] temperature reading in the house area.
+     * Method that returns the most recent [valid] temperature reading of the closest sensor to the house.
      *
      * @return Latest reading.
      */
@@ -45,28 +45,19 @@ public class GetInfoHouseAreaController {
     }
 
     /**
-     * Method that returns the total daily rainfall reading in the house area.
+     * Method that returns the total daily rainfall reading of the closest sensor to the house.
      *
-     * @param day Day.
      * @return Latest reading.
      */
     public ReadingDTO getTotalRainfall(LocalDate day) {
         GeoAreaReading geoAreaReading = geoAreaAggregateService.getTotalDailyMeasurement(houseLocation, houseAreaId, rainfall, day);
         return ReadingMapper.mapToDTO(geoAreaReading);
     }
+/*
+    public double getAverageDailyRainfall(LocalDate date1, LocalDate date2) {
+        return house.getAverageDailyMeasurementInHouseArea(rainfall, date1, date2);
+    }*/
 
-    /**
-     * Method that returns the average daily rainfall in the house area in a given period.
-     *
-     * @param startDate Start date.
-     * @param endDate   End date.
-     * @return Double corresponding to the average daily rainfall.
-     */
-    public Double getAverageDailyRainfall(LocalDate startDate, LocalDate endDate) {
-        return geoAreaAggregateService.getAverageOfDailyMeasurements(houseLocation, houseAreaId, rainfall, startDate, endDate);
-    }
-
-    /*
     /**
      * constructor that receives a House and a SensorType
      *
