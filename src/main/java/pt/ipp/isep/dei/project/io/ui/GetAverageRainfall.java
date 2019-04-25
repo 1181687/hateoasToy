@@ -4,8 +4,6 @@ import pt.ipp.isep.dei.project.controllers.GetInfoHouseAreaController;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.services.GeoAreaAggregateService;
 
-import java.time.LocalDate;
-
 
 /**
  * US623 As a Regular User, I want to get the average daily rainfall in the housegrid area for a
@@ -24,11 +22,12 @@ public class GetAverageRainfall {
     public GetAverageRainfall(House house, GeoAreaAggregateService geoAreaAggregateService) {
         this.controller = new GetInfoHouseAreaController(house, geoAreaAggregateService);
     }
+}
 
     /**
      * RUN!
      */
-    public void run() {
+   /* public void run() {
         String label1 = "Please insert the first date of the period (yyyy-MM-dd):";
         LocalDate firstDate = InputValidator.getStringDate(label1);
         String label2 = "Please insert the second date of the period (yyyy-MM-dd):";
@@ -45,3 +44,4 @@ public class GetAverageRainfall {
         }
     }
 }
+*/
