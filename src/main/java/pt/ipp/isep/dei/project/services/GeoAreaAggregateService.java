@@ -5,7 +5,9 @@ import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.GeoAreaAggregateRepository;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaId;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaTypeId;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.readings.GeoAreaReading;
 import pt.ipp.isep.dei.project.model.readings.GeoAreaReadingId;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
@@ -172,6 +174,27 @@ public class GeoAreaAggregateService {
         return this.geoAreaAggregateRepo.deactivateSensorById(id);
     }
 
+    /**
+     * method that gel a list of all geo area types
+     *
+     * @return a list of geo area types
+     */
+    public List<GeographicalAreaType> getListOfGeoAreaTypes() {
+        return geoAreaTypeService.getListOfGeoAreaTypes();
+    }
+
+    public List<GeographicalAreaType> listOfGeoAreaTypes() {
+        return geoAreaTypeService.getListOfGeoAreaTypes();
+    }
+
+    public boolean isGeoAreaExistant(String geoAreaId, double latitude, double longitude, double elevation, String geoAreaTypeId) {
+        Location geoLocation = new Location(latitude, longitude, elevation);
+        GeoAreaTypeId geographicalAreaTypeId = new GeoAreaTypeId(geoAreaTypeId);
+        return geoAreaAggregateRepo.existGeoAreaById(new GeoAreaId(geoAreaId, geoLocation, geographicalAreaTypeId));
+    }
+
+
+    
 
     /**
      * Method that returns all the sensors that are in a geo area and are of the required type.
