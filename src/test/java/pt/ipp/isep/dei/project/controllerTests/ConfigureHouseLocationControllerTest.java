@@ -95,5 +95,58 @@ public class ConfigureHouseLocationControllerTest {
         assertEquals(geoAreaDTO.getLength(), geoAreaResult.getLength());
         assertEquals(geoAreaDTO.getWidth(), geoAreaResult.getWidth());
     }
-
 }
+   /* @Test
+    public void configureHouseLocation () {
+
+        //Arrange
+
+        // Geographical Area
+        double latitude = 40;
+        double longitude = 50;
+        double elevation= 100;
+        Location location = new Location (latitude, longitude, elevation);
+        double width = 10;
+        double length = 10;
+        AreaShape areaShape = new AreaShape (width,length);
+        String geoAreaTypeId = "Urban Area";
+        GeoAreaTypeId geoAreaTypeId1 = new GeoAreaTypeId(geoAreaTypeId);
+        String geoAreaId = "ISEP";
+        GeoAreaId geoAreaId1 = new GeoAreaId (geoAreaId, location, geoAreaTypeId1);
+        String description = "Campus do ISEP";
+        GeographicalArea geoArea = new GeographicalArea(geoAreaId1,description, areaShape);
+
+        //Address
+        String completeAddress = "Awesome Street";
+        double latitude1 = 40.5;
+        double longitude1 = 50.5;
+        double elevation1= 100.0;
+        Location local = new Location(latitude1, longitude1, elevation1);
+        Address address = new Address(completeAddress, local, geoArea);
+
+
+        when(this.houseService.getAddress()).thenReturn(address);
+
+        AddressDTO addressDTO = AddressMapper.newAddressDTO();
+        addressDTO.setCompleteAddress(completeAddress);
+        addressDTO.getLocation().setElevation(elevation1);
+        addressDTO.getLocation().setLatitude(latitude1);
+        addressDTO.getLocation().setLongitude(longitude1);
+        addressDTO.getInsertedGeoArea().setId(geoAreaId);
+        addressDTO.getInsertedGeoArea().setType(geoAreaTypeId);
+        addressDTO.getInsertedGeoArea().setLatitude(latitude);
+        addressDTO.getInsertedGeoArea().setLongitude(longitude);
+        addressDTO.getInsertedGeoArea().setElevation(elevation);
+        addressDTO.getInsertedGeoArea().setDescription(description);
+        addressDTO.getInsertedGeoArea().setLength(length);
+        addressDTO.getInsertedGeoArea().setWidth(width);
+
+        //Act
+
+        result = controller.configureHouseLocation(addressDTO);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+}
+*/
