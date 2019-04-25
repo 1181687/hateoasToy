@@ -95,6 +95,8 @@ public class Main {
             } catch (IOException e) {
                 e.printStackTrace();
                 throw new RuntimeException("Problems with creating the log files");
+
+
             }
            /* GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("City");
             GeographicalAreaType geographicalAreaType = new GeographicalAreaType(geoAreaTypeId);
@@ -133,7 +135,10 @@ public class Main {
             ui3.run();*/
 
             /*AddNewGeographicalArea ui2 = new AddNewGeographicalArea(this.geoAreaService);
-            ui2.run();*/
+            ui2.run();
+
+            ConfigureHouseLocation ui = new ConfigureHouseLocation(this.houseService);
+            ui.run();
 
             //DefineSensorType ui = new DefineSensorType(this.sensorTypeService);
             //ui.run();
@@ -148,7 +153,7 @@ public class Main {
             ImportRoomSensors ui = new ImportRoomSensors(this.roomAggregateService);
             ui.run();
 
-/*
+            /*
             AddNewGeographicalAreaType addNewGeographicalAreaType = new AddNewGeographicalAreaType(geoAreaTypeService);
             addNewGeographicalAreaType.run();
             */
@@ -180,9 +185,9 @@ public class Main {
             importReadings2.run(1);*/
 
 /*            RemoveSensorFromGeoArea removeSensorFromGeoArea = new RemoveSensorFromGeoArea(geoAreaAggregateService);
-            removeSensorFromGeoArea.run();
-
             removeSensorFromGeoArea.run();*/
+
+            //removeSensorFromGeoArea.run();
 
 
             /*AddNewGeographicalAreaType ui1 = new AddNewGeographicalAreaType(this.geoAreaTypeService);
@@ -197,9 +202,9 @@ public class Main {
            /* AddDeviceToRoom addDeviceToRoom = new AddDeviceToRoom(this.roomAggregateService);
             addDeviceToRoom.run();
 
-
+*/
         };
-    }
+    }/*
 
             data();
 
@@ -643,7 +648,9 @@ public class Main {
         powerSourceTypeList.addPowerSourceType(powerSourceType1);
         powerSourceTypeList.addPowerSourceType(powerSourceType2);
 
-    }
 
-*/
+
+            */
+
 }
+
