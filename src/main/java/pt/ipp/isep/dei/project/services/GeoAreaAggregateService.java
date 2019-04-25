@@ -15,9 +15,7 @@ import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Service
 public class GeoAreaAggregateService {
@@ -497,5 +495,40 @@ public class GeoAreaAggregateService {
             }
         }
         return readingHighestTemp;
+    }
+    
+    // getfirstsensorofatypeinhierarchy
+    //getnearestsensorswithmostrecentreading
+
+    //getMapAverageofdailyMeasurement
+    //getMapComfortTemperatureMinMaxByDayInterval
+    //getIntervalRoomReadinsByRoom
+    //getMapInstantsAboveComfortTemperatureInInterval
+    //get listofinstantsAboveComfortTemperatureInInterval
+
+    /**
+     * gets a Map<LocalDate, Double>> with the daily average per LocalDate, of the daily measurements of a sensorType, in a location,
+     * in a interval of time. It uses the sensor that is nearest and has the most recent readings.
+     *
+     * @param location
+     * @param geoAreaId
+     * @param typeId    type of sensor
+     * @param startDate
+     * @param endDate
+     * @return Map<LocalDate, Double>>
+     */
+    public Map<LocalDate, Double> getMapAverageOfDailyMeasurements(Location location, GeoAreaId geoAreaId, SensorTypeId typeId, LocalDate startDate, LocalDate endDate) {
+        List<GeoAreaSensor> sensors = this.getSensorsWithReadingsInInterval(geoAreaId, typeId, startDate, endDate);
+        Map<LocalDate, Double> mapOfDailyAverages = new HashMap<>();
+        if (!sensors.isEmpty()) {
+            GeoAreaSensor sensor = this.getNearestSensorWithMostRecentReading(location, sensors, startDate, endDate);
+            for (LocalDate dateIterator = startDate; dateIterator.isBefore(endDate); dateIterator = dateIterator.plusDays(1)) {
+                double dailyAverage = this.getDailyAverageOfASensor(sensor.getId(), dateIterator);
+                if (!Double.isNaN(dailyAverage)) {
+                    mapOfDailyAverages.put(dateIterator, dailyAverage);
+                }
+            }
+        }
+        return mapOfDailyAverages;
     }
 }
