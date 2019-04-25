@@ -76,6 +76,10 @@ public class GeoAreaAggregateService {
         return geoAreaAggregateRepo.findByGeoAreaReadingIdGeoAreaSensorId(id);
     }
 
+    public List<GeoAreaReading> getGeoAreaReadingsBySensorIdAndInInterval(GeoAreaSensorId id, LocalDateTime initialDate, LocalDateTime finalDate) {
+        return geoAreaAggregateRepo.findByGeoAreaReadingIdGeoAreaSensorIdInInterval(id, initialDate, finalDate);
+    }
+
 
     /*    *//**
      * Method that returns the list of sensors of a given type that have readings in a specific date.
@@ -185,7 +189,7 @@ public class GeoAreaAggregateService {
         if (!sensorsWithReadings.isEmpty()) {
             GeoAreaSensor chosenSensor;
             if (sensorsWithReadings.size() > 1) {
-                chosenSensor = this.getNearestSensorWithMostRecentReading(location, sensorsWithReadings);
+                chosenSensor = this.getNearestSensorWithMostRecentReading(location, sensorsWithReadings, initialDate, finalDate);
             } else {
                 chosenSensor = sensorsWithReadings.get(0);
             }
@@ -412,11 +416,11 @@ public class GeoAreaAggregateService {
      *
      * @return Latest reading.
      */
-    public GeoAreaReading getLatestGeoAreaReading(List<GeoAreaSensor> nearestSensors) {
+    public GeoAreaReading getLatestGeoAreaReading(List<GeoAreaSensor> nearestSensors, LocalDate startDate, LocalDate finalDate) {
         GeoAreaReading latestGeoAreaReading = null;
         if (!nearestSensors.isEmpty()) {
             for (GeoAreaSensor sensor : nearestSensors) {
-                GeoAreaReading sensorsMostRecentReading = getMostRecentValidReading(sensor.getId());
+                GeoAreaReading sensorsMostRecentReading = getMostRecentValidReading(sensor.getId(), startDate, finalDate);
                 if ((Objects.isNull(latestGeoAreaReading))
                         || Objects.nonNull(sensorsMostRecentReading)
                         && sensorsMostRecentReading.getDateTime().isAfter(latestGeoAreaReading.getDateTime())) {
@@ -453,10 +457,10 @@ public class GeoAreaAggregateService {
         return nearestSensors;
     }
 
-    public GeoAreaSensor getNearestSensorWithMostRecentReading(Location location, List<GeoAreaSensor> geoAreaSensors) {
+    public GeoAreaSensor getNearestSensorWithMostRecentReading(Location location, List<GeoAreaSensor> geoAreaSensors, LocalDate startDate, LocalDate finalDate) {
         List<GeoAreaSensor> nearestSensors = this.getNearestSensors(location, geoAreaSensors);
         if (nearestSensors.size() > 1) {
-            GeoAreaReading mostRecentReading = getLatestGeoAreaReading(nearestSensors);
+            GeoAreaReading mostRecentReading = getLatestGeoAreaReading(nearestSensors, startDate, finalDate);
             return geoAreaAggregateRepo.getSensorById(mostRecentReading.getSensorId());
         }
         return nearestSensors.get(0);
@@ -474,8 +478,10 @@ public class GeoAreaAggregateService {
      * @param id Id of the sensor.
      * @return Most recent (valid) GeoAreaReading.
      */
-    public GeoAreaReading getMostRecentValidReading(GeoAreaSensorId id) {
-        List<GeoAreaReading> readings = getGeoAreaReadingsBySensorId(id);
+    public GeoAreaReading getMostRecentValidReading(GeoAreaSensorId id, LocalDate initialDate, LocalDate finalDate) {
+        LocalDateTime initialDate1 = initialDate.atStartOfDay();
+        LocalDateTime finalDate1 = finalDate.atTime(23, 59, 59);
+        List<GeoAreaReading> readings = getGeoAreaReadingsBySensorIdAndInInterval(id, initialDate1, finalDate1);
         GeoAreaReading mostRecentReading = null;
         for (GeoAreaReading reading : readings) {
             if (Objects.isNull(mostRecentReading)
