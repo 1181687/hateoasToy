@@ -1,13 +1,18 @@
 package pt.ipp.isep.dei.project.controllers;
 
 import pt.ipp.isep.dei.project.model.Location;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaId;
 import pt.ipp.isep.dei.project.model.house.House;
+import pt.ipp.isep.dei.project.model.readings.GeoAreaReading;
+import pt.ipp.isep.dei.project.model.readings.ReadingDTO;
+import pt.ipp.isep.dei.project.model.readings.ReadingMapper;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 import pt.ipp.isep.dei.project.services.GeoAreaAggregateService;
 
 
 public class GetInfoHouseAreaController {
     private Location houseLocation;
+    private GeoAreaId houseAreaId;
     private GeoAreaAggregateService geoAreaAggregateService;
     private SensorTypeId rainfall;
     private SensorTypeId temperature;
@@ -21,6 +26,7 @@ public class GetInfoHouseAreaController {
      */
     public GetInfoHouseAreaController(House house, GeoAreaAggregateService geoAreaAggregateService) {
         this.houseLocation = house.getAddress().getLocation();
+        this.houseAreaId = house.getAddress().getInsertedGeoArea().getId();
         this.geoAreaAggregateService = geoAreaAggregateService;
         rainfall = new SensorTypeId("Rainfall");
         temperature = new SensorTypeId("Temperature");
@@ -39,13 +45,14 @@ public class GetInfoHouseAreaController {
     /**
      * Method that returns the most recent [valid] temperature reading of the closest sensor to the house.
      *
-     * @return Map with the date time and value of the reading.
+     * @return Latest reading.
      */
-/*    public HashMap<LocalDateTime, Double> getCurrentTemperature() {
-        return geoAreaAggregateService.getLatestMeasurementByTypeAndLocation(houseLocation, temperature);
+    public ReadingDTO getCurrentTemperature() {
+        GeoAreaReading geoAreaReading = geoAreaAggregateService.getLatestMeasurement(houseLocation, houseAreaId, temperature);
+        return ReadingMapper.mapToDTO(geoAreaReading);
     }
 
-    *//**
+    /**
      * Method that returns the total daily rainfall reading of the closest sensor to the house.
      *
      * @return Double with the value of the total rainfall in the selected day.
