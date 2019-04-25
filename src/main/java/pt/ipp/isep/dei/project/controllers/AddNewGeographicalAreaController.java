@@ -14,10 +14,9 @@ public class AddNewGeographicalAreaController {
         this.geoAreaAggregateService = geoAreaAggregateService;
     }
 
-    public void addGeographicalArea(GeographicalAreaDTO geographicalAreaDTO) {
-        geoAreaAggregateService.addGeographicalArea(GeographicalAreaMapper.mapToEntity(geographicalAreaDTO));
+    public boolean addGeographicalArea(GeographicalAreaDTO geographicalAreaDTO) {
+        return geoAreaAggregateService.addGeographicalArea(GeographicalAreaMapper.mapToEntity(geographicalAreaDTO));
     }
-
 
     /**
      * method that checks if a geo area exists.

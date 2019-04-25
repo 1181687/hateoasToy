@@ -31,7 +31,9 @@ public class AddNewGeographicalAreaTypeControllerTest {
 
         when(this.geoAreaTypeService.createGeoAreaType(geoAreaTypeId)).thenReturn(true);
 
-        assertTrue(controller.createGeoAreaType(geoAreaTypeId));
+        boolean result = controller.createGeoAreaType(geoAreaTypeId);
+
+        assertTrue(result);
     }
 
     @Test
@@ -41,7 +43,9 @@ public class AddNewGeographicalAreaTypeControllerTest {
 
         when(this.geoAreaTypeService.createGeoAreaType(geoAreaTypeId)).thenReturn(false);
 
-        assertFalse(controller.createGeoAreaType(geoAreaTypeId));
+        boolean result = controller.createGeoAreaType(geoAreaTypeId);
+
+        assertFalse(result);
     }
 
 

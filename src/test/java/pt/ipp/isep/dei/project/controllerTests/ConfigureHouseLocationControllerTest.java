@@ -34,7 +34,9 @@ public class ConfigureHouseLocationControllerTest {
 
         when(this.houseService.isGeoAreaRepositoryEmpty()).thenReturn(true);
 
-        assertTrue(controller.isGeoAreaRepositoryEmpty());
+        boolean result = controller.isGeoAreaRepositoryEmpty();
+
+        assertTrue(result);
     }
 
     @Test
@@ -42,7 +44,9 @@ public class ConfigureHouseLocationControllerTest {
 
         when(this.houseService.isGeoAreaRepositoryEmpty()).thenReturn(false);
 
-        assertFalse(controller.isGeoAreaRepositoryEmpty());
+        boolean result = controller.isGeoAreaRepositoryEmpty();
+
+        assertFalse(result);
     }
 
     @Test
