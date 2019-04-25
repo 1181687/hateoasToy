@@ -120,35 +120,6 @@ public class GeoAreaAggregateService {
     }*/
 
     /**
-     * Method that returns the total daily measurement value of a type of sensor, having in consideration the distance
-     * between a sensor and a given location. If there is more than one sensor at the same distance, the one with the
-     * most recent [valid] reading is considered to be the most adequate.
-     *
-     * @param location Location to have in consideration.
-     * @param typeId   Type of sensor to search for.
-     * @param day Given date.
-     * @return Total daily reading value.
-     */
-/*    public Double getTotalDailyMeasurement(Location location, SensorTypeId typeId, LocalDate day) {
-        GeoAreaReading latestGeoAreaReading = null;
-        List<GeoAreaSensor> geoAreaSensors = getSensorsWithReadingsInAPeriodByType(typeId, day, day);
-        if (!geoAreaSensors.isEmpty()) {
-            List<GeoAreaSensor> nearestSensors = getNearestSensorsToLocation(location, geoAreaSensors);
-            for (GeoAreaSensor sensor : nearestSensors) {
-                GeoAreaReading sensorsLatestReading = getLatestMeasurementInAPeriod(sensor.getId(), day, day);
-                if (Objects.isNull(latestGeoAreaReading)
-                        || sensorsLatestReading.getDateTime().isAfter(latestGeoAreaReading.getDateTime())) {
-                    latestGeoAreaReading = sensorsLatestReading;
-                }
-            }
-        }
-        if (Objects.isNull(latestGeoAreaReading)) {
-            return Double.NaN;
-        }
-        return latestGeoAreaReading.getValue();
-    }*/
-
-    /**
      * **
      * Method that adds a geographical area to the geoAreaRepository.
      * If it doesn't exist in the repository, it adds the area and return true.
@@ -533,10 +504,6 @@ public class GeoAreaAggregateService {
     /**
      * Method that returns the most recent measurement of a certain type, having in consideration the geographical area
      * that is required and the distance between a sensor and a given location.
-     * If the geographical area doesn't have sensors of the required type, it's parent geo area is then used to search
-     * for the sensors (and so on, until more parent areas doesn't exist). After having the required sensors, if there
-     * is more than one sensor at the same distance, the one with the most recent [valid] reading is considered to be
-     * the most adequate.
      *
      * @param location  Location to have in consideration.
      * @param geoAreaId Id of the geo area where the sensors are.
@@ -552,6 +519,30 @@ public class GeoAreaAggregateService {
                 latestGeoAreaReading = this.getLatestGeoAreaReading(nearestSensors);
             } else {
                 latestGeoAreaReading = this.getLatestGeoAreaReading(sensors);
+            }
+        }
+        return latestGeoAreaReading;
+    }
+
+    /**
+     * Method that returns the total daily measurement of a certain type (probably used for rainfall), having in
+     * consideration the geographical area that is required and the distance between a sensor and a given location.
+     *
+     * @param location  Location to have in consideration.
+     * @param geoAreaId Id of the geo area where the sensors are.
+     * @param typeId    Type of sensor to search for.
+     * @param day       Given day.
+     * @return Latest [valid] reading.
+     */
+    public GeoAreaReading getTotalDailyMeasurement(Location location, GeoAreaId geoAreaId, SensorTypeId typeId, LocalDate day) {
+        GeoAreaReading latestGeoAreaReading = null;
+        List<GeoAreaSensor> sensors = getSensorsWithReadingsInInterval(geoAreaId, typeId, day, day);
+        if (!sensors.isEmpty()) {
+            if (sensors.size() > 1) {
+                List<GeoAreaSensor> nearestSensors = this.getNearestSensors(location, sensors);
+                latestGeoAreaReading = this.getLatestGeoAreaReadingInInterval(nearestSensors, day, day);
+            } else {
+                latestGeoAreaReading = this.getLatestGeoAreaReadingInInterval(sensors, day, day);
             }
         }
         return latestGeoAreaReading;
