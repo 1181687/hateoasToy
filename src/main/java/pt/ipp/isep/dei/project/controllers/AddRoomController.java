@@ -1,19 +1,17 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.house.Room;
-import pt.ipp.isep.dei.project.model.house.RoomDTO;
-import pt.ipp.isep.dei.project.model.house.RoomMapper;
-import pt.ipp.isep.dei.project.services.RoomService;
+import pt.ipp.isep.dei.project.model.house.*;
+import pt.ipp.isep.dei.project.services.RoomAggregateService;
 
 public class AddRoomController {
-    private RoomService roomService;
+    private RoomAggregateService roomService;
 
     /**
      * method constructor that receives a roomService
      *
      * @param roomService received
      */
-    public AddRoomController(RoomService roomService) {
+    public AddRoomController(RoomAggregateService roomService) {
         this.roomService = roomService;
     }
 
@@ -24,9 +22,10 @@ public class AddRoomController {
      *
      * @param roomDTO
      */
-    public void addRoom(RoomDTO roomDTO) {
-        Room room = RoomMapper.mapToEntity(roomDTO);
-        roomService.addRoom(room);
+    public boolean addRoom(RoomDTO roomDTO) {
+        Dimension dimension = new Dimension(roomDTO.getHeight(),roomDTO.getLength(),roomDTO.getWidth());
+        RoomId id = new RoomId(roomDTO.getId());
+        return roomService.addRoom(id,roomDTO.getDescription(),roomDTO.getHouseFloor(),dimension);
     }
 
 
@@ -36,6 +35,6 @@ public class AddRoomController {
      * @param name
      */
     public boolean isNameExistant(String name) {
-        return this.roomService.isNameExistant(name);
+        return this.roomService.roomExists(new RoomId(name));
     }
 }

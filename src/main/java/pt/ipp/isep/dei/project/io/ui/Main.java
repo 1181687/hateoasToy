@@ -95,8 +95,6 @@ public class Main {
             } catch (IOException e) {
                 e.printStackTrace();
                 throw new RuntimeException("Problems with creating the log files");
-
-
             }
            /* GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("City");
             GeographicalAreaType geographicalAreaType = new GeographicalAreaType(geoAreaTypeId);
@@ -135,13 +133,10 @@ public class Main {
             ui3.run();*/
 
             /*AddNewGeographicalArea ui2 = new AddNewGeographicalArea(this.geoAreaService);
-            ui2.run();
+            ui2.run();*/
 
-            ConfigureHouseLocation ui = new ConfigureHouseLocation(this.houseService);
+            DefineSensorType ui = new DefineSensorType(this.sensorTypeService);
             ui.run();
-
-            //DefineSensorType ui = new DefineSensorType(this.sensorTypeService);
-            //ui.run();
 
 
             /*AddSensorToGeoArea ui1 = new AddSensorToGeoArea(this.geoAreaService);
@@ -150,10 +145,16 @@ public class Main {
             //AddSensorToRoom addSensorToRoom = new AddSensorToRoom(this.roomAggregateService);
             //addSensorToRoom.run();
 
-            ImportRoomSensors ui = new ImportRoomSensors(this.roomAggregateService);
-            ui.run();
+            AddRoom ui45 = new AddRoom(this.roomAggregateService);
+            ui45.run();
 
-            /*
+            AddSensorToRoom addSensorToRoom = new AddSensorToRoom(this.roomAggregateService);
+            addSensorToRoom.run();
+
+            ImportRoomSensors ui50 = new ImportRoomSensors(this.roomAggregateService);
+            ui50.run();
+
+/*
             AddNewGeographicalAreaType addNewGeographicalAreaType = new AddNewGeographicalAreaType(geoAreaTypeService);
             addNewGeographicalAreaType.run();
             */
@@ -185,9 +186,9 @@ public class Main {
             importReadings2.run(1);*/
 
 /*            RemoveSensorFromGeoArea removeSensorFromGeoArea = new RemoveSensorFromGeoArea(geoAreaAggregateService);
-            removeSensorFromGeoArea.run();*/
+            removeSensorFromGeoArea.run();
 
-            //removeSensorFromGeoArea.run();
+            removeSensorFromGeoArea.run();*/
 
 
             /*AddNewGeographicalAreaType ui1 = new AddNewGeographicalAreaType(this.geoAreaTypeService);
@@ -200,12 +201,12 @@ public class Main {
             ui3.run();*/
 
            /* AddDeviceToRoom addDeviceToRoom = new AddDeviceToRoom(this.roomAggregateService);
-            addDeviceToRoom.run();
+            addDeviceToRoom.run();*/
 
-*/
+
         };
-    }/*
-
+    }
+/*
             data();
 
             //UI levels
@@ -648,9 +649,7 @@ public class Main {
         powerSourceTypeList.addPowerSourceType(powerSourceType1);
         powerSourceTypeList.addPowerSourceType(powerSourceType2);
 
+    }
 
-
-            */
-
+*/
 }
-

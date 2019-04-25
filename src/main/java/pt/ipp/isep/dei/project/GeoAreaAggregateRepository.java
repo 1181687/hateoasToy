@@ -11,6 +11,7 @@ import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorId;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +34,7 @@ public class GeoAreaAggregateRepository {
         // empty
     }
 
-    public List<GeographicalArea> findById_GeographicalAreaTypeId(GeoAreaTypeId geoAreaTypeId) {
+    public List<GeographicalArea> findByIdGeographicalAreaTypeId(GeoAreaTypeId geoAreaTypeId) {
         return geoAreaRepo.findById_GeographicalAreaTypeId(geoAreaTypeId);
     }
 
@@ -46,13 +47,13 @@ public class GeoAreaAggregateRepository {
         return this.geoAreaSensorRepo.findByGeoAreaId(geoAreaId);
     }
 
-    public List<GeoAreaReading> findByGeoAreaReadingId_GeoAreaSensorId(GeoAreaSensorId id) {
+    public List<GeoAreaReading> getReadingsBySensorId(GeoAreaSensorId id) {
         return this.geoAreaReadingRepo.findByGeoAreaReadingId_GeoAreaSensorId(id);
     }
 
-    /*public boolean existsByDateTime_DateBetweenAndGeoAreaReadingId_GeoAreaSensorId(LocalDate startDate, LocalDate endDate, GeoAreaSensorId id) {
-        return this.geoAreaReadingRepo.existsByDateTime_DateBetweenAndGeoAreaReadingId_GeoAreaSensorId(startDate, endDate, id);
-    }*/
+    public List<GeoAreaReading> getReadingsBySensorIdAndInInterval(GeoAreaSensorId id, LocalDateTime startDate, LocalDateTime endDate) {
+        return this.geoAreaReadingRepo.findByGeoAreaReadingId_GeoAreaSensorIdAndGeoAreaReadingId_LocalDateTimeBetween(id, startDate, endDate);
+    }
 
     public Iterable<GeographicalArea> findAllGeoAreas() {
         return geoAreaRepo.findAll();
@@ -124,7 +125,11 @@ public class GeoAreaAggregateRepository {
         return false;
     }
 
-    public List<GeoAreaSensor> findByGeoAreaIdAndSensorTypeId(GeoAreaId geoAreaId, SensorTypeId sensorTypeId) {
+    public List<GeoAreaSensor> getSensorsByGeoAreaIdAndSensorTypeId(GeoAreaId geoAreaId, SensorTypeId sensorTypeId) {
         return geoAreaSensorRepo.findByGeoAreaIdAndSensorTypeId(geoAreaId, sensorTypeId);
+    }
+
+    public boolean existsReadingBySensorIdAndInterval(GeoAreaSensorId sensorId, LocalDateTime startDate, LocalDateTime endDate) {
+        return geoAreaReadingRepo.existsByGeoAreaReadingId_GeoAreaSensorIdAndGeoAreaReadingId_LocalDateTimeBetween(sensorId, startDate, endDate);
     }
 }
