@@ -384,6 +384,25 @@ class LampTest {
         assertFalse(result);
     }
 
+
+    @Test
+    public void testSetDeactivationDate_True() {
+        // act
+        boolean result = lamp.setDeactivateDevice();
+        // assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void testGetDeactivationDate_False() {
+        // arrange
+        lamp.setDeactivateDevice();
+        // act
+        boolean result = lamp.setDeactivateDevice();
+        // assert
+        assertFalse(result);
+    }
+
     @Test
     void getDataSeriesTest() {
         // Arrange
