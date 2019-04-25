@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.AddRoomController;
 import pt.ipp.isep.dei.project.model.house.RoomDTO;
+import pt.ipp.isep.dei.project.services.RoomAggregateService;
 import pt.ipp.isep.dei.project.services.RoomService;
 
 /**
@@ -18,7 +19,7 @@ public class AddRoom {
      *
      * @param roomService
      */
-    public AddRoom(RoomService roomService) {
+    public AddRoom(RoomAggregateService roomService) {
         this.controller = new AddRoomController(roomService);
     }
 
@@ -60,12 +61,14 @@ public class AddRoom {
         double width = InputValidator.getDoublePos(label5);
         roomDTO.setWidth(width);
 
-        controller.addRoom(roomDTO);
+        if(controller.addRoom(roomDTO)){
 
-        StringBuilder content = new StringBuilder();
-        content.append("The new room ");
-        content.append(id);
-        content.append(" was created with success!\n");
-        System.out.println(content.toString());
+            StringBuilder content = new StringBuilder();
+            content.append("The new room ");
+            content.append(id);
+            content.append(" was created with success!\n");
+            System.out.println(content.toString());
+        }
+
     }
 }

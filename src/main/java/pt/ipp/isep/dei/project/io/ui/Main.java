@@ -135,8 +135,8 @@ public class Main {
             /*AddNewGeographicalArea ui2 = new AddNewGeographicalArea(this.geoAreaService);
             ui2.run();*/
 
-            //DefineSensorType ui = new DefineSensorType(this.sensorTypeService);
-            //ui.run();
+            DefineSensorType ui = new DefineSensorType(this.sensorTypeService);
+            ui.run();
 
 
             /*AddSensorToGeoArea ui1 = new AddSensorToGeoArea(this.geoAreaService);
@@ -145,8 +145,14 @@ public class Main {
             //AddSensorToRoom addSensorToRoom = new AddSensorToRoom(this.roomAggregateService);
             //addSensorToRoom.run();
 
-            ImportRoomSensors ui = new ImportRoomSensors(this.roomAggregateService);
-            ui.run();
+            AddRoom ui45 = new AddRoom(this.roomAggregateService);
+            ui45.run();
+
+            AddSensorToRoom addSensorToRoom = new AddSensorToRoom(this.roomAggregateService);
+            addSensorToRoom.run();
+
+            ImportRoomSensors ui50 = new ImportRoomSensors(this.roomAggregateService);
+            ui50.run();
 
 /*
             AddNewGeographicalAreaType addNewGeographicalAreaType = new AddNewGeographicalAreaType(geoAreaTypeService);

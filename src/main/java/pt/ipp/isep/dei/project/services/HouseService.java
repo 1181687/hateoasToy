@@ -33,11 +33,6 @@ public class HouseService {
     private Address address;
 
 
-    public void configureHouseLocation(Address address) {
-        this.address = address;
-
-    }
-
     public boolean isGeoAreaRepositoryEmpty() {
         return this.geoAreaService.isGeoAreaRepositoryEmpty();
     }
@@ -50,6 +45,7 @@ public class HouseService {
         return this.address;
     }
 
+    //method also used in house conf
     public void setAddress(Address address){
         this.address = address;
     }
