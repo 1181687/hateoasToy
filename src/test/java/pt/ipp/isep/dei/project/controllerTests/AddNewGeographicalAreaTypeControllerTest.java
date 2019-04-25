@@ -43,4 +43,6 @@ public class AddNewGeographicalAreaTypeControllerTest {
 
         assertFalse(controller.createGeoAreaType(geoAreaTypeId));
     }
+
+
 }
