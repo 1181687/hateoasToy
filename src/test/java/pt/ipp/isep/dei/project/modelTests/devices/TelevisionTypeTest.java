@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.project.modelTests.devices;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.television.TelevisionType;
@@ -12,21 +13,42 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TelevisionTypeTest {
 
+    private TelevisionType televisionType;
+    private Room livingRoom;
+
+    @BeforeEach
+    public void StartUp() {
+        // Type
+        televisionType = new TelevisionType();
+
+        // Room
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        RoomId roomId = new RoomId("kitchen");
+        livingRoom = new Room(roomId, "room", 1, dim);
+    }
+
     @Test
     public void testCreateDevice() {
-        String name = "Smart TV";
-        TelevisionType televisionType = new TelevisionType();
-        Dimension dim = new Dimension(3.3, 2.2, 1.0);
-        RoomId roomId = new RoomId("Living Room");
-        Room room = new Room(roomId, "room", 1, dim);
-
-        Device expectedResult = televisionType.createDevice(name);
-        room.addDevice(expectedResult);
+        Device expectedResult = televisionType.createDevice("Big TV");
+        livingRoom.addDevice(expectedResult);
 
         //Act
-        Device result = room.getDevice(name);
+        Device result = livingRoom.getDevice("Big TV");
 
         //Assert
+        assertEquals(expectedResult, result);
+    }
+
+
+    @Test
+    public void getTypeNameTest() {
+        // Arrange
+        String expectedResult = "Television";
+
+        // Act
+        String result = televisionType.getTypeName();
+
+        // Assert
         assertEquals(expectedResult, result);
     }
 }

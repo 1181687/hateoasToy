@@ -179,7 +179,7 @@ public class StoveTest {
         // assert
         assertFalse(result);
     }
-/*
+
     @Test
     public void setNameWithSameNameTest() {
         Throwable exception = assertThrows(RuntimeException.class, () -> stove2000.setName("stove2000"));
@@ -190,7 +190,7 @@ public class StoveTest {
     public void setNameAlreadyInListTest() {
         Throwable exception = assertThrows(RuntimeException.class, () -> stove2000.setName("stove3000"));
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
-    }*/
+    }
 
     @Test
     public void setNameFalseTest() {
