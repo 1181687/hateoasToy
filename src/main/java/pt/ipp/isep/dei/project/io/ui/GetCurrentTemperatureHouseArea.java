@@ -1,35 +1,30 @@
 package pt.ipp.isep.dei.project.io.ui;
 
-import pt.ipp.isep.dei.project.controllers.GetInfoHouseAreaController;
+import pt.ipp.isep.dei.project.controllers.GetTotalAndAverageRainfallAndCurrentTempHouseAreaController;
 import pt.ipp.isep.dei.project.model.house.House;
-import pt.ipp.isep.dei.project.model.readings.ReadingDTO;
-import pt.ipp.isep.dei.project.services.GeoAreaAggregateService;
 
-import java.util.Objects;
+
+/**
+ * US600 As a Regular User, I want to get the current temperature in the housegrid area. If, in the
+ * first element with temperature sensors of the hierarchy of geographical areas that
+ * includes the housegrid, there is more than one temperature sensor, the nearest one
+ * should be used.
+ */
 
 public class GetCurrentTemperatureHouseArea {
-    private GetInfoHouseAreaController controller;
+    private GetTotalAndAverageRainfallAndCurrentTempHouseAreaController controller;
 
-    /**
-     * Constructor.
-     *
-     * @param house                   House to be used.
-     * @param geoAreaAggregateService Service to be used.
-     */
-    public GetCurrentTemperatureHouseArea(House house, GeoAreaAggregateService geoAreaAggregateService) {
-        this.controller = new GetInfoHouseAreaController(house, geoAreaAggregateService);
+    public GetCurrentTemperatureHouseArea(House house) {
+        this.controller = new GetTotalAndAverageRainfallAndCurrentTempHouseAreaController(house);
     }
 
-    /**
-     * RUN!
-     */
     public void run() {
-        ReadingDTO readingDTO = controller.getCurrentTemperature();
-        if (Objects.isNull(controller.getCurrentTemperature())) {
-            System.out.println("There are no temperature sensors with valid measurements in the house area.");
+        if (Double.isNaN(controller.getMostRecentAvailableMeasurement())) {
+            System.out.println("There are no " + controller.getTypeTemperature() + " sensors with valid measurements in the housegrid area.");
+            return;
         } else {
-            System.out.println("The most recent [valid] reading available in the house area for temperature is " + readingDTO.getValue() + " on "
-                    + readingDTO.getDateTime() + ".\n");
+            System.out.println("The most recent measurement available in the housegrid area for "
+                    + controller.getTypeTemperature() + " is " + controller.getMostRecentAvailableMeasurement() + " on " + controller.getDateOfLastMeasurement() + ".\n");
         }
     }
 }

@@ -1,10 +1,7 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.GetDevicesInHouseGridController;
-import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridDTO;
-import pt.ipp.isep.dei.project.services.HouseService;
-
-import java.util.List;
+import pt.ipp.isep.dei.project.model.house.House;
 
 /**
  * US160 As a Power User[or administrator], i want to get a list of all devices in a grid,
@@ -13,15 +10,13 @@ import java.util.List;
 public class GetDevicesInHouseGrid {
 
     private GetDevicesInHouseGridController controller;
-    private List<HouseGridDTO> houseGridDTOList;
 
     /**
      * method constructor that receives a housegrid
-     *
-     * @param houseService houseService received
+     * @param house housegrid received
      */
-    public GetDevicesInHouseGrid(HouseService houseService) {
-        this.controller = new GetDevicesInHouseGridController(houseService);
+    public GetDevicesInHouseGrid(House house) {
+        this.controller = new GetDevicesInHouseGridController(house);
     }
 
     /**
@@ -37,11 +32,11 @@ public class GetDevicesInHouseGrid {
         }
 
         StringBuilder content = new StringBuilder();
-        content.append(this.getHouseGridListToString());
+        content.append(controller.getHouseGridListToString());
         content.append("0 - Exit");
         String listContentRoom = content.toString();
 
-        int maxPosition = this.getHouseGridListSize();
+        int maxPosition = controller.getHouseGridListSize();
         String label1 = "\nChoose the House Grid you want to get the list of devices\n" + listContentRoom;
         int selection = InputValidator.getIntRange(label1, 0, maxPosition);
         int gridPosition = (selection - 1);
@@ -50,41 +45,15 @@ public class GetDevicesInHouseGrid {
         }
         content.delete(0, content.length());
 
-        HouseGridDTO chosenHouseGrid = houseGridDTOList.get(gridPosition);
-
-        if (controller.checkIfThereAreNoDevicesInGridbyId(chosenHouseGrid.getId())) {
+        if (controller.checkIfThereAreNoDevicesInGridbyPosition(gridPosition)) {
             System.out.println("There aren't devices in the chosen House Grid.\n");
             return;
         }
 
         content.append("\n\nThe list of devices in House Grid ");
-        content.append(controller.getGridNameById(chosenHouseGrid));
+        content.append(controller.getGridNameByPosition(gridPosition));
         content.append(" is:\n\n");
-        content.append(controller.getDeviceListContentNameTypeLocationByGrid(chosenHouseGrid.getId()));
+        content.append(controller.getDeviceListContentNameTypeLocationByGrid(gridPosition));
         System.out.println(content.toString());
     }
-
-
-    // Necessary methods
-    public String getHouseGridListToString() {
-        this.houseGridDTOList = this.controller.getHouseGridDTOList();
-        int number = 1;
-
-        StringBuilder content = new StringBuilder();
-
-        for (HouseGridDTO houseGridDTO : this.houseGridDTOList) {
-            content.append(number);
-            content.append(" - ");
-            content.append(houseGridDTO.getId());
-            content.append("\n");
-            number++;
-        }
-        return content.toString();
-    }
-
-    private int getHouseGridListSize() {
-        return this.houseGridDTOList.size();
-    }
-
-
 }

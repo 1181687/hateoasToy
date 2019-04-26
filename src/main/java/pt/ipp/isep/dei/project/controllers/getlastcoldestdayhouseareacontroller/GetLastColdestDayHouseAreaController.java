@@ -1,8 +1,10 @@
 package pt.ipp.isep.dei.project.controllers.getlastcoldestdayhouseareacontroller;
 
+import pt.ipp.isep.dei.project.model.Reading;
+import pt.ipp.isep.dei.project.model.ReadingDTO;
+import pt.ipp.isep.dei.project.model.ReadingMapper;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
-import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 
 import java.time.LocalDate;
 
@@ -12,7 +14,7 @@ public class GetLastColdestDayHouseAreaController {
 
     public GetLastColdestDayHouseAreaController(House house) {
         this.house = house;
-        this.sensorTypeTemperature = new SensorType(new SensorTypeId("temperature"));
+        this.sensorTypeTemperature = new SensorType("temperature");
     }
 
     public boolean hasSensorsOfGivenTypeInGeoArea() {

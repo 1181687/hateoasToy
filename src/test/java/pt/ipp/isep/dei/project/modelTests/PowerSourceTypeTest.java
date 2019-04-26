@@ -1,41 +1,37 @@
 package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSource;
-import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceId;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceType;
-import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceTypeId;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import java.util.Objects;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class PowerSourceTypeTest {
 
-    /*@Test
+    @org.junit.jupiter.api.Test
     public void testHashCode() {
         //Arrange
         String powerSourceTypeName1 = "public electric grid";
 
-        PowerSourceTypeId powerSourceTypeId = new PowerSourceTypeId(powerSourceTypeName1);
+        PowerSourceType powerSourceType1 = new PowerSourceType(powerSourceTypeName1);
 
-        PowerSourceType powerSourceType = new PowerSourceType(powerSourceTypeId);
-
-        int expectedResult = Objects.hash(powerSourceType);
+        int expectedResult = Objects.hash(powerSourceTypeName1);
         // Act
-        int result = powerSourceType.hashCode();
+        int result = powerSourceType1.hashCode();
 
         // Assert
         assertEquals(expectedResult, result);
-    }*/
+    }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testingEqualsMethodPositiveTest() {
         //Arrange
-        PowerSourceTypeId powerSourceTypeId = new PowerSourceTypeId("Battery");
-        PowerSourceTypeId powerSourceTypeId2 = new PowerSourceTypeId("Battery");
-        PowerSourceType powerSourceType1 = new PowerSourceType(powerSourceTypeId);
-        PowerSourceType powerSourceType2 = new PowerSourceType(powerSourceTypeId2);
+        String type1 = "Battery";
+        String type2 = "Battery";
+        PowerSourceType powerSourceType1 = new PowerSourceType(type1);
+        PowerSourceType powerSourceType2 = new PowerSourceType(type2);
 
         //Act
         boolean result = powerSourceType1.equals(powerSourceType2);
@@ -49,10 +45,8 @@ public class PowerSourceTypeTest {
         //Arrange
         String type1 = "Battery";
         String type2 = "Wind Generator";
-        PowerSourceTypeId powerSourceTypeId = new PowerSourceTypeId(type1);
-        PowerSourceTypeId powerSourceTypeId2 = new PowerSourceTypeId(type2);
-        PowerSourceType powerSourceType1 = new PowerSourceType(powerSourceTypeId);
-        PowerSourceType powerSourceType2 = new PowerSourceType(powerSourceTypeId2);
+        PowerSourceType powerSourceType1 = new PowerSourceType(type1);
+        PowerSourceType powerSourceType2 = new PowerSourceType(type2);
 
         //Act
         boolean result = powerSourceType1.equals(powerSourceType2);
@@ -61,16 +55,13 @@ public class PowerSourceTypeTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testingEqualsMethodWithDifferentObjectsNegativeTest() {
         //Arrange
         String type1 = "Battery";
         String powerSourceName = "Wind Generator";
-        PowerSourceId powerSourceId = new PowerSourceId(powerSourceName);
-        PowerSourceTypeId powerSourceTypeId = new PowerSourceTypeId(type1);
-        PowerSourceType powerSourceType = new PowerSourceType(powerSourceTypeId);
-        HouseGridId gridId = new HouseGridId("HG1");
-        PowerSource powerSource = new PowerSource(powerSourceId, powerSourceTypeId, gridId);
+        PowerSourceType powerSourceType = new PowerSourceType(type1);
+        PowerSource powerSource = new PowerSource(powerSourceName, powerSourceType);
 
         //Act
         boolean result = powerSourceType.equals(powerSource);

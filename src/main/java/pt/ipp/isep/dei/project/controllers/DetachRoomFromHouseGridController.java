@@ -1,65 +1,47 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
-import pt.ipp.isep.dei.project.model.house.RoomDTO;
-import pt.ipp.isep.dei.project.model.house.RoomId;
-import pt.ipp.isep.dei.project.model.house.RoomMapper;
+import pt.ipp.isep.dei.project.model.house.RoomList;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
-import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridDTO;
-import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
-import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridMapper;
-import pt.ipp.isep.dei.project.services.HouseService;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class DetachRoomFromHouseGridController {
-    @Autowired
-    private HouseService houseService;
-    private List<HouseGrid> houseGridList;
+    private House house;
+    private RoomList roomList;
+    private HouseGrid houseGrid;
 
-
-    public DetachRoomFromHouseGridController(HouseService houseService) {
-        this.houseService = houseService;
-        this.houseGridList = houseService.getAllGrids();
+    public DetachRoomFromHouseGridController(House house, RoomList listOfRooms) {
+        this.house = house;
+        this.roomList = listOfRooms;
     }
 
-    /**
-     * Method that return the number of grids in the house.
-     *
-     * @return
-     */
+    public String getListOfHouseGridsAttachedToHouseGrid() {
+        return house.getHouseGridListToString();
+    }
+
+    public HouseGrid getHouseGridFromTheList(int position) {
+        houseGrid = house.getHouseGridByPosition(position);
+        return houseGrid;
+    }
+
+    public String getRoomListContent() {
+        return roomList.getRoomListContent();
+    }
+
+    public String getListOfRoomsInACertainHouseGrid(int position) {
+        return house.getRoomsInTheHouseGrid(position);
+    }
+
+    public Room getRoomFromTheListOfRoomByAPosition(int position) {
+        return houseGrid.getRoomByPosition(position);
+    }
+
+    public boolean detachRoomFromGridList(HouseGrid houseGrid, Room roomSelected) {
+        return house.detachRoomInASpecificHouseGridInTheList(houseGrid, roomSelected);
+    }
+
     public int getGridListSize() {
-        return houseGridList.size();
+        return house.getHouseGridListSize();
     }
-
-    public List<HouseGridDTO> getListOfHouseGrid() {
-        List<HouseGridDTO> gridDTOS = new ArrayList<>();
-        for (HouseGrid grid : houseGridList) {
-            gridDTOS.add(HouseGridMapper.mapToDTO(grid));
-        }
-        return gridDTOS;
-    }
-
-
-    public List<RoomDTO> getRoomsOfHouseGrid(String houseGridId) {
-        HouseGridId houseGridId1 = new HouseGridId(houseGridId);
-        List<RoomDTO> roomDTOS = new ArrayList<>();
-        for (Room room : houseService.getRoomsOfAHouseGrid(houseGridId1)) {
-            roomDTOS.add(RoomMapper.mapToDTO(room));
-        }
-        return roomDTOS;
-    }
-
-    public boolean detachRoomFromHouseGrid(RoomDTO roomDTO) {
-        RoomId roomId = new RoomId(roomDTO.getId());
-        if (houseService.detachRoomFromHouseGrid(roomId)) {
-            houseService.updateRoomRepository(houseService.getRoomById(roomId));
-            return true;
-        }
-        return false;
-    }
-
 
 }

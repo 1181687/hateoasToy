@@ -1,6 +1,7 @@
 package pt.ipp.isep.dei.project.model.devices.microwaveoven;
 
-import pt.ipp.isep.dei.project.model.devices.DeviceReading;
+import pt.ipp.isep.dei.project.model.Reading;
+import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
 import pt.ipp.isep.dei.project.model.house.Room;
 
@@ -10,12 +11,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class MicrowaveOven implements pt.ipp.isep.dei.project.model.devices.Device {
+public class MicrowaveOven implements Device {
 
     private String name;
     private Room location;
     private MicrowaveOvenSpecs specs;
-    private List<DeviceReading> readingList;
+    private List<Reading> readingList;
     private boolean isActive;
     private LocalDateTime deactivationDate;
 
@@ -62,7 +63,7 @@ public class MicrowaveOven implements pt.ipp.isep.dei.project.model.devices.Devi
      * @return reading list
      */
     @Override
-    public List<DeviceReading> getReadings() {
+    public List<Reading> getReadings() {
         return readingList;
     }
 
@@ -162,10 +163,10 @@ public class MicrowaveOven implements pt.ipp.isep.dei.project.model.devices.Devi
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof pt.ipp.isep.dei.project.model.devices.Device)) {
+        if (!(obj instanceof Device)) {
             return false;
         }
-        pt.ipp.isep.dei.project.model.devices.Device listOne = (pt.ipp.isep.dei.project.model.devices.Device) obj;
+        Device listOne = (Device) obj;
         return this.name.equalsIgnoreCase(listOne.getName());
     }
 

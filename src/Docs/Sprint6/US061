@@ -15,18 +15,18 @@ General Criteria:
 - All code, comments and documentation are in proper English.
 
 Specific Criteria:
+- given -
+- when -
+- then:
+- but -
 
-In order to avoid duplications, the following criteria has to be checked:
 
-Geographical Areas: Location, Id, GeographicalAreaType;
-Readings: SensorId, LocalDateTime;
-Sensors: Id;
-House Grid: Id;
-Rooms: Id;
 
-Acceptance Tests: When importing the same file twice or if the specific files (with geographical areas, rooms, grids,
-sensors and their readings) have duplicated information, they should not be imported but sent to the logger with the
-description of the reason the information was not imported.
+
+Test Criteria:
+
+
+Acceptance Tests:
 
 
 ASSUMPTIONS:

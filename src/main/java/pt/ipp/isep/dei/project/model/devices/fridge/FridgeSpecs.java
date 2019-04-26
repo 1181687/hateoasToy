@@ -147,7 +147,6 @@ public class FridgeSpecs implements DeviceSpecs {
 
     /**
      * get method
-     *
      * @return list os specs of fridge
      */
 
@@ -164,7 +163,6 @@ public class FridgeSpecs implements DeviceSpecs {
 
     /**
      * get method
-     *
      * @param attributeName string name of the attribute
      * @return attribute
      */
@@ -187,8 +185,7 @@ public class FridgeSpecs implements DeviceSpecs {
 
     /**
      * set method
-     *
-     * @param attributeName  string name of the attribute
+     * @param attributeName string name of the attribute
      * @param attributeValue value of the attribute
      * @return
      */

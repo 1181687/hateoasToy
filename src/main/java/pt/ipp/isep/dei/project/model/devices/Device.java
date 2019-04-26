@@ -1,6 +1,7 @@
 package pt.ipp.isep.dei.project.model.devices;
 
 import pt.ipp.isep.dei.project.model.Measurable;
+import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.house.Room;
 
 import java.time.LocalDateTime;
@@ -95,7 +96,7 @@ public interface Device extends Measurable {
         StringBuilder attributes = new StringBuilder();
         attributes.append("1 - Name: " + getName() + "\n");
         attributes.append("2 - Device Specifications \n");
-        attributes.append("3 - Location: " + getLocation().getRoomId().getId() + "\n");
+        attributes.append("3 - Location: " + getLocation().getRoomId() + "\n");
         return attributes.toString();
     }
 
@@ -129,7 +130,7 @@ public interface Device extends Measurable {
     default String getNameToString() {
         StringBuilder nameLocation = new StringBuilder();
         nameLocation.append("Device: " + getName());
-        nameLocation.append(", located in room: " + getLocation().getRoomId().getId() + "\n");
+        nameLocation.append(", located in room: " + getLocation().getRoomId() + "\n");
         return nameLocation.toString();
     }
 
@@ -138,9 +139,24 @@ public interface Device extends Measurable {
      *
      * @param reading Reading to be added.
      */
-    default void addReadingsToTheList(DeviceReading reading) {
+    default void addReadingsToTheList(Reading reading) {
         this.getReadings().add(reading);
     }
+
+    /**
+     * Method that calculates the sum of the value in each Reading in a given Reading list.
+     *
+     * @param readingList List with Readingss.
+     * @return Double with the required sum.
+     */
+    default double getSumOfTheReadings(List<Reading> readingList) {
+        double sum = 0;
+        for (Reading reading : readingList) {
+            sum += reading.getValue();
+        }
+        return sum;
+    }
+
 
     default String getDateDeactivateDeviceToString() {
         return this.getDeactivationDate().toLocalDate().toString() + " " + this.getDeactivationDate().toLocalTime().toString();
@@ -157,25 +173,11 @@ public interface Device extends Measurable {
      */
     default double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
         double totalEnergyConsumption = 0;
-        List<DeviceReading> validReadings = getReadingsListInInterval(startDate, endDate);
+        List<Reading> validReadings = getReadingsListInInterval(startDate, endDate);
         if (!(validReadings.isEmpty())) {
             totalEnergyConsumption = getSumOfTheReadings(validReadings);
         }
         return totalEnergyConsumption;
-    }
-
-    /**
-     * Method that calculates the sum of the value in each Reading in a given Reading list.
-     *
-     * @param readingList List with Readingss.
-     * @return Double with the required sum.
-     */
-    default double getSumOfTheReadings(List<DeviceReading> readingList) {
-        double sum = 0;
-        for (DeviceReading reading : readingList) {
-            sum += reading.getValue();
-        }
-        return sum;
     }
 
     /**
@@ -190,7 +192,8 @@ public interface Device extends Measurable {
     /**
      * Method that gets the energy consumption in a day.
      *
-     * @return consumption of the device in a given day.
+     * @return
+     * consumption of the device in a given day.
      */
     default double getEnergyConsumptionInADay() {
         return getSpecs().getEnergyConsumptionInADay();
@@ -198,9 +201,9 @@ public interface Device extends Measurable {
 
     default Map<LocalDateTime, Double> getDataSeries(LocalDateTime startDate, LocalDateTime endDate) {
         Map<LocalDateTime, Double> map = new TreeMap<>();
-        List<DeviceReading> validReadingList = getReadingsListInInterval(startDate, endDate);
-        for (DeviceReading reading : validReadingList) {
-            map.put(reading.getLocalDateTime(), reading.getValue());
+        List<Reading> validReadingList = getReadingsListInInterval(startDate, endDate);
+        for (Reading reading : validReadingList) {
+            map.put(reading.getDateTime(), reading.getValue());
         }
         return map;
     }

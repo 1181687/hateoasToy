@@ -1,12 +1,11 @@
 package pt.ipp.isep.dei.project.model.sensor;
 
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
+import javax.persistence.Embeddable;
 
-@Entity
+@Embeddable
 public class SensorType {
-    @EmbeddedId
-    private SensorTypeId sensorType;
+
+    private String type;
 
     protected SensorType() {
     }
@@ -14,24 +13,27 @@ public class SensorType {
     /**
      * Constructor of SensorType
      *
-     * @param sensorTypeId
+     * @param tipoSensor Type of sensor
      */
-    public SensorType(SensorTypeId sensorTypeId) {
-        this.sensorType = sensorTypeId;
+    public SensorType(String tipoSensor) {
+        this.type = tipoSensor;
     }
 
     /**
      * get method
      *
-     * @return sensorType of sensor
+     * @return type of sensor
      */
-    public SensorTypeId getSensorType() {
-        return sensorType;
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     /**
      * method that creates the same hashcode to sensor types with the same attribute
-     *
      * @return the hashcode created
      */
     @Override
@@ -41,7 +43,6 @@ public class SensorType {
 
     /**
      * Equals method to determine if two sensor Types are equal. They are equals if all atributtes are equal.
-     *
      * @param obj receives an object
      * @return boolean
      */
@@ -54,7 +55,7 @@ public class SensorType {
             return false;
         }
         SensorType ts = (SensorType) obj;
-        return this.sensorType.equals(ts.sensorType);
+        return this.type.equals(ts.type);
 
     }
 }

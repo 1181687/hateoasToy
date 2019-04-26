@@ -2,7 +2,7 @@ package pt.ipp.isep.dei.project.model.devices;
 
 import pt.ipp.isep.dei.project.utils.Utils;
 
-public class TimeConstantProgramSpecs implements pt.ipp.isep.dei.project.model.devices.ProgramSpecs {
+public class TimeConstantProgramSpecs implements ProgramSpecs {
     private double duration;
     private double energyConsumption;
 

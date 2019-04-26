@@ -21,14 +21,12 @@ public interface DeviceSpecs {
 
     /**
      * method that displays a string of the chosen attribute (name of the attribute and its value)
-     *
      * @return
      */
     String getAttributesToString();
 
     /**
      * get method
-     *
      * @return number of Washing Machine attributes
      */
     int getNumberOfAttributes();
@@ -50,7 +48,6 @@ public interface DeviceSpecs {
 
     /**
      * get method
-     *
      * @param attributeName string name of attribute
      * @return type data of the attribute (ex.integer, double)
      */

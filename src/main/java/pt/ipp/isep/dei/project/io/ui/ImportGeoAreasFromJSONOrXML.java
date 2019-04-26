@@ -3,7 +3,7 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.importgeoareasfromjsonorxmlcontroller.ImportGeoAreasFromJSONOrXMLController;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
-import pt.ipp.isep.dei.project.services.GeoAreaAggregateService;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaService;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -15,11 +15,11 @@ public class ImportGeoAreasFromJSONOrXML {
     private ImportGeoAreasFromJSONOrXMLController controller;
 
 
-    public ImportGeoAreasFromJSONOrXML(GeoAreaAggregateService geoAreaAggregateService) {
-        this.controller = new ImportGeoAreasFromJSONOrXMLController(geoAreaAggregateService);
+    public ImportGeoAreasFromJSONOrXML(GeographicalAreaService geoList) {
+        this.controller = new ImportGeoAreasFromJSONOrXMLController(geoList);
     }
 
-    public void run() throws FileNotFoundException {
+    public void jsonGeoAreaSensors() throws FileNotFoundException {
 
         // Write the path
         String path = InputValidator.getString("Please specify the name of the file to import.");
@@ -63,7 +63,7 @@ public class ImportGeoAreasFromJSONOrXML {
         // Import confirmation
         String importConfirmation = InputValidator.confirmValidation("Do you want to import these geographical areas and their sensors? (Y/N)");
         if ("Y".equalsIgnoreCase(importConfirmation)) {
-            if (controller.importGeographicalAreasAndSensors()) {
+            if (controller.importGeographicalAreaAndSensors()) {
                 System.out.println("\n The file was imported with success.\n");
                 return;
             } else {
@@ -85,5 +85,4 @@ public class ImportGeoAreasFromJSONOrXML {
     private boolean isValidFormat(String fileName) {
         return fileName.endsWith(".json") || fileName.endsWith(".xml");
     }
-
 }

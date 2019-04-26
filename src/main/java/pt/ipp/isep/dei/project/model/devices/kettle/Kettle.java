@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.model.devices.kettle;
 
+import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
-import pt.ipp.isep.dei.project.model.devices.DeviceReading;
 import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
 import pt.ipp.isep.dei.project.model.house.Room;
 
@@ -15,7 +15,7 @@ public class Kettle implements Device {
     private String name;
     private Room location;
     private KettleSpecs specs;
-    private List<DeviceReading> readingList;
+    private List<Reading> readingList;
     private boolean isActive;
     private LocalDateTime deactivationDate;
 
@@ -32,6 +32,7 @@ public class Kettle implements Device {
      *
      * @param location
      * @return false if the location is equals to another device. True if not.
+     *
      */
     @Override
     public boolean setLocation(Room location) {
@@ -55,6 +56,7 @@ public class Kettle implements Device {
      *
      * @param name String given name
      * @return true if sets false if don't
+     *
      */
     @Override
     public boolean setName(String name) {
@@ -100,7 +102,7 @@ public class Kettle implements Device {
      * @return
      */
     @Override
-    public List<DeviceReading> getReadings() {
+    public List<Reading> getReadings() {
         return this.readingList;
     }
 

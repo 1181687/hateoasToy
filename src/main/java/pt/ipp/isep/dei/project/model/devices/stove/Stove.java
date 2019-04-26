@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.model.devices.stove;
 
+import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
-import pt.ipp.isep.dei.project.model.devices.DeviceReading;
 import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
 import pt.ipp.isep.dei.project.model.house.Room;
 
@@ -16,7 +16,7 @@ public class Stove implements Device {
     private String name;
     private Room location;
     private StoveSpecs specs;
-    private List<DeviceReading> readingList;
+    private List<Reading> readingList;
     private boolean isActive;
     private LocalDateTime deactivationDate;
 
@@ -63,7 +63,7 @@ public class Stove implements Device {
      * @return reading list
      */
     @Override
-    public List<DeviceReading> getReadings() {
+    public List<Reading> getReadings() {
         return readingList;
     }
 

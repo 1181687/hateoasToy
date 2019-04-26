@@ -1,8 +1,8 @@
 package pt.ipp.isep.dei.project.utils;
 
 import pt.ipp.isep.dei.project.model.ProjectFileReader;
-import pt.ipp.isep.dei.project.model.readings.ReadingDTO;
-import pt.ipp.isep.dei.project.model.readings.ReadingMapper;
+import pt.ipp.isep.dei.project.model.ReadingDTO;
+import pt.ipp.isep.dei.project.model.ReadingMapper;
 
 import java.io.File;
 import java.io.FileNotFoundException;

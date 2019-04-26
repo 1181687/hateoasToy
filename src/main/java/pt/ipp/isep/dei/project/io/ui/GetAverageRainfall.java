@@ -1,8 +1,7 @@
 package pt.ipp.isep.dei.project.io.ui;
 
-import pt.ipp.isep.dei.project.controllers.GetInfoHouseAreaController;
+import pt.ipp.isep.dei.project.controllers.GetTotalAndAverageRainfallAndCurrentTempHouseAreaController;
 import pt.ipp.isep.dei.project.model.house.House;
-import pt.ipp.isep.dei.project.services.GeoAreaAggregateService;
 
 import java.time.LocalDate;
 
@@ -13,33 +12,28 @@ import java.time.LocalDate;
  */
 
 public class GetAverageRainfall {
-    private GetInfoHouseAreaController controller;
+    private GetTotalAndAverageRainfallAndCurrentTempHouseAreaController controller;
 
-    /**
-     * Constructor.
-     *
-     * @param house                   House to be used.
-     * @param geoAreaAggregateService Service to be used.
-     */
-    public GetAverageRainfall(House house, GeoAreaAggregateService geoAreaAggregateService) {
-        this.controller = new GetInfoHouseAreaController(house, geoAreaAggregateService);
+    public GetAverageRainfall(House house) {
+        this.controller = new GetTotalAndAverageRainfallAndCurrentTempHouseAreaController(house);
     }
 
-    /**
-     * RUN!
-     */
     public void run() {
+
         String label1 = "Please insert the first date of the period (yyyy-MM-dd):";
         LocalDate firstDate = InputValidator.getStringDate(label1);
+
         String label2 = "Please insert the second date of the period (yyyy-MM-dd):";
         LocalDate secondDate = InputValidator.getStringDate(label2);
+
         if (firstDate.isAfter(secondDate)) {
             System.out.println("That is not a valid period. Please try again.\n");
             return;
         }
-        Double value = controller.getAverageDailyRainfall(firstDate, secondDate);
-        if (!(Double.isNaN(value))) {
-            System.out.println("The average daily rainfall for the chosen period is: " + value + " l/m2");
+
+
+        if (!(Double.isNaN(controller.getAverageDailyRainfall(firstDate, secondDate)))) {
+            System.out.println("The average daily rainfall for the chosen period is: " + controller.getAverageDailyRainfall(firstDate, secondDate) + " l/m2");
         } else {
             System.out.println("There's no registers for this period.");
         }

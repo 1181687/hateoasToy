@@ -2,9 +2,13 @@ package pt.ipp.isep.dei.project.utilsTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import pt.ipp.isep.dei.project.model.Reading;
+import pt.ipp.isep.dei.project.model.ReadingDTO;
+import pt.ipp.isep.dei.project.model.ReadingMapper;
 import pt.ipp.isep.dei.project.utils.CSVReader;
 
 import java.io.File;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -22,11 +26,11 @@ public class CSVReaderTest {
         String path = "datasets/sensorReadings/csv/DataSet_sp05_SensorData.csv";
         file = new File(path);
     }
-    /*
-     *//**
+
+    /**
      * Test that tries to read a valid file (with valid information) and see if the result of the
      * importation (List of Object) has the expected size and if it contains a certain Reading.
-     *//*
+     */
     @Test
     public void testReadFile_withAFileWithAllTheInformationValid_ShouldReturnSuccessfulResults() {
         // Arrange
@@ -37,17 +41,17 @@ public class CSVReaderTest {
         readingDTO.setValue(13.8);
         readingDTO.setUnits("C");
 
-        RoomReading reading = ReadingMapper.mapToRoomReadingEntity(readingDTO);
+        Reading reading = ReadingMapper.mapToEntity(readingDTO);
 
         // Act
         List<Object> result = csvReader.readFile(file);
 
-        RoomReading reading1 = ReadingMapper.mapToRoomReadingEntity((ReadingDTO) result.get(4));
+        Reading reading1 = ReadingMapper.mapToEntity((ReadingDTO) result.get(4));
 
         // Assert
         assertEquals(61, result.size());
-        assertEquals(reading,reading1);
-    }*/
+        assertEquals(reading, reading1);
+    }
 
     /**
      * Test that tries to read an empty file, which returns null.

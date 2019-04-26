@@ -1,47 +1,49 @@
 package pt.ipp.isep.dei.project.model.sensor;
 
-import pt.ipp.isep.dei.project.model.house.RoomId;
+import pt.ipp.isep.dei.project.model.RoomReading;
+import pt.ipp.isep.dei.project.utils.Utils;
 
-import javax.persistence.Embedded;
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
+import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class RoomSensor {
-    @EmbeddedId
-    private RoomSensorId id;
+    @Id
+    private String id;
     private String sensorName;
     private LocalDateTime startingDate;
 
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "RoomReading",
+            joinColumns = @JoinColumn(name = "SENSOR_ID"))
+    private List<RoomReading> listOfRoomReadings = new ArrayList<>();
+
     @Embedded
-    private SensorTypeId sensorTypeId;
+    private SensorType sensorType;
 
     private String units;
 
     @Embedded
     private SensorState isActive;
 
-    @Embedded
-    @JoinColumn(name = "room_id")
-    private RoomId roomId;
-
-    public RoomSensor(RoomSensorId id, String sensorName, LocalDateTime startingDate, SensorTypeId sensorTypeId, String units, RoomId roomId) {
+    public RoomSensor(String id, String sensorName, LocalDateTime startingDate, SensorType sensorType, String units) {
         this.id = id;
         this.sensorName = sensorName;
         this.startingDate = startingDate;
-        this.sensorTypeId = sensorTypeId;
+        this.sensorType = sensorType;
         this.units = units;
         this.isActive = new SensorState();
-        this.roomId = roomId;
     }
 
     protected RoomSensor() {
         // empty
     }
 
-    public RoomSensorId getId() {
+    public String getId() {
         return id;
     }
 
@@ -49,35 +51,15 @@ public class RoomSensor {
         return startingDate;
     }
 
-    public SensorTypeId getSensorType() {
-        return sensorTypeId;
+    public SensorType getSensorType() {
+        return sensorType;
     }
 
     public boolean isActive() {
         return isActive.isActive();
     }
 
-    public String getSensorName() {
-        return sensorName;
-    }
-
-    public SensorTypeId getSensorTypeId() {
-        return sensorTypeId;
-    }
-
-    public String getUnits() {
-        return units;
-    }
-
-    public SensorState getIsActive() {
-        return isActive;
-    }
-
-    public RoomId getRoomId() {
-        return roomId;
-    }
-
-    /*public double getMaximumValueOfDay(LocalDate date) {
+    public double getMaximumValueOfDay(LocalDate date) {
         if (!getDailyMeasurement(date).isEmpty()) {
             double maximumValueOfDay = getDailyMeasurement(date).get(0).getValue();
             for (RoomReading reading : getDailyMeasurement(date)) {
@@ -112,8 +94,8 @@ public class RoomSensor {
     }
 
     public boolean sensorTypeEqualsSensorType(SensorType type) {
-        String tipoDoSensorPedido = type.getSensorType();
-        return (this.getSensorType().getSensorType().equals(tipoDoSensorPedido));
+        String tipoDoSensorPedido = type.getType();
+        return (this.getSensorType().getType().equals(tipoDoSensorPedido));
     }
 
     public RoomReading getLastMeasurement() {
@@ -163,5 +145,5 @@ public class RoomSensor {
     @Override
     public int hashCode() {
         return Objects.hash(this.id);
-    }*/
+    }
 }

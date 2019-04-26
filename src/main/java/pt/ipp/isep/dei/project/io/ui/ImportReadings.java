@@ -1,10 +1,9 @@
 package pt.ipp.isep.dei.project.io.ui;
 
-import pt.ipp.isep.dei.project.controllers.importreadingscontroller.ImportGeoAreaReadingsController;
-import pt.ipp.isep.dei.project.controllers.importreadingscontroller.ImportRoomReadingsController;
-import pt.ipp.isep.dei.project.services.GeoAreaAggregateService;
-import pt.ipp.isep.dei.project.services.RoomAggregateService;
-import pt.ipp.isep.dei.project.services.RoomSensorService;
+import pt.ipp.isep.dei.project.controllers.importreadingsfromcsvcontroller.ImportGeoAreaReadingsController;
+import pt.ipp.isep.dei.project.controllers.importreadingsfromcsvcontroller.ImportRoomReadingsController;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaService;
+import pt.ipp.isep.dei.project.model.house.HouseService;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -12,23 +11,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ImportReadings {
-    private ImportGeoAreaReadingsController geoAreaReadingsController;
+    private ImportGeoAreaReadingsController geoAreaReadingsControllercontroller;
     private ImportRoomReadingsController roomReadingsController;
 
     /**
      * Constructor.
      *
-     * @param geoAreaAggregateService
+     * @param geographicalAreaService
      */
-    public ImportReadings(GeoAreaAggregateService geoAreaAggregateService, RoomAggregateService roomAggregateService) {
-        geoAreaReadingsController = new ImportGeoAreaReadingsController(geoAreaAggregateService);
-        roomReadingsController = new ImportRoomReadingsController(roomAggregateService);
+    public ImportReadings(GeographicalAreaService geographicalAreaService, HouseService houseService) {
+        geoAreaReadingsControllercontroller = new ImportGeoAreaReadingsController(geographicalAreaService, houseService);
+        roomReadingsController = new ImportRoomReadingsController(houseService);
     }
 
 
     public void run(int option) throws FileNotFoundException {
         String pathFile = InputValidator.getString("Please specify the name of the file you would like to import (extensions accepted: json, csv, xml).\n");
-        if (!geoAreaReadingsController.isValidFormat(pathFile)) {
+        if (!geoAreaReadingsControllercontroller.isValidFormat(pathFile)) {
             System.out.println("\nERROR: Please insert a valid format.\n");
             return;
         }
@@ -38,10 +37,10 @@ public class ImportReadings {
             return;
         }
         List<Object> readings = new ArrayList<>();
-        if (option==1){
-            readings = geoAreaReadingsController.readFile(file, pathFile);
+        if (option == 1) {
+            readings = geoAreaReadingsControllercontroller.readFile(file, pathFile);
         }
-        if (option==2){
+        if (option == 2) {
             readings = roomReadingsController.readFile(file, pathFile);
         }
 
@@ -56,8 +55,8 @@ public class ImportReadings {
                 int notImportedReadings = 0;
                 boolean chosenController = false;
                 if (option == 1) {
-                    chosenController = geoAreaReadingsController.addReadingToGeoAreaSensorById();
-                    notImportedReadings = geoAreaReadingsController.getNumberOfNotImportedReadings();
+                    chosenController = geoAreaReadingsControllercontroller.addReadingToGeoAreaSensorById();
+                    notImportedReadings = geoAreaReadingsControllercontroller.getNumberOfNotImportedReadings();
                 }
                 if (option == 2) {
                     chosenController = roomReadingsController.addReadingToRoomSensorById();

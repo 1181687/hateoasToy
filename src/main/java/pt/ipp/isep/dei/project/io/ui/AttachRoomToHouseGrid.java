@@ -1,144 +1,111 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.AttachRoomToHouseGridController;
-import pt.ipp.isep.dei.project.model.house.RoomDTO;
-import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridDTO;
-import pt.ipp.isep.dei.project.services.HouseService;
+import pt.ipp.isep.dei.project.model.house.House;
+import pt.ipp.isep.dei.project.model.house.RoomList;
 
-import java.util.List;
+/**
+ * US147 As an Administrator, I want to attach a room to a housegrid grid, so that the room’s
+ * power and energy consumption is included in that grid.
+ */
 
 public class AttachRoomToHouseGrid {
-    private static final String EXIT_OPTION = "\r0 - Exit";
     private AttachRoomToHouseGridController controller;
-    private List<HouseGridDTO> gridDTOS;
-    private List<RoomDTO> roomDTOS;
+    private static final String EXIT_OPTION = "\r0 - Exit";
 
-    /**
-     * Constructor.
-     *
-     * @param houseService HouseService to be used.
-     */
-    public AttachRoomToHouseGrid(HouseService houseService) {
-        this.controller = new AttachRoomToHouseGridController(houseService);
-        this.gridDTOS = controller.getGrids();
-        this.roomDTOS = controller.getRooms();
+    public AttachRoomToHouseGrid(House house, RoomList listOfRooms) {
+        controller = new AttachRoomToHouseGridController(house, listOfRooms);
     }
 
-    /**
-     * RUN!
-     */
     public void run() {
-        if (gridDTOS.isEmpty()) {
-            System.out.println("There are no house grids available. Please create one first.\n");
-            return;
-        }
-        if (roomDTOS.isEmpty()) {
-            System.out.println("There are no rooms available. Please create one first.\n");
+        if (controller.isHouseGridListEmpty()) {
+            System.out.println("There are no housegrid grids available. Please create one.\n");
         } else {
-            chooseHouseGrid();
-            chooseRoomAndAttach();
-            attachRoom();
+            chooseHouseGridAndRoom();
         }
     }
 
-    /**
-     * Method that lists all the grids, in order to show to the user.
-     *
-     * @return String with the info.
-     */
-    private String getGridsToList() {
-        StringBuilder list = new StringBuilder();
-        int number = 1;
-        for (HouseGridDTO gridDTO : gridDTOS) {
-            list.append(number + " " + gridDTO.getId() + "\n");
-            number++;
-        }
-        list.append(EXIT_OPTION);
-        return list.toString();
-    }
-
-    /**
-     * Method that allows the user to choose a house grid and set it as the chosen one.
-     */
-    private void chooseHouseGrid() {
-        String label = "Please choose the house grid where the room will be attached: \n" + getGridsToList();
-        int uiId = InputValidator.getIntRange(label, 0, gridDTOS.size()) - 1;
-        if (uiId == -1) {
+    public void chooseHouseGridAndRoom() {
+        if (!chooseHouseGrid()) {
             return;
         }
-        String gridId = gridDTOS.get(uiId).getId();
-        controller.setGrid(gridId);
-    }
-
-    /**
-     * Method that lists all the rooms, in order to show to the user.
-     *
-     * @return String with the info.
-     */
-    private String getRoomsToList() {
-        StringBuilder list = new StringBuilder();
-        int number = 1;
-        for (RoomDTO roomDTO : roomDTOS) {
-            list.append(number + " " + roomDTO.getId() + "\n");
-            number++;
-        }
-        list.append(EXIT_OPTION);
-        return list.toString();
-    }
-
-    /**
-     * Method that allows the user to choose a room to be edited.
-     */
-    private void chooseRoomAndAttach() {
-        String label = "Please choose a room to be attached to the chosen house grid: \n" + getRoomsToList();
-        int uiId = InputValidator.getIntRange(label, 0, roomDTOS.size()) - 1;
-        if (uiId == -1) {
-            return;
-        }
-        String roomId = roomDTOS.get(uiId).getId();
-        controller.setRoom(roomId);
-        checkIfRoomIsAlreadyInAGrid();
-    }
-
-    /**
-     * Method that checks if a room is already in a grid. If so, it can be in the chosen grid or not.
-     */
-    private void checkIfRoomIsAlreadyInAGrid() {
-        while (controller.isRoomInAGrid()) {
-            if (controller.isRoomAlreadyInChosenGrid()) {
-                System.out.println("The specified room is already in the house grid.");
-                chooseRoomAndAttach();
-            } else {
-                optionsWhenRoomConnectedToOtherGrid();
+        if (controller.isRoomListEmpty()) {
+            System.out.println("There are no rooms available. Please create one\n");
+        } else {
+            if (!chooseAndAttachRoomToGrid()) {
+                return;
             }
         }
     }
 
-    /**
-     * Method that presents the option of disconnecting the room from the grid it's in and connecting it to the chosen
-     * grid.
-     */
-    private void optionsWhenRoomConnectedToOtherGrid() {
-        String label = "The specified room is already in another grid. Do you want to disconnect it and connect it the chosen grid? (y/n)";
-        String answer = InputValidator.confirmValidation(label);
-        if ("y".equalsIgnoreCase(answer)) {
-            attachRoom();
-        } else {
-            System.out.println("No changes were made.\n");
+    public boolean chooseHouseGrid() {
+        String label1 = "Please choose the housegrid grid where the room will be attached: \n" + controller.getHouseGridListToString() + EXIT_OPTION;
+        int indexOfTheChosenGrid = InputValidator.getIntRange(label1, 0, controller.getHouseGridListSize()) - 1;
+        if (indexOfTheChosenGrid == -1) {
+            return false;
+        }
+        controller.setGridToBeUsed(controller.getHouseGridFromTheList(indexOfTheChosenGrid));
+        return true;
+    }
+
+
+    public boolean chooseAndAttachRoomToGrid() {
+        String label2 = "Please choose a room to be attached to the chosen housegrid grid: \n" + controller.getRoomListContent() + EXIT_OPTION;
+        int indexOfTheChosenRoom = InputValidator.getIntRange(label2, 0, controller.getRoomListSize()) - 1;
+        if (indexOfTheChosenRoom == -1) {
+            return false;
+        }
+        controller.setRoomToBeAttached(controller.getRoomFromTheList(indexOfTheChosenRoom));
+
+        if (!checkIfRoomIsAlreadyInAGrid()) {
+            return false;
+        }
+        attachRoomConfirmation();
+        return true;
+    }
+
+
+    public boolean checkIfRoomIsAlreadyInAGrid() {
+        while (controller.checkIfTheChosenRoomIsAlreadyInTheChosenGrid() || controller.getTheGridWhereTheRoomIsConnected() != null) {
+            if (controller.checkIfTheChosenRoomIsAlreadyInTheChosenGrid()) {
+                String label3 = "The specified room is already in the housegrid grid. Please, choose another one to add to the selected grid: \n" + controller.getRoomListContent() + EXIT_OPTION;
+                int indexOfTheChosenRoom2 = InputValidator.getIntRange(label3, 0, controller.getRoomListSize()) - 1;
+                if (indexOfTheChosenRoom2 == -1) {
+                    return false;
+                }
+                controller.setRoomToBeAttached(controller.getRoomFromTheList(indexOfTheChosenRoom2));
+            } else {
+                optionsWhenRoomConnectedToOtherGrid();
+            }
+        }
+        return true;
+    }
+
+    public void optionsWhenRoomConnectedToOtherGrid() {
+        if (controller.getTheGridWhereTheRoomIsConnected() != null) {
+            String label4 = "The specified room is already in another grid. Do you want to disconnect it and connect it the the chosen grid? (y/n)";
+            String answer = InputValidator.confirmValidation(label4);
+            if ("y".equals(answer) || "Y".equals(answer)) {
+                controller.detachRoomFromTheHouseGrid(controller.getTheGridWhereTheRoomIsConnected());
+                controller.attachRoomInTheHouseGrid();
+                System.out.println("The room has been attached to the housegrid grid.\n");
+                return;
+            } else {
+                System.out.println("No changes where made.\n");
+                return;
+            }
         }
     }
 
-    /**
-     * Method that attaches the room into the grid.
-     */
-    private void attachRoom() {
-        String label = "Confirm? (y/n)";
-        String answer = InputValidator.confirmValidation(label);
-        if ("y".equalsIgnoreCase(answer)) {
+
+    public void attachRoomConfirmation() {
+        String label5 = "Confirm? (y/n)";
+        String answer = InputValidator.confirmValidation(label5);
+        if ("y".equals(answer) || "Y".equals(answer)) {
             controller.attachRoomInTheHouseGrid();
-            System.out.println("The room has been attached to the house grid.\n");
+            System.out.println("The room has been attached to the housegrid grid.\n");
         } else {
-            System.out.println("No changes were made.\n");
+            System.out.println("The room wasn't attached to the housegrid grid.\n");
         }
     }
 }

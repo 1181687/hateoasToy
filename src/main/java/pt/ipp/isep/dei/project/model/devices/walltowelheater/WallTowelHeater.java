@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.model.devices.walltowelheater;
 
+import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
-import pt.ipp.isep.dei.project.model.devices.DeviceReading;
 import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
 import pt.ipp.isep.dei.project.model.house.Room;
 
@@ -15,7 +15,7 @@ public class WallTowelHeater implements Device {
     private String name;
     private Room location;
     private WallTowelHeaterSpecs specs;
-    private List<DeviceReading> readingList;
+    private List<Reading> readingList;
     private boolean isActive;
     private LocalDateTime deactivationDate;
 
@@ -105,7 +105,7 @@ public class WallTowelHeater implements Device {
 
     /**
      * method that set the given name only if the name don't exists in DeviceList
-     * and if it is different than the name that the Device has.
+     * and if it is different than the name that the Device1 has.
      *
      * @param name String given name
      * @return true if sets false if don't
@@ -120,7 +120,7 @@ public class WallTowelHeater implements Device {
     }
 
     @Override
-    public List<DeviceReading> getReadings() {
+    public List<Reading> getReadings() {
         return this.readingList;
     }
 }

@@ -1,33 +1,28 @@
 package pt.ipp.isep.dei.project.io.ui;
 
-import pt.ipp.isep.dei.project.controllers.GetInfoHouseAreaController;
+import pt.ipp.isep.dei.project.controllers.GetTotalAndAverageRainfallAndCurrentTempHouseAreaController;
 import pt.ipp.isep.dei.project.model.house.House;
-import pt.ipp.isep.dei.project.services.GeoAreaAggregateService;
 
 import java.time.LocalDate;
 
-public class GetTotalRainfall {
-    private GetInfoHouseAreaController controller;
 
-    /**
-     * Constructor.
-     *
-     * @param house                   House to be used.
-     * @param geoAreaAggregateService Service to be used.
-     */
-    public GetTotalRainfall(House house, GeoAreaAggregateService geoAreaAggregateService) {
-        this.controller = new GetInfoHouseAreaController(house, geoAreaAggregateService);
+/**
+ * US620 As a Regular User, I want to get the total rainfall in the housegrid area for a given day.
+ */
+public class GetTotalRainfall {
+    private GetTotalAndAverageRainfallAndCurrentTempHouseAreaController controller;
+
+    public GetTotalRainfall(House house) {
+        this.controller = new GetTotalAndAverageRainfallAndCurrentTempHouseAreaController(house);
     }
 
-    /**
-     * RUN!
-     */
     public void run() {
-        String label = "Please insert the date when you want to get the total rainfall (yyyy-MM-dd):";
-        LocalDate date = InputValidator.getStringDate(label);
-        double value = controller.getTotalRainfall(date).getValue();
-        if (!(Double.isNaN(value))) {
-            System.out.println("The total rainfall in the house Area in" + date + " is " + value + "l/m2");
+
+        String label1 = "Please insert the date when you want to get the total Rainfall (yyyy-MM-dd):";
+        LocalDate dateLD = InputValidator.getStringDate(label1);
+
+        if (!(Double.isNaN(controller.getTotalRainfallInTheHouseAreaInTheSelectedDay(dateLD)))) {
+            System.out.println("The total Rainfall of this House Area is " + controller.getTotalRainfallInTheHouseAreaInTheSelectedDay(dateLD) + "l/m2");
         } else {
             System.out.println("There's no registers for this day.");
         }

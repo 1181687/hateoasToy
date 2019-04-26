@@ -2,8 +2,8 @@ package pt.ipp.isep.dei.project.utilsTests;
 
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.LocationDTO;
+import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
-import pt.ipp.isep.dei.project.model.readings.ReadingDTO;
 import pt.ipp.isep.dei.project.utils.JSONReaderGeoAreasSensors;
 
 import java.io.File;
@@ -71,8 +71,8 @@ public class JSONReaderGeoAreasSensorsTest {
         assertEquals("Rainfall", sensorType);
         assertEquals("l/m2", sensorUnits);
         assertEquals(41.178553, latitude, 0.001);
-        assertEquals(-8.606409, longitude, 0.001);
-        assertEquals(125, altitude, 0.001);
+        assertEquals(-8.608035, longitude, 0.001);
+        assertEquals(111, altitude, 0.001);
     }
 
     @Test

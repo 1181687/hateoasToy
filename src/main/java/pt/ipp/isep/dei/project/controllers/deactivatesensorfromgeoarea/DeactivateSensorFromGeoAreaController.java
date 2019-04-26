@@ -1,33 +1,36 @@
 package pt.ipp.isep.dei.project.controllers.deactivatesensorfromgeoarea;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapper;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaService;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorDTO;
-import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorId;
-import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorMapper;
-import pt.ipp.isep.dei.project.services.GeoAreaAggregateService;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DeactivateSensorFromGeoAreaController {
+    @Autowired
+    private GeographicalAreaService geoAreaList;
 
-    private GeoAreaAggregateService geoAreaService;
-
-    public DeactivateSensorFromGeoAreaController(GeoAreaAggregateService geoAreaService) {
-        this.geoAreaService = geoAreaService;
+    public DeactivateSensorFromGeoAreaController(GeographicalAreaService geoAreaList) {
+        this.geoAreaList = geoAreaList;
     }
 
-    public List<GeoAreaSensorDTO> listOfActiveSensorsDTOs() {
-        List<GeoAreaSensorDTO> dtoList = new ArrayList<>();
-        for (GeoAreaSensor sensor : this.geoAreaService.getActiveSensors()) {
-            dtoList.add(GeoAreaSensorMapper.mapToDTO(sensor));
+    public List<GeographicalAreaDTO> listOfGeographicalAreas() {
+        List<GeographicalAreaDTO> dtoList = new ArrayList<>();
+        for (GeographicalArea geoArea : this.geoAreaList.getGeoAreaList()) {
+            dtoList.add(GeographicalAreaMapper.mapToDTOwithSensors(geoArea));
         }
         return dtoList;
     }
 
     public boolean deactivateSensor(GeoAreaSensorDTO sensorDTO) {
-        GeoAreaSensorId sensorId = new GeoAreaSensorId(sensorDTO.getId());
-        if (this.geoAreaService.deactivateSensor(sensorId)) {
+        GeoAreaSensor sensor = geoAreaList.getSensorById(sensorDTO.getId());
+        if (sensor.deactivateDevice()) {
+            geoAreaList.updateRepository();
             return true;
         }
         return false;

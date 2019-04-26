@@ -6,14 +6,13 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import pt.ipp.isep.dei.project.model.LocationDTO;
 import pt.ipp.isep.dei.project.model.ProjectFileReader;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaIdDTO;
+import pt.ipp.isep.dei.project.model.ReadingDTO;
+import pt.ipp.isep.dei.project.model.ReadingMapper;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapper;
 import pt.ipp.isep.dei.project.model.house.*;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridDTO;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridMapper;
-import pt.ipp.isep.dei.project.model.readings.ReadingDTO;
-import pt.ipp.isep.dei.project.model.readings.ReadingMapper;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorDTO;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensorDTO;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensorMapper;
@@ -35,7 +34,6 @@ public class JSONReaderGeoAreasSensors implements ProjectFileReader {
     public JSONReaderGeoAreasSensors() {
         // empty
     }
-
 
     private static List<Object> parseJsonObjectsHouse(JsonElement house) throws NumberFormatException, NullPointerException {
         List<Object> houseObject = new ArrayList<>();
@@ -84,7 +82,7 @@ public class JSONReaderGeoAreasSensors implements ProjectFileReader {
 
                 RoomDTO roomDTO = RoomMapper.newRoomDTO();
 
-                roomDTO.setId(id);
+                roomDTO.setRoomId(id);
                 roomDTO.setDescription(description);
                 roomDTO.setHouseFloor(floor);
                 roomDTO.setWidth(width);
@@ -117,7 +115,7 @@ public class JSONReaderGeoAreasSensors implements ProjectFileReader {
                 // create HouseGridDTO
                 HouseGridDTO houseGridDTO = HouseGridMapper.newHouseGridDTO();
 
-                houseGridDTO.setId(gridName);
+                houseGridDTO.setName(gridName);
 
                 //array of room inside the grid
                 JsonArray roomsGridArray = object.get("rooms").getAsJsonArray();
@@ -131,7 +129,7 @@ public class JSONReaderGeoAreasSensors implements ProjectFileReader {
 
                 for (String roomId : roomsGridList) {
                     RoomDTO dto = getRoomDtoById(roomDTOS, roomId);
-                    dto.setGridId(gridName);
+                    houseGridDTO.addRoomDTO(dto);
                 }
 
                 houseGridDTOS.add(houseGridDTO);
@@ -151,7 +149,7 @@ public class JSONReaderGeoAreasSensors implements ProjectFileReader {
 
     private static RoomDTO getRoomDtoById(List<RoomDTO> listRoomDto, String id) {
         for (RoomDTO room : listRoomDto) {
-            if (room.getId().equals(id)) {
+            if (room.getRoomId().equals(id)) {
                 return room;
             }
         }
@@ -216,7 +214,7 @@ public class JSONReaderGeoAreasSensors implements ProjectFileReader {
                     String sensorUnits = sensor.get("units").getAsString();
 
                     //Reads sensor Location
-                    JsonObject locationSensor = sensor1.get("location").getAsJsonObject();
+                    JsonObject locationSensor = object.get("location").getAsJsonObject();
 
                     LocationDTO sensorLocation = locationParser(locationSensor);
 
@@ -227,11 +225,6 @@ public class JSONReaderGeoAreasSensors implements ProjectFileReader {
                     areaSensor1.setLocation(sensorLocation);
                     areaSensor1.setStartingDate(startingDate);
                     areaSensor1.setUnits(sensorUnits);
-                    GeoAreaIdDTO geoAreaIdDTO = new GeoAreaIdDTO();
-                    geoAreaIdDTO.setId(geoAreaDTO.getId());
-                    geoAreaIdDTO.setGeoAreaType(geoAreaDTO.getType());
-                    geoAreaIdDTO.setLocationDTO(areaLocation);
-                    areaSensor1.setParentGeoArea(geoAreaIdDTO);
 
                     geoAreaDTO.addSensor(areaSensor1);
 
@@ -331,7 +324,7 @@ public class JSONReaderGeoAreasSensors implements ProjectFileReader {
                 RoomSensorDTO roomSensorDTO = RoomSensorMapper.newRoomSensorDTO();
                 roomSensorDTO.setId(sensorId);
                 roomSensorDTO.setName(sensorName);
-                roomSensorDTO.setSensorTypeId(sensorType);
+                roomSensorDTO.setSensorType(sensorType);
                 roomSensorDTO.setRoomId(room);
                 roomSensorDTO.setStartingDate(startingDate);
                 roomSensorDTO.setUnits(sensorUnits);
@@ -372,4 +365,3 @@ public class JSONReaderGeoAreasSensors implements ProjectFileReader {
         return finalList;
     }
 }
-

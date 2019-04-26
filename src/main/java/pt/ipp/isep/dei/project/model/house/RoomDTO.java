@@ -1,5 +1,8 @@
 package pt.ipp.isep.dei.project.model.house;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class RoomDTO {
 
     private String id;
@@ -8,17 +11,18 @@ public class RoomDTO {
     private double width;
     private double length;
     private double height;
-    private String gridId;
+
+    private List<RoomDTO> rooms = new ArrayList<>();
 
     public RoomDTO() {
         // empty
     }
 
-    public String getId() {
+    public String getRoomId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setRoomId(String id) {
         if (!id.isEmpty()) {
             this.id = id;
         }
@@ -64,14 +68,14 @@ public class RoomDTO {
         this.height = height;
     }
 
-    public String getGridId() {
-        return gridId;
+
+    public List<RoomDTO> getRooms() {
+        return rooms;
     }
 
-    public void setGridId(String gridId) {
-        if (!gridId.isEmpty()) {
-            this.gridId = gridId;
-        }
+    public void addRoom(RoomDTO room) {
+        this.rooms.add(room);
     }
+
 }
 

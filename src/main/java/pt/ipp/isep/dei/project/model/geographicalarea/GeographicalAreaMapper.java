@@ -1,7 +1,6 @@
 package pt.ipp.isep.dei.project.model.geographicalarea;
 
 import pt.ipp.isep.dei.project.model.Location;
-import pt.ipp.isep.dei.project.model.LocationMapper;
 
 import java.util.Objects;
 
@@ -41,7 +40,7 @@ public final class GeographicalAreaMapper {
      * @param geographicalArea GeoArea to be used.
      * @return GeoAreaDTO.
      */
-  /*  public static GeographicalAreaDTO mapToDTOwithSensors(GeographicalArea geographicalArea) {
+    public static GeographicalAreaDTO mapToDTOwithSensors(GeographicalArea geographicalArea) {
         if (Objects.isNull(geographicalArea)) {
             return null;
         }
@@ -57,7 +56,7 @@ public final class GeographicalAreaMapper {
         geoDTO.addAllSensors(geographicalArea.getSensorListInTheGeographicArea().getListOfSensors());
         return geoDTO;
     }
-*/
+
     /**
      * Method that turns a GeoAreaDTO into a GeoArea.
      *
@@ -68,31 +67,10 @@ public final class GeographicalAreaMapper {
         if (Objects.isNull(geographicalAreaDTO)) {
             return null;
         }
-        GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId(geographicalAreaDTO.getType());
-        GeographicalAreaType geoType = new GeographicalAreaType(geoAreaTypeId);
+        GeographicalAreaType geoType = new GeographicalAreaType(geographicalAreaDTO.getType());
         Location loc = new Location(geographicalAreaDTO.getLatitude(), geographicalAreaDTO.getLongitude(), geographicalAreaDTO.getElevation());
-        AreaShape areaShape = new AreaShape(geographicalAreaDTO.getWidth(), geographicalAreaDTO.getLength());
-        GeoAreaId geoAreaId = new GeoAreaId(geographicalAreaDTO.getId(),loc,geoType.getGeoAreaType());
-        return new GeographicalArea(geoAreaId, geographicalAreaDTO.getDescription(), areaShape);
-    }
-
-    public static GeographicalAreaDTO mapToDTO(GeographicalArea geographicalArea) {
-        GeographicalAreaDTO geographicalAreaDTO = newGeoAreaDTO();
-        geographicalAreaDTO.setId(geographicalArea.getId().getId());
-        geographicalAreaDTO.setLongitude(geographicalArea.getLocation().getLongitude());
-        geographicalAreaDTO.setLatitude(geographicalArea.getLocation().getLatitude());
-        geographicalAreaDTO.setElevation(geographicalArea.getLocation().getElevation());
-        geographicalAreaDTO.setDescription(geographicalArea.getDescription());
-        geographicalAreaDTO.setLength(geographicalArea.getAreaShape().getLength());
-        geographicalAreaDTO.setWidth(geographicalArea.getAreaShape().getWidth());
-        geographicalAreaDTO.setType(geographicalArea.getId().getGeographicalAreaType().getGeoAreaTypeId());
-        return geographicalAreaDTO;
-    }
-
-    public static GeoAreaId mapGeoAreaIdToDTO(GeoAreaIdDTO geoAreaIdDTO){
-        Location location = LocationMapper.mapToEntity(geoAreaIdDTO.getLocationDTO());
-        GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId(geoAreaIdDTO.getGeoAreaType());
-        return new GeoAreaId(geoAreaIdDTO.getId(),location,geoAreaTypeId);
+        AreaShape areaShape = new AreaShape(geographicalAreaDTO.getWidth(), geographicalAreaDTO.getLength(), loc);
+        return new GeographicalArea(geographicalAreaDTO.getId(), geographicalAreaDTO.getDescription(), geoType, loc, areaShape);
     }
 
 

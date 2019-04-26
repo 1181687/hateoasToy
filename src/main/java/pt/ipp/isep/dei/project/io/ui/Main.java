@@ -8,12 +8,21 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import pt.ipp.isep.dei.project.io.ui.logger.MyLogger;
-import pt.ipp.isep.dei.project.model.house.House;
-import pt.ipp.isep.dei.project.model.house.RoomId;
-import pt.ipp.isep.dei.project.services.*;
+import pt.ipp.isep.dei.project.model.Location;
+import pt.ipp.isep.dei.project.model.Reading;
+import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.devices.Program;
+import pt.ipp.isep.dei.project.model.devices.Programmable;
+import pt.ipp.isep.dei.project.model.geographicalarea.*;
+import pt.ipp.isep.dei.project.model.house.*;
+import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
+import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceType;
+import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceTypeList;
+import pt.ipp.isep.dei.project.model.sensor.SensorTypeList;
+import pt.ipp.isep.dei.project.utils.Utils;
 
-import java.io.IOException;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @EnableJpaRepositories(basePackages = "pt.ipp.isep.dei.project")
 @EntityScan(basePackages = "pt.ipp.isep.dei.project")
@@ -41,42 +50,17 @@ public class Main {
     private static final String ENERGY_CONSUMPTION = "Energy Consumption";
 
     private House houseEdificioB;
-    @Autowired
-    private PowerSourceTypeService powerSourceTypeService;
-    //private SensorTypeList sensorTypeList;
-    @Autowired
-    private GeoAreaTypeService geoAreaTypeService;
+    private PowerSourceTypeList powerSourceTypeList;
+    private SensorTypeList sensorTypeList;
+    private GeographicalAreaTypeList geographicalAreaTypeList;
 
     //GeographicalArea Repository Injection
     @Autowired
-    private GeoAreaService geoAreaService;
+    private GeographicalAreaService geographicalAreaService;
 
     //House Repository Injection
     @Autowired
     private HouseService houseService;
-
-    //SensorType Repository Injection
-    @Autowired
-    private SensorTypeService sensorTypeService;
-
-    // Room Repository Injection
-    @Autowired
-    private RoomService roomService;
-
-    // HouseGrid Repository Injection
-    @Autowired
-    private HouseGridService houseGridService;
-
-    // RoomSensor Service Injection
-    @Autowired
-
-    private RoomSensorService roomSensorService;
-
-    @Autowired
-    private RoomAggregateService roomAggregateService;
-
-    @Autowired
-    private GeoAreaAggregateService geoAreaAggregateService;
 
 
     public static void main(String[] args) {
@@ -90,123 +74,6 @@ public class Main {
 
         return (args) -> {
 
-            try {
-                MyLogger.setup();
-            } catch (IOException e) {
-                e.printStackTrace();
-                throw new RuntimeException("Problems with creating the log files");
-            }
-           /* GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("City");
-            GeographicalAreaType geographicalAreaType = new GeographicalAreaType(geoAreaTypeId);
-            geoAreaTypeService.createGeoAreaType(geoAreaTypeId);
-            GetListOfTypeOfGeoArea getListOfTypeOfGeoArea = new GetListOfTypeOfGeoArea(geoAreaService);
-            getListOfTypeOfGeoArea.run(); */
-
-            /*AddNewGeographicalAreaType addNewGeographicalAreaType = new AddNewGeographicalAreaType(geoAreaTypeService);
-            addNewGeographicalAreaType.run();
-
-           /* GetListOfExistingRooms getListOfExistingRooms = new GetListOfExistingRooms(roomService);
-            getListOfExistingRooms.run();
-            AddNewGeographicalArea addNewGeographicalArea = new AddNewGeographicalArea(geoAreaService);
-            addNewGeographicalArea.run();*/
-
-            this.roomAggregateService.createRoom(new RoomId("B106"), "cenas", 1, 2, 2, 2);
-            this.roomAggregateService.createRoom(new RoomId("B107"), "cenas", 1, 2, 2, 2);
-            this.roomAggregateService.createRoom(new RoomId("B109"), "cenas", 1, 2, 2, 2);
-
-            /*DefineSensorType ui1 = new DefineSensorType(this.sensorTypeService);
-            ui1.run();*/
-
-            /*AddSensorToRoom addSensorToRoom = new AddSensorToRoom(this.roomAggregateService);
-            addSensorToRoom.run();*/
-
-            /*GetListOfSensorsAndDevicesRoom ui = new GetListOfSensorsAndDevicesRoom(roomAggregateService);
-            ui.runListOfSensors();*/
-
-            /*CreateHouseGrid ui0 = new CreateHouseGrid(houseGridService);
-            ui0.run();*/
-
-            /*GetDevicesInHouseGrid ui1 = new GetDevicesInHouseGrid(roomAggregateService);
-            ui1.run();*/
-
-            /*AddNewGeographicalAreaType ui3 = new AddNewGeographicalAreaType(this.geoAreaTypeService);
-            ui3.run();*/
-
-            /*AddNewGeographicalArea ui2 = new AddNewGeographicalArea(this.geoAreaService);
-            ui2.run();*/
-
-            DefineSensorType ui = new DefineSensorType(this.sensorTypeService);
-            ui.run();
-
-
-            /*AddSensorToGeoArea ui1 = new AddSensorToGeoArea(this.geoAreaService);
-            ui1.run();*/
-
-            //AddSensorToRoom addSensorToRoom = new AddSensorToRoom(this.roomAggregateService);
-            //addSensorToRoom.run();
-
-            AddRoom ui45 = new AddRoom(this.roomAggregateService);
-            ui45.run();
-
-            AddSensorToRoom addSensorToRoom = new AddSensorToRoom(this.roomAggregateService);
-            addSensorToRoom.run();
-
-            ImportRoomSensors ui50 = new ImportRoomSensors(this.roomAggregateService);
-            ui50.run();
-
-/*
-            AddNewGeographicalAreaType addNewGeographicalAreaType = new AddNewGeographicalAreaType(geoAreaTypeService);
-            addNewGeographicalAreaType.run();
-            */
-/*
-            geoAreaTypeService.createGeoAreaType(geographicalAreaType);
-            GetListGeoAreaTypes getListGeoAreaTypes = new GetListGeoAreaTypes(geoAreaTypeService);
-            getListGeoAreaTypes.run();*/
-/*
-            DetachRoomFromHouseGrid detachRoomFromHouseGrid = new DetachRoomFromHouseGrid(houseService);
-            detachRoomFromHouseGrid.run();
-            */
-
-
-            /*ImportGeoAreasFromJSONOrXML importGeoAreasFromJSONOrXML = new ImportGeoAreasFromJSONOrXML(geoAreaAggregateService);
-            importGeoAreasFromJSONOrXML.run();*/
-
-            ImportReadings importReadings = new ImportReadings(geoAreaAggregateService, roomAggregateService);
-            importReadings.run(2);
-
-            // GetCurrentTemperatureRoom getCurrentTemperatureRoom = new GetCurrentTemperatureRoom(roomAggregateService);
-            // getCurrentTemperatureRoom.run();
-
-            GetMaxTemperatureRoom getMaxTemperatureRoom = new GetMaxTemperatureRoom(roomAggregateService);
-            getMaxTemperatureRoom.run();
-            //ImportReadings importReadings = new ImportReadings(geoAreaService, roomSensorService);
-            //importReadings.run(1);
-
-/*            ImportReadings importReadings2 = new ImportReadings(geoAreaService, roomSensorService);
-            importReadings2.run(1);*/
-
-/*            RemoveSensorFromGeoArea removeSensorFromGeoArea = new RemoveSensorFromGeoArea(geoAreaAggregateService);
-            removeSensorFromGeoArea.run();
-
-            removeSensorFromGeoArea.run();*/
-
-
-            /*AddNewGeographicalAreaType ui1 = new AddNewGeographicalAreaType(this.geoAreaTypeService);
-            ui1.run();
-            AddNewGeographicalArea ui = new AddNewGeographicalArea(this.geoAreaService);
-            ui.run();
-            AddSensorToGeoArea ui2 = new AddSensorToGeoArea(this.geoAreaAggregateService);
-            ui2.run();
-            DeactivateSensorFromGeoArea ui3 = new DeactivateSensorFromGeoArea(this.geoAreaAggregateService);
-            ui3.run();*/
-
-           /* AddDeviceToRoom addDeviceToRoom = new AddDeviceToRoom(this.roomAggregateService);
-            addDeviceToRoom.run();*/
-
-
-        };
-    }
-/*
             data();
 
             //UI levels
@@ -295,44 +162,44 @@ public class Main {
         LocalDateTime ewhDate16 = LocalDateTime.of(2018, 12, 31, 20, 45, 00);
         LocalDateTime ewhDate17 = LocalDateTime.of(2018, 12, 31, 21, 00, 00);
         LocalDateTime ewhDate18 = LocalDateTime.of(2018, 12, 31, 21, 15, 00);
-        GeoAreaReading ewhEC = new GeoAreaReading(0.2, ewhDate);
-        GeoAreaReading ewhEC1 = new GeoAreaReading(0.375, ewhDate1);
-        GeoAreaReading ewhEC2 = new GeoAreaReading(0.375, ewhDate2);
-        GeoAreaReading ewhEC3 = new GeoAreaReading(0.375, ewhDate3);
-        GeoAreaReading ewhEC4 = new GeoAreaReading(0.375, ewhDate4);
-        GeoAreaReading ewhEC5 = new GeoAreaReading(0.25, ewhDate5);
-        GeoAreaReading ewhEC6 = new GeoAreaReading(0.2, ewhDate6);
-        GeoAreaReading ewhEC7 = new GeoAreaReading(0.2, ewhDate7);
-        GeoAreaReading ewhEC8 = new GeoAreaReading(0.2, ewhDate8);
-        GeoAreaReading ewhEC9 = new GeoAreaReading(0.375, ewhDate9);
-        GeoAreaReading ewhEC10 = new GeoAreaReading(0.375, ewhDate10);
-        GeoAreaReading ewhEC11 = new GeoAreaReading(0.375, ewhDate11);
-        GeoAreaReading ewhEC12 = new GeoAreaReading(0.375, ewhDate12);
-        GeoAreaReading ewhEC13 = new GeoAreaReading(0.2, ewhDate13);
-        GeoAreaReading ewhEC14 = new GeoAreaReading(0.1, ewhDate14);
-        GeoAreaReading ewhEC15 = new GeoAreaReading(0.375, ewhDate15);
-        GeoAreaReading ewhEC16 = new GeoAreaReading(0.375, ewhDate16);
-        GeoAreaReading ewhEC17 = new GeoAreaReading(0.375, ewhDate17);
-        GeoAreaReading ewhEC18 = new GeoAreaReading(0.15, ewhDate18);
-        GeoAreaReading ewh1EC = new GeoAreaReading(0.2, ewhDate);
-        GeoAreaReading ewh1EC1 = new GeoAreaReading(0.5, ewhDate1);
-        GeoAreaReading ewh1EC2 = new GeoAreaReading(0.5, ewhDate2);
-        GeoAreaReading ewh1EC3 = new GeoAreaReading(0.5, ewhDate3);
-        GeoAreaReading ewh1EC4 = new GeoAreaReading(0.5, ewhDate4);
-        GeoAreaReading ewh1EC5 = new GeoAreaReading(0.25, ewhDate5);
-        GeoAreaReading ewh1EC6 = new GeoAreaReading(0.2, ewhDate6);
-        GeoAreaReading ewh1EC7 = new GeoAreaReading(0.2, ewhDate7);
-        GeoAreaReading ewh1EC8 = new GeoAreaReading(0.2, ewhDate8);
-        GeoAreaReading ewh1EC9 = new GeoAreaReading(0.5, ewhDate9);
-        GeoAreaReading ewh1EC10 = new GeoAreaReading(0.5, ewhDate10);
-        GeoAreaReading ewh1EC11 = new GeoAreaReading(0.5, ewhDate11);
-        GeoAreaReading ewh1EC12 = new GeoAreaReading(0.5, ewhDate12);
-        GeoAreaReading ewh1EC13 = new GeoAreaReading(0.2, ewhDate13);
-        GeoAreaReading ewh1EC14 = new GeoAreaReading(0.1, ewhDate14);
-        GeoAreaReading ewh1EC15 = new GeoAreaReading(0.5, ewhDate15);
-        GeoAreaReading ewh1EC16 = new GeoAreaReading(0.5, ewhDate16);
-        GeoAreaReading ewh1EC17 = new GeoAreaReading(0.5, ewhDate17);
-        GeoAreaReading ewh1EC18 = new GeoAreaReading(0.15, ewhDate18);
+        Reading ewhEC = new Reading(0.2, ewhDate);
+        Reading ewhEC1 = new Reading(0.375, ewhDate1);
+        Reading ewhEC2 = new Reading(0.375, ewhDate2);
+        Reading ewhEC3 = new Reading(0.375, ewhDate3);
+        Reading ewhEC4 = new Reading(0.375, ewhDate4);
+        Reading ewhEC5 = new Reading(0.25, ewhDate5);
+        Reading ewhEC6 = new Reading(0.2, ewhDate6);
+        Reading ewhEC7 = new Reading(0.2, ewhDate7);
+        Reading ewhEC8 = new Reading(0.2, ewhDate8);
+        Reading ewhEC9 = new Reading(0.375, ewhDate9);
+        Reading ewhEC10 = new Reading(0.375, ewhDate10);
+        Reading ewhEC11 = new Reading(0.375, ewhDate11);
+        Reading ewhEC12 = new Reading(0.375, ewhDate12);
+        Reading ewhEC13 = new Reading(0.2, ewhDate13);
+        Reading ewhEC14 = new Reading(0.1, ewhDate14);
+        Reading ewhEC15 = new Reading(0.375, ewhDate15);
+        Reading ewhEC16 = new Reading(0.375, ewhDate16);
+        Reading ewhEC17 = new Reading(0.375, ewhDate17);
+        Reading ewhEC18 = new Reading(0.15, ewhDate18);
+        Reading ewh1EC = new Reading(0.2, ewhDate);
+        Reading ewh1EC1 = new Reading(0.5, ewhDate1);
+        Reading ewh1EC2 = new Reading(0.5, ewhDate2);
+        Reading ewh1EC3 = new Reading(0.5, ewhDate3);
+        Reading ewh1EC4 = new Reading(0.5, ewhDate4);
+        Reading ewh1EC5 = new Reading(0.25, ewhDate5);
+        Reading ewh1EC6 = new Reading(0.2, ewhDate6);
+        Reading ewh1EC7 = new Reading(0.2, ewhDate7);
+        Reading ewh1EC8 = new Reading(0.2, ewhDate8);
+        Reading ewh1EC9 = new Reading(0.5, ewhDate9);
+        Reading ewh1EC10 = new Reading(0.5, ewhDate10);
+        Reading ewh1EC11 = new Reading(0.5, ewhDate11);
+        Reading ewh1EC12 = new Reading(0.5, ewhDate12);
+        Reading ewh1EC13 = new Reading(0.2, ewhDate13);
+        Reading ewh1EC14 = new Reading(0.1, ewhDate14);
+        Reading ewh1EC15 = new Reading(0.5, ewhDate15);
+        Reading ewh1EC16 = new Reading(0.5, ewhDate16);
+        Reading ewh1EC17 = new Reading(0.5, ewhDate17);
+        Reading ewh1EC18 = new Reading(0.15, ewhDate18);
 
         // Dishwasher B107
         LocalDateTime dwDate = LocalDateTime.of(2018, 12, 31, 13, 00, 00);
@@ -345,37 +212,37 @@ public class Main {
         LocalDateTime dwDate7 = LocalDateTime.of(2018, 12, 31, 21, 45, 00);
         LocalDateTime dwDate8 = LocalDateTime.of(2018, 12, 31, 22, 00, 00);
         LocalDateTime dwDate9 = LocalDateTime.of(2018, 12, 31, 22, 15, 00);
-        GeoAreaReading dwEC = new GeoAreaReading(0.2, dwDate);
-        GeoAreaReading dwEC1 = new GeoAreaReading(0.3, dwDate1);
-        GeoAreaReading dwEC2 = new GeoAreaReading(0.2, dwDate2);
-        GeoAreaReading dwEC3 = new GeoAreaReading(0.2, dwDate3);
-        GeoAreaReading dwEC4 = new GeoAreaReading(0.2, dwDate4);
-        GeoAreaReading dwEC5 = new GeoAreaReading(0.1, dwDate5);
-        GeoAreaReading dwEC6 = new GeoAreaReading(0.1, dwDate6);
-        GeoAreaReading dwEC7 = new GeoAreaReading(0.375, dwDate7);
-        GeoAreaReading dwEC8 = new GeoAreaReading(0.375, dwDate8);
-        GeoAreaReading dwEC9 = new GeoAreaReading(0.2, dwDate9);
+        Reading dwEC = new Reading(0.2, dwDate);
+        Reading dwEC1 = new Reading(0.3, dwDate1);
+        Reading dwEC2 = new Reading(0.2, dwDate2);
+        Reading dwEC3 = new Reading(0.2, dwDate3);
+        Reading dwEC4 = new Reading(0.2, dwDate4);
+        Reading dwEC5 = new Reading(0.1, dwDate5);
+        Reading dwEC6 = new Reading(0.1, dwDate6);
+        Reading dwEC7 = new Reading(0.375, dwDate7);
+        Reading dwEC8 = new Reading(0.375, dwDate8);
+        Reading dwEC9 = new Reading(0.2, dwDate9);
 
         // Washing Machine B107
         LocalDateTime wmDate = LocalDateTime.of(2018, 12, 31, 10, 30, 00);
         LocalDateTime wdDate1 = LocalDateTime.of(2018, 12, 31, 10, 15, 00);
         LocalDateTime wdDate2 = LocalDateTime.of(2018, 12, 31, 13, 30, 00);
         LocalDateTime wdDate3 = LocalDateTime.of(2018, 12, 31, 13, 45, 00);
-        GeoAreaReading wmEC = new GeoAreaReading(0.4, wmDate);
-        GeoAreaReading wmEC1 = new GeoAreaReading(0.2, wdDate1);
-        GeoAreaReading wmEC2 = new GeoAreaReading(0.25, wdDate2);
-        GeoAreaReading wmEC3 = new GeoAreaReading(0.25, wdDate3);
+        Reading wmEC = new Reading(0.4, wmDate);
+        Reading wmEC1 = new Reading(0.2, wdDate1);
+        Reading wmEC2 = new Reading(0.25, wdDate2);
+        Reading wmEC3 = new Reading(0.25, wdDate3);
 
         // Washing Machine B109
         LocalDateTime wm1Date = LocalDateTime.of(2018, 12, 31, 10, 15, 00);
         LocalDateTime wm1Date1 = LocalDateTime.of(2018, 12, 31, 10, 30, 00);
         LocalDateTime wm1Date2 = LocalDateTime.of(2018, 12, 31, 10, 45, 00);
         LocalDateTime wm1Date3 = LocalDateTime.of(2018, 12, 31, 11, 00, 00);
-        GeoAreaReading wm1EC = new GeoAreaReading(0.4, wm1Date);
-        GeoAreaReading wm1EC1 = new GeoAreaReading(0.2, wm1Date1);
-        GeoAreaReading wm1EC2 = new GeoAreaReading(0.2, wm1Date2);
-        GeoAreaReading wm1EC3 = new GeoAreaReading(0.25, wm1Date3);
-        GeoAreaReading wm1EC4 = new GeoAreaReading(0.25, wm1Date3);
+        Reading wm1EC = new Reading(0.4, wm1Date);
+        Reading wm1EC1 = new Reading(0.2, wm1Date1);
+        Reading wm1EC2 = new Reading(0.2, wm1Date2);
+        Reading wm1EC3 = new Reading(0.25, wm1Date3);
+        Reading wm1EC4 = new Reading(0.25, wm1Date3);
 
 
         // ROOMS
@@ -645,11 +512,11 @@ public class Main {
         // POWER SOURCES
         PowerSourceType powerSourceType1 = new PowerSourceType("Battery");
         PowerSourceType powerSourceType2 = new PowerSourceType("Public electric grid");
-        powerSourceTypeList = new PowerSourceTypeService();
+        powerSourceTypeList = new PowerSourceTypeList();
         powerSourceTypeList.addPowerSourceType(powerSourceType1);
         powerSourceTypeList.addPowerSourceType(powerSourceType2);
 
     }
 
-*/
+
 }

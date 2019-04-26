@@ -1,7 +1,9 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.DefineSensorTypeController;
-import pt.ipp.isep.dei.project.services.SensorTypeService;
+import pt.ipp.isep.dei.project.model.sensor.SensorTypeList;
+
+import java.util.Scanner;
 
 /**
  * US005 As an Administrator, I want to define the sensor types.
@@ -11,18 +13,19 @@ public class DefineSensorType {
 
     private DefineSensorTypeController controller;
 
-    public DefineSensorType(SensorTypeService sensorTypeService) {
-        this.controller = new DefineSensorTypeController(sensorTypeService);
+    public DefineSensorType(SensorTypeList mSensorTypeList) {
+
+        this.controller = new DefineSensorTypeController(mSensorTypeList);
     }
 
     public void run() {
-        String label = "Introduce a new sensor type.";
-        String id = InputValidator.getString(label);
-        if (this.controller.createAndAddSensorType(id)) {
+        System.out.println("Introduce a new sensor type.");
+        Scanner ler = new Scanner(System.in);
+        String nome = ler.nextLine();
+        if (this.controller.createAndAddSensorType(nome)) {
             System.out.println("Success!");
-        } else {
+        } else{
             System.out.println("Try another sensor type!");
-            return;
         }
     }
 }

@@ -35,30 +35,4 @@ public class LocationDTO {
     public void setElevation(double elevation) {
         this.elevation = elevation;
     }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof LocationDTO)) {
-            return false;
-        }
-
-        LocationDTO local = (LocationDTO) obj;
-        Double comparableLatitude = latitude;
-        Double comparableLongitude = longitude;
-        Double comparableAltitude = elevation;
-        Double comparableLocalLatitude = local.latitude;
-        Double comparableLocalLongitude = local.longitude;
-        Double comparableLocalAltitude = local.elevation;
-        return comparableLocalLatitude.equals(comparableLatitude)
-                && comparableLocalLongitude.equals(comparableLongitude)
-                && comparableLocalAltitude.equals(comparableAltitude);
-    }
-
-    @Override
-    public int hashCode() {
-        return 1;
-    }
 }

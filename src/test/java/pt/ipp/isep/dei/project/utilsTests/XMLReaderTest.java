@@ -2,8 +2,8 @@ package pt.ipp.isep.dei.project.utilsTests;
 
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.LocationDTO;
+import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
-import pt.ipp.isep.dei.project.model.readings.ReadingDTO;
 import pt.ipp.isep.dei.project.utils.XMLReader;
 
 import java.io.File;
@@ -137,7 +137,7 @@ public class XMLReaderTest {
         assertEquals(expectedResult, result);
     }
 
-    /*@Test
+    @Test
     public void testReadFile_NullObject_ShouldReturnNull() {
         // Arrange
         String path = "rfg.xml";
@@ -150,7 +150,7 @@ public class XMLReaderTest {
 
         // Assert
         assertEquals(expectedResult, result);
-    }*/
+    }
 }
 
 

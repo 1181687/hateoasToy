@@ -6,9 +6,9 @@ import pt.ipp.isep.dei.project.model.ProjectFileReader;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapper;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaService;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorDTO;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorMapper;
-import pt.ipp.isep.dei.project.services.GeoAreaAggregateService;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.io.File;
@@ -17,15 +17,14 @@ import java.util.List;
 
 public class ImportGeoAreasFromJSONOrXMLController {
     @Autowired
-    private GeoAreaAggregateService geoAreaAggregateService;
+    private GeographicalAreaService geographicalAreaService;
     private ProjectFileReader reader;
     private List<Object> geoAreaDTOList;
 
 
-    public ImportGeoAreasFromJSONOrXMLController(GeoAreaAggregateService geoAreaAggregateService) {
-        this.geoAreaAggregateService = geoAreaAggregateService;
+    public ImportGeoAreasFromJSONOrXMLController(GeographicalAreaService geographicalAreaService) {
+        this.geographicalAreaService = geographicalAreaService;
     }
-
 
     /**
      * This method import the GeographicalAreaDTO list to be imported
@@ -33,24 +32,23 @@ public class ImportGeoAreasFromJSONOrXMLController {
      * @param
      * @return boolean
      */
-    public boolean importGeographicalAreasAndSensors() {
+    public boolean importGeographicalAreaAndSensors() {
         boolean imported = false;
 
         for (Object geoObject : this.geoAreaDTOList) {
             GeographicalAreaDTO geoDTO = (GeographicalAreaDTO) geoObject;
             GeographicalArea geoArea = GeographicalAreaMapper.mapToEntity(geoDTO);
-            if (geoAreaAggregateService.addGeographicalArea(geoArea)) {
+            for (GeoAreaSensorDTO sensorDTO : geoDTO.getSensors()) {
+                geoArea.addSensor(GeoAreaSensorMapper.mapToEntity(sensorDTO));
+            }
+            if (geographicalAreaService.addGeoArea(geoArea)) {
                 imported = true;
             }
-            for (GeoAreaSensorDTO geoAreaSensorDTO : geoDTO.getSensors()) {
-                if (geoAreaAggregateService.addGeoAreaSensor(GeoAreaSensorMapper.mapToEntity(geoAreaSensorDTO))) {
-                    imported = true;
-                }
-            }
         }
+        //geographicalAreaList.updateRepository();
         return imported;
-    }
 
+    }
 
     /**
      * receives the String Path (json or xml) and creates the respective reader (json or xml)

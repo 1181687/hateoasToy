@@ -1,18 +1,21 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import pt.ipp.isep.dei.project.model.devices.*;
+import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
+import pt.ipp.isep.dei.project.model.devices.Program;
+import pt.ipp.isep.dei.project.model.devices.Programmable;
+import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
-import pt.ipp.isep.dei.project.model.house.RoomDTO;
-import pt.ipp.isep.dei.project.model.house.RoomId;
-import pt.ipp.isep.dei.project.model.house.RoomMapper;
-import pt.ipp.isep.dei.project.services.RoomAggregateService;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 public class AddDeviceToRoomController {
+    private House house;
+    private Device device;
+    private Room room;
+    private Programmable programmableDevice;
+    private DeviceSpecs devSpecs;
+    private Program program;
     private static final String NOMINAL_POWER = "Nominal Power";
     private static final String LUMINOUS_FLUX = "Luminous Flux";
     private static final String ANNUAL_ENERGY_CONSUMPTION = "Annual Energy Consumption";
@@ -28,46 +31,35 @@ public class AddDeviceToRoomController {
     private static final String ATTRIBUTE_TIME = "Time";
     private static final String ATTRIBUTE_STANDBY_POWER = "Standby Power";
     private static final String ATTRIBUTE_NUMBER_OF_BOTTLES = "Number of Bottles";
-    @Autowired
-    private RoomAggregateService roomAggregateService;
-    private Device device;
-    private Room room;
-    private Programmable programmableDevice;
-    private DeviceSpecs devSpecs;
-    private Program program;
 
 
     /**
      * Constructor.
      *
-     * @param roomAggregateService
+     * @param house
      */
-    public AddDeviceToRoomController(RoomAggregateService roomAggregateService) {
-        this.roomAggregateService = roomAggregateService;
+    public AddDeviceToRoomController(House house) {
+        this.house = house;
+
     }
 
     /**
-     * Method that asks for the list of rooms from the RoomRepository.
+     * Method that asks for the list of rooms from the class RoomList.
      *
      * @return List of housegrid grids.
      */
-    public List<RoomDTO> getRoomListContent() {
-        List<RoomDTO> roomDTOS = new ArrayList<>();
-        for (Room room : roomAggregateService.getAllRooms()) {
-            roomDTOS.add(RoomMapper.mapToDTO(room));
-        }
-        return roomDTOS;
+    public String getRoomListContent() {
+        return house.getRoomListContent();
     }
 
     /**
-     * Method that asks for the room with a specific RoomId.
+     * Method that asks for the room in a specific position in the list.
      *
-     * @param roomName Specifies the roomId of the Room.
+     * @param position Specifies the position of the room in the list.
      * @return The respective room.
      */
-    public void getRoom(String roomName) {
-        RoomId roomId = new RoomId(roomName);
-        room = roomAggregateService.getRoomById(roomId);
+    public void getRoom(int position) {
+        room = house.getRoomOfTheRoomList(position);
     }
 
     /**
@@ -81,23 +73,29 @@ public class AddDeviceToRoomController {
 
 
     /**
+     * Method that asks for the size of the list of rooms.
+     *
+     * @return Size of the list.
+     */
+    public int roomListSize() {
+        return house.getRoomListSize();
+    }
+
+    /**
      * @return
      */
     public int getNumberOfDeviceTypes() {
-        return roomAggregateService.numberOfDeviceTypes();
+        return house.numberOfDeviceTypes();
     }
+
 
     /**
      * Method that asks for the content (that is the name of the device type) of list of devices from the class DeviceList.
      *
      * @return the name of the device types in the device types list.
      */
-    public List<String> getDeviceTypeListToString() {
-        List<String> deviceTypeListString = new ArrayList<>();
-        for (DeviceType deviceType : roomAggregateService.getDeviceTypes()) {
-            deviceTypeListString.add(deviceType.getTypeName());
-        }
-        return deviceTypeListString;
+    public String getDeviceTypeListToString() {
+        return house.getDeviceTypeListToString();
     }
 
     /**
@@ -105,13 +103,13 @@ public class AddDeviceToRoomController {
      *
      * @param name                    of the FridgeSpecs
      * @param annualEnergyConsumption the annual Energy Consumption of the FridgeSpecs (a specification of the FridgeSpecs)
-     * @param nominalPower            the nominal pcontroller.getRoomListContent()ower of the FridgeSpecs (a specification of the FridgeSpecs)
+     * @param nominalPower            the nominal power of the FridgeSpecs (a specification of the FridgeSpecs)
      * @param freezerCapacity         the freezer capacity of the FridgeSpecs (a specification of the FridgeSpecs)
      * @param refrigeratorCapacity    the refrigerator capacity of the FridgeSpecs (a specification of the FridgeSpecs)
      * @return the Device that has been created
      */
     public boolean createNewFridge(String name, double annualEnergyConsumption, double nominalPower, double freezerCapacity, double refrigeratorCapacity) {
-        device = roomAggregateService.createDevice("Fridge", name, getSelectedRoom());
+        device = house.createDevice("Fridge", name, getSelectedRoom());
         if (Objects.isNull(device)) {
             return false;
         }
@@ -131,7 +129,7 @@ public class AddDeviceToRoomController {
      * @return the Device that has been created
      */
     public boolean createNewLamp(String name, double nominalPower, double luminousFlux) {
-        device = roomAggregateService.createDevice("Lamp", name, getSelectedRoom());
+        device = house.createDevice("Lamp", name, getSelectedRoom());
         if (Objects.isNull(device)) {
             return false;
         }
@@ -149,7 +147,7 @@ public class AddDeviceToRoomController {
      * @return the Device that has been created
      */
     public boolean createNewDishWasher(String name, double nominalPower, int capacity) {
-        device = roomAggregateService.createDevice("DishWasher", name, getSelectedRoom());
+        device = house.createDevice("DishWasher", name, getSelectedRoom());
         if (Objects.isNull(device)) {
             return false;
         }
@@ -167,7 +165,7 @@ public class AddDeviceToRoomController {
      * @return the Device that has been created
      */
     public boolean createNewWashingMachine(String name, double nominalPower, double capacity) {
-        device = roomAggregateService.createDevice("WashingMachine", name, getSelectedRoom());
+        device = house.createDevice("WashingMachine", name, getSelectedRoom());
         if (Objects.isNull(device)) {
             return false;
         }
@@ -187,7 +185,7 @@ public class AddDeviceToRoomController {
      * @return the Device that has been created
      */
     public boolean createNewKettle(String name, double nominalPower, double maxVolumeOfWater, double coldWaterTemperature, double volumeOfWaterToHeat, double performanceRatio) {
-        device = roomAggregateService.createDevice("Kettle", name, getSelectedRoom());
+        device = house.createDevice("Kettle", name, getSelectedRoom());
         if (Objects.isNull(device)) {
             return false;
         }
@@ -209,7 +207,7 @@ public class AddDeviceToRoomController {
      * @return the Device that has been created
      */
     public boolean createNewElectricWaterHeater(String name, double hotWaterTemperature, double maximumVolume, double nominalPower, double performanceRatio) {
-        device = roomAggregateService.createDevice("ElectricWaterHeater", name, getSelectedRoom());
+        device = house.createDevice("ElectricWaterHeater", name, getSelectedRoom());
         if (Objects.isNull(device)) {
             return false;
         }
@@ -228,7 +226,7 @@ public class AddDeviceToRoomController {
      * @param time         the time that the Electric Oven is running (a specification of the Electric Oven)
      */
     public boolean createNewElectricOven(String name, double nominalPower, double time) {
-        device = roomAggregateService.createDevice("ElectricOven", name, getSelectedRoom());
+        device = house.createDevice("ElectricOven", name, getSelectedRoom());
         if (Objects.isNull(device)) {
             return false;
         }
@@ -244,8 +242,8 @@ public class AddDeviceToRoomController {
      * @param nominalPower the nominal power of the Fan (a specification of the Fan)
      * @return the Device that has been created
      */
-    public boolean createNewFan(String name, double nominalPower) {
-        device = roomAggregateService.createDevice("Fan", name, getSelectedRoom());
+    public boolean createFan(String name, double nominalPower) {
+        device = house.createDevice("Fan", name, getSelectedRoom());
         if (Objects.isNull(device)) {
             return false;
         }
@@ -262,8 +260,8 @@ public class AddDeviceToRoomController {
      * @param freezerCapacity
      * @param annualEnergyConsumption
      */
-    public boolean createNewFreezer(String name, double nominalPower, double freezerCapacity, double annualEnergyConsumption) {
-        device = roomAggregateService.createDevice("Freezer", name, getSelectedRoom());
+    public boolean createFreezer(String name, double nominalPower, double freezerCapacity, double annualEnergyConsumption) {
+        device = house.createDevice("Freezer", name, getSelectedRoom());
         if (Objects.isNull(device)) {
             return false;
         }
@@ -280,8 +278,8 @@ public class AddDeviceToRoomController {
      * @param name
      * @param nominalPower
      */
-    public boolean createNewMicroWaveOven(String name, double nominalPower) {
-        device = roomAggregateService.createDevice("MicrowaveOven", name, getSelectedRoom());
+    public boolean createMicroWaveOven(String name, double nominalPower) {
+        device = house.createDevice("MicrowaveOven", name, getSelectedRoom());
         if (Objects.isNull(device)) {
             return false;
         }
@@ -296,8 +294,8 @@ public class AddDeviceToRoomController {
      * @param nominalPower
      * @param standbyPower
      */
-    public boolean createNewTelevision(String name, double nominalPower, double standbyPower) {
-        device = roomAggregateService.createDevice("Television", name, getSelectedRoom());
+    public boolean createTelevision(String name, double nominalPower, double standbyPower) {
+        device = house.createDevice("Television", name, getSelectedRoom());
         if (Objects.isNull(device)) {
             return false;
         }
@@ -313,22 +311,13 @@ public class AddDeviceToRoomController {
      * @param nominalPower
      * @param time
      */
-    public boolean createNewWallTowelHeater(String name, double nominalPower, double time) {
-        device = roomAggregateService.createDevice("WallTowelHeater", name, getSelectedRoom());
+    public boolean createWallTowelHeater(String name, double nominalPower, double time) {
+        device = house.createDevice("WallTowelHeater", name, getSelectedRoom());
         if (Objects.isNull(device)) {
             return false;
         }
         device.setAttributesDevType(NOMINAL_POWER, nominalPower);
         device.setAttributesDevType(ATTRIBUTE_TIME, time);
-        return true;
-    }
-
-    public boolean createNewStove(String name, double nominalPower) {
-        device = roomAggregateService.createDevice("Stove", name, getSelectedRoom());
-        if (Objects.isNull(device)) {
-            return false;
-        }
-        device.setAttributesDevType(NOMINAL_POWER, nominalPower);
         return true;
     }
 
@@ -340,8 +329,8 @@ public class AddDeviceToRoomController {
      * @param numberOfBottles
      * @param annualEnergyConsumption
      */
-    public boolean createNewWineCooler(String name, double nominalPower, int numberOfBottles, double annualEnergyConsumption) {
-        device = roomAggregateService.createDevice("WineCooler", name, getSelectedRoom());
+    public boolean createWineCooler(String name, double nominalPower, int numberOfBottles, double annualEnergyConsumption) {
+        device = house.createDevice("WineCooler", name, getSelectedRoom());
         if (Objects.isNull(device)) {
             return false;
         }
@@ -354,15 +343,11 @@ public class AddDeviceToRoomController {
     /**
      * Method that displays the device list content of a Room
      *
-     * @param roomId identifier of the room
+     * @param selectedRoom position of the room in the room list
      * @return list of devices of a roomMethod that displays the content
      */
-    public List<DeviceDTO> getDeviceListContentOfARoom(String roomId) {
-        List<DeviceDTO> deviceDTOList = new ArrayList<>();
-        for (Device dev : room.getDeviceList()) {
-            deviceDTOList.add(DeviceMapper.mapToDTO(dev));
-        }
-        return deviceDTOList;
+    public String getDeviceListContentOfARoom(int selectedRoom) {
+        return house.getDeviceListContentRoom(selectedRoom);
     }
 
 
@@ -375,6 +360,7 @@ public class AddDeviceToRoomController {
         programmableDevice = devSpecs.asProgrammable();
         return programmableDevice;
     }
+
 
     public boolean isProgrammable() {
         if (getDevSpecs().isProgrammable()) {

@@ -4,12 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.ProjectFileReader;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
-import pt.ipp.isep.dei.project.model.house.Address;
-import pt.ipp.isep.dei.project.model.house.AddressMapper;
-import pt.ipp.isep.dei.project.model.house.HouseDTO;
-import pt.ipp.isep.dei.project.model.house.RoomDTO;
+import pt.ipp.isep.dei.project.model.house.*;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridDTO;
-import pt.ipp.isep.dei.project.services.HouseService;
+import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.io.*;
@@ -19,21 +16,22 @@ import java.util.Objects;
 import java.util.Properties;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
+import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
 
 public class ConfigureHouseInformationFromJsonController {
-    private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     @Autowired
     private HouseService houseService;
+    private House house;
     private List<Object> houseObjects;
     private int numberOfNotImportedRooms;
     private int numberOfNotImportedGrids;
     private ProjectFileReader reader;
 
 
-    public ConfigureHouseInformationFromJsonController(HouseService houseService) {
+    public ConfigureHouseInformationFromJsonController(House house, HouseService houseService) {
+        this.house = house;
         this.houseService = houseService;
     }
 
@@ -87,22 +85,21 @@ public class ConfigureHouseInformationFromJsonController {
         checkForInvalidGridInfo(houseDTO);
         if (!(numberOfNotImportedGrids == houseDTO.getHouseGridDTOList().size()
                 && numberOfNotImportedRooms == houseDTO.getRoomDTOList().size())) {
-            updateHouseWithRoomsAndGrids(houseDTO);
+            houseService.updateHouseWithRoomsAndGrids(houseDTO, house);
             imported = true;
         }
-        Address address = AddressMapper.mapToEntity(houseDTO.getAddressDTO());
-        writeAddressToFile(address);
+        writeAddressToFile(house.getAddress());
         return imported;
     }
 
     private void checkForInvalidRoomInfo(List<RoomDTO> dtos) {
         for (Iterator<RoomDTO> roomDTOIterator = dtos.iterator(); roomDTOIterator.hasNext(); ) {
             RoomDTO roomDTO = roomDTOIterator.next();
-            String roomId = roomDTO.getId();
+            RoomId roomId = new RoomId(roomDTO.getRoomId());
             double height = roomDTO.getHeight();
             double length = roomDTO.getLength();
             double width = roomDTO.getWidth();
-            if (Objects.isNull(roomId)) {
+            if (Objects.isNull(roomId.getId())) {
                 numberOfNotImportedRooms++;
                 LOGGER.log(Level.WARNING, "Room was not imported because it has a null id.");
                 roomDTOIterator.remove();
@@ -111,7 +108,7 @@ public class ConfigureHouseInformationFromJsonController {
             if (this.houseService.roomExists(roomId)) {
                 numberOfNotImportedRooms++;
                 String invalidInfo = "id: " + roomId + ".";
-                LOGGER.log(Level.WARNING, "Room was not imported because " + roomId + " already exists: " + invalidInfo);
+                LOGGER.log(Level.WARNING, "Room was not imported because " + roomId.getId() + " already exists: " + invalidInfo);
                 roomDTOIterator.remove();
                 continue;
             }
@@ -119,8 +116,8 @@ public class ConfigureHouseInformationFromJsonController {
                     Double.isNaN(width) || Utils.isFirstDoubleSmallerThanOrEqualToSecondOne(width, 0.0) ||
                     Double.isNaN(height) || Utils.isFirstDoubleSmallerThanOrEqualToSecondOne(height, 0.0)) {
                 numberOfNotImportedRooms++;
-                String invalidInfo = "id: " + roomDTO.getId() + ".";
-                LOGGER.log(Level.WARNING, "Room was not imported because " + roomId + " does not have valid dimensions " + invalidInfo);
+                String invalidInfo = "id: " + roomDTO.getRoomId() + ".";
+                LOGGER.log(Level.WARNING, "Room was not imported because " + roomId.getId() + " does not have valid dimensions " + invalidInfo);
                 roomDTOIterator.remove();
             }
         }
@@ -128,11 +125,11 @@ public class ConfigureHouseInformationFromJsonController {
 
     private void checkForInvalidGridInfo(HouseDTO houseDTO) {
         List<HouseGridDTO> houseGridDTOS = houseDTO.getHouseGridDTOList();
-        //List<RoomDTO> roomDTOS = houseDTO.getRoomDTOList();
+        List<RoomDTO> roomDTOS = houseDTO.getRoomDTOList();
         for (Iterator<HouseGridDTO> houseGridDTOIterator = houseGridDTOS.iterator(); houseGridDTOIterator.hasNext(); ) {
             HouseGridDTO houseGridDTO = houseGridDTOIterator.next();
-            String houseGridId = houseGridDTO.getId();
-            if (Objects.isNull(houseGridId)) {
+            HouseGridId houseGridId = new HouseGridId(houseGridDTO.getName());
+            if (Objects.isNull(houseGridId.getHousegridId())) {
                 numberOfNotImportedGrids++;
                 LOGGER.log(Level.WARNING, "House grid was not imported because it has a null id.");
                 houseGridDTOIterator.remove();
@@ -141,10 +138,10 @@ public class ConfigureHouseInformationFromJsonController {
             if (this.houseService.gridExists(houseGridId)) {
                 numberOfNotImportedGrids++;
                 String invalidInfo = "id: " + houseGridId + ".";
-                LOGGER.log(Level.WARNING, "House grid was not imported because " + houseGridId + " already exists: " + invalidInfo);
+                LOGGER.log(Level.WARNING, "House grid was not imported because " + houseGridId.getHousegridId() + " already exists: " + invalidInfo);
                 houseGridDTOIterator.remove();
             }
-            //houseGridDTO.getRoomDTOS().removeIf(roomDTO -> !roomDTOS.contains(roomDTO));
+            houseGridDTO.getRoomDTOS().removeIf(roomDTO -> !roomDTOS.contains(roomDTO));
         }
     }
 
@@ -186,29 +183,6 @@ public class ConfigureHouseInformationFromJsonController {
                 }
             }
         }
-    }
-
-    public void updateHouseWithRoomsAndGrids(HouseDTO houseDTO) {
-        Address houseAddress = AddressMapper.mapToEntity(houseDTO.getAddressDTO());
-        if (Objects.isNull(houseAddress.getLocation())&& Objects.nonNull(this.houseService.getAddress())) {
-            houseAddress.setLocation(this.houseService.getLocation());
-        }
-        if (Objects.isNull(houseAddress.getInsertedGeoArea())&& Objects.nonNull(this.houseService.getAddress())) {
-            houseAddress.setInsertedGeoArea(this.houseService.getInsertedGeoArea());
-        }
-        this.houseService.setAddress(houseAddress);
-
-        for (RoomDTO roomDTO : houseDTO.getRoomDTOList()) {
-            //Room room = RoomMapper.mapToEntity(roomDTO);
-
-            this.houseService.createRoom(roomDTO.getId(), roomDTO.getDescription(), roomDTO.getHouseFloor(), roomDTO.getLength(), roomDTO.getWidth(), roomDTO.getHeight());
-
-        }
-        for (HouseGridDTO houseGridDTO : houseDTO.getHouseGridDTOList()) {
-            this.houseService.addGrid(houseGridDTO.getId());
-
-        }
-
     }
 }
 

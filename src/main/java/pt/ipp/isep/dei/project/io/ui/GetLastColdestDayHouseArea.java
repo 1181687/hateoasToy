@@ -1,30 +1,26 @@
 package pt.ipp.isep.dei.project.io.ui;
 
-import pt.ipp.isep.dei.project.controllers.GetInfoHouseAreaController;
 import pt.ipp.isep.dei.project.controllers.getlastcoldestdayhouseareacontroller.GetLastColdestDayHouseAreaController;
+import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.house.House;
-import pt.ipp.isep.dei.project.model.readings.ReadingDTO;
-import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
-import pt.ipp.isep.dei.project.services.GeoAreaAggregateService;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
-import java.util.Objects;
 
 public class GetLastColdestDayHouseArea {
 
-    private GetInfoHouseAreaController controller;
+    private GetLastColdestDayHouseAreaController controller;
     private ReadingDTO readingDTO;
     private LocalDate firstDate;
     private LocalDate lastDate;
 
-    public GetLastColdestDayHouseArea(House house, GeoAreaAggregateService geoAreaAggregateService) {
-        this.controller = new GetInfoHouseAreaController(house, geoAreaAggregateService);
+    public GetLastColdestDayHouseArea(House house) {
+        this.controller = new GetLastColdestDayHouseAreaController(house);
     }
 
     public void run() {
 
-        if (!controller.hasSensorsOfGivenTypeInGeoArea(new SensorTypeId("Temperature"))) {
+        if (!controller.hasSensorsOfGivenTypeInGeoArea()) {
             System.out.println("There are no temperature sensors in the house area.\n");
         } else {
 

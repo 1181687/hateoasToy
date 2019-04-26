@@ -1,66 +1,73 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.devices.Device;
-import pt.ipp.isep.dei.project.model.devices.DeviceDTO;
-import pt.ipp.isep.dei.project.model.devices.DeviceMapper;
-import pt.ipp.isep.dei.project.model.house.Room;
-import pt.ipp.isep.dei.project.model.house.RoomDTO;
-import pt.ipp.isep.dei.project.model.house.RoomId;
-import pt.ipp.isep.dei.project.model.house.RoomMapper;
-import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
-import pt.ipp.isep.dei.project.model.sensor.RoomSensorDTO;
-import pt.ipp.isep.dei.project.model.sensor.RoomSensorMapper;
-import pt.ipp.isep.dei.project.services.RoomAggregateService;
-
-import java.util.ArrayList;
-import java.util.List;
+import pt.ipp.isep.dei.project.model.house.House;
+import pt.ipp.isep.dei.project.model.house.RoomList;
 
 public class GetListOfSensorsAndDevicesRoomController {
 
-    private RoomAggregateService roomAggregateService;
+    private House house;
 
-    public GetListOfSensorsAndDevicesRoomController(RoomAggregateService roomAggregateService) {
-        this.roomAggregateService = roomAggregateService;
+    public GetListOfSensorsAndDevicesRoomController(House house) {
+        this.house = house;
     }
 
-
-    public List<RoomDTO> getRoomDTOList() {
-        List<RoomDTO> roomDTOList = new ArrayList<>();
-        for (Room room : roomAggregateService.getAllRooms()) {
-            roomDTOList.add(RoomMapper.mapToDTO(room));
-        }
-        return roomDTOList;
+    /**
+     * method that return the method getListOfRooms of the class House
+     *
+     * @return the room list.
+     */
+    public RoomList getListOfRooms() {
+        return this.house.getRoomList();
     }
 
-    public List<RoomSensorDTO> getRoomSensorDTOList() {
-        List<RoomSensorDTO> roomSensorDTOList = new ArrayList<>();
-        for (RoomSensor roomSensor : roomAggregateService.getAllRoomSensors()) {
-            roomSensorDTOList.add(RoomSensorMapper.mapToDTO(roomSensor));
-        }
-        return roomSensorDTOList;
+    /**
+     * method that return the method getRoomNameByPosition of the class House
+     *
+     * @param option
+     * @return the name of the chosen room in a specific position of the room list.
+     */
+    public String getRoomNameByPosition(int option) {
+        return this.house.getRoomNameByPosition(option);
     }
 
-    public List<DeviceDTO> getDeviceDTOList(String id) {
-        RoomId roomId = new RoomId(id);
-        List<DeviceDTO> deviceDTOList = new ArrayList<>();
-        for (Device device : roomAggregateService.getAllDevices(roomId)) {
-            deviceDTOList.add(DeviceMapper.mapToDTO(device));
-        }
-        return deviceDTOList;
+    /**
+     * method that return the method getRoomListContent of the class House
+     *
+     * @return the room list content.
+     */
+    public String getRoomListContent() {
+        return this.house.getRoomListContent();
     }
 
+    /*
+     */
+/**
+ * method that return the method getSensorListToString of the class House
+ * @param position
+ * @return the sensor list content of a room by a position
+ *//*
 
-    public Room getRoomdById(RoomId roomId) {
-        return roomAggregateService.getRoomdById(roomId);
+    public String getSensorsListContent(int position) {
+        return this.house.getSensorListContentOfARoom(position);
     }
 
+    */
+/**
+ * method that return the method isSensorListEmpty of the class House
+ * @param position
+ *//*
 
-    /* /**
+    public boolean isSensorListEmpty(int position) {
+        return this.house.isSensorListEmpty(position);
+    }
+*/
+
+    /**
      * method that returns the method getDeviceListContentByPosition of the class House
      *
      * @param position
      * @return the device list content of a room by position
-     *//*
+     */
     public String getDeviceListContent(int position) {
         return this.house.getDeviceListContentRoom(position);
     }
@@ -68,10 +75,18 @@ public class GetListOfSensorsAndDevicesRoomController {
     /**
      * method that returns the method deviceListEmpty of the Class House
      * @param position
-     *//*
+     */
     public boolean isDeviceListEmpty(int position) {
         return this.house.isDeviceListEmpty(position);
-    }*/
+    }
 
+    /**
+     * method thar returns the method getRoomListSize from the class House
+     *
+     * @return
+     */
+    public int roomListSize() {
+        return house.getRoomListSize();
+    }
 
 }

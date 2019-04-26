@@ -39,7 +39,7 @@ Class GeographicalAreaMapper{
 }
 
 Class GeographicalAreaList {
--geoAreaService: List<GeographicalArea>
+-geoAreaList: List<GeographicalArea>
 +getGeoAreaById()
 }
 

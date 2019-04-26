@@ -1,32 +1,40 @@
 package pt.ipp.isep.dei.project.controllers;
 
 
-import pt.ipp.isep.dei.project.services.HouseGridService;
+import pt.ipp.isep.dei.project.model.house.House;
+import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
+import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridDTO;
+import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridMapper;
+
+import java.util.List;
 
 
 public class CreateHouseGridController {
 
-    private HouseGridService houseGridService;
+    private House house;
 
-    /**
-     * Constructor.
-     *
-     * @param houseGridService Service to be used.
-     */
-    public CreateHouseGridController(HouseGridService houseGridService) {
-        this.houseGridService = houseGridService;
+    public CreateHouseGridController(House house) {
+        this.house = house;
     }
 
     /**
-     * Method that creates a house grid and adds it to the repo.
-     * If there isn't already a house grid with that id in the repo, a new house grid is created and added to it.
-     * Else, no house grid is created and/or sent to the repo.
+     * Get method.
      *
-     * @param gridId String to be used.
-     * @return True or false.
+     * @return mHouseGridList.
      */
-    public boolean createANewHouseGrid(String gridId) {
-        return houseGridService.createHouseGrid(gridId);
+    public List<HouseGrid> getHouseGridList() {
+        return house.getHouseGridList();
+    }
+
+    /**
+     * Method that creates a new housegrid grid.
+     *
+     * @param gridDTO HouseGridDTO.
+     * @return New object of the class housegrid.
+     */
+    public boolean createANewHouseGrid(HouseGridDTO gridDTO) {
+        HouseGrid newGrid = HouseGridMapper.mapToEntity(gridDTO);
+        return house.createHouseGrid(newGrid);
     }
 
 }

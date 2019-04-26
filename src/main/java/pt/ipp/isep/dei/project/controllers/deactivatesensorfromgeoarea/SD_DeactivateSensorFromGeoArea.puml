@@ -28,7 +28,7 @@ activate "ctrl : DeactivateSensor\nFromGeoArea\nController"
 
 "ctrl : DeactivateSensor\nFromGeoArea\nController" -> "GeographicalAreaList": getGeoAreaList()
 activate "GeographicalAreaList"
-"GeographicalAreaList" --> "ctrl : DeactivateSensor\nFromGeoArea\nController": geoAreaService
+"GeographicalAreaList" --> "ctrl : DeactivateSensor\nFromGeoArea\nController": geoAreaList
 ref over "ctrl : DeactivateSensor\nFromGeoArea\nController"
 getGeoAreaList()
 end

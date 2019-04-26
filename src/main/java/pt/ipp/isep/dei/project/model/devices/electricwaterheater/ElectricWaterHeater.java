@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.model.devices.electricwaterheater;
 
+import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
-import pt.ipp.isep.dei.project.model.devices.DeviceReading;
 import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
 import pt.ipp.isep.dei.project.model.house.Room;
 
@@ -15,7 +15,7 @@ public class ElectricWaterHeater implements Device {
     private String name;
     private Room location;
     private ElectricWaterHeaterSpecs specs;
-    private List<DeviceReading> readingList;
+    private List<Reading> readingList;
     private boolean isActive;
     private LocalDateTime deactivationDate;
 
@@ -88,7 +88,6 @@ public class ElectricWaterHeater implements Device {
 
     /**
      * method that gets the Device Specifications
-     *
      * @return DeviceSpecs
      */
     @Override
@@ -102,7 +101,7 @@ public class ElectricWaterHeater implements Device {
      * @return
      */
     @Override
-    public List<DeviceReading> getReadings() {
+    public List<Reading> getReadings() {
         return this.readingList;
     }
 

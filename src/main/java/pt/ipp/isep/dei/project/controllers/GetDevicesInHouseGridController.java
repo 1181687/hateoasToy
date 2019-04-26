@@ -1,12 +1,6 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
-import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridDTO;
-import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridMapper;
-import pt.ipp.isep.dei.project.services.HouseService;
-
-import java.util.ArrayList;
-import java.util.List;
+import pt.ipp.isep.dei.project.model.house.House;
 
 /**
  * US160 As a Power User[or administrator], i want to get a list of all devices in a grid,
@@ -14,25 +8,28 @@ import java.util.List;
  */
 
 public class GetDevicesInHouseGridController {
-    private HouseService houseService;
+    private House house;
 
-
-    public GetDevicesInHouseGridController(HouseService houseService) {
-        this.houseService = houseService;
+    /**
+     * constructor that receives a House
+     *
+     * @param house House received
+     */
+    public GetDevicesInHouseGridController(House house) {
+        this.house = house;
     }
 
-    public String getDeviceListContentNameTypeLocationByGrid(String id) {
-        return houseService.getDeviceListContentNameTypeLocationByGrid(id);
+    public String getDeviceListContentNameTypeLocationByGrid(int position) {
+        return house.getDeviceListContentNameTypeLocationByGrid(position);
     }
 
-    public List<HouseGridDTO> getHouseGridDTOList() {
-        List<HouseGrid> houseGridList = this.houseService.getAllGrids();
-        List<HouseGridDTO> houseGridDTOList = new ArrayList<>();
-        for (HouseGrid houseGrid : houseGridList) {
-            HouseGridDTO houseGridDTO = HouseGridMapper.mapToDTO(houseGrid);
-            houseGridDTOList.add(houseGridDTO);
-        }
-        return houseGridDTOList;
+    /**
+     * Method that shows the content of the housegrid grids in the list.
+     *
+     * @return String
+     */
+    public String getHouseGridListToString() {
+        return this.house.getHouseGridListToString();
     }
 
     /**
@@ -40,26 +37,32 @@ public class GetDevicesInHouseGridController {
      * @return True or false.
      */
     public boolean isHouseGridListEmpty() {
-        return houseService.isHouseGridListEmpty();
+        return house.isHouseGridListEmpty();
+    }
+
+    /**
+     * method that gets the size of House Grid List
+     *
+     * @return integer
+     */
+    public int getHouseGridListSize() {
+        return this.house.getHouseGridListSize();
     }
 
     /**
      * method that checks if there are no devices in the RoomList
      * @return true if there aren't devices. False if there are devices
      */
-    public boolean checkIfThereAreNoDevicesInGridbyId(String houseGridId) {
-        return this.houseService.getDeviceListByRoomOfGridById(houseGridId);
+    public boolean checkIfThereAreNoDevicesInGridbyPosition(int position) {
+        return this.house.checkIfThereAreNoDevicesInGridbyPosition(position);
     }
-
 
     /**
      * method that gets the name of House Grid by it's position in the list of housegrid grids.
-     * @param houseGridDTO DTO of the House Grid
+     * @param position position of the House Grid
      * @return String name
      */
-    public String getGridNameById(HouseGridDTO houseGridDTO) {
-        return this.houseService.getGridNameById(houseGridDTO.getId());
+    public String getGridNameByPosition(int position) {
+        return this.house.getGridNameByPosition(position);
     }
-
-
 }

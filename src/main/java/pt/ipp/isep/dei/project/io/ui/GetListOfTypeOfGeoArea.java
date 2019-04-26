@@ -1,11 +1,11 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.GetListOfTypeOfGeoAreaController;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaTypeDTO;
-import pt.ipp.isep.dei.project.services.GeoAreaService;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaService;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaTypeList;
 
 import java.util.List;
+import java.util.Scanner;
 
 public class GetListOfTypeOfGeoArea {
 
@@ -15,46 +15,38 @@ public class GetListOfTypeOfGeoArea {
     private GetListOfTypeOfGeoAreaController controller;
 
 
-    public GetListOfTypeOfGeoArea(GeoAreaService geoAreaService) {
-        this.controller = new GetListOfTypeOfGeoAreaController(geoAreaService);
+    public GetListOfTypeOfGeoArea(GeographicalAreaService lista, GeographicalAreaTypeList listaTAG) {
+        this.controller = new GetListOfTypeOfGeoAreaController(lista, listaTAG);
     }
 
     public void run() {
-        String exitMenu = "0 - Return to the previous menu";
-        List<GeographicalAreaTypeDTO> geographicalAreaTypeDTOS = controller.getListOfGeoAreaTypes();
-        if (geographicalAreaTypeDTOS.isEmpty()) {
-            System.out.println("There are no geographical area types defined. Please create a new type.");
-            return;
+        System.out.println("Choose the Geographical Area type you wish to see.");
+        List<String> listaDeTiposDeAG = controller.getListaDosTiposDeAG();
+        Scanner ler = new Scanner(System.in);
+        int opcaoEscolhida = -1;
+        do {
+            for (int i = 1; i <= listaDeTiposDeAG.size(); i++) {
+                System.out.println(i + "-" + listaDeTiposDeAG.get(i - 1));
+            }
+            opcaoEscolhida = ler.nextInt();
         }
-        System.out.println("Choose the Geographical Area type you wish to see: ");
-        int listIterator = 1;
-        for (GeographicalAreaTypeDTO geographicalAreaTypeDTO : geographicalAreaTypeDTOS) {
-            System.out.println(listIterator + " - " + geographicalAreaTypeDTO.getGeoAreaType());
-            listIterator++;
-        }
-        System.out.println(exitMenu);
+        while (opcaoEscolhida < 1 || opcaoEscolhida > listaDeTiposDeAG.size());
 
-        int option = InputValidator.getIntRange("\nChoose an option", 1, geographicalAreaTypeDTOS.size()) - 1;
+        String tipoEscolhido = listaDeTiposDeAG.get(opcaoEscolhida - 1);
 
-        if (option == -1) {
-            return;
-        }
+        List<String> listaDeAGPorTipo = controller.getListaAGPorTipo(tipoEscolhido);
 
-        String chosenType = geographicalAreaTypeDTOS.get(option).getGeoAreaType();
-
-        List<GeographicalAreaDTO> geoAreaByType = controller.getListOfGeographicalAreasByType(chosenType);
-
-        if (geoAreaByType.isEmpty()) {
+        if (listaDeAGPorTipo.isEmpty()) {
             System.out.println("No Geographical Areas of the chosen type were found.");
         } else {
-            if (geoAreaByType.size() == 1) {
-                System.out.println("The Geographical Area of the type " + chosenType + " is:");
+            if (listaDeAGPorTipo.size() == 1) {
+                System.out.println("The Geographical Area of the type " + tipoEscolhido + " is:");
             }
-            if (geoAreaByType.size() > 1) {
-                System.out.println("The Geographical Areas of the type " + chosenType + " are:");
+            if (listaDeAGPorTipo.size() > 1) {
+                System.out.println("The Geographical Areas of the type " + tipoEscolhido + " are:");
             }
-            for (int i = 0; i < geoAreaByType.size(); i++) {
-                System.out.println(geoAreaByType.get(i));
+            for (int i = 0; i < listaDeAGPorTipo.size(); i++) {
+                System.out.println(listaDeAGPorTipo.get(i));
             }
             System.out.println();
         }

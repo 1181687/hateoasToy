@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.model.devices.electricoven;
 
+import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
-import pt.ipp.isep.dei.project.model.devices.DeviceReading;
 import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
 import pt.ipp.isep.dei.project.model.house.Room;
 
@@ -15,7 +15,7 @@ public class ElectricOven implements Device {
     private String name;
     private Room location;
     private ElectricOvenSpecs specs;
-    private List<DeviceReading> readingList;
+    private List<Reading> readingList;
     private boolean isActive;
     private LocalDateTime deactivationDate;
 
@@ -66,7 +66,7 @@ public class ElectricOven implements Device {
      */
     @Override
     public boolean getIsActive() {
-        return this.isActive;
+        return false;
     }
 
     /**
@@ -75,7 +75,7 @@ public class ElectricOven implements Device {
      * @return
      */
     @Override
-    public List<DeviceReading> getReadings() {
+    public List<Reading> getReadings() {
         return this.readingList;
     }
 
@@ -90,12 +90,11 @@ public class ElectricOven implements Device {
     }
 
     /**
-     * -     * method that set the location (room) of a added device.
-     * -     *
-     * -     * @param location
-     * -     * @return false if the location is equals to another device. True if not.
-     * -
-     */
+     -     * method that set the location (room) of a added device.
+     -     *
+     -     * @param location
+     -     * @return false if the location is equals to another device. True if not.
+     -     */
     @Override
     public boolean setLocation(Room location) {
         if (Objects.isNull(this.location)) {

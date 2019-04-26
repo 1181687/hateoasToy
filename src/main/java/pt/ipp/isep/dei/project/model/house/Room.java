@@ -1,28 +1,26 @@
 package pt.ipp.isep.dei.project.model.house;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Configurable;
-import pt.ipp.isep.dei.project.RoomSensorRepository;
 import pt.ipp.isep.dei.project.model.Measurable;
+import pt.ipp.isep.dei.project.model.Reading;
+import pt.ipp.isep.dei.project.model.RoomReading;
 import pt.ipp.isep.dei.project.model.devices.Device;
-import pt.ipp.isep.dei.project.model.devices.DeviceReading;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
+import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
+import pt.ipp.isep.dei.project.model.sensor.RoomSensorList;
+import pt.ipp.isep.dei.project.model.sensor.SensorType;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 import static java.util.Objects.isNull;
 
 @Entity
-@Configurable
 public class Room implements Measurable {
 
     //@Id
-    @Column(name = "RoomID", insertable = false, updatable = false)
+    @Column(name = "cenas", insertable = false, updatable = false)
     @EmbeddedId
     private RoomId roomId;
     private String description;
@@ -34,33 +32,31 @@ public class Room implements Measurable {
     @Embedded
     private Dimension dimension;
 
-    @Autowired
-    private transient RoomSensorRepository repo;
-
-    //  @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    // @JoinColumn
-    // private RoomSensorService sensorList;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn
+    private RoomSensorList sensorList;
 
     @Transient
-    private List<Device> deviceList = new ArrayList<>();
+    private List<Device> deviceList;
 
     /**
      * constructor that receives name, houseFloor, dimension
      * throw an exception if any of the parameters is invalid.
      * Invalid parameters if Dimension is null or name is null or empty
-     * <p>
-     * //@param roomId
-     * //@param houseFloor
-     * //@param dimension
+     *
+     * @param roomId
+     * @param houseFloor
+     * @param dimension
      */
-    public Room(RoomId roomId, String description, int houseFloor, Dimension dimension) {
-        validateName(roomId.getId());
+    public Room(String roomId, String description, int houseFloor, Dimension dimension) {
+        validateName(roomId);
         validateDimensions(dimension);
-        this.roomId = new RoomId(roomId.getId().trim());
+        this.roomId = new RoomId(roomId.trim());
         this.description = description;
         this.houseFloor = houseFloor;
         this.dimension = dimension;
-        //this.deviceList = new ArrayList<>();
+        this.sensorList = new RoomSensorList();
+        this.deviceList = new ArrayList<>();
     }
 
     protected Room() {
@@ -96,32 +92,22 @@ public class Room implements Measurable {
     }
 
     /**
-     * Get method.
-     *
-     * @return String with the description.
-     */
-    public String getDescription() {
-        return description;
-    }
-
-    /**
-     * Get method.
-     *
-     * @return HouseGridId.
-     */
-    public HouseGridId getHouseGridId() {
-        return houseGridId;
-    }
-
-    /**
      * Get method
      *
      * @return name
      */
-    public RoomId getRoomId() {
-        return this.roomId;
+    public String getRoomId() {
+        return roomId.getId();
     }
 
+    /**
+     * Method that defines the name of the room
+     *
+     * @param name name of a room (string)
+     */
+    public void setRoomId(String name) {
+        this.roomId = new RoomId(name);
+    }
 
     /**
      * Get Method
@@ -132,14 +118,14 @@ public class Room implements Measurable {
         return houseFloor;
     }
 
-    /*@Override
-    public List<GeoAreaReading> getReadings() {
-        List<GeoAreaReading> listOfGeoAreaReadings = new ArrayList<>();
+    @Override
+    public List<Reading> getReadings() {
+        List<Reading> listOfReadings = new ArrayList<>();
         for (Device device : this.deviceList) {
-            listOfGeoAreaReadings.addAll(device.getReadings());
+            listOfReadings.addAll(device.getReadings());
         }
-        return listOfGeoAreaReadings;
-    }*/
+        return listOfReadings;
+    }
 
     /**
      * Method that defines the House Floor number of the room
@@ -174,8 +160,6 @@ public class Room implements Measurable {
         return content.toString();
     }
 
-
-
     /**
      * method that creates the same hashcode to rooms with the same attribute name.
      *
@@ -206,14 +190,6 @@ public class Room implements Measurable {
         return this.roomId.getId().equalsIgnoreCase(roomOne.roomId.getId());
     }
 
-    public boolean detachRoomFromHouseGrid() {
-        if (Objects.isNull(this.houseGridId)) {
-            return false;
-        }
-        this.houseGridId = null;
-        return true;
-    }
-
 
     /**
      * This method add a new sensor to the list of sensors in the room
@@ -222,9 +198,9 @@ public class Room implements Measurable {
      * @return a new sensor to the list of sensors
      */
 
-   /* public boolean addSensorToListOfSensorsInRoom(RoomSensor newSensor) {
-        return this.sensorList.addGeoAreaSensor(newSensor);
-    }*/
+    public boolean addSensorToListOfSensorsInRoom(RoomSensor newSensor) {
+        return this.sensorList.addSensor(newSensor);
+    }
 
 
 /**
@@ -232,48 +208,34 @@ public class Room implements Measurable {
  *
  * @return the list of sensors.
  */
-/*
-public RoomSensorService getSensorList() {
+
+public RoomSensorList getSensorList() {
         return sensorList;
     }
-*/
+
 
 /**
- * @param
- * @param
+ * @param type of sensor (temperature)
+ * @param date any given day
  * @return maximum temperature
  */
 
-  /*  public double getMaximumMeasurementInGivenDay(SensorType type, LocalDate date) {
+public double getMaximumMeasurementInGivenDay(SensorType type, LocalDate date) {
         return sensorList.getMaximumMeasureOfTypeOfSensorInGivenDay(type, date);
-    }*/
-
-
-
-
-/*public RoomReading getLatestMeasurementBySensorType(SensorType type) {
-    return new RoomReading(sensorList.getLatestMeasurementBySensorType(type).getValue(), sensorList.getLatestMeasurementBySensorType(type).getDateTime());
-    }
-*/
-@Override
-public String getNameToString() {
-    return null;
 }
 
-    @Override
-    public double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
-        return 0;
+
+    /**
+     * Method that gets the latest measurement by type of sensor
+     *
+     * @param type type of sensor
+     * @return latest measurement by sensor type
+     */
+
+    public RoomReading getLatestMeasurementBySensorType(SensorType type) {
+        return new RoomReading(sensorList.getLatestMeasurementBySensorType(type).getValue(), sensorList.getLatestMeasurementBySensorType(type).getDateTime());
     }
 
-    @Override
-    public Map<LocalDateTime, Double> getDataSeries(LocalDateTime startDate, LocalDateTime endDate) {
-        return null;
-    }
-
-    @Override
-    public List<DeviceReading> getReadings() {
-        return null;
-    }
 
     /**
      * Method that return the nominal power of the list of devices in the room.
@@ -284,7 +246,7 @@ public String getNameToString() {
     @Override
     public double getNominalPower() {
         double totalNominalPower = 0;
-        if (!this.deviceList.isEmpty()) {
+        if (this.getSize() != 0) {
             for (Device device : this.deviceList) {
                 totalNominalPower += device.getNominalPower();
             }
@@ -320,7 +282,7 @@ public String getNameToString() {
      *
      * @return content of the device list
      */
-   /* public String getDeviceListToString() {
+    public String getDeviceListToString() {
         StringBuilder content = new StringBuilder();
         int deviceListLength = this.getSize();
         int numberInTheList = 1;
@@ -330,7 +292,7 @@ public String getNameToString() {
             numberInTheList++;
         }
         return content.toString();
-    }*/
+    }
 
     /**
      * method that checks if Device List of the room is empty
@@ -361,14 +323,12 @@ public String getNameToString() {
      *
      * @return String
      */
-    /*
     @Override
     public String getNameToString() {
         StringBuilder name = new StringBuilder();
         name.append("Room: " + this.roomId + "\n");
         return name.toString();
     }
-    */
 
     /**
      * method that get the enery consumption of the room in an interval
@@ -377,7 +337,7 @@ public String getNameToString() {
      * @param endDate
      * @return the total energy consumption
      */
-   /* @Override
+    @Override
     public double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
         double totalEnergyConsumption = 0;
         if (!this.deviceList.isEmpty()) {
@@ -401,7 +361,7 @@ public String getNameToString() {
             }
         }
         return map;
-    }*/
+    }
 
     /**
      * get List of devices
@@ -412,32 +372,23 @@ public String getNameToString() {
         return this.deviceList;
     }
 
-    public Device getDevice(String deviceName) {
-        for (Device device : deviceList) {
-            if (device.getName().equals(deviceName)) {
-                return device;
-            }
-        }
-        return null;
-    }
-
     /**
      * get size of list of devices
      *
      * @return integer
      */
-   /* public int getSize() {
+    public int getSize() {
         return this.deviceList.size();
-    }*/
+    }
 
     /**
      * method that get a Device by it's position
      * @param position integer position of Device
      * @return Device
      */
-    /*public Device getDeviceByPosition(int position) {
+    public Device getDeviceByPosition(int position) {
         return this.deviceList.get(position);
-    }*/
+    }
 
     /**
      * method that check if a name of a Device already exists on the list of devices.
@@ -460,16 +411,16 @@ public String getNameToString() {
     /**
      * method that check if the device list is empty
      */
-  /*  public boolean isEmpty() {
+    public boolean isEmpty() {
         return this.deviceList.isEmpty();
-    }*/
+    }
 
     /**
      * method that gets the state of every device in the list of devices.
      *
      * @return String of the name and the status of the device ("Activated" or "Deactivated").
      */
-   /* public String getActiveDeactiveDeviceListToString() {
+    public String getActiveDeactiveDeviceListToString() {
         String deviceName = " - Device name: ";
         StringBuilder content = new StringBuilder();
         int deviceListLength = getSize();
@@ -487,14 +438,14 @@ public String getNameToString() {
             }
         }
         return content.toString();
-    }*/
+    }
 
     /**
      * Method that remove a device from the list of devices
      */
-   /* public boolean removeDevice(Device device) {
+    public boolean removeDevice(Device device) {
         return this.deviceList.remove(device);
-    }*/
+    }
 
     /**
      * Method that gets all the devices of a certain type.
@@ -502,7 +453,7 @@ public String getNameToString() {
      * @param type Required type.
      * @return DeviceList with all the devices of the required type.
      */
-  /*  public List<Device> getAllDevicesOfAType(String type) {
+    public List<Device> getAllDevicesOfAType(String type) {
         List<Device> listOfDevicesWithTheType = new ArrayList<>();
         for (Device device : this.deviceList) {
             if (device.getType().equals(type)) {
@@ -510,7 +461,7 @@ public String getNameToString() {
             }
         }
         return listOfDevicesWithTheType;
-    }*/
+    }
 
     /**
      * method that delete a device from the list of devices.
@@ -518,7 +469,7 @@ public String getNameToString() {
      * @param device
      * @return true if the device was removed. False if not.
      */
-   /* public boolean deleteDevice(String device) {
+    public boolean deleteDevice(String device) {
         for (Device searchDevice : this.deviceList) {
             if (device.equals(searchDevice.getName())) {
                 this.deviceList.remove(searchDevice);
@@ -527,28 +478,27 @@ public String getNameToString() {
         }
         return false;
     }
-*/
+
     /**
      * method that get the name of the device by position.
      *
      * @param position
      * @return null if the list is empty.
      */
-    /*public String getDeviceNameByPosition(int position) {
+    public String getDeviceNameByPosition(int position) {
         if (this.deviceList.isEmpty()) {
             return "There are no devices in the device list.";
         }
         return this.deviceList.get(position).getName();
-    }*/
+    }
 
     /**
      * method that deactivate the device.
      *
-     * @param
-     *
+     * @param device
      * @return true if the device was deactivated. False, if not.
      */
-   /* public boolean deactivateDevice(String device) {
+    public boolean deactivateDevice(String device) {
 
         for (Device searchDevice : this.deviceList) {
             if (device.equals(searchDevice.getName())) {
@@ -556,16 +506,20 @@ public String getNameToString() {
             }
         }
         return false;
-    }*/
+    }
+
+    public String getDescription() {
+        return description;
+    }
 
     public void setDescription(String description) {
         this.description = description;
     }
 
-    /*public RoomSensor getSensorById(String sensorId) {
+    public RoomSensor getSensorById(String sensorId) {
         if (!Objects.isNull(sensorList.getSensorById(sensorId))) {
             return sensorList.getSensorById(sensorId);
         }
         return null;
-    }*/
+    }
 }

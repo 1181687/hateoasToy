@@ -1,32 +1,27 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.geographicalarea.*;
-import pt.ipp.isep.dei.project.services.GeoAreaService;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaService;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaTypeList;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class GetListOfTypeOfGeoAreaController {
-    private GeoAreaService geoAreaService;
 
-    public GetListOfTypeOfGeoAreaController(GeoAreaService geoAreaService) {
-        this.geoAreaService = geoAreaService;
+    private GeographicalAreaService geographicalAreaService;
+    private GeographicalAreaTypeList geographicalAreaTypeList;
+
+    public GetListOfTypeOfGeoAreaController(GeographicalAreaService geographicalAreaService, GeographicalAreaTypeList listaTAG) {
+        this.geographicalAreaService = geographicalAreaService;
+        this.geographicalAreaTypeList = listaTAG;
     }
 
-    public List<GeographicalAreaTypeDTO> getListOfGeoAreaTypes() {
-        List<GeographicalAreaTypeDTO> geographicalAreaTypeDTOS = new ArrayList<>();
-        for (GeographicalAreaType geographicalAreaType : geoAreaService.getListOfGeoAreaTypes()) {
-            geographicalAreaTypeDTOS.add(GeographicalAreaTypeMapper.mapToDTO(geographicalAreaType));
-        }
-        return geographicalAreaTypeDTOS;
+    public List<String> getListaAGPorTipo(String tipo) {
+        return this.geographicalAreaService.getListOfGeographicalAreasByType(tipo);
     }
 
-    public List<GeographicalAreaDTO> getListOfGeographicalAreasByType(String type) {
-        List<GeographicalAreaDTO> geographicalAreaDTOS = new ArrayList<>();
-        for (GeographicalArea geographicalArea : geoAreaService.getGeoAreasByType(type)) {
-            geographicalAreaDTOS.add(GeographicalAreaMapper.mapToDTO(geographicalArea));
-        }
-        return geographicalAreaDTOS;
+    public List<String> getListaDosTiposDeAG() {
+        return geographicalAreaTypeList.getListOfGeoAreaTypes();
     }
+
 
 }

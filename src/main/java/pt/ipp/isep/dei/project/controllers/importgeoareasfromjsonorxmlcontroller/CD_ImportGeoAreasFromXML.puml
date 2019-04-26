@@ -42,14 +42,14 @@ Class GeographicalAreaMapper {
 }
 
 Class GeographicalAreaList {
-- List <GeographicalArea> geoAreaService
+- List <GeographicalArea> geoAreaList
 + addGeoArea(geographicalArea)
 }
 
 Class GeographicalAreaDTO {
 - String id
 - String description
-- String sensorType
+- String type
 - double width
 - double length
 - double latitude
@@ -64,7 +64,7 @@ Class GeographicalAreaDTO {
 Class SensorDTO {
 - String id
 - String name
-- String sensorType
+- String type
 - LocalDate startingDate
 - LocationDTO location
 - String units

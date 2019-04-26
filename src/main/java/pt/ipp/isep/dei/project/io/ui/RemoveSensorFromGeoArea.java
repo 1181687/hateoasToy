@@ -2,9 +2,8 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.removesensorfromgeoareacontroller.RemoveSensorFromGeoAreaController;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaService;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorDTO;
-import pt.ipp.isep.dei.project.services.GeoAreaAggregateService;
-
 
 import java.util.List;
 
@@ -17,11 +16,11 @@ public class RemoveSensorFromGeoArea {
     /**
      * Constructor.
      *
-     * @param geoAreaAggregateService that contains all of the geographical areas in the system.
+     * @param geographicalAreaService List that contains all of the geographical areas in the system.
      */
-    public RemoveSensorFromGeoArea(GeoAreaAggregateService geoAreaAggregateService) {
-        controller = new RemoveSensorFromGeoAreaController(geoAreaAggregateService);
-        geographicalAreaDTOS = controller.getGeoAreaDTO();
+    public RemoveSensorFromGeoArea(GeographicalAreaService geographicalAreaService) {
+        controller = new RemoveSensorFromGeoAreaController(geographicalAreaService);
+        geographicalAreaDTOS = controller.getGeographicalAreaService();
     }
 
     /**
@@ -39,8 +38,9 @@ public class RemoveSensorFromGeoArea {
             if (chosenGeoArea == -1) {
                 return;
             }
-
-            sensorDTOS = controller.getSensorList(geographicalAreaDTOS.get(chosenGeoArea));
+            String geoAreaId = positionToGeoAreaId(chosenGeoArea);
+            controller.setGeoAreaById(geoAreaId);
+            sensorDTOS = controller.getSensorList();
             if (sensorDTOS.isEmpty()) {
                 System.out.println("\nThere are no sensors in the selected geographical area. Please create or import some.");
                 continue;
@@ -50,13 +50,13 @@ public class RemoveSensorFromGeoArea {
             if (chosenSensor == -1) {
                 continue;
             }
-
+            String sensorId = positionToSensorId(chosenSensor);
             String confirmation = InputValidator.confirmValidation("\nAll the data relative to the sensor will be removed too and can not be recovered anymore. Confirm? (Y/N)");
             if ("N".equalsIgnoreCase(confirmation)) {
                 System.out.println("\nNo changes were made.");
                 continue;
             }
-            controller.removeSensor(sensorDTOS.get(chosenSensor));
+            controller.removeSensor(sensorId);
             flag = false;
         } while (flag);
         System.out.println("\nThe sensor was removed with success!\n");

@@ -22,10 +22,22 @@ public final class RoomMapper {
 
 
     /**
+     * Method that creates a RoomTO based on a set of information.
+     *
+     * @return RoomDTO.
+     */
+    public static RoomDTO newDTO() {
+
+        RoomDTO roomDTO = new RoomDTO();
+        return roomDTO;
+    }
+
+
+    /**
      * Method that creates a RoomDTO based on a existing Room.
      *
      * @param room Room to be used.
-     * @return RoomDTO.
+     * @return GeoAreaDTO.
      */
     public static RoomDTO mapToDTO(Room room) {
         if (Objects.isNull(room)) {
@@ -33,16 +45,13 @@ public final class RoomMapper {
         }
         RoomDTO roomDTO = new RoomDTO();
 
-        roomDTO.setId(room.getRoomId().getId());
+        roomDTO.setRoomId(room.getRoomId());
         roomDTO.setDescription(room.getDescription());
         roomDTO.setHouseFloor(room.getHouseFloor());
         roomDTO.setWidth(room.getDimension().getWidth());
         roomDTO.setLength(room.getDimension().getLength());
         roomDTO.setHeight(room.getDimension().getHeight());
-        if (Objects.isNull(room.getHouseGridId())) {
-            return roomDTO;
-        }
-        roomDTO.setGridId(room.getHouseGridId().getId());
+
         return roomDTO;
     }
 
@@ -59,7 +68,7 @@ public final class RoomMapper {
 
         Dimension dimension = new Dimension(roomDTO.getWidth(), roomDTO.getLength(), roomDTO.getHeight());
 
-        return new Room(new RoomId(roomDTO.getId()), roomDTO.getDescription(), roomDTO.getHouseFloor(), dimension);
+        return new Room(roomDTO.getRoomId(), roomDTO.getDescription(), roomDTO.getHouseFloor(), dimension);
 
     }
 

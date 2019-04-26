@@ -1,78 +1,124 @@
 package pt.ipp.isep.dei.project.controllers;
 
+import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
-import pt.ipp.isep.dei.project.model.house.RoomDTO;
-import pt.ipp.isep.dei.project.model.house.RoomId;
-import pt.ipp.isep.dei.project.model.house.RoomMapper;
+import pt.ipp.isep.dei.project.model.house.RoomList;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
-import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridDTO;
-import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridMapper;
-import pt.ipp.isep.dei.project.services.HouseService;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
 public class AttachRoomToHouseGridController {
-    private HouseService houseService;
-    private HouseGrid chosenGrid;
-    private Room chosenRoom;
+    private House house;
+    private RoomList roomList;
+    private HouseGrid gridToBeUsed;
+    private Room roomToBeAttached;
 
     /**
      * Constructor.
      *
-     * @param houseService HouseService to be used.
+     * @param  house House attribute.
+     * @param listOfRooms      RoomList attribute.
      */
-    public AttachRoomToHouseGridController(HouseService houseService) {
-        this.houseService = houseService;
+    public AttachRoomToHouseGridController(House house, RoomList listOfRooms) {
+        this.house = house;
+        this.roomList = listOfRooms;
     }
 
     /**
-     * Method that asks for all the grids in the repo, turns each one into a dto object and adds it to a list,
-     * in order to be sent to the UI.
-     *
-     * @return List of HouseGridDTO.
+     * Method that checks if the housegrid grid's list is empty.
+     * @return True or false.
      */
-    public List<HouseGridDTO> getGrids() {
-        List<HouseGridDTO> gridDTOS = new ArrayList<>();
-        for (HouseGrid grid : houseService.getAllGrids()) {
-            gridDTOS.add(HouseGridMapper.mapToDTO(grid));
-        }
-        return gridDTOS;
+    public boolean isHouseGridListEmpty() {
+        return house.isHouseGridListEmpty();
     }
 
     /**
-     * Method that asks for all the rooms in the repo, turns each one into a dto object and adds it to a list,
-     * in order to be sent to the UI.
-     *
-     * @return List of RoomDTO.
+     * Method that asks for the list of housegrid grids.
+     * @return List of housegrid grids.
      */
-    public List<RoomDTO> getRooms() {
-        List<RoomDTO> roomDTOS = new ArrayList<>();
-        for (Room room : houseService.getAllRooms()) {
-            roomDTOS.add(RoomMapper.mapToDTO(room));
-        }
-        return roomDTOS;
+    public String getHouseGridListToString() {
+        return house.getHouseGridListToString();
     }
 
     /**
-     * Method that stores the house grid selected by the user into the attribute chosenGrid.
+     * Method that asks for the size of the list of housegrid grids.
      *
-     * @param gridId Id of the grid to be stored.
+     * @return Size of the list.
      */
-    public void setGrid(String gridId) {
-        this.chosenGrid = houseService.getGridById(gridId);
+    public int getHouseGridListSize() {
+        return house.getHouseGridListSize();
     }
 
+    /**
+     * Method that asks for the housegrid grid in a specific position in the list.
+     *
+     * @param position Specifies the position of the housegrid grid in the list.
+     * @return The respective housegrid grid.
+     */
+    public HouseGrid getHouseGridFromTheList(int position) {
+        return house.getHouseGridByPosition(position);
+    }
 
     /**
-     * Method that stores the room selected by the user into the attribute chosenRoom.
+     * Method that checks if the housegrid grid's list is empty.
      *
-     * @param roomId Id of the room to be stored.
+     * @return True or false.
      */
-    public void setRoom(String roomId) {
-        RoomId id = new RoomId(roomId);
-        this.chosenRoom = houseService.getRoomById(id);
+    public boolean isRoomListEmpty() {
+        return roomList.isEmpty();
+    }
+
+    /**
+     * Method that asks for the list of rooms from the class RoomList.
+     *
+     * @return List of housegrid grids.
+     */
+    public String getRoomListContent() {
+        return roomList.getRoomListContent();
+    }
+
+    /**
+     * Method that asks for the size of the list of rooms.
+     *
+     * @return Size of the list.
+     */
+    public int getRoomListSize() {
+        return roomList.getListOfRooms().size();
+    }
+
+    /**
+     * Method that asks for the room in a specific position in the list.
+     *
+     * @param position Specifies the position of the room in the list.
+     * @return The respective room.
+     */
+    public Room getRoomFromTheList(int position) {
+        return roomList.getRoomFromPosition(position);
+    }
+
+    /**
+     * Method that sets the attribute gridToBeUsed as the housegrid grid selected.
+     *
+     * @param gridSelected Grid to be used in the set.
+     */
+    public void setGridToBeUsed(HouseGrid gridSelected) {
+        this.gridToBeUsed = gridSelected;
+    }
+
+    /**
+     * Method that sets the attribute roomToBeAttached as the room selected.
+     *
+     * @param roomSelected Room to be used in the set.
+     */
+    public void setRoomToBeAttached(Room roomSelected) {
+        this.roomToBeAttached = roomSelected;
+    }
+
+    /**
+     * Method that asks if the room isn't already in the chosen grid.
+     *
+     * @return True or false.
+     */
+    public boolean checkIfTheChosenRoomIsAlreadyInTheChosenGrid() {
+        return house.checkIfRoomIsAlreadyInHouseGrid(gridToBeUsed, roomToBeAttached);
     }
 
     /**
@@ -80,24 +126,21 @@ public class AttachRoomToHouseGridController {
      *
      * @return Grid where the room is is connected to.
      */
-    public boolean isRoomInAGrid() {
-        return Objects.nonNull(chosenRoom.getHouseGridId());
+    public HouseGrid getTheGridWhereTheRoomIsConnected() {
+        return house.getTheGridWhereTheRoomIsConnected(roomToBeAttached);
     }
 
     /**
-     * Method that checks if the room isn't already in the chosen grid.
-     *
-     * @return True or false.
+     * Method that detach the specified room in the specified housegrid grid via class housegrid.
      */
-    public boolean isRoomAlreadyInChosenGrid() {
-        return chosenRoom.getHouseGridId().equals(chosenGrid.getHouseGridId());
+    public void detachRoomFromTheHouseGrid(HouseGrid grid) {
+        house.detachRoomInASpecificHouseGridInTheList(grid, roomToBeAttached);
     }
 
     /**
-     * Method that attaches the chosen room in the chosen grid.
+     * Method that attach the specified room in the specified housegrid grid via class housegrid.
      */
     public void attachRoomInTheHouseGrid() {
-        chosenRoom.setHouseGridId(chosenGrid.getHouseGridId());
-        houseService.updateRoomRepository(chosenRoom);
+        house.attachRoomInASpecificHouseGridInTheList(gridToBeUsed, roomToBeAttached);
     }
 }

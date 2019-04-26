@@ -1,6 +1,5 @@
 package pt.ipp.isep.dei.project.model;
 
-import pt.ipp.isep.dei.project.model.devices.DeviceReading;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDateTime;
@@ -16,25 +15,25 @@ public interface Measurable {
 
     Map<LocalDateTime, Double> getDataSeries(LocalDateTime startDate, LocalDateTime endDate);
 
-    List<DeviceReading> getReadings();
+    List<Reading> getReadings();
 
 
-    default List<DeviceReading> getReadingsListInInterval(LocalDateTime startDate, LocalDateTime endDate) {
-        List<DeviceReading> geoAreaReadingList = new ArrayList<>();
+    default List<Reading> getReadingsListInInterval(LocalDateTime startDate, LocalDateTime endDate) {
+        List<Reading> readingList = new ArrayList<>();
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
-        for (DeviceReading geoAreaReading : getReadings()) {
-            if (!startDate.isAfter(geoAreaReading.getLocalDateTime()) && !endDate.isBefore(geoAreaReading.getLocalDateTime())) {
-                geoAreaReadingList.add(geoAreaReading);
+        for (Reading reading : getReadings()) {
+            if (!startDate.isAfter(reading.getDateTime()) && !endDate.isBefore(reading.getDateTime())) {
+                readingList.add(reading);
             }
         }
-        if (!(geoAreaReadingList.isEmpty())) {
-            LocalDateTime firstValidReadingDateTime = geoAreaReadingList.get(0).getLocalDateTime();
+        if (!(readingList.isEmpty())) {
+            LocalDateTime firstValidReadingDateTime = readingList.get(0).getDateTime();
 
             if (startDate.isAfter(firstValidReadingDateTime.minusMinutes(meteringPeriodGrid))) {
-                geoAreaReadingList.remove(0);
+                readingList.remove(0);
             }
         }
-        return geoAreaReadingList;
+        return readingList;
     }
 
     double getNominalPower();

@@ -1,8 +1,9 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.configurehouseinformationfromjsoncontroller.ConfigureHouseInformationFromJsonController;
+import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.HouseDTO;
-import pt.ipp.isep.dei.project.services.HouseService;
+import pt.ipp.isep.dei.project.model.house.HouseService;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -13,8 +14,8 @@ public class ConfigureHouseFromAFile {
 
     private ConfigureHouseInformationFromJsonController controller;
 
-    public ConfigureHouseFromAFile(HouseService houseService) {
-        this.controller = new ConfigureHouseInformationFromJsonController(houseService);
+    public ConfigureHouseFromAFile(House house, HouseService houseService) {
+        this.controller = new ConfigureHouseInformationFromJsonController(house, houseService);
     }
 
     public void run() throws FileNotFoundException {
@@ -37,7 +38,7 @@ public class ConfigureHouseFromAFile {
             return;
         }
 
-        // Content of the chosen file
+        // Content of the choosen file
         String confirmOptions = "\n This is the content of the chosen file: \n";
 
         StringBuilder content = new StringBuilder();

@@ -1,18 +1,20 @@
 package pt.ipp.isep.dei.project.io.ui;
 
-import pt.ipp.isep.dei.project.controllers.GetInfoHouseAreaController;
+import pt.ipp.isep.dei.project.controllers.getfirsthottestdayhouseareacontroller.GetFirstHottestDayHouseAreaController;
+import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.house.House;
-import pt.ipp.isep.dei.project.services.GeoAreaAggregateService;
+import pt.ipp.isep.dei.project.utils.Utils;
+
+import java.time.LocalDate;
 
 public class GetFirstHottestDayHouseArea {
+    private GetFirstHottestDayHouseAreaController ctrl;
 
-    private GetInfoHouseAreaController ctrl;
-
-    public GetFirstHottestDayHouseArea(House house, GeoAreaAggregateService geoAreaService) {
-        this.ctrl = new GetInfoHouseAreaController(house, geoAreaService);
+    public GetFirstHottestDayHouseArea(House house) {
+        this.ctrl = new GetFirstHottestDayHouseAreaController(house);
     }
 
-    /*public void run() {
+    public void run() {
         if (ctrl.isSensorListOfATypeEmpty()) {
             System.out.println("There are no temperature sensors in the house area.\n");
             return;
@@ -44,5 +46,5 @@ public class GetFirstHottestDayHouseArea {
                 readingDTO.getDateTime().toLocalDate() +
                 " (maximum temperature of " +
                 Utils.round(readingDTO.getValue(), 2) + " Celsius).\n");
-    }*/
+    }
 }

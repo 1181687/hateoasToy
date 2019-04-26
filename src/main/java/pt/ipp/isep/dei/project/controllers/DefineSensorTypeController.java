@@ -1,13 +1,14 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.services.SensorTypeService;
+import pt.ipp.isep.dei.project.model.sensor.SensorType;
+import pt.ipp.isep.dei.project.model.sensor.SensorTypeList;
 
 public class DefineSensorTypeController {
+    private SensorTypeList sensorTypeList;
 
-    private SensorTypeService sensorTypeService;
 
-    public DefineSensorTypeController(SensorTypeService sensorTypeService) {
-        this.sensorTypeService = sensorTypeService;
+    public DefineSensorTypeController(SensorTypeList sensorTypeList) {
+        this.sensorTypeList = sensorTypeList;
     }
 
     /**
@@ -17,6 +18,7 @@ public class DefineSensorTypeController {
      * @return true or false
      */
     public boolean createAndAddSensorType(String sensorType) {
-        return sensorTypeService.createAndAddSensorType(sensorType);
+        SensorType newSensorType = this.sensorTypeList.newSensorType(sensorType);
+        return this.sensorTypeList.addSensorType(newSensorType);
     }
 }

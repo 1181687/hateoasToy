@@ -3,10 +3,8 @@ package pt.ipp.isep.dei.project.model.geographicalarea;
 import pt.ipp.isep.dei.project.model.Location;
 
 import javax.persistence.Embeddable;
-import javax.persistence.Embedded;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.Objects;
 
 import static java.util.Objects.isNull;
 
@@ -14,18 +12,17 @@ import static java.util.Objects.isNull;
 public class GeoAreaId implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private String id;
-
     private Location location;
 
-    @Embedded
-    private GeoAreaTypeId geographicalAreaTypeId;
+    private String id;
 
-    public GeoAreaId(@NotNull String id, @NotNull Location location, @NotNull GeoAreaTypeId geographicalAreaTypeId) {
+    private GeographicalAreaType geographicalAreaType;
+
+    public GeoAreaId(@NotNull Location location, @NotNull String id, @NotNull GeographicalAreaType geographicalAreaType) {
         validateId(id);
         this.location = location;
         this.id = id;
-        this.geographicalAreaTypeId = geographicalAreaTypeId;
+        this.geographicalAreaType = geographicalAreaType;
     }
 
 
@@ -53,25 +50,19 @@ public class GeoAreaId implements Serializable {
         return id;
     }
 
-    public GeoAreaTypeId getGeographicalAreaType() {
-        return geographicalAreaTypeId;
+    public GeographicalAreaType getGeographicalAreaType() {
+        return geographicalAreaType;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof GeographicalArea)) {
-            return false;
-        }
-        GeoAreaId geoAreaId = (GeoAreaId) obj;
-        return this.id.equals(geoAreaId.id) && this.geographicalAreaTypeId.equals(geoAreaId.geographicalAreaTypeId) && this.location.equals(geoAreaId.location);
+    public void setGeographicalAreaType(GeographicalAreaType geographicalAreaType) {
+        this.geographicalAreaType = geographicalAreaType;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(this.id);
+    public void setLocation(Location location) {
+        this.location = location;
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
 }
