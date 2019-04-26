@@ -12,11 +12,9 @@ import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
-import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -49,20 +47,6 @@ public class ImportRoomReadingsController {
         this.allSensorInTheHouse = this.houseService.getAllSensors();
     }
 
-    /**
-     * Method that configures the log file, using a FileHandler object to send log information to the specified log file.
-     * The last line is responsible for not letting the information show up in the console.
-     */
-    private static void configLogFile() {
-        FileHandler fh;
-        try {
-            fh = new FileHandler("log/outputErrors.log");
-        } catch (IOException e) {
-            fh = null;
-        }
-        LOGGER.addHandler(fh);
-        LOGGER.setUseParentHandlers(false);
-    }
 
     /**
      * Method that checks if a given date time is before the starting date of the sensor.
@@ -80,7 +64,6 @@ public class ImportRoomReadingsController {
     }
 
     public boolean addReadingToRoomSensorById() {
-        configLogFile();
         boolean imported = false;
         for (Object object : this.readingDTOList) {
             ReadingDTO reading = (ReadingDTO) object;

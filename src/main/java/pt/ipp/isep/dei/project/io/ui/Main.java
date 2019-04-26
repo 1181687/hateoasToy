@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import pt.ipp.isep.dei.project.io.ui.logger.MyLogger;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
@@ -21,6 +22,7 @@ import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceTypeList;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeList;
 import pt.ipp.isep.dei.project.utils.Utils;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -73,6 +75,13 @@ public class Main {
     public CommandLineRunner mainRun() {
 
         return (args) -> {
+
+            try {
+                MyLogger.setup();
+            } catch (IOException e) {
+                e.printStackTrace();
+                throw new RuntimeException("Problems with creating the log files");
+            }
 
             data();
 

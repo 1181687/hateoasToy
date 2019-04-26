@@ -14,10 +14,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 import java.util.Properties;
-import java.util.logging.FileHandler;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 
-import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
 
 public class ConfigureHouseInformationFromJsonController {
 
@@ -29,23 +28,13 @@ public class ConfigureHouseInformationFromJsonController {
     private int numberOfNotImportedGrids;
     private ProjectFileReader reader;
 
+    private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     public ConfigureHouseInformationFromJsonController(House house, HouseService houseService) {
         this.house = house;
         this.houseService = houseService;
     }
 
-
-    private static void configLogFile() {
-        FileHandler fh;
-        try {
-            fh = new FileHandler("log/outputErrors.log");
-        } catch (IOException e) {
-            fh = null;
-        }
-        LOGGER.addHandler(fh);
-        LOGGER.setUseParentHandlers(false);
-    }
 
     public int getNumberOfNotImportedRooms() {
         return this.numberOfNotImportedRooms;
@@ -78,7 +67,6 @@ public class ConfigureHouseInformationFromJsonController {
     }
 
     public boolean importHouseInformation() {
-        configLogFile();
         boolean imported = false;
         HouseDTO houseDTO = (HouseDTO) houseObjects.get(0);
         checkForInvalidRoomInfo(houseDTO.getRoomDTOList());
