@@ -1,0 +1,99 @@
+@startuml
+skinparam linetype ortho
+
+skinparam class {
+    BackgroundColor PaleTurquoise
+    ArrowColor Black
+    BorderColor Black
+    FontStyle Bold
+}
+
+hide circle
+
+GetFirstHottestDayHouseAreaUI "1" -> "1" GetFirstHottestDayHouseArea\nController
+GetFirstHottestDayHouseArea\nController "1" --> "1" House
+House "1" -> "1" GeographicalArea : directly inserted in
+GeographicalArea "1" -> "1" SensorList
+SensorList "1" --> "0*" Sensor
+Sensor "1" -up-> "0*" Reading
+ReadingMapper "1" --> "1" Reading : MapsToDTO
+GetFirstHottestDayHouseArea\nController  "1" -> "1" ReadingMapper  : uses
+ReadingMapper "1" -right-> "1" ReadingDTO
+
+
+
+Class GetFirstHottestDayHouseAreaUI {
+-GetFirstHottestDayHouseAreaController\n controller
+-ReadingDTO readingDTO
++run()
+}
+
+Class GetFirstHottestDayHouseArea\nController {
+- House house;
+- SensorType sensorTypeTemperature;
++isSensorListOfATypeEmpty()
++checkNearestSensorReadingsExistenceBetweenDates()
++getFirstHighestReadingHouseArea()
+}
+
+Class House {
+-GeographicalArea insertedGeoArea
+-Address completeAddress
++isSensorListOfATypeEmpty()
++checkNearestSensorReadingsExistenceBetweenDates()
++getNearestSensorWithTheMostRecentReading()
++getFirstHighestReadingHouseArea()
+}
+
+Class GeographicalArea {
+-SensorList geoAreaSensorList
+-Location location
++isSensorListOfAGivenTypeEmpty()
++getSensorListOfAGivenType()
++getFirstHighestReading()
++getNearestSensorWithMostRecentReading()
++getSensorInGeographicalAreaByType()
+}
+
+Class SensorList {
+-List<Sensor> listOfSensors
++getNearestSensorsToLocation()
++getSensorWithMostRecentReading()
+}
+
+Class Sensor {
+-List<Reading> listOfReadings
+-SensorType sensorType
+-Location location
++checkMeasurementExistenceBetweenDates()
++getSensorType()
++getSensorWithMostRecentReading()
++distanceBetweenSensorAndLocation()
++getMeasurementValueBetweenDates()
++getHighestReadingOfADay()
++getDailyMaxReadingsInAnInterval()
+}
+
+Class Reading {
+-double value
+-LocalDateTime dateTime
++getValue()
++getDateTime()
+}
+
+Class ReadingMapper{
++newReadingDTO()
++mapToDTO()
+}
+
+Class ReadingDTO{
+-double value;
+-LocalDateTime dateTime;
++getValue()
++setValue()
++getDateTime()
++setDateTime()
+}
+
+@enduml
+
