@@ -25,6 +25,7 @@ import pt.ipp.isep.dei.project.utils.Utils;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.logging.Logger;
 
 @EnableJpaRepositories(basePackages = "pt.ipp.isep.dei.project")
 @EntityScan(basePackages = "pt.ipp.isep.dei.project")

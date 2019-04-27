@@ -1,4 +1,5 @@
 package pt.ipp.isep.dei.project.io.ui.logger;
+
 import java.io.IOException;
 import java.util.logging.*;
 
@@ -17,8 +18,10 @@ public class MyLogger {
         // suppress the logging output to the console
         Logger rootLogger = Logger.getLogger("");
         Handler[] handlers = rootLogger.getHandlers();
-        if (handlers[0] instanceof ConsoleHandler) {
-            rootLogger.removeHandler(handlers[0]);
+
+        for (Handler handler : handlers) {
+
+            rootLogger.removeHandler(handler);
         }
 
         //logger.setLevel(Level.INFO);
@@ -33,7 +36,7 @@ public class MyLogger {
         logger.addHandler(fileTxt);
 
         // create an HTML formatter
-         formatterHTML = new MyHtmlFormatter();
+        formatterHTML = new MyHtmlFormatter();
         fileHTML.setFormatter(formatterHTML);
         logger.addHandler(fileHTML);
     }
