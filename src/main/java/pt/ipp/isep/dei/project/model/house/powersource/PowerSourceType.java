@@ -2,13 +2,15 @@ package pt.ipp.isep.dei.project.model.house.powersource;
 
 import pt.ipp.isep.dei.project.roles.Root;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.Objects;
 
+@Entity
 public class PowerSourceType implements Root {
 
-
+    @Id
     private Long id;
-
 
     private String typeOfPowerSource;
 

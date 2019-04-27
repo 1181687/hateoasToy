@@ -12,6 +12,9 @@ import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.roles.Root;
 import pt.ipp.isep.dei.project.utils.Utils;
 
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.Transient;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -20,30 +23,31 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+@Entity
 public class House implements Root {
     //@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     //@JoinTable(name="house_rooms", joinColumns=@JoinColumn(name="house_fk"),
     //inverseJoinColumns = @JoinColumn(name="room_fk"))
     //@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     //@JoinColumn
-    //@Transient
+    @Transient
     private RoomList roomList;
 
     //@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     //@Fetch(value = FetchMode.SUBSELECT)
-    //@Transient
+    @Transient
     private List<HouseGrid> listHouseGrids;
 
-    //@Embedded
+    @EmbeddedId
     private Address address;
 
-    //@Transient
+    @Transient
     private List<DeviceType> deviceTypeList;
 
-    //@Transient
+    @Transient
     private int meteringPeriodGrid;
 
-    //@Transient
+    @Transient
     private int meteringPeriodDevice;
 
     private static final String CONFIG_PROPERTIES = "Configuration.properties";

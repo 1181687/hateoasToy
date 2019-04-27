@@ -6,9 +6,11 @@ import pt.ipp.isep.dei.project.roles.ValueObject;
 
 import javax.persistence.Embeddable;
 import javax.persistence.Transient;
+import java.io.Serializable;
 
 @Embeddable
-public class Address implements ValueObject {
+public class Address implements ValueObject, Serializable {
+    private static final long serialVersionUID = 1L;
     private String completeAddress;
     @Transient
     private Location location;

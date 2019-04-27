@@ -29,7 +29,7 @@ public final class GeoAreaSensorMapper {
         sensorDTO.setId(sensor.getId());
         sensorDTO.setName(sensor.getSensorName());
         sensorDTO.setStartingDate(sensor.getStartingDate().toLocalDate());
-        sensorDTO.setSensorType(sensor.getSensorType().getType());
+        sensorDTO.setSensorType(sensor.getSensorType());
         sensorDTO.setLocation(LocationMapper.mapToDTO(sensor.getLocation()));
         sensorDTO.setUnits(sensor.getUnits());
         sensorDTO.setActive(sensor.isActive());

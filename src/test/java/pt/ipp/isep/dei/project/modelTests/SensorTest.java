@@ -98,9 +98,9 @@ public class SensorTest {
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
         GeoAreaSensor s1 = new GeoAreaSensor("R003", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
-        SensorType expectedResult = sensorType;
+        String expectedResult = sensorType.getType();
         //Act
-        SensorType result = s1.getSensorType();
+        String result = s1.getSensorType();
         //Assert
         assertEquals(expectedResult, result);
     }

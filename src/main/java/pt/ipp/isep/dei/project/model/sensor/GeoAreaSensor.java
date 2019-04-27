@@ -15,7 +15,7 @@ import java.util.List;
 
 
 @Entity
-public class GeoAreaSensor implements Root, Sensor {
+public class GeoAreaSensor implements Root {
     @EmbeddedId
     private SensorId id;
     private String sensorName;
@@ -24,11 +24,10 @@ public class GeoAreaSensor implements Root, Sensor {
     @ElementCollection
     @CollectionTable(name = "GeoArea_Reading",
             joinColumns = @JoinColumn(name = "SENSOR_ID"))
-
     private List<Reading> listOfReadings = new ArrayList<>();
 
     @Embedded
-    private SensorType sensorType;
+    private String sensorType;
 
     @Transient
     private Location location;
@@ -50,7 +49,7 @@ public class GeoAreaSensor implements Root, Sensor {
         this.id = new SensorId(id);
         this.sensorName = sensorName;
         this.startingDate = startingDate;
-        this.sensorType = sensorType;
+        this.sensorType = sensorType.getType();
         this.location = location;
         this.units = units;
         this.isActive = true;
@@ -67,7 +66,7 @@ public class GeoAreaSensor implements Root, Sensor {
         this.id = new SensorId(id);
         this.sensorName = sensorName;
         this.startingDate = LocalDateTime.now();
-        this.sensorType = sensorType;
+        this.sensorType = sensorType.getType();
         this.location = location;
         this.units = units;
         this.isActive = true;
@@ -108,7 +107,7 @@ public class GeoAreaSensor implements Root, Sensor {
      *
      * @return sensor Type
      */
-    public SensorType getSensorType() {
+    public String getSensorType() {
         return sensorType;
     }
 
@@ -357,7 +356,7 @@ public class GeoAreaSensor implements Root, Sensor {
      */
     public boolean sensorTypeEqualsSensorType(SensorType tipo) {
         String tipoDoSensorPedido = tipo.getType();
-        return (this.getSensorType().getType().equals(tipoDoSensorPedido));
+        return (this.getSensorType().equalsIgnoreCase(tipoDoSensorPedido));
     }
 
     /**

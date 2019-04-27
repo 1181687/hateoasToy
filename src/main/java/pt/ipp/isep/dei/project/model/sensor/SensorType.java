@@ -2,11 +2,13 @@ package pt.ipp.isep.dei.project.model.sensor;
 
 import pt.ipp.isep.dei.project.roles.Root;
 
-import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
-@Embeddable
+@Entity
 public class SensorType implements Root {
 
+    @Id
     private String type;
 
     protected SensorType() {
