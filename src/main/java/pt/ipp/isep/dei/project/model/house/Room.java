@@ -8,6 +8,7 @@ import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensorList;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
+import pt.ipp.isep.dei.project.roles.Root;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -17,7 +18,7 @@ import java.util.*;
 import static java.util.Objects.isNull;
 
 @Entity
-public class Room implements Measurable {
+public class Room implements Root, Measurable {
 
     //@Id
     @Column(name = "cenas", insertable = false, updatable = false)

@@ -1,9 +1,11 @@
 package pt.ipp.isep.dei.project.model.sensor;
 
+import pt.ipp.isep.dei.project.roles.Root;
+
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class SensorType {
+public class SensorType implements Root {
 
     private String type;
 

@@ -1,10 +1,12 @@
 package pt.ipp.isep.dei.project.model.house.powersource;
 
+import pt.ipp.isep.dei.project.roles.Entity;
+
 import java.util.Objects;
 
 import static java.util.Objects.isNull;
 
-public class PowerSource {
+public class PowerSource implements Entity {
 
 
     private String name;

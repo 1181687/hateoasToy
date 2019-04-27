@@ -1,9 +1,11 @@
 package pt.ipp.isep.dei.project.model.geographicalarea;
 
+import pt.ipp.isep.dei.project.roles.Root;
+
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class GeographicalAreaType {
+public class GeographicalAreaType implements Root {
 
     private String geoAreaType;
 

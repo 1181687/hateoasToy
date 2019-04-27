@@ -1,10 +1,12 @@
 package pt.ipp.isep.dei.project.model;
 
+import pt.ipp.isep.dei.project.roles.ValueObject;
+
 import javax.persistence.Embeddable;
 import java.time.LocalDateTime;
 
 @Embeddable()
-public class Reading {
+public class Reading implements ValueObject {
 
     private double value;
     private LocalDateTime dateTime;

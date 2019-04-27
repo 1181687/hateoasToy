@@ -1,6 +1,7 @@
 package pt.ipp.isep.dei.project.model.sensor;
 
 import pt.ipp.isep.dei.project.model.RoomReading;
+import pt.ipp.isep.dei.project.roles.Root;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import javax.persistence.*;
@@ -11,7 +12,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-public class RoomSensor {
+public class RoomSensor implements Root {
     @Id
     private String id;
     private String sensorName;

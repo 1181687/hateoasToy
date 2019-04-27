@@ -1,12 +1,13 @@
 package pt.ipp.isep.dei.project.model.house;
 
+import pt.ipp.isep.dei.project.roles.ValueObject;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import javax.persistence.Embeddable;
 import java.util.Objects;
 
 @Embeddable
-public class Dimension {
+public class Dimension implements ValueObject {
     private double height;
     private double length;
     private double width;

@@ -1,12 +1,13 @@
 package pt.ipp.isep.dei.project.model.geographicalarea;
 
 import pt.ipp.isep.dei.project.model.Location;
+import pt.ipp.isep.dei.project.roles.ValueObject;
 
 import javax.persistence.Embeddable;
 import javax.persistence.Transient;
 
 @Embeddable
-public class AreaShape {
+public class AreaShape implements ValueObject {
 
     private double length;
 

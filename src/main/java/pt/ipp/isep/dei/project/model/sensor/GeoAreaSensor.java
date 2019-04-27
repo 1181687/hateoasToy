@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.project.model.sensor;
 
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
+import pt.ipp.isep.dei.project.roles.Root;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import javax.persistence.*;
@@ -14,7 +15,7 @@ import java.util.List;
 
 
 @Entity
-public class GeoAreaSensor implements Sensor {
+public class GeoAreaSensor implements Root, Sensor {
     @EmbeddedId
     private SensorId id;
     private String sensorName;

@@ -7,6 +7,7 @@ import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.RoomList;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSource;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceList;
+import pt.ipp.isep.dei.project.roles.Root;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -18,7 +19,7 @@ import static java.util.Objects.isNull;
 
 @Entity
 //@Table(name="housegrid")
-public class HouseGrid implements Measurable {
+public class HouseGrid implements Root, Measurable {
 
     @Id
     private HouseGridId houseGridName;

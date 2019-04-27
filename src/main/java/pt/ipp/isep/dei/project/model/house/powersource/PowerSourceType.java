@@ -1,8 +1,10 @@
 package pt.ipp.isep.dei.project.model.house.powersource;
 
+import pt.ipp.isep.dei.project.roles.Root;
+
 import java.util.Objects;
 
-public class PowerSourceType {
+public class PowerSourceType implements Root {
 
 
     private Long id;

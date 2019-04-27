@@ -2,12 +2,13 @@ package pt.ipp.isep.dei.project.model.house;
 
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
+import pt.ipp.isep.dei.project.roles.ValueObject;
 
 import javax.persistence.Embeddable;
 import javax.persistence.Transient;
 
 @Embeddable
-public class Address {
+public class Address implements ValueObject {
     private String completeAddress;
     @Transient
     private Location location;

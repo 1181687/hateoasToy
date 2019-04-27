@@ -1,10 +1,11 @@
 package pt.ipp.isep.dei.project.model;
 
+import pt.ipp.isep.dei.project.roles.ValueObject;
+
 import javax.persistence.Embeddable;
-import java.io.Serializable;
 
 @Embeddable
-public class Location {
+public class Location implements ValueObject {
     private double latitude;
 
     private double longitude;
