@@ -4,13 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import pt.ipp.isep.dei.project.model.ProjectFileReader;
 import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.ReadingMapper;
-import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorList;
-import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
-import pt.ipp.isep.dei.project.model.sensor.RoomSensorList;
-import pt.ipp.isep.dei.project.services.GeographicalAreaService;
-import pt.ipp.isep.dei.project.services.HouseService;
+import pt.ipp.isep.dei.project.model.sensor.SensorId;
+import pt.ipp.isep.dei.project.services.GeoAreaSensorService;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.io.File;
@@ -32,28 +29,55 @@ public class ImportGeoAreaReadingsController {
     */
 
     @Autowired
-    private GeographicalAreaService geographicalAreaService;
+    private GeoAreaSensorService geoAreaSensorService;
+    private ProjectFileReader fileReader;
     private GeoAreaSensorList allSensorInTheGeoAreas;
     private GeoAreaSensor geoAreaSensor;
-    private RoomSensor roomSensor;
-    private Room room;
-    private RoomSensorList allSensorInTheHouse;
     private List<Object> readingDTOList;
     private int numberOfNotImportedReadings;
-    @Autowired
-    private HouseService houseService;
 
     /**
      * Constructor.
      *
-     * @param geographicalAreaService GeographicalAreaService to be used.
-     * @param houseService
+     * @param geoAreaSensorService Service to be used.
      */
-    public ImportGeoAreaReadingsController(GeographicalAreaService geographicalAreaService, HouseService houseService) {
-        this.geographicalAreaService = geographicalAreaService;
-        this.allSensorInTheGeoAreas = this.geographicalAreaService.getAllSensors();
-        this.houseService = houseService;
-        this.allSensorInTheHouse = this.houseService.getAllSensors();
+    public ImportGeoAreaReadingsController(GeoAreaSensorService geoAreaSensorService) {
+        this.geoAreaSensorService = geoAreaSensorService;
+    }
+
+    /**
+     * Method that checks if the file is in a valid format (CSV, JSON or XML).
+     *
+     * @param path Path of the file.
+     * @return True or false.
+     */
+    public boolean isValidFormat(String path) {
+        return path.endsWith(".csv") || path.endsWith(".json") || path.endsWith(".xml");
+    }
+
+    /**
+     * Method that
+     *
+     * @param path
+     * @return
+     */
+    public ProjectFileReader createReader(String path) {
+        return Utils.createReader(path);
+    }
+
+
+    /**
+     * Method that reads the information of the file.
+     *
+     * @param file
+     * @param path
+     * @return
+     * @throws FileNotFoundException
+     */
+    public List<Object> readFile(File file, String path) throws FileNotFoundException {
+        fileReader = createReader(path);
+        readingDTOList = fileReader.readFile(file);
+        return readingDTOList;
     }
 
 
@@ -72,30 +96,34 @@ public class ImportGeoAreaReadingsController {
         return this.numberOfNotImportedReadings;
     }
 
-    public boolean addReadingToGeoAreaSensorById() {
+    /**
+     * Method that imports the readings.
+     *
+     * @return True or false.
+     */
+    public boolean importReadings() {
         boolean imported = false;
         long time = 0;
         for (Object object : this.readingDTOList) {
+            long startTime = System.nanoTime();
             ReadingDTO reading = (ReadingDTO) object;
-            geoAreaSensor = geographicalAreaService.getSensorById(reading.getId());
-            long startTime = System.currentTimeMillis();
-
+            SensorId sensorId = new SensorId(reading.getId());
+            geoAreaSensor = geoAreaSensorService.getSensorById(sensorId);
             if (readingValidations(reading)) {
                 continue;
             }
-            long stopTime = System.currentTimeMillis();
-            time += (stopTime - startTime) * 1000000000;
-            //System.out.println(stopTime - startTime);
-
             if (geoAreaSensor.addReading(ReadingMapper.mapToEntity(reading))) {
+                geoAreaSensorService.saveSensor(geoAreaSensor);
                 imported = true;
             } else {
                 numberOfNotImportedReadings++;
                 String invalidInfo = "sensor id: " + reading.getId() + ", timestamp/date: " + reading.getDateTime() + ", value: " + reading.getValue() + ".";
                 LOGGER.log(Level.WARNING, "GeoAreaReading was not imported because the following reading is duplicated: \n" + invalidInfo);
             }
+            long stopTime = System.nanoTime();
+            time += (stopTime - startTime) / 1000000000;
         }
-        geographicalAreaService.updateRepository();
+        //geographicalAreaService.updateRepository();
         System.out.println(time);
         return imported;
     }
@@ -126,19 +154,5 @@ public class ImportGeoAreaReadingsController {
             return false;
         }
         return false;
-    }
-
-    public boolean isValidFormat(String fileName) {
-        return fileName.endsWith(".csv") || fileName.endsWith(".json") || fileName.endsWith(".xml");
-    }
-
-    public ProjectFileReader createReader(String path) {
-        return Utils.createReader(path);
-    }
-
-    public List<Object> readFile(File file, String path) throws FileNotFoundException {
-        ProjectFileReader fileReader = createReader(path);
-        readingDTOList = fileReader.readFile(file);
-        return readingDTOList;
     }
 }

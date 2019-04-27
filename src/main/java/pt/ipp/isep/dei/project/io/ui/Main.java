@@ -26,8 +26,10 @@ import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceType;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceTypeList;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeList;
+import pt.ipp.isep.dei.project.services.GeoAreaSensorService;
 import pt.ipp.isep.dei.project.services.GeographicalAreaService;
 import pt.ipp.isep.dei.project.services.HouseService;
+import pt.ipp.isep.dei.project.services.RoomSensorService;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.io.IOException;
@@ -72,6 +74,14 @@ public class Main {
     @Autowired
     private HouseService houseService;
 
+    //GeoAreaSensorService Injection
+    @Autowired
+    private GeoAreaSensorService geoAreaSensorService;
+
+    //RoomSensorService Injection
+    @Autowired
+    private RoomSensorService roomSensorService;
+
 
     public static void main(String[] args) {
 
@@ -94,7 +104,7 @@ public class Main {
             data();
 
             //UI levels
-            Admin admin = new Admin(geographicalAreaTypeList, geographicalAreaService, sensorTypeList, houseEdificioB, powerSourceTypeList, houseEdificioB.getRoomList(), houseService);
+            Admin admin = new Admin(geographicalAreaTypeList, geographicalAreaService, sensorTypeList, houseEdificioB, powerSourceTypeList, houseEdificioB.getRoomList(), houseService, geoAreaSensorService, roomSensorService);
             RegularUser regularUser = new RegularUser(geographicalAreaTypeList, geographicalAreaService, sensorTypeList, houseEdificioB);
             PowerUser powerUser = new PowerUser(houseEdificioB);
             RoomOwner roomOwner = new RoomOwner(houseEdificioB);

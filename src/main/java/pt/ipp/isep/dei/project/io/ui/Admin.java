@@ -5,8 +5,10 @@ import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.RoomList;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceTypeList;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeList;
+import pt.ipp.isep.dei.project.services.GeoAreaSensorService;
 import pt.ipp.isep.dei.project.services.GeographicalAreaService;
 import pt.ipp.isep.dei.project.services.HouseService;
+import pt.ipp.isep.dei.project.services.RoomSensorService;
 
 import java.io.FileNotFoundException;
 
@@ -19,9 +21,11 @@ public class Admin {
     private PowerSourceTypeList powerSourceTypeList;
     private RoomList roomList;
     private HouseService houseService;
+    private GeoAreaSensorService geoAreaSensorService;
+    private RoomSensorService roomSensorService;
 
 
-    public Admin(GeographicalAreaTypeList geographicalAreaTypeList, GeographicalAreaService geographicalAreaService, SensorTypeList sensorTypeList, House house, PowerSourceTypeList powerSourceTypeList, RoomList roomList, HouseService houseService) {
+    public Admin(GeographicalAreaTypeList geographicalAreaTypeList, GeographicalAreaService geographicalAreaService, SensorTypeList sensorTypeList, House house, PowerSourceTypeList powerSourceTypeList, RoomList roomList, HouseService houseService, GeoAreaSensorService geoAreaSensorService, RoomSensorService roomSensorService) {
         this.geographicalAreaTypeList = geographicalAreaTypeList;
         this.geographicalAreaService = geographicalAreaService;
         this.sensorTypeList = sensorTypeList;
@@ -29,6 +33,8 @@ public class Admin {
         this.powerSourceTypeList = powerSourceTypeList;
         this.roomList = roomList;
         this.houseService = houseService;
+        this.geoAreaSensorService = geoAreaSensorService;
+        this.roomSensorService = roomSensorService;
     }
 
 
@@ -77,7 +83,7 @@ public class Admin {
                     ui9.jsonGeoAreaSensors();
                     break;
                 case 10:
-                    ImportReadings ui10 = new ImportReadings(geographicalAreaService, houseService);
+                    ImportReadings ui10 = new ImportReadings(geoAreaSensorService, roomSensorService);
                     ui10.run(1);
                     break;
                 case 11:
@@ -161,7 +167,7 @@ public class Admin {
                     ui260.run();
                     break;
                 case 15:
-                    ImportReadings ui15 = new ImportReadings(geographicalAreaService, houseService);
+                    ImportReadings ui15 = new ImportReadings(geoAreaSensorService, roomSensorService);
                     ui15.run(2);
             }
             option = Menu.adminHouseMenu();
