@@ -2,8 +2,8 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.importreadingsfromcsvcontroller.ImportGeoAreaReadingsController;
 import pt.ipp.isep.dei.project.controllers.importreadingsfromcsvcontroller.ImportRoomReadingsController;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaService;
-import pt.ipp.isep.dei.project.model.house.HouseService;
+import pt.ipp.isep.dei.project.services.GeographicalAreaService;
+import pt.ipp.isep.dei.project.services.HouseService;
 
 import java.io.File;
 import java.io.FileNotFoundException;

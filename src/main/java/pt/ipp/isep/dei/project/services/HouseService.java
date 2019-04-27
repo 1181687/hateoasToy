@@ -1,15 +1,16 @@
-package pt.ipp.isep.dei.project.model.house;
+package pt.ipp.isep.dei.project.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pt.ipp.isep.dei.project.HouseGridRepository;
-import pt.ipp.isep.dei.project.RoomRepository;
+import pt.ipp.isep.dei.project.model.house.*;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridDTO;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridMapper;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensorList;
+import pt.ipp.isep.dei.project.repositories.HouseGridRepository;
+import pt.ipp.isep.dei.project.repositories.RoomRepository;
 
 import java.util.List;
 import java.util.Objects;

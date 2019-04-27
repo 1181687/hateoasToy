@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
-import pt.ipp.isep.dei.project.GeoAreaRepository;
+import pt.ipp.isep.dei.project.repositories.GeoAreaRepository;
 import pt.ipp.isep.dei.project.controllers.AddGeoAreaController;
 import pt.ipp.isep.dei.project.io.ui.Main;
 import pt.ipp.isep.dei.project.model.Location;

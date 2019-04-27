@@ -14,9 +14,9 @@ import pt.ipp.isep.dei.project.model.LocationDTO;
 import pt.ipp.isep.dei.project.model.LocationMapper;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapper;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaService;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorDTO;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorMapper;
+import pt.ipp.isep.dei.project.services.GeographicalAreaService;
 
 import java.io.File;
 import java.io.FileNotFoundException;

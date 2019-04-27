@@ -1,11 +1,14 @@
-package pt.ipp.isep.dei.project.model.geographicalarea;
+package pt.ipp.isep.dei.project.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pt.ipp.isep.dei.project.GeoAreaRepository;
 import pt.ipp.isep.dei.project.model.Location;
+import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorList;
+import pt.ipp.isep.dei.project.repositories.GeoAreaRepository;
 
 import java.util.ArrayList;
 import java.util.List;

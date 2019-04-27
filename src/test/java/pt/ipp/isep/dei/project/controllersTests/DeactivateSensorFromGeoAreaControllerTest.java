@@ -18,6 +18,7 @@ import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorDTO;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorMapper;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
+import pt.ipp.isep.dei.project.services.GeographicalAreaService;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

@@ -3,7 +3,7 @@ package pt.ipp.isep.dei.project.io.ui;
 import pt.ipp.isep.dei.project.controllers.configurehouseinformationfromjsoncontroller.ConfigureHouseInformationFromJsonController;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.HouseDTO;
-import pt.ipp.isep.dei.project.model.house.HouseService;
+import pt.ipp.isep.dei.project.services.HouseService;
 
 import java.io.File;
 import java.io.FileNotFoundException;

@@ -11,7 +11,11 @@ import org.springframework.test.context.support.AnnotationConfigContextLoader;
 import pt.ipp.isep.dei.project.controllers.GetListOfTypeOfGeoAreaController;
 import pt.ipp.isep.dei.project.io.ui.Main;
 import pt.ipp.isep.dei.project.model.Location;
-import pt.ipp.isep.dei.project.model.geographicalarea.*;
+import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaTypeList;
+import pt.ipp.isep.dei.project.services.GeographicalAreaService;
 
 import java.util.ArrayList;
 import java.util.Arrays;

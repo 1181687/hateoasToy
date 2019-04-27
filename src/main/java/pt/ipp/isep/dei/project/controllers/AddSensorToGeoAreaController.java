@@ -2,10 +2,10 @@ package pt.ipp.isep.dei.project.controllers;
 
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaService;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeList;
+import pt.ipp.isep.dei.project.services.GeographicalAreaService;
 
 public class AddSensorToGeoAreaController {
     private SensorTypeList sensorTypeList;

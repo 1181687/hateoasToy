@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.controllers;
 
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaService;
+import pt.ipp.isep.dei.project.services.GeographicalAreaService;
 
 public class InsertedGeoAreaController {
     private GeographicalAreaService geographicalAreaService;

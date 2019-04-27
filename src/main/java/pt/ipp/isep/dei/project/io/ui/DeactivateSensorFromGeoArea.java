@@ -2,8 +2,8 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.deactivatesensorfromgeoarea.DeactivateSensorFromGeoAreaController;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaService;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorDTO;
+import pt.ipp.isep.dei.project.services.GeographicalAreaService;
 
 import java.util.ArrayList;
 import java.util.List;

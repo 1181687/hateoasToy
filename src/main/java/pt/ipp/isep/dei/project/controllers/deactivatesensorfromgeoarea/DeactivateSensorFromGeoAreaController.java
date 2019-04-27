@@ -4,9 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapper;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaService;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorDTO;
+import pt.ipp.isep.dei.project.services.GeographicalAreaService;
 
 import java.util.ArrayList;
 import java.util.List;

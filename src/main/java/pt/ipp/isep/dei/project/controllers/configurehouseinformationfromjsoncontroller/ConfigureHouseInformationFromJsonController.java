@@ -7,6 +7,7 @@ import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.house.*;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridDTO;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
+import pt.ipp.isep.dei.project.services.HouseService;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.io.*;

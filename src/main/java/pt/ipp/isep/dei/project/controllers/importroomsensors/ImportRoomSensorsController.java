@@ -1,10 +1,10 @@
 package pt.ipp.isep.dei.project.controllers.importroomsensors;
 
 import pt.ipp.isep.dei.project.model.ProjectFileReader;
-import pt.ipp.isep.dei.project.model.house.HouseService;
 import pt.ipp.isep.dei.project.model.house.RoomId;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensorDTO;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensorMapper;
+import pt.ipp.isep.dei.project.services.HouseService;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.io.File;

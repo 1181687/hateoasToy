@@ -1,4 +1,4 @@
-package pt.ipp.isep.dei.project;
+package pt.ipp.isep.dei.project.repositories;
 
 import org.springframework.data.repository.CrudRepository;
 import pt.ipp.isep.dei.project.model.house.Room;

@@ -3,7 +3,7 @@ package pt.ipp.isep.dei.project.io.ui;
 /*import org.springframework.beans.factory.annotation.Autowired;
 import pt.ipp.isep.dei.project.controllers.AddGeoAreaController;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaService;
+import pt.ipp.isep.dei.project.services.GeographicalAreaService;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaTypeList;
 
 import java.util.Scanner;

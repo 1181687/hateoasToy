@@ -2,8 +2,8 @@ package pt.ipp.isep.dei.project.controllers.importreadingsfromcsvcontroller;
 /*
 import org.springframework.beans.factory.annotation.Autowired;
 import pt.ipp.isep.dei.project.model.*;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaService;
-import pt.ipp.isep.dei.project.model.house.HouseService;
+import pt.ipp.isep.dei.project.services.GeographicalAreaService;
+import pt.ipp.isep.dei.project.services.HouseService;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorList;
