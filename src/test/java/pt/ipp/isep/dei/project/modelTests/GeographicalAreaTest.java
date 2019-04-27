@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaTypeId;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
@@ -570,10 +571,10 @@ class GeographicalAreaTest {
         AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
         ag1.setGeographicalAreaType(tipo);
-        GeographicalAreaType expectedResult = tipo;
+        GeoAreaTypeId expectedResult = tipo.getGeoAreaTypeId();
 
         //act
-        GeographicalAreaType result = ag1.getGeoAreaType();
+        GeoAreaTypeId result = ag1.getGeoAreaType();
 
         //assert
         assertEquals(expectedResult, result);

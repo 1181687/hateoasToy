@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaTypeId;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
@@ -84,9 +85,10 @@ public class GeographicalAreaService {
      * @return the geo area type list.
      */
     public List<String> getListOfGeographicalAreasByType(String geoAreaType) {
+        GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId(geoAreaType);
         List<String> geoAreaListWithSameType = new ArrayList<>();
         for (GeographicalArea areaGeo : geoAreaList) {
-            if (areaGeo.getGeoAreaType().checkIfOneTypeOfGeoAreaIsEqualToAnotherType(geoAreaType)) {
+            if (areaGeo.getGeoAreaType().equals(geoAreaTypeId)) {
                 geoAreaListWithSameType.add(areaGeo.getDescription());
             }
         }
@@ -163,11 +165,11 @@ public class GeographicalAreaService {
         for (int i = 1; i <= geoAreaList.size(); i++) {
             content.append(i + " - ID: " + geoAreaList.get(i - 1).getId().getId());
             content.append(", Description: " + geoAreaList.get(i - 1).getDescription());
-            content.append(", Type: " + geoAreaList.get(i - 1).getGeoAreaType().getStringOfTypeOfGeoArea());
+            content.append(", Type: " + geoAreaList.get(i - 1).getGeoAreaType().getTypeId());
             content.append(", Latitude: " + geoAreaList.get(i - 1).getLocation().getLatitude());
             content.append(", Longitude: " + geoAreaList.get(i - 1).getLocation().getLongitude());
             if (useCriteria && !checkIfGeoAreaDoesntHaveAnInsertedArea(geoAreaList.get(i - 1))) {
-                content.append(", Inserted in: " + geoAreaList.get(i - 1).getInsertedIn().getGeoAreaType().getStringOfTypeOfGeoArea());
+                content.append(", Inserted in: " + geoAreaList.get(i - 1).getInsertedIn().getGeoAreaType().getTypeId());
                 content.append(" " + geoAreaList.get(i - 1).getInsertedIn().getDescription());
             }
             content.append("\n");

@@ -2,22 +2,28 @@ package pt.ipp.isep.dei.project.model.geographicalarea;
 
 import pt.ipp.isep.dei.project.roles.Root;
 
-import javax.persistence.Embeddable;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
 
-@Embeddable
+@Entity
 public class GeographicalAreaType implements Root {
 
-    private String geoAreaType;
+    @EmbeddedId
+    private GeoAreaTypeId geoAreaTypeId;
 
     /**
      * constructor that receives a type of geographical area.
      * @param geoAreaType
      */
     public GeographicalAreaType(String geoAreaType) {
-        this.geoAreaType = geoAreaType;
+        this.geoAreaTypeId = new GeoAreaTypeId(geoAreaType);
     }
 
     protected GeographicalAreaType() {
+    }
+
+    public GeoAreaTypeId getGeoAreaTypeId() {
+        return geoAreaTypeId;
     }
 
     /**
@@ -43,7 +49,7 @@ public class GeographicalAreaType implements Root {
             return false;
         }
         GeographicalAreaType tag = (GeographicalAreaType) obj;
-        return this.geoAreaType.equals(tag.geoAreaType);
+        return this.geoAreaTypeId.equals(tag.geoAreaTypeId);
     }
 
     /**
@@ -52,11 +58,11 @@ public class GeographicalAreaType implements Root {
      * @return a type of geo area.
      */
     public String getStringOfTypeOfGeoArea() {
-        return this.geoAreaType;
+        return this.geoAreaTypeId.getTypeId();
     }
 
     public void setStringOfTypeOfGeoArea(String geoAreaType) {
-        this.geoAreaType = geoAreaType;
+        this.geoAreaTypeId = new GeoAreaTypeId(geoAreaType);
     }
 
 

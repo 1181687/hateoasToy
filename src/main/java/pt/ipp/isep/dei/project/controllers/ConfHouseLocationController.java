@@ -39,11 +39,11 @@ public class ConfHouseLocationController {
         for (GeographicalArea geoArea : geographicalAreaService.getGeoAreaList()) {
             content.append(numberInTheList + " - ID: " + geoArea.getId().getId());
             content.append(", Description: " + geoArea.getDescription());
-            content.append(", Type: " + geoArea.getGeoAreaType().getStringOfTypeOfGeoArea());
+            content.append(", Type: " + geoArea.getGeoAreaType().getTypeId());
             content.append(", Latitude: " + geoArea.getLocation().getLatitude());
             content.append(", Longitude: " + geoArea.getLocation().getLongitude());
             if (useCriterion && !geographicalAreaService.checkIfGeoAreaDoesntHaveAnInsertedArea(geoArea)) {
-                content.append(", Inserted in: " + geoArea.getInsertedIn().getGeoAreaType().getStringOfTypeOfGeoArea());
+                content.append(", Inserted in: " + geoArea.getInsertedIn().getGeoAreaType().getTypeId());
                 content.append(" " + geoArea.getInsertedIn().getDescription());
             }
             content.append("\n");

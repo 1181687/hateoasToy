@@ -15,30 +15,19 @@ import java.util.*;
 
 @Entity
 public class GeographicalArea implements Root {
-
     @EmbeddedId
     private GeoAreaId id;
     private String description;
-
-    //@Embedded
-    //@Transient
-    //private GeographicalAreaType geographicalAreaType;
-
-    @Transient
+    @OneToOne
     private GeographicalArea insertedIn;
-
-    //@Embedded
-    // @Transient
-    // private Location location;
-
     @Embedded
     private AreaShape areaShape;
-
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn
-    //@Transient
+    @Transient
     private GeoAreaSensorList geoAreaSensorList = new GeoAreaSensorList();
 
+    /**
+     * Empty constructor.
+     */
     protected GeographicalArea(){
         //intentionally empty
     }
@@ -115,7 +104,7 @@ public class GeographicalArea implements Root {
      *
      * @return a type of geographical area.
      */
-    public GeographicalAreaType getGeoAreaType() {
+    public GeoAreaTypeId getGeoAreaType() {
         return id.getGeographicalAreaType();
     }
 
