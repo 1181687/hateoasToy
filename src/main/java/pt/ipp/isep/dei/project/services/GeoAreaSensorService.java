@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.project.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaId;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorId;
@@ -63,6 +64,29 @@ public class GeoAreaSensorService {
         }
         return sensorListWithReadings;
     }
+
+    public List<GeoAreaSensor> getNearestSensors(Location location, List<GeoAreaSensor> sensors) {
+        List<GeoAreaSensor> nearestSensors = new ArrayList<>();
+        Double shortestDistance = Double.NaN;
+        if (!sensors.isEmpty()) {
+            for (GeoAreaSensor sensor : sensors) {
+                Double distance = sensor.getLocation().distanceBetweenTwoLocations(location);
+                if (Double.isNaN(shortestDistance) || shortestDistance > distance) {
+                    shortestDistance = distance;
+                    nearestSensors.clear();
+                    nearestSensors.add(sensor);
+                } else {
+                    if (shortestDistance.equals(distance)) {
+                        nearestSensors.add(sensor);
+                    }
+                }
+            }
+        }
+        return nearestSensors;
+    }
+
+
+
 
 
 }
