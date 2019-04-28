@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.project.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.model.Location;
+import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaId;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorId;
@@ -10,8 +11,10 @@ import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.repositories.GeoAreaSensorRepository;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class GeoAreaSensorService {
@@ -84,6 +87,35 @@ public class GeoAreaSensorService {
         }
         return nearestSensors;
     }
+
+    public Reading getLatestGeoAreaReadingInInterval(List<GeoAreaSensor> sensors, LocalDate startDate, LocalDate endDate) {
+        Reading latestGeoAreaReading = null;
+        LocalDateTime initialDate1 = startDate.atStartOfDay();
+        LocalDateTime finalDate1 = endDate.atTime(23, 59, 59);
+        if (!sensors.isEmpty()) {
+            for (GeoAreaSensor sensor : sensors) {
+                List<Reading> readings = sensor.getReadingsBetweenDates(startDate, endDate);
+                Reading sensorsMostRecentReading = this.getMostRecentValidReading(readings);
+                if ((Objects.isNull(latestGeoAreaReading))
+                        || Objects.nonNull(sensorsMostRecentReading)
+                        && sensorsMostRecentReading.getDateTime().isAfter(latestGeoAreaReading.getDateTime())) {
+                    latestGeoAreaReading = sensorsMostRecentReading;
+                }
+            }
+        }
+        return latestGeoAreaReading;
+    }
+
+
+    public GeoAreaSensor getNearestSensorWithMostRecentReading(Location location, List<GeoAreaSensor> sensors, LocalDate startDate, LocalDate endDate) {
+        List<GeoAreaSensor> nearestSensors = this.getNearestSensors(location, sensors);
+        if (nearestSensors.size() > 1) {
+            Reading mostRecentReading = this.getLatestGeoAreaReadingInInterval(nearestSensors, startDate, endDate);
+            return geoAreaAggregateRepo.getSensorById(mostRecentReading.getSensorId());
+        }
+        return nearestSensors.get(0);
+    }
+
 
 
 

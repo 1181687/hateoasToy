@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoField;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 @Entity
@@ -701,4 +702,17 @@ public class GeoAreaSensor implements Root {
         return dailyReadings;
 
     }
+
+    public Reading getMostRecentValidReading(List<Reading> readings) {
+        Reading mostRecentReading = null;
+        for (Reading reading : readings) {
+            if (Objects.isNull(mostRecentReading)
+                    || reading.getDateTime().isAfter(mostRecentReading.getDateTime()) && !Double.isNaN(reading.getValue())) {
+                mostRecentReading = reading;
+            }
+        }
+        return mostRecentReading;
+    }
+
+
 }
