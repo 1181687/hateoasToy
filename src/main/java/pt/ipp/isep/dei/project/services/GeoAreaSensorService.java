@@ -123,6 +123,12 @@ public class GeoAreaSensorService {
     }
 
 
+    public Double getDailyAverageOfASensor(SensorId sensorId, LocalDate day) {
+        GeoAreaSensor sensor = geoAreaSensorRepo.findGeoAreaSensorsById(sensorId);
+        return sensor.getDailyAverage(day);
+    }
+
+
 
 
 

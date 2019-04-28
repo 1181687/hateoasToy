@@ -391,15 +391,15 @@ public class GeoAreaSensor implements Root {
      * @return the measurements of a given day
      */
     public List<Reading> getDailyMeasurement(LocalDate date) {
-        List<Reading> registosDoDia = new ArrayList<>();
-        for (Reading registo : listOfReadings) {
-            LocalDate secondDate = registo.getDateTime().toLocalDate();
+        List<Reading> dailyReadings = new ArrayList<>();
+        for (Reading reading : listOfReadings) {
+            LocalDate secondDate = reading.getDateTime().toLocalDate();
 
-            if (checkIfDaysAreEqual(date, secondDate) && (!Double.isNaN(registo.getValue()))) {
-                registosDoDia.add(registo);
+            if (checkIfDaysAreEqual(date, secondDate) && (!Double.isNaN(reading.getValue()))) {
+                dailyReadings.add(reading);
             }
         }
-        return registosDoDia;
+        return dailyReadings;
 
     }
 
