@@ -225,6 +225,7 @@ public class JSONReaderGeoAreasSensors implements ProjectFileReader {
                     areaSensor1.setLocation(sensorLocation);
                     areaSensor1.setStartingDate(startingDate);
                     areaSensor1.setUnits(sensorUnits);
+                    areaSensor1.setGeographicalArea(geoAreaDTO);
 
                     geoAreaDTO.addSensor(areaSensor1);
 

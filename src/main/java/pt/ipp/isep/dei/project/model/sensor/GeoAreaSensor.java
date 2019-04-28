@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.project.model.sensor;
 
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaId;
 import pt.ipp.isep.dei.project.roles.Root;
 import pt.ipp.isep.dei.project.utils.Utils;
 
@@ -20,22 +21,19 @@ public class GeoAreaSensor implements Root {
     private SensorId id;
     private String sensorName;
     private LocalDateTime startingDate;
-
     @ElementCollection
     @CollectionTable(name = "GeoArea_Reading",
             joinColumns = @JoinColumn(name = "SENSOR_ID"))
     private List<Reading> listOfReadings = new ArrayList<>();
-
     @Embedded
     private String sensorType;
-
     @Transient
     private Location location;
-
     private String units;
-
     @Transient
     private boolean isActive;
+    @Embedded
+    private GeoAreaId geoAreaId;
 
     /**
      * Constructor method
@@ -70,6 +68,20 @@ public class GeoAreaSensor implements Root {
         this.location = location;
         this.units = units;
         this.isActive = true;
+    }
+
+    /**
+     * Constructor method with GeoAreaId.
+     */
+    public GeoAreaSensor(String id, String sensorName, LocalDateTime startingDate, SensorType sensorType, Location location, String units, GeoAreaId geoAreaId) {
+        this.id = new SensorId(id);
+        this.sensorName = sensorName;
+        this.startingDate = startingDate;
+        this.sensorType = sensorType.getType();
+        this.location = location;
+        this.units = units;
+        this.isActive = true;
+        this.geoAreaId = geoAreaId;
     }
 
     protected GeoAreaSensor() {

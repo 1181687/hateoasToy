@@ -6,6 +6,7 @@ import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorId;
 import pt.ipp.isep.dei.project.repositories.GeoAreaSensorRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -33,7 +34,16 @@ public class GeoAreaSensorService {
     /**
      * Method that saves all the
      */
-    public void saveSensors(List<GeoAreaSensor> sensors) {
-        geoAreaSensorRepo.saveAll(sensors);
+    public boolean saveSensors(List<GeoAreaSensor> sensors) {
+        boolean saved = false;
+        List<GeoAreaSensor> geoAreaSensors = new ArrayList<>();
+        for (GeoAreaSensor sensor : sensors) {
+            if (!geoAreaSensorRepo.existsById(new SensorId(sensor.getId()))) {
+                geoAreaSensors.add(sensor);
+                saved = true;
+            }
+        }
+        geoAreaSensorRepo.saveAll(geoAreaSensors);
+        return saved;
     }
 }

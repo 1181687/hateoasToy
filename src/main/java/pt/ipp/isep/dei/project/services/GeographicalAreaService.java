@@ -248,4 +248,17 @@ public class GeographicalAreaService {
             geoAreaRepository.save(geoArea);
         }
     }
+
+    public boolean saveGeoAreas(List<GeographicalArea> geoAreas) {
+        boolean saved = false;
+        List<GeographicalArea> geographicalAreas = new ArrayList<>();
+        for (GeographicalArea geoArea : geoAreas) {
+            if (!geoAreaRepository.existsById(geoArea.getId())) {
+                geographicalAreas.add(geoArea);
+                saved = true;
+            }
+        }
+        geoAreaRepository.saveAll(geographicalAreas);
+        return saved;
+    }
 }

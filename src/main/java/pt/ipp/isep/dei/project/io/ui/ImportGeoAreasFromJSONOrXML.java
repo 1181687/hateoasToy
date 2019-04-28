@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.importgeoareasfromjsonorxmlcontroller.ImportGeoAreasFromJSONOrXMLController;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
+import pt.ipp.isep.dei.project.services.GeoAreaSensorService;
 import pt.ipp.isep.dei.project.services.GeographicalAreaService;
 
 import java.io.File;
@@ -15,8 +16,8 @@ public class ImportGeoAreasFromJSONOrXML {
     private ImportGeoAreasFromJSONOrXMLController controller;
 
 
-    public ImportGeoAreasFromJSONOrXML(GeographicalAreaService geoList) {
-        this.controller = new ImportGeoAreasFromJSONOrXMLController(geoList);
+    public ImportGeoAreasFromJSONOrXML(GeographicalAreaService geoList, GeoAreaSensorService geoAreaSensorService) {
+        this.controller = new ImportGeoAreasFromJSONOrXMLController(geoList, geoAreaSensorService);
     }
 
     public void jsonGeoAreaSensors() throws FileNotFoundException {
@@ -64,7 +65,7 @@ public class ImportGeoAreasFromJSONOrXML {
         String importConfirmation = InputValidator.confirmValidation("Do you want to import these geographical areas and their sensors? (Y/N)");
         if ("Y".equalsIgnoreCase(importConfirmation)) {
             if (controller.importGeographicalAreaAndSensors()) {
-                System.out.println("\n The file was imported with success.\n");
+                System.out.println("\nThe file was imported with success.\n");
                 return;
             } else {
                 System.out.println("The file is already imported.\n");

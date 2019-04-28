@@ -2,6 +2,8 @@ package pt.ipp.isep.dei.project.model.sensor;
 
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.LocationMapper;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapper;
 
 public final class GeoAreaSensorMapper {
 
@@ -45,7 +47,8 @@ public final class GeoAreaSensorMapper {
     public static GeoAreaSensor mapToEntity(GeoAreaSensorDTO sensorDTO) {
         SensorType sensorType = new SensorType(sensorDTO.getSensorType());
         Location location = LocationMapper.mapToEntity(sensorDTO.getLocation());
-        GeoAreaSensor newSensor = new GeoAreaSensor(sensorDTO.getId(), sensorDTO.getName(), sensorDTO.getStartingDate().atStartOfDay(), sensorType, location, sensorDTO.getUnits());
+        GeographicalArea geographicalArea = GeographicalAreaMapper.mapToEntity(sensorDTO.getGeographicalArea());
+        GeoAreaSensor newSensor = new GeoAreaSensor(sensorDTO.getId(), sensorDTO.getName(), sensorDTO.getStartingDate().atStartOfDay(), sensorType, location, sensorDTO.getUnits(), geographicalArea.getId());
         //newSensor.deactivateDevice(sensorDTO.isActive());
         return newSensor;
     }
