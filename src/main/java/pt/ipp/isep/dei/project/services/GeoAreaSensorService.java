@@ -95,11 +95,11 @@ public class GeoAreaSensorService {
         if (!sensors.isEmpty()) {
             for (GeoAreaSensor sensor : sensors) {
                 List<Reading> readings = sensor.getReadingsBetweenDates(startDate, endDate);
-                Reading sensorsMostRecentReading = this.getMostRecentValidReading(readings);
+                Reading mostRecentValidReading = sensor.getMostRecentValidReading(readings);
                 if ((Objects.isNull(latestGeoAreaReading))
-                        || Objects.nonNull(sensorsMostRecentReading)
-                        && sensorsMostRecentReading.getDateTime().isAfter(latestGeoAreaReading.getDateTime())) {
-                    latestGeoAreaReading = sensorsMostRecentReading;
+                        || Objects.nonNull(mostRecentValidReading)
+                        && mostRecentValidReading.getDateTime().isAfter(latestGeoAreaReading.getDateTime())) {
+                    latestGeoAreaReading = mostRecentValidReading;
                 }
             }
         }
@@ -109,11 +109,17 @@ public class GeoAreaSensorService {
 
     public GeoAreaSensor getNearestSensorWithMostRecentReading(Location location, List<GeoAreaSensor> sensors, LocalDate startDate, LocalDate endDate) {
         List<GeoAreaSensor> nearestSensors = this.getNearestSensors(location, sensors);
-        if (nearestSensors.size() > 1) {
-            Reading mostRecentReading = this.getLatestGeoAreaReadingInInterval(nearestSensors, startDate, endDate);
-            return geoAreaAggregateRepo.getSensorById(mostRecentReading.getSensorId());
+        GeoAreaSensor nearestSensorWithMostRecentReading = null;
+        if (!nearestSensors.isEmpty()) {
+            for (GeoAreaSensor nearestOne : nearestSensors) {
+                List<Reading> readings = nearestOne.getReadingsBetweenDates(startDate, endDate);
+                nearestOne.getMostRecentValidReading(readings);
+                if (Objects.isNull(nearestSensorWithMostRecentReading)) {
+                    nearestSensorWithMostRecentReading = nearestOne;
+                }
+            }
         }
-        return nearestSensors.get(0);
+        return nearestSensorWithMostRecentReading;
     }
 
 
