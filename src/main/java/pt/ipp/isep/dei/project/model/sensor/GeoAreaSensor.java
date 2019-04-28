@@ -21,19 +21,27 @@ public class GeoAreaSensor implements Root {
     private SensorId id;
     private String sensorName;
     private LocalDateTime startingDate;
+
     @ElementCollection
     @CollectionTable(name = "GeoArea_Reading",
             joinColumns = @JoinColumn(name = "SENSOR_ID"))
     private List<Reading> listOfReadings = new ArrayList<>();
+
     @Embedded
     private String sensorType;
+
     @Transient
     private Location location;
+
     private String units;
+
+    @Embedded
+    @JoinColumn(name = "geo_area_id")
+    private GeoAreaId geoAreaId;
+
+
     @Transient
     private boolean isActive;
-    @Embedded
-    private GeoAreaId geoAreaId;
 
     /**
      * Constructor method
@@ -213,6 +221,10 @@ public class GeoAreaSensor implements Root {
             }
         }
         return measurementsBetweenDates;
+    }
+
+    public boolean existReadingsBetweenDates(LocalDate startDate, LocalDate endDate) {
+        return getMeasurementValueBetweenDates(startDate, endDate) != null;
     }
 
     /**
