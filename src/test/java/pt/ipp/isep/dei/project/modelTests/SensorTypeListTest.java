@@ -4,7 +4,7 @@ package pt.ipp.isep.dei.project.modelTests;
 
 public class SensorTypeListTest {
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testarContrutorNaoVazio() {
         //Arrange
         List<SensorType> lista = new ArrayList<>();
@@ -19,7 +19,7 @@ public class SensorTypeListTest {
         assertTrue(resultado);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testarGetListaTipoSensores() {
         //Arrange
         List<SensorType> lista = new ArrayList<>();
@@ -37,7 +37,7 @@ public class SensorTypeListTest {
         assertEquals(resultadoEsperado, resultado);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testarAdicionarTipoDeSensorAListaPositivo() {
         //Arrange
         SensorTypeList lista = new SensorTypeList();
@@ -49,7 +49,7 @@ public class SensorTypeListTest {
         assertTrue(resultado);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testarAdicionarTipoDeSensorAListaNegativo() {
         //Arrange
         SensorTypeList lista = new SensorTypeList();
@@ -62,7 +62,7 @@ public class SensorTypeListTest {
         assertFalse(resultado);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testarNovoTipoSensorMesmoTipo() {
         //Arrange
         SensorTypeList lista = new SensorTypeList();
@@ -76,7 +76,7 @@ public class SensorTypeListTest {
         assertFalse(resultado);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testarNovoTipoSensorOutroTipoTrue() {
         //Arrange
         SensorTypeList lista = new SensorTypeList();
@@ -90,7 +90,7 @@ public class SensorTypeListTest {
         assertTrue(resultado);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testarGetTipoSensorPorPosicao() {
         //Arrange
         List<SensorType> lista = new ArrayList<>();
@@ -120,7 +120,7 @@ public class SensorTypeListTest {
         assertEquals(tipo1, resultado);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testarGetTipoSensorPorPosicaoMaxima() {
         //Arrange
         List<SensorType> lista = new ArrayList<>();
@@ -139,7 +139,7 @@ public class SensorTypeListTest {
         assertEquals(tipo3, resultado);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testDisplayListOfSensorsType() {
         // Arrange
         // RoomList with two rooms
@@ -168,7 +168,7 @@ public class SensorTypeListTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void checkIfTheListOfSensorTypeIsEmptyPositive() {
         // Arrange
         // RoomList with two rooms

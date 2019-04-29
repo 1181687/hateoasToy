@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class PowerSourceTypeListTest {
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testAddPowerSourceTypeToPowerSourceTypeListPowerSourceIsAddedTest() {
 
         //Arrange
@@ -28,7 +28,7 @@ public class PowerSourceTypeListTest {
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testAddPowerSourceTypeToPowerSourceTypeListPowerSourceIsNotAddedTest() {
 
         //Arrange
@@ -48,7 +48,7 @@ public class PowerSourceTypeListTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testDisplayPowerSourceTypeList() {
         //Arrange
         String powerSourceTypeName1 = "Battery";
@@ -96,7 +96,7 @@ public class PowerSourceTypeListTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetPowerSourceTypeFromASpecificPositionInTheListGetLastPositionTest() {
 
         //Arrange
