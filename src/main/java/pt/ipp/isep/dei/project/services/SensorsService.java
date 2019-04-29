@@ -26,9 +26,8 @@ public class SensorsService {
             for (Map.Entry<LocalDate, List<Double>> dailyComfortTemp : set) {
                 for (Reading roomReading : roomReadings) {
                     if (dailyComfortTemp.getKey().equals(roomReading.getDateTime().toLocalDate())
-                            && dailyComfortTemp.getValue().get(0) == null && dailyComfortTemp.getValue().get(0) > roomReading.getValue()) {
+                            && Objects.isNull(dailyComfortTemp.getValue().get(0)) && dailyComfortTemp.getValue().get(0) > roomReading.getValue()) {
                         mapOfInstancesBelowComfortTemp.put(roomReading.getDateTime(), roomReading.getValue());
-
                     }
                 }
             }
@@ -53,7 +52,5 @@ public class SensorsService {
         List<LocalDateTime> listOfInstants = getInstantListOutOfComfortLevel(mapOfInstantsOutOfComfortLevel);
         return !listOfInstants.isEmpty();
     }
-
-
 
 }
