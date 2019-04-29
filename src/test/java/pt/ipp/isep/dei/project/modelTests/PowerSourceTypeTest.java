@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class PowerSourceTypeTest {
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testHashCode() {
         //Arrange
         String powerSourceTypeName1 = "public electric grid";
@@ -55,7 +55,7 @@ public class PowerSourceTypeTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testingEqualsMethodWithDifferentObjectsNegativeTest() {
         //Arrange
         String type1 = "Battery";

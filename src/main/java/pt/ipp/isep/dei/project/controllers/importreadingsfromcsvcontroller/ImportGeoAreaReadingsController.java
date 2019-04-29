@@ -84,7 +84,7 @@ public class ImportGeoAreaReadingsController {
             if (Objects.isNull(sensor)) {
                 sensor = geoAreaSensorService.getSensorById(sensorId);
             }
-            if (Objects.nonNull(sensor) && !sensorId.getSensorId().equals(sensor.getId())) {
+            if (Objects.nonNull(sensor) && !sensorId.equals(sensor.getId())) {
                 sensors.add(sensor);
                 save = true;
                 sensor = geoAreaSensorService.getSensorById(sensorId);
