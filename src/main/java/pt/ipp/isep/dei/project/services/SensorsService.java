@@ -32,27 +32,21 @@ public class SensorsService {
 
         if (!mapComfTemp.isEmpty()) {
             for (RoomReading roomReading : intervalRoomReadings) {
-                if (!Objects.isNull(roomReading))
 
-                    for (Map.Entry<LocalDate, List<Double>> mapComfTempDaily : mapComfTemp) {
+                for (Map.Entry<LocalDate, List<Double>> mapComfTempDaily : mapComfTemp) {
 
-                        LocalDate localDateReading = roomReading.getDateTime().toLocalDate();
-                        Double valueReading = roomReading.getValue();
-                        LocalDate localDateComfTempMax = mapComfTempDaily.getKey();
+                    LocalDate localDateReading = roomReading.getDateTime().toLocalDate();
+                    double valueReading = roomReading.getValue();
+                    LocalDate localDateComfTempMax = mapComfTempDaily.getKey();
 
-                        if (!Objects.isNull(mapComfTempDaily.getValue())) {
-                            Double valueComfTempMax = mapComfTempDaily.getValue().get(1);
+                    if (!Objects.isNull(mapComfTempDaily.getValue()) && localDateReading.compareTo(localDateComfTempMax) == 0 && Double.compare(valueReading, mapComfTempDaily.getValue().get(1)) == 1) {
 
-                            if (localDateReading.compareTo(localDateComfTempMax) == 0 && Double.compare(valueReading, valueComfTempMax) == 1) {
-                                mapInstantsAboveComfortTemperature.put(roomReading.getDateTime(), valueReading);
-                            }
-                        }
+
+                        mapInstantsAboveComfortTemperature.put(roomReading.getDateTime(), valueReading);
                     }
+                }
             }
-            return mapInstantsAboveComfortTemperature;
         }
         return mapInstantsAboveComfortTemperature;
     }
-
-    
 }
