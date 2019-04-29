@@ -1,6 +1,9 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.AddSensorToGeoAreaController;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorDTO;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorMapper;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeList;
 import pt.ipp.isep.dei.project.services.GeographicalAreaService;
 
@@ -13,6 +16,7 @@ import java.util.Scanner;
 
 public class AddSensorToGeoArea {
     private AddSensorToGeoAreaController controller;
+    private GeoAreaSensorDTO geoAreaSensorDTO;
 
     public AddSensorToGeoArea(GeographicalAreaService geographicalAreaService, SensorTypeList sensorTypeList) {
         this.controller = new AddSensorToGeoAreaController(sensorTypeList, geographicalAreaService);
@@ -24,6 +28,7 @@ public class AddSensorToGeoArea {
         String label20 = "Introduce the units of the new sensor.";
         Scanner ler = new Scanner(System.in);
         String nome = InputValidator.getString(label);
+
         String id = InputValidator.getString(label10);
         String units = InputValidator.getString(label20);
 
@@ -61,7 +66,9 @@ public class AddSensorToGeoArea {
         controller.criarNovaLocalizacao(altitude, latitude, longitude);
         controller.getTipoSensorPorPosicao(posicao1 - 1);
 
-        if (controller.adicionarSensorAAreaGeografica(controller.criarNovoSensor(id, nome, units))) {
+        GeoAreaSensor geoAreaSensor = GeoAreaSensorMapper.mapToEntity(this.geoAreaSensorDTO);
+
+        if (controller.adicionarSensorAAreaGeografica(controller.criarNovoSensor(geoAreaSensor.getId(), nome, units))) {
             System.out.println("Success! A sensor was created.");
         } else {
             System.out.println("This sensor already exists in this geographical area.");
