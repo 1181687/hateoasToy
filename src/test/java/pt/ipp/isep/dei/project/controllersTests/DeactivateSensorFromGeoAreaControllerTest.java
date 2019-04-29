@@ -34,7 +34,8 @@ public class DeactivateSensorFromGeoAreaControllerTest {
     public void StartUp() {
         MockitoAnnotations.initMocks(this);
         // Geographical Area
-        GeographicalAreaType city = new GeographicalAreaType("City");
+        GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("City");
+        GeographicalAreaType city = new GeographicalAreaType(geoAreaTypeId);
         Location location = new Location(41.1496, -8.6109, 97);
         AreaShape shape = new AreaShape(10, 10);
         porto = new GeographicalArea("Porto", "City of Porto", city, location, shape);

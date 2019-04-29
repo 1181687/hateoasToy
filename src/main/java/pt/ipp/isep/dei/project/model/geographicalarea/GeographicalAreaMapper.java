@@ -67,7 +67,8 @@ public final class GeographicalAreaMapper {
         if (Objects.isNull(geographicalAreaDTO)) {
             return null;
         }
-        GeographicalAreaType geoType = new GeographicalAreaType(geographicalAreaDTO.getType());
+        GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId(geographicalAreaDTO.getType());
+        GeographicalAreaType geoType = new GeographicalAreaType(geoAreaTypeId);
         Location loc = new Location(geographicalAreaDTO.getLatitude(), geographicalAreaDTO.getLongitude(), geographicalAreaDTO.getElevation());
         AreaShape areaShape = new AreaShape(geographicalAreaDTO.getWidth(), geographicalAreaDTO.getLength());
         return new GeographicalArea(geographicalAreaDTO.getId(), geographicalAreaDTO.getDescription(), geoType, loc, areaShape);

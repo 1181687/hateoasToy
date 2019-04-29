@@ -9,6 +9,7 @@ import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.fridge.FridgeType;
 import pt.ipp.isep.dei.project.model.devices.washingmachine.WashingMachineType;
 import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaTypeId;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.house.Address;
@@ -34,7 +35,8 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         //Geographical Area
         Location location = new Location(41.178553, -8.608035, 111);
         AreaShape areaShape = new AreaShape(0.261, 0.249);
-        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Urban area");
+        GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("Urban area");
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType(geoAreaTypeId);
         GeographicalArea insertedGeoArea = new GeographicalArea("ISEP", "Campus do ISEP", geographicalAreaType, location, areaShape);
 
         //House
@@ -568,7 +570,8 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         // Geographical Area
         Location location = new Location(41.178553, -8.608035, 111);
         AreaShape areaShape = new AreaShape(0.261, 0.249);
-        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Urban area");
+        GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("Urban area");
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType(geoAreaTypeId);
         GeographicalArea insertedGeoArea = new GeographicalArea("ISEP", "Campus do ISEP", geographicalAreaType, location, areaShape);
 
         //House
