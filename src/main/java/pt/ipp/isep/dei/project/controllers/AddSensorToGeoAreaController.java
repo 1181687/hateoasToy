@@ -18,8 +18,10 @@ public class AddSensorToGeoAreaController {
     private GeoAreaSensorService geoAreaSensorService;
 
 
-    public AddSensorToGeoAreaController(GeographicalAreaService geographicalAreaService) {
+    public AddSensorToGeoAreaController(GeographicalAreaService geographicalAreaService, SensorTypeService sensorTypeService, GeoAreaSensorService geoAreaSensorService) {
         this.geographicalAreaService = geographicalAreaService;
+        this.sensorTypeService = sensorTypeService;
+        this.geoAreaSensorService = geoAreaSensorService;
     }
 
     public boolean isGeoAreaRepositoryEmpty() {

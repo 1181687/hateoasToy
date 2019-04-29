@@ -17,6 +17,8 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.mockito.Mockito.anyString;
+import static org.mockito.Mockito.when;
 
 public class DeactivateSensorFromGeoAreaControllerTest {
     private DeactivateSensorFromGeoAreaController controller;
@@ -59,9 +61,21 @@ public class DeactivateSensorFromGeoAreaControllerTest {
     @Test
     public void testDeactivateDevice_ChecksDeactivated_True() {
         // Act
-        controller.deactivateSensor(temperatureSensorDTO);
+        when(geographicalAreaService.getSensorById(anyString())).thenReturn(temperatureSensor);
+        temperatureSensor.deactivateDevice();
 
         boolean result = temperatureSensor.isActive();
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testDeactivateDevice_ChecksDeactivated_DeviceAlreadyDeactivated() {
+        // Act
+        when(geographicalAreaService.getSensorById(anyString())).thenReturn(temperatureSensor);
+        temperatureSensor.deactivateDevice();
+
+        boolean result = temperatureSensor.deactivateDevice();
         // Assert
         assertFalse(result);
     }

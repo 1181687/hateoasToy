@@ -22,7 +22,9 @@ class AddSensorToGeoAreaControllerTest {
 
     @Mock
     private GeographicalAreaService geographicalAreaService;
+    @Mock
     private SensorTypeService sensorTypeService;
+    @Mock
     private GeoAreaSensorService geoAreaSensorService;
     private AddSensorToGeoAreaController controller;
 
@@ -30,7 +32,7 @@ class AddSensorToGeoAreaControllerTest {
     public void StartUp() {
 
         MockitoAnnotations.initMocks(this);
-        this.controller = new AddSensorToGeoAreaController(geographicalAreaService);
+        this.controller = new AddSensorToGeoAreaController(geographicalAreaService, sensorTypeService, geoAreaSensorService);
     }
 
     @Test

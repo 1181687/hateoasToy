@@ -20,7 +20,7 @@ public class RemoveSensorFromGeoArea {
      */
     public RemoveSensorFromGeoArea(GeographicalAreaService geographicalAreaService) {
         controller = new RemoveSensorFromGeoAreaController(geographicalAreaService);
-        geographicalAreaDTOS = controller.getGeographicalAreaService();
+        geographicalAreaDTOS = controller.getGeographicalAreaDTO();
     }
 
     /**

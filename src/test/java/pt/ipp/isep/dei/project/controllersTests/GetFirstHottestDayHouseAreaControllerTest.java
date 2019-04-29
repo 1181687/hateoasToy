@@ -1,26 +1,6 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.controllers.getfirsthottestdayhouseareacontroller.GetFirstHottestDayHouseAreaController;
-import pt.ipp.isep.dei.project.model.Location;
-import pt.ipp.isep.dei.project.model.Reading;
-import pt.ipp.isep.dei.project.model.ReadingDTO;
-import pt.ipp.isep.dei.project.model.ReadingMapper;
-import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
-import pt.ipp.isep.dei.project.model.house.Address;
-import pt.ipp.isep.dei.project.model.house.House;
-import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
-import pt.ipp.isep.dei.project.model.sensor.SensorType;
-import pt.ipp.isep.dei.project.utils.Utils;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
+/*
 
 public class GetFirstHottestDayHouseAreaControllerTest {
     private static final String CONFIG_PROPERTIES = "Configuration.properties";
@@ -103,10 +83,12 @@ public class GetFirstHottestDayHouseAreaControllerTest {
         controller = new GetFirstHottestDayHouseAreaController(house);
     }
 
-    /**
+    */
+/**
      * There are 2 temperature sensors in Geographical area portocity
      * expected that isSensorListEmpty method returns false;
-     **/
+ **//*
+
     @Test
     public void isSensorListEmpty_False() {
         // Arrange
@@ -118,10 +100,12 @@ public class GetFirstHottestDayHouseAreaControllerTest {
         assertFalse(result);
     }
 
-    /**
+    */
+/**
      * There are no temperature sensors in Geographical area "newGeoArea"
      * expected that isSensorListEmpty method returns true;
-     **/
+ **//*
+
     @Test
     public void isSensorListEmptyTest_True() {
         // Arrange
@@ -143,11 +127,13 @@ public class GetFirstHottestDayHouseAreaControllerTest {
         assertTrue(result);
     }
 
-    /**
+    */
+/**
      * temperatureSensor1 is the nearest sensor in Geographical area portocity
      * there are 5 measurements in that period (reading2, reading3, reading4, reading5 and reading6)
      * expected to return true;
-     **/
+ **//*
+
     @Test
     public void checkNearestSensorReadingsExistenceBetweenDates_True() {
         // Arrange
@@ -161,11 +147,13 @@ public class GetFirstHottestDayHouseAreaControllerTest {
         assertTrue(result);
     }
 
-    /**
+    */
+/**
      * temperatureSensor1 is the nearest sensor in Geographical area portocity
      * there are no measurements in that period
      * expected to return false;
-     **/
+ **//*
+
     @Test
     public void checkNearestSensorReadingsExistenceBetweenDates_False() {
         // Arrange
@@ -180,11 +168,13 @@ public class GetFirstHottestDayHouseAreaControllerTest {
     }
 
 
-    /**
+    */
+/**
      * temperatureSensor1 is the nearest sensor in Geographical area portocity
      * after calculating the first highest reading, it should be turned into a readingDTO
      * expected to return ReadingDTO;
-     **/
+ **//*
+
     @Test
     public void getFirstHighestReadingHouseArea_ReadingDTO() {
         //Arrange
@@ -204,4 +194,4 @@ public class GetFirstHottestDayHouseAreaControllerTest {
         //Assert
         assertEquals(expectedResult, result);
     }
-}
+}*/

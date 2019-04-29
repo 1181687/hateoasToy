@@ -1,32 +1,6 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
-import org.junit.jupiter.api.Test;
-import org.mockito.MockitoAnnotations;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
-import org.springframework.test.context.support.AnnotationConfigContextLoader;
-import pt.ipp.isep.dei.project.controllers.importgeoareasfromjsonorxmlcontroller.ImportGeoAreasFromJSONOrXMLController;
-import pt.ipp.isep.dei.project.io.ui.Main;
-import pt.ipp.isep.dei.project.model.LocationDTO;
-import pt.ipp.isep.dei.project.model.LocationMapper;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapper;
-import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorDTO;
-import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorMapper;
-import pt.ipp.isep.dei.project.services.GeoAreaSensorService;
-import pt.ipp.isep.dei.project.services.GeographicalAreaService;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.GregorianCalendar;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
+/*
 
 @DataJpaTest
 @ContextConfiguration(classes = {Main.class},
@@ -39,9 +13,11 @@ public class ImportGeoAreasFromJSONOrXMLControllerTest {
     @Autowired
     private GeoAreaSensorService geoAreaSensorService;
 
-    /**
+    */
+/**
      * Test that imports imports geo areas and sensors
-     */
+ *//*
+
     @Test
     public void testImportGeographicalAreaAndSensors_True() throws FileNotFoundException {
         MockitoAnnotations.initMocks(this);
@@ -115,4 +91,4 @@ public class ImportGeoAreasFromJSONOrXMLControllerTest {
     static class Config {
     }
 
-}
+}*/
