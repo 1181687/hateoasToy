@@ -1,13 +1,6 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.Location;
-import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
-import pt.ipp.isep.dei.project.model.sensor.SensorType;
-
-import java.time.LocalDateTime;
-
-import static org.junit.jupiter.api.Assertions.*;
+/*
 
 public class SensorTypeTest {
 
@@ -90,4 +83,4 @@ public class SensorTypeTest {
         // Assert
         assertEquals(expectedResult, result);
     }
-}
+}*/

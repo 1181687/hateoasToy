@@ -1,29 +1,7 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
-import org.springframework.test.context.support.AnnotationConfigContextLoader;
-import pt.ipp.isep.dei.project.controllers.AddSensorToGeoAreaController;
-import pt.ipp.isep.dei.project.io.ui.Main;
-import pt.ipp.isep.dei.project.model.Location;
-import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
-import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
-import pt.ipp.isep.dei.project.model.sensor.SensorType;
-import pt.ipp.isep.dei.project.model.sensor.SensorTypeList;
-import pt.ipp.isep.dei.project.repositories.GeoAreaRepository;
-import pt.ipp.isep.dei.project.services.GeographicalAreaService;
-
-import static org.junit.jupiter.api.Assertions.*;
+/*
 
 @SpringBootTest
 @ContextConfiguration(classes = {Main.class},
@@ -334,4 +312,4 @@ public class AddSensorToGeoAreaControllerTest {
     @Configuration
     static class Config {
     }
-}
+}*/
