@@ -27,7 +27,7 @@ public class DimensionTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testhashCodeTrue() {
         //Arrange
         double height = 5.98;
@@ -75,7 +75,7 @@ public class DimensionTest {
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testEqualsTrueAllDimensions() {
         //Arrange
         Dimension dim = new Dimension(3.5, 3.5, 3.5);
@@ -88,7 +88,7 @@ public class DimensionTest {
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testEqualsFalseHeight() {
         //Arrange
         Dimension dim = new Dimension(2, 3.5, 3.5);
@@ -114,7 +114,7 @@ public class DimensionTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testEqualsFalseWidth() {
         //Arrange
         Dimension dim = new Dimension(3.5, 3.5, 2);

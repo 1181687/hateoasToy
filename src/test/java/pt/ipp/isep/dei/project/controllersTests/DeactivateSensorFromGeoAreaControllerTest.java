@@ -3,21 +3,12 @@ package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
-import org.springframework.test.context.support.AnnotationConfigContextLoader;
 import pt.ipp.isep.dei.project.controllers.deactivatesensorfromgeoarea.DeactivateSensorFromGeoAreaController;
-import pt.ipp.isep.dei.project.io.ui.Main;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.*;
-import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
-import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorDTO;
-import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorMapper;
-import pt.ipp.isep.dei.project.model.sensor.SensorType;
+import pt.ipp.isep.dei.project.model.sensor.*;
 import pt.ipp.isep.dei.project.services.GeographicalAreaService;
 
 import java.time.LocalDateTime;
@@ -27,17 +18,14 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
-@SpringBootTest
-@ContextConfiguration(classes = {Main.class},
-        loader = AnnotationConfigContextLoader.class)
-@SpringJUnitConfig(DeactivateSensorFromGeoAreaControllerTest.Config.class)
 public class DeactivateSensorFromGeoAreaControllerTest {
     private DeactivateSensorFromGeoAreaController controller;
     private GeographicalArea porto;
     private GeographicalAreaDTO portoDTO;
     private GeoAreaSensor temperatureSensor;
     private GeoAreaSensorDTO temperatureSensorDTO;
-    @Autowired
+
+    @Mock
     private GeographicalAreaService geographicalAreaService;
 
     @BeforeEach
@@ -54,10 +42,11 @@ public class DeactivateSensorFromGeoAreaControllerTest {
         portoDTO = GeographicalAreaMapper.mapToDTOwithSensors(porto);
 
         // Sensors
-        SensorType temperature = new SensorType("temperature");
+        SensorTypeId temperature = new SensorTypeId("temperature");
         LocalDateTime startDate = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         Location sensorLocation = new Location(38.1596, -8.6109, 97);
-        temperatureSensor = new GeoAreaSensor("S01", "A123", startDate, temperature, sensorLocation, "l/m2");
+        SensorId sensorId = new SensorId("S01");
+        temperatureSensor = new GeoAreaSensor(sensorId, "A123", startDate, temperature, sensorLocation, "l/m2");
         porto.addSensor(temperatureSensor);
 
         // SensorDTOs
@@ -93,9 +82,5 @@ public class DeactivateSensorFromGeoAreaControllerTest {
 
         // Assert
         assertEquals(expectedResult, result);
-    }
-
-    @Configuration
-    static class Config {
     }
 }
