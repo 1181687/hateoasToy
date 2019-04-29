@@ -1,4 +1,4 @@
-package pt.ipp.isep.dei.project.controllerTests;
+package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -54,7 +54,6 @@ class AddSensorToGeoAreaControllerTest {
         Location location = new Location(123, 456, 789);
         GeographicalAreaType geographicalAreaType = new GeographicalAreaType("city");
 
-        GeoAreaId geoAreaId = new GeoAreaId(location, "Espinho", geographicalAreaType);
         AreaShape areaShape = new AreaShape(123, 456);
 
         GeographicalArea geographicalArea = new GeographicalArea("Espinho", "Cidade de Espinho", geographicalAreaType, location, areaShape);
@@ -122,11 +121,9 @@ class AddSensorToGeoAreaControllerTest {
         SensorId geoAreaSensorId = new SensorId("geoAreaSensorId");
         SensorTypeId sensorTypeId = new SensorTypeId("Humidity");
         Location location = new Location(123, 456, 789);
-        GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("City");
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("city");
 
-        GeoAreaId geoAreaId = new GeoAreaId("geoAreaId", location, geoAreaTypeId);
-
-        GeoAreaSensor geoAreaSensor = new GeoAreaSensor(geoAreaSensorId, "GeoAreaSensor", sensorTypeId, location, "1m/s", geoAreaId);
+        GeoAreaSensor geoAreaSensor = new GeoAreaSensor(geoAreaSensorId, "GeoAreaSensor", sensorTypeId, location, "1m/s");
 
         // GeoAreaSensor DTO
         GeoAreaSensorDTO geoAreaSensorDTO = GeoAreaSensorMapper.mapToDTO(geoAreaSensor);
@@ -142,11 +139,8 @@ class AddSensorToGeoAreaControllerTest {
         SensorId geoAreaSensorId = new SensorId("geoAreaSensorId");
         SensorTypeId sensorTypeId = new SensorTypeId("Humidity");
         Location location = new Location(123, 456, 789);
-        GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("City");
 
-        GeoAreaId geoAreaId = new GeoAreaId("geoAreaId", location, geoAreaTypeId);
-
-        GeoAreaSensor geoAreaSensor = new GeoAreaSensor(geoAreaSensorId, "GeoAreaSensor", sensorTypeId, location, "1m/s", geoAreaId);
+        GeoAreaSensor geoAreaSensor = new GeoAreaSensor(geoAreaSensorId, "GeoAreaSensor", sensorTypeId, location, "1m/s");
 
         // GeoAreaSensor DTO
         GeoAreaSensorDTO geoAreaSensorDTO = GeoAreaSensorMapper.mapToDTO(geoAreaSensor);
