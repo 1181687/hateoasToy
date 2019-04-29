@@ -5,9 +5,7 @@ import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.RoomReading;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
-import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
-import pt.ipp.isep.dei.project.model.sensor.RoomSensorList;
-import pt.ipp.isep.dei.project.model.sensor.SensorType;
+import pt.ipp.isep.dei.project.model.sensor.*;
 import pt.ipp.isep.dei.project.roles.Root;
 
 import javax.persistence.*;
@@ -229,12 +227,12 @@ public double getMaximumMeasurementInGivenDay(SensorType type, LocalDate date) {
     /**
      * Method that gets the latest measurement by type of sensor
      *
-     * @param type type of sensor
+     * @param sensorTypeId type of sensor
      * @return latest measurement by sensor type
      */
 
-    public RoomReading getLatestMeasurementBySensorType(SensorType type) {
-        return new RoomReading(sensorList.getLatestMeasurementBySensorType(type).getValue(), sensorList.getLatestMeasurementBySensorType(type).getDateTime());
+    public RoomReading getLatestMeasurementBySensorType(SensorTypeId sensorTypeId) {
+        return new RoomReading(sensorList.getLatestMeasurementBySensorType(sensorTypeId).getValue(), sensorList.getLatestMeasurementBySensorType(sensorTypeId).getDateTime());
     }
 
 
@@ -517,7 +515,7 @@ public double getMaximumMeasurementInGivenDay(SensorType type, LocalDate date) {
         this.description = description;
     }
 
-    public RoomSensor getSensorById(String sensorId) {
+    public RoomSensor getSensorById(SensorId sensorId) {
         if (!Objects.isNull(sensorList.getSensorById(sensorId))) {
             return sensorList.getSensorById(sensorId);
         }
