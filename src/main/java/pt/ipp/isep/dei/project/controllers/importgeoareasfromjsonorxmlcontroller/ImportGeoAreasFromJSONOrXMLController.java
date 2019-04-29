@@ -74,6 +74,6 @@ public class ImportGeoAreasFromJSONOrXMLController {
                 sensors.add(sensor);
             }
         }
-        return geoAreaService.saveGeoAreas(geographicalAreas) && geoAreaSensorService.saveSensors(sensors);
+        return geoAreaService.saveGeoAreas(geographicalAreas) && geoAreaSensorService.saveSensors(sensors, true);
     }
 }

@@ -105,7 +105,7 @@ public class ImportGeoAreaReadingsController {
             }
         }
         double saveStart = System.nanoTime();
-        if (geoAreaSensorService.saveSensorsB(sensors)) {
+        if (geoAreaSensorService.saveSensors(sensors, false)) {
             imported = true;
         }
         double saveStop = System.nanoTime();

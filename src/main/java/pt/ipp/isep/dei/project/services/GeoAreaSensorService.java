@@ -32,36 +32,28 @@ public class GeoAreaSensorService {
     }
 
     /**
-     * Method that saves all the
+     * Method that saves a list of sensors that aren't already in the repo (if wanted).
+     *
+     * @param sensors List of sensors to be analyzed.
+     * @param analyze Option to decide if the list is analyzed or not (in terms of repetitions in the repo).
      */
-    public void saveSensor(GeoAreaSensor sensor) {
-        geoAreaSensorRepo.save(sensor);
-    }
-
-    /**
-     * Method that saves all the
-     */
-    public boolean saveSensors(List<GeoAreaSensor> sensors) {
+    public boolean saveSensors(List<GeoAreaSensor> sensors, boolean analyze) {
         boolean saved = false;
         List<GeoAreaSensor> geoAreaSensors = new ArrayList<>();
-        for (GeoAreaSensor sensor : sensors) {
-            if (!geoAreaSensorRepo.existsById(new SensorId(sensor.getId()))) {
-                geoAreaSensors.add(sensor);
-                saved = true;
+        if (analyze) {
+            for (GeoAreaSensor sensor : sensors) {
+                if (!geoAreaSensorRepo.existsById(new SensorId(sensor.getId()))) {
+                    geoAreaSensors.add(sensor);
+                    saved = true;
+                }
             }
+            geoAreaSensorRepo.saveAll(geoAreaSensors);
+            return saved;
         }
+        geoAreaSensors = sensors;
         geoAreaSensorRepo.saveAll(geoAreaSensors);
-        return saved;
-    }
-
-    /**
-     * Method that saves all the
-     */
-    public boolean saveSensorsB(List<GeoAreaSensor> sensors) {
-        geoAreaSensorRepo.saveAll(sensors);
         return true;
     }
-
 
     public List<GeoAreaSensor> getSensorsWithReadingsInInterval(GeoAreaId geoAreaId, SensorType sensorType, LocalDate startDate, LocalDate endDate) {
         List<GeoAreaSensor> sensorListWithReadings = new ArrayList<>();
@@ -135,8 +127,6 @@ public class GeoAreaSensorService {
         GeoAreaSensor sensor = geoAreaSensorRepo.findGeoAreaSensorsById(sensorId);
         return sensor.getDailyAverage(day);
     }
-
-
 
 
 }
