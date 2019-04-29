@@ -505,7 +505,7 @@ public class GeographicalArea implements Root {
      * @param sensorId Id of the sensor.
      * @return True or False.
      */
-    public boolean removeSensorById(String sensorId) {
+    public boolean removeSensorById(SensorId sensorId) {
         return geoAreaSensorList.removeSensorById(sensorId);
     }
 }

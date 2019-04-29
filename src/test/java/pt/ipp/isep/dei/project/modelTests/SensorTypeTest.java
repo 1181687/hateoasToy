@@ -7,6 +7,7 @@ import pt.ipp.isep.dei.project.model.sensor.SensorId;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -110,7 +111,7 @@ public class SensorTypeTest {
         String typeId1 = "Temperature";
         SensorTypeId sensorTypeId1 = new SensorTypeId(typeId1);
 
-        int expectedResult = 1;
+        int expectedResult = Objects.hash(sensorTypeId1.getSensorTypeId());
         // Act
         int result = sensorTypeId1.hashCode();
         // Assert

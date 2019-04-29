@@ -7,6 +7,7 @@ import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapper;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorDTO;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorMapper;
+import pt.ipp.isep.dei.project.model.sensor.SensorId;
 import pt.ipp.isep.dei.project.services.GeographicalAreaService;
 
 import java.util.ArrayList;
@@ -68,7 +69,7 @@ public class RemoveSensorFromGeoAreaController {
      *
      * @param sensorId Id of the GeoAreaSensor to be removed.
      */
-    public boolean removeSensor(String sensorId) {
+    public boolean removeSensor(SensorId sensorId) {
         if (geographicalArea.removeSensorById(sensorId)) {
             this.geographicalAreaService.updateRepository();
             return true;

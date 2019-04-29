@@ -2461,7 +2461,7 @@ public class SensorTest {
 
     *//**
      * Test that tries to get an existing list of Readings from the GeoAreaSensor.
-     *//*
+ *//*
     @Test
     public void testGetListOfReadings_tryingToGetAnExistingList_ShouldReturnTheCorrespondingList() {
         // Arrange
