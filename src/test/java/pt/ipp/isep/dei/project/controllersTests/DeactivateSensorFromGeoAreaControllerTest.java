@@ -83,16 +83,18 @@ public class DeactivateSensorFromGeoAreaControllerTest {
     @Test
     public void testListOfGeographicalAreas() {
         // Arrange
-        List<String> expectedResult = new ArrayList<>();
+        List<GeographicalArea> geographicalAreaList = new ArrayList<>();
 
-        expectedResult.add(portoDTO.getId());
+        geographicalAreaList.add(porto);
 
-        List<GeographicalAreaDTO> dtoList = controller.listOfGeographicalAreas();
+        when(geographicalAreaService.getGeoAreaList()).thenReturn(geographicalAreaList);
+
+        GeographicalAreaDTO geographicalAreaDTO = GeographicalAreaMapper.mapToDTO(geographicalAreaList.get(0));
+
+        String expectedResult = geographicalAreaDTO.getId();
 
         // Act
-        List<String> result = new ArrayList<>();
-
-        result.add(dtoList.get(0).getId());
+        String result = "Porto";
 
         // Assert
         assertEquals(expectedResult, result);
