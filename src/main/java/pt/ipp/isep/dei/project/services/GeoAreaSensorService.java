@@ -46,4 +46,12 @@ public class GeoAreaSensorService {
         geoAreaSensorRepo.saveAll(geoAreaSensors);
         return saved;
     }
+
+    /**
+     * Method that saves all the
+     */
+    public boolean saveSensorsB(List<GeoAreaSensor> sensors) {
+        geoAreaSensorRepo.saveAll(sensors);
+        return true;
+    }
 }

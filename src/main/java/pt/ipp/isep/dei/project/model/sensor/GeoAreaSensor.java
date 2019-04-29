@@ -21,7 +21,7 @@ public class GeoAreaSensor implements Root {
     private SensorId id;
     private String sensorName;
     private LocalDateTime startingDate;
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "GeoArea_Reading",
             joinColumns = @JoinColumn(name = "SENSOR_ID"))
     private List<Reading> listOfReadings = new ArrayList<>();

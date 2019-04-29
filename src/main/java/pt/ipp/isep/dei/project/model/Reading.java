@@ -5,7 +5,7 @@ import pt.ipp.isep.dei.project.roles.ValueObject;
 import javax.persistence.Embeddable;
 import java.time.LocalDateTime;
 
-@Embeddable()
+@Embeddable
 public class Reading implements ValueObject {
 
     private double value;
