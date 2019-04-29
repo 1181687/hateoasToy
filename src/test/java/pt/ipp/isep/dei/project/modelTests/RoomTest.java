@@ -1,4 +1,4 @@
-/*
+
 package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -13,9 +13,7 @@ import pt.ipp.isep.dei.project.model.house.Address;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
-import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
-import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorList;
-import pt.ipp.isep.dei.project.model.sensor.SensorType;
+import pt.ipp.isep.dei.project.model.sensor.*;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
@@ -65,7 +63,7 @@ public class RoomTest {
     }
 
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getDisplayRoomTest() {
         //arrange
 
@@ -89,7 +87,7 @@ public class RoomTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testHashCodeNotEquals() {
         //Arrange
         String name = "roomOne";
@@ -115,7 +113,7 @@ public class RoomTest {
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testEqualsFalse() {
         //Arrange
 
@@ -129,7 +127,7 @@ public class RoomTest {
     public void testEqualsFalseDifTypes() {
         //Arrange
 
-        SensorType tipo = new SensorType("humidade");
+        SensorTypeId tipo = new SensorTypeId("humidade");
 
         //Act
         boolean result = kitchen.equals(tipo);
@@ -141,12 +139,9 @@ public class RoomTest {
     public void testAddSensorToTheListOfSensorsInTheRoom() {
         // Arrange
         LocalDateTime dataFuncionamento = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
-        SensorType sensorType = new SensorType("Temperatura");
-        Location locS1 = new Location(123, 345, 50);
+        SensorTypeId sensorType = new SensorTypeId("Temperatura");
 
-        GeoAreaSensor s1 = new GeoAreaSensor("123", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
-
-        Dimension dim = new Dimension(3, 3.5, 3.5);
+        RoomSensor s1 = new RoomSensor(new SensorId("123"), "A123", dataFuncionamento, sensorType, "l/m2");
 
         // Act
         boolean result = laundry.addSensorToListOfSensorsInRoom(s1);
@@ -155,32 +150,31 @@ public class RoomTest {
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getSensorList() {
         //Arrange
-        GeoAreaSensorList sensorList = new GeoAreaSensorList();
+        RoomSensorList sensorList = new RoomSensorList();
 
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
-        SensorType sensorType0 = new SensorType("Temperatura");
-        Location locS0 = new Location(123, 345, 50);
-        GeoAreaSensor s0 = new GeoAreaSensor("421", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
+        SensorTypeId sensorType0 = new SensorTypeId("Temperatura");
+        RoomSensor s0 = new RoomSensor(new SensorId("421"), "A123", dataFuncionamento0, sensorType0, "l/m2");
 
         kitchen.addSensorToListOfSensorsInRoom(s0);
         sensorList.addSensor(s0);
-        List<GeoAreaSensor> expectedResult = sensorList.getListOfSensors();
+        List<RoomSensor> expectedResult = sensorList.getListOfSensors();
         //Act
-        List<GeoAreaSensor> result = kitchen.getSensorList().getListOfSensors();
+        List<RoomSensor> result = kitchen.getSensorList().getListOfSensors();
         //Assert
         assertEquals(result, expectedResult);
     }
 
-    */
-/*@Test
+
+    @Test
     public void testValidateNameNull() {
         String name = null;
         Dimension dim = new Dimension(3.5, 3.5, 3.5);
         Throwable exception = assertThrows(RuntimeException.class, () ->
-                new Room(name, 2, dim)
+                new Room(name, "Room 1", 2, dim)
         );
         assertEquals("Please enter a valid name. Name should not be empty", exception.getMessage());
     }
@@ -190,7 +184,7 @@ public class RoomTest {
         String name = "  ";
         Dimension dim = new Dimension(3.5, 3.5, 3.5);
         Throwable exception = assertThrows(RuntimeException.class, () ->
-                new Room(name, 2, dim)
+                new Room(name, "Room 1", 2, dim)
         );
         assertEquals("Please enter a valid name. Name should not be empty", exception.getMessage());
     }
@@ -200,65 +194,11 @@ public class RoomTest {
         String name = "Room 1";
         Dimension dim = null;
         Throwable exception = assertThrows(RuntimeException.class, () ->
-                new Room(name, 2, dim)
+                new Room(name, "Room 1",2, dim)
         );
         assertEquals("Dimension should not be null", exception.getMessage());
-    }*//*
-
-
-    @Test
-    public void getSensorsListContentTest() {
-        // Arrange
-        LocalDateTime dataFuncionamento0 = LocalDateTime.of(2015, 11, 2, 15, 20, 00);
-        SensorType sensorType0 = new SensorType("Temperatura");
-        Location locS0 = new Location(123, 345, 50);
-        GeoAreaSensor s0 = new GeoAreaSensor("123", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
-
-        LocalDateTime dataFuncionamento1 = LocalDateTime.of(2010, 11, 2, 15, 20, 00);
-        SensorType sensorType1 = new SensorType("Temperatura");
-        Location locS1 = new Location(123, 300, 50);
-        GeoAreaSensor s1 = new GeoAreaSensor("321", "A456", dataFuncionamento1, sensorType1, locS1, "l/m2");
-
-        kitchen.addSensorToListOfSensorsInRoom(s0);
-        kitchen.addSensorToListOfSensorsInRoom(s1);
-
-        String expectedResult =
-                "1 - Name of the sensor: A123\n" +
-                        "2 - Name of the sensor: A456\n";
-        // Act
-        String result = kitchen.getSensorListContent();
-
-        // Assert
-        assertEquals(expectedResult, result);
     }
 
-    @Test
-    public void checkIfSensorListIsEmptyTestTrue() {
-        // Arrange
-
-        // Act
-        boolean result = kitchen.isSensorListEmpty();
-
-        // Assert
-        assertTrue(result);
-    }
-
-    @Test
-    public void checkIfSensorListIsEmptyTestFalse() {
-        // Arrange
-        LocalDateTime dataFuncionamento0 = LocalDateTime.of(2015, 11, 2, 15, 20, 00);
-        SensorType sensorType0 = new SensorType("Temperatura");
-        Location locS0 = new Location(123, 345, 50);
-        GeoAreaSensor s0 = new GeoAreaSensor("123", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
-
-        kitchen.addSensorToListOfSensorsInRoom(s0);
-
-        // Act
-        boolean result = kitchen.isSensorListEmpty();
-
-        // Assert
-        assertFalse(result);
-    }
 
     @Test
     public void testGetDeviceList() {
@@ -322,7 +262,7 @@ public class RoomTest {
         assertEquals(expectedResult, result, 0.001);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void checkIfDeviceListIsEmptyTestTrue() {
         // Arrange
         // Act
@@ -332,7 +272,7 @@ public class RoomTest {
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void checkIfDeviceListIsEmptyTestFalse() {
         // Arrange
         Device dev1 = house.createDevice(LAMP_TYPE, "Lamp1", kitchen);
@@ -391,7 +331,7 @@ public class RoomTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetNameToString() {
         // Arrange
 
@@ -436,7 +376,7 @@ public class RoomTest {
         assertEquals(expectedResult, result, 0.000001);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getTotalEnergyConsumptionInAnIntervalTestWithTwoFullPeriods() {
         // Arrange
         // Device Instantiation
@@ -467,7 +407,7 @@ public class RoomTest {
         assertEquals(expectedResult, result, 0.000001);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getTotalEnergyConsumptionInAnIntervalTestWithoutFullPeriods() {
         // Arrange
 
@@ -499,7 +439,7 @@ public class RoomTest {
         assertEquals(expectedResult, result, 0.000001);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getTotalEnergyConsumptionInAnIntervalTestWithOneFullPeriodDeviceListEmpty() {
         // Arrange
         double expectedResult = 0.0;
@@ -514,7 +454,7 @@ public class RoomTest {
         assertEquals(expectedResult, result, 0.000001);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void deleteDeviceTrue() {
         // Arrange
         house.createDevice(LAMP_TYPE, "Lamp1", kitchen);
@@ -526,7 +466,7 @@ public class RoomTest {
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void deleteDeviceFalse() {
         // Arrange
         // act
@@ -566,7 +506,7 @@ public class RoomTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void deactivationDeviceTrue() {
 
         // Arrange
@@ -593,7 +533,7 @@ public class RoomTest {
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void deactivationDeviceAlreadyDeactivatedFalse() {
 
         // Arrange
@@ -608,7 +548,7 @@ public class RoomTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void deactivationDeviceFalse() {
         // Arrange
         // act
@@ -656,7 +596,7 @@ public class RoomTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getActiveDeviceListToString_Deactivated() {
 
         // Arrange
@@ -720,7 +660,7 @@ public class RoomTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void removeDevice_True() {
         // Arrange
         Device lamp = house.createDevice(LAMP_TYPE, "Lamp1", kitchen);
@@ -732,7 +672,7 @@ public class RoomTest {
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void removeDevice_False() {
         // Arrange
         Device lamp = house.createDevice(LAMP_TYPE, "Lamp1", kitchen);
@@ -745,8 +685,8 @@ public class RoomTest {
         assertFalse(result);
     }
 
-    */
-/*@Test
+
+    @Test
     public void testAddDeviceSameDevice_Exception() {
 
         Device lamp = house.createDevice(LAMP_TYPE, "Lamp", kitchen);
@@ -765,7 +705,7 @@ public class RoomTest {
 
         );
         assertEquals("Device is null.", exception.getMessage());
-    }*//*
+    }
 
 
     @org.junit.jupiter.api.Test
@@ -804,4 +744,4 @@ public class RoomTest {
         //Assert
         assertFalse(result);
     }
-}*/
+}

@@ -199,13 +199,13 @@ public class Room implements Root, Measurable {
     }
 
 
-/**
- * This method gets the sensor list.
- *
- * @return the list of sensors.
- */
+    /**
+     * This method gets the sensor list.
+     *
+     * @return the list of sensors.
+     */
 
-public RoomSensorList getSensorList() {
+    public RoomSensorList getSensorList() {
         return sensorList;
     }
 
@@ -251,29 +251,6 @@ public double getMaximumMeasurementInGivenDay(SensorType type, LocalDate date) {
         return totalNominalPower;
     }
 
-    /*
-     */
-/**
- * method that displays the content of the list of sesnsors
- *
- * @return sensor list content
- *//*
-
-    public String getSensorListContent() {
-        return this.sensorList.getSensorListToString();
-    }
-
-    */
-/**
- * method that check if the sensor list of the room is empty
- *//*
-
-    public boolean isSensorListEmpty() {
-        return this.sensorList.isEmpty();
-    }
-*/
-
-
     /**
      * method that displays the device list content
      *
@@ -301,6 +278,7 @@ public double getMaximumMeasurementInGivenDay(SensorType type, LocalDate date) {
     /**
      * Method that adds a device to the list of devices if device not null
      * and the roomlist has not device with the same name
+     *
      * @param device the device to be added
      * @return true if it adds, false if it doesn't add
      */
@@ -380,6 +358,7 @@ public double getMaximumMeasurementInGivenDay(SensorType type, LocalDate date) {
 
     /**
      * method that get a Device by it's position
+     *
      * @param position integer position of Device
      * @return Device
      */
