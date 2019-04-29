@@ -154,12 +154,12 @@ public class GeoAreaSensorService {
 
     /**
      * receives a map of Daily Averages in a interval, and gets Map<LocalDate, List<Double>> with list of the Comfort Temperature Min
-     * and Max for category One, organized By LocalDate
-     *
+     * and Max for category One or Two or Three, organized By LocalDate
+     * @param category house category (int)
      * @param mapOfDailyAverages map of Daily Averages in a interval organized by day
      * @return Map<LocalDate, List < Double>> map with List of Comfort Temperature Min and Max,  By Day
      */
-    public Map<LocalDate, List<Double>> getMapComfortTemperatureMinMaxByDayIntervalCategoryOne(Map<LocalDate, Double> mapOfDailyAverages) {
+    public Map<LocalDate, List<Double>> getMapComfortTemperatureMinMaxByDayIntervalByCategory(Map<LocalDate, Double> mapOfDailyAverages, int category) {
         Map<LocalDate, List<Double>> mapComfortTemperatureMinMaxByDay = new HashMap<>();
         Map<LocalDate, Double> cleanList = Utils.removeDoubleNanHashMap(mapOfDailyAverages);
 
@@ -169,8 +169,8 @@ public class GeoAreaSensorService {
 
             for (Map.Entry<LocalDate, Double> dailyAverage : setCleanList) {
 
-                double tempComfortMin = 0.33 * dailyAverage.getValue() + 18.8 - 2;
-                double tempComfortMax = 0.33 * dailyAverage.getValue() + 18.8 + 2;
+                double tempComfortMin = 0.33 * dailyAverage.getValue() + 18.8 - (category + 1);
+                double tempComfortMax = 0.33 * dailyAverage.getValue() + 18.8 + (category + 1);
                 LocalDate localDate = dailyAverage.getKey();
 
                 mapComfortTemperatureMinMaxByDay.put(localDate, new ArrayList<>());
