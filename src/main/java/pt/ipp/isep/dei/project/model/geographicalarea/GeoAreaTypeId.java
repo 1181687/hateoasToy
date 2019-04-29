@@ -24,3 +24,5 @@ public class GeoAreaTypeId implements Serializable {
         this.typeId = typeId;
     }
 }
+
+

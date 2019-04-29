@@ -13,18 +13,19 @@ public class GeographicalAreaType implements Root {
 
     /**
      * constructor that receives a type of geographical area.
-     * @param geoAreaType
+     * @param geoAreaTypeId
      */
-    public GeographicalAreaType(String geoAreaType) {
-        this.geoAreaTypeId = new GeoAreaTypeId(geoAreaType);
+    public GeographicalAreaType(GeoAreaTypeId geoAreaTypeId) {
+        this.geoAreaTypeId = geoAreaTypeId;
     }
 
     protected GeographicalAreaType() {
     }
 
-    public GeoAreaTypeId getGeoAreaTypeId() {
+    public GeoAreaTypeId getGeoAreaType() {
         return geoAreaTypeId;
     }
+
 
     /**
      * method that creates the hashcode to geoAreaType.
