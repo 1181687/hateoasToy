@@ -9,12 +9,11 @@ import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorId;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 import pt.ipp.isep.dei.project.repositories.GeoAreaSensorRepository;
+import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Service
 public class GeoAreaSensorService {
@@ -125,7 +124,7 @@ public class GeoAreaSensorService {
     }
 
 
-    public Double getDailyAverageOfASensor(SensorId sensorId, LocalDate day) {
+    public Double getDailyAverageBySensorId(SensorId sensorId, LocalDate day) {
         GeoAreaSensor sensor = geoAreaSensorRepo.findGeoAreaSensorsById(sensorId);
         return sensor.getDailyAverage(day);
     }
@@ -142,4 +141,61 @@ public class GeoAreaSensorService {
         return false;
     }
 
+    /**
+     * gets a Map<LocalDate, Double>> with the daily average per LocalDate, of the daily measurements of a sensorType, in a location,
+     * in a interval of time. It uses the sensor that is nearest and has the most recent readings.
+     *
+     * @param location
+     * @param geoAreaId
+     * @param typeId    type of sensor
+     * @param startDate
+     * @param endDate
+     * @return Map<LocalDate, Double>>
+     */
+    public Map<LocalDate, Double> getMapAverageOfDailyMeasurements(Location location, GeoAreaId geoAreaId, SensorTypeId typeId, LocalDate startDate, LocalDate endDate) {
+        List<GeoAreaSensor> sensors = this.getSensorsWithReadingsInInterval(geoAreaId, typeId, startDate, endDate);
+        Map<LocalDate, Double> mapOfDailyAverages = new HashMap<>();
+
+        if (!sensors.isEmpty()) {
+            GeoAreaSensor sensor = this.getNearestSensorWithMostRecentReading(location, sensors, startDate, endDate);
+            for (LocalDate dateIterator = startDate; dateIterator.isBefore(endDate); dateIterator = dateIterator.plusDays(1)) {
+                double dailyAverage = this.getDailyAverageBySensorId(sensor.getId(), dateIterator);
+                if (!Double.isNaN(dailyAverage)) {
+                    mapOfDailyAverages.put(dateIterator, dailyAverage);
+                }
+            }
+        }
+        return mapOfDailyAverages;
+    }
+
+    /**
+     * receives a map of Daily Averages in a interval, and gets Map<LocalDate, List<Double>> with list of the Comfort Temperature Min
+     * and Max for category One, organized By LocalDate
+     *
+     * @param mapOfDailyAverages map of Daily Averages in a interval organized by day
+     * @return Map<LocalDate, List < Double>> map with List of Comfort Temperature Min and Max,  By Day
+     */
+    public Map<LocalDate, List<Double>> getMapComfortTemperatureMinMaxByDayIntervalCategoryOne(Map<LocalDate, Double> mapOfDailyAverages) {
+        Map<LocalDate, List<Double>> mapComfortTemperatureMinMaxByDay = new HashMap<>();
+        Map<LocalDate, Double> cleanList = Utils.removeDoubleNanHashMap(mapOfDailyAverages);
+
+        Set<Map.Entry<LocalDate, Double>> setCleanList = cleanList.entrySet();
+
+        if (!setCleanList.isEmpty()) {
+
+            for (Map.Entry<LocalDate, Double> dailyAverage : setCleanList) {
+
+                double tempComfortMin = 0.33 * dailyAverage.getValue() + 18.8 - 2;
+                double tempComfortMax = 0.33 * dailyAverage.getValue() + 18.8 + 2;
+                LocalDate localDate = dailyAverage.getKey();
+
+                mapComfortTemperatureMinMaxByDay.put(localDate, new ArrayList<>());
+                if (!Double.isNaN(tempComfortMax) || !Double.isNaN(tempComfortMin)) {
+                    mapComfortTemperatureMinMaxByDay.get(localDate).add(tempComfortMin);
+                    mapComfortTemperatureMinMaxByDay.get(localDate).add(tempComfortMax);
+                }
+            }
+        }
+        return mapComfortTemperatureMinMaxByDay;
+    }
 }

@@ -19,4 +19,8 @@ public class GeoAreaTypeId implements Serializable {
     public String getTypeId() {
         return this.typeId;
     }
+
+    public void seTypeId(String typeId) {
+        this.typeId = typeId;
+    }
 }

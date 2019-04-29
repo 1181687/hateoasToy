@@ -3,13 +3,7 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
-import org.springframework.test.context.support.AnnotationConfigContextLoader;
-import pt.ipp.isep.dei.project.io.ui.Main;
+import org.mockito.Mock;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
@@ -22,7 +16,8 @@ import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
-import pt.ipp.isep.dei.project.model.sensor.SensorType;
+import pt.ipp.isep.dei.project.model.sensor.SensorId;
+import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 import pt.ipp.isep.dei.project.repositories.GeoAreaRepository;
 import pt.ipp.isep.dei.project.utils.Utils;
 
@@ -35,10 +30,6 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@DataJpaTest
-@ContextConfiguration(classes = {Main.class},
-        loader = AnnotationConfigContextLoader.class)
-@SpringJUnitConfig(HouseTest.Config.class)
 public class HouseTest {
     private static final String FRIDGE_TYPE = "Fridge";
     private static final String ELECTRIC_W_H_TYPE = "ElectricWaterHeater";
@@ -51,14 +42,14 @@ public class HouseTest {
     private Room laundry;
     private Room kitchen;
     private Device electricWaterHeater;
-    @Autowired
+    @Mock
     private GeoAreaRepository geoAreaRepository;
 
     @BeforeEach
     public void StartUp() {
         // Geographical Area
         Location location = new Location(41.178553, -8.608035, 111);
-        AreaShape areaShape = new AreaShape(1.261, 1.249, location);
+        AreaShape areaShape = new AreaShape(1.261, 1.249);
         GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Urban area");
         ag = new GeographicalArea("ISEP", "Campus do ISEP", geographicalAreaType, location, areaShape);
 
@@ -198,15 +189,15 @@ public class HouseTest {
         //Arrange
         //Instanciar sensor
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
-        SensorType sensorType0 = new SensorType("Rainfall");
+        SensorTypeId sensorType0 = new SensorTypeId("Rainfall");
         Location locS0 = new Location(41.178553, -8.608035, 111);
-        GeoAreaSensor s0 = new GeoAreaSensor("S01", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
+        GeoAreaSensor s0 = new GeoAreaSensor(new SensorId("S01"), "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
         house.getInsertedGeoArea().getSensorListInTheGeographicArea().addSensor(s0);
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
-        SensorType sensorType1 = new SensorType("Rainfall");
+        SensorTypeId sensorType1 = new SensorTypeId("Rainfall");
         Location locS1 = new Location(41.178553, -8.608035, 111);
-        GeoAreaSensor s1 = new GeoAreaSensor("S01", "A123", dataFuncionamento1, sensorType1, locS1, "l/m2");
+        GeoAreaSensor s1 = new GeoAreaSensor(new SensorId("S01"), "A123", dataFuncionamento1, sensorType1, locS1, "l/m2");
         house.getInsertedGeoArea().getSensorListInTheGeographicArea().addSensor(s1);
 
         // Sensor0
@@ -236,7 +227,7 @@ public class HouseTest {
 
         double expectedResult = 26.5;
 
-        SensorType searchType = new SensorType("Rainfall");
+        SensorTypeId searchType = new SensorTypeId("Rainfall");
         //Act
         double result = house.getAverageDailyMeasurementInHouseArea(searchType, startDate, endDate);
 
@@ -294,15 +285,15 @@ public class HouseTest {
 
         //Instantiate Sensors
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
-        SensorType sensorType0 = new SensorType("Temperature");
+        SensorTypeId sensorType0 = new SensorTypeId("Temperature");
         Location locS0 = new Location(41.178553, -8.608035, 111);
-        GeoAreaSensor s0 = new GeoAreaSensor("23", "A122", dataFuncionamento0, sensorType0, locS0, "l/m2");
+        GeoAreaSensor s0 = new GeoAreaSensor(new SensorId("23"), "A122", dataFuncionamento0, sensorType0, locS0, "l/m2");
         ag.getSensorListInTheGeographicArea().addSensor(s0);
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
-        SensorType sensorType1 = new SensorType("Temperature");
+        SensorTypeId sensorType1 = new SensorTypeId("Temperature");
         Location locS1 = new Location(41.178553, -8.608035, 111);
-        GeoAreaSensor s1 = new GeoAreaSensor("24", "A123", dataFuncionamento1, sensorType1, locS1, "l/m2");
+        GeoAreaSensor s1 = new GeoAreaSensor(new SensorId("24"), "A123", dataFuncionamento1, sensorType1, locS1, "l/m2");
         ag.getSensorListInTheGeographicArea().addSensor(s1);
 
 
@@ -329,7 +320,7 @@ public class HouseTest {
 
         double expectedResult = 30;
 
-        SensorType type = new SensorType("Temperature");
+        SensorTypeId type = new SensorTypeId("Temperature");
 
         //Act
         double result = house.getLastMeasurementByTypeInHouseArea(type);
@@ -343,15 +334,15 @@ public class HouseTest {
         //Arrange
         //Instanciar sensor
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
-        SensorType sensorType0 = new SensorType("Rainfall");
+        SensorTypeId sensorType0 = new SensorTypeId("Rainfall");
         Location locS0 = new Location(42.1496, -8.6109, 97);
-        GeoAreaSensor s0 = new GeoAreaSensor("S02", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
+        GeoAreaSensor s0 = new GeoAreaSensor(new SensorId("S02"), "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
         house.getInsertedGeoArea().getSensorListInTheGeographicArea().addSensor(s0);
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
-        SensorType sensorType1 = new SensorType("Rainfall");
+        SensorTypeId sensorType1 = new SensorTypeId("Rainfall");
         Location locS1 = new Location(42.149, -8.610, 97);
-        GeoAreaSensor s1 = new GeoAreaSensor("32", "A123", dataFuncionamento1, sensorType1, locS1, "l/m2");
+        GeoAreaSensor s1 = new GeoAreaSensor(new SensorId("32"), "A123", dataFuncionamento1, sensorType1, locS1, "l/m2");
         house.getInsertedGeoArea().getSensorListInTheGeographicArea().addSensor(s1);
 
         LocalDate startDate = LocalDate.of(2018, 12, 1);
@@ -359,7 +350,7 @@ public class HouseTest {
 
         double expectedResult = 0;
 
-        SensorType searchType = new SensorType("Rainfall");
+        SensorTypeId searchType = new SensorTypeId("Rainfall");
         //Act
         double result = house.getAverageDailyMeasurementInHouseArea(searchType, startDate, endDate);
 
@@ -386,20 +377,20 @@ public class HouseTest {
 
         //Instantiate Sensors
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
-        SensorType sensorType0 = new SensorType("Temperature");
+        SensorTypeId sensorType0 = new SensorTypeId("Temperature");
         Location locS0 = new Location(-1, 30, 50);
-        GeoAreaSensor s0 = new GeoAreaSensor("24", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
+        GeoAreaSensor s0 = new GeoAreaSensor(new SensorId("24"), "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
         ag.getSensorListInTheGeographicArea().addSensor(s0);
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
-        SensorType sensorType1 = new SensorType("Temperature");
+        SensorTypeId sensorType1 = new SensorTypeId("Temperature");
         Location locS1 = new Location(32.1576, 7.6199, 100);
-        GeoAreaSensor s1 = new GeoAreaSensor("45", "A123", dataFuncionamento1, sensorType1, locS1, "l/m2");
+        GeoAreaSensor s1 = new GeoAreaSensor(new SensorId("45"), "A123", dataFuncionamento1, sensorType1, locS1, "l/m2");
         ag.getSensorListInTheGeographicArea().addSensor(s1);
 
         double expectedResult = Double.NaN;
 
-        SensorType type = new SensorType("Temperature");
+        SensorTypeId type = new SensorTypeId("Temperature");
 
         //Act
         double result = house.getLastMeasurementByTypeInHouseArea(type);
@@ -413,19 +404,19 @@ public class HouseTest {
             //arrange
             //sensor
             LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
-            SensorType sensorType0 = new SensorType("Temperatura");
+            SensorTypeId sensorType0 = new SensorTypeId("Temperatura");
             Location locS0 = new Location(123, 345, 50);
-            GeoAreaSensor s0 = new GeoAreaSensor("87654", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
+            GeoAreaSensor s0 = new GeoAreaSensor(new SensorId("87654", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
 
             LocalDateTime dataFuncionamento1 = LocalDateTime.of(1991, 12, 5, 15, 20, 00);
-            SensorType sensorType1 = new SensorType("Temperatura");
+            SensorTypeId sensorType1 = new SensorTypeId("Temperatura");
             Location locS1 = new Location(123, 355, 50);
-            GeoAreaSensor s1 = new GeoAreaSensor("87654", "A123", dataFuncionamento1, sensorType1, locS1, "l/m2");
+            GeoAreaSensor s1 = new GeoAreaSensor(new SensorId("87654", "A123", dataFuncionamento1, sensorType1, locS1, "l/m2");
 
             LocalDateTime dataFuncionamento2 = LocalDateTime.of(1991, 12, 11, 15, 20, 00);
-            SensorType sensorType2 = new SensorType("Temperatura");
+            SensorTypeId sensorType2 = new SensorTypeId("Temperatura");
             Location locS2 = new Location(123, 345, 55);
-            GeoAreaSensor s2 = new GeoAreaSensor("87654", "A123", dataFuncionamento2, sensorType2, locS2, "l/m2");
+            GeoAreaSensor s2 = new GeoAreaSensor(new SensorId("87654", "A123", dataFuncionamento2, sensorType2, locS2, "l/m2");
 
             //Reading
             // Sensor0
@@ -458,7 +449,7 @@ public class HouseTest {
             s2.addReadingsToList(reading21);
             s2.addReadingsToList(reading22);
 
-        SensorType sensorType = new SensorType("Temperatura");
+        SensorTypeId sensorType = new SensorTypeId("Temperatura");
         Dimension dim = new Dimension(4, 4, 4);
         Room room = new Room("F5", "room", 1, dim);
         room.addSensorToListOfSensorsInRoom(s0);
@@ -470,7 +461,7 @@ public class HouseTest {
             Reading expectedResult = reading22;
 
             //Act
-            Reading result = house.getLatestMeasurementBySensorType("F5", sensorType);
+            Reading result = house.getLatestMeasurementBySensorTypeId("F5", sensorType);
 
             //Assert
             assertEquals(expectedResult, result);
@@ -495,7 +486,7 @@ public class HouseTest {
 
             double expectedResult = Double.NaN;
 
-            SensorType type = new SensorType("Temperature");
+            SensorTypeId type = new SensorTypeId("Temperature");
 
             //Act
             double result = house.getLastMeasurementByTypeInHouseArea(type);
@@ -509,15 +500,15 @@ public class HouseTest {
             //Arrange
             //Instantiate sensor
             LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
-            SensorType sensorType0 = new SensorType("Rainfall");
+            SensorTypeId sensorType0 = new SensorTypeId("Rainfall");
             Location locS0 = new Location(41.1, -8.6, 111);
-            GeoAreaSensor s0 = new GeoAreaSensor("6546", "A122", dataFuncionamento0, sensorType0, locS0, "l/m2");
+            GeoAreaSensor s0 = new GeoAreaSensor(new SensorId("6546", "A122", dataFuncionamento0, sensorType0, locS0, "l/m2");
             house.getInsertedGeoArea().getSensorListInTheGeographicArea().addSensor(s0);
 
             LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
-            SensorType sensorType1 = new SensorType("Rainfall");
+            SensorTypeId sensorType1 = new SensorTypeId("Rainfall");
             Location locS1 = new Location(41.1, -8.6, 111);
-            GeoAreaSensor s1 = new GeoAreaSensor("653", "A123", dataFuncionamento1, sensorType1, locS1, "l/m2");
+            GeoAreaSensor s1 = new GeoAreaSensor(new SensorId("653", "A123", dataFuncionamento1, sensorType1, locS1, "l/m2");
             house.getInsertedGeoArea().getSensorListInTheGeographicArea().addSensor(s1);
 
             // Sensor0 - Register 1
@@ -544,7 +535,7 @@ public class HouseTest {
 
             double expectedResult = 20;
 
-            SensorType searchType = new SensorType("Rainfall");
+            SensorTypeId searchType = new SensorTypeId("Rainfall");
             //Act
             double result = house.getTotalDailyMeasurementInHouseArea(searchType, day);
 
@@ -567,14 +558,14 @@ public class HouseTest {
             house.addRoom(room1);
 
             LocalDateTime date0 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
-            SensorType sensorType0 = new SensorType("Temperature");
+            SensorTypeId sensorType0 = new SensorTypeId("Temperature");
             Location locS0 = new Location(123, 345, 50);
-            GeoAreaSensor s0 = new GeoAreaSensor("3213", "A123", date0, sensorType0, locS0, "l/m2");
+            GeoAreaSensor s0 = new GeoAreaSensor(new SensorId("3213", "A123", date0, sensorType0, locS0, "l/m2");
 
             LocalDateTime date1 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
-            SensorType sensorType1 = new SensorType("Temperature");
+            SensorTypeId sensorType1 = new SensorTypeId("Temperature");
             Location locS1 = new Location(123, 345, 50);
-            GeoAreaSensor s1 = new GeoAreaSensor("1414", "B123", date1, sensorType1, locS1, "l/m2");
+            GeoAreaSensor s1 = new GeoAreaSensor(new SensorId("1414", "B123", date1, sensorType1, locS1, "l/m2");
 
             LocalDateTime dateTimeDayMeasure1 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
             LocalDateTime dateTimeDayMeasure2 = LocalDateTime.of(1991, 12, 2, 20, 24, 00);
@@ -616,19 +607,19 @@ public class HouseTest {
             //arrange
             //Instanciar sensor
             LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
-            SensorType sensorType0 = new SensorType("Temperatura");
+            SensorTypeId sensorType0 = new SensorTypeId("Temperatura");
             Location locS0 = new Location(123, 345, 50);
-            GeoAreaSensor s0 = new GeoAreaSensor("g34", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
+            GeoAreaSensor s0 = new GeoAreaSensor(new SensorId("g34", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
 
             LocalDateTime dataFuncionamento1 = LocalDateTime.of(1991, 12, 5, 15, 20, 00);
-            SensorType sensorType1 = new SensorType("Temperatura");
+            SensorTypeId sensorType1 = new SensorTypeId("Temperatura");
             Location locS1 = new Location(123, 355, 50);
-            GeoAreaSensor s1 = new GeoAreaSensor("2423r", "A123", dataFuncionamento1, sensorType1, locS1, "l/m2");
+            GeoAreaSensor s1 = new GeoAreaSensor(new SensorId("2423r", "A123", dataFuncionamento1, sensorType1, locS1, "l/m2");
 
             LocalDateTime dataFuncionamento2 = LocalDateTime.of(1991, 12, 11, 15, 20, 00);
-            SensorType sensorType2 = new SensorType("Humidade");
+            SensorTypeId sensorType2 = new SensorTypeId("Humidade");
             Location locS2 = new Location(123, 345, 55);
-            GeoAreaSensor s2 = new GeoAreaSensor("6325", "A123", dataFuncionamento2, sensorType2, locS2, "l/m2");
+            GeoAreaSensor s2 = new GeoAreaSensor(new SensorId("6325", "A123", dataFuncionamento2, sensorType2, locS2, "l/m2");
 
             //Instanciar Reading
             // Sensor0
@@ -661,7 +652,7 @@ public class HouseTest {
             s2.addReadingsToList(reading21);
             s2.addReadingsToList(reading22);
 
-            SensorType tipoResultado = new SensorType("Pluviosidade");
+            SensorTypeId tipoResultado = new SensorTypeId("Pluviosidade");
 
         Dimension dim = new Dimension(4, 4, 4);
         Room room = new Room("F5", "room", 1, dim);
@@ -672,7 +663,7 @@ public class HouseTest {
             house.addRoom(room);
 
             //Act
-            Reading result = house.getLatestMeasurementBySensorType("F5", tipoResultado);
+            Reading result = house.getLatestMeasurementBySensorTypeId("F5", tipoResultado);
 
             //Assert
             assertNull(result);
@@ -683,19 +674,19 @@ public class HouseTest {
             //arrange
             //Instanciar sensor
             LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
-            SensorType sensorType0 = new SensorType("Temperatura");
+            SensorTypeId sensorType0 = new SensorTypeId("Temperatura");
             Location locS0 = new Location(123, 345, 50);
-            GeoAreaSensor s0 = new GeoAreaSensor("4214", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
+            GeoAreaSensor s0 = new GeoAreaSensor(new SensorId("4214", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
 
             LocalDateTime dataFuncionamento1 = LocalDateTime.of(1991, 12, 5, 15, 20, 00);
-            SensorType sensorType1 = new SensorType("Temperatura");
+            SensorTypeId sensorType1 = new SensorTypeId("Temperatura");
             Location locS1 = new Location(123, 355, 50);
-            GeoAreaSensor s1 = new GeoAreaSensor("4124", "A123", dataFuncionamento1, sensorType1, locS1, "l/m2");
+            GeoAreaSensor s1 = new GeoAreaSensor(new SensorId("4124", "A123", dataFuncionamento1, sensorType1, locS1, "l/m2");
 
             LocalDateTime dataFuncionamento2 = LocalDateTime.of(1991, 12, 11, 15, 20, 00);
-            SensorType sensorType2 = new SensorType("Humidade");
+            SensorTypeId sensorType2 = new SensorTypeId("Humidade");
             Location locS2 = new Location(123, 345, 55);
-            GeoAreaSensor s2 = new GeoAreaSensor("7657", "A123", dataFuncionamento2, sensorType2, locS2, "l/m2");
+            GeoAreaSensor s2 = new GeoAreaSensor(new SensorId("7657", "A123", dataFuncionamento2, sensorType2, locS2, "l/m2");
 
             //Instanciar Reading
             // Sensor0
@@ -728,7 +719,7 @@ public class HouseTest {
             s2.addReadingsToList(reading21);
             s2.addReadingsToList(reading22);
 
-            SensorType tipoResultado = new SensorType("Pluviosidade");
+            SensorTypeId tipoResultado = new SensorTypeId("Pluviosidade");
 
         Dimension dim = new Dimension(4, 4, 4);
         Room room = new Room("F5", "room", 1, dim);
@@ -739,7 +730,7 @@ public class HouseTest {
             house.addRoom(room);
 
             //Act
-            Reading result = house.getLatestMeasurementBySensorType("F6", tipoResultado);
+            Reading result = house.getLatestMeasurementBySensorTypeId("F6", tipoResultado);
 
             //Assert
             assertNull(result);
@@ -748,10 +739,10 @@ public class HouseTest {
         @Test
         public void testarUltimoRegistoDeUmaListaDeTiposDeSensoresListaVazia() {
             //arrange
-            SensorType tipoResultado = new SensorType("Temperatura");
+            SensorTypeId tipoResultado = new SensorTypeId("Temperatura");
 
             //Act
-            Reading result = house.getLatestMeasurementBySensorType("F5", tipoResultado);
+            Reading result = house.getLatestMeasurementBySensorTypeId("F5", tipoResultado);
 
             //Assert
             assertNull(result);
@@ -809,13 +800,13 @@ public class HouseTest {
         public void getSensorsListContentOfARoomTest() {
             // Arrange
             LocalDateTime dataFuncionamento0 = LocalDateTime.of(2015, 11, 2, 15, 20, 00);
-            SensorType sensorType0 = new SensorType("Temperatura");
+            SensorTypeId sensorType0 = new SensorTypeId("Temperatura");
             Location locS0 = new Location(123, 345, 50);
-            GeoAreaSensor s0 = new GeoAreaSensor("242", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
+            GeoAreaSensor s0 = new GeoAreaSensor(new SensorId("242", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
             LocalDateTime dataFuncionamento1 = LocalDateTime.of(2010, 11, 2, 15, 20, 00);
-            SensorType sensorType1 = new SensorType("Temperatura");
+            SensorTypeId sensorType1 = new SensorTypeId("Temperatura");
             Location locS1 = new Location(123, 300, 50);
-            GeoAreaSensor s1 = new GeoAreaSensor("767", "A456", dataFuncionamento1, sensorType1, locS1, "l/m2");
+            GeoAreaSensor s1 = new GeoAreaSensor(new SensorId("767", "A456", dataFuncionamento1, sensorType1, locS1, "l/m2");
             laundry.addSensorToListOfSensorsInRoom(s0);
             laundry.addSensorToListOfSensorsInRoom(s1);
             String expectedResult =
@@ -848,9 +839,9 @@ public class HouseTest {
         public void checkIfSensorListIsEmptyTestFalse() {
             // Arrange
             LocalDateTime dataFuncionamento0 = LocalDateTime.of(2015, 11, 2, 15, 20, 00);
-            SensorType sensorType0 = new SensorType("Temperatura");
+            SensorTypeId sensorType0 = new SensorTypeId("Temperatura");
             Location locS0 = new Location(123, 345, 50);
-            GeoAreaSensor s0 = new GeoAreaSensor("123", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
+            GeoAreaSensor s0 = new GeoAreaSensor(new SensorId("123", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
             laundry.addSensorToListOfSensorsInRoom(s0);
 
             // Act
@@ -1490,15 +1481,15 @@ public class HouseTest {
 
         //Instantiate Sensors
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
-        SensorType sensorType0 = new SensorType("Temperature");
+        SensorTypeId sensorType0 = new SensorTypeId("Temperature");
         Location locS0 = new Location(41.178553, -8.608035, 111);
-        GeoAreaSensor s0 = new GeoAreaSensor("421", "A122", dataFuncionamento0, sensorType0, locS0, "l/m2");
+        GeoAreaSensor s0 = new GeoAreaSensor(new SensorId("421"), "A122", dataFuncionamento0, sensorType0, locS0, "l/m2");
         ag.getSensorListInTheGeographicArea().addSensor(s0);
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
-        SensorType sensorType1 = new SensorType("Temperature");
+        SensorTypeId sensorType1 = new SensorTypeId("Temperature");
         Location locS1 = new Location(41.178553, -8.608035, 111);
-        GeoAreaSensor s1 = new GeoAreaSensor("131", "A123", dataFuncionamento1, sensorType1, locS1, "l/m2");
+        GeoAreaSensor s1 = new GeoAreaSensor(new SensorId("131"), "A123", dataFuncionamento1, sensorType1, locS1, "l/m2");
         ag.getSensorListInTheGeographicArea().addSensor(s1);
 
 
@@ -1525,7 +1516,7 @@ public class HouseTest {
 
         LocalDateTime expectedResult = LocalDateTime.of(2018, 12, 4, 17, 24);
 
-        SensorType type = new SensorType("Temperature");
+        SensorTypeId type = new SensorTypeId("Temperature");
 
         //Act
         LocalDateTime result = house.getDateOfLastMeasurementByType(type);
@@ -1543,7 +1534,7 @@ public class HouseTest {
 
         //initiate House
         Location location = new Location(42.0, -8.608035, 111);
-        AreaShape areaShape = new AreaShape(1.5, 2.5, location);
+        AreaShape areaShape = new AreaShape(1.5, 2.5);
         GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Urban area");
         GeographicalArea geo = new GeographicalArea("ISEP", "Campus do ISEP", geographicalAreaType, location, areaShape);
 
@@ -1684,20 +1675,20 @@ public class HouseTest {
 
         //Instantiate Sensors
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
-        SensorType sensorType0 = new SensorType("Temperature");
+        SensorTypeId sensorType0 = new SensorTypeId("Temperature");
         Location locS0 = new Location(-1, 30, 50);
-        GeoAreaSensor s0 = new GeoAreaSensor("213", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
+        GeoAreaSensor s0 = new GeoAreaSensor(new SensorId("213"), "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
         ag.getSensorListInTheGeographicArea().addSensor(s0);
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
-        SensorType sensorType1 = new SensorType("Temperature");
+        SensorTypeId sensorType1 = new SensorTypeId("Temperature");
         Location locS1 = new Location(32.1576, 7.6199, 100);
-        GeoAreaSensor s1 = new GeoAreaSensor("r32", "A123", dataFuncionamento1, sensorType1, locS1, "l/m2");
+        GeoAreaSensor s1 = new GeoAreaSensor(new SensorId("r32"), "A123", dataFuncionamento1, sensorType1, locS1, "l/m2");
         ag.getSensorListInTheGeographicArea().addSensor(s1);
 
         LocalDateTime expectedResult = null;
 
-        SensorType type = new SensorType("Temperature");
+        SensorTypeId type = new SensorTypeId("Temperature");
 
         //Act
         LocalDateTime result = house.getDateOfLastMeasurementByType(type);
@@ -1725,7 +1716,7 @@ public class HouseTest {
 
         LocalDateTime expectedResult = null;
 
-        SensorType type = new SensorType("Temperature");
+        SensorTypeId type = new SensorTypeId("Temperature");
 
         //Act
         LocalDateTime result = house.getDateOfLastMeasurementByType(type);
@@ -1744,14 +1735,14 @@ public class HouseTest {
 
         // Geographical Areas
         Location location = new Location(32.1496, 7.6109, 98);
-        AreaShape areaShape = new AreaShape(100, 100, location);
+        AreaShape areaShape = new AreaShape(100, 100);
         GeographicalArea northernRegion = new GeographicalArea("Norte", "Northern Region", region, location, areaShape);
         Location location1 = new Location(41.1496, -6.6109, 100);
-        AreaShape areaShape1 = new AreaShape(40, 40, location1);
+        AreaShape areaShape1 = new AreaShape(40, 40);
         GeographicalArea portoDistrict = new GeographicalArea("Porto District", "District of Porto", district, location1, areaShape1);
         portoDistrict.setInsertedIn(northernRegion);
         Location location2 = new Location(42.1496, -8.6109, 97);
-        AreaShape areaShape2 = new AreaShape(10, 10, location2);
+        AreaShape areaShape2 = new AreaShape(10, 10);
         GeographicalArea portoCity = new GeographicalArea("Porto City", "City of Porto", city, location2, areaShape2);
         portoCity.setInsertedIn(portoDistrict);
 
@@ -1767,10 +1758,10 @@ public class HouseTest {
 
 
         // Sensors
-        SensorType temperature = new SensorType("Temperature");
+        SensorTypeId temperature = new SensorTypeId("Temperature");
         LocalDateTime startDate1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         Location sensorLocation1 = new Location(42.1496, -8.6109, 97);
-        GeoAreaSensor temperatureSensor1 = new GeoAreaSensor("543", "B123", startDate1, temperature, sensorLocation1, "l/m2");
+        GeoAreaSensor temperatureSensor1 = new GeoAreaSensor(new SensorId("543"), "B123", startDate1, temperature, sensorLocation1, "l/m2");
 
         // Reading
         LocalDateTime readingDate = LocalDateTime.of(2018, 12, 2, 13, 20, 00);
@@ -1909,14 +1900,14 @@ public class HouseTest {
 
         // Geographical Areas
         Location location = new Location(32.1496, 7.6109, 98);
-        AreaShape areaShape = new AreaShape(100, 100, location);
+        AreaShape areaShape = new AreaShape(100, 100);
         GeographicalArea northernRegion = new GeographicalArea("Norte", "Northern Region", region, location, areaShape);
         Location location1 = new Location(41.1496, -6.6109, 100);
-        AreaShape areaShape1 = new AreaShape(40, 40, location1);
+        AreaShape areaShape1 = new AreaShape(40, 40);
         GeographicalArea portoDistrict = new GeographicalArea("Porto District", "Porto District", district, location1, areaShape1);
         portoDistrict.setInsertedIn(northernRegion);
         Location location2 = new Location(42.1496, -8.6109, 97);
-        AreaShape areaShape2 = new AreaShape(10, 10, location2);
+        AreaShape areaShape2 = new AreaShape(10, 10);
         GeographicalArea portoCity = new GeographicalArea("Porto City", "Porto City", city, location2, areaShape2);
         portoCity.setInsertedIn(portoDistrict);
 
@@ -1930,13 +1921,13 @@ public class HouseTest {
         this.house.setAddress(address);
 
         // Sensors
-        SensorType temperature = new SensorType("Temperature");
+        SensorTypeId temperature = new SensorTypeId("Temperature");
         LocalDateTime startDate = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         Location sensorLocation = new Location(38.1596, -8.6109, 97);
-        GeoAreaSensor temperatureSensor = new GeoAreaSensor("123", "A123", startDate, temperature, sensorLocation, "l/m2");
+        GeoAreaSensor temperatureSensor = new GeoAreaSensor(new SensorId("123"), "A123", startDate, temperature, sensorLocation, "l/m2");
         LocalDateTime startDate1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         Location sensorLocation1 = new Location(42.1496, -8.6109, 97);
-        GeoAreaSensor temperatureSensor1 = new GeoAreaSensor("2131", "B123", startDate1, temperature, sensorLocation1, "l/m2");
+        GeoAreaSensor temperatureSensor1 = new GeoAreaSensor(new SensorId("2131"), "B123", startDate1, temperature, sensorLocation1, "l/m2");
 
         // Reading
         LocalDateTime readingDate = LocalDateTime.of(2018, 12, 2, 13, 20, 00);
@@ -2006,14 +1997,14 @@ public class HouseTest {
 
         // Geographical Areas
         Location location = new Location(32.1496, 7.6109, 98);
-        AreaShape areaShape = new AreaShape(100, 100, location);
+        AreaShape areaShape = new AreaShape(100, 100);
         GeographicalArea northernRegion = new GeographicalArea("Norte", "Northern Region", region, location, areaShape);
         Location location1 = new Location(41.1496, -6.6109, 100);
-        AreaShape areaShape1 = new AreaShape(40, 40, location1);
+        AreaShape areaShape1 = new AreaShape(40, 40);
         GeographicalArea portoDistrict = new GeographicalArea("Porto District", "District of Porto", district, location1, areaShape1);
         portoDistrict.setInsertedIn(northernRegion);
         Location location2 = new Location(42.1496, -8.6109, 97);
-        AreaShape areaShape2 = new AreaShape(10, 10, location2);
+        AreaShape areaShape2 = new AreaShape(10, 10);
         GeographicalArea portoCity = new GeographicalArea("Porto City", "City of Porto", city, location2, areaShape2);
         portoCity.setInsertedIn(portoDistrict);
 
@@ -2027,13 +2018,13 @@ public class HouseTest {
         this.house.setAddress(address);
 
         // Sensors
-        SensorType temperature = new SensorType("Temperature");
+        SensorTypeId temperature = new SensorTypeId("Temperature");
         LocalDateTime startDate = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         Location sensorLocation = new Location(38.1596, -8.6109, 97);
-        GeoAreaSensor temperatureSensor = new GeoAreaSensor("123", "A123", startDate, temperature, sensorLocation, "l/m2");
+        GeoAreaSensor temperatureSensor = new GeoAreaSensor(new SensorId("123"), "A123", startDate, temperature, sensorLocation, "l/m2");
         LocalDateTime startDate1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         Location sensorLocation1 = new Location(42.1496, -8.6109, 97);
-        GeoAreaSensor temperatureSensor1 = new GeoAreaSensor("12321", "B123", startDate1, temperature, sensorLocation1, "l/m2");
+        GeoAreaSensor temperatureSensor1 = new GeoAreaSensor(new SensorId("12321"), "B123", startDate1, temperature, sensorLocation1, "l/m2");
 
         // Reading
         LocalDateTime readingDate = LocalDateTime.of(2018, 12, 2, 13, 20, 00);
@@ -2103,14 +2094,14 @@ public class HouseTest {
 
         // Geographical Areas
         Location location = new Location(32.1496, 7.6109, 98);
-        AreaShape areaShape = new AreaShape(100, 100, location);
+        AreaShape areaShape = new AreaShape(100, 100);
         GeographicalArea northernRegion = new GeographicalArea("Norte", "Northern Region", region, location, areaShape);
         Location location1 = new Location(41.1496, -6.6109, 100);
-        AreaShape areaShape1 = new AreaShape(40, 40, location1);
+        AreaShape areaShape1 = new AreaShape(40, 40);
         GeographicalArea portoDistrict = new GeographicalArea("Porto District", "District of Porto", district, location1, areaShape1);
         portoDistrict.setInsertedIn(northernRegion);
         Location location2 = new Location(42.1496, -8.6109, 97);
-        AreaShape areaShape2 = new AreaShape(10, 10, location2);
+        AreaShape areaShape2 = new AreaShape(10, 10);
         GeographicalArea portoCity = new GeographicalArea("Porto City", "City of Porto", city, location2, areaShape2);
         portoCity.setInsertedIn(portoDistrict);
 
@@ -2124,13 +2115,13 @@ public class HouseTest {
         this.house.setAddress(address);
 
         // Sensors
-        SensorType temperature = new SensorType("Temperature");
+        SensorTypeId temperature = new SensorTypeId("Temperature");
         LocalDateTime startDate = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         Location sensorLocation = new Location(38.1596, -8.6109, 97);
-        GeoAreaSensor temperatureSensor = new GeoAreaSensor("123", "A123", startDate, temperature, sensorLocation, "l/m2");
+        GeoAreaSensor temperatureSensor = new GeoAreaSensor(new SensorId("123"), "A123", startDate, temperature, sensorLocation, "l/m2");
         LocalDateTime startDate1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         Location sensorLocation1 = new Location(42.1496, -8.6109, 97);
-        GeoAreaSensor temperatureSensor1 = new GeoAreaSensor("12321", "B123", startDate1, temperature, sensorLocation1, "l/m2");
+        GeoAreaSensor temperatureSensor1 = new GeoAreaSensor(new SensorId("12321"), "B123", startDate1, temperature, sensorLocation1, "l/m2");
 
         // Reading
         LocalDateTime readingDate = LocalDateTime.of(2018, 12, 2, 13, 20, 00);
@@ -2198,14 +2189,14 @@ public class HouseTest {
 
         // Geographical Areas
         Location location = new Location(32.1496, 7.6109, 98);
-        AreaShape areaShape = new AreaShape(100, 100, location);
+        AreaShape areaShape = new AreaShape(100, 100);
         GeographicalArea northernRegion = new GeographicalArea("Norte", "Northern Region", region, location, areaShape);
         Location location1 = new Location(41.1496, -6.6109, 100);
-        AreaShape areaShape1 = new AreaShape(40, 40, location1);
+        AreaShape areaShape1 = new AreaShape(40, 40);
         GeographicalArea portoDistrict = new GeographicalArea("Porto District", "District of Porto", district, location1, areaShape1);
         portoDistrict.setInsertedIn(northernRegion);
         Location location2 = new Location(42.1496, -8.6109, 97);
-        AreaShape areaShape2 = new AreaShape(10, 10, location2);
+        AreaShape areaShape2 = new AreaShape(10, 10);
         GeographicalArea portoCity = new GeographicalArea("Porto City", "City of Porto", city, location2, areaShape2);
         portoCity.setInsertedIn(portoDistrict);
 
@@ -2219,13 +2210,13 @@ public class HouseTest {
         this.house.setAddress(address);
 
         // Sensors
-        SensorType temperature = new SensorType("Temperature");
+        SensorTypeId temperature = new SensorTypeId("Temperature");
         LocalDateTime startDate = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         Location sensorLocation = new Location(38.1596, -8.6109, 97);
-        GeoAreaSensor temperatureSensor = new GeoAreaSensor("12321", "A123", startDate, temperature, sensorLocation, "l/m2");
+        GeoAreaSensor temperatureSensor = new GeoAreaSensor(new SensorId("12321"), "A123", startDate, temperature, sensorLocation, "l/m2");
         LocalDateTime startDate1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         Location sensorLocation1 = new Location(42.1496, -8.6109, 97);
-        GeoAreaSensor temperatureSensor1 = new GeoAreaSensor("1231234", "B123", startDate1, temperature, sensorLocation1, "l/m2");
+        GeoAreaSensor temperatureSensor1 = new GeoAreaSensor(new SensorId("1231234"), "B123", startDate1, temperature, sensorLocation1, "l/m2");
 
         // Reading
         LocalDateTime readingDate = LocalDateTime.of(2018, 12, 2, 13, 20, 00);
@@ -2276,14 +2267,14 @@ public class HouseTest {
 
         // Geographical Areas
         Location location = new Location(32.1496, 7.6109, 98);
-        AreaShape areaShape = new AreaShape(100, 100, location);
+        AreaShape areaShape = new AreaShape(100, 100);
         GeographicalArea northernRegion = new GeographicalArea("Norte", "Northern Region", region, location, areaShape);
         Location location1 = new Location(41.1496, -6.6109, 100);
-        AreaShape areaShape1 = new AreaShape(40, 40, location1);
+        AreaShape areaShape1 = new AreaShape(40, 40);
         GeographicalArea portoDistrict = new GeographicalArea("Porto District", "District of Porto", district, location1, areaShape1);
         portoDistrict.setInsertedIn(northernRegion);
         Location location2 = new Location(42.1496, -8.6109, 97);
-        AreaShape areaShape2 = new AreaShape(10, 10, location2);
+        AreaShape areaShape2 = new AreaShape(10, 10);
         GeographicalArea portoCity = new GeographicalArea("Porto City", "City of Porto", city, location2, areaShape2);
         portoCity.setInsertedIn(portoDistrict);
 
@@ -2297,13 +2288,13 @@ public class HouseTest {
         this.house.setAddress(address);
 
         // Sensors
-        SensorType temperature = new SensorType("Temperature");
+        SensorTypeId temperature = new SensorTypeId("Temperature");
         LocalDateTime startDate = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         Location sensorLocation = new Location(38.1596, -8.6109, 97);
-        GeoAreaSensor temperatureSensor = new GeoAreaSensor("213123", "A123", startDate, temperature, sensorLocation, "l/m2");
+        GeoAreaSensor temperatureSensor = new GeoAreaSensor(new SensorId("213123"), "A123", startDate, temperature, sensorLocation, "l/m2");
         LocalDateTime startDate1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         Location sensorLocation1 = new Location(42.1496, -8.6109, 97);
-        GeoAreaSensor temperatureSensor1 = new GeoAreaSensor("123123", "B123", startDate1, temperature, sensorLocation1, "l/m2");
+        GeoAreaSensor temperatureSensor1 = new GeoAreaSensor(new SensorId("123123"), "B123", startDate1, temperature, sensorLocation1, "l/m2");
 
         // Reading
         LocalDateTime readingDate = LocalDateTime.of(2018, 12, 2, 13, 20, 00);
@@ -2363,14 +2354,14 @@ public class HouseTest {
 
         // Geographical Areas
         Location location = new Location(32.1496, 7.6109, 98);
-        AreaShape areaShape = new AreaShape(100, 100, location);
+        AreaShape areaShape = new AreaShape(100, 100);
         GeographicalArea northernRegion = new GeographicalArea("Norte", "Northern Region", region, location, areaShape);
         Location location1 = new Location(41.1496, -6.6109, 100);
-        AreaShape areaShape1 = new AreaShape(40, 40, location1);
+        AreaShape areaShape1 = new AreaShape(40, 40);
         GeographicalArea portoDistrict = new GeographicalArea("Porto District", "District of Porto", district, location1, areaShape1);
         portoDistrict.setInsertedIn(northernRegion);
         Location location2 = new Location(42.1496, -8.6109, 97);
-        AreaShape areaShape2 = new AreaShape(10, 10, location2);
+        AreaShape areaShape2 = new AreaShape(10, 10);
         GeographicalArea portoCity = new GeographicalArea("Porto City", "City of Porto", city, location2, areaShape2);
         portoCity.setInsertedIn(portoDistrict);
 
@@ -2384,13 +2375,13 @@ public class HouseTest {
         this.house.setAddress(address);
 
         // Sensors
-        SensorType temperature = new SensorType("Temperature");
+        SensorTypeId temperature = new SensorTypeId("Temperature");
         LocalDateTime startDate = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         Location sensorLocation = new Location(38.1596, -8.6109, 97);
-        GeoAreaSensor temperatureSensor = new GeoAreaSensor("123", "A123", startDate, temperature, sensorLocation, "l/m2");
+        GeoAreaSensor temperatureSensor = new GeoAreaSensor(new SensorId("123"), "A123", startDate, temperature, sensorLocation, "l/m2");
         LocalDateTime startDate1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         Location sensorLocation1 = new Location(42.1496, -8.6109, 97);
-        GeoAreaSensor temperatureSensor1 = new GeoAreaSensor("543", "B123", startDate1, temperature, sensorLocation1, "l/m2");
+        GeoAreaSensor temperatureSensor1 = new GeoAreaSensor(new SensorId("543"), "B123", startDate1, temperature, sensorLocation1, "l/m2");
 
         // Reading
         LocalDateTime readingDate = LocalDateTime.of(2018, 12, 2, 13, 20, 00);
@@ -2464,14 +2455,14 @@ public class HouseTest {
 
         // Geographical Areas
         Location location = new Location(32.1496, 7.6109, 98);
-        AreaShape areaShape = new AreaShape(100, 100, location);
+        AreaShape areaShape = new AreaShape(100, 100);
         GeographicalArea northernRegion = new GeographicalArea("Norte", "Northern Region", region, location, areaShape);
         Location location1 = new Location(41.1496, -6.6109, 100);
-        AreaShape areaShape1 = new AreaShape(40, 40, location1);
+        AreaShape areaShape1 = new AreaShape(40, 40);
         GeographicalArea portoDistrict = new GeographicalArea("Porto District", "District of Porto", district, location1, areaShape1);
         portoDistrict.setInsertedIn(northernRegion);
         Location location2 = new Location(42.1496, -8.6109, 97);
-        AreaShape areaShape2 = new AreaShape(10, 10, location2);
+        AreaShape areaShape2 = new AreaShape(10, 10);
         GeographicalArea portoCity = new GeographicalArea("Porto City", "City of Porto", city, location2, areaShape2);
         portoCity.setInsertedIn(portoDistrict);
 
@@ -2485,13 +2476,13 @@ public class HouseTest {
         this.house.setAddress(address);
 
         // Sensors
-        SensorType temperature = new SensorType("Temperature");
+        SensorTypeId temperature = new SensorTypeId("Temperature");
         LocalDateTime startDate = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         Location sensorLocation = new Location(38.1596, -8.6109, 97);
-        GeoAreaSensor temperatureSensor = new GeoAreaSensor("123", "A123", startDate, temperature, sensorLocation, "l/m2");
+        GeoAreaSensor temperatureSensor = new GeoAreaSensor(new SensorId("123"), "A123", startDate, temperature, sensorLocation, "l/m2");
         LocalDateTime startDate1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         Location sensorLocation1 = new Location(42.1496, -8.6109, 97);
-        GeoAreaSensor temperatureSensor1 = new GeoAreaSensor("543", "B123", startDate1, temperature, sensorLocation1, "l/m2");
+        GeoAreaSensor temperatureSensor1 = new GeoAreaSensor(new SensorId("543"), "B123", startDate1, temperature, sensorLocation1, "l/m2");
 
         // Reading
         LocalDateTime readingDate = LocalDateTime.of(2018, 12, 2, 13, 20, 00);
@@ -2529,14 +2520,14 @@ public class HouseTest {
 
         // Geographical Areas
         Location location = new Location(32.1496, 7.6109, 98);
-        AreaShape areaShape = new AreaShape(100, 100, location);
+        AreaShape areaShape = new AreaShape(100, 100);
         GeographicalArea northernRegion = new GeographicalArea("Norte", "Northern Region", region, location, areaShape);
         Location location1 = new Location(41.1496, -6.6109, 100);
-        AreaShape areaShape1 = new AreaShape(40, 40, location1);
+        AreaShape areaShape1 = new AreaShape(40, 40);
         GeographicalArea portoDistrict = new GeographicalArea("Porto District", "District of Porto", district, location1, areaShape1);
         portoDistrict.setInsertedIn(northernRegion);
         Location location2 = new Location(42.1496, -8.6109, 97);
-        AreaShape areaShape2 = new AreaShape(10, 10, location2);
+        AreaShape areaShape2 = new AreaShape(10, 10);
         GeographicalArea portoCity = new GeographicalArea("Porto City", "City of Porto", city, location2, areaShape2);
         portoCity.setInsertedIn(portoDistrict);
 
@@ -2550,13 +2541,13 @@ public class HouseTest {
         this.house.setAddress(address);
 
         // Sensors
-        SensorType temperature = new SensorType("Temperature");
+        SensorTypeId temperature = new SensorTypeId("Temperature");
         LocalDateTime startDate = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         Location sensorLocation = new Location(38.1596, -8.6109, 97);
-        GeoAreaSensor temperatureSensor = new GeoAreaSensor("123", "A123", startDate, temperature, sensorLocation, "l/m2");
+        GeoAreaSensor temperatureSensor = new GeoAreaSensor(new SensorId("123"), "A123", startDate, temperature, sensorLocation, "l/m2");
         LocalDateTime startDate1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         Location sensorLocation1 = new Location(42.1496, -8.6109, 97);
-        GeoAreaSensor temperatureSensor1 = new GeoAreaSensor("543", "B123", startDate1, temperature, sensorLocation1, "l/m2");
+        GeoAreaSensor temperatureSensor1 = new GeoAreaSensor(new SensorId("543"), "B123", startDate1, temperature, sensorLocation1, "l/m2");
 
         // Reading
         LocalDateTime readingDate = LocalDateTime.of(2018, 12, 2, 13, 20, 00);
@@ -2577,7 +2568,7 @@ public class HouseTest {
         portoCity.getSensorListInTheGeographicArea().addSensor(temperatureSensor);
         portoCity.getSensorListInTheGeographicArea().addSensor(temperatureSensor1);
 
-        SensorType rainfall = new SensorType("rainfall");
+        SensorTypeId rainfall = new SensorTypeId("rainfall");
         GeoAreaSensor expectedResult = null;
         //Act
         GeoAreaSensor result = this.house.getNearestSensorWithMostRecentReading(rainfall, houseLocation);
@@ -2595,14 +2586,14 @@ public class HouseTest {
 
         // Geographical Areas
         Location location = new Location(32.1496, 7.6109, 98);
-        AreaShape areaShape = new AreaShape(100, 100, location);
+        AreaShape areaShape = new AreaShape(100, 100);
         GeographicalArea northernRegion = new GeographicalArea("Norte", "Northern Region", region, location, areaShape);
         Location location1 = new Location(41.1496, -6.6109, 100);
-        AreaShape areaShape1 = new AreaShape(40, 40, location1);
+        AreaShape areaShape1 = new AreaShape(40, 40);
         GeographicalArea portoDistrict = new GeographicalArea("Porto District", "District of Porto", district, location1, areaShape1);
         portoDistrict.setInsertedIn(northernRegion);
         Location location2 = new Location(42.1496, -8.6109, 97);
-        AreaShape areaShape2 = new AreaShape(10, 10, location2);
+        AreaShape areaShape2 = new AreaShape(10, 10);
         GeographicalArea portoCity = new GeographicalArea("Porto City", "City of Porto", city, location2, areaShape2);
         portoCity.setInsertedIn(portoDistrict);
 
@@ -2616,13 +2607,13 @@ public class HouseTest {
         this.house.setAddress(address);
 
         // Sensors
-        SensorType temperature = new SensorType("Temperature");
+        SensorTypeId temperature = new SensorTypeId("Temperature");
         LocalDateTime startDate = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         Location sensorLocation = new Location(38.1596, -8.6109, 97);
-        GeoAreaSensor temperatureSensor = new GeoAreaSensor("123", "A123", startDate, temperature, sensorLocation, "l/m2");
+        GeoAreaSensor temperatureSensor = new GeoAreaSensor(new SensorId("123"), "A123", startDate, temperature, sensorLocation, "l/m2");
         LocalDateTime startDate1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         Location sensorLocation1 = new Location(42.1496, -8.6109, 97);
-        GeoAreaSensor temperatureSensor1 = new GeoAreaSensor("543", "B123", startDate1, temperature, sensorLocation1, "l/m2");
+        GeoAreaSensor temperatureSensor1 = new GeoAreaSensor(new SensorId("543"), "B123", startDate1, temperature, sensorLocation1, "l/m2");
 
         // Reading
         LocalDateTime readingDate = LocalDateTime.of(2018, 12, 2, 13, 20, 00);
@@ -2658,14 +2649,14 @@ public class HouseTest {
 
         // Geographical Areas
         Location location = new Location(32.1496, 7.6109, 98);
-        AreaShape areaShape = new AreaShape(100, 100, location);
+        AreaShape areaShape = new AreaShape(100, 100);
         GeographicalArea northernRegion = new GeographicalArea("Norte", "Northern Region", region, location, areaShape);
         Location location1 = new Location(41.1496, -6.6109, 100);
-        AreaShape areaShape1 = new AreaShape(40, 40, location1);
+        AreaShape areaShape1 = new AreaShape(40, 40);
         GeographicalArea portoDistrict = new GeographicalArea("Porto District", "District of Porto", district, location1, areaShape1);
         portoDistrict.setInsertedIn(northernRegion);
         Location location2 = new Location(42.1496, -8.6109, 97);
-        AreaShape areaShape2 = new AreaShape(10, 10, location2);
+        AreaShape areaShape2 = new AreaShape(10, 10);
         GeographicalArea portoCity = new GeographicalArea("Porto City", "City of Porto", city, location2, areaShape2);
         portoCity.setInsertedIn(portoDistrict);
 
@@ -2679,13 +2670,13 @@ public class HouseTest {
         this.house.setAddress(address);
 
         // Sensors
-        SensorType temperature = new SensorType("Temperature");
+        SensorTypeId temperature = new SensorTypeId("Temperature");
         LocalDateTime startDate = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         Location sensorLocation = new Location(38.1596, -8.6109, 97);
-        GeoAreaSensor temperatureSensor = new GeoAreaSensor("123", "A123", startDate, temperature, sensorLocation, "l/m2");
+        GeoAreaSensor temperatureSensor = new GeoAreaSensor(new SensorId("123"), "A123", startDate, temperature, sensorLocation, "l/m2");
         LocalDateTime startDate1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         Location sensorLocation1 = new Location(42.1496, -8.6109, 97);
-        GeoAreaSensor temperatureSensor1 = new GeoAreaSensor("543", "B123", startDate1, temperature, sensorLocation1, "l/m2");
+        GeoAreaSensor temperatureSensor1 = new GeoAreaSensor(new SensorId("543"), "B123", startDate1, temperature, sensorLocation1, "l/m2");
 
         // Reading
         LocalDateTime readingDate = LocalDateTime.of(2018, 12, 2, 13, 20, 00);
@@ -2719,14 +2710,14 @@ public class HouseTest {
 
         // Geographical Areas
         Location location = new Location(32.1496, 7.6109, 98);
-        AreaShape areaShape = new AreaShape(100, 100, location);
+        AreaShape areaShape = new AreaShape(100, 100);
         GeographicalArea northernRegion = new GeographicalArea("Norte", "Northern Region", region, location, areaShape);
         Location location1 = new Location(41.1496, -6.6109, 100);
-        AreaShape areaShape1 = new AreaShape(40, 40, location1);
+        AreaShape areaShape1 = new AreaShape(40, 40);
         GeographicalArea portoDistrict = new GeographicalArea("Porto District", "District of Porto", district, location1, areaShape1);
         portoDistrict.setInsertedIn(northernRegion);
         Location location2 = new Location(42.1496, -8.6109, 97);
-        AreaShape areaShape2 = new AreaShape(10, 10, location2);
+        AreaShape areaShape2 = new AreaShape(10, 10);
         GeographicalArea portoCity = new GeographicalArea("Porto City", "City of Porto", city, location2, areaShape2);
         portoCity.setInsertedIn(portoDistrict);
 
@@ -2742,13 +2733,13 @@ public class HouseTest {
 
 
         // Sensors
-        SensorType temperature = new SensorType("Temperature");
+        SensorTypeId temperature = new SensorTypeId("Temperature");
         LocalDateTime startDate0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         Location sensorLocation = new Location(38.1596, -8.6109, 97);
-        GeoAreaSensor temperatureSensor = new GeoAreaSensor("123", "A123", startDate0, temperature, sensorLocation, "l/m2");
+        GeoAreaSensor temperatureSensor = new GeoAreaSensor(new SensorId("123"), "A123", startDate0, temperature, sensorLocation, "l/m2");
         LocalDateTime startDate1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         Location sensorLocation1 = new Location(42.1496, -8.6109, 97);
-        GeoAreaSensor temperatureSensor1 = new GeoAreaSensor("543", "B123", startDate1, temperature, sensorLocation1, "l/m2");
+        GeoAreaSensor temperatureSensor1 = new GeoAreaSensor(new SensorId("543"), "B123", startDate1, temperature, sensorLocation1, "l/m2");
 
         // Reading
         LocalDateTime readingDate = LocalDateTime.of(2018, 12, 2, 13, 20, 00);
@@ -2800,14 +2791,14 @@ public class HouseTest {
 
         // Geographical Areas
         Location location = new Location(32.1496, 7.6109, 98);
-        AreaShape areaShape = new AreaShape(100, 100, location);
+        AreaShape areaShape = new AreaShape(100, 100);
         GeographicalArea northernRegion = new GeographicalArea("Norte", "Northern Region", region, location, areaShape);
         Location location1 = new Location(41.1496, -6.6109, 100);
-        AreaShape areaShape1 = new AreaShape(40, 40, location1);
+        AreaShape areaShape1 = new AreaShape(40, 40);
         GeographicalArea portoDistrict = new GeographicalArea("Porto District", "District of Porto", district, location1, areaShape1);
         portoDistrict.setInsertedIn(northernRegion);
         Location location2 = new Location(42.1496, -8.6109, 97);
-        AreaShape areaShape2 = new AreaShape(10, 10, location2);
+        AreaShape areaShape2 = new AreaShape(10, 10);
         GeographicalArea portoCity = new GeographicalArea("Porto City", "City of Porto", city, location2, areaShape2);
         portoCity.setInsertedIn(portoDistrict);
 
@@ -2823,13 +2814,13 @@ public class HouseTest {
 
 
         // Sensors
-        SensorType temperature = new SensorType("Temperature");
+        SensorTypeId temperature = new SensorTypeId("Temperature");
         LocalDateTime startDate0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         Location sensorLocation = new Location(38.1596, -8.6109, 97);
-        GeoAreaSensor temperatureSensor = new GeoAreaSensor("123", "A123", startDate0, temperature, sensorLocation, "l/m2");
+        GeoAreaSensor temperatureSensor = new GeoAreaSensor(new SensorId("123"), "A123", startDate0, temperature, sensorLocation, "l/m2");
         LocalDateTime startDate1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         Location sensorLocation1 = new Location(42.1496, -8.6109, 97);
-        GeoAreaSensor temperatureSensor1 = new GeoAreaSensor("543", "B123", startDate1, temperature, sensorLocation1, "l/m2");
+        GeoAreaSensor temperatureSensor1 = new GeoAreaSensor(new SensorId("543"), "B123", startDate1, temperature, sensorLocation1, "l/m2");
 
         // Reading
         LocalDateTime readingDate = LocalDateTime.of(2018, 12, 2, 13, 20, 00);
@@ -2883,14 +2874,14 @@ public class HouseTest {
 
         // Geographical Areas
         Location location = new Location(32.1496, 7.6109, 98);
-        AreaShape areaShape = new AreaShape(100, 100, location);
+        AreaShape areaShape = new AreaShape(100, 100);
         GeographicalArea northernRegion = new GeographicalArea("Norte", "Northern Region", region, location, areaShape);
         Location location1 = new Location(41.1496, -6.6109, 100);
-        AreaShape areaShape1 = new AreaShape(40, 40, location1);
+        AreaShape areaShape1 = new AreaShape(40, 40);
         GeographicalArea portoDistrict = new GeographicalArea("Porto District", "District of Porto", district, location1, areaShape1);
         portoDistrict.setInsertedIn(northernRegion);
         Location location2 = new Location(42.1496, -8.6109, 97);
-        AreaShape areaShape2 = new AreaShape(10, 10, location2);
+        AreaShape areaShape2 = new AreaShape(10, 10);
         GeographicalArea portoCity = new GeographicalArea("Porto City", "City of Porto", city, location2, areaShape2);
         portoCity.setInsertedIn(portoDistrict);
 
@@ -2906,13 +2897,13 @@ public class HouseTest {
 
 
         // Sensors
-        SensorType temperature = new SensorType("Temperature");
+        SensorTypeId temperature = new SensorTypeId("Temperature");
         LocalDateTime startDate0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         Location sensorLocation = new Location(38.1596, -8.6109, 97);
-        GeoAreaSensor temperatureSensor = new GeoAreaSensor("123", "A123", startDate0, temperature, sensorLocation, "l/m2");
+        GeoAreaSensor temperatureSensor = new GeoAreaSensor(new SensorId("123"), "A123", startDate0, temperature, sensorLocation, "l/m2");
         LocalDateTime startDate1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         Location sensorLocation1 = new Location(42.1496, -8.6109, 97);
-        GeoAreaSensor temperatureSensor1 = new GeoAreaSensor("543", "B123", startDate1, temperature, sensorLocation1, "l/m2");
+        GeoAreaSensor temperatureSensor1 = new GeoAreaSensor(new SensorId("543"), "B123", startDate1, temperature, sensorLocation1, "l/m2");
 
         // Reading
         LocalDateTime readingDate = LocalDateTime.of(2018, 12, 2, 13, 20, 00);
@@ -2952,10 +2943,6 @@ public class HouseTest {
         Reading result = this.house.getFirstHighestReadingHouseArea(temperature, startDate, endDate);
         //Assert
         assertEquals(expectedResult, result);
-    }
-
-    @Configuration
-    static class Config {
     }
 }
 
