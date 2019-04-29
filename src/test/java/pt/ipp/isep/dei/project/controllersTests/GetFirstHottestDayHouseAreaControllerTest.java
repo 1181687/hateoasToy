@@ -87,7 +87,7 @@ public class GetFirstHottestDayHouseAreaControllerTest {
 /**
      * There are 2 temperature sensors in Geographical area portocity
      * expected that isSensorListEmpty method returns false;
-     **//*
+ **//*
 
     @Test
     public void isSensorListEmpty_False() {
@@ -104,7 +104,7 @@ public class GetFirstHottestDayHouseAreaControllerTest {
 /**
      * There are no temperature sensors in Geographical area "newGeoArea"
      * expected that isSensorListEmpty method returns true;
-     **//*
+ **//*
 
     @Test
     public void isSensorListEmptyTest_True() {
@@ -132,7 +132,7 @@ public class GetFirstHottestDayHouseAreaControllerTest {
      * temperatureSensor1 is the nearest sensor in Geographical area portocity
      * there are 5 measurements in that period (reading2, reading3, reading4, reading5 and reading6)
      * expected to return true;
-     **//*
+ **//*
 
     @Test
     public void checkNearestSensorReadingsExistenceBetweenDates_True() {
@@ -152,7 +152,7 @@ public class GetFirstHottestDayHouseAreaControllerTest {
      * temperatureSensor1 is the nearest sensor in Geographical area portocity
      * there are no measurements in that period
      * expected to return false;
-     **//*
+ **//*
 
     @Test
     public void checkNearestSensorReadingsExistenceBetweenDates_False() {
@@ -173,7 +173,7 @@ public class GetFirstHottestDayHouseAreaControllerTest {
      * temperatureSensor1 is the nearest sensor in Geographical area portocity
      * after calculating the first highest reading, it should be turned into a readingDTO
      * expected to return ReadingDTO;
-     **//*
+ **//*
 
     @Test
     public void getFirstHighestReadingHouseArea_ReadingDTO() {

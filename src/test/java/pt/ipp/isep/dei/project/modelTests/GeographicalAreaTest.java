@@ -708,7 +708,7 @@ class GeographicalAreaTest {
     *//**
      * Test that tries to get the first temperature sensors in the hierarchy of geo areas, with the first area
      * having two temperature sensors, which turns out to be the output of the tested method.
-     *//*
+ *//*
     @Test
     public void testGetFirstSensorsOfATypeInHierarchy_withTempSensorsInFirstArea_ShouldReturnTheCorrespondingList() {
         // Arrange
@@ -728,7 +728,7 @@ class GeographicalAreaTest {
     *//**
      * Test that tries to get the first temperature sensors in the hierarchy of geo areas, with the last area
      * having two temperature sensors, which turns out to be the output of the tested method.
-     *//*
+ *//*
     @Test
     public void testGetFirstSensorsOfATypeInHierarchy_withTempSensorsInLastArea_ShouldReturnTheCorrespondingList() {
         // Arrange
@@ -748,7 +748,7 @@ class GeographicalAreaTest {
     *//**
      * Test that tries to get the first temperature sensors in the hierarchy of geo areas, without any area
      * having temperature sensors, which turns out to be the output of the tested method (an empty list of sensors).
-     *//*
+ *//*
     @org.junit.jupiter.api.Test
     public void testGetFirstSensorsOfATypeInHierarchy_withNoTempSensors_ShouldReturnAnEmptyList() {
         //Arrange
@@ -1497,7 +1497,7 @@ class GeographicalAreaTest {
      * temperatureSensor1 is the nearest sensor in Geographical area portocity
      * beforeach has some readings, extra ones where added, included a negative value
      * expected result {2018-12-04=20, 2018-12-03=6.0, 2018-12-02=7.0}
-     *//*
+ *//*
     @Test
     void getDailyAmplitudeInterval() {
 
@@ -1541,7 +1541,7 @@ class GeographicalAreaTest {
      * beforeach has some readings, extra ones where added
      * 12/04/2018 has only a DoubleNan values, so the amplitude in that day will be DoubleNan.
      * expected result {2018-12-04=NaN, 2018-12-03=6.0, 2018-12-02=7.0}
-     *//*
+ *//*
     @Test
     void getDailyAmplitudeInterval_doubleNanValuesFor4_12_2018() {
 
@@ -1586,7 +1586,7 @@ class GeographicalAreaTest {
      * 12/04/2018 has one DoubleNan value and two valid values, so the amplitude in that day will be calculated
      * with that two valid values
      * expected result {2018-12-04=12, 2018-12-03=6.0, 2018-12-02=7.0}
-     *//*
+ *//*
     @Test
     void getDailyAmplitudeInterval_oneDayOneDoubleNanValueTwoValidValues_For4_12_2018() {
 
@@ -1666,7 +1666,7 @@ class GeographicalAreaTest {
      * beforeach has some readings, extra ones where added
      * 4/12/2018 is the expected date with the daily highest amplitude
      * expected highest amplipude is 20.
-     *//*
+ *//*
     @Test
     void getHighestDailyAmplitude_4_12_2018_amplitude20() {
 
@@ -1698,7 +1698,7 @@ class GeographicalAreaTest {
      * there is a doubleNan value for the amplitude in 4/12/2018
      * 2/12/2018 is the expected date with the daily highest amplitude
      * expected highest amplipude is 7.
-     *//*
+ *//*
     @Test
     void getHighestDailyAmplitude_doubleNanValuesIn4_12_2018_highestAmplitude7() {
 
@@ -1729,7 +1729,7 @@ class GeographicalAreaTest {
      * temperatureSensor1 is the nearest sensor in Geographical area portocity
      * the Map is empty
      * expected a empty Map.
-     *//*
+ *//*
     @Test
     void getHighestDailyAmplitude_emptyMap_emptyMap() {
 
@@ -2044,7 +2044,7 @@ class GeographicalAreaTest {
 
     *//**
      * Test that tries to use a valid/existing Id to remove a sensor, which results in true.
-     *//*
+ *//*
     @Test
     public void testRemoveSensorById_tryingWithAnExistingId_ShouldReturnTrue() {
         // Assert
@@ -2060,7 +2060,7 @@ class GeographicalAreaTest {
 
     *//**
      * Test that tries to use an invalid/non-existing Id to remove a sensor, which results in false.
-     *//*
+ *//*
     @Test
     public void testRemoveSensorById_tryingWithANonExistingId_ShouldReturnFalse() {
         // Act

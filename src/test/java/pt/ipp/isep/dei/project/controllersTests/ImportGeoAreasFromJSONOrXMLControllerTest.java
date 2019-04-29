@@ -16,7 +16,7 @@ public class ImportGeoAreasFromJSONOrXMLControllerTest {
     */
 /**
      * Test that imports imports geo areas and sensors
-     *//*
+ *//*
 
     @Test
     public void testImportGeographicalAreaAndSensors_True() throws FileNotFoundException {
