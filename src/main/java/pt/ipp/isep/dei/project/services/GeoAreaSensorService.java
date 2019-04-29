@@ -42,7 +42,7 @@ public class GeoAreaSensorService {
         List<GeoAreaSensor> geoAreaSensors = new ArrayList<>();
         if (analyze) {
             for (GeoAreaSensor sensor : sensors) {
-                if (!geoAreaSensorRepo.existsById(new SensorId(sensor.getId()))) {
+                if (!geoAreaSensorRepo.existsById(new SensorId(sensor.getId().getSensorId()))) {
                     geoAreaSensors.add(sensor);
                     saved = true;
                 }

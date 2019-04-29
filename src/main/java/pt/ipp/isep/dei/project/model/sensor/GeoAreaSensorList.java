@@ -9,15 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@Entity
 public class GeoAreaSensorList {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn
     private List<GeoAreaSensor> listOfSensors;
 
     /**
@@ -63,27 +56,27 @@ public class GeoAreaSensorList {
      * Method that creates a new sensor.
      *
      * @param name       Name for the sensor.
-     * @param sensorType Type of the sensor.
+     * @param sensorTypeId Type of the sensor.
      * @param location   Location of the sensor.
      * @return sensor.
      */
-    public GeoAreaSensor newSensor(String id, String name, SensorType sensorType, Location location, String units) {
-        return new GeoAreaSensor(id, name, sensorType, location, units);
+    public GeoAreaSensor newSensor(SensorId id, String name, SensorTypeId sensorTypeId, Location location, String units) {
+        return new GeoAreaSensor(id, name, sensorTypeId, location, units);
     }
 
     /**
      * Method that returns a list of the latest measurements by sensor type.
      *
-     * @param type sensor type needed.
+     * @param typeId sensor type needed.
      * @return List with the lastest measeruments for the required type.
      */
-    public List<Reading> getListOfLatestMeasurementsBySensorType(SensorType type) {
+    public List<Reading> getListOfLatestMeasurementsBySensorType(SensorTypeId typeId) {
         List<Reading> listOfLatestReadings = new ArrayList<>();
         for (GeoAreaSensor sensor : listOfSensors) {
             if (sensor.isMeasurementListEmpty()) {
                 break;
             }
-            if (sensor.sensorTypeEqualsSensorType(type) && (!(Double.isNaN(sensor.getLastMeasurement().getValue())))) {
+            if (sensor.sensorTypeEqualsSensorType(typeId) && (!(Double.isNaN(sensor.getLastMeasurement().getValue())))) {
                 listOfLatestReadings.add(sensor.getLastMeasurement());
             }
         }
@@ -93,12 +86,12 @@ public class GeoAreaSensorList {
     /**
      * method that receives a Sensortype, and gets the latest Reading available by that Sensortype
      *
-     * @param type Sensortype
+     * @param typeId Sensortype
      * @return Measuremnt
      */
-    public Reading getLatestMeasurementBySensorType(SensorType type) {
-        List<Reading> listOfLatestReadings = getListOfLatestMeasurementsBySensorType(type);
-        if (getListOfLatestMeasurementsBySensorType(type).isEmpty()) {
+    public Reading getLatestMeasurementBySensorType(SensorTypeId typeId) {
+        List<Reading> listOfLatestReadings = getListOfLatestMeasurementsBySensorType(typeId);
+        if (getListOfLatestMeasurementsBySensorType(typeId).isEmpty()) {
             return null;
         }
         Reading latestReading = listOfLatestReadings.get(0);
@@ -313,7 +306,7 @@ public class GeoAreaSensorList {
         return false;
     }
 
-    public boolean geoAreaSensorExists(String id) {
+    /*public boolean geoAreaSensorExists(String id) {
         for (GeoAreaSensor sensor : listOfSensors) {
             if (sensor.getId() == id) {
                 return true;
@@ -321,5 +314,5 @@ public class GeoAreaSensorList {
 
         }
         return false;
-    }
+    }*/
 }
