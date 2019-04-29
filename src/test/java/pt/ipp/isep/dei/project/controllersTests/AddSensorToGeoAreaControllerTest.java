@@ -1,3 +1,4 @@
+/*
 package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -149,4 +150,4 @@ class AddSensorToGeoAreaControllerTest {
         when(this.geoAreaSensorService.addGeoAreaSensor(geoAreaSensor)).thenReturn(false);
         assertFalse(this.controller.addGeoAreaSensor(geoAreaSensorDTO));
     }
-}
+}*/
