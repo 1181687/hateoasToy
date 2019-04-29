@@ -5,10 +5,7 @@ import pt.ipp.isep.dei.project.model.Reading;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class SensorsService {
 
@@ -25,16 +22,31 @@ public class SensorsService {
 
         Set<Map.Entry<LocalDate, List<Double>>> set = mapComfortTemperatureMinMaxByDay.entrySet();
 
-        for (Map.Entry<LocalDate, List<Double>> dailyComfortTemp : set) {
-            for (Reading roomReading : roomReadings) {
-                if (dailyComfortTemp.getKey().equals(roomReading.getDateTime().toLocalDate())
-                        && dailyComfortTemp.getValue().get(0) > roomReading.getValue()) {
-                    mapOfInstancesBelowComfortTemp.put(roomReading.getDateTime(), roomReading.getValue());
+        if (!set.isEmpty()) {
+            for (Map.Entry<LocalDate, List<Double>> dailyComfortTemp : set) {
+                for (Reading roomReading : roomReadings) {
+                    if (dailyComfortTemp.getKey().equals(roomReading.getDateTime().toLocalDate())
+                            && dailyComfortTemp.getValue().get(0) > roomReading.getValue()) {
+                        mapOfInstancesBelowComfortTemp.put(roomReading.getDateTime(), roomReading.getValue());
 
+                    }
                 }
             }
         }
         return mapOfInstancesBelowComfortTemp;
+    }
+
+    public List<LocalDateTime> getInstantsOutOfComfortLevel(Map<LocalDateTime, Double> mapOfInstantsOutOfComfortLevel) {
+        Set<Map.Entry<LocalDateTime, Double>> set = mapOfInstantsOutOfComfortLevel.entrySet();
+
+        List<LocalDateTime> listOfInstantsOutOfComfortLevel = new ArrayList<>();
+
+        if (!set.isEmpty()) {
+            for (Map.Entry<LocalDateTime, Double> outOfComfortInstants : set) {
+                listOfInstantsOutOfComfortLevel.add(outOfComfortInstants.getKey());
+            }
+        }
+        return listOfInstantsOutOfComfortLevel;
     }
 
 
