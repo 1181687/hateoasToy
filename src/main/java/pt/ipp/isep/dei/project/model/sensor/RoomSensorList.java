@@ -8,15 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@Entity
 public class RoomSensorList {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn
     private List<RoomSensor> listOfSensors;
 
     public RoomSensorList() {
@@ -72,20 +65,20 @@ public class RoomSensorList {
         return listOfLatestReadings;
     }
 
-    public RoomSensor getSensorById(String sensorId) {
+    /*public RoomSensor getSensorById(String sensorId) {
         for (RoomSensor sensor : listOfSensors) {
             if (sensor.getId().equalsIgnoreCase(sensorId)) {
                 return sensor;
             }
         }
         return null;
-    }
+    }*/
 
     public List<RoomSensor> getListOfSensors() {
         return listOfSensors;
     }
 
-    public boolean roomSensorExists(String id) {
+    /*public boolean roomSensorExists(String id) {
         for (RoomSensor sensor : listOfSensors) {
             if (sensor.getId() == id) {
                 return true;
@@ -93,7 +86,7 @@ public class RoomSensorList {
 
         }
         return false;
-    }
+    }*/
 
 
 }
