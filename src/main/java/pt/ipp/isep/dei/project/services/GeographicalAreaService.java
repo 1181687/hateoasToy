@@ -261,4 +261,18 @@ public class GeographicalAreaService {
         geoAreaRepository.saveAll(geographicalAreas);
         return saved;
     }
+
+    public Long numberOfGeoAreasInRepo() {
+        return this.geoAreaRepository.count();
+    }
+
+    /**
+     * method that verify if the grid repository is empty, or not
+     *
+     * @return a boolean
+     */
+    public boolean isGeoAreaRepositoryEmpty() {
+        return this.numberOfGeoAreasInRepo() == 0;
+    }
+
 }

@@ -55,6 +55,10 @@ public class GeoAreaSensorService {
         return true;
     }
 
+    public void saveGeoAreaSensor(GeoAreaSensor geoAreaSensor) {
+        this.geoAreaSensorRepo.save(geoAreaSensor);
+    }
+
     public List<GeoAreaSensor> getSensorsWithReadingsInInterval(GeoAreaId geoAreaId, SensorTypeId sensorTypeId, LocalDate startDate, LocalDate endDate) {
         List<GeoAreaSensor> sensorListWithReadings = new ArrayList<>();
         List<GeoAreaSensor> sensors = geoAreaSensorRepo.findByGeoAreaIdAndSensorTypeId(geoAreaId, sensorTypeId);
@@ -126,5 +130,16 @@ public class GeoAreaSensorService {
         return sensor.getDailyAverage(day);
     }
 
+    public boolean doesSensorExist(SensorId geoAreaSensorId) {
+        return geoAreaSensorRepo.existsById(geoAreaSensorId);
+    }
+
+    public boolean addGeoAreaSensor(GeoAreaSensor geoAreaSensor) {
+        if (!this.doesSensorExist(geoAreaSensor.getId())) {
+            this.saveGeoAreaSensor(geoAreaSensor);
+            return true;
+        }
+        return false;
+    }
 
 }
