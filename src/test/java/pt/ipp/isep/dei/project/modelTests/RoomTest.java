@@ -9,10 +9,7 @@ import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
-import pt.ipp.isep.dei.project.model.house.Address;
-import pt.ipp.isep.dei.project.model.house.Dimension;
-import pt.ipp.isep.dei.project.model.house.House;
-import pt.ipp.isep.dei.project.model.house.Room;
+import pt.ipp.isep.dei.project.model.house.*;
 import pt.ipp.isep.dei.project.model.sensor.*;
 import pt.ipp.isep.dei.project.utils.Utils;
 
@@ -38,7 +35,7 @@ public class RoomTest {
     public void StartUp() {
         //Geographical Area
         Location location = new Location(41.178553, -8.608035, 111);
-        AreaShape areaShape = new AreaShape(0.261, 0.249, location);
+        AreaShape areaShape = new AreaShape(0.261, 0.249);
         GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Urban area");
         GeographicalArea insertedGeoArea = new GeographicalArea("ISEP", "Campus do ISEP", geographicalAreaType, location, areaShape);
 
@@ -78,11 +75,14 @@ public class RoomTest {
     @Test
     public void testHashCode() {
         //Arrange
+        RoomId id = new RoomId("Bathroom");
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room(id.getId(),"bathroom", 2,dim);
 
-        int expectedResult = Objects.hash("Kitchen");
+        int expectedResult = Objects.hash(id);
 
         // Act
-        int result = kitchen.hashCode();
+        int result = room.hashCode();
         // Assert
         assertEquals(expectedResult, result);
     }
