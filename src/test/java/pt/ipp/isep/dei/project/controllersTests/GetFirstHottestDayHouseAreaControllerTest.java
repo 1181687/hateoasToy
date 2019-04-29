@@ -23,7 +23,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class GetFirstHottestDayHouseAreaControllerTest {
-    private static final String CONFIG_PROPERTIES = "Configuration.properties";
+    /*private static final String CONFIG_PROPERTIES = "Configuration.properties";
     private GeographicalArea northernRegion;
     private GeographicalArea portoDistrict;
     private GeographicalArea portoCity;
@@ -107,7 +107,7 @@ public class GetFirstHottestDayHouseAreaControllerTest {
      * There are 2 temperature sensors in Geographical area portocity
      * expected that isSensorListEmpty method returns false;
      **/
-    @Test
+    /*@Test
     public void isSensorListEmpty_False() {
         // Arrange
 
@@ -122,7 +122,7 @@ public class GetFirstHottestDayHouseAreaControllerTest {
      * There are no temperature sensors in Geographical area "newGeoArea"
      * expected that isSensorListEmpty method returns true;
      **/
-    @Test
+    /*@Test
     public void isSensorListEmptyTest_True() {
         // Arrange
         GeographicalAreaType street = new GeographicalAreaType("Street");
@@ -148,7 +148,7 @@ public class GetFirstHottestDayHouseAreaControllerTest {
      * there are 5 measurements in that period (reading2, reading3, reading4, reading5 and reading6)
      * expected to return true;
      **/
-    @Test
+    /*@Test
     public void checkNearestSensorReadingsExistenceBetweenDates_True() {
         // Arrange
         LocalDate initialDate = LocalDate.of(2018, 12, 2);
@@ -166,7 +166,7 @@ public class GetFirstHottestDayHouseAreaControllerTest {
      * there are no measurements in that period
      * expected to return false;
      **/
-    @Test
+    /*@Test
     public void checkNearestSensorReadingsExistenceBetweenDates_False() {
         // Arrange
         LocalDate initialDate = LocalDate.of(2018, 12, 7);
@@ -185,7 +185,7 @@ public class GetFirstHottestDayHouseAreaControllerTest {
      * after calculating the first highest reading, it should be turned into a readingDTO
      * expected to return ReadingDTO;
      **/
-    @Test
+    /*@Test
     public void getFirstHighestReadingHouseArea_ReadingDTO() {
         //Arrange
         LocalDate startDate = LocalDate.of(2018, 12, 2);
@@ -203,5 +203,5 @@ public class GetFirstHottestDayHouseAreaControllerTest {
         Reading result = ReadingMapper.mapToEntity(resultDTO);
         //Assert
         assertEquals(expectedResult, result);
-    }
+    }*/
 }
