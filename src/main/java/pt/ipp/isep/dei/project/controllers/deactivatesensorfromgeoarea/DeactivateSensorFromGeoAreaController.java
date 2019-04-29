@@ -14,24 +14,24 @@ import java.util.List;
 
 public class DeactivateSensorFromGeoAreaController {
     @Autowired
-    private GeographicalAreaService geoAreaList;
+    private GeographicalAreaService geoAreaService;
 
-    public DeactivateSensorFromGeoAreaController(GeographicalAreaService geoAreaList) {
-        this.geoAreaList = geoAreaList;
+    public DeactivateSensorFromGeoAreaController(GeographicalAreaService geoAreaService) {
+        this.geoAreaService = geoAreaService;
     }
 
     public List<GeographicalAreaDTO> listOfGeographicalAreas() {
         List<GeographicalAreaDTO> dtoList = new ArrayList<>();
-        for (GeographicalArea geoArea : this.geoAreaList.getGeoAreaList()) {
+        for (GeographicalArea geoArea : this.geoAreaService.getGeoAreaList()) {
             dtoList.add(GeographicalAreaMapper.mapToDTOwithSensors(geoArea));
         }
         return dtoList;
     }
 
     public boolean deactivateSensor(GeoAreaSensorDTO sensorDTO) {
-        GeoAreaSensor sensor = geoAreaList.getSensorById(new SensorId(sensorDTO.getId()));
+        GeoAreaSensor sensor = geoAreaService.getSensorById(sensorDTO.getId());
         if (sensor.deactivateDevice()) {
-            geoAreaList.updateRepository();
+            geoAreaService.updateRepository();
             return true;
         }
         return false;

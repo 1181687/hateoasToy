@@ -16,7 +16,7 @@ public class AreaShapeTest {
     public void testhashCode() {
         //Arrange
         Location local1 = new Location(41.1496, -8.6109, 97);
-        AreaShape area = new AreaShape(10, 10, local1);
+        AreaShape area = new AreaShape(10, 10);
 
         int expectedResult = Objects.hash();
 
@@ -31,7 +31,7 @@ public class AreaShapeTest {
     public void testarEqualsSame() {
         //arrange
         Location local1 = new Location(41.1496, -8.6109, 97);
-        AreaShape area1 = new AreaShape(10, 10, local1);
+        AreaShape area1 = new AreaShape(10, 10);
 
         //act
         boolean result = area1.equals(area1);
@@ -45,8 +45,8 @@ public class AreaShapeTest {
         //arrange
         Location local1 = new Location(41.1496, -8.6109, 97);
         Location local2 = new Location(41.1496, -8.6109, 97);
-        AreaShape area1 = new AreaShape(10, 10, local1);
-        AreaShape area2 = new AreaShape(10, 10, local2);
+        AreaShape area1 = new AreaShape(10, 10);
+        AreaShape area2 = new AreaShape(10, 10);
 
         //act
         boolean result = area1.equals(area2);
@@ -59,8 +59,8 @@ public class AreaShapeTest {
         //arrange
         Location local1 = new Location(41.1496, -8.6109, 97);
         Location local2 = new Location(40, -8, 95);
-        AreaShape area1 = new AreaShape(12, 8, local1);
-        AreaShape area2 = new AreaShape(10, 10, local2);
+        AreaShape area1 = new AreaShape(12, 8);
+        AreaShape area2 = new AreaShape(10, 10);
 
         //act
         boolean result = area1.equals(area2);
@@ -74,8 +74,8 @@ public class AreaShapeTest {
         //arrange
         Location local1 = new Location(41.1496, -8.6109, 97);
         Location local2 = new Location(40, -8, 95);
-        AreaShape area1 = new AreaShape(12, 8, local1);
-        AreaShape area2 = new AreaShape(12, 8, local2);
+        AreaShape area1 = new AreaShape(12, 8);
+        AreaShape area2 = new AreaShape(12, 8);
 
         //act
         boolean result = area1.equals(area2);
@@ -89,8 +89,8 @@ public class AreaShapeTest {
         //arrange
         Location local1 = new Location(40, -8, 95);
         Location local2 = new Location(40, -8, 95);
-        AreaShape area1 = new AreaShape(10, 9, local1);
-        AreaShape area2 = new AreaShape(12, 8, local2);
+        AreaShape area1 = new AreaShape(10, 9);
+        AreaShape area2 = new AreaShape(12, 8);
 
         //act
         boolean result = area1.equals(area2);
@@ -104,8 +104,8 @@ public class AreaShapeTest {
         //arrange
         Location local1 = new Location(41.1496, -8, 95);
         Location local2 = new Location(40, -8, 95);
-        AreaShape area1 = new AreaShape(12, 8, local1);
-        AreaShape area2 = new AreaShape(12, 8, local2);
+        AreaShape area1 = new AreaShape(12, 8);
+        AreaShape area2 = new AreaShape(12, 8);
 
         //act
         boolean result = area1.equals(area2);
@@ -119,8 +119,8 @@ public class AreaShapeTest {
         //arrange
         Location local1 = new Location(40, -9, 95);
         Location local2 = new Location(40, -8, 95);
-        AreaShape area1 = new AreaShape(12, 8, local1);
-        AreaShape area2 = new AreaShape(12, 8, local2);
+        AreaShape area1 = new AreaShape(12, 8);
+        AreaShape area2 = new AreaShape(12, 8);
 
         //act
         boolean result = area1.equals(area2);
@@ -134,8 +134,8 @@ public class AreaShapeTest {
         //arrange
         Location local1 = new Location(40, -8, 97);
         Location local2 = new Location(40, -8, 95);
-        AreaShape area1 = new AreaShape(12, 8, local1);
-        AreaShape area2 = new AreaShape(12, 8, local2);
+        AreaShape area1 = new AreaShape(12, 8);
+        AreaShape area2 = new AreaShape(12, 8);
 
         //act
         boolean result = area1.equals(area2);
@@ -149,8 +149,8 @@ public class AreaShapeTest {
         //arrange
         Location local1 = new Location(40, -8, 95);
         Location local2 = new Location(40, -8, 95);
-        AreaShape area1 = new AreaShape(11, 8, local1);
-        AreaShape area2 = new AreaShape(12, 8, local2);
+        AreaShape area1 = new AreaShape(11, 8);
+        AreaShape area2 = new AreaShape(12, 8);
 
         //act
         boolean result = area1.equals(area2);
@@ -164,8 +164,8 @@ public class AreaShapeTest {
         //arrange
         Location local1 = new Location(41, -8, 95);
         Location local2 = new Location(40, -8, 95);
-        AreaShape area1 = new AreaShape(11, 8, local1);
-        AreaShape area2 = new AreaShape(12, 8, local2);
+        AreaShape area1 = new AreaShape(11, 8);
+        AreaShape area2 = new AreaShape(12, 8);
 
         //act
         boolean result = area1.equals(area2);
@@ -179,8 +179,8 @@ public class AreaShapeTest {
         //arrange
         Location local1 = new Location(41, -8, 95);
         Location local2 = new Location(41, -9, 95);
-        AreaShape area1 = new AreaShape(11, 8, local1);
-        AreaShape area2 = new AreaShape(12, 8, local2);
+        AreaShape area1 = new AreaShape(11, 8);
+        AreaShape area2 = new AreaShape(12, 8);
 
         //act
         boolean result = area1.equals(area2);
@@ -194,8 +194,8 @@ public class AreaShapeTest {
         //arrange
         Location local1 = new Location(41, -8, 95);
         Location local2 = new Location(41, -8, 97);
-        AreaShape area1 = new AreaShape(11, 8, local1);
-        AreaShape area2 = new AreaShape(12, 8, local2);
+        AreaShape area1 = new AreaShape(11, 8);
+        AreaShape area2 = new AreaShape(12, 8);
 
         //act
         boolean result = area1.equals(area2);
@@ -209,8 +209,8 @@ public class AreaShapeTest {
         //arrange
         Location local1 = new Location(41, -8, 95);
         Location local2 = new Location(41, -8, 97);
-        AreaShape area1 = new AreaShape(11, 8, local1);
-        AreaShape area2 = new AreaShape(11, 9, local2);
+        AreaShape area1 = new AreaShape(11, 8);
+        AreaShape area2 = new AreaShape(11, 9);
 
         //act
         boolean result = area1.equals(area2);
@@ -224,8 +224,8 @@ public class AreaShapeTest {
         //arrange
         Location local1 = new Location(41, -8, 95);
         Location local2 = new Location(41, -9, 95);
-        AreaShape area1 = new AreaShape(11, 8, local1);
-        AreaShape area2 = new AreaShape(11, 9, local2);
+        AreaShape area1 = new AreaShape(11, 8);
+        AreaShape area2 = new AreaShape(11, 9);
 
         //act
         boolean result = area1.equals(area2);
@@ -239,8 +239,8 @@ public class AreaShapeTest {
         //arrange
         Location local1 = new Location(41, -8, 95);
         Location local2 = new Location(40, -8, 95);
-        AreaShape area1 = new AreaShape(11, 8, local1);
-        AreaShape area2 = new AreaShape(11, 9, local2);
+        AreaShape area1 = new AreaShape(11, 8);
+        AreaShape area2 = new AreaShape(11, 9);
 
         //act
         boolean result = area1.equals(area2);
@@ -253,7 +253,7 @@ public class AreaShapeTest {
     public void testEqualsFalseDiferentObject() {
         //arrange
         Location local1 = new Location(41.1496, -8.6109, 97);
-        AreaShape area1 = new AreaShape(12, 8, local1);
+        AreaShape area1 = new AreaShape(12, 8);
         String id = "1";
         String description = "room";
         int housefloor = 2;
@@ -272,7 +272,7 @@ public class AreaShapeTest {
         // Arrange
         Location location0 = new Location(50, 40, 65);
         Location locationRectangleArea = new Location(40, 20, 65);
-        AreaShape area = new AreaShape(20, 40, locationRectangleArea);
+        AreaShape area = new AreaShape(20, 40);
 
         // Act
         boolean result = area.checkIfLocationIsInsertedInAnArea(location0);
@@ -286,7 +286,7 @@ public class AreaShapeTest {
         // Arrange
         Location location0 = new Location(30, 0, 65);
         Location locationRectangleArea = new Location(40, 20, 65);
-        AreaShape area = new AreaShape(20, 40, locationRectangleArea);
+        AreaShape area = new AreaShape(20, 40);
 
         // Act
         boolean result = area.checkIfLocationIsInsertedInAnArea(location0);
@@ -300,7 +300,7 @@ public class AreaShapeTest {
         // Arrange
         Location location0 = new Location(51, 20, 65);
         Location locationRectangleArea = new Location(40, 20, 65);
-        AreaShape area = new AreaShape(20, 40, locationRectangleArea);
+        AreaShape area = new AreaShape(20, 40);
 
         // Act
         boolean result = area.checkIfLocationIsInsertedInAnArea(location0);
@@ -314,7 +314,7 @@ public class AreaShapeTest {
         // Arrange
         Location location0 = new Location(45, 41, 65);
         Location locationRectangleArea = new Location(40, 20, 65);
-        AreaShape area = new AreaShape(20, 40, locationRectangleArea);
+        AreaShape area = new AreaShape(20, 40);
 
         // Act
         boolean result = area.checkIfLocationIsInsertedInAnArea(location0);
@@ -328,7 +328,7 @@ public class AreaShapeTest {
         // Arrange
         Location location0 = new Location(29, 20, 65);
         Location locationRectangleArea = new Location(40, 20, 65);
-        AreaShape area = new AreaShape(20, 40, locationRectangleArea);
+        AreaShape area = new AreaShape(20, 40);
 
         // Act
         boolean result = area.checkIfLocationIsInsertedInAnArea(location0);
@@ -342,7 +342,7 @@ public class AreaShapeTest {
         // Arrange
         Location location0 = new Location(51, -1, 65);
         Location locationRectangleArea = new Location(40, 20, 65);
-        AreaShape area = new AreaShape(20, 40, locationRectangleArea);
+        AreaShape area = new AreaShape(20, 40);
 
         // Act
         boolean result = area.checkIfLocationIsInsertedInAnArea(location0);
@@ -356,7 +356,7 @@ public class AreaShapeTest {
         // Arrange
         Location location0 = new Location(29, 20, 65);
         Location locationRectangleArea = new Location(40, 20, 65);
-        AreaShape area = new AreaShape(20, 40, locationRectangleArea);
+        AreaShape area = new AreaShape(20, 40);
 
         double expectedResult = 20;
 
@@ -371,7 +371,7 @@ public class AreaShapeTest {
         // Arrange
         Location location0 = new Location(29, 20, 65);
         Location locationRectangleArea = new Location(40, 20, 65);
-        AreaShape area = new AreaShape(20, 40, locationRectangleArea);
+        AreaShape area = new AreaShape(20, 40);
 
         double expectedResult = 40;
 

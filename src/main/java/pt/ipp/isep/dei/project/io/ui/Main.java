@@ -26,10 +26,7 @@ import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceType;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceTypeList;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeList;
-import pt.ipp.isep.dei.project.services.GeoAreaSensorService;
-import pt.ipp.isep.dei.project.services.GeographicalAreaService;
-import pt.ipp.isep.dei.project.services.HouseService;
-import pt.ipp.isep.dei.project.services.RoomSensorService;
+import pt.ipp.isep.dei.project.services.*;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.io.IOException;
@@ -82,6 +79,9 @@ public class Main {
     @Autowired
     private RoomSensorService roomSensorService;
 
+    @Autowired
+    private SensorTypeService sensorTypeService;
+
 
     public static void main(String[] args) {
 
@@ -104,7 +104,7 @@ public class Main {
             data();
 
             //UI levels
-            Admin admin = new Admin(geographicalAreaTypeList, geographicalAreaService, sensorTypeList, houseEdificioB, powerSourceTypeList, houseEdificioB.getRoomList(), houseService, geoAreaSensorService, roomSensorService);
+            Admin admin = new Admin(geographicalAreaTypeList, geographicalAreaService, sensorTypeList, houseEdificioB, powerSourceTypeList, houseEdificioB.getRoomList(), houseService, geoAreaSensorService, roomSensorService, sensorTypeService);
             RegularUser regularUser = new RegularUser(geographicalAreaTypeList, geographicalAreaService, sensorTypeList, houseEdificioB);
             PowerUser powerUser = new PowerUser(houseEdificioB);
             RoomOwner roomOwner = new RoomOwner(houseEdificioB);
@@ -157,7 +157,7 @@ public class Main {
         // Inserted Geo Area (Campus do ISEP)
         Location location2 = new Location(41.178553, -8.608035, 111);
         sensorTypeList = new SensorTypeList();
-        AreaShape areaShape = new AreaShape(0.261, 0.249, location2);
+        AreaShape areaShape = new AreaShape(0.261, 0.249);
         GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Urban area");
         GeographicalArea insertedGeoArea = new GeographicalArea("DUMMY", "DUMMY", geographicalAreaType, location2, areaShape);
 

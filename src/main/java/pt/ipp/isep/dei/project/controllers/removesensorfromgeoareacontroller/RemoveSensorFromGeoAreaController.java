@@ -32,7 +32,7 @@ public class RemoveSensorFromGeoAreaController {
      *
      * @return List with GeographicalAreaDTOs ready to be sent to the UI.
      */
-    public List<GeographicalAreaDTO> getGeographicalAreaService() {
+    public List<GeographicalAreaDTO> getGeographicalAreaDTO() {
         List<GeographicalAreaDTO> geoAreaDTOList = new ArrayList<>();
         for (GeographicalArea geoArea : geographicalAreaService.getGeoAreaList()) {
             GeographicalAreaDTO geoAreaDTO = GeographicalAreaMapper.mapToDTOwithSensors(geoArea);

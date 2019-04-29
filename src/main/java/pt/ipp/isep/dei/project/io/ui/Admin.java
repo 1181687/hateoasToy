@@ -5,10 +5,7 @@ import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.RoomList;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceTypeList;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeList;
-import pt.ipp.isep.dei.project.services.GeoAreaSensorService;
-import pt.ipp.isep.dei.project.services.GeographicalAreaService;
-import pt.ipp.isep.dei.project.services.HouseService;
-import pt.ipp.isep.dei.project.services.RoomSensorService;
+import pt.ipp.isep.dei.project.services.*;
 
 import java.io.FileNotFoundException;
 
@@ -23,9 +20,10 @@ public class Admin {
     private HouseService houseService;
     private GeoAreaSensorService geoAreaSensorService;
     private RoomSensorService roomSensorService;
+    private SensorTypeService sensorTypeService;
 
 
-    public Admin(GeographicalAreaTypeList geographicalAreaTypeList, GeographicalAreaService geographicalAreaService, SensorTypeList sensorTypeList, House house, PowerSourceTypeList powerSourceTypeList, RoomList roomList, HouseService houseService, GeoAreaSensorService geoAreaSensorService, RoomSensorService roomSensorService) {
+    public Admin(GeographicalAreaTypeList geographicalAreaTypeList, GeographicalAreaService geographicalAreaService, SensorTypeList sensorTypeList, House house, PowerSourceTypeList powerSourceTypeList, RoomList roomList, HouseService houseService, GeoAreaSensorService geoAreaSensorService, RoomSensorService roomSensorService, SensorTypeService sensorTypeService) {
         this.geographicalAreaTypeList = geographicalAreaTypeList;
         this.geographicalAreaService = geographicalAreaService;
         this.sensorTypeList = sensorTypeList;
@@ -67,7 +65,7 @@ public class Admin {
                     ui5.run();
                     break;
                 case 6:
-                    AddSensorToGeoArea ui6 = new AddSensorToGeoArea(geographicalAreaService, sensorTypeList);
+                    AddSensorToGeoArea ui6 = new AddSensorToGeoArea(geographicalAreaService, sensorTypeService, geoAreaSensorService);
                     ui6.run();
                     break;
                 case 7:
@@ -108,7 +106,7 @@ public class Admin {
 
             switch (option) {
                 case 1:
-                    ConfHouseLocation ui101 = new ConfHouseLocation(geographicalAreaService, house);
+                    ConfigureHouseLocation ui101 = new ConfigureHouseLocation(houseService);
                     ui101.run();
                     break;
                 case 2:

@@ -33,4 +33,4 @@ Acceptance Tests:
 
 ASSUMPTIONS:
 
-
+* Time is measured in seconds.

@@ -41,7 +41,7 @@ public class GetListOfTypeOfGeoAreaControllerTest {
         MockitoAnnotations.initMocks(this);
         //Geographical Area & Geographical Area Type
         Location location = new Location(41.178553, -8.608035, 111);
-        AreaShape areaShape = new AreaShape(0.261, 0.249, location);
+        AreaShape areaShape = new AreaShape(0.261, 0.249);
         this.type = new GeographicalAreaType("Urban area");
         this.ag = new GeographicalArea("ISEP", "Campus do ISEP", type, location, areaShape);
 

@@ -190,7 +190,7 @@ public class GeographicalAreaService {
      */
     public GeographicalArea newGeographicalArea(String geoID, String geoAreaName, String geoAreaTypeName, Location location, double height, double length) {
         GeographicalAreaType geographicalAreaType = new GeographicalAreaType(geoAreaTypeName);
-        AreaShape rectangleArea = new AreaShape(height, length, location);
+        AreaShape rectangleArea = new AreaShape(height, length);
         return new GeographicalArea(geoID, geoAreaName, geographicalAreaType, location, rectangleArea);
     }
 
@@ -261,5 +261,21 @@ public class GeographicalAreaService {
         }
         geoAreaRepository.saveAll(geographicalAreas);
         return saved;
+    }
+
+    public List<GeographicalArea> getAllGeoAreas() {
+        Iterable<GeographicalArea> geoAreaIterables = this.geoAreaRepository.findAll();
+        List<GeographicalArea> geographicalAreaList = new ArrayList<>();
+        geoAreaIterables.forEach(geographicalAreaList::add);
+        return geographicalAreaList;
+    }
+
+    /**
+     * method that verify if the grid repository is empty, or not
+     *
+     * @return a boolean
+     */
+    public boolean isGeoAreaRepositoryEmpty() {
+        return this.geoAreaRepository.count() == 0;
     }
 }

@@ -1,62 +1,56 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
-import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
-import pt.ipp.isep.dei.project.model.sensor.SensorId;
-import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
-import pt.ipp.isep.dei.project.model.sensor.SensorTypeList;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapper;
+import pt.ipp.isep.dei.project.model.sensor.*;
+import pt.ipp.isep.dei.project.services.GeoAreaSensorService;
 import pt.ipp.isep.dei.project.services.GeographicalAreaService;
+import pt.ipp.isep.dei.project.services.SensorTypeService;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AddSensorToGeoAreaController {
-    private SensorTypeList sensorTypeList;
+
     private GeographicalAreaService geographicalAreaService;
-    private GeographicalArea geographicalArea;
-    private Location location;
-    private SensorTypeId sensorTypeId;
+    private SensorTypeService sensorTypeService;
+    private GeoAreaSensorService geoAreaSensorService;
 
-    public AddSensorToGeoAreaController(SensorTypeList sensorTypeList, GeographicalAreaService geographicalAreaService) {
-        this.sensorTypeList = sensorTypeList;
+
+    public AddSensorToGeoAreaController(GeographicalAreaService geographicalAreaService, SensorTypeService sensorTypeService, GeoAreaSensorService geoAreaSensorService) {
         this.geographicalAreaService = geographicalAreaService;
+        this.sensorTypeService = sensorTypeService;
+        this.geoAreaSensorService = geoAreaSensorService;
     }
 
-    public void getTipoSensorPorPosicao(int posicao) {
-        this.sensorTypeId = sensorTypeList.getSensorTypeByPosition(posicao).getSensorType();
+    public boolean isGeoAreaRepositoryEmpty() {
+        return this.geographicalAreaService.isGeoAreaRepositoryEmpty();
     }
 
-    public String getNomeAreaGeograficaPorIndice(int posicao) {
-        return geographicalAreaService.getGeographicalAreaNameByPosition(posicao);
-    }
-
-    public void getAreaGeograficaNaListaPorPosicao(int posicao) {
-        geographicalArea = geographicalAreaService.getGeoAreaList().get(posicao);
-    }
-
-    public int numeroElementosDaListaAreaGeografica() {
-        return geographicalAreaService.getGeoAreaList().size();
-    }
-
-    public int numeroElementosDaListaTipoDeSensor() {
-        return sensorTypeList.getListOfSensorTypes().size();
-    }
-
-    public String getNomeTipoSensorPorIndice(int posicao) {
-        return sensorTypeList.getSensorTypeByPosition(posicao).getSensorType().getSensorTypeId();
-    }
-
-    public boolean adicionarSensorAAreaGeografica(GeoAreaSensor sensor) {
-        if ((!(this.geographicalAreaService.getGeographicalArea(this.geographicalArea).getSensorListInTheGeographicArea().getListOfSensors().contains(sensor)))) {
-            geographicalAreaService.getGeographicalArea(this.geographicalArea).getSensorListInTheGeographicArea().addSensor(sensor);
-            return true;
+    public List<GeographicalAreaDTO> getGeographicalAreaDTOList() {
+        List<GeographicalArea> geoAreaList = this.geographicalAreaService.getGeoAreaList();
+        List<GeographicalAreaDTO> geographicalAreaDTOList = new ArrayList<>();
+        for (GeographicalArea geoArea : geoAreaList) {
+            GeographicalAreaDTO geographicalAreaDTO = GeographicalAreaMapper.mapToDTOwithSensors(geoArea);
+            geographicalAreaDTOList.add(geographicalAreaDTO);
         }
-        return false;
+        return geographicalAreaDTOList;
     }
 
-    public void criarNovaLocalizacao(double mAltitude, double mLatitude, double mLongitude) {
-        location = this.geographicalAreaService.getGeographicalArea(this.geographicalArea).newLocation(mAltitude, mLatitude, mLongitude);
+    public List<SensorTypeDTO> getSensorTypeDTOList() {
+        List<SensorType> sensorTypeList = this.sensorTypeService.getSensorTypeList();
+        List<SensorTypeDTO> sensorTypeDTOList = new ArrayList<>();
+        for (SensorType sensorType : sensorTypeList) {
+            SensorTypeDTO sensorTypeDTO = SensorTypeMapper.mapToDto(sensorType);
+            sensorTypeDTOList.add(sensorTypeDTO);
+        }
+        return sensorTypeDTOList;
     }
 
-    public GeoAreaSensor criarNovoSensor(SensorId id, String nome, String units) {
-        return this.geographicalArea.newSensor(id, nome, this.sensorTypeId, this.location, units);
+    public boolean addGeoAreaSensor(GeoAreaSensorDTO geoAreaSensorDTO) {
+        return this.geoAreaSensorService.addGeoAreaSensor(GeoAreaSensorMapper.mapToEntity(geoAreaSensorDTO));
     }
+
+
 }
