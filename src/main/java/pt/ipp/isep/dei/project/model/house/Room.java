@@ -7,11 +7,11 @@ import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensorList;
-import pt.ipp.isep.dei.project.model.sensor.SensorType;
+import pt.ipp.isep.dei.project.model.sensor.SensorId;
+import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 import pt.ipp.isep.dei.project.roles.Root;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -26,17 +26,12 @@ public class Room implements Root, Measurable {
     private RoomId roomId;
     private String description;
     private int houseFloor;
-
     @Embedded
     private HouseGridId houseGridId;
-
     @Embedded
     private Dimension dimension;
-
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn
+    @Transient
     private RoomSensorList sensorList;
-
     @Transient
     private List<Device> deviceList;
 
@@ -220,21 +215,22 @@ public RoomSensorList getSensorList() {
  * @param date any given day
  * @return maximum temperature
  */
-
+/*
 public double getMaximumMeasurementInGivenDay(SensorType type, LocalDate date) {
         return sensorList.getMaximumMeasureOfTypeOfSensorInGivenDay(type, date);
-}
+}*/
 
 
     /**
      * Method that gets the latest measurement by type of sensor
      *
-     * @param type type of sensor
+     * @param sensorTypeId type of sensor
      * @return latest measurement by sensor type
      */
 
-    public RoomReading getLatestMeasurementBySensorType(SensorType type) {
-        return new RoomReading(sensorList.getLatestMeasurementBySensorType(type).getValue(), sensorList.getLatestMeasurementBySensorType(type).getDateTime());
+
+    public RoomReading getLatestMeasurementBySensorType(SensorTypeId sensorTypeId) {
+        return new RoomReading(sensorList.getLatestMeasurementBySensorType(sensorTypeId).getValue(), sensorList.getLatestMeasurementBySensorType(sensorTypeId).getDateTime());
     }
 
 
@@ -517,10 +513,11 @@ public double getMaximumMeasurementInGivenDay(SensorType type, LocalDate date) {
         this.description = description;
     }
 
-    public RoomSensor getSensorById(String sensorId) {
+    public RoomSensor getSensorById(SensorId sensorId) {
         if (!Objects.isNull(sensorList.getSensorById(sensorId))) {
             return sensorList.getSensorById(sensorId);
         }
         return null;
     }
+
 }

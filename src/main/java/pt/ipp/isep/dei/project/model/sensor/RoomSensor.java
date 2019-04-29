@@ -1,6 +1,7 @@
 package pt.ipp.isep.dei.project.model.sensor;
 
-import pt.ipp.isep.dei.project.model.RoomReading;
+import pt.ipp.isep.dei.project.model.Reading;
+import pt.ipp.isep.dei.project.model.house.RoomId;
 import pt.ipp.isep.dei.project.roles.Root;
 import pt.ipp.isep.dei.project.utils.Utils;
 
@@ -13,23 +14,22 @@ import java.util.Objects;
 
 @Entity
 public class RoomSensor implements Root {
-    @Id
+    @EmbeddedId
     private SensorId id;
     private String sensorName;
     private LocalDateTime startingDate;
-
     @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "RoomReading",
+    @CollectionTable(name = "ROOM_READING",
             joinColumns = @JoinColumn(name = "SENSOR_ID"))
-    private List<RoomReading> roomReadings = new ArrayList<>();
-
+    private List<Reading> readings = new ArrayList<>();
     @Embedded
     private SensorTypeId sensorTypeId;
-
     private String units;
-
     @Embedded
     private SensorState isActive;
+    @Embedded
+    @JoinColumn(name = "ROOM_ID")
+    private RoomId roomId;
 
     public RoomSensor(SensorId id, String sensorName, LocalDateTime startingDate, SensorTypeId sensorTypeId, String units) {
         this.id = id;
@@ -38,6 +38,16 @@ public class RoomSensor implements Root {
         this.sensorTypeId = sensorTypeId;
         this.units = units;
         this.isActive = new SensorState();
+    }
+
+    public RoomSensor(SensorId id, String sensorName, LocalDateTime startingDate, SensorTypeId sensorTypeId, String units, RoomId roomId) {
+        this.id = id;
+        this.sensorName = sensorName;
+        this.startingDate = startingDate;
+        this.sensorTypeId = sensorTypeId;
+        this.units = units;
+        this.isActive = new SensorState();
+        this.roomId = roomId;
     }
 
     protected RoomSensor() {
@@ -63,7 +73,7 @@ public class RoomSensor implements Root {
     public double getMaximumValueOfDay(LocalDate date) {
         if (!getDailyMeasurement(date).isEmpty()) {
             double maximumValueOfDay = getDailyMeasurement(date).get(0).getValue();
-            for (RoomReading reading : getDailyMeasurement(date)) {
+            for (Reading reading : getDailyMeasurement(date)) {
                 if (!Utils.isFirstDoubleBiggerThanSecondOne(maximumValueOfDay, reading.getValue()) && !Utils.isSameDouble(maximumValueOfDay, reading.getValue())) {
                     maximumValueOfDay = reading.getValue();
                 }
@@ -73,9 +83,9 @@ public class RoomSensor implements Root {
         return Double.NaN;
     }
 
-    public List<RoomReading> getDailyMeasurement(LocalDate date) {
-        List<RoomReading> daylyRoomReadings = new ArrayList<>();
-        for (RoomReading registo : roomReadings) {
+    public List<Reading> getDailyMeasurement(LocalDate date) {
+        List<Reading> daylyRoomReadings = new ArrayList<>();
+        for (Reading registo : this.readings) {
             LocalDate secondDate = registo.getDateTime().toLocalDate();
 
             if (checkIfDaysAreEqual(date, secondDate) && (!Double.isNaN(registo.getValue()))) {
@@ -91,7 +101,7 @@ public class RoomSensor implements Root {
     }
 
     public boolean isMeasurementListEmpty() {
-        return roomReadings.isEmpty();
+        return this.readings.isEmpty();
     }
 
     public boolean sensorTypeEqualsSensorType(SensorTypeId typeId) {
@@ -99,29 +109,29 @@ public class RoomSensor implements Root {
         return (this.getSensorType().equals(tipoDoSensorPedido));
     }
 
-    public RoomReading getLastMeasurement() {
-        if (roomReadings.isEmpty()) {
+    public Reading getLastMeasurement() {
+        if (this.readings.isEmpty()) {
             return null;
         }
-        RoomReading reading = roomReadings.get(0);
-        for (int i = (roomReadings.size() - 1); i > 0; i--) {
-            if (!(Double.isNaN(roomReadings.get(i).getValue()))) {
-                return roomReadings.get(i);
+        Reading reading = this.readings.get(0);
+        for (int i = (this.readings.size() - 1); i > 0; i--) {
+            if (!(Double.isNaN(this.readings.get(i).getValue()))) {
+                return this.readings.get(i);
             }
         }
         return reading;
     }
 
-    public boolean addRoomReading(RoomReading reading) {
+    public boolean addRoomReading(Reading reading) {
         if (!this.readingExistsBySensorIdLocalDateTime(reading)) {
-            return this.roomReadings.add(reading);
+            return this.readings.add(reading);
         }
         return false;
     }
 
-    public boolean readingExistsBySensorIdLocalDateTime(RoomReading reading) {
-        if (!roomReadings.isEmpty()) {
-            for (RoomReading reading1 : roomReadings) {
+    public boolean readingExistsBySensorIdLocalDateTime(Reading reading) {
+        if (!this.readings.isEmpty()) {
+            for (Reading reading1 : this.readings) {
                 if (reading1.getDateTime().equals(reading.getDateTime())) {
                     return true;
                 }
@@ -148,9 +158,9 @@ public class RoomSensor implements Root {
         return Objects.hash(this.id);
     }
 
-    public List<RoomReading> u7hb(LocalDate startDate, LocalDate endDate) {
-        List<RoomReading> readingsBetweenDates = new ArrayList<>();
-        for (RoomReading reading : roomReadings) {
+    public List<Reading> u7hb(LocalDate startDate, LocalDate endDate) {
+        List<Reading> readingsBetweenDates = new ArrayList<>();
+        for (Reading reading : this.readings) {
             if ((reading.getDateTime().toLocalDate().isEqual(startDate) || reading.getDateTime().toLocalDate().isAfter(startDate)) && (reading.getDateTime().toLocalDate().isEqual(endDate) || reading.getDateTime().toLocalDate().isBefore(endDate))) {
                 readingsBetweenDates.add(reading);
             }
