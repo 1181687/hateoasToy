@@ -27,7 +27,7 @@ public class AreaShapeTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testarEqualsSame() {
         //arrange
         Location local1 = new Location(41.1496, -8.6109, 97);
@@ -54,7 +54,7 @@ public class AreaShapeTest {
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testarEqualsFalseAllAttributes() {
         //arrange
         Location local1 = new Location(41.1496, -8.6109, 97);
@@ -69,7 +69,7 @@ public class AreaShapeTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testarEqualsFalseLocationAllAttributes() {
         //arrange
         Location local1 = new Location(41.1496, -8.6109, 97);
@@ -84,7 +84,7 @@ public class AreaShapeTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testarEqualsFalseAreaShapeAllAttributes() {
         //arrange
         Location local1 = new Location(40, -8, 95);
@@ -99,7 +99,7 @@ public class AreaShapeTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testarEqualsFalseLocationLatitude() {
         //arrange
         Location local1 = new Location(41.1496, -8, 95);
@@ -114,7 +114,7 @@ public class AreaShapeTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testarEqualsFalseLocationLongitude() {
         //arrange
         Location local1 = new Location(40, -9, 95);
@@ -144,7 +144,7 @@ public class AreaShapeTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testarEqualsFalseLocationWidth() {
         //arrange
         Location local1 = new Location(40, -8, 95);
@@ -159,7 +159,7 @@ public class AreaShapeTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testarEqualsFalseLocationWidthLatitude() {
         //arrange
         Location local1 = new Location(41, -8, 95);
@@ -174,7 +174,7 @@ public class AreaShapeTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testarEqualsFalseLocationWidthLongitude() {
         //arrange
         Location local1 = new Location(41, -8, 95);
@@ -189,7 +189,7 @@ public class AreaShapeTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testarEqualsFalseLocationWidthAltitude() {
         //arrange
         Location local1 = new Location(41, -8, 95);
@@ -204,7 +204,7 @@ public class AreaShapeTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testarEqualsFalseLocationLengthAltitude() {
         //arrange
         Location local1 = new Location(41, -8, 95);
@@ -234,7 +234,7 @@ public class AreaShapeTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testarEqualsFalseLocationLengthLatitude() {
         //arrange
         Location local1 = new Location(41, -8, 95);
@@ -267,7 +267,7 @@ public class AreaShapeTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void verificarSeLocationEstaContidaNumaAreaComTesteVerdadeiroNoLimiteMaximo() {
         // Arrange
         Location location0 = new Location(50, 40, 65);
@@ -281,7 +281,7 @@ public class AreaShapeTest {
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void verificarSeLocationEstaContidaNumaAreaComTesteVerdadeiroNoLimiteMinimo() {
         // Arrange
         Location location0 = new Location(30, 0, 65);
@@ -295,7 +295,7 @@ public class AreaShapeTest {
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void verificarSeLocationEstaContidaNumaAreaNumLimiteDeForaDaLatitudeCantoSuperiorEsquerdo() {
         // Arrange
         Location location0 = new Location(51, 20, 65);
@@ -309,7 +309,7 @@ public class AreaShapeTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void verificarSeLocationEstaContidaNumaAreaNumLimiteDeForaDaLongitudeCantoSuperiorEsquerdo() {
         // Arrange
         Location location0 = new Location(45, 41, 65);
@@ -323,7 +323,7 @@ public class AreaShapeTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void verificarSeLocationEstaContidaNumaAreaNumLimiteDeForaDaLatitudeCantoInferiorDireito() {
         // Arrange
         Location location0 = new Location(29, 20, 65);
@@ -337,7 +337,7 @@ public class AreaShapeTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void verificarSeLocationEstaContidaNumaAreaNumLimiteDeForaDaLongitudeCantoInferiorDireito() {
         // Arrange
         Location location0 = new Location(51, -1, 65);
@@ -366,7 +366,7 @@ public class AreaShapeTest {
     }
 
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetLength() {
         // Arrange
         Location location0 = new Location(29, 20, 65);
