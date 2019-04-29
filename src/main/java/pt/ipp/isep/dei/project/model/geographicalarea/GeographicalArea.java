@@ -4,7 +4,8 @@ import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorList;
-import pt.ipp.isep.dei.project.model.sensor.SensorType;
+import pt.ipp.isep.dei.project.model.sensor.SensorId;
+import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 import pt.ipp.isep.dei.project.roles.Root;
 import pt.ipp.isep.dei.project.utils.Utils;
 
@@ -176,13 +177,13 @@ public class GeographicalArea implements Root {
     /**
      * this method get sensors by type inserted in a geo area.
      *
-     * @param sensorType
+     * @param sensorTypeId
      * @return the Sensorlist of sensors by type.
      */
-    public GeoAreaSensorList getSensorsByType(SensorType sensorType) {
+    public GeoAreaSensorList getSensorsByType(SensorTypeId sensorTypeId) {
         GeoAreaSensorList listOfInsertedSensors = new GeoAreaSensorList();
         for (GeoAreaSensor sensor : this.geoAreaSensorList.getListOfSensors()) {
-            if (checkIfSensorInInsideOfGeoArea(sensor) && sensor.getSensorType().equals(sensorType)) {
+            if (checkIfSensorInInsideOfGeoArea(sensor) && sensor.getSensorType().equals(sensorTypeId)) {
                 listOfInsertedSensors.addSensor(sensor);
             }
         }
@@ -192,14 +193,14 @@ public class GeographicalArea implements Root {
     /**
      * method that list the type of sensors of a certain area in a given period
      *
-     * @param type
+     * @param typeId
      * @param startDate
      * @param endDate
      * @return the list of type of sensors of a certain area in a given period
      */
-    public GeoAreaSensorList getSensorListByTypeInAPeriod(SensorType type, LocalDate startDate, LocalDate endDate) {
+    public GeoAreaSensorList getSensorListByTypeInAPeriod(SensorTypeId typeId, LocalDate startDate, LocalDate endDate) {
 
-        GeoAreaSensorList listOfSensorsInGeoAreaByType = getSensorsByType(type);
+        GeoAreaSensorList listOfSensorsInGeoAreaByType = getSensorsByType(typeId);
         GeoAreaSensorList listOfSensorsOfATypeDuringAPeriod = new GeoAreaSensorList();
 
         for (GeoAreaSensor sensor : listOfSensorsInGeoAreaByType.getListOfSensors()) {
@@ -213,12 +214,12 @@ public class GeographicalArea implements Root {
     /**
      * method that gets a GeoAreaSensorList of a given type of a geo area in a day
      *
-     * @param type of sensor
+     * @param typeId of sensor
      * @param day
      * @return the list of sensors by type in a day.
      */
-    public GeoAreaSensorList getSensorListByTypeInADay(SensorType type, LocalDate day) {
-        GeoAreaSensorList geoAreaSensorListByTypeInAGeoArea = getSensorsByType(type);
+    public GeoAreaSensorList getSensorListByTypeInADay(SensorTypeId typeId, LocalDate day) {
+        GeoAreaSensorList geoAreaSensorListByTypeInAGeoArea = getSensorsByType(typeId);
         GeoAreaSensorList geoAreaSensorListByTypeInADay = new GeoAreaSensorList();
 
         for (GeoAreaSensor sensor : geoAreaSensorListByTypeInAGeoArea.getListOfSensors()) {
@@ -233,12 +234,12 @@ public class GeographicalArea implements Root {
      * that method create a new sensor with a name, a type and a location.
      *
      * @param name
-     * @param newSensorType
+     * @param newSensorTypeId
      * @param newLocation
      * @return a new sensor.
      */
-    public GeoAreaSensor newSensor(String id, String name, SensorType newSensorType, Location newLocation, String units) {
-        return new GeoAreaSensor(id, name, newSensorType, newLocation, units);
+    public GeoAreaSensor newSensor(SensorId id, String name, SensorTypeId newSensorTypeId, Location newLocation, String units) {
+        return new GeoAreaSensor(id, name, newSensorTypeId, newLocation, units);
     }
 
     /**
@@ -256,16 +257,16 @@ public class GeographicalArea implements Root {
     /**
      * Method that get the list of sensors that exists in an area, with a certain type of sensor.
      *
-     * @param type
+     * @param typeId
      * @return sensor list.
      */
-    public GeoAreaSensorList getFirstSensorsOfATypeInHierarchy(SensorType type) {
+    public GeoAreaSensorList getFirstSensorsOfATypeInHierarchy(SensorTypeId typeId) {
         GeographicalArea areaToBeUsed = this;
-        GeoAreaSensorList listOfSensors = getSensorsByType(type);
+        GeoAreaSensorList listOfSensors = getSensorsByType(typeId);
         while (listOfSensors.getListOfSensors().isEmpty()) {
             if (Objects.nonNull(areaToBeUsed.getInsertedIn())) {
                 areaToBeUsed = areaToBeUsed.getInsertedIn();
-                listOfSensors.setListOfSensors(areaToBeUsed.getSensorsByType(type).getListOfSensors());
+                listOfSensors.setListOfSensors(areaToBeUsed.getSensorsByType(typeId).getListOfSensors());
             } else {
                 return listOfSensors;
             }
@@ -273,19 +274,19 @@ public class GeographicalArea implements Root {
         return listOfSensors;
     }
 
-    public boolean isSensorListOfAGivenTypeEmpty(SensorType type) {
-        return this.getFirstSensorsOfATypeInHierarchy(type).isEmpty();
+    public boolean isSensorListOfAGivenTypeEmpty(SensorTypeId typeId) {
+        return this.getFirstSensorsOfATypeInHierarchy(typeId).isEmpty();
     }
 
     /**
      * Method that returns the last measurement of a given type in the area.
      *
      * @param location Location to be used.
-     * @param type     sensor type.
+     * @param typeId     sensor type.
      * @return Last measurement.
      */
-    public double getLastMeasurementByLocationType(Location location, SensorType type) {
-        GeoAreaSensorList geoAreaSensorListWithTheRequiredType = getFirstSensorsOfATypeInHierarchy(type);
+    public double getLastMeasurementByLocationType(Location location, SensorTypeId typeId) {
+        GeoAreaSensorList geoAreaSensorListWithTheRequiredType = getFirstSensorsOfATypeInHierarchy(typeId);
         double latestReadingValue = Double.NaN;
         if (!geoAreaSensorListWithTheRequiredType.getListOfSensors().isEmpty()) {
             GeoAreaSensorList nearestSensors = geoAreaSensorListWithTheRequiredType.getNearestSensorsToLocation(location);
@@ -301,8 +302,8 @@ public class GeographicalArea implements Root {
         return latestReadingValue;
     }
 
-    public LocalDateTime getDateLastMeasurementByLocationType(Location location, SensorType type) {
-        GeoAreaSensorList geoAreaSensorListWithTheRequiredType = getFirstSensorsOfATypeInHierarchy(type);
+    public LocalDateTime getDateLastMeasurementByLocationType(Location location, SensorTypeId typeId) {
+        GeoAreaSensorList geoAreaSensorListWithTheRequiredType = getFirstSensorsOfATypeInHierarchy(typeId);
         LocalDateTime latestReadingDate = null;
         if (!geoAreaSensorListWithTheRequiredType.getListOfSensors().isEmpty()) {
             GeoAreaSensorList nearestSensors = geoAreaSensorListWithTheRequiredType.getNearestSensorsToLocation(location);
@@ -337,14 +338,14 @@ public class GeographicalArea implements Root {
     /**
      * Method that returns an ArrayList with the daily averages between two dates.
      *
-     * @param sensorType
+     * @param sensorTypeId
      * @param startDate
      * @param endDate
      * @return
      */
-    public List<Double> getDailyAverageMeasurement(SensorType sensorType, Location location, LocalDate startDate, LocalDate endDate) {
+    public List<Double> getDailyAverageMeasurement(SensorTypeId sensorTypeId, Location location, LocalDate startDate, LocalDate endDate) {
         List<Double> listOfDailyAverages = new ArrayList<>();
-        GeoAreaSensorList nearestSensorsWithRightTypeDuringPeriod = getSensorListByTypeInAPeriod(sensorType, startDate, endDate).getNearestSensorsToLocation(location);
+        GeoAreaSensorList nearestSensorsWithRightTypeDuringPeriod = getSensorListByTypeInAPeriod(sensorTypeId, startDate, endDate).getNearestSensorsToLocation(location);
         if (nearestSensorsWithRightTypeDuringPeriod.isEmpty()) {
             return listOfDailyAverages;
         }
@@ -362,15 +363,15 @@ public class GeographicalArea implements Root {
     /**
      * get Daily Amplitude Map <localdate, Double> in a given interval of Localdate by given sensortype and location
      *
-     * @param sensorType type of sensor
+     * @param sensorTypeId type of sensor
      * @param location   location of the area wanted to get the daily amplitude
      * @param startDate  initial Localdate of the interval
      * @param endDate    final Localdate of the interval
      * @return Map<LocalDate                               ,                                                               Double> map Of Daily Amplitude
      */
-    public Map<LocalDate, Double> getDailyAmplitudeInInterval(SensorType sensorType, Location location, LocalDate startDate, LocalDate endDate) {
+    public Map<LocalDate, Double> getDailyAmplitudeInInterval(SensorTypeId sensorTypeId, Location location, LocalDate startDate, LocalDate endDate) {
         Map<LocalDate, Double> mapOfDailyAmplitude = new HashMap<>();
-        GeoAreaSensorList nearestSensorsWithRightTypeDuringPeriod = getSensorListByTypeInAPeriod(sensorType, startDate, endDate).getNearestSensorsToLocation(location);
+        GeoAreaSensorList nearestSensorsWithRightTypeDuringPeriod = getSensorListByTypeInAPeriod(sensorTypeId, startDate, endDate).getNearestSensorsToLocation(location);
         if (nearestSensorsWithRightTypeDuringPeriod.isEmpty()) {
             return mapOfDailyAmplitude;
         }
@@ -416,14 +417,14 @@ public class GeographicalArea implements Root {
      * Method that returns the Total Daily Reading of a sensor Type in The Geographic Area. This method considers
      * the maximum value of the sensor on that Area. In case there's no sensors in that Area, it returns Double NaN.
      *
-     * @param sensorType
+     * @param sensorTypeId
      * @param day
      * @return
      */
 
-    public double getTotalDailyMeasurement(SensorType sensorType, LocalDate day, Location location) {
+    public double getTotalDailyMeasurement(SensorTypeId sensorTypeId, LocalDate day, Location location) {
         double totalDailyMeasurement = Double.NaN;
-        GeoAreaSensorList geoAreaSensorListWithSameTypeDuringADay = getSensorListByTypeInADay(sensorType, day);
+        GeoAreaSensorList geoAreaSensorListWithSameTypeDuringADay = getSensorListByTypeInADay(sensorTypeId, day);
         GeoAreaSensorList nearestSensors = geoAreaSensorListWithSameTypeDuringADay.getNearestSensorsToLocation(location);
         Reading latestReading;
         if (!(nearestSensors.isEmpty()) && !(nearestSensors.getListOfSensors().get(0).isMeasurementListEmpty())) {
@@ -445,12 +446,14 @@ public class GeographicalArea implements Root {
      * method to get the first highest reading of a sensor of a specific type (nearest one with most recent readings)
      * in a given interval
      *
+     *
+     * @param typeId
      * @param startDate initial date of the period the user wants to consider
      * @param endDate   final date of the period the user wants to consider
      * @return a Reading
      */
-    public Reading getFirstHighestReading(SensorType type, LocalDate startDate, LocalDate endDate) {
-        GeoAreaSensor chosenSensor = getNearestSensorWithMostRecentReading(type, this.id.getLocation());
+    public Reading getFirstHighestReading(SensorTypeId typeId, LocalDate startDate, LocalDate endDate) {
+        GeoAreaSensor chosenSensor = getNearestSensorWithMostRecentReading(typeId, this.id.getLocation());
         return chosenSensor.getFirstHighestReading(startDate, endDate);
     }
 
@@ -460,13 +463,13 @@ public class GeographicalArea implements Root {
      * of the nearest sensor of a given type that has the most recent reading. If there are no sensors available
      * in the geographical area, the method return a null.
      * @param location location of the house area
-     * @param sensorType the type of the sensor
+     * @param sensorTypeId the type of the sensor
      * @param startDate LocalDate of the beginning of the period
      * @param endDate LocalDate of the ending of the period
      * @return
      */
-    public Reading getLastLowestMaximumReading(Location location, SensorType sensorType, LocalDate startDate, LocalDate endDate) {
-        GeoAreaSensor sensor = getNearestSensorWithMostRecentReading(sensorType, location);
+    public Reading getLastLowestMaximumReading(Location location, SensorTypeId sensorTypeId, LocalDate startDate, LocalDate endDate) {
+        GeoAreaSensor sensor = getNearestSensorWithMostRecentReading(sensorTypeId, location);
         if (Objects.isNull(sensor)) {
             return null;
         }
@@ -477,12 +480,12 @@ public class GeographicalArea implements Root {
     /**
      * Method that returns the sensor, of a given type, that is closest to the given location and has the most recent
      * reading
-     * @param type sensor type
+     * @param typeId sensor type
      * @param location location of the house area
      * @return
      */
-    public GeoAreaSensor getNearestSensorWithMostRecentReading(SensorType type, Location location) {
-        GeoAreaSensorList geoAreaSensorListWithTheRequiredType = getFirstSensorsOfATypeInHierarchy(type);
+    public GeoAreaSensor getNearestSensorWithMostRecentReading(SensorTypeId typeId, Location location) {
+        GeoAreaSensorList geoAreaSensorListWithTheRequiredType = getFirstSensorsOfATypeInHierarchy(typeId);
         if (geoAreaSensorListWithTheRequiredType.isEmpty()) {
             return null;
         }

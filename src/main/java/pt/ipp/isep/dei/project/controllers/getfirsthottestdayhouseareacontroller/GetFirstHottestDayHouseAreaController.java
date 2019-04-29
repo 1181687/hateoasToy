@@ -3,13 +3,13 @@ package pt.ipp.isep.dei.project.controllers.getfirsthottestdayhouseareacontrolle
 import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.ReadingMapper;
 import pt.ipp.isep.dei.project.model.house.House;
-import pt.ipp.isep.dei.project.model.sensor.SensorType;
+import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 
 import java.time.LocalDate;
 
 public class GetFirstHottestDayHouseAreaController {
     private House house;
-    private SensorType sensorTypeTemperature;
+    private SensorTypeId sensorTypeTemperature;
 
     /**
      * constructor that receives a House and a SensorType
@@ -18,7 +18,7 @@ public class GetFirstHottestDayHouseAreaController {
      */
     public GetFirstHottestDayHouseAreaController(House house) {
         this.house = house;
-        this.sensorTypeTemperature = new SensorType("temperature");
+        this.sensorTypeTemperature = new SensorTypeId("temperature");
     }
 
     /**

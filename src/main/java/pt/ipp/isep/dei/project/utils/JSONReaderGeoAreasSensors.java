@@ -8,6 +8,7 @@ import pt.ipp.isep.dei.project.model.LocationDTO;
 import pt.ipp.isep.dei.project.model.ProjectFileReader;
 import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.ReadingMapper;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaIdDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapper;
 import pt.ipp.isep.dei.project.model.house.*;
@@ -217,6 +218,7 @@ public class JSONReaderGeoAreasSensors implements ProjectFileReader {
                     JsonObject locationSensor = object.get("location").getAsJsonObject();
 
                     LocationDTO sensorLocation = locationParser(locationSensor);
+                    GeoAreaIdDTO geoAreaIdDTO = new GeoAreaIdDTO();
 
                     GeoAreaSensorDTO areaSensor1 = new GeoAreaSensorDTO();
                     areaSensor1.setId(sensorId);
@@ -225,7 +227,7 @@ public class JSONReaderGeoAreasSensors implements ProjectFileReader {
                     areaSensor1.setLocation(sensorLocation);
                     areaSensor1.setStartingDate(startingDate);
                     areaSensor1.setUnits(sensorUnits);
-                    areaSensor1.setGeographicalArea(geoAreaDTO);
+                    areaSensor1.setGeographicalAreaId(geoAreaIdDTO);
 
                     geoAreaDTO.addSensor(areaSensor1);
 

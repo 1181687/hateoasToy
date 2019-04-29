@@ -32,11 +32,11 @@ public class SensorTypeList {
     /**
      * Method that creates a new sensor Type
      *
-     * @param novoTipo new Type of sensor (string)
+     * @param sensorTypeId new Type of sensor (string)
      * @return new sensor Type
      */
-    public SensorType newSensorType(String novoTipo) {
-        return new SensorType(novoTipo);
+    public SensorType newSensorType(SensorTypeId sensorTypeId) {
+        return new SensorType(sensorTypeId);
     }
 
     /**
@@ -71,7 +71,7 @@ public class SensorTypeList {
     public String getSensorTypeListToString() {
         StringBuilder content = new StringBuilder();
         for (int i = 1; i <= this.listOfSensorTypes.size(); i++) {
-            content.append(i + " - sensor Type: " + this.listOfSensorTypes.get(i - 1).getType());
+            content.append(i + " - sensor Type: " + this.listOfSensorTypes.get(i - 1).getSensorType());
             content.append("\n");
         }
         return content.toString();

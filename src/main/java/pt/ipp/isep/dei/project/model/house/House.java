@@ -8,7 +8,7 @@ import pt.ipp.isep.dei.project.model.devices.DeviceType;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
-import pt.ipp.isep.dei.project.model.sensor.SensorType;
+import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 import pt.ipp.isep.dei.project.roles.Root;
 import pt.ipp.isep.dei.project.utils.Utils;
 
@@ -228,25 +228,25 @@ public class House implements Root {
     /**
      * method that get the last measurement of housegrid area.
      *
-     * @param type
+     * @param typeId
      * @return the last measurement with a location and a type of sensor.
      */
-    public double getLastMeasurementByTypeInHouseArea(SensorType type) {
+    public double getLastMeasurementByTypeInHouseArea(SensorTypeId typeId) {
         GeographicalArea insertedGeoArea = address.getInsertedGeoArea();
-        return insertedGeoArea.getLastMeasurementByLocationType(address.getLocation(), type);
+        return insertedGeoArea.getLastMeasurementByLocationType(address.getLocation(), typeId);
     }
 
     /**
      * Method that get the average daily measurement of the housegrid area.
      *
-     * @param measurementType
+     * @param measurementTypeId
      * @param startDate
      * @param endDate
      * @return the average daily measurement.
      */
-    public double getAverageDailyMeasurementInHouseArea(SensorType measurementType, LocalDate startDate, LocalDate endDate) {
+    public double getAverageDailyMeasurementInHouseArea(SensorTypeId measurementTypeId, LocalDate startDate, LocalDate endDate) {
         GeographicalArea insertedGeoArea = address.getInsertedGeoArea();
-        List<Double> listOfDailyAverages = insertedGeoArea.getDailyAverageMeasurement(measurementType, address.getLocation(), startDate, endDate);
+        List<Double> listOfDailyAverages = insertedGeoArea.getDailyAverageMeasurement(measurementTypeId, address.getLocation(), startDate, endDate);
         double sum = 0;
         if (listOfDailyAverages.isEmpty()) {
             return 0;
@@ -260,13 +260,13 @@ public class House implements Root {
     /**
      * method that get the total daily measurement of the housegrid area.
      *
-     * @param measurementType
+     * @param measurementTypeId
      * @param day
      * @return total daily measurement.
      */
-    public double getTotalDailyMeasurementInHouseArea(SensorType measurementType, LocalDate day) {
+    public double getTotalDailyMeasurementInHouseArea(SensorTypeId measurementTypeId, LocalDate day) {
         GeographicalArea insertedGeoArea = address.getInsertedGeoArea();
-        return insertedGeoArea.getTotalDailyMeasurement(measurementType, day, this.address.getLocation());
+        return insertedGeoArea.getTotalDailyMeasurement(measurementTypeId, day, this.address.getLocation());
     }
 
     /*
@@ -791,39 +791,41 @@ public class House implements Root {
         return this.roomList.isDeviceListOfAllRoomsEmpty();
     }
 
-    public LocalDateTime getDateOfLastMeasurementByType(SensorType type) {
+    public LocalDateTime getDateOfLastMeasurementByType(SensorTypeId typeId) {
         GeographicalArea insertedGeoArea = address.getInsertedGeoArea();
-        return insertedGeoArea.getDateLastMeasurementByLocationType(address.getLocation(), type);
+        return insertedGeoArea.getDateLastMeasurementByLocationType(address.getLocation(), typeId);
     }
 
     /**
      * method to get the first highest reading of a sensor of a specific type in the house area
      * (nearest one with most recent readings) in a given interval
      *
+     *
+     * @param typeId
      * @param startDate initial date of the period the user wants to consider
      * @param endDate   final date of the period the user wants to consider
      * @return a Reading if there is a valid one; otherwise it returns null
      */
-    public Reading getFirstHighestReadingHouseArea(SensorType type, LocalDate startDate, LocalDate endDate) {
+    public Reading getFirstHighestReadingHouseArea(SensorTypeId typeId, LocalDate startDate, LocalDate endDate) {
         GeographicalArea insertedGeoArea = address.getInsertedGeoArea();
-        if (Objects.isNull(insertedGeoArea.getFirstHighestReading(type, startDate, endDate))) {
+        if (Objects.isNull(insertedGeoArea.getFirstHighestReading(typeId, startDate, endDate))) {
             return null;
         }
-        return insertedGeoArea.getFirstHighestReading(type, startDate, endDate);
+        return insertedGeoArea.getFirstHighestReading(typeId, startDate, endDate);
     }
 
     /**
      * get Daily Amplitude Map <localdate, Double> in a given interval of Localdate by given sensortype and location
      *
-     * @param sensorType type of sensor
+     * @param sensorTypeId type of sensor
      * @param location   location of the area wanted to get the daily amplitude
      * @param startDate  initial Localdate of the interval
      * @param endDate    final Localdate of the interval
      * @return Map<LocalDate   ,       Double> map Of Daily Amplitude
      */
-    public Map<LocalDate, Double> getDailyAmplitudeInIntervalInHouseArea(SensorType sensorType, Location location, LocalDate startDate, LocalDate endDate) {
+    public Map<LocalDate, Double> getDailyAmplitudeInIntervalInHouseArea(SensorTypeId sensorTypeId, Location location, LocalDate startDate, LocalDate endDate) {
         GeographicalArea insertedGeoArea = address.getInsertedGeoArea();
-        return insertedGeoArea.getDailyAmplitudeInInterval(sensorType, location, startDate, endDate);
+        return insertedGeoArea.getDailyAmplitudeInInterval(sensorTypeId, location, startDate, endDate);
     }
 
     /**
@@ -838,27 +840,27 @@ public class House implements Root {
         return insertedGeoArea.getHighestDailyAmplitude(mapOfDailyAmplitude);
     }
 
-    public Reading getLastLowestMaximumReading(SensorType sensorType, LocalDate startDate, LocalDate endDate) {
+    public Reading getLastLowestMaximumReading(SensorTypeId sensorTypeId, LocalDate startDate, LocalDate endDate) {
         GeographicalArea insertedGeoArea = address.getInsertedGeoArea();
-        return insertedGeoArea.getLastLowestMaximumReading(this.getLocation(), sensorType, startDate, endDate);
+        return insertedGeoArea.getLastLowestMaximumReading(this.getLocation(), sensorTypeId, startDate, endDate);
     }
 
-    public boolean hasSensorsOfCertainTypeInInsertedGeoArea(SensorType sensorType) {
+    public boolean hasSensorsOfCertainTypeInInsertedGeoArea(SensorTypeId sensorTypeId) {
         GeographicalArea insertedGeoArea = address.getInsertedGeoArea();
-        return !insertedGeoArea.getFirstSensorsOfATypeInHierarchy(sensorType).isEmpty();
+        return !insertedGeoArea.getFirstSensorsOfATypeInHierarchy(sensorTypeId).isEmpty();
     }
 
-    public GeoAreaSensor getNearestSensorWithMostRecentReading(SensorType type, Location location) {
+    public GeoAreaSensor getNearestSensorWithMostRecentReading(SensorTypeId typeId, Location location) {
         GeographicalArea insertedGeoArea = address.getInsertedGeoArea();
-        return insertedGeoArea.getNearestSensorWithMostRecentReading(type, location);
+        return insertedGeoArea.getNearestSensorWithMostRecentReading(typeId, location);
     }
 
-    public boolean isSensorListOfAGivenTypeEmpty(SensorType type) {
+    public boolean isSensorListOfAGivenTypeEmpty(SensorTypeId typeId) {
         GeographicalArea insertedGeoArea = address.getInsertedGeoArea();
-        return insertedGeoArea.isSensorListOfAGivenTypeEmpty(type);
+        return insertedGeoArea.isSensorListOfAGivenTypeEmpty(typeId);
     }
 
-    public boolean checkNearestSensorReadingsExistenceBetweenDates(SensorType type, LocalDate startDate, LocalDate endDate) {
-        return getNearestSensorWithMostRecentReading(type, this.getLocation()).checkMeasurementExistenceBetweenDates(startDate, endDate);
+    public boolean checkNearestSensorReadingsExistenceBetweenDates(SensorTypeId typeId, LocalDate startDate, LocalDate endDate) {
+        return getNearestSensorWithMostRecentReading(typeId, this.getLocation()).checkMeasurementExistenceBetweenDates(startDate, endDate);
     }
 }

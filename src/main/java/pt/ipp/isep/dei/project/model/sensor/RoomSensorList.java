@@ -45,9 +45,9 @@ public class RoomSensorList {
         return Double.NaN;
     }
 
-    public RoomReading getLatestMeasurementBySensorType(SensorType type) {
-        List<RoomReading> listOfLatestReadings = getListOfLatestMeasurementsBySensorType(type);
-        if (getListOfLatestMeasurementsBySensorType(type).isEmpty()) {
+    public RoomReading getLatestMeasurementBySensorType(SensorTypeId typeId) {
+        List<RoomReading> listOfLatestReadings = getListOfLatestMeasurementsBySensorType(typeId);
+        if (getListOfLatestMeasurementsBySensorType(typeId).isEmpty()) {
             return null;
         }
         RoomReading latestReading = listOfLatestReadings.get(0);
@@ -59,22 +59,22 @@ public class RoomSensorList {
         return latestReading;
     }
 
-    public List<RoomReading> getListOfLatestMeasurementsBySensorType(SensorType type) {
+    public List<RoomReading> getListOfLatestMeasurementsBySensorType(SensorTypeId typeId) {
         List<RoomReading> listOfLatestReadings = new ArrayList<>();
         for (RoomSensor sensor : listOfSensors) {
             if (sensor.isMeasurementListEmpty()) {
                 break;
             }
-            if (sensor.sensorTypeEqualsSensorType(type) && (!(Double.isNaN(sensor.getLastMeasurement().getValue())))) {
+            if (sensor.sensorTypeEqualsSensorType(typeId) && (!(Double.isNaN(sensor.getLastMeasurement().getValue())))) {
                 listOfLatestReadings.add(sensor.getLastMeasurement());
             }
         }
         return listOfLatestReadings;
     }
 
-    public RoomSensor getSensorById(String sensorId) {
+    public RoomSensor getSensorById(SensorId sensorId) {
         for (RoomSensor sensor : listOfSensors) {
-            if (sensor.getId().equalsIgnoreCase(sensorId)) {
+            if (sensor.getId().equals(sensorId)) {
                 return sensor;
             }
         }
@@ -85,7 +85,7 @@ public class RoomSensorList {
         return listOfSensors;
     }
 
-    public boolean roomSensorExists(String id) {
+    public boolean roomSensorExists(SensorId id) {
         for (RoomSensor sensor : listOfSensors) {
             if (sensor.getId() == id) {
                 return true;

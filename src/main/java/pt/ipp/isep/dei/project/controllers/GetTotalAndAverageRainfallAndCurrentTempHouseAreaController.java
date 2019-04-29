@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.controllers;
 
 import pt.ipp.isep.dei.project.model.house.House;
-import pt.ipp.isep.dei.project.model.sensor.SensorType;
+import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -9,8 +9,8 @@ import java.time.LocalDateTime;
 
 public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaController {
     private House house;
-    private SensorType sensorTypeRainfall;
-    private SensorType sensorTypeTemperature;
+    private SensorTypeId sensorTypeRainfall;
+    private SensorTypeId sensorTypeTemperature;
 
 
     /**
@@ -20,8 +20,8 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaController {
      */
     public GetTotalAndAverageRainfallAndCurrentTempHouseAreaController(House house) {
         this.house = house;
-        this.sensorTypeRainfall = new SensorType("Rainfall");
-        this.sensorTypeTemperature = new SensorType("temperature");
+        this.sensorTypeRainfall = new SensorTypeId("Rainfall");
+        this.sensorTypeTemperature = new SensorTypeId("temperature");
     }
 
     public double getTotalRainfallInTheHouseAreaInTheSelectedDay(LocalDate day) {
@@ -37,7 +37,7 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaController {
     }
 
     public String getTypeTemperature() {
-        return sensorTypeTemperature.getType();
+        return sensorTypeTemperature.getSensorTypeId();
     }
 
     public LocalDateTime getDateOfLastMeasurement() {

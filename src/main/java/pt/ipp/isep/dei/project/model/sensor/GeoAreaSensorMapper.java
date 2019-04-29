@@ -2,8 +2,8 @@ package pt.ipp.isep.dei.project.model.sensor;
 
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.LocationMapper;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapper;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaId;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaIdMapper;
 
 public final class GeoAreaSensorMapper {
 
@@ -28,10 +28,10 @@ public final class GeoAreaSensorMapper {
      */
     public static GeoAreaSensorDTO mapToDTO(GeoAreaSensor sensor) {
         GeoAreaSensorDTO sensorDTO = newSensorDTO();
-        sensorDTO.setId(sensor.getId());
+        sensorDTO.setId(sensor.getId().getSensorId());
         sensorDTO.setName(sensor.getSensorName());
         sensorDTO.setStartingDate(sensor.getStartingDate().toLocalDate());
-        sensorDTO.setSensorType(sensor.getSensorType());
+        sensorDTO.setSensorType(sensor.getSensorType().getSensorTypeId());
         sensorDTO.setLocation(LocationMapper.mapToDTO(sensor.getLocation()));
         sensorDTO.setUnits(sensor.getUnits());
         sensorDTO.setActive(sensor.isActive());
@@ -45,11 +45,10 @@ public final class GeoAreaSensorMapper {
      * @return GeoAreaSensor with the required information.
      */
     public static GeoAreaSensor mapToEntity(GeoAreaSensorDTO sensorDTO) {
-        SensorType sensorType = new SensorType(sensorDTO.getSensorType());
-        Location location = LocationMapper.mapToEntity(sensorDTO.getLocation());
-        GeographicalArea geographicalArea = GeographicalAreaMapper.mapToEntity(sensorDTO.getGeographicalArea());
-        GeoAreaSensor newSensor = new GeoAreaSensor(sensorDTO.getId(), sensorDTO.getName(), sensorDTO.getStartingDate().atStartOfDay(), sensorType, location, sensorDTO.getUnits(), geographicalArea.getId());
-        //newSensor.deactivateDevice(sensorDTO.isActive());
-        return newSensor;
+        Location sensorLocation = LocationMapper.mapToEntity(sensorDTO.getLocation());
+        GeoAreaId geoAreaId = GeoAreaIdMapper.mapToEntity(sensorDTO.getGeographicalAreaId());
+        SensorId geoAreaSensorId = new SensorId(sensorDTO.getId());
+        SensorTypeId sensorTypeId = new SensorTypeId(sensorDTO.getSensorType());
+        return new GeoAreaSensor(geoAreaSensorId, sensorDTO.getName(), sensorDTO.getStartingDate().atStartOfDay(), sensorTypeId, sensorLocation, sensorDTO.getUnits(), geoAreaId);
     }
 }

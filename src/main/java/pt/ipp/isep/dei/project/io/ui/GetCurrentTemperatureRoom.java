@@ -2,7 +2,7 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.GetCurrentAndMaxTempRoomController;
 import pt.ipp.isep.dei.project.model.house.House;
-import pt.ipp.isep.dei.project.model.sensor.SensorType;
+import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 
 
 /**
@@ -18,12 +18,11 @@ public class GetCurrentTemperatureRoom {
      * constructor that receives a House and a SensorType
      *
      * @param house          House
-     * @param sensorType   SensorType
+     * @param sensorTypeId   SensorType
      */
-    public GetCurrentTemperatureRoom(House house, SensorType sensorType) {
-        this.controller = new GetCurrentAndMaxTempRoomController(house, sensorType);
+    public GetCurrentTemperatureRoom(House house, SensorTypeId sensorTypeId) {
+        this.controller = new GetCurrentAndMaxTempRoomController(house, sensorTypeId);
     }
-
     /**
      * outputs the latest temperature with date, of the room
      *

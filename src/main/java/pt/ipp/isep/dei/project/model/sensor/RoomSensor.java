@@ -24,7 +24,7 @@ public class RoomSensor implements Root {
     private List<RoomReading> roomReadings = new ArrayList<>();
 
     @Embedded
-    private SensorTypeId sensorType;
+    private SensorTypeId sensorTypeId;
 
     private String units;
 
@@ -35,7 +35,7 @@ public class RoomSensor implements Root {
         this.id = id;
         this.sensorName = sensorName;
         this.startingDate = startingDate;
-        this.sensorType = sensorTypeId;
+        this.sensorTypeId = sensorTypeId;
         this.units = units;
         this.isActive = new SensorState();
     }
@@ -53,7 +53,7 @@ public class RoomSensor implements Root {
     }
 
     public SensorTypeId getSensorType() {
-        return sensorType;
+        return sensorTypeId;
     }
 
     public boolean isActive() {
@@ -94,8 +94,8 @@ public class RoomSensor implements Root {
         return roomReadings.isEmpty();
     }
 
-    public boolean sensorTypeEqualsSensorType(SensorType type) {
-        String tipoDoSensorPedido = type.getType();
+    public boolean sensorTypeEqualsSensorType(SensorTypeId typeId) {
+        String tipoDoSensorPedido = typeId.getSensorTypeId();
         return (this.getSensorType().equals(tipoDoSensorPedido));
     }
 

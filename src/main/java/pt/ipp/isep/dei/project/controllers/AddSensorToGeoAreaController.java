@@ -3,7 +3,8 @@ package pt.ipp.isep.dei.project.controllers;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
-import pt.ipp.isep.dei.project.model.sensor.SensorType;
+import pt.ipp.isep.dei.project.model.sensor.SensorId;
+import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeList;
 import pt.ipp.isep.dei.project.services.GeographicalAreaService;
 
@@ -12,7 +13,7 @@ public class AddSensorToGeoAreaController {
     private GeographicalAreaService geographicalAreaService;
     private GeographicalArea geographicalArea;
     private Location location;
-    private SensorType sensorType;
+    private SensorTypeId sensorTypeId;
 
     public AddSensorToGeoAreaController(SensorTypeList sensorTypeList, GeographicalAreaService geographicalAreaService) {
         this.sensorTypeList = sensorTypeList;
@@ -20,7 +21,7 @@ public class AddSensorToGeoAreaController {
     }
 
     public void getTipoSensorPorPosicao(int posicao) {
-        sensorType = sensorTypeList.getSensorTypeByPosition(posicao);
+        this.sensorTypeId = sensorTypeList.getSensorTypeByPosition(posicao).getSensorType();
     }
 
     public String getNomeAreaGeograficaPorIndice(int posicao) {
@@ -40,7 +41,7 @@ public class AddSensorToGeoAreaController {
     }
 
     public String getNomeTipoSensorPorIndice(int posicao) {
-        return sensorTypeList.getSensorTypeByPosition(posicao).getType();
+        return sensorTypeList.getSensorTypeByPosition(posicao).getSensorType().getSensorTypeId();
     }
 
     public boolean adicionarSensorAAreaGeografica(GeoAreaSensor sensor) {
@@ -55,7 +56,7 @@ public class AddSensorToGeoAreaController {
         location = this.geographicalAreaService.getGeographicalArea(this.geographicalArea).newLocation(mAltitude, mLatitude, mLongitude);
     }
 
-    public GeoAreaSensor criarNovoSensor(String id, String nome, String units) {
-        return this.geographicalArea.newSensor(id, nome, this.sensorType, this.location, units);
+    public GeoAreaSensor criarNovoSensor(SensorId id, String nome, String units) {
+        return this.geographicalArea.newSensor(id, nome, this.sensorTypeId, this.location, units);
     }
 }
