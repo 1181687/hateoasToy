@@ -25,8 +25,8 @@ public class MyLogger {
         }
 
         //logger.setLevel(Level.INFO);
-        fileTxt = new FileHandler("C:\\Users\\Diana\\IdeaProjects\\project_g3\\log\\ProjectLog.txt");
-        fileHTML = new FileHandler("C:\\Users\\Diana\\IdeaProjects\\project_g3\\log\\Logging.html");
+        fileTxt = new FileHandler("log/ProjectLog.txt");
+        fileHTML = new FileHandler("log/Logging.html");
 
         // create a TXT formatter
         MyFormatter formatter = new MyFormatter();
