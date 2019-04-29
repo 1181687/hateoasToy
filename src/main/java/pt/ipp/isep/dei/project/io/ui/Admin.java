@@ -108,7 +108,7 @@ public class Admin {
 
             switch (option) {
                 case 1:
-                    ConfHouseLocation ui101 = new ConfHouseLocation(geographicalAreaService, house);
+                    ConfigureHouseLocation ui101 = new ConfigureHouseLocation(houseService);
                     ui101.run();
                     break;
                 case 2:

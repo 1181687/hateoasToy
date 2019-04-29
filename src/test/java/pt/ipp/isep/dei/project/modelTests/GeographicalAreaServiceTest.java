@@ -198,7 +198,7 @@ public class GeographicalAreaServiceTest {
         // Arrange
         GeographicalAreaType region = new GeographicalAreaType("Region");
         Location location = new Location(41.1496, -8.6109, 97);
-        AreaShape area = new AreaShape(10, 10, location);
+        AreaShape area = new AreaShape(10, 10);
         GeographicalArea northernRegion = new GeographicalArea("Norte", "Northern Region", region, location, area);
         geoAreaList.addGeoArea(northernRegion);
         portoCity.setInsertedIn(northernRegion);
