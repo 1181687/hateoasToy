@@ -2,8 +2,8 @@ package pt.ipp.isep.dei.project.modelTests;
 
 
 import org.junit.jupiter.api.Test;
+import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.house.Dimension;
-import pt.ipp.isep.dei.project.model.sensor.SensorType;
 
 import java.util.Objects;
 
@@ -131,10 +131,10 @@ public class DimensionTest {
     public void testEqualsFalseDifTypes() {
         //Arrange
         Dimension dim = new Dimension(3.5, 3.5, 3.5);
-        SensorType type = new SensorType("humidade");
+        Location location = new Location(21, 20, 21);
 
         //Act
-        boolean result = dim.equals(type);
+        boolean result = dim.equals(location);
 
         //Assert
         assertFalse(result);
@@ -248,7 +248,7 @@ public class DimensionTest {
         //assert
         assertEquals(expectResult, result, 0.0001);
     }
-/*
+
     @Test
     public void TestValidateHeightNeg() {
 
@@ -362,5 +362,5 @@ public class DimensionTest {
         );
 
         assertEquals("Please enter a valid width. Width should be greater than zero", exception.getMessage());
-    }*/
+    }
 }
