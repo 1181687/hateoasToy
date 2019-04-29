@@ -21,7 +21,7 @@ public class RoomSensor implements Root {
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "RoomReading",
             joinColumns = @JoinColumn(name = "SENSOR_ID"))
-    private List<RoomReading> listOfRoomReadings = new ArrayList<>();
+    private List<RoomReading> roomReadings = new ArrayList<>();
 
     @Embedded
     private String sensorType;
@@ -75,7 +75,7 @@ public class RoomSensor implements Root {
 
     public List<RoomReading> getDailyMeasurement(LocalDate date) {
         List<RoomReading> daylyRoomReadings = new ArrayList<>();
-        for (RoomReading registo : listOfRoomReadings) {
+        for (RoomReading registo : roomReadings) {
             LocalDate secondDate = registo.getDateTime().toLocalDate();
 
             if (checkIfDaysAreEqual(date, secondDate) && (!Double.isNaN(registo.getValue()))) {
@@ -91,7 +91,7 @@ public class RoomSensor implements Root {
     }
 
     public boolean isMeasurementListEmpty() {
-        return listOfRoomReadings.isEmpty();
+        return roomReadings.isEmpty();
     }
 
     public boolean sensorTypeEqualsSensorType(SensorType type) {
@@ -100,13 +100,13 @@ public class RoomSensor implements Root {
     }
 
     public RoomReading getLastMeasurement() {
-        if (listOfRoomReadings.isEmpty()) {
+        if (roomReadings.isEmpty()) {
             return null;
         }
-        RoomReading reading = listOfRoomReadings.get(0);
-        for (int i = (listOfRoomReadings.size() - 1); i > 0; i--) {
-            if (!(Double.isNaN(listOfRoomReadings.get(i).getValue()))) {
-                return listOfRoomReadings.get(i);
+        RoomReading reading = roomReadings.get(0);
+        for (int i = (roomReadings.size() - 1); i > 0; i--) {
+            if (!(Double.isNaN(roomReadings.get(i).getValue()))) {
+                return roomReadings.get(i);
             }
         }
         return reading;
@@ -114,14 +114,14 @@ public class RoomSensor implements Root {
 
     public boolean addRoomReading(RoomReading reading) {
         if (!this.readingExistsBySensorIdLocalDateTime(reading)) {
-            return this.listOfRoomReadings.add(reading);
+            return this.roomReadings.add(reading);
         }
         return false;
     }
 
     public boolean readingExistsBySensorIdLocalDateTime(RoomReading reading) {
-        if (!listOfRoomReadings.isEmpty()) {
-            for (RoomReading reading1 : listOfRoomReadings) {
+        if (!roomReadings.isEmpty()) {
+            for (RoomReading reading1 : roomReadings) {
                 if (reading1.getDateTime().equals(reading.getDateTime())) {
                     return true;
                 }
@@ -146,5 +146,15 @@ public class RoomSensor implements Root {
     @Override
     public int hashCode() {
         return Objects.hash(this.id);
+    }
+
+    public List<RoomReading> getReadingsBetweenDates(LocalDate startDate, LocalDate endDate) {
+        List<RoomReading> readingsBetweenDates = new ArrayList<>();
+        for (RoomReading reading : roomReadings) {
+            if ((reading.getDateTime().toLocalDate().isEqual(startDate) || reading.getDateTime().toLocalDate().isAfter(startDate)) && (reading.getDateTime().toLocalDate().isEqual(endDate) || reading.getDateTime().toLocalDate().isBefore(endDate))) {
+                readingsBetweenDates.add(reading);
+            }
+        }
+        return readingsBetweenDates;
     }
 }

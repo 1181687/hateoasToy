@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoField;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 @Entity
@@ -33,6 +34,7 @@ public class GeoAreaSensor implements Root {
     @Transient
     private boolean isActive;
     @Embedded
+    @JoinColumn(name = "geo_area_id")
     private GeoAreaId geoAreaId;
 
     /**
@@ -215,6 +217,10 @@ public class GeoAreaSensor implements Root {
         return measurementsBetweenDates;
     }
 
+    public boolean existReadingsBetweenDates(LocalDate startDate, LocalDate endDate) {
+        return getMeasurementValueBetweenDates(startDate, endDate) != null;
+    }
+
     /**
      * Boolean method that checks if a list of measurements between two dates (start and end) is not empty
      *
@@ -378,15 +384,15 @@ public class GeoAreaSensor implements Root {
      * @return the measurements of a given day
      */
     public List<Reading> getDailyMeasurement(LocalDate date) {
-        List<Reading> registosDoDia = new ArrayList<>();
-        for (Reading registo : listOfReadings) {
-            LocalDate secondDate = registo.getDateTime().toLocalDate();
+        List<Reading> dailyReadings = new ArrayList<>();
+        for (Reading reading : listOfReadings) {
+            LocalDate secondDate = reading.getDateTime().toLocalDate();
 
-            if (checkIfDaysAreEqual(date, secondDate) && (!Double.isNaN(registo.getValue()))) {
-                registosDoDia.add(registo);
+            if (checkIfDaysAreEqual(date, secondDate) && (!Double.isNaN(reading.getValue()))) {
+                dailyReadings.add(reading);
             }
         }
-        return registosDoDia;
+        return dailyReadings;
 
     }
 
@@ -689,4 +695,17 @@ public class GeoAreaSensor implements Root {
         return dailyReadings;
 
     }
+
+    public Reading getMostRecentValidReading(List<Reading> readings) {
+        Reading mostRecentReading = null;
+        for (Reading reading : readings) {
+            if (Objects.isNull(mostRecentReading)
+                    || reading.getDateTime().isAfter(mostRecentReading.getDateTime()) && !Double.isNaN(reading.getValue())) {
+                mostRecentReading = reading;
+            }
+        }
+        return mostRecentReading;
+    }
+
+
 }
