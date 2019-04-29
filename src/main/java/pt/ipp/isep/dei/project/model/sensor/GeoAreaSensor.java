@@ -27,7 +27,7 @@ public class GeoAreaSensor implements Root {
             joinColumns = @JoinColumn(name = "SENSOR_ID"))
     private List<Reading> listOfReadings = new ArrayList<>();
     @Embedded
-    private String sensorType;
+    private SensorTypeId sensorTypeId;
     @Transient
     private Location location;
     private String units;
@@ -42,14 +42,14 @@ public class GeoAreaSensor implements Root {
      *
      * @param sensorName   name of the sensor (string)
      * @param startingDate starting date of the sensor
-     * @param sensorType   Type of sensor
+     * @param sensorTypeId   Type of sensor
      * @param location     Location of the sensor
      */
-    public GeoAreaSensor(String id, String sensorName, LocalDateTime startingDate, SensorType sensorType, Location location, String units) {
-        this.id = new SensorId(id);
+    public GeoAreaSensor(SensorId id, String sensorName, LocalDateTime startingDate, SensorTypeId sensorTypeId, Location location, String units) {
+        this.id = id;
         this.sensorName = sensorName;
         this.startingDate = startingDate;
-        this.sensorType = sensorType.getType();
+        this.sensorTypeId = sensorTypeId;
         this.location = location;
         this.units = units;
         this.isActive = true;
@@ -59,14 +59,14 @@ public class GeoAreaSensor implements Root {
      * Constructor method
      *
      * @param sensorName name of the sensor (string)
-     * @param sensorType Type of sensor
+     * @param sensorTypeId Type of sensor
      * @param location   Location of the sensor
      */
-    public GeoAreaSensor(String id, String sensorName, SensorType sensorType, Location location, String units) {
-        this.id = new SensorId(id);
+    public GeoAreaSensor(SensorId id, String sensorName, SensorTypeId sensorTypeId, Location location, String units) {
+        this.id = id;
         this.sensorName = sensorName;
         this.startingDate = LocalDateTime.now();
-        this.sensorType = sensorType.getType();
+        this.sensorTypeId = sensorTypeId;
         this.location = location;
         this.units = units;
         this.isActive = true;
@@ -75,11 +75,11 @@ public class GeoAreaSensor implements Root {
     /**
      * Constructor method with GeoAreaId.
      */
-    public GeoAreaSensor(String id, String sensorName, LocalDateTime startingDate, SensorType sensorType, Location location, String units, GeoAreaId geoAreaId) {
-        this.id = new SensorId(id);
+    public GeoAreaSensor(SensorId id, String sensorName, LocalDateTime startingDate, SensorTypeId sensorTypeId, Location location, String units, GeoAreaId geoAreaId) {
+        this.id = id;
         this.sensorName = sensorName;
         this.startingDate = startingDate;
-        this.sensorType = sensorType.getType();
+        this.sensorTypeId = sensorTypeId;
         this.location = location;
         this.units = units;
         this.isActive = true;
@@ -90,8 +90,8 @@ public class GeoAreaSensor implements Root {
         //empty
     }
 
-    public String getId() {
-        return id.getSensorId();
+    public SensorId getId() {
+        return id;
     }
 
     public void setId(SensorId id) {
@@ -121,8 +121,8 @@ public class GeoAreaSensor implements Root {
      *
      * @return sensor Type
      */
-    public String getSensorType() {
-        return sensorType;
+    public SensorTypeId getSensorType() {
+        return sensorTypeId;
     }
 
     /**
@@ -372,9 +372,9 @@ public class GeoAreaSensor implements Root {
      * @param tipo Type of sensor
      * @return a type of sensor is equal to the sensor type being compared
      */
-    public boolean sensorTypeEqualsSensorType(SensorType tipo) {
-        String tipoDoSensorPedido = tipo.getType();
-        return (this.getSensorType().equalsIgnoreCase(tipoDoSensorPedido));
+    public boolean sensorTypeEqualsSensorType(SensorTypeId tipo) {
+        SensorTypeId tipoDoSensorPedido = tipo;
+        return (this.getSensorType().equals(tipoDoSensorPedido));
     }
 
     /**

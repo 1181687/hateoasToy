@@ -14,7 +14,7 @@ import java.util.Objects;
 @Entity
 public class RoomSensor implements Root {
     @Id
-    private String id;
+    private SensorId id;
     private String sensorName;
     private LocalDateTime startingDate;
 
@@ -24,18 +24,18 @@ public class RoomSensor implements Root {
     private List<RoomReading> roomReadings = new ArrayList<>();
 
     @Embedded
-    private String sensorType;
+    private SensorTypeId sensorType;
 
     private String units;
 
     @Embedded
     private SensorState isActive;
 
-    public RoomSensor(String id, String sensorName, LocalDateTime startingDate, SensorType sensorType, String units) {
+    public RoomSensor(SensorId id, String sensorName, LocalDateTime startingDate, SensorTypeId sensorTypeId, String units) {
         this.id = id;
         this.sensorName = sensorName;
         this.startingDate = startingDate;
-        this.sensorType = sensorType.getType();
+        this.sensorType = sensorTypeId;
         this.units = units;
         this.isActive = new SensorState();
     }
@@ -44,7 +44,7 @@ public class RoomSensor implements Root {
         // empty
     }
 
-    public String getId() {
+    public SensorId getId() {
         return id;
     }
 
@@ -52,7 +52,7 @@ public class RoomSensor implements Root {
         return startingDate;
     }
 
-    public String getSensorType() {
+    public SensorTypeId getSensorType() {
         return sensorType;
     }
 
@@ -96,7 +96,7 @@ public class RoomSensor implements Root {
 
     public boolean sensorTypeEqualsSensorType(SensorType type) {
         String tipoDoSensorPedido = type.getType();
-        return (this.getSensorType().equalsIgnoreCase(tipoDoSensorPedido));
+        return (this.getSensorType().equals(tipoDoSensorPedido));
     }
 
     public RoomReading getLastMeasurement() {
@@ -140,7 +140,7 @@ public class RoomSensor implements Root {
             return false;
         }
         RoomSensor sensor = (RoomSensor) object;
-        return this.id.equalsIgnoreCase(sensor.id);
+        return this.id.equals(sensor.id);
     }
 
     @Override
