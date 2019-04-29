@@ -25,9 +25,14 @@ public class SensorsService {
         if (!set.isEmpty()) {
             for (Map.Entry<LocalDate, List<Double>> dailyComfortTemp : set) {
                 for (Reading roomReading : roomReadings) {
-                    if (dailyComfortTemp.getKey().equals(roomReading.getDateTime().toLocalDate())
-                            && Objects.isNull(dailyComfortTemp.getValue().get(0)) && dailyComfortTemp.getValue().get(0) > roomReading.getValue()) {
-                        mapOfInstancesBelowComfortTemp.put(roomReading.getDateTime(), roomReading.getValue());
+                    LocalDate dayOfComfortTemp = dailyComfortTemp.getKey();
+                    LocalDate dayOfRoomReading = roomReading.getDateTime().toLocalDate();
+                    double valueOfRoomReading = roomReading.getValue();
+
+                    if (dayOfComfortTemp.equals(dayOfRoomReading)
+                            && !Objects.isNull(dailyComfortTemp.getValue().get(0)) &&
+                            Double.compare(dailyComfortTemp.getValue().get(0), valueOfRoomReading) == 1) {
+                        mapOfInstancesBelowComfortTemp.put(roomReading.getDateTime(), valueOfRoomReading);
                     }
                 }
             }
