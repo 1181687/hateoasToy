@@ -1,13 +1,13 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.EstimateEnergyOfWaterHeaterController;
-import pt.ipp.isep.dei.project.model.house.House;
+import pt.ipp.isep.dei.project.services.HouseService;
 
 public class EstimateEnergyOfWaterHeater {
     private EstimateEnergyOfWaterHeaterController controller;
 
-    public EstimateEnergyOfWaterHeater(House house) {
-        this.controller = new EstimateEnergyOfWaterHeaterController(house);
+    public EstimateEnergyOfWaterHeater(HouseService houseService) {
+        this.controller = new EstimateEnergyOfWaterHeaterController(houseService);
     }
 
     public void run() {

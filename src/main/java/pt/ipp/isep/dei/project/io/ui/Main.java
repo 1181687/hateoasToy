@@ -105,9 +105,9 @@ public class Main {
 
             //UI levels
             Admin admin = new Admin(geographicalAreaTypeList, geographicalAreaService, sensorTypeList, houseEdificioB, powerSourceTypeList, houseEdificioB.getRoomList(), houseService, geoAreaSensorService, roomSensorService, sensorTypeService);
-            RegularUser regularUser = new RegularUser(geographicalAreaTypeList, geographicalAreaService, sensorTypeList, houseEdificioB);
-            PowerUser powerUser = new PowerUser(houseEdificioB);
-            RoomOwner roomOwner = new RoomOwner(houseEdificioB);
+            RegularUser regularUser = new RegularUser(geographicalAreaTypeList, geographicalAreaService, sensorTypeList, houseService);
+            PowerUser powerUser = new PowerUser(houseService);
+            RoomOwner roomOwner = new RoomOwner(houseService);
 
             int option = Menu.usersMenu();
             if (option == 0) {

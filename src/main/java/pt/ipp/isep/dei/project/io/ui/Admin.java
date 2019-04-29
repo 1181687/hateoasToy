@@ -27,7 +27,7 @@ public class Admin {
         this.geographicalAreaTypeList = geographicalAreaTypeList;
         this.geographicalAreaService = geographicalAreaService;
         this.sensorTypeList = sensorTypeList;
-        this.house = house;
+        this.house = houseService.getHouse();
         this.powerSourceTypeList = powerSourceTypeList;
         this.roomList = roomList;
         this.houseService = houseService;
@@ -133,11 +133,11 @@ public class Admin {
                     ui215.run();
                     break;
                 case 8:
-                    GetNominalPowerOfARoom ui230 = new GetNominalPowerOfARoom(house);
+                    GetNominalPowerOfARoom ui230 = new GetNominalPowerOfARoom(houseService);
                     ui230.run();
                     break;
                 case 9:
-                    GetNominalPowerOfGrid ui172 = new GetNominalPowerOfGrid(house);
+                    GetNominalPowerOfGrid ui172 = new GetNominalPowerOfGrid(houseService);
                     ui172.run();
                     break;
                 case 10:

@@ -1,6 +1,7 @@
 package pt.ipp.isep.dei.project.controllers;
 
 import pt.ipp.isep.dei.project.model.house.House;
+import pt.ipp.isep.dei.project.services.HouseService;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 public class EstimateEnergyOfWaterHeaterController {
@@ -12,8 +13,8 @@ public class EstimateEnergyOfWaterHeaterController {
      *
      * @param house House to be used.
      */
-    public EstimateEnergyOfWaterHeaterController(House house) {
-        this.house = house;
+    public EstimateEnergyOfWaterHeaterController(HouseService houseService) {
+        this.house = houseService.getHouse();
         this.type = "ElectricWaterHeater";
     }
 
