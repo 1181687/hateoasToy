@@ -1,28 +1,6 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
-import org.springframework.test.context.support.AnnotationConfigContextLoader;
-import pt.ipp.isep.dei.project.io.ui.Main;
-import pt.ipp.isep.dei.project.model.Location;
-import pt.ipp.isep.dei.project.model.Reading;
-import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
-import pt.ipp.isep.dei.project.model.sensor.SensorId;
-import pt.ipp.isep.dei.project.model.sensor.SensorType;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.GregorianCalendar;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
-
+/*
 @DataJpaTest
 @ContextConfiguration(classes = {Main.class},
         loader = AnnotationConfigContextLoader.class)
@@ -2481,9 +2459,9 @@ public class SensorTest {
         assertEquals(expectedResult, result);
     }
 
-    /**
+    *//**
      * Test that tries to get an existing list of Readings from the GeoAreaSensor.
-     */
+ *//*
     @Test
     public void testGetListOfReadings_tryingToGetAnExistingList_ShouldReturnTheCorrespondingList() {
         // Arrange
@@ -2524,5 +2502,4 @@ public class SensorTest {
 
     @Configuration
     static class Config {
-    }
-}
+    }*/
