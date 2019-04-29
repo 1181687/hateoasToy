@@ -1,152 +1,337 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
+import org.springframework.test.context.support.AnnotationConfigContextLoader;
 import pt.ipp.isep.dei.project.controllers.AddSensorToGeoAreaController;
+import pt.ipp.isep.dei.project.io.ui.Main;
 import pt.ipp.isep.dei.project.model.Location;
-import pt.ipp.isep.dei.project.model.geographicalarea.*;
-import pt.ipp.isep.dei.project.model.sensor.*;
-import pt.ipp.isep.dei.project.services.GeoAreaSensorService;
+import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
+import pt.ipp.isep.dei.project.model.sensor.SensorType;
+import pt.ipp.isep.dei.project.model.sensor.SensorTypeList;
+import pt.ipp.isep.dei.project.repositories.GeoAreaRepository;
 import pt.ipp.isep.dei.project.services.GeographicalAreaService;
-import pt.ipp.isep.dei.project.services.SensorTypeService;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
 
-class AddSensorToGeoAreaControllerTest {
-
-    @Mock
-    private GeographicalAreaService geographicalAreaService;
-    @Mock
-    private SensorTypeService sensorTypeService;
-    @Mock
-    private GeoAreaSensorService geoAreaSensorService;
+@SpringBootTest
+@ContextConfiguration(classes = {Main.class},
+        loader = AnnotationConfigContextLoader.class)
+@SpringJUnitConfig(AddSensorToGeoAreaControllerTest.Config.class)
+public class AddSensorToGeoAreaControllerTest {
     private AddSensorToGeoAreaController controller;
+    private GeographicalArea campusDoIsep;
+    private SensorTypeList sensorTypeList;
+    @InjectMocks
+    private GeographicalAreaService geographicalAreaService;
+
+    @Mock
+    private GeoAreaRepository geoAreaRepository;
 
     @BeforeEach
     public void StartUp() {
-
         MockitoAnnotations.initMocks(this);
-        this.controller = new AddSensorToGeoAreaController(geographicalAreaService, sensorTypeService, geoAreaSensorService);
+        //Geographical Area
+        Location location = new Location(41.178553, -8.608035, 111);
+        AreaShape areaShape = new AreaShape(0.261, 0.249, location);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Urban area");
+        this.campusDoIsep = new GeographicalArea("ISEP", "Campus do ISEP", geographicalAreaType, location, areaShape);
+
+        this.sensorTypeList = new SensorTypeList();
+
+        this.controller = new AddSensorToGeoAreaController(sensorTypeList, geographicalAreaService);
+
+
     }
 
     @Test
-    public void testIsGeoAreaRepositoryEmpty_ShouldReturnTrue() {
+    public void testarAdicaoSensorAAreaGeograficaNegativo() {
+        //Arrange
+        SensorType sensorType = new SensorType("Humidade");
+        Location local = new Location(45, 45, 45);
+        GeoAreaSensor s1 = new GeoAreaSensor("123", "s1", sensorType, local, "l/m2");
 
-        when(this.geographicalAreaService.isGeoAreaRepositoryEmpty()).thenReturn(true);
-        assertTrue(this.controller.isGeoAreaRepositoryEmpty());
+        sensorTypeList.addSensorType(sensorType);
+
+        geographicalAreaService.getGeoAreaList().add(campusDoIsep);
+
+        controller.getAreaGeograficaNaListaPorPosicao(0);
+        controller.getTipoSensorPorPosicao(0);
+        controller.criarNovaLocalizacao(41.1496, -8.6109, 97);
+        controller.criarNovoSensor("s1", "sensor2", "l/m2");
+        controller.adicionarSensorAAreaGeografica(s1);
+
+        //Act
+        boolean resultado = controller.adicionarSensorAAreaGeografica(s1);
+
+        //Assert
+        assertFalse(resultado);
     }
 
     @Test
-    public void testIsGeoAreaRepositoryEmpty_ShouldReturnFalse() {
+    public void testarNomeAreaGeograficaPorIndicePrimeiro() {
 
-        when(this.geographicalAreaService.isGeoAreaRepositoryEmpty()).thenReturn(false);
-        assertFalse(this.controller.isGeoAreaRepositoryEmpty());
+
+        String nomeAG2 = "Espinho";
+        GeographicalAreaType tipo2 = new GeographicalAreaType("Cidade");
+        Location local2 = new Location(41.1496, -8.6109, 97);
+        AreaShape area2 = new AreaShape(10, 10, local2);
+        GeographicalArea ag2 = new GeographicalArea(nomeAG2, "Cidade de Espinho", tipo2, local2, area2);
+
+        String nomeAG3 = "Ancora";
+        GeographicalAreaType tipo3 = new GeographicalAreaType("Cidade");
+        Location local3 = new Location(41.1496, -8.6109, 97);
+        AreaShape area3 = new AreaShape(10, 10, local3);
+        GeographicalArea ag3 = new GeographicalArea(nomeAG3, "Cidade de Ancora", tipo3, local3, area3);
+
+
+        geographicalAreaService.addGeoArea(campusDoIsep);
+        geographicalAreaService.addGeoArea(ag2);
+        geographicalAreaService.addGeoArea(ag3);
+
+        int posicao = 0;
+        String expectedResult = "ISEP";
+        controller.getAreaGeograficaNaListaPorPosicao(posicao);
+
+        // Act
+        String resultado = controller.getNomeAreaGeograficaPorIndice(posicao);
+
+        // Assert
+        assertEquals(expectedResult, resultado);
     }
 
     @Test
-    public void testGetGeographicalAreaDTOList() {
+    public void testarNomeAreaGeograficaPorIndiceUltimo() {
 
-        // Geographical area
-        Location location = new Location(123, 456, 789);
-        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("city");
+        String nomeAG2 = "Espinho";
+        GeographicalAreaType tipo2 = new GeographicalAreaType("Cidade");
+        Location local2 = new Location(41.1496, -8.6109, 97);
+        AreaShape area2 = new AreaShape(10, 10, local2);
+        GeographicalArea ag2 = new GeographicalArea(nomeAG2, "Cidade de Espinho", tipo2, local2, area2);
 
-        AreaShape areaShape = new AreaShape(123, 456);
+        String nomeAG3 = "Ancora";
+        GeographicalAreaType tipo3 = new GeographicalAreaType("Cidade");
+        Location local3 = new Location(41.1496, -8.6109, 97);
+        AreaShape area3 = new AreaShape(10, 10, local3);
+        GeographicalArea ag3 = new GeographicalArea(nomeAG3, "Cidade de Ancora", tipo3, local3, area3);
 
-        GeographicalArea geographicalArea = new GeographicalArea("Espinho", "Cidade de Espinho", geographicalAreaType, location, areaShape);
+        geographicalAreaService.addGeoArea(campusDoIsep);
+        geographicalAreaService.addGeoArea(ag2);
+        geographicalAreaService.addGeoArea(ag3);
 
-        // Geographical area list
-        List<GeographicalArea> geographicalAreaList = new ArrayList<>();
-        geographicalAreaList.add(geographicalArea);
+        int posicao = 2;
+        String expectedResult = "Ancora";
+        controller.getAreaGeograficaNaListaPorPosicao(posicao);
 
-        when(this.geographicalAreaService.getGeoAreaList()).thenReturn(geographicalAreaList);
+        // Act
+        String resultado = controller.getNomeAreaGeograficaPorIndice(posicao);
 
-        // Geographical area DTO list
-        List<GeographicalAreaDTO> geographicalAreaDTOList = new ArrayList<>();
-        GeographicalAreaDTO geographicalAreaDTO = GeographicalAreaMapper.mapToDTOwithSensors(geographicalArea);
-        geographicalAreaDTOList.add(geographicalAreaDTO);
-
-        // result
-        List<GeographicalAreaDTO> result = this.controller.getGeographicalAreaDTOList();
-
-        GeographicalAreaDTO geoAreaDTO = geographicalAreaDTOList.get(0);
-        GeographicalAreaDTO geoAreaResult = result.get(0);
-
-        // assert
-        assertEquals(geoAreaDTO.getId(), geoAreaResult.getId());
-        assertEquals(geoAreaDTO.getDescription(), geoAreaResult.getDescription());
-        assertEquals(geoAreaDTO.getType(), geoAreaResult.getType());
-        assertEquals(geoAreaDTO.getElevation(), geoAreaResult.getElevation());
-        assertEquals(geoAreaDTO.getLatitude(), geoAreaResult.getLatitude());
-        assertEquals(geoAreaDTO.getLongitude(), geoAreaResult.getLongitude());
-        assertEquals(geoAreaDTO.getLength(), geoAreaResult.getLength());
-        assertEquals(geoAreaDTO.getWidth(), geoAreaResult.getWidth());
-        assertEquals(geoAreaDTO.getSensors(), geoAreaResult.getSensors());
+        // Assert
+        assertEquals(expectedResult, resultado);
     }
 
     @Test
-    public void testGetSensorTypeDTOList() {
+    public void testarNomeAreaGeograficaPorIndiceComApenasUmaArea() {
 
-        // Sensor type
-        SensorTypeId sensorTypeId = new SensorTypeId("Humidity");
-        SensorType sensorType = new SensorType(sensorTypeId);
+        // Arrange
+        geographicalAreaService.addGeoArea(campusDoIsep);
 
-        // Sensor type list
-        List<SensorType> sensorTypeList = new ArrayList<>();
-        sensorTypeList.add(sensorType);
+        int posicao = 0;
+        String expectedResult = "ISEP";
+        controller.getAreaGeograficaNaListaPorPosicao(posicao);
 
-        when(this.sensorTypeService.getSensorTypeList()).thenReturn(sensorTypeList);
+        // Act
+        String resultado = controller.getNomeAreaGeograficaPorIndice(posicao);
 
-        // Sensor type DTO list
-        List<SensorTypeDTO> sensorTypeDTOList = new ArrayList<>();
-        SensorTypeDTO sensorTypeDTO = SensorTypeMapper.mapToDto(sensorType);
-        sensorTypeDTOList.add(sensorTypeDTO);
-
-        List<SensorTypeDTO> result = this.controller.getSensorTypeDTOList();
-
-        SensorTypeDTO sensorTypeDTO1 = sensorTypeDTOList.get(0);
-        SensorTypeDTO sensorTypeResult = result.get(0);
-
-        //assert
-        assertEquals(sensorTypeDTO1.getSensorType(), sensorTypeResult.getSensorType());
+        // Assert
+        assertEquals(expectedResult, resultado);
     }
 
     @Test
-    public void testAddGeoAreaSensor_ShouldReturnTrue() {
+    public void testarNumeroElementosDaListaAreaGeografica() {
 
-        // GeoAreaSensor
-        SensorId geoAreaSensorId = new SensorId("geoAreaSensorId");
-        SensorTypeId sensorTypeId = new SensorTypeId("Humidity");
-        Location location = new Location(123, 456, 789);
+        // Arrange
+        String nomeAG2 = "Ancora";
+        GeographicalAreaType tipo2 = new GeographicalAreaType("Cidade");
+        Location local2 = new Location(41.1496, -8.6109, 97);
+        AreaShape area2 = new AreaShape(10, 10, local2);
+        GeographicalArea ag2 = new GeographicalArea(nomeAG2, "Cidade de Ancora", tipo2, local2, area2);
 
-        GeoAreaSensor geoAreaSensor = new GeoAreaSensor(geoAreaSensorId, "GeoAreaSensor", sensorTypeId, location, "1m/s");
 
-        // GeoAreaSensor DTO
-        GeoAreaSensorDTO geoAreaSensorDTO = GeoAreaSensorMapper.mapToDTO(geoAreaSensor);
+        geographicalAreaService.addGeoArea(campusDoIsep);
+        geographicalAreaService.addGeoArea(ag2);
 
-        when(this.geoAreaSensorService.addGeoAreaSensor(geoAreaSensor)).thenReturn(true);
-        assertTrue(this.controller.addGeoAreaSensor(geoAreaSensorDTO));
+        int expectedResult = 2;
+
+        // Act
+        int resultado = controller.numeroElementosDaListaAreaGeografica();
+
+        // Assert
+        assertEquals(expectedResult, resultado);
     }
 
     @Test
-    public void testAddGeoAreaSensor_ShouldReturnFalse() {
+    public void testarNumeroElementosDaListaAreaGeograficaSemElementos() {
 
-        // GeoAreaSensor
-        SensorId geoAreaSensorId = new SensorId("geoAreaSensorId");
-        SensorTypeId sensorTypeId = new SensorTypeId("Humidity");
-        Location location = new Location(123, 456, 789);
+        // Arrange
+        int expectedResult = 0;
 
-        GeoAreaSensor geoAreaSensor = new GeoAreaSensor(geoAreaSensorId, "GeoAreaSensor", sensorTypeId, location, "1m/s");
+        // Act
+        int resultado = controller.numeroElementosDaListaAreaGeografica();
 
-        // GeoAreaSensor DTO
-        GeoAreaSensorDTO geoAreaSensorDTO = GeoAreaSensorMapper.mapToDTO(geoAreaSensor);
+        // Assert
+        assertEquals(expectedResult, resultado);
+    }
 
-        when(this.geoAreaSensorService.addGeoAreaSensor(geoAreaSensor)).thenReturn(false);
-        assertFalse(this.controller.addGeoAreaSensor(geoAreaSensorDTO));
+    @Test
+    public void testarNumeroElementosDaListaTipoDeSensor() {
+
+        // Arrange
+        SensorType tipo1 = new SensorType("Humidade");
+        SensorType tipo2 = new SensorType("Temperatura");
+
+        sensorTypeList.addSensorType(tipo1);
+        sensorTypeList.addSensorType(tipo2);
+
+        int expectedResult = 2;
+
+        // Act
+        int resultado = controller.numeroElementosDaListaTipoDeSensor();
+
+        // Assert
+        assertEquals(expectedResult, resultado);
+    }
+
+    @Test
+    public void testarNumeroElementosDaListaTipoDeSensorSemElementos() {
+
+        // Arrange
+        int expectedResult = 0;
+
+        // Act
+        int resultado = controller.numeroElementosDaListaTipoDeSensor();
+
+        // Assert
+        assertEquals(expectedResult, resultado);
+    }
+
+    @Test
+    public void testarGetNomeSensorTypePorIndicePrimeiro() {
+
+        SensorType tipo1 = new SensorType("Humidade");
+        SensorType tipo2 = new SensorType("Temperatura");
+
+        sensorTypeList.addSensorType(tipo1);
+        sensorTypeList.addSensorType(tipo2);
+
+        int posicao = 0;
+        String expectedResult = "Humidade";
+
+        // Act
+        String resultado = controller.getNomeTipoSensorPorIndice(posicao);
+        controller.getTipoSensorPorPosicao(posicao);
+
+        // Assert
+        assertEquals(expectedResult, resultado);
+    }
+
+    @Test
+    public void testarGetNomeSensorTypePorIndiceUltimo() {
+
+        SensorType tipo1 = new SensorType("Humidade");
+        SensorType tipo2 = new SensorType("Temperatura");
+
+        sensorTypeList.addSensorType(tipo1);
+        sensorTypeList.addSensorType(tipo2);
+
+        int posicao = 1;
+        String expectedResult = "Temperatura";
+        controller.getTipoSensorPorPosicao(posicao);
+
+        // Act
+        String resultado = controller.getNomeTipoSensorPorIndice(posicao);
+
+        // Assert
+        assertEquals(expectedResult, resultado);
+    }
+
+    @Test
+    public void testarGetNomeSensorTypePorIndiceApenasUm() {
+
+        SensorType tipo1 = new SensorType("Humidade");
+
+        sensorTypeList.addSensorType(tipo1);
+
+        int posicao = 0;
+        String expectedResult = "Humidade";
+        controller.getTipoSensorPorPosicao(posicao);
+
+        // Act
+        String resultado = controller.getNomeTipoSensorPorIndice(posicao);
+
+        // Assert
+        assertEquals(expectedResult, resultado);
+    }
+
+    @Test
+    public void testarAdicaoSensorAAreaGeograficaPositivo() {
+        //Arrange
+        SensorType sensorType = new SensorType("Humidade");
+        Location local = new Location(45, 45, 45);
+        GeoAreaSensor s1 = new GeoAreaSensor("123", "s1", sensorType, local, "l/m2");
+
+        sensorTypeList.addSensorType(sensorType);
+        geographicalAreaService.getGeoAreaList().add(campusDoIsep);
+
+        controller.getAreaGeograficaNaListaPorPosicao(0);
+        controller.getTipoSensorPorPosicao(0);
+        controller.criarNovaLocalizacao(41.1496, -8.6109, 97);
+        controller.criarNovoSensor("s1", "sensor1", "l/m2");
+
+        //Act
+        boolean resultado = controller.adicionarSensorAAreaGeografica(s1);
+
+        //Assert
+        assertTrue(resultado);
+    }
+
+    @Test
+    public void testarNovoSensor() {
+        //Arrange
+        String id = "123";
+        String name = "A123";
+        SensorType sensorType = new SensorType("Temperatura");
+        Location locS1 = new Location(45, 45, 45);
+        String units = "l/m2";
+        GeoAreaSensor s1 = new GeoAreaSensor(id, name, sensorType, locS1, units);
+
+        sensorTypeList.addSensorType(sensorType);
+        geographicalAreaService.getGeoAreaList().add(campusDoIsep);
+        controller.getAreaGeograficaNaListaPorPosicao(0);
+        controller.getTipoSensorPorPosicao(0);
+        controller.criarNovaLocalizacao(45, 45, 45);
+
+        GeoAreaSensor expectedResult = s1;
+
+        //Act
+        GeoAreaSensor result = controller.criarNovoSensor(id, name, units);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Configuration
+    static class Config {
     }
 }

@@ -6,6 +6,7 @@ import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.Objects;
 
 import static java.util.Objects.isNull;
 
@@ -64,5 +65,22 @@ public class GeoAreaId implements Serializable {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.id);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof GeoAreaId)) {
+            return false;
+        }
+        GeoAreaId ag = (GeoAreaId) obj;
+        return this.id.equals(ag.id);
     }
 }

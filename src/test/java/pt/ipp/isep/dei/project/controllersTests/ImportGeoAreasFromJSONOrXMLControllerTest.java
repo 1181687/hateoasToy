@@ -2,10 +2,7 @@ package pt.ipp.isep.dei.project.controllersTests;
 
 /*
 
-@DataJpaTest
-@ContextConfiguration(classes = {Main.class},
-        loader = AnnotationConfigContextLoader.class)
-@SpringJUnitConfig(AddSensorToGeoAreaControllerTest.Config.class)
+
 public class ImportGeoAreasFromJSONOrXMLControllerTest {
     @Autowired
     private GeographicalAreaService geographicalAreaService;

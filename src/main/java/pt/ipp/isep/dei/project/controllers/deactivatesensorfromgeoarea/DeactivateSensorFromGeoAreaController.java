@@ -6,6 +6,7 @@ import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapper;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorDTO;
+import pt.ipp.isep.dei.project.model.sensor.SensorId;
 import pt.ipp.isep.dei.project.services.GeographicalAreaService;
 
 import java.util.ArrayList;
@@ -35,6 +36,4 @@ public class DeactivateSensorFromGeoAreaController {
         }
         return false;
     }
-
-
 }

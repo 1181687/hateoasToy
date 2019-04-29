@@ -1,3 +1,4 @@
+/*
 package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -53,9 +54,11 @@ public class RemoveSensorFromGeoAreaControllerTest {
         this.controller = new RemoveSensorFromGeoAreaController(geographicalAreaService);
     }
 
-    /**
+    */
+/**
      * Test that tries to get the list of GeographicalAreaDTOs.
-     */
+     *//*
+
     @Test
     public void testGetGeographicalAreaList_ShouldReturnTheCorrespondingList() {
         // Arrange
@@ -71,9 +74,11 @@ public class RemoveSensorFromGeoAreaControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    /**
+    */
+/**
      * Test that tries to get the list of SensorDTOs.
-     */
+     *//*
+
     @Test
     public void testGetSensorList_ShouldReturnTheCorrespondingList() {
         // Arrange
@@ -90,9 +95,11 @@ public class RemoveSensorFromGeoAreaControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    /**
+    */
+/**
      * Test that tries to remove a GeoAreaSensor from a GeoArea when the Id doesn't correspond to an existing GeoAreaSensor.
-     */
+     *//*
+
     @Test
     public void testRemoveSensor_whenIdDoesntCorrespond_ShouldReturnFalse() {
         // Arrange
@@ -105,9 +112,11 @@ public class RemoveSensorFromGeoAreaControllerTest {
         assertFalse(result);
     }
 
-    /**
+    */
+/**
      * Test that tries to remove a GeoAreaSensor from a GeoArea when the Id corresponds to an existing GeoAreaSensor.
-     */
+     *//*
+
     @Test
     public void testRemoveSensor_whenIdCorresponds_ShouldReturnTrue() {
         // Arrange
@@ -121,3 +130,4 @@ public class RemoveSensorFromGeoAreaControllerTest {
     }
 
 }
+*/
