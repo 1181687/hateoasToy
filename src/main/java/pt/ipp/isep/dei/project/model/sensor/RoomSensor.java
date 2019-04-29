@@ -148,7 +148,7 @@ public class RoomSensor implements Root {
         return Objects.hash(this.id);
     }
 
-    public List<RoomReading> getReadingsBetweenDates(LocalDate startDate, LocalDate endDate) {
+    public List<RoomReading> u7hb(LocalDate startDate, LocalDate endDate) {
         List<RoomReading> readingsBetweenDates = new ArrayList<>();
         for (RoomReading reading : roomReadings) {
             if ((reading.getDateTime().toLocalDate().isEqual(startDate) || reading.getDateTime().toLocalDate().isAfter(startDate)) && (reading.getDateTime().toLocalDate().isEqual(endDate) || reading.getDateTime().toLocalDate().isBefore(endDate))) {
