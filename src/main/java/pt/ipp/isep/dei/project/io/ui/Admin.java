@@ -13,6 +13,7 @@ public class Admin {
 
     private GeographicalAreaTypeList geographicalAreaTypeList;
     private GeographicalAreaService geographicalAreaService;
+    private GeoAreaTypeService geoAreaTypeService;
     private SensorTypeList sensorTypeList;
     private House house;
     private PowerSourceTypeList powerSourceTypeList;
@@ -23,9 +24,11 @@ public class Admin {
     private SensorTypeService sensorTypeService;
 
 
-    public Admin(GeographicalAreaTypeList geographicalAreaTypeList, GeographicalAreaService geographicalAreaService, SensorTypeList sensorTypeList, House house, PowerSourceTypeList powerSourceTypeList, RoomList roomList, HouseService houseService, GeoAreaSensorService geoAreaSensorService, RoomSensorService roomSensorService, SensorTypeService sensorTypeService) {
+    public Admin(GeographicalAreaTypeList geographicalAreaTypeList, GeographicalAreaService geographicalAreaService,
+                 GeoAreaTypeService geoAreaTypeService, SensorTypeList sensorTypeList, House house, PowerSourceTypeList powerSourceTypeList, RoomList roomList, HouseService houseService, GeoAreaSensorService geoAreaSensorService, RoomSensorService roomSensorService, SensorTypeService sensorTypeService) {
         this.geographicalAreaTypeList = geographicalAreaTypeList;
         this.geographicalAreaService = geographicalAreaService;
+        this.geoAreaTypeService = geoAreaTypeService;
         this.sensorTypeList = sensorTypeList;
         this.house = house;
         this.powerSourceTypeList = powerSourceTypeList;
@@ -53,7 +56,7 @@ public class Admin {
                     ui2.run();
                     break;
                 case 3:
-                    AddNewGeographicalArea ui3 = new AddNewGeographicalArea(geographicalAreaService);
+                    AddNewGeographicalArea ui3 = new AddNewGeographicalArea(geographicalAreaService, geoAreaTypeService);
                     ui3.run();
                     break;
                 case 4:
