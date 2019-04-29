@@ -23,7 +23,7 @@ public class GeoAreaId implements Serializable {
         validateId(id);
         this.location = location;
         this.id = id;
-        this.typeId = geographicalAreaType.getGeoAreaTypeId();
+        this.typeId = geographicalAreaType.getGeoAreaType();
     }
 
 
@@ -56,7 +56,7 @@ public class GeoAreaId implements Serializable {
     }
 
     public void setGeographicalAreaType(GeographicalAreaType geographicalAreaType) {
-        this.typeId = geographicalAreaType.getGeoAreaTypeId();
+        this.typeId = geographicalAreaType.getGeoAreaType();
     }
 
     public void setLocation(Location location) {
@@ -67,20 +67,22 @@ public class GeoAreaId implements Serializable {
         this.id = id;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(this.id);
-    }
 
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof GeoAreaId)) {
+        if (!(obj instanceof GeographicalArea)) {
             return false;
         }
-        GeoAreaId ag = (GeoAreaId) obj;
-        return this.id.equals(ag.id);
+        GeoAreaId geoAreaId = (GeoAreaId) obj;
+        return this.id.equals(geoAreaId.id) && this.typeId.equals(geoAreaId.typeId) && this.location.equals(geoAreaId.location);
     }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.id);
+    }
+
 }
