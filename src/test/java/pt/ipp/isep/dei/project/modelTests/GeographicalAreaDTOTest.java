@@ -17,7 +17,7 @@ public class GeographicalAreaDTOTest {
 
     private GeographicalAreaDTO portoCity;
     private GeoAreaSensorDTO temperatureSensor;
-    private SensorType temperature;
+    private SensorTypeId temperature;
 
     @BeforeEach
     public void StartUp() {
@@ -28,15 +28,11 @@ public class GeographicalAreaDTOTest {
         portoCity.setType("City");
 
         // Sensors
-        String typeId = "Temperature";
-        SensorTypeId sensorTypeId = new SensorTypeId(typeId);
+        temperature = new SensorTypeId("Temperature");
         LocalDateTime startDate = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         Location sensorLocation = new Location(42.1596, -8.6109, 97);
-        String sensorId = "123";
-        SensorId sensorId1 = new SensorId(sensorId);
-        String sensorName = "Sensor";
-        GeoAreaSensor geoAreaSensor = new GeoAreaSensor(sensorId1, sensorName, startDate, sensorTypeId, sensorLocation, "l/m2");
-        temperatureSensor = GeoAreaSensorMapper.mapToDTO(geoAreaSensor);
+        GeoAreaSensor sensor = new GeoAreaSensor(new SensorId("123"), "A123", startDate, temperature, sensorLocation, "l/m2");
+        temperatureSensor = GeoAreaSensorMapper.mapToDTO(sensor);
         portoCity.addSensor(temperatureSensor);
     }
 

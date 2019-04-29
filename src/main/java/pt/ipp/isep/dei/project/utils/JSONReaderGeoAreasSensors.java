@@ -219,6 +219,9 @@ public class JSONReaderGeoAreasSensors implements ProjectFileReader {
 
                     LocationDTO sensorLocation = locationParser(locationSensor);
                     GeoAreaIdDTO geoAreaIdDTO = new GeoAreaIdDTO();
+                    geoAreaIdDTO.setId(geoAreaDTO.getId());
+                    geoAreaIdDTO.setGeoAreaType(geoAreaDTO.getType());
+                    geoAreaIdDTO.setLocationDTO(areaLocation);
 
                     GeoAreaSensorDTO areaSensor1 = new GeoAreaSensorDTO();
                     areaSensor1.setId(sensorId);
