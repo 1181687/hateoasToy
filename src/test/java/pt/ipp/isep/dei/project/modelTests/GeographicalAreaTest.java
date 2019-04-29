@@ -43,14 +43,14 @@ class GeographicalAreaTest {
 
         // Geographical Areas
         Location location = new Location(32.1496, 7.6109, 98);
-        AreaShape areaShape = new AreaShape(100, 100, location);
+        AreaShape areaShape = new AreaShape(100, 100);
         northernRegion = new GeographicalArea("Norte", "Northern Region", region, location, areaShape);
         Location location1 = new Location(41.1496, -6.6109, 100);
-        AreaShape areaShape1 = new AreaShape(40, 40, location1);
+        AreaShape areaShape1 = new AreaShape(40, 40);
         portoDistrict = new GeographicalArea("Distrito do Porto", "Porto District", district, location1, areaShape1);
         portoDistrict.setInsertedIn(northernRegion);
         this.location2 = new Location(42.1496, -8.6109, 97);
-        areaShape2 = new AreaShape(10, 10, location2);
+        areaShape2 = new AreaShape(10, 10);
         portoCity = new GeographicalArea("Porto", "Porto City", city, location2, areaShape2);
         portoCity.setInsertedIn(portoDistrict);
 
@@ -84,7 +84,7 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
-        AreaShape area = new AreaShape(10, 10, local);
+        AreaShape area = new AreaShape(10, 10);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
         boolean expectedResult = true;
 
@@ -101,7 +101,7 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
-        AreaShape area = new AreaShape(10, 10, local);
+        AreaShape area = new AreaShape(10, 10);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
         GeographicalArea ag2 = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
 
@@ -119,7 +119,7 @@ class GeographicalAreaTest {
         GeographicalAreaType tipo1 = new GeographicalAreaType("Cidade");
         GeographicalAreaType tipo2 = new GeographicalAreaType("Aldeia");
         Location local = new Location(41.1496, -8.6109, 97);
-        AreaShape area = new AreaShape(10, 10, local);
+        AreaShape area = new AreaShape(10, 10);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, "Cidade do Porto", tipo1, local, area);
         GeographicalArea ag2 = new GeographicalArea(nomeAG, "Aldeia do Porto", tipo2, local, area);
 
@@ -137,7 +137,7 @@ class GeographicalAreaTest {
         GeographicalAreaType tipo1 = new GeographicalAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
         Location local2 = new Location(41.15, -8.62, 97);
-        AreaShape area = new AreaShape(10, 10, local);
+        AreaShape area = new AreaShape(10, 10);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, "Cidade do Porto", tipo1, local, area);
         GeographicalArea ag2 = new GeographicalArea(nomeAG, "Cidade do Porto", tipo1, local2, area);
 
@@ -154,7 +154,7 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
-        AreaShape area = new AreaShape(10, 10, local);
+        AreaShape area = new AreaShape(10, 10);
         GeographicalArea ag = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
         boolean expectedResult = false;
 
@@ -174,8 +174,8 @@ class GeographicalAreaTest {
         GeographicalAreaType tipo2 = new GeographicalAreaType("Cidade");
         Location local1 = new Location(41.1496, 10.6109, 50);
         Location local2 = new Location(32.6333, 16.9, 20);
-        AreaShape area1 = new AreaShape(10, 10, local1);
-        AreaShape area2 = new AreaShape(10, 10, local2);
+        AreaShape area1 = new AreaShape(10, 10);
+        AreaShape area2 = new AreaShape(10, 10);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, "Cidade do Porto", tipo1, local1, area1);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, "Cidade do Funchal", tipo2, local2, area2);
         double expectedResult = 1099043.7203;
@@ -193,7 +193,7 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
-        AreaShape area = new AreaShape(10, 10, local);
+        AreaShape area = new AreaShape(10, 10);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
         int expectedResult = 1;
 
@@ -211,7 +211,7 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
-        AreaShape area = new AreaShape(10, 10, local);
+        AreaShape area = new AreaShape(10, 10);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperatura");
@@ -231,7 +231,7 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
-        AreaShape area = new AreaShape(10, 10, local);
+        AreaShape area = new AreaShape(10, 10);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
 
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
@@ -252,7 +252,7 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
-        AreaShape area = new AreaShape(10, 10, local);
+        AreaShape area = new AreaShape(10, 10);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperatura");
@@ -272,7 +272,7 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
-        AreaShape area = new AreaShape(10, 10, local);
+        AreaShape area = new AreaShape(10, 10);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
 
         // Instanciar S0
@@ -323,7 +323,7 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
-        AreaShape area = new AreaShape(10, 10, local);
+        AreaShape area = new AreaShape(10, 10);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
 
         // Instanciar S0
@@ -373,7 +373,7 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
-        AreaShape area = new AreaShape(10, 10, local);
+        AreaShape area = new AreaShape(10, 10);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
 
         //Instanciar sensor
@@ -453,7 +453,7 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
-        AreaShape area = new AreaShape(10, 10, local);
+        AreaShape area = new AreaShape(10, 10);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
 
         //Instanciar sensor
@@ -533,7 +533,7 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
-        AreaShape area = new AreaShape(10, 10, local);
+        AreaShape area = new AreaShape(10, 10);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
         String expectedResult = "Cidade do Porto";
 
@@ -550,7 +550,7 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
-        AreaShape area = new AreaShape(10, 10, local);
+        AreaShape area = new AreaShape(10, 10);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
         String expectedResult = "Puorto";
         ag1.setDescription("Puorto");
@@ -568,7 +568,7 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
-        AreaShape area = new AreaShape(10, 10, local);
+        AreaShape area = new AreaShape(10, 10);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
         ag1.setGeographicalAreaType(tipo);
         GeoAreaTypeId expectedResult = tipo.getGeoAreaTypeId();
@@ -586,7 +586,7 @@ class GeographicalAreaTest {
         String nomeAG1 = "Porto";
         GeographicalAreaType tipo1 = new GeographicalAreaType("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
-        AreaShape area1 = new AreaShape(10, 10, local1);
+        AreaShape area1 = new AreaShape(10, 10);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, "Cidade do Porto", tipo1, local1, area1);
 
         LocalDateTime data = LocalDateTime.of(2015, 1, 1, 0, 0, 0);
@@ -607,7 +607,7 @@ class GeographicalAreaTest {
         String nomeAG1 = "Porto";
         GeographicalAreaType tipo1 = new GeographicalAreaType("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
-        AreaShape area1 = new AreaShape(10, 10, local1);
+        AreaShape area1 = new AreaShape(10, 10);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, "Cidade do Porto", tipo1, local1, area1);
 
         LocalDateTime data = LocalDateTime.of(2015, 1, 1, 0, 0, 0);
@@ -630,7 +630,7 @@ class GeographicalAreaTest {
         String nomeAG1 = "Porto";
         GeographicalAreaType tipo1 = new GeographicalAreaType("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
-        AreaShape area1 = new AreaShape(10, 10, local1);
+        AreaShape area1 = new AreaShape(10, 10);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, "Cidade do Porto", tipo1, local1, area1);
 
         LocalDateTime data = LocalDateTime.of(2015, 1, 1, 0, 0, 0);
@@ -653,13 +653,13 @@ class GeographicalAreaTest {
         String nomeAG1 = "Porto";
         GeographicalAreaType tipo1 = new GeographicalAreaType("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
-        AreaShape area1 = new AreaShape(10, 10, local1);
+        AreaShape area1 = new AreaShape(10, 10);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, "Cidade do Porto", tipo1, local1, area1);
 
         String nomeAG = "Porto";
         GeographicalAreaType tipo = new GeographicalAreaType("Distrito");
         Location local = new Location(41.1496, -8.6109, 97);
-        AreaShape area = new AreaShape(10, 10, local);
+        AreaShape area = new AreaShape(10, 10);
         GeographicalArea ag2 = new GeographicalArea(nomeAG, "Distrito do Porto", tipo, local, area);
 
         ag1.setInsertedIn(ag1);
@@ -679,7 +679,7 @@ class GeographicalAreaTest {
         String nomeAG1 = "Porto";
         GeographicalAreaType tipo1 = new GeographicalAreaType("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
-        AreaShape area1 = new AreaShape(10, 10, local1);
+        AreaShape area1 = new AreaShape(10, 10);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, "Cidade do Porto", tipo1, local1, area1);
 
         double mLatitude = 40.487;
@@ -707,7 +707,7 @@ class GeographicalAreaTest {
         String nomeAG1 = "Porto";
         GeographicalAreaType tipo1 = new GeographicalAreaType("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
-        AreaShape area1 = new AreaShape(10, 10, local1);
+        AreaShape area1 = new AreaShape(10, 10);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, "Cidade do Porto", tipo1, local1, area1);
 
         String nomeSensor = "A456";
@@ -807,20 +807,20 @@ class GeographicalAreaTest {
         String nomeAG2 = "Região Norte";
         GeographicalAreaType tipo2 = new GeographicalAreaType("Região");
         Location local2 = new Location(32.1496, 7.6109, 98);
-        AreaShape area2 = new AreaShape(10, 10, local2);
+        AreaShape area2 = new AreaShape(10, 10);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, "Região do Norte", tipo2, local2, area2);
 
         String nomeAG1 = "Distrito Porto";
         GeographicalAreaType tipo1 = new GeographicalAreaType("Distrito");
         Location local1 = new Location(41.1496, -6.6109, 100);
-        AreaShape area1 = new AreaShape(10, 10, local1);
+        AreaShape area1 = new AreaShape(10, 10);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, "Distrito do Porto", tipo1, local1, area1);
         ag1.setInsertedIn(ag2);
 
         String nomeAG = "Porto";
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
-        AreaShape area = new AreaShape(10, 10, local);
+        AreaShape area = new AreaShape(10, 10);
         GeographicalArea ag = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
         ag.setInsertedIn(ag1);
 
@@ -842,20 +842,20 @@ class GeographicalAreaTest {
         String nomeAG2 = "Região Norte";
         GeographicalAreaType tipo2 = new GeographicalAreaType("Região");
         Location local2 = new Location(32.1496, 7.6109, 98);
-        AreaShape area2 = new AreaShape(10, 10, local2);
+        AreaShape area2 = new AreaShape(10, 10);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, "Região Norte", tipo2, local2, area2);
 
         String nomeAG1 = "Distrito Porto";
         GeographicalAreaType tipo1 = new GeographicalAreaType("Distrito");
         Location local1 = new Location(41.1496, -6.6109, 100);
-        AreaShape area1 = new AreaShape(10, 10, local1);
+        AreaShape area1 = new AreaShape(10, 10);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, "Distrito do Porto", tipo1, local1, area1);
         ag1.setInsertedIn(ag2);
 
         String nomeAG = "Porto";
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
-        AreaShape area = new AreaShape(10, 10, local);
+        AreaShape area = new AreaShape(10, 10);
         GeographicalArea ag = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
         ag.setInsertedIn(ag1);
 
@@ -907,7 +907,7 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
-        AreaShape area = new AreaShape(10, 10, local);
+        AreaShape area = new AreaShape(10, 10);
         GeographicalArea ag = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
 
         //Instanciar sensor
@@ -968,7 +968,7 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
-        AreaShape area = new AreaShape(10, 10, local);
+        AreaShape area = new AreaShape(10, 10);
         GeographicalArea ag = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
 
         //Instanciar sensor
@@ -1019,7 +1019,7 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
-        AreaShape area = new AreaShape(10, 10, local);
+        AreaShape area = new AreaShape(10, 10);
         GeographicalArea ag = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
 
         //Instanciar sensor
@@ -1055,7 +1055,7 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
-        AreaShape area = new AreaShape(10, 10, local);
+        AreaShape area = new AreaShape(10, 10);
         GeographicalArea ag = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
 
         //Instanciar sensor
@@ -1097,7 +1097,7 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
-        AreaShape area = new AreaShape(10, 10, local);
+        AreaShape area = new AreaShape(10, 10);
         GeographicalArea ag = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
 
         //Instanciar sensor
@@ -1141,7 +1141,7 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
-        AreaShape area = new AreaShape(10, 10, local);
+        AreaShape area = new AreaShape(10, 10);
         GeographicalArea ag = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
 
         //Sensor1
@@ -1206,7 +1206,7 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
-        AreaShape area = new AreaShape(10, 10, local);
+        AreaShape area = new AreaShape(10, 10);
         GeographicalArea ag = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
 
         //Sensor1
@@ -1271,7 +1271,7 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
-        AreaShape area = new AreaShape(10, 10, local);
+        AreaShape area = new AreaShape(10, 10);
         GeographicalArea ag = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
 
         //Sensor1
@@ -1338,7 +1338,7 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(42.15, -8.6, 97);
-        AreaShape area = new AreaShape(40, 40, local);
+        AreaShape area = new AreaShape(40, 40);
         GeographicalArea ag = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
 
         //Sensor1
@@ -1400,7 +1400,7 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
-        AreaShape area = new AreaShape(40, 40, local);
+        AreaShape area = new AreaShape(40, 40);
         GeographicalArea ag = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
 
         //Instance of SensorType
@@ -1425,7 +1425,7 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(42.15, -8.6, 97);
-        AreaShape area = new AreaShape(40, 40, local);
+        AreaShape area = new AreaShape(40, 40);
         GeographicalArea ag = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
 
         //Sensor1
@@ -1487,20 +1487,20 @@ class GeographicalAreaTest {
         String nomeAG2 = "Região Norte";
         GeographicalAreaType tipo2 = new GeographicalAreaType("Região");
         Location local2 = new Location(32.1496, 7.6109, 98);
-        AreaShape area2 = new AreaShape(10, 10, local2);
+        AreaShape area2 = new AreaShape(10, 10);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, "Região Norte", tipo2, local2, area2);
 
         String nomeAG1 = "Distrito Porto";
         GeographicalAreaType tipo1 = new GeographicalAreaType("Distrito");
         Location local1 = new Location(41.1496, -6.6109, 100);
-        AreaShape area1 = new AreaShape(10, 10, local1);
+        AreaShape area1 = new AreaShape(10, 10);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, "Distrito do Porto", tipo1, local1, area1);
         ag1.setInsertedIn(ag2);
 
         String nomeAG = "Porto";
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
-        AreaShape area = new AreaShape(10, 10, local);
+        AreaShape area = new AreaShape(10, 10);
         GeographicalArea ag = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
         ag.setInsertedIn(ag1);
 
@@ -2041,7 +2041,7 @@ class GeographicalAreaTest {
     @Test
     public void testGetAreaShape() {
         //arrange
-        AreaShape expectedResult = new AreaShape(10, 10, location2);
+        AreaShape expectedResult = new AreaShape(10, 10);
         portoCity.setAreaShape(expectedResult);
         //act
         AreaShape result = portoCity.getAreaShape();

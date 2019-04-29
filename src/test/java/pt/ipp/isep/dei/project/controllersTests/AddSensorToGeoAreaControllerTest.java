@@ -44,7 +44,7 @@ public class AddSensorToGeoAreaControllerTest {
         MockitoAnnotations.initMocks(this);
         //Geographical Area
         Location location = new Location(41.178553, -8.608035, 111);
-        AreaShape areaShape = new AreaShape(0.261, 0.249, location);
+        AreaShape areaShape = new AreaShape(0.261, 0.249);
         GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Urban area");
         this.campusDoIsep = new GeographicalArea("ISEP", "Campus do ISEP", geographicalAreaType, location, areaShape);
 
@@ -86,13 +86,13 @@ public class AddSensorToGeoAreaControllerTest {
         String nomeAG2 = "Espinho";
         GeographicalAreaType tipo2 = new GeographicalAreaType("Cidade");
         Location local2 = new Location(41.1496, -8.6109, 97);
-        AreaShape area2 = new AreaShape(10, 10, local2);
+        AreaShape area2 = new AreaShape(10, 10);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, "Cidade de Espinho", tipo2, local2, area2);
 
         String nomeAG3 = "Ancora";
         GeographicalAreaType tipo3 = new GeographicalAreaType("Cidade");
         Location local3 = new Location(41.1496, -8.6109, 97);
-        AreaShape area3 = new AreaShape(10, 10, local3);
+        AreaShape area3 = new AreaShape(10, 10);
         GeographicalArea ag3 = new GeographicalArea(nomeAG3, "Cidade de Ancora", tipo3, local3, area3);
 
 
@@ -117,13 +117,13 @@ public class AddSensorToGeoAreaControllerTest {
         String nomeAG2 = "Espinho";
         GeographicalAreaType tipo2 = new GeographicalAreaType("Cidade");
         Location local2 = new Location(41.1496, -8.6109, 97);
-        AreaShape area2 = new AreaShape(10, 10, local2);
+        AreaShape area2 = new AreaShape(10, 10);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, "Cidade de Espinho", tipo2, local2, area2);
 
         String nomeAG3 = "Ancora";
         GeographicalAreaType tipo3 = new GeographicalAreaType("Cidade");
         Location local3 = new Location(41.1496, -8.6109, 97);
-        AreaShape area3 = new AreaShape(10, 10, local3);
+        AreaShape area3 = new AreaShape(10, 10);
         GeographicalArea ag3 = new GeographicalArea(nomeAG3, "Cidade de Ancora", tipo3, local3, area3);
 
         geographicalAreaService.addGeoArea(campusDoIsep);
@@ -165,7 +165,7 @@ public class AddSensorToGeoAreaControllerTest {
         String nomeAG2 = "Ancora";
         GeographicalAreaType tipo2 = new GeographicalAreaType("Cidade");
         Location local2 = new Location(41.1496, -8.6109, 97);
-        AreaShape area2 = new AreaShape(10, 10, local2);
+        AreaShape area2 = new AreaShape(10, 10);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, "Cidade de Ancora", tipo2, local2, area2);
 
 
