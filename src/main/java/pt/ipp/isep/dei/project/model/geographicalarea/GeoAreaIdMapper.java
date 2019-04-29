@@ -27,7 +27,8 @@ public final class GeoAreaIdMapper {
             return null;
         }
         Location location = LocationMapper.mapToEntity(geoAreaIdDTO.getLocationDTO());
-        GeographicalAreaType geoAreaType = new GeographicalAreaType(geoAreaIdDTO.getGeoAreaType());
+        GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId(geoAreaIdDTO.getGeoAreaType());
+        GeographicalAreaType geoAreaType = new GeographicalAreaType(geoAreaTypeId);
         return new GeoAreaId(location, geoAreaIdDTO.getId(), geoAreaType);
     }
 }
