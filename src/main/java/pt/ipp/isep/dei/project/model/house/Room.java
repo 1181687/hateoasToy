@@ -300,7 +300,7 @@ public double getMaximumMeasurementInGivenDay(SensorType type, LocalDate date) {
     @Override
     public String getNameToString() {
         StringBuilder name = new StringBuilder();
-        name.append("Room: " + this.roomId + "\n");
+        name.append("Room: " + this.roomId.getId() + "\n");
         return name.toString();
     }
 
