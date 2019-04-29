@@ -5,11 +5,13 @@ import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.RoomReading;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
-import pt.ipp.isep.dei.project.model.sensor.*;
+import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
+import pt.ipp.isep.dei.project.model.sensor.RoomSensorList;
+import pt.ipp.isep.dei.project.model.sensor.SensorId;
+import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 import pt.ipp.isep.dei.project.roles.Root;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -24,17 +26,12 @@ public class Room implements Root, Measurable {
     private RoomId roomId;
     private String description;
     private int houseFloor;
-
     @Embedded
     private HouseGridId houseGridId;
-
     @Embedded
     private Dimension dimension;
-
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn
+    @Transient
     private RoomSensorList sensorList;
-
     @Transient
     private List<Device> deviceList;
 
@@ -218,10 +215,10 @@ public RoomSensorList getSensorList() {
  * @param date any given day
  * @return maximum temperature
  */
-
+/*
 public double getMaximumMeasurementInGivenDay(SensorType type, LocalDate date) {
         return sensorList.getMaximumMeasureOfTypeOfSensorInGivenDay(type, date);
-}
+}*/
 
 
     /**
@@ -230,6 +227,7 @@ public double getMaximumMeasurementInGivenDay(SensorType type, LocalDate date) {
      * @param sensorTypeId type of sensor
      * @return latest measurement by sensor type
      */
+
 
     public RoomReading getLatestMeasurementBySensorType(SensorTypeId sensorTypeId) {
         return new RoomReading(sensorList.getLatestMeasurementBySensorType(sensorTypeId).getValue(), sensorList.getLatestMeasurementBySensorType(sensorTypeId).getDateTime());
@@ -521,4 +519,5 @@ public double getMaximumMeasurementInGivenDay(SensorType type, LocalDate date) {
         }
         return null;
     }
+
 }

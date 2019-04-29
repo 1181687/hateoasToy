@@ -1,12 +1,10 @@
 package pt.ipp.isep.dei.project.model.house;
 
 import pt.ipp.isep.dei.project.model.devices.Device;
-import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
 
 import javax.persistence.Transient;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class RoomList {
     //@Id
@@ -359,7 +357,7 @@ public class RoomList {
         }
         return content.toString();
     }
-
+/*
     public RoomSensor getSensorById(String sensorId) {
         for (Room room : listOfRooms) {
             if (Objects.nonNull(room.getSensorById(sensorId))) {
@@ -367,6 +365,6 @@ public class RoomList {
             }
         }
         return null;
-    }
+    }*/
 
 }

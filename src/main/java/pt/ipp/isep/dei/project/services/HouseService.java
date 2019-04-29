@@ -87,22 +87,23 @@ public class HouseService {
         return houseGridRepository.existsById(gridId);
     }
 
-    public Room getRoomWithRightSensor(String sensorId) {
-        for (Room room : roomRepository.findAll()) {
-            if (Objects.nonNull(room.getSensorById(sensorId))) {
-                return room;
+    /*
+        public Room getRoomWithRightSensor(String sensorId) {
+            for (Room room : roomRepository.findAll()) {
+                if (Objects.nonNull(room.getSensorById(sensorId))) {
+                    return room;
+                }
             }
+            return null;
         }
-        return null;
-    }
 
-    public RoomSensor getSensorById(String sensorId) {
-        if (Objects.nonNull(getRoomWithRightSensor(sensorId))) {
-            return getRoomWithRightSensor(sensorId).getSensorById(sensorId);
+        public RoomSensor getSensorById(String sensorId) {
+            if (Objects.nonNull(getRoomWithRightSensor(sensorId))) {
+                return getRoomWithRightSensor(sensorId).getSensorById(sensorId);
+            }
+            return null;
         }
-        return null;
-    }
-
+    */
     public void updateRepository(List<Room> roomList) {
         roomRepository.saveAll(roomList);
     }
