@@ -5,10 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
-import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
-import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorDTO;
-import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorMapper;
-import pt.ipp.isep.dei.project.model.sensor.SensorType;
+import pt.ipp.isep.dei.project.model.sensor.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -31,11 +28,15 @@ public class GeographicalAreaDTOTest {
         portoCity.setType("City");
 
         // Sensors
-        temperature = new SensorType("Temperature");
+        String typeId = "Temperature";
+        SensorTypeId sensorTypeId = new SensorTypeId(typeId);
         LocalDateTime startDate = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         Location sensorLocation = new Location(42.1596, -8.6109, 97);
-        GeoAreaSensor sensor = new GeoAreaSensor("123", "A123", startDate, temperature, sensorLocation, "l/m2");
-        temperatureSensor = GeoAreaSensorMapper.mapToDTO(sensor);
+        String sensorId = "123";
+        SensorId sensorId1 = new SensorId(sensorId);
+        String sensorName = "Sensor";
+        GeoAreaSensor geoAreaSensor = new GeoAreaSensor(sensorId1, sensorName, startDate, sensorTypeId, sensorLocation, "l/m2");
+        temperatureSensor = GeoAreaSensorMapper.mapToDTO(geoAreaSensor);
         portoCity.addSensor(temperatureSensor);
     }
 
