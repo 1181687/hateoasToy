@@ -3,10 +3,7 @@ package pt.ipp.isep.dei.project.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.model.Location;
-import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaTypeId;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
+import pt.ipp.isep.dei.project.model.geographicalarea.*;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorList;
 import pt.ipp.isep.dei.project.repositories.GeoAreaRepository;
@@ -188,7 +185,8 @@ public class GeographicalAreaService {
      * @return a new geographical area.
      */
     public GeographicalArea newGeographicalArea(String geoID, String geoAreaName, String geoAreaTypeName, Location location, double height, double length) {
-        GeographicalAreaType geographicalAreaType = new GeographicalAreaType(geoAreaTypeName);
+        GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId(geoAreaTypeName);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType(geoAreaTypeId);
         AreaShape rectangleArea = new AreaShape(height, length);
         return new GeographicalArea(geoID, geoAreaName, geographicalAreaType, location, rectangleArea);
     }
@@ -277,4 +275,11 @@ public class GeographicalAreaService {
     public boolean isGeoAreaRepositoryEmpty() {
         return this.geoAreaRepository.count() == 0;
     }
+
+    public boolean isGeoAreaExistant(String geoAreaId, double latitude, double longitude, double elevation, String geoAreaTypeId) {
+        Location geoLocation = new Location(latitude, longitude, elevation);
+        GeoAreaTypeId geoAreaTypeId1 = new GeoAreaTypeId(geoAreaTypeId);
+        return geoAreaRepository.existsById(new GeoAreaId(geoLocation, geoAreaId, new GeographicalAreaType(geoAreaTypeId1)));
+    }
+
 }

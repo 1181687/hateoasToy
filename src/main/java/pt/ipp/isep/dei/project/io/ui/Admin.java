@@ -55,8 +55,8 @@ public class Admin {
                     ui2.run();
                     break;
                 case 3:
-                    //AddGeoArea ui3 = new AddGeoArea();
-                    //ui3.run();
+                    AddNewGeographicalArea ui3 = new AddNewGeographicalArea(geographicalAreaService);
+                    ui3.run();
                     break;
                 case 4:
                     GetListOfTypeOfGeoArea ui4 = new GetListOfTypeOfGeoArea(geographicalAreaService, geographicalAreaTypeList);
