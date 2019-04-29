@@ -11,7 +11,6 @@ public final class RoomSensorMapper {
     }
 
     public static RoomSensor mapToEntity(RoomSensorDTO sensorDTO) {
-
         SensorId sensorId = new SensorId();
         SensorTypeId typeId = new SensorTypeId();
         return new RoomSensor(sensorId, sensorDTO.getName(), sensorDTO.getStartingDate(), typeId, sensorDTO.getUnits());

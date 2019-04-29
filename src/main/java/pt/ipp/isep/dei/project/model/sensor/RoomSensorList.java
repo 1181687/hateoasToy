@@ -1,8 +1,7 @@
 package pt.ipp.isep.dei.project.model.sensor;
 
-import pt.ipp.isep.dei.project.model.RoomReading;
+import pt.ipp.isep.dei.project.model.Reading;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -23,27 +22,27 @@ public class RoomSensorList {
 
         return true;
     }
-
+/*
     public double getMaximumMeasureOfTypeOfSensorInGivenDay(SensorType type, LocalDate date) {
         if (!listOfSensors.isEmpty()) {
             double maxValue = listOfSensors.get(0).getMaximumValueOfDay(date);
             for (RoomSensor sensor : listOfSensors) {
-                if (sensor.getSensorType().equals(type) && (!(sensor.getDailyMeasurement(date).isEmpty())) && (Double.compare(sensor.getMaximumValueOfDay(date), maxValue) == 1)) {
+                if (sensor.getSensorTypeId().equals(type) && (!(sensor.getDailyMeasurement(date).isEmpty())) && (Double.compare(sensor.getMaximumValueOfDay(date), maxValue) == 1)) {
                     maxValue = sensor.getMaximumValueOfDay(date);
                 }
             }
             return maxValue;
         }
         return Double.NaN;
-    }
+    }*/
 
-    public RoomReading getLatestMeasurementBySensorType(SensorTypeId typeId) {
-        List<RoomReading> listOfLatestReadings = getListOfLatestMeasurementsBySensorType(typeId);
+    public Reading getLatestMeasurementBySensorType(SensorTypeId typeId) {
+        List<Reading> listOfLatestReadings = getListOfLatestMeasurementsBySensorType(typeId);
         if (getListOfLatestMeasurementsBySensorType(typeId).isEmpty()) {
             return null;
         }
-        RoomReading latestReading = listOfLatestReadings.get(0);
-        for (RoomReading reading : listOfLatestReadings) {
+        Reading latestReading = listOfLatestReadings.get(0);
+        for (Reading reading : listOfLatestReadings) {
             if (reading.getDateTime().isAfter(latestReading.getDateTime())) {
                 latestReading = reading;
             }
@@ -51,8 +50,8 @@ public class RoomSensorList {
         return latestReading;
     }
 
-    public List<RoomReading> getListOfLatestMeasurementsBySensorType(SensorTypeId typeId) {
-        List<RoomReading> listOfLatestReadings = new ArrayList<>();
+    public List<Reading> getListOfLatestMeasurementsBySensorType(SensorTypeId typeId) {
+        List<Reading> listOfLatestReadings = new ArrayList<>();
         for (RoomSensor sensor : listOfSensors) {
             if (sensor.isMeasurementListEmpty()) {
                 break;

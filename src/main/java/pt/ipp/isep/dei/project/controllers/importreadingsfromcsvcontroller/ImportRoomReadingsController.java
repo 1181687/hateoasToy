@@ -3,7 +3,6 @@ package pt.ipp.isep.dei.project.controllers.importreadingsfromcsvcontroller;
 import org.springframework.beans.factory.annotation.Autowired;
 import pt.ipp.isep.dei.project.model.ProjectFileReader;
 import pt.ipp.isep.dei.project.model.ReadingDTO;
-import pt.ipp.isep.dei.project.model.RoomReading;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensorList;
@@ -62,7 +61,7 @@ public class ImportRoomReadingsController {
     public int getNumberOfNotImportedReadings() {
         return this.numberOfNotImportedReadings;
     }
-
+/*
     public boolean addReadingToRoomSensorById() {
         boolean imported = false;
         for (Object object : this.readingDTOList) {
@@ -82,7 +81,7 @@ public class ImportRoomReadingsController {
             }
         }
         return imported;
-    }
+    }*/
 
     private boolean readingValidations(ReadingDTO reading) {
         if (Objects.isNull(roomSensor)) {
