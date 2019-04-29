@@ -3,22 +3,16 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
-import org.springframework.test.context.support.AnnotationConfigContextLoader;
-import pt.ipp.isep.dei.project.io.ui.Main;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
-import pt.ipp.isep.dei.project.model.sensor.SensorType;
-import pt.ipp.isep.dei.project.repositories.GeoAreaRepository;
+import pt.ipp.isep.dei.project.model.sensor.SensorId;
+import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 import pt.ipp.isep.dei.project.services.GeographicalAreaService;
 
 import java.util.ArrayList;
@@ -28,19 +22,12 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-@ContextConfiguration(classes = {Main.class},
-        loader = AnnotationConfigContextLoader.class)
-@SpringJUnitConfig(GeographicalAreaServiceTest.Config.class)
-@DataJpaTest
 public class GeographicalAreaServiceTest {
-    @InjectMocks
+    @Mock
     private GeographicalAreaService geoAreaList;
     private GeographicalArea portoCity;
     private GeographicalArea bonfimStreet;
     private GeoAreaSensor sensor;
-
-    @Mock
-    private GeoAreaRepository geoAreaRepository;
 
     @BeforeEach
     public void StartUp() {
@@ -55,8 +42,8 @@ public class GeographicalAreaServiceTest {
 
         // GeoAreaSensor
         Location location = new Location(41.1496, -8.6109, 97);
-        SensorType temperature = new SensorType("Temperature");
-        sensor = new GeoAreaSensor("s1", "TT123123", temperature, location, "l/m2");
+        SensorTypeId temperature = new SensorTypeId("Temperature");
+        sensor = new GeoAreaSensor(new SensorId("s1"), "TT123123", temperature, location, "l/m2");
         portoCity.getSensorListInTheGeographicArea().addSensor(sensor);
     }
 
