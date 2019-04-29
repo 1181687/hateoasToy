@@ -157,7 +157,7 @@ public class Main {
         // Inserted Geo Area (Campus do ISEP)
         Location location2 = new Location(41.178553, -8.608035, 111);
         sensorTypeList = new SensorTypeList();
-        AreaShape areaShape = new AreaShape(0.261, 0.249, location2);
+        AreaShape areaShape = new AreaShape(0.261, 0.249);
         GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Urban area");
         GeographicalArea insertedGeoArea = new GeographicalArea("DUMMY", "DUMMY", geographicalAreaType, location2, areaShape);
 

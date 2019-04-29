@@ -48,7 +48,7 @@ public class RemoveSensorFromGeoAreaControllerTest {
         // Geographical Area
         GeographicalAreaType city = new GeographicalAreaType("City");
         Location location = new Location(41.1496, -8.6109, 97);
-        AreaShape shape = new AreaShape(10, 10, location);
+        AreaShape shape = new AreaShape(10, 10);
         porto = new GeographicalArea("Porto", "City of Porto", city, location, shape);
         geographicalAreaService.addGeoArea(porto);
 

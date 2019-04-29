@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ReadingTest {
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testHashCode() {
         //Arrange
         LocalDateTime date = LocalDateTime.of(2018, 2, 3, 12, 30);
@@ -36,7 +36,7 @@ public class ReadingTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void equals_WithReadingsWithDifferentDateAndSameValue_ShouldReturnFalse() {
         //Arrange
         LocalDateTime date = LocalDateTime.of(2018, 2, 3, 12, 30);
@@ -49,7 +49,7 @@ public class ReadingTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void equals_WithReadingsWithDifferentValueAndSameDate_ShouldReturnFalse() {
         //Arrange
         LocalDateTime date = LocalDateTime.of(2018, 2, 3, 12, 30);
@@ -73,7 +73,7 @@ public class ReadingTest {
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void equals_ComparingSameReading_ShouldReturnTrue() {
         //Arrange
         LocalDateTime date = LocalDateTime.of(2018, 2, 3, 12, 30);

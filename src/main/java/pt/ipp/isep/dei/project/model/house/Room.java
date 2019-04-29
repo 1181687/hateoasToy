@@ -2,7 +2,6 @@ package pt.ipp.isep.dei.project.model.house;
 
 import pt.ipp.isep.dei.project.model.Measurable;
 import pt.ipp.isep.dei.project.model.Reading;
-import pt.ipp.isep.dei.project.model.RoomReading;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
@@ -229,8 +228,8 @@ public double getMaximumMeasurementInGivenDay(SensorType type, LocalDate date) {
      */
 
 
-    public RoomReading getLatestMeasurementBySensorType(SensorTypeId sensorTypeId) {
-        return new RoomReading(sensorList.getLatestMeasurementBySensorType(sensorTypeId).getValue(), sensorList.getLatestMeasurementBySensorType(sensorTypeId).getDateTime());
+    public Reading getLatestMeasurementBySensorType(SensorTypeId sensorTypeId) {
+        return new Reading(sensorList.getLatestMeasurementBySensorType(sensorTypeId).getValue(), sensorList.getLatestMeasurementBySensorType(sensorTypeId).getDateTime());
     }
 
 
