@@ -198,4 +198,10 @@ public class GeoAreaSensorService {
         return listOfDaysWithoutComfortTemp;
     }
 
+    public boolean existsDaysWithoutComfortTemp(Map<LocalDate, List<Double>> mapComfortDailyTemperature) {
+        return !getDaysWithoutComfortTemp(mapComfortDailyTemperature).isEmpty();
+    }
+
+
+
 }

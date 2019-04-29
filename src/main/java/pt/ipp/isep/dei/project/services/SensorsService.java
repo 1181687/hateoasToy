@@ -49,8 +49,7 @@ public class SensorsService {
     }
 
     public boolean existsInstantsOutOfComfortLevel(Map<LocalDateTime, Double> mapOfInstantsOutOfComfortLevel) {
-        List<LocalDateTime> listOfInstants = getInstantListOutOfComfortLevel(mapOfInstantsOutOfComfortLevel);
-        return !listOfInstants.isEmpty();
+        return !getInstantListOutOfComfortLevel(mapOfInstantsOutOfComfortLevel).isEmpty();
     }
 
 }
