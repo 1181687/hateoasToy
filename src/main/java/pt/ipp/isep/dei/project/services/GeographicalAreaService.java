@@ -9,6 +9,7 @@ import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorList;
+import pt.ipp.isep.dei.project.model.sensor.SensorId;
 import pt.ipp.isep.dei.project.repositories.GeoAreaRepository;
 
 import java.util.ArrayList;
@@ -239,7 +240,7 @@ public class GeographicalAreaService {
         return null;
     }
 
-    public GeoAreaSensor getSensorById(String id) {
+    public GeoAreaSensor getSensorById(SensorId id) {
         return getAllSensors().getSensorById(id);
     }
 

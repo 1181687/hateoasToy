@@ -1,3 +1,4 @@
+/*
 package pt.ipp.isep.dei.project.modelTests;
 
 
@@ -47,9 +48,11 @@ public class GeographicalAreaServiceTest {
         portoCity.getSensorListInTheGeographicArea().addSensor(sensor);
     }
 
-    /**
+    */
+/**
      * test that doesn't add a new geo area because it already exists
-     */
+     *//*
+
     @Test
     public void testAddGeoAreaAlreadyThere_boolean_False() {
         // Act
@@ -246,9 +249,11 @@ public class GeographicalAreaServiceTest {
         assertNull(result);
     }
 
-    /**
+    */
+/**
      * Test that tries to get all the sensors in all the geo areas, which returns a list of Sensors.
-     */
+     *//*
+
     @Test
     public void getAllSensorsTest() {
         // Arrange
@@ -262,9 +267,11 @@ public class GeographicalAreaServiceTest {
         assertEquals(expectedResult, result);
     }
 
-    /**
+    */
+/**
      * Test that tries to use a valid/existing Id to search for a GeoAreaSensor, which results in True.
-     **/
+     **//*
+
     @Test
     public void testCheckIfGeoAreaExistsById_tryingToTestAnExistingId_ShouldReturnTrue() {
         // Act
@@ -274,9 +281,11 @@ public class GeographicalAreaServiceTest {
         assertTrue(result);
     }
 
-    /**
+    */
+/**
      * Test that tries to use an invalid/non-existing Id to search for a GeoArea, which results in False.
-     **/
+     **//*
+
     @Test
     public void testCheckIfGeoExistsById_tryingToTestANonExistingId_ShouldReturnFalse() {
         // Act
@@ -286,9 +295,11 @@ public class GeographicalAreaServiceTest {
         assertFalse(result);
     }
 
-    /**
+    */
+/**
      * Test that tries to use a valid/existing Id to get a geographical area, which turns out fine.
-     **/
+     **//*
+
     @Test
     public void testGetGeoAreaById_tryingToTestAnExistingId_ShouldReturnTheCorrespondingGeoArea() {
         // Arrange
@@ -301,9 +312,11 @@ public class GeographicalAreaServiceTest {
         assertEquals(expectedResult, result);
     }
 
-    /**
+    */
+/**
      * Test that tries to use a invalid/non-existing Id to get a geographical area, which returns null.
-     **/
+     **//*
+
     @Test
     public void testGetGeoAreaById_tryingToTestANonExistingId_ShouldReturnNull() {
         // Act
@@ -313,9 +326,11 @@ public class GeographicalAreaServiceTest {
         assertNull(result);
     }
 
-    /**
+    */
+/**
      * Test that finds a sensor in all of the geographical areas by its Id
-     **/
+     **//*
+
     @Test
     public void testGetSensorById_ExistingId_ShouldReturnTheSensor() {
         // Act
@@ -325,9 +340,11 @@ public class GeographicalAreaServiceTest {
         assertEquals(sensor, result);
     }
 
-    /**
+    */
+/**
      * Test that tries to finds a sensor in all of the geographical areas by its Id but there are non.
-     **/
+     **//*
+
     @Test
     public void testGetSensorById_IdDoesNotExist_ShouldReturnNull() {
         // Act
@@ -340,4 +357,4 @@ public class GeographicalAreaServiceTest {
     @Configuration
     static class Config {
     }
-}
+}*/

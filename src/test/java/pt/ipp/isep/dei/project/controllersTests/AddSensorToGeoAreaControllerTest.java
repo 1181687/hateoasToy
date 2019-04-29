@@ -1,7 +1,29 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
 
-/*
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
+import org.springframework.test.context.support.AnnotationConfigContextLoader;
+import pt.ipp.isep.dei.project.controllers.AddSensorToGeoAreaController;
+import pt.ipp.isep.dei.project.io.ui.Main;
+import pt.ipp.isep.dei.project.model.Location;
+import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
+import pt.ipp.isep.dei.project.model.sensor.SensorType;
+import pt.ipp.isep.dei.project.model.sensor.SensorTypeList;
+import pt.ipp.isep.dei.project.repositories.GeoAreaRepository;
+import pt.ipp.isep.dei.project.services.GeographicalAreaService;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @ContextConfiguration(classes = {Main.class},
@@ -22,7 +44,7 @@ public class AddSensorToGeoAreaControllerTest {
         MockitoAnnotations.initMocks(this);
         //Geographical Area
         Location location = new Location(41.178553, -8.608035, 111);
-        AreaShape areaShape = new AreaShape(0.261, 0.249);
+        AreaShape areaShape = new AreaShape(0.261, 0.249, location);
         GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Urban area");
         this.campusDoIsep = new GeographicalArea("ISEP", "Campus do ISEP", geographicalAreaType, location, areaShape);
 
@@ -64,13 +86,13 @@ public class AddSensorToGeoAreaControllerTest {
         String nomeAG2 = "Espinho";
         GeographicalAreaType tipo2 = new GeographicalAreaType("Cidade");
         Location local2 = new Location(41.1496, -8.6109, 97);
-        AreaShape area2 = new AreaShape(10, 10);
+        AreaShape area2 = new AreaShape(10, 10, local2);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, "Cidade de Espinho", tipo2, local2, area2);
 
         String nomeAG3 = "Ancora";
         GeographicalAreaType tipo3 = new GeographicalAreaType("Cidade");
         Location local3 = new Location(41.1496, -8.6109, 97);
-        AreaShape area3 = new AreaShape(10, 10);
+        AreaShape area3 = new AreaShape(10, 10, local3);
         GeographicalArea ag3 = new GeographicalArea(nomeAG3, "Cidade de Ancora", tipo3, local3, area3);
 
 
@@ -95,13 +117,13 @@ public class AddSensorToGeoAreaControllerTest {
         String nomeAG2 = "Espinho";
         GeographicalAreaType tipo2 = new GeographicalAreaType("Cidade");
         Location local2 = new Location(41.1496, -8.6109, 97);
-        AreaShape area2 = new AreaShape(10, 10);
+        AreaShape area2 = new AreaShape(10, 10, local2);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, "Cidade de Espinho", tipo2, local2, area2);
 
         String nomeAG3 = "Ancora";
         GeographicalAreaType tipo3 = new GeographicalAreaType("Cidade");
         Location local3 = new Location(41.1496, -8.6109, 97);
-        AreaShape area3 = new AreaShape(10, 10);
+        AreaShape area3 = new AreaShape(10, 10, local3);
         GeographicalArea ag3 = new GeographicalArea(nomeAG3, "Cidade de Ancora", tipo3, local3, area3);
 
         geographicalAreaService.addGeoArea(campusDoIsep);
@@ -143,7 +165,7 @@ public class AddSensorToGeoAreaControllerTest {
         String nomeAG2 = "Ancora";
         GeographicalAreaType tipo2 = new GeographicalAreaType("Cidade");
         Location local2 = new Location(41.1496, -8.6109, 97);
-        AreaShape area2 = new AreaShape(10, 10);
+        AreaShape area2 = new AreaShape(10, 10, local2);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, "Cidade de Ancora", tipo2, local2, area2);
 
 
@@ -312,4 +334,4 @@ public class AddSensorToGeoAreaControllerTest {
     @Configuration
     static class Config {
     }
-}*/
+}
