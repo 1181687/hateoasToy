@@ -123,7 +123,6 @@ class AddSensorToGeoAreaControllerTest {
         SensorId geoAreaSensorId = new SensorId("geoAreaSensorId");
         SensorTypeId sensorTypeId = new SensorTypeId("Humidity");
         Location location = new Location(123, 456, 789);
-        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("city");
 
         GeoAreaSensor geoAreaSensor = new GeoAreaSensor(geoAreaSensorId, "GeoAreaSensor", sensorTypeId, location, "1m/s");
 
