@@ -9,6 +9,7 @@ import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorId;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 import pt.ipp.isep.dei.project.repositories.GeoAreaSensorRepository;
+import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -149,5 +150,36 @@ public class GeoAreaSensorService {
             }
         }
         return mapOfDailyAverages;
+    }
+
+    /**
+     * receives a map of Daily Averages in a interval, and gets Map<LocalDate, List<Double>> with list of the Comfort Temperature Min
+     * and Max for category One, organized By LocalDate
+     *
+     * @param mapOfDailyAverages map of Daily Averages in a interval organized by day
+     * @return Map<LocalDate, List < Double>> map with List of Comfort Temperature Min and Max,  By Day
+     */
+    public Map<LocalDate, List<Double>> getMapComfortTemperatureMinMaxByDayIntervalCategoryOne(Map<LocalDate, Double> mapOfDailyAverages) {
+        Map<LocalDate, List<Double>> mapComfortTemperatureMinMaxByDay = new HashMap<>();
+        Map<LocalDate, Double> cleanList = Utils.removeDoubleNanHashMap(mapOfDailyAverages);
+
+        Set<Map.Entry<LocalDate, Double>> setCleanList = cleanList.entrySet();
+
+        if (!setCleanList.isEmpty()) {
+
+            for (Map.Entry<LocalDate, Double> dailyAverage : setCleanList) {
+
+                double tempComfortMin = 0.33 * dailyAverage.getValue() + 18.8 - 2;
+                double tempComfortMax = 0.33 * dailyAverage.getValue() + 18.8 + 2;
+                LocalDate localDate = dailyAverage.getKey();
+
+                mapComfortTemperatureMinMaxByDay.put(localDate, new ArrayList<>());
+                if (!Double.isNaN(tempComfortMax) || !Double.isNaN(tempComfortMin)) {
+                    mapComfortTemperatureMinMaxByDay.get(localDate).add(tempComfortMin);
+                    mapComfortTemperatureMinMaxByDay.get(localDate).add(tempComfortMax);
+                }
+            }
+        }
+        return mapComfortTemperatureMinMaxByDay;
     }
 }
