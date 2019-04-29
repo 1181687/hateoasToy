@@ -58,7 +58,7 @@ public class DeactivateSensorFromGeoAreaControllerTest {
         this.controller = new DeactivateSensorFromGeoAreaController(geographicalAreaService);
     }
 
-    @Test
+    /*@Test
     public void testDeactivateDevice_ChecksDeactivated_True() {
         // Act
         when(geographicalAreaService.getSensorById(anyString())).thenReturn(temperatureSensor);
@@ -78,7 +78,7 @@ public class DeactivateSensorFromGeoAreaControllerTest {
         boolean result = temperatureSensor.deactivateDevice();
         // Assert
         assertFalse(result);
-    }
+    }*/
 
     @Test
     public void testListOfGeographicalAreas() {

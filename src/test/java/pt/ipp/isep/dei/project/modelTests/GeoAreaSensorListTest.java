@@ -344,7 +344,8 @@ class GeoAreaSensorListTest {
         GeoAreaSensor expectedResult = temperatureSensor1;
 
         // Act
-        GeoAreaSensor result = geoAreaSensorList.getSensorById("s1");
+        SensorId sensorId = new SensorId("s1");
+        GeoAreaSensor result = geoAreaSensorList.getSensorById(sensorId);
 
         // Assert
         assertEquals(expectedResult, result);
@@ -353,7 +354,8 @@ class GeoAreaSensorListTest {
     @Test
     public void getSensorByIdNullTest() {
         // Act
-        GeoAreaSensor result = geoAreaSensorList.getSensorById("s14123");
+        SensorId sensorId = new SensorId("s14123");
+        GeoAreaSensor result = geoAreaSensorList.getSensorById(sensorId);
 
         // Assert
         assertEquals(null, result);
@@ -440,7 +442,8 @@ class GeoAreaSensorListTest {
         GeoAreaSensor expectedResult = temperatureSensor1;
 
         // Act
-        GeoAreaSensor result = geoAreaSensorList.getSensorById("s1");
+        SensorId sensorId = new SensorId("s1");
+        GeoAreaSensor result = geoAreaSensorList.getSensorById(sensorId);
 
         //
         assertEquals(expectedResult, result);
@@ -452,7 +455,8 @@ class GeoAreaSensorListTest {
     @Test
     void testGetSensorById_tryingToTestANonExistingId_ShouldReturnNull() {
         // Act
-        GeoAreaSensor result = geoAreaSensorList.getSensorById("FUKU");
+        SensorId sensorId = new SensorId("s11241");
+        GeoAreaSensor result = geoAreaSensorList.getSensorById(sensorId);
 
         //
         assertEquals(null, result);
@@ -490,7 +494,8 @@ class GeoAreaSensorListTest {
     @Test
     public void testRemoveSensorById_tryingWithAnExistingId_ShouldReturnTrue() {
         // Act
-        boolean result = geoAreaSensorList.removeSensorById("s1");
+        SensorId sensorId = new SensorId("s1");
+        boolean result = geoAreaSensorList.removeSensorById(sensorId);
 
         // Assert
         assertTrue(result);
@@ -502,7 +507,8 @@ class GeoAreaSensorListTest {
     @Test
     public void testRemoveSensorById_tryingWithANonExistingId_ShouldReturnFalse() {
         // Act
-        boolean result = geoAreaSensorList.removeSensorById("s11241");
+        SensorId sensorId = new SensorId("s11241");
+        boolean result = geoAreaSensorList.removeSensorById(sensorId);
 
         // Assert
         assertFalse(result);
