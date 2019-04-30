@@ -25,7 +25,7 @@ public class Admin {
 
 
     public Admin(GeographicalAreaTypeList geographicalAreaTypeList, GeographicalAreaService geographicalAreaService,
-                 GeoAreaTypeService geoAreaTypeService, SensorTypeList sensorTypeList, House house, PowerSourceTypeList powerSourceTypeList, RoomList roomList, HouseService houseService, GeoAreaSensorService geoAreaSensorService, RoomSensorService roomSensorService, SensorTypeService sensorTypeService) {
+                 GeoAreaTypeService geoAreaTypeService, SensorTypeList sensorTypeList, PowerSourceTypeList powerSourceTypeList, RoomList roomList, HouseService houseService, GeoAreaSensorService geoAreaSensorService, RoomSensorService roomSensorService, SensorTypeService sensorTypeService) {
         this.geographicalAreaTypeList = geographicalAreaTypeList;
         this.geographicalAreaService = geographicalAreaService;
         this.geoAreaTypeService = geoAreaTypeService;

@@ -7,7 +7,10 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import pt.ipp.isep.dei.project.controllers.deactivatesensorfromgeoarea.DeactivateSensorFromGeoAreaController;
 import pt.ipp.isep.dei.project.model.Location;
-import pt.ipp.isep.dei.project.model.geographicalarea.*;
+import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaTypeId;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.sensor.*;
 import pt.ipp.isep.dei.project.services.GeographicalAreaService;
 
@@ -15,17 +18,14 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.mockito.Mockito.anyString;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 public class DeactivateSensorFromGeoAreaControllerTest {
     private DeactivateSensorFromGeoAreaController controller;
     private GeographicalArea porto;
-    private GeographicalAreaDTO portoDTO;
     private GeoAreaSensor temperatureSensor;
-    private GeoAreaSensorDTO temperatureSensorDTO;
 
     @Mock
     private GeographicalAreaService geographicalAreaService;
@@ -41,9 +41,6 @@ public class DeactivateSensorFromGeoAreaControllerTest {
         porto = new GeographicalArea("Porto", "City of Porto", city, location, shape);
         geographicalAreaService.addGeoArea(porto);
 
-        // Geographical Area DTO
-        portoDTO = GeographicalAreaMapper.mapToDTOwithSensors(porto);
-
         // Sensors
         SensorTypeId temperature = new SensorTypeId("temperature");
         LocalDateTime startDate = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
@@ -52,17 +49,14 @@ public class DeactivateSensorFromGeoAreaControllerTest {
         temperatureSensor = new GeoAreaSensor(sensorId, "A123", startDate, temperature, sensorLocation, "l/m2");
         porto.addSensor(temperatureSensor);
 
-        // SensorDTOs
-        temperatureSensorDTO = GeoAreaSensorMapper.mapToDTO(temperatureSensor);
-
         // Controller
         this.controller = new DeactivateSensorFromGeoAreaController(geographicalAreaService);
     }
 
-    /*@Test
+    @Test
     public void testDeactivateDevice_ChecksDeactivated_True() {
         // Act
-        when(geographicalAreaService.getSensorById(anyString())).thenReturn(temperatureSensor);
+        when(geographicalAreaService.getSensorById(any(SensorId.class))).thenReturn(temperatureSensor);
         temperatureSensor.deactivateDevice();
 
         boolean result = temperatureSensor.isActive();
@@ -71,15 +65,38 @@ public class DeactivateSensorFromGeoAreaControllerTest {
     }
 
     @Test
+    public void testDeactivateDevice_DeviceActive_ReturnsTrue() {
+        // Act
+        GeoAreaSensorDTO geoAreaSensorDTO = GeoAreaSensorMapper.mapToDTO(temperatureSensor);
+        when(geographicalAreaService.getSensorById(any(SensorId.class))).thenReturn(temperatureSensor);
+
+        boolean result = controller.deactivateSensor(geoAreaSensorDTO);
+        // Assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void testDeactivateDevice_DeviceDeactivated_ReturnsFalse() {
+        // Act
+        temperatureSensor.deactivateDevice();
+        GeoAreaSensorDTO geoAreaSensorDTO = GeoAreaSensorMapper.mapToDTO(temperatureSensor);
+        when(geographicalAreaService.getSensorById(any(SensorId.class))).thenReturn(temperatureSensor);
+
+        boolean result = controller.deactivateSensor(geoAreaSensorDTO);
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
     public void testDeactivateDevice_ChecksDeactivated_DeviceAlreadyDeactivated() {
         // Act
-        when(geographicalAreaService.getSensorById(anyString())).thenReturn(temperatureSensor);
+        when(geographicalAreaService.getSensorById(any(SensorId.class))).thenReturn(temperatureSensor);
         temperatureSensor.deactivateDevice();
 
         boolean result = temperatureSensor.deactivateDevice();
         // Assert
         assertFalse(result);
-    }*/
+    }
 
     @Test
     public void testListOfGeographicalAreas() {
@@ -90,9 +107,7 @@ public class DeactivateSensorFromGeoAreaControllerTest {
 
         when(geographicalAreaService.getGeoAreaList()).thenReturn(geographicalAreaList);
 
-        GeographicalAreaDTO geographicalAreaDTO = GeographicalAreaMapper.mapToDTO(geographicalAreaList.get(0));
-
-        String expectedResult = geographicalAreaDTO.getId();
+        String expectedResult = controller.listOfGeographicalAreas().get(0).getId();
 
         // Act
         String result = "Porto";

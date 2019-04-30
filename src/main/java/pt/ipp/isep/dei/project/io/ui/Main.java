@@ -104,7 +104,7 @@ public class Main {
             data();
 
             //UI levels
-            Admin admin = new Admin(geographicalAreaTypeList, geographicalAreaService, sensorTypeList, houseEdificioB, powerSourceTypeList, houseEdificioB.getRoomList(), houseService, geoAreaSensorService, roomSensorService, sensorTypeService);
+            Admin admin = new Admin(geographicalAreaTypeList, geographicalAreaService, geoAreaTypeService, sensorTypeList, powerSourceTypeList, houseEdificioB.getRoomList(), houseService, geoAreaSensorService, roomSensorService, sensorTypeService);
             RegularUser regularUser = new RegularUser(geographicalAreaTypeList, geographicalAreaService, sensorTypeList, houseService);
             PowerUser powerUser = new PowerUser(houseService);
             RoomOwner roomOwner = new RoomOwner(houseService);
