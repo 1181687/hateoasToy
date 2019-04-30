@@ -7,6 +7,7 @@ import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaTypeId;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.house.Address;
@@ -32,8 +33,9 @@ public class GetEnergyConsumptionControllerTest {
     public void StartUp() {
         //Geographical Area
         Location location = new Location(41.178553, -8.608035, 111);
-        AreaShape areaShape = new AreaShape(0.261, 0.249, location);
-        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Urban area");
+        AreaShape areaShape = new AreaShape(0.261, 0.249);
+        GeoAreaTypeId geoAreaTypeId3 = new GeoAreaTypeId("Urban area");
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType(geoAreaTypeId3);
         GeographicalArea insertedGeoArea = new GeographicalArea("ISEP", "Campus do ISEP", geographicalAreaType, location, areaShape);
 
         //House

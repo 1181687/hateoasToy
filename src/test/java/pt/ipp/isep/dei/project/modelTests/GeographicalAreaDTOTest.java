@@ -1,3 +1,4 @@
+/*
 package pt.ipp.isep.dei.project.modelTests;
 
 
@@ -5,10 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
-import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
-import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorDTO;
-import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorMapper;
-import pt.ipp.isep.dei.project.model.sensor.SensorType;
+import pt.ipp.isep.dei.project.model.sensor.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -20,7 +18,7 @@ public class GeographicalAreaDTOTest {
 
     private GeographicalAreaDTO portoCity;
     private GeoAreaSensorDTO temperatureSensor;
-    private SensorType temperature;
+    private SensorTypeId temperature;
 
     @BeforeEach
     public void StartUp() {
@@ -31,17 +29,19 @@ public class GeographicalAreaDTOTest {
         portoCity.setType("City");
 
         // Sensors
-        temperature = new SensorType("Temperature");
+        temperature = new SensorTypeId("Temperature");
         LocalDateTime startDate = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         Location sensorLocation = new Location(42.1596, -8.6109, 97);
-        GeoAreaSensor sensor = new GeoAreaSensor("123", "A123", startDate, temperature, sensorLocation, "l/m2");
+        GeoAreaSensor sensor = new GeoAreaSensor(new SensorId("123"), "A123", startDate, temperature, sensorLocation, "l/m2");
         temperatureSensor = GeoAreaSensorMapper.mapToDTO(sensor);
         portoCity.addSensor(temperatureSensor);
     }
 
-    /**
+    */
+/**
      * get method for ID, ID S001
-     */
+     *//*
+
     @Test
     public void testGetIdTest_getId_S001() {
         // arrange
@@ -52,9 +52,11 @@ public class GeographicalAreaDTOTest {
         assertEquals(expectedResult, result);
     }
 
-    /**
+    */
+/**
      * set method for ID, changes ID to S002
-     */
+     *//*
+
     @org.junit.jupiter.api.Test
     public void testsetId_changeId_S002() {
         // arrange
@@ -66,9 +68,11 @@ public class GeographicalAreaDTOTest {
         assertEquals(expectedResult, result);
     }
 
-    /**
+    */
+/**
      * get method for GeoAreaSensor, Sensor1
-     */
+     *//*
+
     @Test
     public void getSensorNameTest_getSensorName_Sensor1() {
         // arrange
@@ -79,9 +83,11 @@ public class GeographicalAreaDTOTest {
         assertEquals(expectedResult, result);
     }
 
-    /**
+    */
+/**
      * set method for sensor, changes name to Sensor2
-     */
+     *//*
+
     @org.junit.jupiter.api.Test
     public void setSensorNameTest_changeSensorName_Sensor2() {
         // arrange
@@ -93,9 +99,11 @@ public class GeographicalAreaDTOTest {
         assertEquals(expectedResult, result);
     }
 
-    /**
+    */
+/**
      * get method for I, ID S001
-     */
+     *//*
+
     @Test
     public void getGeographicalAreaTypeTest_getGeoAreaType_City() {
         // arrange
@@ -107,9 +115,11 @@ public class GeographicalAreaDTOTest {
 
     }
 
-    /**
+    */
+/**
      * set method for geographicalareatype, changes type to newGeoArea
-     */
+     *//*
+
     @org.junit.jupiter.api.Test
     public void setGeographicalAreaTypeTest_newGeoAreaType_NewGeoArea() {
         // arrange
@@ -121,9 +131,11 @@ public class GeographicalAreaDTOTest {
         assertEquals(expectedResult, result);
     }
 
-    /**
+    */
+/**
      * set and get methods for width changes width to 10.0
-     */
+     *//*
+
     @Test
     public void setAndGetWidthTest_getWidthAndChangeWidth_10() {
         // arrange
@@ -135,9 +147,11 @@ public class GeographicalAreaDTOTest {
         assertEquals(expectedResult, result, 0.001);
     }
 
-    /**
+    */
+/**
      * set and get methods for length changes length to 15.0
-     */
+     *//*
+
     @Test
     public void setAndGetLengthTest_getLengthAndChangeLength_15() {
         // arrange
@@ -151,9 +165,11 @@ public class GeographicalAreaDTOTest {
         assertEquals(expectedResult, result, 0.001);
     }
 
-    /**
+    */
+/**
      * set and get methods for latitude changes latitude to 20.0
-     */
+     *//*
+
     @Test
     public void setAndGetLatitudeTest_getLatitudeAndChangeLatitude_20() {
         // arrange
@@ -167,9 +183,11 @@ public class GeographicalAreaDTOTest {
         assertEquals(expectedResult, result, 0.001);
     }
 
-    /**
+    */
+/**
      * set and get methods for longitude changes longitude to 25.0
-     */
+     *//*
+
     @org.junit.jupiter.api.Test
     public void setAndGetLongitudeTest_getLongitudeAndChangeLongitude_25() {
         // arrange
@@ -183,9 +201,11 @@ public class GeographicalAreaDTOTest {
         assertEquals(expectedResult, result, 0.001);
     }
 
-    /**
+    */
+/**
      * set and get methods for altitude changes altitude to 30.0
-     */
+     *//*
+
     @Test
     public void setAndGetAltitudeTest_getAltitudeAndChangeAltitude_30() {
         // arrange
@@ -199,9 +219,11 @@ public class GeographicalAreaDTOTest {
         assertEquals(expectedResult, result, 0.001);
     }
 
-    /**
+    */
+/**
      * get methods for sensor, returns temperature GeoAreaSensor
-     */
+     *//*
+
     @Test
     public void getSensors_get_temperatureSensor() {
         //arrange
@@ -217,3 +239,4 @@ public class GeographicalAreaDTOTest {
     }
 }
 
+*/

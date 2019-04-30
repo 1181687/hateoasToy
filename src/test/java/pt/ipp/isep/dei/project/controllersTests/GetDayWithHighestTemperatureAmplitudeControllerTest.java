@@ -2,10 +2,11 @@ package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.controllers.getDayWithHighestTemperatureAmplitudeController.GetDayWithHighestTemperatureAmplitudeController;
+import pt.ipp.isep.dei.project.controllers.getdaywithhighesttemperatureamplitudecontroller.GetDayWithHighestTemperatureAmplitudeController;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaTypeId;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.house.Address;
@@ -36,20 +37,23 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
     @BeforeEach
     public void StartUp() {
         // Geographical Area Types
-        GeographicalAreaType region = new GeographicalAreaType("Region");
-        GeographicalAreaType district = new GeographicalAreaType("District");
-        GeographicalAreaType city = new GeographicalAreaType("City");
+        GeoAreaTypeId regionId = new GeoAreaTypeId("Region");
+        GeoAreaTypeId districtId = new GeoAreaTypeId("District");
+        GeoAreaTypeId cityId = new GeoAreaTypeId("City");
+        GeographicalAreaType region = new GeographicalAreaType(regionId);
+        GeographicalAreaType district = new GeographicalAreaType(districtId);
+        GeographicalAreaType city = new GeographicalAreaType(cityId);
 
         // Geographical Areas
         Location location = new Location(32.1496, 7.6109, 98);
-        AreaShape areaShape = new AreaShape(100, 100, location);
+        AreaShape areaShape = new AreaShape(100, 100);
         northernRegion = new GeographicalArea("Norte", "Northern Region", region, location, areaShape);
         Location location1 = new Location(41.1496, -6.6109, 100);
-        AreaShape areaShape1 = new AreaShape(40, 40, location1);
+        AreaShape areaShape1 = new AreaShape(40, 40);
         portoDistrict = new GeographicalArea("Distrito do Porto", "Porto District", district, location1, areaShape1);
         portoDistrict.setInsertedIn(northernRegion);
         this.location2 = new Location(42.1496, -8.6109, 97);
-        AreaShape areaShape2 = new AreaShape(10, 10, location2);
+        AreaShape areaShape2 = new AreaShape(10, 10);
         portoCity = new GeographicalArea("Porto", "Porto City", city, location2, areaShape2);
         portoCity.setInsertedIn(portoDistrict);
 

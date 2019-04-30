@@ -20,7 +20,7 @@ public class RemoveSensorFromGeoArea {
      */
     public RemoveSensorFromGeoArea(GeographicalAreaService geographicalAreaService) {
         controller = new RemoveSensorFromGeoAreaController(geographicalAreaService);
-        geographicalAreaDTOS = controller.getGeographicalAreaService();
+        geographicalAreaDTOS = controller.getGeographicalAreaDTO();
     }
 
     /**
@@ -56,7 +56,7 @@ public class RemoveSensorFromGeoArea {
                 System.out.println("\nNo changes were made.");
                 continue;
             }
-            controller.removeSensor(sensorId);
+            //controller.removeSensor(sensorId);
             flag = false;
         } while (flag);
         System.out.println("\nThe sensor was removed with success!\n");

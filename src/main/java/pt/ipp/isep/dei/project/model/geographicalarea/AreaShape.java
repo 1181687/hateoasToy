@@ -20,9 +20,8 @@ public class AreaShape implements ValueObject {
      * constructor of AreaShape that receives a width, a length and a locationAreaShape.
      * @param width
      * @param length
-     * @param locationAreaShape
      */
-    public AreaShape(double width, double length, Location locationAreaShape) {
+    public AreaShape(double width, double length) {
         this.length = length;
         this.width = width;
         this.locationAreaShape = locationAreaShape;

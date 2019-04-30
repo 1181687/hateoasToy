@@ -1,7 +1,6 @@
 package pt.ipp.isep.dei.project.model.geographicalarea;
 
 import pt.ipp.isep.dei.project.model.Location;
-import pt.ipp.isep.dei.project.model.LocationDTO;
 import pt.ipp.isep.dei.project.model.LocationMapper;
 
 import java.util.Objects;
@@ -27,12 +26,9 @@ public final class GeoAreaIdMapper {
         if (Objects.isNull(geoAreaIdDTO)) {
             return null;
         }
-
-        LocationDTO locationDTO = new LocationDTO();
-        Location location = LocationMapper.mapToEntity(locationDTO);
-        GeographicalAreaType geoAreaType = new GeographicalAreaType();
-
+        Location location = LocationMapper.mapToEntity(geoAreaIdDTO.getLocationDTO());
+        GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId(geoAreaIdDTO.getGeoAreaType());
+        GeographicalAreaType geoAreaType = new GeographicalAreaType(geoAreaTypeId);
         return new GeoAreaId(location, geoAreaIdDTO.getId(), geoAreaType);
-
     }
 }

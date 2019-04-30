@@ -13,6 +13,7 @@ import pt.ipp.isep.dei.project.controllers.InsertedGeoAreaController;
 import pt.ipp.isep.dei.project.io.ui.Main;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaTypeId;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.repositories.GeoAreaRepository;
@@ -39,14 +40,16 @@ public class InsertedGeoAreaControllerTest {
     @BeforeEach
     public void StartUp() {
         //Geographical Area
-        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
+        GeoAreaTypeId geoAreaTypeId1 = new GeoAreaTypeId("Cidade");
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType(geoAreaTypeId1);
         Location local1 = new Location(41.1496, -8.6109, 97);
-        AreaShape area1 = new AreaShape(10, 10, local1);
+        AreaShape area1 = new AreaShape(10, 10);
         this.CidadeDoPorto = new GeographicalArea("Porto", "Cidade do Porto", geographicalAreaType, local1, area1);
 
-        GeographicalAreaType geographicalAreaType2 = new GeographicalAreaType("Rua");
+        GeoAreaTypeId geoAreaTypeId2 = new GeoAreaTypeId("Rua");
+        GeographicalAreaType geographicalAreaType2 = new GeographicalAreaType(geoAreaTypeId2);
         Location local2 = new Location(41.1496, -8.6109, 97);
-        AreaShape area2 = new AreaShape(10, 10, local1);
+        AreaShape area2 = new AreaShape(10, 10);
         this.RuaDoBonfim = new GeographicalArea("Rua do Bonfim", "Rua do Bonfim", geographicalAreaType2, local2, area2);
         RuaDoBonfim.setInsertedIn(CidadeDoPorto);
 
@@ -140,9 +143,10 @@ public class InsertedGeoAreaControllerTest {
 
         //Arrange
         String nomeAG3 = "Sul";
-        GeographicalAreaType tipo3 = new GeographicalAreaType("Região");
+        GeoAreaTypeId geoAreaTypeId3 = new GeoAreaTypeId("Região");
+        GeographicalAreaType tipo3 = new GeographicalAreaType(geoAreaTypeId3);
         Location local3 = new Location(41.1496, -8.6109, 97);
-        AreaShape area3 = new AreaShape(10, 10, local3);
+        AreaShape area3 = new AreaShape(10, 10);
         GeographicalArea ag3 = new GeographicalArea(nomeAG3, "Região Sul", tipo3, local3, area3);
 
         RuaDoBonfim.setInsertedIn(CidadeDoPorto);
@@ -175,14 +179,16 @@ public class InsertedGeoAreaControllerTest {
     public void testarSeAGEstaContidaNoutraComCasoFalso() {
         //Arrange
         String nomeAG = "Porto";
-        GeographicalAreaType tipo = new GeographicalAreaType("Distrito");
+        GeoAreaTypeId geoAreaTypeId3 = new GeoAreaTypeId("Distrito");
+        GeographicalAreaType tipo = new GeographicalAreaType(geoAreaTypeId3);
         Location local = new Location(41.1496, -8.6109, 97);
-        AreaShape area = new AreaShape(10, 10, local);
+        AreaShape area = new AreaShape(10, 10);
         GeographicalArea ag2 = new GeographicalArea(nomeAG, "Distrito do Porto", tipo, local, area);
         String nomeAG3 = "Sul";
-        GeographicalAreaType tipo3 = new GeographicalAreaType("Região");
+        GeoAreaTypeId geoAreaTypeId4 = new GeoAreaTypeId("Região");
+        GeographicalAreaType tipo3 = new GeographicalAreaType(geoAreaTypeId4);
         Location local3 = new Location(41.1496, -8.6109, 97);
-        AreaShape area3 = new AreaShape(10, 10, local);
+        AreaShape area3 = new AreaShape(10, 10);
         GeographicalArea ag3 = new GeographicalArea(nomeAG3, "Região Sul", tipo3, local3, area3);
         geographicalAreaService.addGeoArea(CidadeDoPorto);
         geographicalAreaService.addGeoArea(ag2);
@@ -213,15 +219,17 @@ public class InsertedGeoAreaControllerTest {
     public void testarSeAGEstaContidaNoutraNoCasoDeDuasIguais() {
         //Arrange
         String nomeAG = "Porto";
-        GeographicalAreaType tipo = new GeographicalAreaType("Distrito");
+        GeoAreaTypeId geoAreaTypeId4 = new GeoAreaTypeId("Distrito");
+        GeographicalAreaType tipo = new GeographicalAreaType(geoAreaTypeId4);
         Location local = new Location(41.1496, -8.6109, 97);
-        AreaShape area = new AreaShape(10, 10, local);
+        AreaShape area = new AreaShape(10, 10);
         GeographicalArea ag2 = new GeographicalArea(nomeAG, "Distrito do Porto", tipo, local, area);
 
         String nomeAG3 = "Sul";
-        GeographicalAreaType tipo3 = new GeographicalAreaType("Região");
+        GeoAreaTypeId geoAreaTypeId3 = new GeoAreaTypeId("Região");
+        GeographicalAreaType tipo3 = new GeographicalAreaType(geoAreaTypeId3);
         Location local3 = new Location(41.1496, -8.6109, 97);
-        AreaShape area3 = new AreaShape(10, 10, local);
+        AreaShape area3 = new AreaShape(10, 10);
         GeographicalArea ag3 = new GeographicalArea(nomeAG3, "Região Sul", tipo3, local3, area3);
 
         geographicalAreaService.addGeoArea(CidadeDoPorto);
@@ -241,15 +249,17 @@ public class InsertedGeoAreaControllerTest {
     public void testarSeAGEstaContidaNoutraNoCasoDeEstarIndiretamente() {
         //Arrange
         String nomeAG2 = "Porto";
-        GeographicalAreaType tipo2 = new GeographicalAreaType("Distrito");
+        GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("Distrito");
+        GeographicalAreaType tipo2 = new GeographicalAreaType(geoAreaTypeId);
         Location local2 = new Location(41.1496, -8.6109, 97);
-        AreaShape area2 = new AreaShape(10, 10, local2);
+        AreaShape area2 = new AreaShape(10, 10);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, "Distrito do Porto", tipo2, local2, area2);
 
         String nomeAG3 = "Norte";
-        GeographicalAreaType tipo3 = new GeographicalAreaType("Região");
+        GeoAreaTypeId geoAreaTypeId1 = new GeoAreaTypeId("Região");
+        GeographicalAreaType tipo3 = new GeographicalAreaType(geoAreaTypeId1);
         Location local3 = new Location(41.1496, -8.6109, 97);
-        AreaShape area3 = new AreaShape(10, 10, local3);
+        AreaShape area3 = new AreaShape(10, 10);
         GeographicalArea ag3 = new GeographicalArea(nomeAG3, "Região do Norte", tipo3, local3, area3);
 
         geographicalAreaService.addGeoArea(CidadeDoPorto);

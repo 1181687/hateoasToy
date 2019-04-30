@@ -267,7 +267,7 @@ public class GeoAreaSensorList {
      * @param sensorId Id of the sensor.
      * @return GeoAreaSensor corresponding to the id.
      */
-    public GeoAreaSensor getSensorById(String sensorId) {
+    public GeoAreaSensor getSensorById(SensorId sensorId) {
         for (GeoAreaSensor sensor : listOfSensors) {
             if (sensor.getId().equals(sensorId)) {
                 return sensor;
@@ -298,7 +298,7 @@ public class GeoAreaSensorList {
      * @param sensorId Id of the sensor.
      * @return True or False.
      */
-    public boolean removeSensorById(String sensorId) {
+    public boolean removeSensorById(SensorId sensorId) {
         GeoAreaSensor sensor = getSensorById(sensorId);
         if (Objects.nonNull(sensor)) {
             listOfSensors.remove(sensor);

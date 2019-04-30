@@ -6,6 +6,7 @@ import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.Objects;
 
 import static java.util.Objects.isNull;
 
@@ -22,7 +23,7 @@ public class GeoAreaId implements Serializable {
         validateId(id);
         this.location = location;
         this.id = id;
-        this.typeId = geographicalAreaType.getGeoAreaTypeId();
+        this.typeId = geographicalAreaType.getGeoAreaType();
     }
 
 
@@ -55,7 +56,7 @@ public class GeoAreaId implements Serializable {
     }
 
     public void setGeographicalAreaType(GeographicalAreaType geographicalAreaType) {
-        this.typeId = geographicalAreaType.getGeoAreaTypeId();
+        this.typeId = geographicalAreaType.getGeoAreaType();
     }
 
     public void setLocation(Location location) {
@@ -65,4 +66,23 @@ public class GeoAreaId implements Serializable {
     public void setId(String id) {
         this.id = id;
     }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof GeographicalArea)) {
+            return false;
+        }
+        GeoAreaId geoAreaId = (GeoAreaId) obj;
+        return this.id.equals(geoAreaId.id) && this.typeId.equals(geoAreaId.typeId) && this.location.equals(geoAreaId.location);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.id);
+    }
+
 }

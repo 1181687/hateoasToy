@@ -19,4 +19,21 @@ public class SensorId implements Serializable {
     public String getSensorId() {
         return sensorId;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof SensorId)) {
+            return false;
+        }
+        SensorId sensorId = (SensorId) obj;
+        return sensorId.getSensorId().equalsIgnoreCase(this.sensorId);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }

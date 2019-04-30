@@ -8,6 +8,7 @@ import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaTypeId;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.house.Address;
@@ -49,8 +50,9 @@ public class HouseTest {
     public void StartUp() {
         // Geographical Area
         Location location = new Location(41.178553, -8.608035, 111);
-        AreaShape areaShape = new AreaShape(1.261, 1.249, location);
-        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Urban area");
+        AreaShape areaShape = new AreaShape(1.261, 1.249);
+        GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("Urban area");
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType(geoAreaTypeId);
         ag = new GeographicalArea("ISEP", "Campus do ISEP", geographicalAreaType, location, areaShape);
 
         // House
@@ -1534,8 +1536,9 @@ public class HouseTest {
 
         //initiate House
         Location location = new Location(42.0, -8.608035, 111);
-        AreaShape areaShape = new AreaShape(1.5, 2.5, location);
-        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Urban area");
+        AreaShape areaShape = new AreaShape(1.5, 2.5);
+        GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("Urban area");
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType(geoAreaTypeId);
         GeographicalArea geo = new GeographicalArea("ISEP", "Campus do ISEP", geographicalAreaType, location, areaShape);
 
         house.setInsertedGeoArea(geo);
@@ -1729,20 +1732,23 @@ public class HouseTest {
     public void getFirstHighestReading_WithOnlyOneDoubleNaNValue_Null() {
         //Arrange
         // Geographical Area Types
-        GeographicalAreaType region = new GeographicalAreaType("Region");
-        GeographicalAreaType district = new GeographicalAreaType("District");
-        GeographicalAreaType city = new GeographicalAreaType("City");
+        GeoAreaTypeId geoAreaTypeId1 = new GeoAreaTypeId("Region");
+        GeoAreaTypeId geoAreaTypeId2 = new GeoAreaTypeId("District");
+        GeoAreaTypeId geoAreaTypeId3 = new GeoAreaTypeId("City");
+        GeographicalAreaType region = new GeographicalAreaType(geoAreaTypeId1);
+        GeographicalAreaType district = new GeographicalAreaType(geoAreaTypeId2);
+        GeographicalAreaType city = new GeographicalAreaType(geoAreaTypeId3);
 
         // Geographical Areas
         Location location = new Location(32.1496, 7.6109, 98);
-        AreaShape areaShape = new AreaShape(100, 100, location);
+        AreaShape areaShape = new AreaShape(100, 100);
         GeographicalArea northernRegion = new GeographicalArea("Norte", "Northern Region", region, location, areaShape);
         Location location1 = new Location(41.1496, -6.6109, 100);
-        AreaShape areaShape1 = new AreaShape(40, 40, location1);
+        AreaShape areaShape1 = new AreaShape(40, 40);
         GeographicalArea portoDistrict = new GeographicalArea("Porto District", "District of Porto", district, location1, areaShape1);
         portoDistrict.setInsertedIn(northernRegion);
         Location location2 = new Location(42.1496, -8.6109, 97);
-        AreaShape areaShape2 = new AreaShape(10, 10, location2);
+        AreaShape areaShape2 = new AreaShape(10, 10);
         GeographicalArea portoCity = new GeographicalArea("Porto City", "City of Porto", city, location2, areaShape2);
         portoCity.setInsertedIn(portoDistrict);
 
@@ -1894,20 +1900,23 @@ public class HouseTest {
     @Test
     public void getDailyAmplitudeInterval() {
         // Geographical Area Types
-        GeographicalAreaType region = new GeographicalAreaType("Region");
-        GeographicalAreaType district = new GeographicalAreaType("District");
-        GeographicalAreaType city = new GeographicalAreaType("City");
+        GeoAreaTypeId geoAreaTypeId1 = new GeoAreaTypeId("Region");
+        GeoAreaTypeId geoAreaTypeId2 = new GeoAreaTypeId("District");
+        GeoAreaTypeId geoAreaTypeId3 = new GeoAreaTypeId("City");
+        GeographicalAreaType region = new GeographicalAreaType(geoAreaTypeId1);
+        GeographicalAreaType district = new GeographicalAreaType(geoAreaTypeId2);
+        GeographicalAreaType city = new GeographicalAreaType(geoAreaTypeId3);
 
         // Geographical Areas
         Location location = new Location(32.1496, 7.6109, 98);
-        AreaShape areaShape = new AreaShape(100, 100, location);
+        AreaShape areaShape = new AreaShape(100, 100);
         GeographicalArea northernRegion = new GeographicalArea("Norte", "Northern Region", region, location, areaShape);
         Location location1 = new Location(41.1496, -6.6109, 100);
-        AreaShape areaShape1 = new AreaShape(40, 40, location1);
+        AreaShape areaShape1 = new AreaShape(40, 40);
         GeographicalArea portoDistrict = new GeographicalArea("Porto District", "Porto District", district, location1, areaShape1);
         portoDistrict.setInsertedIn(northernRegion);
         Location location2 = new Location(42.1496, -8.6109, 97);
-        AreaShape areaShape2 = new AreaShape(10, 10, location2);
+        AreaShape areaShape2 = new AreaShape(10, 10);
         GeographicalArea portoCity = new GeographicalArea("Porto City", "Porto City", city, location2, areaShape2);
         portoCity.setInsertedIn(portoDistrict);
 
@@ -1991,20 +2000,23 @@ public class HouseTest {
     public void getDailyAmplitudeInterval_doubleNanValuesFor4_12_2018() {
 
         // Geographical Area Types
-        GeographicalAreaType region = new GeographicalAreaType("Region");
-        GeographicalAreaType district = new GeographicalAreaType("District");
-        GeographicalAreaType city = new GeographicalAreaType("City");
+        GeoAreaTypeId geoAreaTypeId1 = new GeoAreaTypeId("Region");
+        GeoAreaTypeId geoAreaTypeId2 = new GeoAreaTypeId("District");
+        GeoAreaTypeId geoAreaTypeId3 = new GeoAreaTypeId("City");
+        GeographicalAreaType region = new GeographicalAreaType(geoAreaTypeId1);
+        GeographicalAreaType district = new GeographicalAreaType(geoAreaTypeId2);
+        GeographicalAreaType city = new GeographicalAreaType(geoAreaTypeId3);
 
         // Geographical Areas
         Location location = new Location(32.1496, 7.6109, 98);
-        AreaShape areaShape = new AreaShape(100, 100, location);
+        AreaShape areaShape = new AreaShape(100, 100);
         GeographicalArea northernRegion = new GeographicalArea("Norte", "Northern Region", region, location, areaShape);
         Location location1 = new Location(41.1496, -6.6109, 100);
-        AreaShape areaShape1 = new AreaShape(40, 40, location1);
+        AreaShape areaShape1 = new AreaShape(40, 40);
         GeographicalArea portoDistrict = new GeographicalArea("Porto District", "District of Porto", district, location1, areaShape1);
         portoDistrict.setInsertedIn(northernRegion);
         Location location2 = new Location(42.1496, -8.6109, 97);
-        AreaShape areaShape2 = new AreaShape(10, 10, location2);
+        AreaShape areaShape2 = new AreaShape(10, 10);
         GeographicalArea portoCity = new GeographicalArea("Porto City", "City of Porto", city, location2, areaShape2);
         portoCity.setInsertedIn(portoDistrict);
 
@@ -2088,20 +2100,23 @@ public class HouseTest {
     public void getDailyAmplitudeInterval_oneDayOneDoubleNanValueTwoValidValues_For4_12_2018() {
 
         // Geographical Area Types
-        GeographicalAreaType region = new GeographicalAreaType("Region");
-        GeographicalAreaType district = new GeographicalAreaType("District");
-        GeographicalAreaType city = new GeographicalAreaType("City");
+        GeoAreaTypeId geoAreaTypeId1 = new GeoAreaTypeId("Region");
+        GeoAreaTypeId geoAreaTypeId2 = new GeoAreaTypeId("District");
+        GeoAreaTypeId geoAreaTypeId3 = new GeoAreaTypeId("City");
+        GeographicalAreaType region = new GeographicalAreaType(geoAreaTypeId1);
+        GeographicalAreaType district = new GeographicalAreaType(geoAreaTypeId2);
+        GeographicalAreaType city = new GeographicalAreaType(geoAreaTypeId3);
 
         // Geographical Areas
         Location location = new Location(32.1496, 7.6109, 98);
-        AreaShape areaShape = new AreaShape(100, 100, location);
+        AreaShape areaShape = new AreaShape(100, 100);
         GeographicalArea northernRegion = new GeographicalArea("Norte", "Northern Region", region, location, areaShape);
         Location location1 = new Location(41.1496, -6.6109, 100);
-        AreaShape areaShape1 = new AreaShape(40, 40, location1);
+        AreaShape areaShape1 = new AreaShape(40, 40);
         GeographicalArea portoDistrict = new GeographicalArea("Porto District", "District of Porto", district, location1, areaShape1);
         portoDistrict.setInsertedIn(northernRegion);
         Location location2 = new Location(42.1496, -8.6109, 97);
-        AreaShape areaShape2 = new AreaShape(10, 10, location2);
+        AreaShape areaShape2 = new AreaShape(10, 10);
         GeographicalArea portoCity = new GeographicalArea("Porto City", "City of Porto", city, location2, areaShape2);
         portoCity.setInsertedIn(portoDistrict);
 
@@ -2183,20 +2198,23 @@ public class HouseTest {
     public void getDailyAmplitudeInterval_emptySensor_emptyMap() {
 
         // Geographical Area Types
-        GeographicalAreaType region = new GeographicalAreaType("Region");
-        GeographicalAreaType district = new GeographicalAreaType("District");
-        GeographicalAreaType city = new GeographicalAreaType("City");
+        GeoAreaTypeId geoAreaTypeId1 = new GeoAreaTypeId("Region");
+        GeoAreaTypeId geoAreaTypeId2 = new GeoAreaTypeId("District");
+        GeoAreaTypeId geoAreaTypeId3 = new GeoAreaTypeId("City");
+        GeographicalAreaType region = new GeographicalAreaType(geoAreaTypeId1);
+        GeographicalAreaType district = new GeographicalAreaType(geoAreaTypeId2);
+        GeographicalAreaType city = new GeographicalAreaType(geoAreaTypeId3);
 
         // Geographical Areas
         Location location = new Location(32.1496, 7.6109, 98);
-        AreaShape areaShape = new AreaShape(100, 100, location);
+        AreaShape areaShape = new AreaShape(100, 100);
         GeographicalArea northernRegion = new GeographicalArea("Norte", "Northern Region", region, location, areaShape);
         Location location1 = new Location(41.1496, -6.6109, 100);
-        AreaShape areaShape1 = new AreaShape(40, 40, location1);
+        AreaShape areaShape1 = new AreaShape(40, 40);
         GeographicalArea portoDistrict = new GeographicalArea("Porto District", "District of Porto", district, location1, areaShape1);
         portoDistrict.setInsertedIn(northernRegion);
         Location location2 = new Location(42.1496, -8.6109, 97);
-        AreaShape areaShape2 = new AreaShape(10, 10, location2);
+        AreaShape areaShape2 = new AreaShape(10, 10);
         GeographicalArea portoCity = new GeographicalArea("Porto City", "City of Porto", city, location2, areaShape2);
         portoCity.setInsertedIn(portoDistrict);
 
@@ -2261,20 +2279,23 @@ public class HouseTest {
     public void getHighestDailyAmplitude_4_12_2018_amplitude20() {
 
         // Geographical Area Types
-        GeographicalAreaType region = new GeographicalAreaType("Region");
-        GeographicalAreaType district = new GeographicalAreaType("District");
-        GeographicalAreaType city = new GeographicalAreaType("City");
+        GeoAreaTypeId geoAreaTypeId1 = new GeoAreaTypeId("Region");
+        GeoAreaTypeId geoAreaTypeId2 = new GeoAreaTypeId("District");
+        GeoAreaTypeId geoAreaTypeId3 = new GeoAreaTypeId("City");
+        GeographicalAreaType region = new GeographicalAreaType(geoAreaTypeId1);
+        GeographicalAreaType district = new GeographicalAreaType(geoAreaTypeId2);
+        GeographicalAreaType city = new GeographicalAreaType(geoAreaTypeId3);
 
         // Geographical Areas
         Location location = new Location(32.1496, 7.6109, 98);
-        AreaShape areaShape = new AreaShape(100, 100, location);
+        AreaShape areaShape = new AreaShape(100, 100);
         GeographicalArea northernRegion = new GeographicalArea("Norte", "Northern Region", region, location, areaShape);
         Location location1 = new Location(41.1496, -6.6109, 100);
-        AreaShape areaShape1 = new AreaShape(40, 40, location1);
+        AreaShape areaShape1 = new AreaShape(40, 40);
         GeographicalArea portoDistrict = new GeographicalArea("Porto District", "District of Porto", district, location1, areaShape1);
         portoDistrict.setInsertedIn(northernRegion);
         Location location2 = new Location(42.1496, -8.6109, 97);
-        AreaShape areaShape2 = new AreaShape(10, 10, location2);
+        AreaShape areaShape2 = new AreaShape(10, 10);
         GeographicalArea portoCity = new GeographicalArea("Porto City", "City of Porto", city, location2, areaShape2);
         portoCity.setInsertedIn(portoDistrict);
 
@@ -2348,20 +2369,23 @@ public class HouseTest {
     public void getHighestDailyAmplitude_doubleNanValuesIn4_12_2018_highestAmplitude7() {
 
         // Geographical Area Types
-        GeographicalAreaType region = new GeographicalAreaType("Region");
-        GeographicalAreaType district = new GeographicalAreaType("District");
-        GeographicalAreaType city = new GeographicalAreaType("City");
+        GeoAreaTypeId geoAreaTypeId1 = new GeoAreaTypeId("Region");
+        GeoAreaTypeId geoAreaTypeId2 = new GeoAreaTypeId("District");
+        GeoAreaTypeId geoAreaTypeId3 = new GeoAreaTypeId("City");
+        GeographicalAreaType region = new GeographicalAreaType(geoAreaTypeId1);
+        GeographicalAreaType district = new GeographicalAreaType(geoAreaTypeId2);
+        GeographicalAreaType city = new GeographicalAreaType(geoAreaTypeId3);
 
         // Geographical Areas
         Location location = new Location(32.1496, 7.6109, 98);
-        AreaShape areaShape = new AreaShape(100, 100, location);
+        AreaShape areaShape = new AreaShape(100, 100);
         GeographicalArea northernRegion = new GeographicalArea("Norte", "Northern Region", region, location, areaShape);
         Location location1 = new Location(41.1496, -6.6109, 100);
-        AreaShape areaShape1 = new AreaShape(40, 40, location1);
+        AreaShape areaShape1 = new AreaShape(40, 40);
         GeographicalArea portoDistrict = new GeographicalArea("Porto District", "District of Porto", district, location1, areaShape1);
         portoDistrict.setInsertedIn(northernRegion);
         Location location2 = new Location(42.1496, -8.6109, 97);
-        AreaShape areaShape2 = new AreaShape(10, 10, location2);
+        AreaShape areaShape2 = new AreaShape(10, 10);
         GeographicalArea portoCity = new GeographicalArea("Porto City", "City of Porto", city, location2, areaShape2);
         portoCity.setInsertedIn(portoDistrict);
 
@@ -2449,20 +2473,23 @@ public class HouseTest {
     public void getNearestSensorWithMostRecentReading_ValidReading() {
         //Arrange
         // Geographical Area Types
-        GeographicalAreaType region = new GeographicalAreaType("Region");
-        GeographicalAreaType district = new GeographicalAreaType("District");
-        GeographicalAreaType city = new GeographicalAreaType("City");
+        GeoAreaTypeId geoAreaTypeId1 = new GeoAreaTypeId("Region");
+        GeoAreaTypeId geoAreaTypeId2 = new GeoAreaTypeId("District");
+        GeoAreaTypeId geoAreaTypeId3 = new GeoAreaTypeId("City");
+        GeographicalAreaType region = new GeographicalAreaType(geoAreaTypeId1);
+        GeographicalAreaType district = new GeographicalAreaType(geoAreaTypeId2);
+        GeographicalAreaType city = new GeographicalAreaType(geoAreaTypeId3);
 
         // Geographical Areas
         Location location = new Location(32.1496, 7.6109, 98);
-        AreaShape areaShape = new AreaShape(100, 100, location);
+        AreaShape areaShape = new AreaShape(100, 100);
         GeographicalArea northernRegion = new GeographicalArea("Norte", "Northern Region", region, location, areaShape);
         Location location1 = new Location(41.1496, -6.6109, 100);
-        AreaShape areaShape1 = new AreaShape(40, 40, location1);
+        AreaShape areaShape1 = new AreaShape(40, 40);
         GeographicalArea portoDistrict = new GeographicalArea("Porto District", "District of Porto", district, location1, areaShape1);
         portoDistrict.setInsertedIn(northernRegion);
         Location location2 = new Location(42.1496, -8.6109, 97);
-        AreaShape areaShape2 = new AreaShape(10, 10, location2);
+        AreaShape areaShape2 = new AreaShape(10, 10);
         GeographicalArea portoCity = new GeographicalArea("Porto City", "City of Porto", city, location2, areaShape2);
         portoCity.setInsertedIn(portoDistrict);
 
@@ -2514,20 +2541,23 @@ public class HouseTest {
     public void getNearestSensorWithMostRecentReading_isNull() {
         //Arrange
         // Geographical Area Types
-        GeographicalAreaType region = new GeographicalAreaType("Region");
-        GeographicalAreaType district = new GeographicalAreaType("District");
-        GeographicalAreaType city = new GeographicalAreaType("City");
+        GeoAreaTypeId geoAreaTypeId1 = new GeoAreaTypeId("Region");
+        GeoAreaTypeId geoAreaTypeId2 = new GeoAreaTypeId("District");
+        GeoAreaTypeId geoAreaTypeId3 = new GeoAreaTypeId("City");
+        GeographicalAreaType region = new GeographicalAreaType(geoAreaTypeId1);
+        GeographicalAreaType district = new GeographicalAreaType(geoAreaTypeId2);
+        GeographicalAreaType city = new GeographicalAreaType(geoAreaTypeId3);
 
         // Geographical Areas
         Location location = new Location(32.1496, 7.6109, 98);
-        AreaShape areaShape = new AreaShape(100, 100, location);
+        AreaShape areaShape = new AreaShape(100, 100);
         GeographicalArea northernRegion = new GeographicalArea("Norte", "Northern Region", region, location, areaShape);
         Location location1 = new Location(41.1496, -6.6109, 100);
-        AreaShape areaShape1 = new AreaShape(40, 40, location1);
+        AreaShape areaShape1 = new AreaShape(40, 40);
         GeographicalArea portoDistrict = new GeographicalArea("Porto District", "District of Porto", district, location1, areaShape1);
         portoDistrict.setInsertedIn(northernRegion);
         Location location2 = new Location(42.1496, -8.6109, 97);
-        AreaShape areaShape2 = new AreaShape(10, 10, location2);
+        AreaShape areaShape2 = new AreaShape(10, 10);
         GeographicalArea portoCity = new GeographicalArea("Porto City", "City of Porto", city, location2, areaShape2);
         portoCity.setInsertedIn(portoDistrict);
 
@@ -2580,20 +2610,23 @@ public class HouseTest {
     public void isSensorListEmpty_False() {
         // Arrange
         // Geographical Area Types
-        GeographicalAreaType region = new GeographicalAreaType("Region");
-        GeographicalAreaType district = new GeographicalAreaType("District");
-        GeographicalAreaType city = new GeographicalAreaType("City");
+        GeoAreaTypeId geoAreaTypeId1 = new GeoAreaTypeId("Region");
+        GeoAreaTypeId geoAreaTypeId2 = new GeoAreaTypeId("District");
+        GeoAreaTypeId geoAreaTypeId3 = new GeoAreaTypeId("City");
+        GeographicalAreaType region = new GeographicalAreaType(geoAreaTypeId1);
+        GeographicalAreaType district = new GeographicalAreaType(geoAreaTypeId2);
+        GeographicalAreaType city = new GeographicalAreaType(geoAreaTypeId3);
 
         // Geographical Areas
         Location location = new Location(32.1496, 7.6109, 98);
-        AreaShape areaShape = new AreaShape(100, 100, location);
+        AreaShape areaShape = new AreaShape(100, 100);
         GeographicalArea northernRegion = new GeographicalArea("Norte", "Northern Region", region, location, areaShape);
         Location location1 = new Location(41.1496, -6.6109, 100);
-        AreaShape areaShape1 = new AreaShape(40, 40, location1);
+        AreaShape areaShape1 = new AreaShape(40, 40);
         GeographicalArea portoDistrict = new GeographicalArea("Porto District", "District of Porto", district, location1, areaShape1);
         portoDistrict.setInsertedIn(northernRegion);
         Location location2 = new Location(42.1496, -8.6109, 97);
-        AreaShape areaShape2 = new AreaShape(10, 10, location2);
+        AreaShape areaShape2 = new AreaShape(10, 10);
         GeographicalArea portoCity = new GeographicalArea("Porto City", "City of Porto", city, location2, areaShape2);
         portoCity.setInsertedIn(portoDistrict);
 
@@ -2643,20 +2676,23 @@ public class HouseTest {
     public void isSensorListEmptyTest_True() {
         // Arrange
         // Geographical Area Types
-        GeographicalAreaType region = new GeographicalAreaType("Region");
-        GeographicalAreaType district = new GeographicalAreaType("District");
-        GeographicalAreaType city = new GeographicalAreaType("City");
+        GeoAreaTypeId geoAreaTypeId1 = new GeoAreaTypeId("Region");
+        GeoAreaTypeId geoAreaTypeId2 = new GeoAreaTypeId("District");
+        GeoAreaTypeId geoAreaTypeId3 = new GeoAreaTypeId("City");
+        GeographicalAreaType region = new GeographicalAreaType(geoAreaTypeId1);
+        GeographicalAreaType district = new GeographicalAreaType(geoAreaTypeId2);
+        GeographicalAreaType city = new GeographicalAreaType(geoAreaTypeId3);
 
         // Geographical Areas
         Location location = new Location(32.1496, 7.6109, 98);
-        AreaShape areaShape = new AreaShape(100, 100, location);
+        AreaShape areaShape = new AreaShape(100, 100);
         GeographicalArea northernRegion = new GeographicalArea("Norte", "Northern Region", region, location, areaShape);
         Location location1 = new Location(41.1496, -6.6109, 100);
-        AreaShape areaShape1 = new AreaShape(40, 40, location1);
+        AreaShape areaShape1 = new AreaShape(40, 40);
         GeographicalArea portoDistrict = new GeographicalArea("Porto District", "District of Porto", district, location1, areaShape1);
         portoDistrict.setInsertedIn(northernRegion);
         Location location2 = new Location(42.1496, -8.6109, 97);
-        AreaShape areaShape2 = new AreaShape(10, 10, location2);
+        AreaShape areaShape2 = new AreaShape(10, 10);
         GeographicalArea portoCity = new GeographicalArea("Porto City", "City of Porto", city, location2, areaShape2);
         portoCity.setInsertedIn(portoDistrict);
 
@@ -2704,20 +2740,23 @@ public class HouseTest {
     public void getFirstHighestReading_ValidReading_Reading4() {
         //Arrange
         // Geographical Area Types
-        GeographicalAreaType region = new GeographicalAreaType("Region");
-        GeographicalAreaType district = new GeographicalAreaType("District");
-        GeographicalAreaType city = new GeographicalAreaType("City");
+        GeoAreaTypeId geoAreaTypeId1 = new GeoAreaTypeId("Region");
+        GeoAreaTypeId geoAreaTypeId2 = new GeoAreaTypeId("District");
+        GeoAreaTypeId geoAreaTypeId3 = new GeoAreaTypeId("City");
+        GeographicalAreaType region = new GeographicalAreaType(geoAreaTypeId1);
+        GeographicalAreaType district = new GeographicalAreaType(geoAreaTypeId2);
+        GeographicalAreaType city = new GeographicalAreaType(geoAreaTypeId3);
 
         // Geographical Areas
         Location location = new Location(32.1496, 7.6109, 98);
-        AreaShape areaShape = new AreaShape(100, 100, location);
+        AreaShape areaShape = new AreaShape(100, 100);
         GeographicalArea northernRegion = new GeographicalArea("Norte", "Northern Region", region, location, areaShape);
         Location location1 = new Location(41.1496, -6.6109, 100);
-        AreaShape areaShape1 = new AreaShape(40, 40, location1);
+        AreaShape areaShape1 = new AreaShape(40, 40);
         GeographicalArea portoDistrict = new GeographicalArea("Porto District", "District of Porto", district, location1, areaShape1);
         portoDistrict.setInsertedIn(northernRegion);
         Location location2 = new Location(42.1496, -8.6109, 97);
-        AreaShape areaShape2 = new AreaShape(10, 10, location2);
+        AreaShape areaShape2 = new AreaShape(10, 10);
         GeographicalArea portoCity = new GeographicalArea("Porto City", "City of Porto", city, location2, areaShape2);
         portoCity.setInsertedIn(portoDistrict);
 
@@ -2785,20 +2824,23 @@ public class HouseTest {
     public void getFirstHighestReading_noReadingInGivenInterval_Null() {
         //Arrange
         // Geographical Area Types
-        GeographicalAreaType region = new GeographicalAreaType("Region");
-        GeographicalAreaType district = new GeographicalAreaType("District");
-        GeographicalAreaType city = new GeographicalAreaType("City");
+        GeoAreaTypeId geoAreaTypeId1 = new GeoAreaTypeId("Region");
+        GeoAreaTypeId geoAreaTypeId2 = new GeoAreaTypeId("District");
+        GeoAreaTypeId geoAreaTypeId3 = new GeoAreaTypeId("City");
+        GeographicalAreaType region = new GeographicalAreaType(geoAreaTypeId1);
+        GeographicalAreaType district = new GeographicalAreaType(geoAreaTypeId2);
+        GeographicalAreaType city = new GeographicalAreaType(geoAreaTypeId3);
 
         // Geographical Areas
         Location location = new Location(32.1496, 7.6109, 98);
-        AreaShape areaShape = new AreaShape(100, 100, location);
+        AreaShape areaShape = new AreaShape(100, 100);
         GeographicalArea northernRegion = new GeographicalArea("Norte", "Northern Region", region, location, areaShape);
         Location location1 = new Location(41.1496, -6.6109, 100);
-        AreaShape areaShape1 = new AreaShape(40, 40, location1);
+        AreaShape areaShape1 = new AreaShape(40, 40);
         GeographicalArea portoDistrict = new GeographicalArea("Porto District", "District of Porto", district, location1, areaShape1);
         portoDistrict.setInsertedIn(northernRegion);
         Location location2 = new Location(42.1496, -8.6109, 97);
-        AreaShape areaShape2 = new AreaShape(10, 10, location2);
+        AreaShape areaShape2 = new AreaShape(10, 10);
         GeographicalArea portoCity = new GeographicalArea("Porto City", "City of Porto", city, location2, areaShape2);
         portoCity.setInsertedIn(portoDistrict);
 
@@ -2868,20 +2910,23 @@ public class HouseTest {
         //Arrange
         //Arrange
         // Geographical Area Types
-        GeographicalAreaType region = new GeographicalAreaType("Region");
-        GeographicalAreaType district = new GeographicalAreaType("District");
-        GeographicalAreaType city = new GeographicalAreaType("City");
+        GeoAreaTypeId geoAreaTypeId1 = new GeoAreaTypeId("Region");
+        GeoAreaTypeId geoAreaTypeId2 = new GeoAreaTypeId("District");
+        GeoAreaTypeId geoAreaTypeId3 = new GeoAreaTypeId("City");
+        GeographicalAreaType region = new GeographicalAreaType(geoAreaTypeId1);
+        GeographicalAreaType district = new GeographicalAreaType(geoAreaTypeId2);
+        GeographicalAreaType city = new GeographicalAreaType(geoAreaTypeId3);
 
         // Geographical Areas
         Location location = new Location(32.1496, 7.6109, 98);
-        AreaShape areaShape = new AreaShape(100, 100, location);
+        AreaShape areaShape = new AreaShape(100, 100);
         GeographicalArea northernRegion = new GeographicalArea("Norte", "Northern Region", region, location, areaShape);
         Location location1 = new Location(41.1496, -6.6109, 100);
-        AreaShape areaShape1 = new AreaShape(40, 40, location1);
+        AreaShape areaShape1 = new AreaShape(40, 40);
         GeographicalArea portoDistrict = new GeographicalArea("Porto District", "District of Porto", district, location1, areaShape1);
         portoDistrict.setInsertedIn(northernRegion);
         Location location2 = new Location(42.1496, -8.6109, 97);
-        AreaShape areaShape2 = new AreaShape(10, 10, location2);
+        AreaShape areaShape2 = new AreaShape(10, 10);
         GeographicalArea portoCity = new GeographicalArea("Porto City", "City of Porto", city, location2, areaShape2);
         portoCity.setInsertedIn(portoDistrict);
 

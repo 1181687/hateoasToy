@@ -8,12 +8,15 @@ import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.ReadingMapper;
 import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaTypeId;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.house.Address;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
+import pt.ipp.isep.dei.project.model.sensor.SensorId;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
+import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
@@ -30,7 +33,7 @@ public class GetLastColdestDayHouseAreaControllerTest {
     private GeographicalArea portoCity;
     private GeoAreaSensor temperatureSensor;
     private GeoAreaSensor temperatureSensor1;
-    private SensorType temperature;
+    private SensorTypeId temperature;
     private Location location2;
     private House house;
     private GetLastColdestDayHouseAreaController controller;
@@ -38,20 +41,23 @@ public class GetLastColdestDayHouseAreaControllerTest {
     @BeforeEach
     public void StartUp() {
         // Geographical Area Types
-        GeographicalAreaType region = new GeographicalAreaType("Region");
-        GeographicalAreaType district = new GeographicalAreaType("District");
-        GeographicalAreaType city = new GeographicalAreaType("City");
+        GeoAreaTypeId regionId = new GeoAreaTypeId("Region");
+        GeoAreaTypeId districtId = new GeoAreaTypeId("District");
+        GeoAreaTypeId cityId = new GeoAreaTypeId("City");
+        GeographicalAreaType region = new GeographicalAreaType(regionId);
+        GeographicalAreaType district = new GeographicalAreaType(districtId);
+        GeographicalAreaType city = new GeographicalAreaType(cityId);
 
         // Geographical Areas
         Location location = new Location(32.1496, 7.6109, 98);
-        AreaShape areaShape = new AreaShape(100, 100, location);
+        AreaShape areaShape = new AreaShape(100, 100);
         northernRegion = new GeographicalArea("North", "Northern Region", region, location, areaShape);
         Location location1 = new Location(41.1496, -6.6109, 100);
-        AreaShape areaShape1 = new AreaShape(40, 40, location1);
+        AreaShape areaShape1 = new AreaShape(40, 40);
         portoDistrict = new GeographicalArea("Porto District", "Porto District", district, location1, areaShape1);
         portoDistrict.setInsertedIn(northernRegion);
         this.location2 = new Location(42.1496, -8.6109, 97);
-        AreaShape areaShape2 = new AreaShape(10, 10, location2);
+        AreaShape areaShape2 = new AreaShape(10, 10);
         portoCity = new GeographicalArea("Porto", "Porto City", city, location2, areaShape2);
         portoCity.setInsertedIn(portoDistrict);
 
@@ -65,13 +71,13 @@ public class GetLastColdestDayHouseAreaControllerTest {
         this.house.setAddress(address);
 
         // Sensors
-        temperature = new SensorType("temperature");
+        temperature = new SensorTypeId("temperature");
         LocalDateTime startDate = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         Location sensorLocation = new Location(38.1596, -8.6109, 97);
-        temperatureSensor = new GeoAreaSensor("S01", "A123", startDate, temperature, sensorLocation, "l/m2");
+        temperatureSensor = new GeoAreaSensor(new SensorId("S01"), "A123", startDate, temperature, sensorLocation, "l/m2");
         LocalDateTime startDate1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         Location sensorLocation1 = new Location(42.1496, -8.6109, 97);
-        temperatureSensor1 = new GeoAreaSensor("S01", "B123", startDate1, temperature, sensorLocation1, "l/m2");
+        temperatureSensor1 = new GeoAreaSensor(new SensorId("S02"), "B123", startDate1, temperature, sensorLocation1, "l/m2");
 
         // Reading
         LocalDateTime readingDate = LocalDateTime.of(2018, 12, 2, 13, 20, 00);
@@ -181,12 +187,13 @@ public class GetLastColdestDayHouseAreaControllerTest {
     public void hasSensorsOfGivenTypeInGeoArea_withoutSensorsOfGivenTypeInArea_ShouldReturnFalse() {
         //Arrange
         // Geographical Area Types
-        GeographicalAreaType city = new GeographicalAreaType("City");
+        GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("City");
+        GeographicalAreaType city = new GeographicalAreaType(geoAreaTypeId);
 
         // Geographical Areas
 
         Location location = new Location(42.1496, -8.6109, 97);
-        AreaShape areaShape2 = new AreaShape(10, 10, location);
+        AreaShape areaShape2 = new AreaShape(10, 10);
         GeographicalArea porto = new GeographicalArea("Porto", "Porto City", city, location, areaShape2);
 
         // New house in geographical area without sensors

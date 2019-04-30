@@ -3,90 +3,117 @@ package pt.ipp.isep.dei.project.modelTests;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
-import pt.ipp.isep.dei.project.model.sensor.SensorType;
+import pt.ipp.isep.dei.project.model.sensor.SensorId;
+import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class SensorTypeTest {
 
-    @org.junit.jupiter.api.Test
-    public void TestaGetTipoSensor() {
-        //Arrange
-        SensorType tipo0 = new SensorType("Temperatura");
-        String expectedResult = "Temperatura";
+    @Test
+    public void Test_getSensorType() {
+        //
+
+        String typeId = "Temperature";
+        SensorTypeId sensorTypeId = new SensorTypeId(typeId);
+
+        String expectedResult = "Temperature";
         //Act
-        String result = tipo0.getType();
+        String result = sensorTypeId.getSensorTypeId();
         //Assert
         assertEquals(result, expectedResult);
     }
 
     @Test
-    public void testaEqualsSameObject() {
+    public void testEqualsSameObject() {
         //Arrange
-        SensorType tipo0 = new SensorType("Temperatura");
+        String typeId = "Temperature";
+        SensorTypeId sensorTypeId = new SensorTypeId(typeId);
         //Act
-        boolean result = tipo0.equals(tipo0);
+        boolean result = sensorTypeId.equals(sensorTypeId);
         //Assert
         assertTrue(result);
     }
 
     @Test
-    public void testaEqualsTrue() {
+    public void testEqualsTrue() {
         //Arrange
-        SensorType tipo0 = new SensorType("Temperatura");
-        SensorType tipo1 = new SensorType("Temperatura");
+
+        String typeId = "Temperature";
+        SensorTypeId sensorTypeId = new SensorTypeId(typeId);
+        String typeId1 = "Temperature";
+        SensorTypeId sensorTypeId1 = new SensorTypeId(typeId1);
+
         //Act
-        boolean result = tipo0.equals(tipo1);
+        boolean result = sensorTypeId.equals(sensorTypeId1);
         //Assert
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
-    public void testaEqualsFalseTiposDiferentes() {
+    @Test
+    public void testEqualsFalseDifferentTypes() {
         //Arrange
-        SensorType tipo0 = new SensorType("Temperatura");
-        SensorType tipo1 = new SensorType("Humidade");
+        String typeId = "Temperature";
+        SensorTypeId sensorTypeId = new SensorTypeId(typeId);
+        String typeId1 = "Rainfall";
+        SensorTypeId sensorTypeId1 = new SensorTypeId(typeId1);
         //Act
-        boolean result = tipo0.equals(tipo1);
+        boolean result = sensorTypeId.equals(sensorTypeId1);
         //Assert
         assertFalse(result);
     }
 
     @Test
-    public void testaEqualsFalse() {
+    public void testEqualsFalse() {
         //Arrange
-        String tipoSensor = "Temperatura";
-        SensorType tipo0 = new SensorType(tipoSensor);
+
+        String typeId = "Temperature";
+        SensorTypeId sensorTypeId = new SensorTypeId(typeId);
+        String typeId1 = "Temperature";
+        SensorTypeId sensorTypeId1 = new SensorTypeId(typeId1);
+
         //Act
-        boolean result = tipo0.equals(tipoSensor);
+        boolean result = typeId.equals(sensorTypeId1);
         //Assert
         assertFalse(result);
     }
 
     @Test
-    public void testaEqualsObjetosDiferentes() {
+    public void testEqualsDifferentObjects() {
         //Arrange
-        SensorType tipo0 = new SensorType("Temperatura");
+
+        String typeId = "Temperature";
+        SensorTypeId anotherSensorTypeId = new SensorTypeId(typeId);
+
         // Instanciar sensor
-        LocalDateTime dataFuncionamento = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
-        SensorType sensorType = new SensorType("Temperatura");
+        LocalDateTime startingDate = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
+
+        String typeId1 = "Temperature";
+        SensorTypeId sensorTypeId1 = new SensorTypeId(typeId1);
+
         Location locS1 = new Location(123, 345, 50);
-        GeoAreaSensor s1 = new GeoAreaSensor("123", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
+        String sensorName = "A123";
+        String sensorId = "123";
+        SensorId sensorId1 = new SensorId(sensorId);
+        GeoAreaSensor s1 = new GeoAreaSensor(sensorId1, sensorName, startingDate, sensorTypeId1, locS1, "l/m2");
         //Act
-        boolean result = tipo0.equals(s1);
+        boolean result = anotherSensorTypeId.equals(s1);
         //Assert
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
-    public void testarHashCode() {
+    @Test
+    public void testHashCode() {
         // Arrange
-        SensorType tipo0 = new SensorType("Temperatura");
-        int expectedResult = 1;
+        String typeId1 = "Temperature";
+        SensorTypeId sensorTypeId1 = new SensorTypeId(typeId1);
+
+        int expectedResult = Objects.hash(sensorTypeId1.getSensorTypeId());
         // Act
-        int result = tipo0.hashCode();
+        int result = sensorTypeId1.hashCode();
         // Assert
         assertEquals(expectedResult, result);
     }

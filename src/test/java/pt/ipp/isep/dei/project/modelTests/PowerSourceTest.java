@@ -29,7 +29,7 @@ public class PowerSourceTest {
     }
 
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testingEqualsNegativeTestDifferentNames() {
         //Arrange
         String powerSourceName1 = "ps1";
@@ -49,7 +49,7 @@ public class PowerSourceTest {
     }
 
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testingEqualsComparingTheSameObjectPositiveTest() {
         //Arrange
         String powerSourceName1 = "ps1";
@@ -65,7 +65,7 @@ public class PowerSourceTest {
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testingEqualsComparingDifferentObjectTypeNegativeTest() {
         //Arrange
         String powerSourceName1 = "ps1";
@@ -81,7 +81,7 @@ public class PowerSourceTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testingHashCode() {
         //Arrange
         String powerSourceName1 = "ps1";
@@ -98,7 +98,7 @@ public class PowerSourceTest {
         assertEquals(expectedResult, result);
     }
 
-    /*@Test
+    @Test
     public void testValidateNameNull(){
         //Arrange
         String name = null;
@@ -141,9 +141,9 @@ public class PowerSourceTest {
 
         //Assert
         assertEquals("Please select a valid power source type", exception.getMessage());
-    }*/
+    }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testingGetName() {
         //Arrange
         String powerSourceName1 = "ps1";

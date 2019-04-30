@@ -3,10 +3,7 @@ package pt.ipp.isep.dei.project.modelTests;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.LocationDTO;
-import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
-import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorDTO;
-import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorMapper;
-import pt.ipp.isep.dei.project.model.sensor.SensorType;
+import pt.ipp.isep.dei.project.model.sensor.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -20,7 +17,7 @@ public class GeoAreaSensorMapperTest {
     /**
      * this method map to DTO a GeographicalArea
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testMapToDTO_GeoAreaDTO() {
         //Arrange
         //Arrange
@@ -34,10 +31,10 @@ public class GeoAreaSensorMapperTest {
         location.setElevation(50);
         String units = "1/ms";
 
-        SensorType temperature = new SensorType(typeName);
+        SensorTypeId temperature = new SensorTypeId(typeName);
         Location locationSensor = new Location(123, 345, 50);
 
-        GeoAreaSensor expectedResult = new GeoAreaSensor(id, name, startingDate, temperature, locationSensor, units);
+        GeoAreaSensor expectedResult = new GeoAreaSensor(new SensorId(id), name, startingDate, temperature, locationSensor, units);
 
         //Act
         GeoAreaSensorDTO sensorDTO = GeoAreaSensorMapper.mapToDTO(expectedResult);
@@ -65,10 +62,10 @@ public class GeoAreaSensorMapperTest {
         String units = "1/ms";
 
         LocalDateTime startingDateSensor = LocalDateTime.of(1991, 11, 2, 21, 10, 25).truncatedTo(ChronoUnit.DAYS);
-        SensorType temperature = new SensorType("Temperature");
+        SensorTypeId temperature = new SensorTypeId("Temperature");
         Location locationSensor = new Location(123, 345, 50);
 
-        GeoAreaSensor expectedResult = new GeoAreaSensor(id, name, startingDateSensor, temperature, locationSensor, units);
+        GeoAreaSensor expectedResult = new GeoAreaSensor(new SensorId(id), name, startingDateSensor, temperature, locationSensor, units);
 
         GeoAreaSensorDTO sensorDTO = GeoAreaSensorMapper.newSensorDTO();
 
