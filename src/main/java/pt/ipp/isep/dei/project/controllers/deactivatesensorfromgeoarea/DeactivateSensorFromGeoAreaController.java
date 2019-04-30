@@ -29,7 +29,7 @@ public class DeactivateSensorFromGeoAreaController {
     }
 
     public boolean deactivateSensor(GeoAreaSensorDTO sensorDTO) {
-        GeoAreaSensor sensor = geoAreaService.getSensorById(sensorDTO.getId());
+        GeoAreaSensor sensor = geoAreaService.getSensorById(new SensorId(sensorDTO.getId()));
         if (sensor.deactivateDevice()) {
             geoAreaService.updateRepository();
             return true;

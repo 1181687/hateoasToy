@@ -7,6 +7,7 @@ import pt.ipp.isep.dei.project.controllers.getdaywithhighesttemperatureamplitude
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaTypeId;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.house.Address;
@@ -40,9 +41,12 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
     @BeforeEach
     public void StartUp() {
         // Geographical Area Types
-        GeographicalAreaType region = new GeographicalAreaType("Region");
-        GeographicalAreaType district = new GeographicalAreaType("District");
-        GeographicalAreaType city = new GeographicalAreaType("City");
+        GeoAreaTypeId regionId = new GeoAreaTypeId("Region");
+        GeoAreaTypeId districtId = new GeoAreaTypeId("District");
+        GeoAreaTypeId cityId = new GeoAreaTypeId("City");
+        GeographicalAreaType region = new GeographicalAreaType(regionId);
+        GeographicalAreaType district = new GeographicalAreaType(districtId);
+        GeographicalAreaType city = new GeographicalAreaType(cityId);
 
         // Geographical Areas
         Location location = new Location(32.1496, 7.6109, 98);

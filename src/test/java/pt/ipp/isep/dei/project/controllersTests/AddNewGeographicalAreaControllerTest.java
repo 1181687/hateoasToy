@@ -1,40 +1,25 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
-/*
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
-import org.springframework.test.context.support.AnnotationConfigContextLoader;
+import pt.ipp.isep.dei.project.controllers.AddNewGeographicalAreaController;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.repositories.GeoAreaRepository;
-import pt.ipp.isep.dei.project.controllers.AddGeoAreaController;
-import pt.ipp.isep.dei.project.io.ui.Main;
-import pt.ipp.isep.dei.project.model.Location;
-import pt.ipp.isep.dei.project.model.geographicalarea.*;
+import pt.ipp.isep.dei.project.services.GeographicalAreaService;
 
-import java.util.Arrays;
-import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-@SpringBootTest
-@ContextConfiguration(classes = {Main.class},
-        loader = AnnotationConfigContextLoader.class)
-@SpringJUnitConfig(AddGeoAreaControllerTest.Config.class)
-public class AddGeoAreaControllerTest {
-    private AddGeoAreaController controller;
+public class AddNewGeographicalAreaControllerTest {
+    private AddNewGeographicalAreaController controller;
     @InjectMocks
     private GeographicalAreaService geographicalAreaService;
     private GeographicalArea cityOfPorto;
 
     @Mock
     private GeoAreaRepository geoAreaRepository;
+}
 
-    @BeforeEach
+   /* @BeforeEach
     public void StartUp() {
         // List of Geographical Area Types
         GeographicalAreaTypeList geographicalAreaTypeList = new GeographicalAreaTypeList();
