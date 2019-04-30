@@ -29,6 +29,10 @@ connected through an energy meter and a power limiter differential circuit break
 power grid. A house may have more than one independent grids (e.g. one for the main house and
 another for the garden). A room belongs only to one grid.
 
+According to the PO, a room may exist without being associated to a House Grid (for more information see
+US149 - As an Administrator, I want to detach a room from a house grid, so that the room’s power and energy consumption
+is not included in that grid. The room’s characteristics are not changed.)
+
 
 DEVICE
 An active electrical device that consumes electricity in order to fulfil its tasks. About devices:

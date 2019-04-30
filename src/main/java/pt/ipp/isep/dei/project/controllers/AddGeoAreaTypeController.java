@@ -1,37 +1,23 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaTypeList;
-
+import pt.ipp.isep.dei.project.services.GeoAreaTypeService;
 
 public class AddGeoAreaTypeController {
-    private GeographicalAreaTypeList geographicalAreaTypeList;
+
+    private GeoAreaTypeService geoAreaTypeService;
+
+    public AddGeoAreaTypeController(GeoAreaTypeService geoAreaTypeService) {
+        this.geoAreaTypeService = geoAreaTypeService;
+    }
 
     /**
-     * this is the construtor of the addGeoAreaTypeController
+     * Method that creates a new geo area type and adds it to the list of available geo area types.
      *
-     * @param list
+     * @param geoAreaTypeId Id
+     * @return true or false
      */
-    public AddGeoAreaTypeController(GeographicalAreaTypeList list) {
-        this.geographicalAreaTypeList = list;
+    public boolean createGeoAreaType(String geoAreaTypeId) {
+        return geoAreaTypeService.createGeoAreaType(geoAreaTypeId);
     }
 
-    /**
-     * method that add a type of geographical area.
-     *
-     * @param geoAreaType
-     * @return true if a geographicalAreaType is added. If not, return false.
-     */
-    public boolean addTypeOfGeoAreaToTheList(String geoAreaType) {
-        GeographicalAreaType newTypeOfGeoArea = geographicalAreaTypeList.newTypeOfGeoArea(geoAreaType);
-        return geographicalAreaTypeList.addTypeOfGeoAreaToTheList(newTypeOfGeoArea);
-    }
-
-    /**
-     * method that get the list of geo area types.
-     */
-    public GeographicalAreaTypeList getList() {
-        return geographicalAreaTypeList;
-    }
 }
-

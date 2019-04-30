@@ -1,121 +1,170 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
-
-import org.mockito.InjectMocks;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import pt.ipp.isep.dei.project.controllers.AddNewGeographicalAreaController;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
-import pt.ipp.isep.dei.project.repositories.GeoAreaRepository;
+import pt.ipp.isep.dei.project.model.Location;
+import pt.ipp.isep.dei.project.model.geographicalarea.*;
+import pt.ipp.isep.dei.project.services.GeoAreaTypeService;
 import pt.ipp.isep.dei.project.services.GeographicalAreaService;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 
 public class AddNewGeographicalAreaControllerTest {
-    private AddNewGeographicalAreaController controller;
-    @InjectMocks
-    private GeographicalAreaService geographicalAreaService;
-    private GeographicalArea cityOfPorto;
 
     @Mock
-    private GeoAreaRepository geoAreaRepository;
-}
+    private GeographicalAreaService geographicalAreaService;
+    private GeoAreaTypeService geoAreaTypeService;
 
-   /* @BeforeEach
+    private AddNewGeographicalAreaController controller;
+
+    @BeforeEach
     public void StartUp() {
-        // List of Geographical Area Types
-        GeographicalAreaTypeList geographicalAreaTypeList = new GeographicalAreaTypeList();
-
-        // Geographical Area Types
-        GeographicalAreaType city = new GeographicalAreaType("City");
-        geographicalAreaTypeList.addTypeOfGeoAreaToTheList(city);
-
-        // Geographical Area
-        Location location = new Location(41.178553, -8.608035, 111);
-        AreaShape areaShape = new AreaShape(0.261, 0.249, location);
-        cityOfPorto = new GeographicalArea("Porto", "City of Porto", city, location, areaShape);
-
-        // Controller
-        controller = new AddGeoAreaController(geographicalAreaService, geographicalAreaTypeList);
-    }
-
-    @Configuration
-    static class Config {
+        MockitoAnnotations.initMocks(this);
+        this.controller = new AddNewGeographicalAreaController(geographicalAreaService, geoAreaTypeService);
     }
 
     @Test
-    public void addNewGeoAreaPositiveTest() {
-        // Act
-        boolean result = controller.addNewGeoArea(cityOfPorto);
+    public void isGeoAreaExistant_ShouldReturnTrue() {
 
-        // Assert
+        String geoAreaId = "geoAreaId";
+        double latitude = 20;
+        double longitude = 12;
+        double elevation = 5;
+        String geoAreaTypeId = "geoAreaTypeId";
+
+        when(this.geographicalAreaService.isGeoAreaExistant(geoAreaId, latitude, longitude, elevation, geoAreaTypeId)).thenReturn(true);
+
+        boolean result = controller.isGeoAreaExistant(geoAreaId, latitude, longitude, elevation, geoAreaTypeId);
+
         assertTrue(result);
     }
 
     @Test
-    public void addNewGeoAreaNegativeTest() {
-        // Arrange
-        controller.addNewGeoArea(cityOfPorto);
+    public void isGeoAreaExistant_ShouldReturnFalse() {
 
-        // Act
-        boolean result = controller.addNewGeoArea(cityOfPorto);
 
-        // Assert
+        String geoAreaId = "geoAreaId";
+        double latitude = 20;
+        double longitude = 12;
+        double elevation = 5;
+        String geoAreaTypeId = "geoAreaTypeId";
+
+        when(this.geographicalAreaService.isGeoAreaExistant(geoAreaId, latitude, longitude, elevation, geoAreaTypeId)).thenReturn(false);
+
+        boolean result = controller.isGeoAreaExistant(geoAreaId, latitude, longitude, elevation, geoAreaTypeId);
+
         assertFalse(result);
     }
 
     @Test
-    public void getGeographicalAreaListTest() {
-        // Arrange
-        controller.addNewGeoArea(cityOfPorto);
+    public void getGeoAreaTypeList() {
 
-        GeographicalAreaService expectedResult = geographicalAreaService;
+        // GeoArea type
+        GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("Urban Area");
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType(geoAreaTypeId);
 
-        // Act
-        GeographicalAreaService result = controller.getGeographicalAreaService();
+        // GeoArea type list
+        List<GeographicalAreaType> geoAreaTypeList = new ArrayList<>();
+        geoAreaTypeList.add(geographicalAreaType);
 
-        // Assert
-        assertEquals(expectedResult, result);
+        when(this.geoAreaTypeService.getListOfGeoAreaTypes()).thenReturn(geoAreaTypeList);
+
+        // Geo Area type DTO list
+        List<GeographicalAreaTypeDTO> geographicalAreaTypeDTOList = new ArrayList<>();
+        GeographicalAreaTypeDTO geographicalAreaTypeDTO = GeographicalAreaTypeMapper.mapToDTO(geographicalAreaType);
+        geographicalAreaTypeDTOList.add(geographicalAreaTypeDTO);
+
+        List<GeographicalAreaTypeDTO> result = this.controller.getGeoAreaTypeList();
+
+        GeographicalAreaTypeDTO anotherGeoAreaTypeDTO = geographicalAreaTypeDTOList.get(0);
+        GeographicalAreaTypeDTO geographicalAreaTypeResult = result.get(0);
+
+
+        //assert
+        assertEquals(anotherGeoAreaTypeDTO.getGeoAreaType(), geographicalAreaTypeResult.getGeoAreaType());
     }
 
     @Test
-    public void getTGAListTest() {
-        // Arrange
-        List<String> expectedResult = Arrays.asList("City");
-
-        //Act
-        List<String> result = controller.getGeoAreaList();
-
-        //Assert
-        assertEquals(expectedResult, result);
-
-    }
-
-    @Test
-    public void createNewGeoAreaTest() {
+    public void addGeographicalArea_True() {
         //Arrange
-        GeographicalArea expectedResult = cityOfPorto;
+        String geoAreaId = "geoAreaId";
+        double latitude = 20;
+        double longitude = 12;
+        double elevation = 5;
+        Location location = new Location(latitude, longitude, elevation);
+        String geoAreaTypeId1 = "City";
+        GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId(geoAreaTypeId1);
+        GeographicalAreaType geoAreaType = new GeographicalAreaType(geoAreaTypeId);
+        GeoAreaId geoAreaId1 = new GeoAreaId(location, geoAreaId, geoAreaType);
+        String description = "City";
+        double width = 12;
+        double length = 12;
+        AreaShape areaShape = new AreaShape(width, length);
+
+        when(this.geographicalAreaService.addGeoArea(any(GeographicalArea.class))).thenReturn(true);
+
+        GeographicalAreaDTO geoAreaDTO = GeographicalAreaMapper.newGeoAreaDTO();
+        geoAreaDTO.setId(geoAreaId1.getId());
+        geoAreaDTO.setType(geoAreaTypeId.getTypeId());
+        geoAreaDTO.setElevation(location.getElevation());
+        geoAreaDTO.setLongitude(location.getLongitude());
+        geoAreaDTO.setLatitude(location.getLatitude());
+        geoAreaDTO.setDescription(description);
+        geoAreaDTO.setLength(areaShape.getLength());
+        geoAreaDTO.setWidth(areaShape.getWidth());
+
 
         //Act
-        Location location = new Location(41.178553, -8.608035, 111);
-        GeographicalArea result = controller.createNewGeoArea("Porto", "City of Porto", "City",
-                location, 0.261, 0.249);
+
+        boolean result = controller.addGeographicalArea(geoAreaDTO);
 
         //Assert
-        assertEquals(expectedResult,result);
+        assertTrue(result);
     }
 
     @Test
-    public void createNewLocationTest_ValidLocation() {
+    public void addGeographicalArea_False() {
         //Arrange
-        Location testLocation = new Location(45.234, 23.453, 250);
+        String geoAreaId = "geoAreaId";
+        double latitude = 20;
+        double longitude = 12;
+        double elevation = 5;
+        Location location = new Location(latitude, longitude, elevation);
+        String geoAreaTypeId1 = "City";
+        GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId(geoAreaTypeId1);
+        GeographicalAreaType geoAreaType = new GeographicalAreaType(geoAreaTypeId);
+        GeoAreaId geoAreaId1 = new GeoAreaId(location, geoAreaId, geoAreaType);
+        String description = "City";
+        double width = 12;
+        double length = 12;
+        AreaShape areaShape = new AreaShape(width, length);
 
-        Location expectedResult = testLocation;
+        when(this.geographicalAreaService.addGeoArea(any(GeographicalArea.class))).thenReturn(false);
+
+        GeographicalAreaDTO geoAreaDTO = GeographicalAreaMapper.newGeoAreaDTO();
+        geoAreaDTO.setId(geoAreaId1.getId());
+        geoAreaDTO.setType(geoAreaTypeId.getTypeId());
+        geoAreaDTO.setElevation(location.getElevation());
+        geoAreaDTO.setLongitude(location.getLongitude());
+        geoAreaDTO.setLatitude(location.getLatitude());
+        geoAreaDTO.setDescription(description);
+        geoAreaDTO.setLength(areaShape.getLength());
+        geoAreaDTO.setWidth(areaShape.getWidth());
+
 
         //Act
-        Location result = controller.createLocation(45.234, 23.453, 250);
+
+        boolean result = controller.addGeographicalArea(geoAreaDTO);
 
         //Assert
-        assertEquals(expectedResult, result);
+        assertFalse(result);
     }
 }
-
- */

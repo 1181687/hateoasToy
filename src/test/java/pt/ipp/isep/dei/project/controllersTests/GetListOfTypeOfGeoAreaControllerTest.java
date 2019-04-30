@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import pt.ipp.isep.dei.project.controllers.GetListOfTypeOfGeoAreaController;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.*;
+import pt.ipp.isep.dei.project.services.GeoAreaTypeService;
 import pt.ipp.isep.dei.project.services.GeographicalAreaService;
 
 import java.util.ArrayList;
@@ -21,6 +22,8 @@ public class GetListOfTypeOfGeoAreaControllerTest {
 
     @Mock
     private GeographicalAreaService geographicalAreaService;
+    @Mock
+    private GeoAreaTypeService geoAreaTypeService;
     private GeographicalAreaTypeList geographicalAreaTypeList;
     private GeographicalArea ag;
     private GeographicalAreaType type;
@@ -39,7 +42,7 @@ public class GetListOfTypeOfGeoAreaControllerTest {
 
         // Geo Area Type List & Geo Area List
         this.geographicalAreaTypeList = new GeographicalAreaTypeList();
-        this.controller = new GetListOfTypeOfGeoAreaController(geographicalAreaService, geographicalAreaTypeList);
+        this.controller = new GetListOfTypeOfGeoAreaController(geographicalAreaService, geoAreaTypeService);
     }
 
     @Test
@@ -65,6 +68,8 @@ public class GetListOfTypeOfGeoAreaControllerTest {
         //Arrange
         geographicalAreaTypeList.addTypeOfGeoAreaToTheList(type);
         List<String> expectedResult = Arrays.asList("Urban area");
+
+        when (this.geoAreaTypeService.getListOfGeoAreaTypesToString()).thenReturn(expectedResult);
 
         //Act
         List<String> result = controller.getListaDosTiposDeAG();
