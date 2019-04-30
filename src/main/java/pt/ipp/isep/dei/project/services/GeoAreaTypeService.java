@@ -20,4 +20,17 @@ public class GeoAreaTypeService {
         geoAreaTypeIterables.forEach(geographicalAreaTypeList::add);
         return geographicalAreaTypeList;
     }
+
+    /**
+     * method that get the list of geo area types
+     *
+     * @return a list of geo area types.
+     */
+    public List<String> getListOfGeoAreaTypesToString() {
+        List<String> listOfGeoAreaTypes = new ArrayList<>();
+        for (GeographicalAreaType object : this.geoAreaTypeRepository.findAll()) {
+            listOfGeoAreaTypes.add(object.getStringOfTypeOfGeoArea());
+        }
+        return listOfGeoAreaTypes;
+    }
 }

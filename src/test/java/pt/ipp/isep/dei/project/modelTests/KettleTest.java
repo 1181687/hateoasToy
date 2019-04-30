@@ -3,12 +3,6 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
-import org.springframework.test.context.support.AnnotationConfigContextLoader;
-import pt.ipp.isep.dei.project.io.ui.Main;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.kettle.KettleType;
@@ -24,10 +18,6 @@ import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-@DataJpaTest
-@ContextConfiguration(classes = {Main.class},
-        loader = AnnotationConfigContextLoader.class)
-@SpringJUnitConfig(KettleTest.Config.class)
 public class KettleTest {
 
     private Room kitchen;
@@ -87,7 +77,7 @@ public class KettleTest {
      * Test the setLocation method with another location,
      * so the result should be true.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetLocation_AnotherLocation_True() {
         //Arrange
         Room location = laundry;
@@ -121,7 +111,7 @@ public class KettleTest {
      * Test the setName method with a new name for the device,
      * so the result should be true.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetName_NewName_True() {
         //Arrange
         String name = "Nome novo";
@@ -147,7 +137,7 @@ public class KettleTest {
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testHashCode_voidReturn() {
         // Arrange
         int expectedResult = Objects.hash(kettle1.getName());
@@ -235,7 +225,7 @@ public class KettleTest {
      * This test is comparing the same name with some Case Letters.
      * The result should be false.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testEquals_SameNameWithDifferentCase_False() {
         // Arrange
         boolean expectedResult = false;
@@ -270,7 +260,7 @@ public class KettleTest {
     /**
      * Test the setDeactivateDevice as to know if the device is deactive.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetDeactivationDate_False() {
         //Arrange
         kettle1.setDeactivateDevice();
@@ -328,7 +318,7 @@ public class KettleTest {
      * Test the method getIsActive when the device is active.
      * So the test should return True.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetIsActive_True() {
         //Arrange
         boolean expectedResult = true;
@@ -354,9 +344,5 @@ public class KettleTest {
 
         //Assert
         assertEquals(expectedResult, result);
-    }
-
-    @Configuration
-    static class Config {
     }
 }

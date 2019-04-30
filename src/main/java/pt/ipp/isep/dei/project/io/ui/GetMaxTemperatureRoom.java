@@ -1,8 +1,8 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.GetCurrentAndMaxTempRoomController;
-import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
+import pt.ipp.isep.dei.project.services.HouseService;
 
 /**
  * US610 As a Regular User, I want to get the maximum temperature in a room in a given day,
@@ -20,8 +20,8 @@ public class GetMaxTemperatureRoom {
      * @param house      House
      * @param sensorTypeId SensorType
      */
-    public GetMaxTemperatureRoom(House house, SensorTypeId sensorTypeId) {
-        this.controller = new GetCurrentAndMaxTempRoomController(house, sensorTypeId);
+    public GetMaxTemperatureRoom(HouseService houseService, SensorTypeId sensorTypeId) {
+        this.controller = new GetCurrentAndMaxTempRoomController(houseService, sensorTypeId);
     }
 
     public void run() {

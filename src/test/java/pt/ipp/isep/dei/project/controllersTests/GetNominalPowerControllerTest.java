@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import pt.ipp.isep.dei.project.controllers.GetNominalPowerController;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.MeasurableList;
@@ -15,6 +16,7 @@ import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
+import pt.ipp.isep.dei.project.services.HouseService;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.List;
@@ -29,6 +31,8 @@ public class GetNominalPowerControllerTest {
     private HouseGrid gridTwo;
     private Room roomOne;
     private Room roomTwo;
+    @Mock
+    private HouseService houseService;
 
     @BeforeEach
     public void StartUp() {
@@ -64,7 +68,7 @@ public class GetNominalPowerControllerTest {
         grid = new HouseGrid("Grid");
         gridTwo = new HouseGrid("Grid2");
 
-        this.controller = new GetNominalPowerController(houseEdificioB);
+        this.controller = new GetNominalPowerController(houseService);
 
     }
 

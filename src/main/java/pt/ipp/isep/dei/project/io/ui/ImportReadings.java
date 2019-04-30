@@ -11,7 +11,6 @@ import java.util.List;
 
 public class ImportReadings {
     private ImportGeoAreaReadingsController geoAreaReadingsController;
-    //private ImportRoomReadingsController roomReadingsController;
 
     /**
      * Constructor.
@@ -20,7 +19,6 @@ public class ImportReadings {
      */
     public ImportReadings(GeoAreaSensorService geoAreaSensorService, RoomSensorService roomSensorService) {
         geoAreaReadingsController = new ImportGeoAreaReadingsController(geoAreaSensorService);
-        //roomReadingsController = new ImportRoomReadingsController(roomSensorService);
     }
 
     /**
