@@ -24,7 +24,6 @@ public class GetListOfTypeOfGeoAreaControllerTest {
     private GeographicalAreaService geographicalAreaService;
     @Mock
     private GeoAreaTypeService geoAreaTypeService;
-    private GeographicalAreaTypeList geographicalAreaTypeList;
     private GeographicalArea ag;
     private GeographicalAreaType type;
     private GetListOfTypeOfGeoAreaController controller;
@@ -41,7 +40,7 @@ public class GetListOfTypeOfGeoAreaControllerTest {
         this.ag = new GeographicalArea("ISEP", "Campus do ISEP", type, location, areaShape);
 
         // Geo Area Type List & Geo Area List
-        this.geographicalAreaTypeList = new GeographicalAreaTypeList();
+        //this.geographicalAreaTypeList = new GeographicalAreaTypeList();
         this.controller = new GetListOfTypeOfGeoAreaController(geographicalAreaService, geoAreaTypeService);
     }
 
@@ -49,7 +48,7 @@ public class GetListOfTypeOfGeoAreaControllerTest {
     public void testarGetListaAGPorTipo() {
         //Arrange
         String nameType = "Urban area";
-        this.geographicalAreaTypeList.addTypeOfGeoAreaToTheList(type);
+        //this.geographicalAreaTypeList.addTypeOfGeoAreaToTheList(type);
         this.geographicalAreaService.addGeoArea(ag);
 
         ArrayList<String> expectedResult = new ArrayList<>(Arrays.asList("Campus do ISEP"));
@@ -66,7 +65,7 @@ public class GetListOfTypeOfGeoAreaControllerTest {
     @Test
     public void testarGetListaDosTiposDeAG() {
         //Arrange
-        geographicalAreaTypeList.addTypeOfGeoAreaToTheList(type);
+        //geographicalAreaTypeList.addTypeOfGeoAreaToTheList(type);
         List<String> expectedResult = Arrays.asList("Urban area");
 
         when (this.geoAreaTypeService.getListOfGeoAreaTypesToString()).thenReturn(expectedResult);

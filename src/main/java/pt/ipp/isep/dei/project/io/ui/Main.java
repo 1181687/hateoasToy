@@ -59,7 +59,6 @@ public class Main {
     private House houseEdificioB;
     private PowerSourceTypeList powerSourceTypeList;
     private SensorTypeList sensorTypeList;
-    private GeographicalAreaTypeList geographicalAreaTypeList;
 
     //GeographicalAreaService Repository Injection
     @Autowired
@@ -105,8 +104,8 @@ public class Main {
             data();
 
             //UI levels
-            Admin admin = new Admin(geographicalAreaTypeList, geographicalAreaService, geoAreaTypeService, sensorTypeList, powerSourceTypeList, houseEdificioB.getRoomList(), houseService, geoAreaSensorService, roomSensorService, sensorTypeService);
-            RegularUser regularUser = new RegularUser(geographicalAreaTypeList, geographicalAreaService, sensorTypeList, houseService);
+            Admin admin = new Admin(geographicalAreaService, geoAreaTypeService, sensorTypeList, powerSourceTypeList, houseEdificioB.getRoomList(), houseService, geoAreaSensorService, roomSensorService, sensorTypeService);
+            RegularUser regularUser = new RegularUser(geoAreaTypeService, geographicalAreaService, sensorTypeList, houseService);
             PowerUser powerUser = new PowerUser(houseService);
             RoomOwner roomOwner = new RoomOwner(houseService);
 
@@ -151,7 +150,7 @@ public class Main {
         }
         List<String> deviceTypeList = Utils.readConfigFileToList(configFile, "devicetype.count", "devicetype.name");
 
-        geographicalAreaTypeList = new GeographicalAreaTypeList();
+        //geographicalAreaTypeList = new GeographicalAreaTypeList();
         //geographicalAreaList = new GeographicalAreaList();
 
         // GEOGRAPHICAL AREAS

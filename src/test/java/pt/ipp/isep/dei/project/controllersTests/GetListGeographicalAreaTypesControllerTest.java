@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.GetListGeoAreaTypesController;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaTypeId;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaTypeList;
 import pt.ipp.isep.dei.project.services.GeoAreaTypeService;
 
 import java.util.Arrays;
@@ -16,14 +15,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class GetListGeographicalAreaTypesControllerTest {
 
     private GetListGeoAreaTypesController controller;
-    private GeographicalAreaTypeList geographicalAreaTypeList;
+    //private GeographicalAreaTypeList geographicalAreaTypeList;
 
     private GeoAreaTypeService geoAreaTypeService;
 
     @BeforeEach
     public void StartUp() {
         //Geographical Area Type List
-        this.geographicalAreaTypeList = new GeographicalAreaTypeList();
+        //this.geographicalAreaTypeList = new GeographicalAreaTypeList();
 
         //Controller
         this.controller = new GetListGeoAreaTypesController(geoAreaTypeService);
@@ -34,7 +33,7 @@ public class GetListGeographicalAreaTypesControllerTest {
         //Arrange
         GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("Cidade");
         GeographicalAreaType type = new GeographicalAreaType(geoAreaTypeId);
-        this.geographicalAreaTypeList.addTypeOfGeoAreaToTheList(type);
+        //this.geographicalAreaTypeList.addTypeOfGeoAreaToTheList(type);
         List<String> expectedResult = Arrays.asList("Cidade");
 
         //Act
@@ -52,8 +51,8 @@ public class GetListGeographicalAreaTypesControllerTest {
         GeoAreaTypeId geoAreaTypeId1 = new GeoAreaTypeId("Freguesia");
         GeographicalAreaType type2 = new GeographicalAreaType(geoAreaTypeId1);
 
-        this.geographicalAreaTypeList.addTypeOfGeoAreaToTheList(type1);
-        this.geographicalAreaTypeList.addTypeOfGeoAreaToTheList(type2);
+        //this.geographicalAreaTypeList.addTypeOfGeoAreaToTheList(type1);
+       // this.geographicalAreaTypeList.addTypeOfGeoAreaToTheList(type2);
 
         List<String> expectedResult = Arrays.asList("Cidade", "Freguesia");
 

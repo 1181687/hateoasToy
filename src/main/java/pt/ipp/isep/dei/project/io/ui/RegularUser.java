@@ -1,21 +1,21 @@
 package pt.ipp.isep.dei.project.io.ui;
 
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaTypeList;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeList;
+import pt.ipp.isep.dei.project.services.GeoAreaTypeService;
 import pt.ipp.isep.dei.project.services.GeographicalAreaService;
 import pt.ipp.isep.dei.project.services.HouseService;
 
 public class RegularUser {
 
-    GeographicalAreaTypeList geographicalAreaTypeList;
+    GeoAreaTypeService geographicalAreaTypeService;
     GeographicalAreaService geographicalAreaService;
     SensorTypeList sensorTypeList;
     SensorTypeId sensorTypeTemperature = new SensorTypeId("Temperature");
     HouseService houseService;
 
-    public RegularUser(GeographicalAreaTypeList geographicalAreaTypeList, GeographicalAreaService geographicalAreaService, SensorTypeList sensorTypeList, HouseService houseService) {
-        this.geographicalAreaTypeList = geographicalAreaTypeList;
+    public RegularUser(GeoAreaTypeService geographicalTypeService, GeographicalAreaService geographicalAreaService, SensorTypeList sensorTypeList, HouseService houseService) {
+        this.geographicalAreaTypeService = geographicalTypeService;
         this.geographicalAreaService = geographicalAreaService;
         this.sensorTypeList = sensorTypeList;
         this.houseService = houseService;
