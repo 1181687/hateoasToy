@@ -51,7 +51,8 @@ public class GeographicalAreaTypeList {
      * @return a new type of geo area.
      */
     public GeographicalAreaType newTypeOfGeoArea(String newType) {
-        return new GeographicalAreaType(newType);
+        GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId(newType);
+        return new GeographicalAreaType(geoAreaTypeId);
     }
 
     /**

@@ -6,6 +6,7 @@ import pt.ipp.isep.dei.project.controllers.GetTotalAndAverageRainfallAndCurrentT
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaTypeId;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.house.Address;
@@ -34,7 +35,8 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
         //Geographical Area
         Location location = new Location(42.1, -8.6, 100.0);
         AreaShape areaShape = new AreaShape(0.261, 0.249);
-        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Urban area");
+        GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("Urban area");
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType(geoAreaTypeId);
         this.geoArea = new GeographicalArea("ISEP", "Campus do ISEP", geographicalAreaType, location, areaShape);
 
         //House

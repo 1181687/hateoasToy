@@ -8,6 +8,7 @@ import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.ReadingMapper;
 import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaTypeId;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.house.Address;
@@ -40,9 +41,12 @@ public class GetLastColdestDayHouseAreaControllerTest {
     @BeforeEach
     public void StartUp() {
         // Geographical Area Types
-        GeographicalAreaType region = new GeographicalAreaType("Region");
-        GeographicalAreaType district = new GeographicalAreaType("District");
-        GeographicalAreaType city = new GeographicalAreaType("City");
+        GeoAreaTypeId regionId = new GeoAreaTypeId("Region");
+        GeoAreaTypeId districtId = new GeoAreaTypeId("District");
+        GeoAreaTypeId cityId = new GeoAreaTypeId("City");
+        GeographicalAreaType region = new GeographicalAreaType(regionId);
+        GeographicalAreaType district = new GeographicalAreaType(districtId);
+        GeographicalAreaType city = new GeographicalAreaType(cityId);
 
         // Geographical Areas
         Location location = new Location(32.1496, 7.6109, 98);
@@ -183,7 +187,8 @@ public class GetLastColdestDayHouseAreaControllerTest {
     public void hasSensorsOfGivenTypeInGeoArea_withoutSensorsOfGivenTypeInArea_ShouldReturnFalse() {
         //Arrange
         // Geographical Area Types
-        GeographicalAreaType city = new GeographicalAreaType("City");
+        GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("City");
+        GeographicalAreaType city = new GeographicalAreaType(geoAreaTypeId);
 
         // Geographical Areas
 
