@@ -52,7 +52,7 @@ public class Admin {
                     ui.run();
                     break;
                 case 2:
-                    GetListGeoAreaTypes ui2 = new GetListGeoAreaTypes(geographicalAreaTypeList);
+                    GetListGeoAreaTypes ui2 = new GetListGeoAreaTypes(geoAreaTypeService);
                     ui2.run();
                     break;
                 case 3:
@@ -60,7 +60,7 @@ public class Admin {
                     ui3.run();
                     break;
                 case 4:
-                    GetListOfTypeOfGeoArea ui4 = new GetListOfTypeOfGeoArea(geographicalAreaService, geographicalAreaTypeList);
+                    GetListOfTypeOfGeoArea ui4 = new GetListOfTypeOfGeoArea(geographicalAreaService, geoAreaTypeService);
                     ui4.run();
                     break;
                 case 5:
