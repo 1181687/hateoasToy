@@ -21,7 +21,7 @@ public class GetDayWithHighestTemperatureAmplitudeController {
     /**
      * constructor that receives a House and a SensorType
      *
-     * @param house
+     * @param houseService
      */
     public GetDayWithHighestTemperatureAmplitudeController(HouseService houseService) {
         this.house = houseService.getHouse();

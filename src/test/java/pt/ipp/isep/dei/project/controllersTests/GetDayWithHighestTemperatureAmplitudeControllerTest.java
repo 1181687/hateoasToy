@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.project.controllersTests;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import pt.ipp.isep.dei.project.controllers.getdaywithhighesttemperatureamplitudecontroller.GetDayWithHighestTemperatureAmplitudeController;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
@@ -22,6 +23,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.when;
 
 public class GetDayWithHighestTemperatureAmplitudeControllerTest {
 
@@ -40,6 +42,7 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
 
     @BeforeEach
     public void StartUp() {
+        MockitoAnnotations.initMocks(this);
         // Geographical Area Types
         GeoAreaTypeId regionId = new GeoAreaTypeId("Region");
         GeoAreaTypeId districtId = new GeoAreaTypeId("District");
@@ -77,29 +80,26 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
         temperatureSensor = new GeoAreaSensor(new SensorId("S01"), "A123", startDate, temperature, sensorLocation, "l/m2");
         LocalDateTime startDate1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         Location sensorLocation1 = new Location(42.1496, -8.6109, 97);
-        temperatureSensor1 = new GeoAreaSensor(new SensorId("S01"), "B123", startDate1, temperature, sensorLocation1, "l/m2");
+        temperatureSensor1 = new GeoAreaSensor(new SensorId("S02"), "B123", startDate1, temperature, sensorLocation1, "l/m2");
 
         // Reading
         LocalDateTime readingDate = LocalDateTime.of(2018, 12, 2, 13, 20, 00);
         LocalDateTime readingDate1 = LocalDateTime.of(2018, 12, 3, 13, 24, 00);
         Reading reading = new Reading(23, readingDate);
         Reading reading1 = new Reading(30, readingDate1);
-        temperatureSensor.addReadingsToList(reading);
-        temperatureSensor.addReadingsToList(reading1);
+        temperatureSensor.addReading(reading);
+        temperatureSensor.addReading(reading1);
         LocalDateTime readingDate2 = LocalDateTime.of(2018, 12, 2, 05, 20, 00);
         LocalDateTime readingDate3 = LocalDateTime.of(2018, 12, 3, 05, 24, 00);
         Reading reading2 = new Reading(22, readingDate2);
         Reading reading3 = new Reading(25, readingDate3);
-        temperatureSensor1.addReadingsToList(reading2);
-        temperatureSensor1.addReadingsToList(reading3);
+        temperatureSensor1.addReading(reading2);
+        temperatureSensor1.addReading(reading3);
 
         //Add sensors to Sensorlist
 
-        portoCity.getSensorListInTheGeographicArea().addSensor(temperatureSensor);
-        portoCity.getSensorListInTheGeographicArea().addSensor(temperatureSensor1);
-
-        controller = new GetDayWithHighestTemperatureAmplitudeController(houseService);
-
+        portoCity.addSensor(temperatureSensor);
+        portoCity.addSensor(temperatureSensor1);
     }
 
     /**
@@ -115,20 +115,22 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
      */
     @Test
     public void getHighestDailyAmplitude_4_12_2018_amplitude20() {
-
+        when(houseService.getHouse()).thenReturn(house);
         // Extra Reading
         LocalDateTime time0 = LocalDateTime.of(2018, 12, 2, 12, 20, 00);
         Reading reading4 = new Reading(29, time0);
         LocalDateTime time1 = LocalDateTime.of(2018, 12, 3, 13, 20, 00);
         Reading reading5 = new Reading(31, time1);
-        temperatureSensor1.addReadingsToList(reading4);
-        temperatureSensor1.addReadingsToList(reading5);
+        temperatureSensor1.addReading(reading4);
+        temperatureSensor1.addReading(reading5);
         LocalDateTime time2 = LocalDateTime.of(2018, 12, 4, 06, 20, 00);
         Reading reading6 = new Reading(-5, time2);
         LocalDateTime time3 = LocalDateTime.of(2018, 12, 4, 12, 20, 00);
         Reading reading7 = new Reading(15, time3);
-        temperatureSensor1.addReadingsToList(reading6);
-        temperatureSensor1.addReadingsToList(reading7);
+        temperatureSensor1.addReading(reading6);
+        temperatureSensor1.addReading(reading7);
+
+        controller = new GetDayWithHighestTemperatureAmplitudeController(houseService);
 
         //interval LocalDate
         LocalDateTime startDateTime = LocalDateTime.of(2018, 12, 2, 00, 00, 01);
@@ -156,21 +158,23 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
      */
     @Test
     public void getHighestDailyAmplitude_doubleNanValuesIn4_12_2018_highestAmplitude7_2_12_2018() {
-
+        when(houseService.getHouse()).thenReturn(house);
         // Extra Reading
         double value = Double.NaN;
         LocalDateTime time0 = LocalDateTime.of(2018, 12, 2, 12, 20, 00);
         Reading reading4 = new Reading(29, time0);
         LocalDateTime time1 = LocalDateTime.of(2018, 12, 3, 13, 20, 00);
         Reading reading5 = new Reading(31, time1);
-        temperatureSensor1.addReadingsToList(reading4);
-        temperatureSensor1.addReadingsToList(reading5);
+        temperatureSensor1.addReading(reading4);
+        temperatureSensor1.addReading(reading5);
         LocalDateTime time2 = LocalDateTime.of(2018, 12, 4, 06, 20, 00);
         Reading reading6 = new Reading(value, time2);
         LocalDateTime time3 = LocalDateTime.of(2018, 12, 4, 12, 20, 00);
         Reading reading7 = new Reading(15, time3);
-        temperatureSensor1.addReadingsToList(reading6);
-        temperatureSensor1.addReadingsToList(reading7);
+        temperatureSensor1.addReading(reading6);
+        temperatureSensor1.addReading(reading7);
+
+        controller = new GetDayWithHighestTemperatureAmplitudeController(houseService);
 
         //interval LocalDate
         LocalDateTime startDateTime = LocalDateTime.of(2018, 12, 2, 00, 00, 01);
@@ -197,11 +201,13 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
      */
     @Test
     public void getHighestDailyAmplitude_onlyOneValuePerDay_ThereAreNotEnoughValuesToCalculateTheAmplitude() {
-
+        when(houseService.getHouse()).thenReturn(house);
         // Extra Reading
         LocalDateTime time2 = LocalDateTime.of(2018, 12, 4, 06, 20, 00);
         Reading reading6 = new Reading(13, time2);
-        temperatureSensor1.addReadingsToList(reading6);
+        temperatureSensor1.addReading(reading6);
+
+        controller = new GetDayWithHighestTemperatureAmplitudeController(houseService);
 
         //interval LocalDate
         LocalDateTime startDateTime = LocalDateTime.of(2018, 12, 2, 00, 00, 01);
@@ -227,12 +233,14 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
      */
     @Test
     public void getHighestDailyAmplitude_onlyOneValuePerDayWithOneBeingDoubleNan_ThereAreNotEnoughValuesToCalculateTheAmplitude() {
-
+        when(houseService.getHouse()).thenReturn(house);
         double valueNan = Double.NaN;
         // Extra Reading
         LocalDateTime time2 = LocalDateTime.of(2018, 12, 4, 06, 20, 00);
         Reading reading6 = new Reading(valueNan, time2);
-        temperatureSensor1.addReadingsToList(reading6);
+        temperatureSensor1.addReading(reading6);
+
+        controller = new GetDayWithHighestTemperatureAmplitudeController(houseService);
 
         //interval LocalDate
         LocalDateTime startDateTime = LocalDateTime.of(2018, 12, 2, 00, 00, 01);
@@ -258,18 +266,20 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
      */
     @Test
     public void getHighestDailyAmplitude_onlyValuesDoubleNan_TheresNoRegisterForThisPeriod() {
-
+        when(houseService.getHouse()).thenReturn(house);
         double valueNan = Double.NaN;
         // Extra Reading
         LocalDateTime time2 = LocalDateTime.of(2018, 12, 4, 06, 20, 00);
         Reading reading6 = new Reading(valueNan, time2);
-        temperatureSensor1.addReadingsToList(reading6);
+        temperatureSensor1.addReading(reading6);
         LocalDateTime time3 = LocalDateTime.of(2018, 12, 12, 06, 20, 00);
         Reading reading7 = new Reading(valueNan, time3);
-        temperatureSensor1.addReadingsToList(reading7);
+        temperatureSensor1.addReading(reading7);
         LocalDateTime time4 = LocalDateTime.of(2018, 12, 13, 06, 20, 00);
         Reading reading8 = new Reading(valueNan, time4);
-        temperatureSensor1.addReadingsToList(reading8);
+        temperatureSensor1.addReading(reading8);
+
+        controller = new GetDayWithHighestTemperatureAmplitudeController(houseService);
 
         //interval LocalDate
         LocalDateTime startDateTime = LocalDateTime.of(2018, 12, 4, 00, 00, 01);
@@ -291,10 +301,12 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
      **/
     @Test
     public void getHighestDailyAmplitude_noMeasurements() {
-
+        when(houseService.getHouse()).thenReturn(house);
         //interval LocalDate
         LocalDateTime startDateTime = LocalDateTime.of(2018, 01, 2, 00, 00, 01);
         LocalDateTime endDateTime = LocalDateTime.of(2018, 02, 4, 23, 59, 00);
+
+        controller = new GetDayWithHighestTemperatureAmplitudeController(houseService);
 
         //Act
         controller.getDayWithHighestTemperatureAmplitude(startDateTime.toLocalDate(), endDateTime.toLocalDate());
@@ -311,10 +323,12 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
      **/
     @Test
     public void getHighestDailyAmplitude_noSensor() {
-
+        when(houseService.getHouse()).thenReturn(house);
         //interval LocalDate
         LocalDateTime startDateTime = LocalDateTime.of(2010, 01, 2, 00, 00, 01);
         LocalDateTime endDateTime = LocalDateTime.of(2010, 02, 4, 23, 59, 00);
+
+        controller = new GetDayWithHighestTemperatureAmplitudeController(houseService);
 
         //Act
         controller.getDayWithHighestTemperatureAmplitude(startDateTime.toLocalDate(), endDateTime.toLocalDate());
