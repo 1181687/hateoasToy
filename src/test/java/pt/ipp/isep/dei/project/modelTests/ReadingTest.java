@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.project.modelTests;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
+import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 
 import java.time.LocalDateTime;
 
@@ -29,7 +30,7 @@ public class ReadingTest {
         LocalDateTime date = LocalDateTime.of(2018, 2, 3, 12, 30);
         Reading reading = new Reading(23.2, date);
 
-        HouseGrid grid = new HouseGrid("Main Grid");
+        HouseGrid grid = new HouseGrid(new HouseGridId("Main Grid"));
         //Act
         boolean result = reading.equals(grid);
         //Assert

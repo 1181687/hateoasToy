@@ -20,6 +20,7 @@ import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
+import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceType;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceTypeList;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeList;
@@ -531,7 +532,7 @@ public class Main {
 
         // HOUSE GRID
         String houseGridName = "main grid";
-        HouseGrid houseGrid = new HouseGrid(houseGridName);
+        HouseGrid houseGrid = new HouseGrid(new HouseGridId(houseGridName));
         houseEdificioB.addGrid(houseGrid);
         houseGrid.addRoom(room1);
         houseGrid.addRoom(room2);

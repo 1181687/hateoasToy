@@ -16,6 +16,7 @@ import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
+import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 import pt.ipp.isep.dei.project.services.HouseService;
 import pt.ipp.isep.dei.project.utils.Utils;
 
@@ -65,8 +66,8 @@ public class GetNominalPowerControllerTest {
         houseEdificioB.addRoom(roomTwo);
 
         //grids
-        grid = new HouseGrid("Grid");
-        gridTwo = new HouseGrid("Grid2");
+        grid = new HouseGrid(new HouseGridId("Grid"));
+        gridTwo = new HouseGrid(new HouseGridId("Grid2"));
 
         this.controller = new GetNominalPowerController(houseService);
 

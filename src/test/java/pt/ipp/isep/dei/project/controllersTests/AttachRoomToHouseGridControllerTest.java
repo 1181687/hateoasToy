@@ -9,6 +9,7 @@ import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.RoomList;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
+import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.List;
@@ -54,7 +55,7 @@ public class AttachRoomToHouseGridControllerTest {
         // Arrange
 
         String gridName = "Grid";
-        HouseGrid grid = new HouseGrid(gridName);
+        HouseGrid grid = new HouseGrid(new HouseGridId(gridName));
         house.addGrid(grid);
 
         // Act
@@ -70,8 +71,8 @@ public class AttachRoomToHouseGridControllerTest {
 
         String gridName = "Grid";
         String gridName2 = "Grid2";
-        HouseGrid grid0 = new HouseGrid(gridName);
-        HouseGrid grid1 = new HouseGrid(gridName2);
+        HouseGrid grid0 = new HouseGrid(new HouseGridId(gridName));
+        HouseGrid grid1 = new HouseGrid(new HouseGridId(gridName2));
         house.addGrid(grid0);
         house.addGrid(grid1);
 
@@ -88,8 +89,8 @@ public class AttachRoomToHouseGridControllerTest {
     public void getHouseGridFromTheListTest() {
         // Arrange
         String gridName = "Grid";
-        HouseGrid grid0 = new HouseGrid(gridName);
-        HouseGrid grid1 = new HouseGrid(gridName);
+        HouseGrid grid0 = new HouseGrid(new HouseGridId(gridName));
+        HouseGrid grid1 = new HouseGrid(new HouseGridId(gridName));
         house.addGrid(grid0);
         house.addGrid(grid1);
 
@@ -155,7 +156,7 @@ public class AttachRoomToHouseGridControllerTest {
     public void checkIfTheChosenRoomIsAlreadyInTheChosenGridPositiveTest() {
         // Arrange
         String gridName = "Grid";
-        HouseGrid grid = new HouseGrid(gridName);
+        HouseGrid grid = new HouseGrid(new HouseGridId(gridName));
         house.createHouseGrid(grid);
         house.addGrid(grid);
         String roomName = "Kitchen";
@@ -181,7 +182,7 @@ public class AttachRoomToHouseGridControllerTest {
         // Arrange
 
         String gridName = "Grid";
-        HouseGrid grid = new HouseGrid(gridName);
+        HouseGrid grid = new HouseGrid(new HouseGridId(gridName));
         house.createHouseGrid(grid);
         house.addGrid(grid);
 
@@ -207,7 +208,7 @@ public class AttachRoomToHouseGridControllerTest {
         // Arrange
         // Instantiate House Grids
         String gridName = "Grid";
-        HouseGrid grid = new HouseGrid(gridName);
+        HouseGrid grid = new HouseGrid(new HouseGridId(gridName));
 
         house.addGrid(grid);
 
@@ -283,11 +284,11 @@ public class AttachRoomToHouseGridControllerTest {
 
         // Instantiate House Grids
         String gridName0 = "Grid";
-        HouseGrid grid0 = new HouseGrid(gridName0);
+        HouseGrid grid0 = new HouseGrid(new HouseGridId(gridName0));
         String gridName1 = "Grid1";
-        HouseGrid grid1 = new HouseGrid(gridName1);
+        HouseGrid grid1 = new HouseGrid(new HouseGridId(gridName1));
         String gridName2 = "Grid2";
-        HouseGrid grid2 = new HouseGrid(gridName2);
+        HouseGrid grid2 = new HouseGrid(new HouseGridId(gridName2));
         grid2.addRoom(room);
 
         // Instantiate List of House Grids
@@ -318,11 +319,11 @@ public class AttachRoomToHouseGridControllerTest {
 
         // Instantiate House Grids
         String gridName0 = "Grid";
-        HouseGrid grid0 = new HouseGrid(gridName0);
+        HouseGrid grid0 = new HouseGrid(new HouseGridId(gridName0));
         String gridName1 = "Grid";
-        HouseGrid grid1 = new HouseGrid(gridName1);
+        HouseGrid grid1 = new HouseGrid(new HouseGridId(gridName1));
         String gridName2 = "Grid";
-        HouseGrid grid2 = new HouseGrid(gridName2);
+        HouseGrid grid2 = new HouseGrid(new HouseGridId(gridName2));
 
         house.addGrid(grid0);
         house.addGrid(grid1);
@@ -358,7 +359,7 @@ public class AttachRoomToHouseGridControllerTest {
 
         // Instantiate House Grids
         String gridName0 = "Grid0";
-        HouseGrid grid0 = new HouseGrid(gridName0);
+        HouseGrid grid0 = new HouseGrid(new HouseGridId(gridName0));
 
         house.addGrid(grid0);
 

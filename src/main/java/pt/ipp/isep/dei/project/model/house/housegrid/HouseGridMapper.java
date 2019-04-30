@@ -15,7 +15,7 @@ public final class HouseGridMapper {
     }
 
     public static HouseGrid mapToEntity(HouseGridDTO gridDTO) {
-        HouseGrid houseGrid = new HouseGrid(gridDTO.getName());
+        HouseGrid houseGrid = new HouseGrid(new HouseGridId(gridDTO.getName()));
         if (!gridDTO.getRoomDTOS().isEmpty()) {
             for (RoomDTO roomDTO : gridDTO.getRoomDTOS()) {
                 Room room = RoomMapper.mapToEntity(roomDTO);

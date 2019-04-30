@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.AddPowerSourceToHouseGridController;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
+import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceType;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceTypeList;
 import pt.ipp.isep.dei.project.utils.Utils;
@@ -24,8 +25,8 @@ public class AddPowerSourceToHouseGridControllerTest {
     public void StartUp() {
 
         // House Grids
-        mainGrid = new HouseGrid("Main grid");
-        secondaryGrid = new HouseGrid("Secondary grid");
+        mainGrid = new HouseGrid(new HouseGridId("Main grid"));
+        secondaryGrid = new HouseGrid(new HouseGridId("Secondary grid"));
 
         // List of Power Source Types
         PowerSourceTypeList powerSourceTypeList = new PowerSourceTypeList();
