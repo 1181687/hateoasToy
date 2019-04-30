@@ -64,7 +64,7 @@ public class MicrowaveOvenSpecsTest {
         assertEquals(expectedResult, result, 0.001);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testEmptyConstructor() {
         //Arrange
         microwaveOven.setAttributesDevType("Nominal Power", 30);
@@ -105,7 +105,7 @@ public class MicrowaveOvenSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetEnergyConsumptionInADay() {
 
         double expectedResult = 0;
@@ -117,7 +117,7 @@ public class MicrowaveOvenSpecsTest {
         assertEquals(expectedResult, result, 0.001);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetSpecsInAListOfStrings() {
         // Arrange
         List<String> expectedResult = new ArrayList<>();
@@ -142,7 +142,7 @@ public class MicrowaveOvenSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetAttributeValue_notAValidSpec() {
         // Arrange
         Object expectedResult = "not a valid attribute";
@@ -152,7 +152,7 @@ public class MicrowaveOvenSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetAttributeNominalPowerValue_NotAValidType() {
         // Arrange
         String attribute = "stuff";
@@ -162,7 +162,7 @@ public class MicrowaveOvenSpecsTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetAttributeNominalPower_ValidValue() {
         // Act
         boolean result = microwaveOven.getSpecs().setAttributeValue("Nominal Power", 1.3);
@@ -170,7 +170,7 @@ public class MicrowaveOvenSpecsTest {
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetAttribute_NotAValidAttribute() {
         // Act
         boolean result = microwaveOven.getSpecs().setAttributeValue("Wrong Attribute", 1.3);
@@ -208,7 +208,7 @@ public class MicrowaveOvenSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getAttributeDataTypeTest() {
         // arrange
         String expectedResult = "Double";
@@ -230,7 +230,7 @@ public class MicrowaveOvenSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testAddProgram_ProgramAlreadyInTheList_ShouldReturnFalse() {
         //Arrange
         String programName = "fast";
@@ -252,7 +252,7 @@ public class MicrowaveOvenSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testAddProgram_ProgramIsNotInTheList_ShouldReturnTrue() {
         //Arrange
         String programName = "fast";

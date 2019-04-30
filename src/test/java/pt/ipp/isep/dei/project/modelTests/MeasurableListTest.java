@@ -68,7 +68,7 @@ public class MeasurableListTest {
     }
 
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getNominalPower() {
         // Arrange
         mList.addMeasurable(dev1);
@@ -83,7 +83,7 @@ public class MeasurableListTest {
         assertEquals(expectedResult, result, 0.001);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void checkIfMeasurableObjIsInListTrue() {
         // Arrange
         mList.addMeasurable(dev1);
@@ -108,7 +108,7 @@ public class MeasurableListTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetListToString() {
         // Arrange
         mList.addMeasurable(room2);

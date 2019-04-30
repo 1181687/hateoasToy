@@ -148,8 +148,6 @@ public class FridgeTest {
         // Assert
         assertEquals(expectedResult, result, 0.000001);
     }
-
-    /*
         @Test
         public void setNameWithSameNameTest() {
             Throwable exception = assertThrows(RuntimeException.class, () -> fridge.setName("Miele PerfectCool Series 3500"));
@@ -173,7 +171,7 @@ public class FridgeTest {
             Throwable exception = assertThrows(RuntimeException.class, () -> fridge.setName("Miele PerfectCool Series 1000"));
             assertEquals("Name already exists. Please write a new one.", exception.getMessage());
         }
-    */
+
     @Test
     public void setNameFalseTest() {
         // Act

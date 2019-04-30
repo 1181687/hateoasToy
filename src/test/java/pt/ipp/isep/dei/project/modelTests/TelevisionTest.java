@@ -119,7 +119,6 @@ public class TelevisionTest {
         assertEquals(expectedResult, result, 0.001);
     }
 
-    /*
         @Test
         public void setNameWithSameNameTestSmartTV() {
             Throwable exception = assertThrows(RuntimeException.class, () -> television.setName("Smart TV"));
@@ -143,7 +142,7 @@ public class TelevisionTest {
             Throwable exception = assertThrows(RuntimeException.class, () -> bedroom.getDeviceByPosition(0).setName("Flat Screen TV"));
             assertEquals("Name already exists. Please write a new one.", exception.getMessage());
         }
-    */
+
     @Test
     public void setNameTrueTest() {
         // Act
@@ -233,7 +232,7 @@ public class TelevisionTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getAttributesToStringTest() {
         // Arrange
         String expectedResult = "1 - Name: Smart TV\n" +
@@ -349,7 +348,7 @@ public class TelevisionTest {
         assertEquals(expectedResult, result, 0.000001);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setDeactivateDeviceTrue() {
 
         boolean result = television.setDeactivateDevice();
@@ -396,7 +395,7 @@ public class TelevisionTest {
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getIsActiveFalseTest() {
         // Assert
         television.setDeactivateDevice();
@@ -451,7 +450,7 @@ public class TelevisionTest {
     }
 
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetSpecsToString() {
         // Arrange
         String expectedResult = "1 - Nominal Power: 90.0\n" +
@@ -479,7 +478,7 @@ public class TelevisionTest {
 
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetNominalPowerTest() {
         //Arrange
         double expectedResult = 90.0;

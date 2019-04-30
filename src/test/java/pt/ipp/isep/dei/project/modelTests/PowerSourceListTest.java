@@ -47,7 +47,7 @@ public class PowerSourceListTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testCreateNewPowerSource() {
         //Arrange
         String name = "Power Source 1";
@@ -84,7 +84,7 @@ public class PowerSourceListTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testPowerSourceNameAlreadyExistsTrue() {
         //Arrange
         String name = "Power Source 1";
@@ -104,7 +104,7 @@ public class PowerSourceListTest {
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testPowerSourceNameAlreadyExistsFalse() {
         //Arrange
         String name = "Power Source 1";

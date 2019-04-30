@@ -68,7 +68,7 @@ public class FanTest {
         map.put(time2, 7.0);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getNominalPowerTest() {
         //Arrange
         double expectedResult = 1200.0;
@@ -80,7 +80,7 @@ public class FanTest {
         assertEquals(expectedResult, result, 0.001);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetLocation() {
         // Arrange
         Room expectedResult = kitchen;
@@ -116,7 +116,7 @@ public class FanTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setLocationFalseTest() {
         // Act
         boolean result = fan.setLocation(kitchen);
@@ -134,7 +134,7 @@ public class FanTest {
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setLocationTrueTestNullValue() {
         // Act
         FanType fanType = new FanType();
@@ -147,7 +147,7 @@ public class FanTest {
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getIsActiveTrueTest() {
         // Act
         boolean result = fan.getIsActive();
@@ -156,7 +156,7 @@ public class FanTest {
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getIsActiveFalseTest() {
         // arrange
         fan.setDeactivateDevice();
@@ -168,7 +168,7 @@ public class FanTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetDeactivationDate_True() {
         // act
         boolean result = fan.setDeactivateDevice();
@@ -186,7 +186,7 @@ public class FanTest {
         assertFalse(result);
     }
 
-    /*@Test
+    @Test
     public void setNameWithSameNameTest() {
         Throwable exception = assertThrows(RuntimeException.class, () -> fan.setName("Fan300"));
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
@@ -196,9 +196,9 @@ public class FanTest {
     public void setNameAlreadyInListTest() {
         Throwable exception = assertThrows(RuntimeException.class, () -> fan.setName("Fan200"));
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
-    }*/
+    }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setNameFalseTest() {
         // Act
         boolean result = fan.setName("");
@@ -228,7 +228,7 @@ public class FanTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testHashCode() {
         // Arrange
         int expectedResult = Objects.hash(fan.getName());
@@ -241,7 +241,7 @@ public class FanTest {
     }
 
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetReadings() {
         //Arrange
         List<Reading> expectedResult = new ArrayList<>();
@@ -267,7 +267,7 @@ public class FanTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getAttributesToStringTest() {
         // Arrange
         String expectedResult = "1 - Name: Fan300\n" +
@@ -281,7 +281,7 @@ public class FanTest {
 
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setSetAttributesDevTypeTrue() {
         //Act
         boolean result = fan.setAttributesDevType("Nominal Power", 15);
@@ -332,7 +332,7 @@ public class FanTest {
         assertEquals(date, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getDataSeriesTest() {
         // Assert
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
@@ -347,7 +347,7 @@ public class FanTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getSpecsListTest() {
         // Assert
         List<String> expectedResult = new ArrayList<>();
@@ -361,7 +361,7 @@ public class FanTest {
     }
 
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getAttributeValueTest() {
         // Assert
         double expectedResult = 1200.0;
@@ -373,15 +373,14 @@ public class FanTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetSpecs() {
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getEnergyConsumptionInADayTest() {
 
     }
-
 
     @Test
     public void getTotalEnergyConsumptionInAnIntervalWithoutSolutionsTest() {
@@ -398,7 +397,7 @@ public class FanTest {
 
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getTotalEnergyConsumptionInAnIntervalWithThreeSolutionsTest() {
 
     }
