@@ -58,6 +58,10 @@ public class Room implements Root, Measurable {
         // empty
     }
 
+    public HouseGridId getHouseGridId(){
+        return this.houseGridId;
+    }
+
     public void setHouseGridId(HouseGridId houseGridId) {
         this.houseGridId = houseGridId;
     }

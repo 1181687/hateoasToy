@@ -41,9 +41,9 @@ public class HouseGrid implements Root, Measurable {
      * @param houseGridName
      */
 
-    public HouseGrid(String houseGridName) {
-        validateName(houseGridName);
-        this.houseGridName = new HouseGridId(houseGridName);
+    public HouseGrid(HouseGridId houseGridName) {
+        validateName(houseGridName.getHousegridId());
+        this.houseGridName = houseGridName;
         this.roomList = new RoomList();
         this.powerSourceList = new PowerSourceList();
     }

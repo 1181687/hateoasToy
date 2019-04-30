@@ -15,6 +15,7 @@ import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
+import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDateTime;
@@ -239,7 +240,7 @@ public class GetEnergyConsumptionControllerTest {
     @Test
     public void isHouseGridListEmpty_HouseWithOneHouseGrid_ShouldReturnFalse() {
         //Arrange
-        HouseGrid grid = new HouseGrid("Main Grid");
+        HouseGrid grid = new HouseGrid(new HouseGridId("Main Grid"));
         this.house.addGrid(grid);
         //Act
         boolean result = this.ctrl.isHouseGridListEmpty();
@@ -251,7 +252,7 @@ public class GetEnergyConsumptionControllerTest {
     @Test
     public void getHouseGridListSize_WithOneGrid_ShouldReturnOne() {
         //Arrange
-        HouseGrid grid = new HouseGrid("Main Grid");
+        HouseGrid grid = new HouseGrid(new HouseGridId("Main Grid"));
         this.house.addGrid(grid);
         int expectedResult = 1;
         //Act
@@ -263,8 +264,8 @@ public class GetEnergyConsumptionControllerTest {
     @Test
     public void getHouseGridListToString_WithTwoGrids_ShouldReturnListOfTheNamesOfTheGrids() {
         //Arrange
-        HouseGrid grid = new HouseGrid("Main Grid");
-        HouseGrid grid1 = new HouseGrid("Grid 2");
+        HouseGrid grid = new HouseGrid(new HouseGridId("Main Grid"));
+        HouseGrid grid1 = new HouseGrid(new HouseGridId("Grid 2"));
 
         this.house.addGrid(grid);
         this.house.addGrid(grid1);
@@ -279,8 +280,8 @@ public class GetEnergyConsumptionControllerTest {
     @Test
     public void getHouseGridName_WithTwoGrids_ShouldReturnTheNameOfTheSelectedGrid() {
         //Arrange
-        HouseGrid grid = new HouseGrid("Main Grid");
-        HouseGrid grid1 = new HouseGrid("Grid 2");
+        HouseGrid grid = new HouseGrid(new HouseGridId("Main Grid"));
+        HouseGrid grid1 = new HouseGrid(new HouseGridId("Grid 2"));
 
         this.house.addGrid(grid);
         this.house.addGrid(grid1);

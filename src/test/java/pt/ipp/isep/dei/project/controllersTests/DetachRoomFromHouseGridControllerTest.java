@@ -10,6 +10,7 @@ import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.house.*;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
+import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.List;
@@ -58,7 +59,7 @@ public class DetachRoomFromHouseGridControllerTest {
         house.addRoom(r1);
 
         //housegrid
-        mainGrid = new HouseGrid("Main Grid");
+        mainGrid = new HouseGrid(new HouseGridId("Main Grid"));
         house.addGrid(mainGrid);
         mainGrid.addRoom(r0);
         mainGrid.addRoom(r1);
@@ -81,7 +82,7 @@ public class DetachRoomFromHouseGridControllerTest {
     @Test
     public void testsGetListContentMethodMoreThanOneGrid() {
         //Arrange
-        HouseGrid newGrid1 = new HouseGrid("Secondary Grid");
+        HouseGrid newGrid1 = new HouseGrid(new HouseGridId("Secondary Grid"));
         this.house.addGrid(newGrid1);
 
         String expectedResult = "1 - Name: Main Grid" + "\n" + "2 - Name: Secondary Grid" + "\n";
@@ -142,7 +143,7 @@ public class DetachRoomFromHouseGridControllerTest {
         Dimension r1Dimension = new Dimension(2, 3, 3);
         Room r2 = new Room("Bathroom", "room", 2, r1Dimension);
 
-        HouseGrid newGrid1 = new HouseGrid("Secondary Grid");
+        HouseGrid newGrid1 = new HouseGrid(new HouseGridId("Secondary Grid"));
         newGrid1.addRoom(r2);
         ctrl.detachRoomFromGridList(mainGrid, r2);
         String expectedResult = "1- Name: Bedroom, House Floor: 3, Dimension - Height: 2.0, Length: 3.0, Width: 4.0\n" +
@@ -160,7 +161,7 @@ public class DetachRoomFromHouseGridControllerTest {
         Dimension r1Dimension = new Dimension(2, 3, 3);
         Room r2 = new Room("Bathroom", "room", 2, r1Dimension);
 
-        HouseGrid newGrid1 = new HouseGrid("Secondary Grid");
+        HouseGrid newGrid1 = new HouseGrid(new HouseGridId("Secondary Grid"));
         newGrid1.addRoom(r2);
 
         //Act
@@ -184,7 +185,7 @@ public class DetachRoomFromHouseGridControllerTest {
 
         Room r2 = new Room("Bathroom", "room", 2, r1Dimension);
 
-        HouseGrid newGrid1 = new HouseGrid("Secondary Grid");
+        HouseGrid newGrid1 = new HouseGrid(new HouseGridId("Secondary Grid"));
         newGrid1.addRoom(r2);
         house.addGrid(newGrid1);
 

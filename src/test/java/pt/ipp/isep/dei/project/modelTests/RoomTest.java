@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
@@ -11,6 +12,8 @@ import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaTypeId;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.house.*;
+import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
+import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 import pt.ipp.isep.dei.project.model.sensor.*;
 import pt.ipp.isep.dei.project.utils.Utils;
 
@@ -745,5 +748,12 @@ public class RoomTest {
         boolean result = kitchen.isDeviceNameExistant("Fridge");
         //Assert
         assertFalse(result);
+    }
+
+    @Test
+    public void getHouseGridId(){
+        HouseGridId id = new HouseGridId("main grid");
+
+        HouseGrid grid = new HouseGrid(id);
     }
 }

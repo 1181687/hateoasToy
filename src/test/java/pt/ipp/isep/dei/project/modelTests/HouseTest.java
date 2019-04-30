@@ -16,6 +16,7 @@ import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
+import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorId;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
@@ -1037,11 +1038,11 @@ public class HouseTest {
         // Arrange
         // Instantiate House Grids
         String gridName0 = "Grid0";
-        HouseGrid grid0 = new HouseGrid(gridName0);
+        HouseGrid grid0 = new HouseGrid(new HouseGridId(gridName0));
         String gridName1 = "Grid1";
-        HouseGrid grid1 = new HouseGrid(gridName1);
+        HouseGrid grid1 = new HouseGrid(new HouseGridId(gridName1));
         String gridName2 = "Grid2";
-        HouseGrid grid2 = new HouseGrid(gridName2);
+        HouseGrid grid2 = new HouseGrid(new HouseGridId(gridName2));
 
 
         house.addGrid(grid0);
@@ -1098,7 +1099,7 @@ public class HouseTest {
     public void checkIfHouseGridListIsEmptyWithNegativeTest() {
         // Arrange
         String gridName = "Grid";
-        HouseGrid grid = new HouseGrid(gridName);
+        HouseGrid grid = new HouseGrid(new HouseGridId(gridName));
         house.addGrid(grid);
         // Act
         boolean result = house.isHouseGridListEmpty();
@@ -1138,11 +1139,11 @@ public class HouseTest {
 
         // Instantiate House Grids
         String gridName0 = "Grid1";
-        HouseGrid grid0 = new HouseGrid(gridName0);
+        HouseGrid grid0 = new HouseGrid(new HouseGridId(gridName0));
         String gridName1 = "Grid2";
-        HouseGrid grid1 = new HouseGrid(gridName1);
+        HouseGrid grid1 = new HouseGrid(new HouseGridId(gridName1));
         String gridName2 = "Grid3";
-        HouseGrid grid2 = new HouseGrid(gridName2);
+        HouseGrid grid2 = new HouseGrid(new HouseGridId(gridName2));
         grid2.addRoom(room);
 
         house.addGrid(grid0);
@@ -1171,11 +1172,11 @@ public class HouseTest {
 
         // Instantiate House Grids
         String gridName0 = "Grid";
-        HouseGrid grid0 = new HouseGrid(gridName0);
+        HouseGrid grid0 = new HouseGrid(new HouseGridId(gridName0));
         String gridName1 = "Grid";
-        HouseGrid grid1 = new HouseGrid(gridName1);
+        HouseGrid grid1 = new HouseGrid(new HouseGridId(gridName1));
         String gridName2 = "Grid";
-        HouseGrid grid2 = new HouseGrid(gridName2);
+        HouseGrid grid2 = new HouseGrid(new HouseGridId(gridName2));
 
 
         house.addGrid(grid0);
@@ -1197,8 +1198,8 @@ public class HouseTest {
         //grid
         String gridName0 = "Grid";
         String gridName1 = "Grid2";
-        HouseGrid grid0 = new HouseGrid(gridName0);
-        HouseGrid grid1 = new HouseGrid(gridName1);
+        HouseGrid grid0 = new HouseGrid(new HouseGridId(gridName0));
+        HouseGrid grid1 = new HouseGrid(new HouseGridId(gridName1));
         house.addGrid(grid0);
         house.addGrid(grid1);
         String expectedResult = "1 - Name: Grid\n2 - Name: Grid2\n";
@@ -1216,8 +1217,8 @@ public class HouseTest {
         //grid
         String gridName = "Grid";
         String gridName1 = "Grid2";
-        HouseGrid grid0 = new HouseGrid(gridName);
-        HouseGrid grid1 = new HouseGrid(gridName1);
+        HouseGrid grid0 = new HouseGrid(new HouseGridId(gridName));
+        HouseGrid grid1 = new HouseGrid(new HouseGridId(gridName1));
         house.addGrid(grid0);
         house.addGrid(grid1);
         int expectedResult = 2;
@@ -1246,8 +1247,8 @@ public class HouseTest {
         // Arrange
         //grid
         String gridName = "Grid";
-        HouseGrid grid0 = new HouseGrid(gridName);
-        HouseGrid grid1 = new HouseGrid(gridName);
+        HouseGrid grid0 = new HouseGrid(new HouseGridId(gridName));
+        HouseGrid grid1 = new HouseGrid(new HouseGridId(gridName));
         house.addGrid(grid0);
         house.addGrid(grid1);
         HouseGrid expectedResult = grid0;
@@ -1274,7 +1275,7 @@ public class HouseTest {
 
         house.createDevice(ELECTRIC_W_H_TYPE, "ElectricWaterHeaterSpecs", room2);
 
-        HouseGrid grid = new HouseGrid("g1");
+        HouseGrid grid = new HouseGrid(new HouseGridId("g1"));
         grid.addRoom(room2);
         grid.addRoom(room2);
         house.addGrid(grid);
@@ -1289,7 +1290,7 @@ public class HouseTest {
     @Test
     public void testCheckIfThereAreNoDevicesTrue() {
         // Arrange
-        HouseGrid grid = new HouseGrid("g1");
+        HouseGrid grid = new HouseGrid(new HouseGridId("g1"));
         house.addGrid(grid);
         // Act
         boolean result = house.checkIfThereAreNoDevicesInGridbyPosition(0);
@@ -1652,7 +1653,7 @@ public class HouseTest {
     public void testAddGridTrue() {
         //Arrange
         String gridName = "main grid";
-        HouseGrid houseGrid = new HouseGrid(gridName);
+        HouseGrid houseGrid = new HouseGrid(new HouseGridId(gridName));
         //Act
         boolean result = this.house.addGrid(houseGrid);
         //Assert
@@ -1792,7 +1793,7 @@ public class HouseTest {
     public void testAddGridFalse() {
         //Arrange
         String gridName = "main grid";
-        HouseGrid houseGrid = new HouseGrid(gridName);
+        HouseGrid houseGrid = new HouseGrid(new HouseGridId(gridName));
         this.house.addGrid(houseGrid);
         //Act
         boolean result = this.house.addGrid(houseGrid);
@@ -1804,7 +1805,7 @@ public class HouseTest {
     public void testGridNameAlreadyExistsTrue() {
         //Arrange
         String gridName = "main grid";
-        HouseGrid grid = new HouseGrid(gridName);
+        HouseGrid grid = new HouseGrid(new HouseGridId(gridName));
         this.house.addGrid(grid);
         //Act
         boolean result = this.house.gridNameAlreadyExists(gridName);
@@ -1816,7 +1817,7 @@ public class HouseTest {
     public void testGridNameAlreadyExistsFalse() {
         //Arrange
         String gridName = "main grid";
-        HouseGrid grid = new HouseGrid(gridName);
+        HouseGrid grid = new HouseGrid(new HouseGridId(gridName));
         this.house.addGrid(grid);
         String gridName2 = "grid 1";
         //Act
@@ -1839,7 +1840,7 @@ public class HouseTest {
     public void testNewHouseGrid_ThrowsException() {
         //Arrange
         String name = "Main Grid";
-        HouseGrid grid = new HouseGrid(name);
+        HouseGrid grid = new HouseGrid(new HouseGridId(name));
         this.house.addGrid(grid);
         //Act
         Throwable exception = assertThrows(RuntimeException.class, () ->
@@ -1853,7 +1854,7 @@ public class HouseTest {
     public void testNewHouseGrid_CreatesHouseGrid() {
         //Arrange
         String name = "Main Grid";
-        HouseGrid expectedResult = new HouseGrid(name);
+        HouseGrid expectedResult = new HouseGrid(new HouseGridId(name));
         //Act
         boolean result = this.house.createHouseGrid(expectedResult);
         //Assert

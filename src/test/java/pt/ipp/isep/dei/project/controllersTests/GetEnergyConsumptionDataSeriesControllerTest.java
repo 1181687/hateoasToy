@@ -17,6 +17,7 @@ import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
+import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDateTime;
@@ -59,7 +60,7 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         // Arrange
         //grid
         String gridName = "Grid";
-        HouseGrid grid = new HouseGrid(gridName);
+        HouseGrid grid = new HouseGrid(new HouseGridId(gridName));
         house.addGrid(grid);
 
         String expectedResult = "1 - Name: Grid\n";
@@ -137,7 +138,7 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         // Arrange
         //grid
         String gridName = "Grid";
-        HouseGrid grid = new HouseGrid(gridName);
+        HouseGrid grid = new HouseGrid(new HouseGridId(gridName));
         house.addGrid(grid);
 
         int expectedResult = 1;
@@ -463,7 +464,7 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
 
         //grid
         String gridName = "Grid";
-        HouseGrid grid = new HouseGrid(gridName);
+        HouseGrid grid = new HouseGrid(new HouseGridId(gridName));
         grid.addRoom(room);
         house.addGrid(grid);
 
@@ -519,7 +520,7 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
 
         //grid
         String gridName = "Grid";
-        HouseGrid grid = new HouseGrid(gridName);
+        HouseGrid grid = new HouseGrid(new HouseGridId(gridName));
         house.addGrid(grid);
 
         house.addRoom(room);
@@ -597,7 +598,7 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         // Arrange
         //grid
         String gridName = "Grid";
-        HouseGrid grid = new HouseGrid(gridName);
+        HouseGrid grid = new HouseGrid(new HouseGridId(gridName));
         house.addGrid(grid);
         // Act
         boolean result = ctrl.houseGridListIsEmpty();

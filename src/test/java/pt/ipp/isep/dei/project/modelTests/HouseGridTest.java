@@ -8,6 +8,7 @@ import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
+import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSource;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceType;
 import pt.ipp.isep.dei.project.utils.Utils;
@@ -39,8 +40,8 @@ public class HouseGridTest {
         this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
 
         // House Grids
-        this.mainGrid = new HouseGrid("Main grid");
-        this.secondaryGrid = new HouseGrid("Secondary grid");
+        this.mainGrid = new HouseGrid(new HouseGridId("Main grid"));
+        this.secondaryGrid = new HouseGrid(new HouseGridId("Secondary grid"));
         this.house.addGrid(mainGrid);
 
         // Rooms
@@ -112,7 +113,7 @@ public class HouseGridTest {
     public void testHashCode() {
         //Arrange
         String name = "Main Grid";
-        HouseGrid grid = new HouseGrid(name);
+        HouseGrid grid = new HouseGrid(new HouseGridId(name));
         int expectedResult = Objects.hash(name);
 
         //Act
@@ -128,7 +129,7 @@ public class HouseGridTest {
         String name1 = "Main Grid";
         String name2 = "Secondary Grid";
 
-        HouseGrid grid = new HouseGrid(name1);
+        HouseGrid grid = new HouseGrid(new HouseGridId(name1));
         int expectedResult = Objects.hash(name2);
 
         //Act
@@ -141,7 +142,7 @@ public class HouseGridTest {
     @Test
     public void testEqualsWithDifferentObjects() {
         //Arrange
-        HouseGrid grid = new HouseGrid("Main Grid");
+        HouseGrid grid = new HouseGrid(new HouseGridId("Main Grid"));
         Dimension dimension = new Dimension(2, 2, 2);
         //Act
         boolean result = grid.equals(dimension);
@@ -261,7 +262,7 @@ public class HouseGridTest {
     public void checkIfRoomListIsEmptyTrue() {
         //arrange
         String houseGridName = "hg2";
-        HouseGrid houseGrid1 = new HouseGrid(houseGridName);
+        HouseGrid houseGrid1 = new HouseGrid(new HouseGridId(houseGridName));
         this.house.addGrid(houseGrid1);
 
         //act
@@ -283,7 +284,7 @@ public class HouseGridTest {
     public void checkIfDeviceListIsEmptyTestTrue() {
         // Arrange
         String houseGridName = "hg2";
-        HouseGrid houseGrid1 = new HouseGrid(houseGridName);
+        HouseGrid houseGrid1 = new HouseGrid(new HouseGridId(houseGridName));
         this.house.addGrid(houseGrid1);
 
         // Act
@@ -335,7 +336,7 @@ public class HouseGridTest {
         //arrange
 
         String houseGridName = "hg2";
-        HouseGrid houseGrid1 = new HouseGrid(houseGridName);
+        HouseGrid houseGrid1 = new HouseGrid(new HouseGridId(houseGridName));
         this.house.addGrid(houseGrid1);
 
         int expectResult = 0;
@@ -349,7 +350,7 @@ public class HouseGridTest {
     public void testCheckThereAreNoDevices() {
         //arrange
         String houseGridName = "hg2";
-        HouseGrid houseGrid1 = new HouseGrid(houseGridName);
+        HouseGrid houseGrid1 = new HouseGrid(new HouseGridId(houseGridName));
         this.house.addGrid(houseGrid1);
 
         //Act

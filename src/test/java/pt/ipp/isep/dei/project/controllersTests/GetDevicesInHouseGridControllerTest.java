@@ -8,6 +8,7 @@ import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
+import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.ArrayList;
@@ -97,8 +98,8 @@ public class GetDevicesInHouseGridControllerTest {
         washingMachine2.setAttributesDevType(ATTRIBUTE_NOMINAL_POWER, nominalPowerWash);
 
         //add to Lists
-        HouseGrid houseGrid = new HouseGrid("grid1");
-        HouseGrid houseGridEmpty = new HouseGrid("grid2");
+        HouseGrid houseGrid = new HouseGrid(new HouseGridId("grid1"));
+        HouseGrid houseGridEmpty = new HouseGrid(new HouseGridId("grid2"));
         houseGrid.addRoom(room1);
         houseGrid.addRoom(room2);
         List<HouseGrid> houseGridList1 = new ArrayList<>();
