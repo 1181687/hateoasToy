@@ -24,7 +24,7 @@ public class SensorsService {
      * @param intervalRoomReadings             list of Reading in an interval
      * @return Map<LocalDateTime, Double> map os instants and temperatures above the comfort temperature
      */
-    public Map<LocalDateTime, Double> getMapInstantsAboveComfortTemperatureInInterval(Map<LocalDate, List<Double>> mapComfortTemperatureMinMaxByDay,
+   /* public Map<LocalDateTime, Double> getMapInstantsAboveComfortTemperatureInInterval(Map<LocalDate, List<Double>> mapComfortTemperatureMinMaxByDay,
                                                                                       List<Reading> intervalRoomReadings) {
         Map<LocalDateTime, Double> mapInstantsAboveComfortTemperature = new HashMap<>();
 
@@ -66,7 +66,7 @@ public class SensorsService {
                     double valueOfRoomReading = roomReading.getValue();
 
                     if (dayOfComfortTemp.equals(dayOfRoomReading)
-                            && !Objects.isNull(dailyComfortTemp.getValue().get(0)) &&
+                            && !Objects.isNull(dailyComfortTemp.getValue()) &&
                             Double.compare(dailyComfortTemp.getValue().get(0), valueOfRoomReading) == 1) {
                         mapOfInstancesBelowComfortTemp.put(roomReading.getDateTime(), valueOfRoomReading);
                     }
@@ -74,7 +74,41 @@ public class SensorsService {
             }
         }
         return mapOfInstancesBelowComfortTemp;
+    }*/
+
+    public Map<LocalDateTime, Double> getInstantsOutOfComfortTemperature (Map<LocalDate, List<Double>> mapComfortTemperatureMinMaxByDay, List<Reading> intervalRoomReadings, int option) {
+
+        //controlar esta variavel na ui: if BELLOW --> int option = 0; if ABOVE --> int option = 1;
+
+        Map<LocalDateTime, Double> mapInstantsAboveComfortTemperature = new HashMap<>();
+
+        Set<Map.Entry<LocalDate, List<Double>>> mapComfTemp = mapComfortTemperatureMinMaxByDay.entrySet();
+
+        if (!mapComfTemp.isEmpty()) {
+            for (Reading roomReading : intervalRoomReadings) {
+
+                for (Map.Entry<LocalDate, List<Double>> mapComfTempDaily : mapComfTemp) {
+
+                    LocalDate localDateReading = roomReading.getDateTime().toLocalDate();
+                    double valueReading = roomReading.getValue();
+                    LocalDate localDateComfTempMax = mapComfTempDaily.getKey();
+
+                    //IF OPTION IS ABOVE
+                    if (!Objects.isNull(mapComfTempDaily.getValue()) && localDateReading.compareTo(localDateComfTempMax) == 0
+                            && Double.compare(valueReading, mapComfTempDaily.getValue().get(1)) == 1) {
+                        mapInstantsAboveComfortTemperature.put(roomReading.getDateTime(), valueReading);
+                    }
+                    //IF OPTION IS BELLOW
+                    if (!Objects.isNull(mapComfTempDaily.getValue()) && localDateComfTempMax.equals(localDateReading) &&
+                            Double.compare(mapComfTempDaily.getValue().get(0), valueReading) == 1) {
+                        mapInstantsAboveComfortTemperature.put(roomReading.getDateTime(), valueReading);
+                    }
+                }
+            }
+        }
+        return mapInstantsAboveComfortTemperature;
     }
+
 
     public List<LocalDateTime> getInstantListOutOfComfortLevel(Map<LocalDateTime, Double> mapOfInstantsOutOfComfortLevel) {
         Set<Map.Entry<LocalDateTime, Double>> set = mapOfInstantsOutOfComfortLevel.entrySet();
