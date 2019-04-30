@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import pt.ipp.isep.dei.project.controllers.getdaywithhighesttemperatureamplitudecontroller.GetDayWithHighestTemperatureAmplitudeController;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
@@ -14,6 +15,7 @@ import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorId;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
+import pt.ipp.isep.dei.project.services.HouseService;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDateTime;
@@ -33,6 +35,8 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
     private Location location2;
     private House house;
     private GetDayWithHighestTemperatureAmplitudeController controller;
+    @Mock
+    private HouseService houseService;
 
     @BeforeEach
     public void StartUp() {
@@ -94,7 +98,7 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
         portoCity.getSensorListInTheGeographicArea().addSensor(temperatureSensor);
         portoCity.getSensorListInTheGeographicArea().addSensor(temperatureSensor1);
 
-        controller = new GetDayWithHighestTemperatureAmplitudeController(house);
+        controller = new GetDayWithHighestTemperatureAmplitudeController(houseService);
 
     }
 

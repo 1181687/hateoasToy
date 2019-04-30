@@ -1,15 +1,15 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.GetNominalPowerController;
-import pt.ipp.isep.dei.project.model.house.House;
+import pt.ipp.isep.dei.project.services.HouseService;
 
 public class GetNominalPowerRoomsDevices {
 
     private static final String EXIT_OPTION = "0 - Exit";
     private GetNominalPowerController controller;
 
-    public GetNominalPowerRoomsDevices(House house) {
-        this.controller = new GetNominalPowerController(house);
+    public GetNominalPowerRoomsDevices(HouseService houseService) {
+        this.controller = new GetNominalPowerController(houseService);
     }
 
     public void chooseSubsetOfRoomsDevices() {

@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import pt.ipp.isep.dei.project.controllers.GetTotalAndAverageRainfallAndCurrentTempHouseAreaController;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
@@ -16,6 +17,7 @@ import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorId;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
+import pt.ipp.isep.dei.project.services.HouseService;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDateTime;
@@ -28,6 +30,8 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
     private GetTotalAndAverageRainfallAndCurrentTempHouseAreaController controller;
     private House house;
     private GeographicalArea geoArea;
+    @Mock
+    private HouseService houseService;
 
 
     @BeforeEach
@@ -50,7 +54,7 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
         Address address = new Address("4200-072", houseLocation, geoArea);
         this.house.setAddress(address);
 
-        this.controller = new GetTotalAndAverageRainfallAndCurrentTempHouseAreaController(house);
+        this.controller = new GetTotalAndAverageRainfallAndCurrentTempHouseAreaController(houseService);
     }
 
     @Test

@@ -2,7 +2,7 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.getfirsthottestdayhouseareacontroller.GetFirstHottestDayHouseAreaController;
 import pt.ipp.isep.dei.project.model.ReadingDTO;
-import pt.ipp.isep.dei.project.model.house.House;
+import pt.ipp.isep.dei.project.services.HouseService;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
@@ -10,8 +10,8 @@ import java.time.LocalDate;
 public class GetFirstHottestDayHouseArea {
     private GetFirstHottestDayHouseAreaController ctrl;
 
-    public GetFirstHottestDayHouseArea(House house) {
-        this.ctrl = new GetFirstHottestDayHouseAreaController(house);
+    public GetFirstHottestDayHouseArea(HouseService houseService) {
+        this.ctrl = new GetFirstHottestDayHouseAreaController(houseService);
     }
 
     public void run() {

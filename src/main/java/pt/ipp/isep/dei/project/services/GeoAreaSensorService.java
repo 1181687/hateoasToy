@@ -170,12 +170,12 @@ public class GeoAreaSensorService {
 
     /**
      * receives a map of Daily Averages in a interval, and gets Map<LocalDate, List<Double>> with list of the Comfort Temperature Min
-     * and Max for category One, organized By LocalDate
-     *
+     * and Max for category One or Two or Three, organized By LocalDate
+     * @param category house category (int)
      * @param mapOfDailyAverages map of Daily Averages in a interval organized by day
      * @return Map<LocalDate, List < Double>> map with List of Comfort Temperature Min and Max,  By Day
      */
-    public Map<LocalDate, List<Double>> getMapComfortTemperatureMinMaxByDayIntervalCategoryOne(Map<LocalDate, Double> mapOfDailyAverages) {
+    public Map<LocalDate, List<Double>> getMapComfortTemperatureMinMaxByDayIntervalByCategory(Map<LocalDate, Double> mapOfDailyAverages, int category) {
         Map<LocalDate, List<Double>> mapComfortTemperatureMinMaxByDay = new HashMap<>();
         Map<LocalDate, Double> cleanList = Utils.removeDoubleNanHashMap(mapOfDailyAverages);
 
@@ -185,8 +185,8 @@ public class GeoAreaSensorService {
 
             for (Map.Entry<LocalDate, Double> dailyAverage : setCleanList) {
 
-                double tempComfortMin = 0.33 * dailyAverage.getValue() + 18.8 - 2;
-                double tempComfortMax = 0.33 * dailyAverage.getValue() + 18.8 + 2;
+                double tempComfortMin = 0.33 * dailyAverage.getValue() + 18.8 - (category + 1);
+                double tempComfortMax = 0.33 * dailyAverage.getValue() + 18.8 + (category + 1);
                 LocalDate localDate = dailyAverage.getKey();
 
                 mapComfortTemperatureMinMaxByDay.put(localDate, new ArrayList<>());
@@ -198,4 +198,33 @@ public class GeoAreaSensorService {
         }
         return mapComfortTemperatureMinMaxByDay;
     }
+
+    /**
+     * receives a map of Daily Comfort Temperatures in an interval and returns a List<LocalDate> refered to a List of
+     * days that don't have value registers (they are null)
+     *
+     * @param mapComfortDailyTemperature
+     * @return List<LocalDate> list of
+     */
+    public List<LocalDate> getDaysWithoutComfortTemp(Map<LocalDate, List<Double>> mapComfortDailyTemperature) {
+        List<LocalDate> listOfDaysWithoutComfortTemp = new ArrayList<>();
+
+        Set<Map.Entry<LocalDate, List<Double>>> set = mapComfortDailyTemperature.entrySet();
+
+        if (!set.isEmpty()) {
+            for (Map.Entry<LocalDate, List<Double>> dailyComfortTemp : set) {
+                if (Objects.isNull(dailyComfortTemp.getValue())) {
+                    listOfDaysWithoutComfortTemp.add(dailyComfortTemp.getKey());
+                }
+            }
+        }
+        return listOfDaysWithoutComfortTemp;
+    }
+
+    public boolean existsDaysWithoutComfortTemp(Map<LocalDate, List<Double>> mapComfortDailyTemperature) {
+        return !getDaysWithoutComfortTemp(mapComfortDailyTemperature).isEmpty();
+    }
+
+
+
 }

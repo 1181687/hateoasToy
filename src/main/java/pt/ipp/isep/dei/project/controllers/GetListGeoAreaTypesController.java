@@ -1,20 +1,22 @@
 package pt.ipp.isep.dei.project.controllers;
 
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaTypeList;
+import pt.ipp.isep.dei.project.services.GeoAreaTypeService;
+import pt.ipp.isep.dei.project.services.GeographicalAreaService;
 
 import java.util.List;
 
 public class GetListGeoAreaTypesController {
 
-    private GeographicalAreaTypeList geographicalAreaTypeList;
+    private GeoAreaTypeService geoAreaTypeService;
 
 
-    public GetListGeoAreaTypesController(GeographicalAreaTypeList listaTAG) {
-        this.geographicalAreaTypeList = listaTAG;
+    public GetListGeoAreaTypesController(GeoAreaTypeService geoTypeService) {
+        this.geoAreaTypeService = geoTypeService;
     }
 
 
-    public List<String> getListaTiposDeAG() {
-        return geographicalAreaTypeList.getListOfGeoAreaTypes();
+    public List<String> getListaDosTiposDeAG() {
+        return geoAreaTypeService.getListOfGeoAreaTypesToString();
     }
 }

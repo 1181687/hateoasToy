@@ -1,12 +1,14 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.model.house.House;
+import pt.ipp.isep.dei.project.services.HouseService;
 
 public class RoomOwner {
     House house;
+    HouseService houseService;
 
-    public RoomOwner(House house) {
-        this.house = house;
+    public RoomOwner(HouseService houseService) {
+        this.houseService = houseService;
     }
 
     public void runRoomOwnerMenu() {
@@ -16,7 +18,7 @@ public class RoomOwner {
         }
         while (option != 0) {
             if (option == 1) {
-                GetNominalPowerOfARoom ui230 = new GetNominalPowerOfARoom(house);
+                GetNominalPowerOfARoom ui230 = new GetNominalPowerOfARoom(houseService);
                 ui230.run();
             }
             option = Menu.roomOwnerMenu();
