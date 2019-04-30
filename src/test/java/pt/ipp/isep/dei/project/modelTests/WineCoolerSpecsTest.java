@@ -19,11 +19,6 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
-@DataJpaTest
-@ContextConfiguration(classes = {Main.class},
-        loader = AnnotationConfigContextLoader.class)
-@SpringJUnitConfig(WineCoolerSpecsTest.Config.class)
 public class WineCoolerSpecsTest {
     private static final String NOT_VALID_ATTRIBUTE = "not a valid attribute";
     private Room kitchen;

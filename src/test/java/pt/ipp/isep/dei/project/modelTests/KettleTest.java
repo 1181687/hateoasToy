@@ -24,10 +24,6 @@ import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-@DataJpaTest
-@ContextConfiguration(classes = {Main.class},
-        loader = AnnotationConfigContextLoader.class)
-@SpringJUnitConfig(KettleTest.Config.class)
 public class KettleTest {
 
     private Room kitchen;

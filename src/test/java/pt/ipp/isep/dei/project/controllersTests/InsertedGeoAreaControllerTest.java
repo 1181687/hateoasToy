@@ -21,10 +21,7 @@ import pt.ipp.isep.dei.project.services.GeographicalAreaService;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@ExtendWith(SpringExtension.class)
-@SpringBootTest
-@ContextConfiguration(classes = {Main.class},
-        loader = AnnotationConfigContextLoader.class)
+
 public class InsertedGeoAreaControllerTest {
 
     private InsertedGeoAreaController controller;

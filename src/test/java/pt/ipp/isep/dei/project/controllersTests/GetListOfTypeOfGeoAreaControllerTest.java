@@ -23,10 +23,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@DataJpaTest
-@ContextConfiguration(classes = {Main.class},
-        loader = AnnotationConfigContextLoader.class)
-@SpringJUnitConfig(GetListOfTypeOfGeoAreaControllerTest.Config.class)
+
 public class GetListOfTypeOfGeoAreaControllerTest {
 
     @Autowired
