@@ -55,7 +55,7 @@ public class KettleSpecsTest {
      * Test the method that gives the programmable property to the device.
      * The Kettle is not programmable, so it just has the false return.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testIsProgrammable_False() {
         //Arrange
         boolean expectedResult = false;
@@ -70,7 +70,7 @@ public class KettleSpecsTest {
      * Test the method that returns a Programmable if the device is Programmable.
      * The Kettler is not programmable so the method only return "null" value.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testAsProgrammable_null() {
         //Arrange
         Programmable expectedResult = null;
@@ -85,7 +85,7 @@ public class KettleSpecsTest {
     /**
      * Test if the method really return the name of the Device Type.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetTypeName_typeName() {
         //Arrange
         String expectedResult = "Kettle";
@@ -101,7 +101,7 @@ public class KettleSpecsTest {
      * Test the setNominalPower method with the method setAttributeValue.
      * This test checks if we can set the Nominal Power value with the already existent value.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetNominalPower_SameDoubleValue_False() {
         //Arrange
         boolean expectedResult = false;
@@ -118,7 +118,7 @@ public class KettleSpecsTest {
      * Test the setNominalPower method with the method setAttributeValue.
      * This test checks if we can set the Nominal Power value with null character .
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetNominalPower_NullCharacter_False() {
         //Arrange
         boolean expectedResult = false;
@@ -136,7 +136,7 @@ public class KettleSpecsTest {
      * Test the setNominalPower method with the method setAttributeValue.
      * This test checks if we can set the Nominal Power value with an invalid Data Type.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetNominalPower_InvalidDataType_False() {
         //Arrange
         boolean expectedResult = false;
@@ -153,7 +153,7 @@ public class KettleSpecsTest {
      * Test the setNominalPower method with the method setAttributeValue.
      * This test checks if we can set the Nominal Power value with zero value.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetNominalPower_ZeroValue_False() {
         //Arrange
         boolean expectedResult = false;
@@ -170,7 +170,7 @@ public class KettleSpecsTest {
      * Test the setNominalPower method with the method setAttributeValue.
      * This test checks if we can set the Nominal Power value with another valid value, for instance 20.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetNominalPower_ValidValue_True() {
         //Arrange
         boolean expectedResult = true;
@@ -187,7 +187,7 @@ public class KettleSpecsTest {
      * Test the setMaximumVolumeOfWater method with the method setAttributeValue.
      * This test checks if we can set the Maximum Volume of Water value with the already existent value.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetMaximumVolumeOfWater_SameDoubleValue_False() {
         //Arrange
         boolean expectedResult = false;
@@ -239,7 +239,7 @@ public class KettleSpecsTest {
      * Test the setMaximumVolumeOfWater method with the method setAttributeValue.
      * This test checks if we can set the Maximum Volume of Water value with zero value.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetMaximumVolumeOfWater_ZeroValue_False() {
         //Arrange
         boolean expectedResult = false;
@@ -256,7 +256,7 @@ public class KettleSpecsTest {
      * Test the setMaximumVolumeOfWater method with the method setAttributeValue.
      * This test checks if we can set the Maximum Volume of Water value with another valid value, for instance 1.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetMaximumVolumeOfWater_ValidValue_True() {
         //Arrange
         boolean expectedResult = true;
@@ -273,7 +273,7 @@ public class KettleSpecsTest {
      * Test the setPerformanceRatio method with the method setAttributeValue.
      * This test checks if we can set the Performance Ratio value with the already existent value.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetPerformanceRatio_SameDoubleValue_False() {
         //Arrange
         boolean expectedResult = false;
@@ -291,7 +291,7 @@ public class KettleSpecsTest {
      * Test the setPerformanceRatio method with the method setAttributeValue.
      * This test checks if we can set the Performance Ratio value with null character.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetPerformanceRatio_NullCharacter_False() {
         //Arrange
         boolean expectedResult = false;
@@ -309,7 +309,7 @@ public class KettleSpecsTest {
      * Test the setPerformanceRatio method with the method setAttributeValue.
      * This test checks if we can set the Performance Ratio value with an invalid Data Type.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetPerformanceRatio_InvalidDataType_False() {
         //Arrange
         boolean expectedResult = false;
@@ -327,7 +327,7 @@ public class KettleSpecsTest {
      * Test the setPerformanceRatio method with the method setAttributeValue.
      * This test checks if we can set the Performance Ratio value with zero value.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetPerformanceRatio_ZeroValue_False() {
         //Arrange
         boolean expectedResult = false;
@@ -361,7 +361,7 @@ public class KettleSpecsTest {
      * Test the setVolumeOfWaterToHeat method with the method setAttributeValue.
      * This test checks if we can set the Volume of Water to Heat value with another valid value, for instance 1.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetVolumeOfWaterToHeat_ValidValue_True() {
         //Arrange
         boolean expectedResult = true;
@@ -378,7 +378,7 @@ public class KettleSpecsTest {
      * Test the setVolumeOfWaterToHeat method with the method setAttributeValue.
      * This test checks if we can set the Volume of Water to Heat value with another negative value.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetVolumeOfWaterToHeat_NegativeValue_False() {
         //Arrange
         boolean expectedResult = false;
@@ -395,7 +395,7 @@ public class KettleSpecsTest {
      * Test the setVolumeOfWaterToHeat method with the method setAttributeValue.
      * This test checks if we can set the Volume of Water to Heat value  with null character.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetVolumeOfWaterToHeat_NullCharacter_False() {
         //Arrange
         boolean expectedResult = false;
@@ -413,7 +413,7 @@ public class KettleSpecsTest {
      * Test the setVolumeOfWaterToHeat method with the method setAttributeValue.
      * This test checks if we can set the Volume of Water to Heat value with an invalid Data Type.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetVolumeOfWaterToHeat_InvalidDataType_False() {
         //Arrange
         boolean expectedResult = false;
@@ -431,7 +431,7 @@ public class KettleSpecsTest {
      * Test the setVolumeOfWaterToHeat method with the method setAttributeValue.
      * This test checks if we can set the Volume of Water to Heat value with a value larger than the maximum volume of water.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetVolumeOfWaterToHeat_ValueGreaterThanMaxVolume_False() {
         //Arrange
         boolean expectedResult = false;
@@ -448,7 +448,7 @@ public class KettleSpecsTest {
      * Test the setColdWaterTemperature method with the method setAttributeValue.
      * This test checks if we can set the Cold Water Temperature value with a value larger than the boiling temperature of water (100ºC).
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetColdWaterTemperature_ValueGreaterThanBoilingTemp_False() {
         //Arrange
         boolean expectedResult = false;
@@ -465,7 +465,7 @@ public class KettleSpecsTest {
      * Test the setColdWaterTemperature method with the method setAttributeValue.
      * This test checks if we can set the Cold Water Temperature value with an invalid Data Type.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetColdWaterTemperature_InvalidDataType_False() {
         //Arrange
         boolean expectedResult = false;
@@ -482,7 +482,7 @@ public class KettleSpecsTest {
      * Test the setColdWaterTemperature method with the method setAttributeValue.
      * This test checks if we can set the Cold Water Temperature value with null character.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetColdWaterTemperature_NullCharacter_False() {
         //Arrange
         boolean expectedResult = false;
@@ -499,7 +499,7 @@ public class KettleSpecsTest {
      * Test the setColdWaterTemperature method with the method setAttributeValue.
      * This test checks if we can set the Cold Water Temperature value with a valid value.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetColdWaterTemperature_ValidValue_True() {
         //Arrange
         boolean expectedResult = true;
@@ -515,7 +515,7 @@ public class KettleSpecsTest {
     /**
      * Test the setAttributeValue method in the case that there isn't a valid attribute name.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetAttributeValue_InvalidAttributeName_False() {
         //Arrange
         boolean expectedResult = false;
@@ -531,7 +531,7 @@ public class KettleSpecsTest {
     /**
      * Test the setAttributeValue method in the case that there isn't a valid attribute name.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetAttributeValue_NullAttributeName_False() {
         //Arrange
         boolean expectedResult = false;
@@ -547,7 +547,7 @@ public class KettleSpecsTest {
     /**
      * Test if the getNominalPower method really returns the Nominal Power attribute value.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetNominalPower_NominalPowerValue() {
         //Arrange
         double expectedResult = 30;
@@ -560,7 +560,7 @@ public class KettleSpecsTest {
     /**
      * Test if the getNominalPower method returns the correct value of Energy Consumption formula.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetEnergyConsumptionInADay_EnergyConsumptionValue() {
         //Arrange
         double coldWaterTemp = 99;
@@ -578,7 +578,7 @@ public class KettleSpecsTest {
         assertEquals(expectedResult, result, 0.0001);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetEnergyConsumptionInADay_EnergyConsumptionValue2() {
         //Arrange
         double coldWaterTemp = 95;
@@ -599,7 +599,7 @@ public class KettleSpecsTest {
     /**
      * Test if the method getAttributesToString returns the String of the Attributes with the respective value.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetAttributesToString_ShowAttributesWithValue() {
         //Arrange
         String expectedResult =
@@ -616,7 +616,7 @@ public class KettleSpecsTest {
     /**
      * Test the method that shows the number of Attributes of this Device, in this case, there are 3.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetNumberOfAttributes_NumberOfAttributes() {
         //Arrange
         int expectedResult = 3;
@@ -631,7 +631,7 @@ public class KettleSpecsTest {
     /**
      * Test the method that gets a String List of the attibutes of this device.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetSpecsList_ListOfStringsOfAttibutes() {
         //Arrange
         List<String> expectedResult = new ArrayList<>();
@@ -649,7 +649,7 @@ public class KettleSpecsTest {
      * Test the return "not a valid attribute" of the method getAttributeValue,
      * when inserted an invalid attribute.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetAttributeValue_NotAValidAttribute() {
         //Arrange
         String expectedResult = "not a valid attribute";
@@ -663,7 +663,7 @@ public class KettleSpecsTest {
      * Test the return "not a valid attribute" of the method getAttributeValue,
      * when inserted an null character attribute.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetAttributeValue_NullCharacterMaxVolWater() {
         //Arrange
         String expectedResult = "not a valid attribute";
@@ -691,7 +691,7 @@ public class KettleSpecsTest {
      * Test the return "not a valid attribute" of the method getAttributeValue,
      * when inserted an null character attribute.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetAttributeValue_NullCharacterColdWaterTemp() {
         //Arrange
         String expectedResult = "not a valid attribute";
@@ -705,7 +705,7 @@ public class KettleSpecsTest {
      * Test the return "not a valid attribute" of the method getAttributeValue,
      * when inserted an null character attribute.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetAttributeValue_NullCharacterNomPower() {
         //Arrange
         String expectedResult = "not a valid attribute";
@@ -719,7 +719,7 @@ public class KettleSpecsTest {
      * Test the return "not a valid attribute" of the method getAttributeValue,
      * when inserted an null character attribute.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetAttributeValue_NullVolWaterHeat() {
         //Arrange
         String expectedResult = "not a valid attribute";
@@ -747,7 +747,7 @@ public class KettleSpecsTest {
      * Test if the method getAttributeDataType shows the Data type of a valid attribute,
      * in this case, the nominal power.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetAttributeDataType_NominalPower() {
         //Arrange
         String expectedResult = "Double";
@@ -764,7 +764,7 @@ public class KettleSpecsTest {
      * Test if the method getAttributeDataType shows the Data type of a valid attribute,
      * in this case, the Maximum Volume of Water.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetAttributeDataType_MaxVolumeOfWater() {
         //Arrange
         String expectedResult = "Double";
@@ -781,7 +781,7 @@ public class KettleSpecsTest {
      * Test if the method getAttributeDataType shows the Data type of a valid attribute,
      * in this case, the Performance Ratio.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetAttributeDataType_PerformanceRatio() {
         //Arrange
         String expectedResult = "Double";
@@ -798,7 +798,7 @@ public class KettleSpecsTest {
      * Test if the method getAttributeDataType shows the Data type of a valid attribute,
      * in this case, the Cold Water Temperature.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetAttributeDataType_ColdWaterTemperature() {
         //Arrange
         String expectedResult = "Double";
@@ -814,7 +814,7 @@ public class KettleSpecsTest {
      * Test if the method getAttributeDataType shows the Data type of a valid attribute,
      * in this case, the volume Of Water To Heat.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetAttributeDataType_volumeOfWaterToHeat() {
         //Arrange
         String expectedResult = "Double";
@@ -830,7 +830,7 @@ public class KettleSpecsTest {
      * Test if the method getAttributeDataType shows the String "not a valid attribute",
      * in case of do not insert a valid name of attribute.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetAttributeDataType_InvalidAttribute() {
         //Arrange
         String expectedResult = "not a valid attribute";

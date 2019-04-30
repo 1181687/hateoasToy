@@ -117,31 +117,30 @@ public class FreezerTest {
         assertEquals(expectedResult, result, 0.000001);
     }
 
-    /*
-        @Test
-        public void setNameWithSameNameTest() {
-            Throwable exception = assertThrows(RuntimeException.class, () -> freezer.setName("Miele Freezer Series 3500"));
-            assertEquals("Name already exists. Please write a new one.", exception.getMessage());
-        }
+    @Test
+    public void setNameWithSameNameTest() {
+        Throwable exception = assertThrows(RuntimeException.class, () -> freezer.setName("Miele Freezer Series 3500"));
+        assertEquals("Name already exists. Please write a new one.", exception.getMessage());
+    }
 
-        @Test
-        public void setNameWithSameLocationTestfreezer1() {
-            Throwable exception = assertThrows(RuntimeException.class, () -> kitchen.getDeviceByPosition(0).setName("Miele Freezer Series 3500"));
-            assertEquals("Name already exists. Please write a new one.", exception.getMessage());
-        }
+    @Test
+    public void setNameWithSameLocationTestfreezer1() {
+        Throwable exception = assertThrows(RuntimeException.class, () -> kitchen.getDeviceByPosition(0).setName("Miele Freezer Series 3500"));
+        assertEquals("Name already exists. Please write a new one.", exception.getMessage());
+    }
 
-        @Test
-        public void setNameWithSameLocationTestfreezer2() {
-            Throwable exception = assertThrows(RuntimeException.class, () -> kitchen.getDeviceByPosition(0).setName("Miele Freezer Series 1000"));
-            assertEquals("Name already exists. Please write a new one.", exception.getMessage());
-        }
+    @Test
+    public void setNameWithSameLocationTestfreezer2() {
+        Throwable exception = assertThrows(RuntimeException.class, () -> kitchen.getDeviceByPosition(0).setName("Miele Freezer Series 1000"));
+        assertEquals("Name already exists. Please write a new one.", exception.getMessage());
+    }
 
-        @Test
-        public void setNameAlreadyInListTest() {
-            Throwable exception = assertThrows(RuntimeException.class, () -> freezer.setName("Miele Freezer Series 1000"));
-            assertEquals("Name already exists. Please write a new one.", exception.getMessage());
-        }
-    */
+    @Test
+    public void setNameAlreadyInListTest() {
+        Throwable exception = assertThrows(RuntimeException.class, () -> freezer.setName("Miele Freezer Series 1000"));
+        assertEquals("Name already exists. Please write a new one.", exception.getMessage());
+    }
+
     @Test
     public void setNameFalseTest() {
         // Act
@@ -178,7 +177,7 @@ public class FreezerTest {
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setLocationTrueTestNullValue() {
         // Act
         FreezerType type = new FreezerType();
@@ -191,7 +190,7 @@ public class FreezerTest {
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getDevSpecsAttributesToStringTest() {
         // Arrange
         String expectedResult = "1 - Freezer Capacity: 40.0\n" +
@@ -251,7 +250,7 @@ public class FreezerTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getNumberOfSpecsAttributesTest() {
         // Arrange
         int expectedResult = 3;
@@ -327,7 +326,7 @@ public class FreezerTest {
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setDeactivateDeviceAlreadyDeactivatedFalse() {
 
         freezer.setDeactivateDevice();
@@ -379,7 +378,7 @@ public class FreezerTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getDataSeriesTest() {
         // Assert
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
@@ -422,7 +421,7 @@ public class FreezerTest {
     }
 
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetSpecsToString() {
         // Arrange
         String expectedResult = "1 - Freezer Capacity: 40.0\n" +
@@ -450,7 +449,7 @@ public class FreezerTest {
 
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetNominalPowerTest() {
         //Arrange
         double expectedResult = 900.0;
@@ -471,7 +470,7 @@ public class FreezerTest {
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testIfDeviceIsActiveFalse() {
         //Arrange
         freezer.setDeactivateDevice();
@@ -480,12 +479,12 @@ public class FreezerTest {
         //Assert
         assertFalse(result);
     }
-/*
+
     @Test
     public void testIfDeviceIsProgrammableFalse() {
         //Arrange
         //Act
-        boolean result = freezer.isProgrammable();
+        boolean result = freezer.getSpecs().isProgrammable();
         //Assert
         assertFalse(result);
     }
@@ -493,11 +492,11 @@ public class FreezerTest {
     @Test
     public void testIfDeviceIsProgrammableReturnsFalseBecauseItsNotProgrammable() {
         //Arrange
-        freezer.asProgrammable();
+        freezer.getSpecs().asProgrammable();
         //Act
-        boolean result = freezer.isProgrammable();
+        boolean result = freezer.getSpecs().isProgrammable();
         //Assert
         assertFalse(result);
     }
-    */
+
 }

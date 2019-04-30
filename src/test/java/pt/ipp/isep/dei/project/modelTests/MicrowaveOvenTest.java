@@ -97,7 +97,7 @@ public class MicrowaveOvenTest {
         assertEquals(expectedResult, result);
     }
 
-    /*@Test
+    @Test
     public void setNameWithSameNameTest() {
         Throwable exception = assertThrows(RuntimeException.class, () -> microwaveOven.setName("Becken BMW2328"));
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
@@ -107,7 +107,7 @@ public class MicrowaveOvenTest {
     public void setNameAlreadyInListTest() {
         Throwable exception = assertThrows(RuntimeException.class, () -> microwaveOven.setName("Becken BMW2329"));
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
-    }*/
+    }
 
     @Test
     public void setNameFalseTest() {

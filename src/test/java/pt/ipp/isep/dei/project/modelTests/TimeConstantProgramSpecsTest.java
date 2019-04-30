@@ -18,7 +18,7 @@ public class TimeConstantProgramSpecsTest {
         specs = new TimeConstantProgramSpecs();
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetDuration() {
         //Arrange
         specs.setAttributes(DURATION, 100);
@@ -29,7 +29,7 @@ public class TimeConstantProgramSpecsTest {
         assertEquals(expectedResult, result, 0.001);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetEnergyConsumption() {
         //Arrange
         specs.setAttributes(ENERGY_CONSUMPTION, 100);
@@ -51,7 +51,7 @@ public class TimeConstantProgramSpecsTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetAttributeDurationNullChar() {
         // Arrange
         double attribute = 30;
@@ -61,7 +61,7 @@ public class TimeConstantProgramSpecsTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetAttributeDurationTrue() {
         //Arrange
 
@@ -79,7 +79,7 @@ public class TimeConstantProgramSpecsTest {
     }
 
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetAttributeDurationSameValue_False() {
         // Arrange
         specs.setAttributes(DURATION, 20);
@@ -99,9 +99,8 @@ public class TimeConstantProgramSpecsTest {
         assertFalse(result);
     }
 
-    /////////////
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetAttributeEnergyConsumptionNotValid() {
         // Arrange
         String attribute = "stuff";
@@ -111,7 +110,7 @@ public class TimeConstantProgramSpecsTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetAttributeEnergyConsumptionNullChar() {
         // Arrange
         double attribute = 10;
@@ -139,7 +138,7 @@ public class TimeConstantProgramSpecsTest {
     }
 
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetAttributeEnergyConsumptionSameValue_False() {
         // Arrange
         specs.setAttributes(ENERGY_CONSUMPTION, 20);

@@ -35,6 +35,7 @@ public class GeoAreaTypeService {
         return listOfGeoAreaTypes;
     }
 
+
     public boolean createGeoAreaType(String geoAreaTypeId) {
         GeoAreaTypeId newIdGeoAreaType = new GeoAreaTypeId(geoAreaTypeId);
         if (!geoAreaTypeRepository.existsById(geoAreaTypeId)) {
@@ -42,5 +43,11 @@ public class GeoAreaTypeService {
             return true;
         }
         return false;
+    }
+
+
+    public GeographicalAreaType newTypeOfGeoArea(String newType) {
+        GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId(newType);
+        return new GeographicalAreaType(geoAreaTypeId);
     }
 }

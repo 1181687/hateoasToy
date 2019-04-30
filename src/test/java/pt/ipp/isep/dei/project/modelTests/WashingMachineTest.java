@@ -78,7 +78,7 @@ public class WashingMachineTest {
         assertEquals(expectedResult, result, 0.001);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getLocationTest() {
         // Arrange
         Room expectedResult = kitchen;
@@ -90,7 +90,7 @@ public class WashingMachineTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getNameTest() {
         // Arrange
         String expectedResult = "Maytag 3.6";
@@ -102,7 +102,7 @@ public class WashingMachineTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getTypeTest() {
         // Arrange
         String expectedResult = "WashingMachine";
@@ -114,7 +114,7 @@ public class WashingMachineTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getEnergyConsumptionInADayTest() {
         // Arrange
         double expectedResult = 0.0;
@@ -126,7 +126,6 @@ public class WashingMachineTest {
         assertEquals(expectedResult, result, 0.000001);
     }
 
-    /*
         @Test
         public void setNameWithSameNameTest() {
             Throwable exception = assertThrows(RuntimeException.class, () -> washingMachine.setName("Maytag 3.6"));
@@ -138,8 +137,8 @@ public class WashingMachineTest {
             Throwable exception = assertThrows(RuntimeException.class, () -> washingMachine.setName("Maytag 2.6"));
             assertEquals("Name already exists. Please write a new one.", exception.getMessage());
         }
-    */
-    @org.junit.jupiter.api.Test
+
+    @Test
     public void setNameFalseTest() {
         // Act
         boolean result = washingMachine.setName("");
@@ -148,7 +147,7 @@ public class WashingMachineTest {
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setNameTrueTest() {
         // Act
         boolean result = washingMachine.setName("Maytag 4.0");
@@ -157,7 +156,7 @@ public class WashingMachineTest {
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setLocationFalseTest() {
         // Act
         boolean result = washingMachine.setLocation(kitchen);
@@ -166,7 +165,7 @@ public class WashingMachineTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setLocationTrueTest() {
         // Act
         boolean result = washingMachine.setLocation(laundry);
@@ -175,7 +174,7 @@ public class WashingMachineTest {
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setLocationTrueTestNullValue() {
         // Act
         WashingMachineType type = new WashingMachineType();
@@ -188,7 +187,7 @@ public class WashingMachineTest {
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getDevSpecsAttributesToStringTest() {
         // Arrange
         String expectedResult = "1 - Capacity: 40.0\n" +
@@ -200,7 +199,7 @@ public class WashingMachineTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getAttributesToStringTest() {
         // Arrange
         String expectedResult = "1 - Name: Maytag 3.6\n" +
@@ -213,7 +212,7 @@ public class WashingMachineTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setAttributesDevTypeTrue() {
         //Act
         boolean result = washingMachine.setAttributesDevType("Nominal Power", 1001);
@@ -221,7 +220,7 @@ public class WashingMachineTest {
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setAttributesDevTypeFalse() {
         //Act
         boolean result = washingMachine.setAttributesDevType("Nominal Power", 1000);
@@ -241,7 +240,7 @@ public class WashingMachineTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void equalsDifferentObjectTest() {
         // Arrange
         Object object = new Object();
@@ -253,7 +252,7 @@ public class WashingMachineTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getNumberOfSpecsAttributesTest() {
         // Arrange
         int expectedResult = 2;
@@ -265,7 +264,7 @@ public class WashingMachineTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getNameToStringTest() {
         // Arrange
         String expectedResult = "Device: Maytag 3.6, located in room: Kitchen\n";
@@ -277,7 +276,7 @@ public class WashingMachineTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getTotalEnergyConsumptionInAnIntervalWithoutSolutionsTest() {
         // Arrange
         double expectedResult = 0;
@@ -292,7 +291,7 @@ public class WashingMachineTest {
         assertEquals(expectedResult, result, 0.000001);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getTotalEnergyConsumptionInAnIntervalWithOneSolutionTest() {
         // Arrange
         double expectedResult = 7;
@@ -307,7 +306,7 @@ public class WashingMachineTest {
         assertEquals(expectedResult, result, 0.000001);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getTotalEnergyConsumptionInAnIntervalWithThreeSolutionsTest() {
         // Arrange
         double expectedResult = 15;
@@ -322,7 +321,7 @@ public class WashingMachineTest {
         assertEquals(expectedResult, result, 0.000001);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getDeactivationDate() {
         // arrange
         LocalDateTime date = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
@@ -345,7 +344,7 @@ public class WashingMachineTest {
     }
 
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getIsActiveTrueTest() {
         // Act
         boolean result = washingMachine.getIsActive();
@@ -366,7 +365,7 @@ public class WashingMachineTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getDataSeriesTest() {
         // Assert
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
@@ -407,14 +406,14 @@ public class WashingMachineTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetDeactivateDevice_true() {
         boolean expectedResult = true;
         boolean result = washingMachine.setDeactivateDevice();
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetDeactivateDevice_false() {
         boolean expectedResult = false;
         washingMachine.setDeactivateDevice();

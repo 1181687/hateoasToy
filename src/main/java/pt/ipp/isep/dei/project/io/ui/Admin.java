@@ -1,6 +1,5 @@
 package pt.ipp.isep.dei.project.io.ui;
 
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaTypeList;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.RoomList;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceTypeList;
@@ -11,7 +10,6 @@ import java.io.FileNotFoundException;
 
 public class Admin {
 
-    private GeographicalAreaTypeList geographicalAreaTypeList;
     private GeographicalAreaService geographicalAreaService;
     private GeoAreaTypeService geoAreaTypeService;
     private SensorTypeList sensorTypeList;
@@ -24,9 +22,8 @@ public class Admin {
     private SensorTypeService sensorTypeService;
 
 
-    public Admin(GeographicalAreaTypeList geographicalAreaTypeList, GeographicalAreaService geographicalAreaService,
+    public Admin(GeographicalAreaService geographicalAreaService,
                  GeoAreaTypeService geoAreaTypeService, SensorTypeList sensorTypeList, PowerSourceTypeList powerSourceTypeList, RoomList roomList, HouseService houseService, GeoAreaSensorService geoAreaSensorService, RoomSensorService roomSensorService, SensorTypeService sensorTypeService) {
-        this.geographicalAreaTypeList = geographicalAreaTypeList;
         this.geographicalAreaService = geographicalAreaService;
         this.geoAreaTypeService = geoAreaTypeService;
         this.sensorTypeList = sensorTypeList;
@@ -36,6 +33,7 @@ public class Admin {
         this.houseService = houseService;
         this.geoAreaSensorService = geoAreaSensorService;
         this.roomSensorService = roomSensorService;
+        this.sensorTypeService = sensorTypeService;
     }
 
 

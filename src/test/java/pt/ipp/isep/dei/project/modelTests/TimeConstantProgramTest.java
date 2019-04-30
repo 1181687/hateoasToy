@@ -25,7 +25,7 @@ public class TimeConstantProgramTest {
     }
 
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetProgramSpecs() {
         //Arrange
         ProgramSpecs expectedResult = specs;
@@ -37,7 +37,7 @@ public class TimeConstantProgramTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetAttributeDurationNotValid() {
         // Arrange
         String attribute = "stuff";
@@ -47,7 +47,7 @@ public class TimeConstantProgramTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetAttributeDurationNullChar() {
         // Arrange
         String attribute = "stuff";
@@ -57,7 +57,7 @@ public class TimeConstantProgramTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetAttributeDurationTrue() {
         //Arrange
 
@@ -75,7 +75,7 @@ public class TimeConstantProgramTest {
     }
 
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetAttributeDurationSameValue_False() {
         // Arrange
         timeConstantProgram.setProgramAttributes(DURATION, 20);
@@ -85,9 +85,8 @@ public class TimeConstantProgramTest {
         assertFalse(result);
     }
 
-    /////////////
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetAttributeEnergyConsumptionNotValid() {
         // Arrange
         String attribute = "stuff";
@@ -97,7 +96,7 @@ public class TimeConstantProgramTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetAttributeEnergyConsumptionNullChar() {
         // Arrange
         String attribute = "stuff";
@@ -107,7 +106,7 @@ public class TimeConstantProgramTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetAttributeEnergyConsumptionTrue() {
         //Arrange
 
@@ -135,7 +134,7 @@ public class TimeConstantProgramTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetProgramName() {
         // Arrange
         String expectedResult = "prog1";

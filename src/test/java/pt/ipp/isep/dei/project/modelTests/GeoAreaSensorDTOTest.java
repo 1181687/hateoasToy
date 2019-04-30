@@ -35,7 +35,7 @@ class GeoAreaSensorDTOTest {
     /**
      * get method for sensor Id. gets id ISEP-Temperature
      */
-    @org.junit.jupiter.api.Test
+    @Test
     void testGetId_get_isepTemperature() {
         //Arrange
         String expectedResult = "ISEP-Temperature";
@@ -62,7 +62,7 @@ class GeoAreaSensorDTOTest {
     /**
      * get method for sensor name. gets Temperature sensor
      */
-    @org.junit.jupiter.api.Test
+    @Test
     void testGetName_get_temperatureSensor() {
         //Arrange
         String expectedResult = "Temperature sensor";
@@ -89,7 +89,7 @@ class GeoAreaSensorDTOTest {
     /**
      * get method for starting date. gets local date now
      */
-    @org.junit.jupiter.api.Test
+    @Test
     void testGetStartingDate_get() {
         //Arrange
         LocalDate expectedResult = LocalDate.now();
@@ -116,7 +116,7 @@ class GeoAreaSensorDTOTest {
     /**
      * get method for sensor type. gets Temperature
      */
-    @org.junit.jupiter.api.Test
+    @Test
     void testGetSensorType_get_temperature() {
         //Arrange
         String expectedResult = "Temperature";
@@ -130,7 +130,7 @@ class GeoAreaSensorDTOTest {
     /**
      * set method for sensor type. changes sensor type to Rainfall
      */
-    @org.junit.jupiter.api.Test
+    @Test
     void testSetSensorType_set_rainfall() {
         //Arrange
         String expectedResult = "Rainfall";
@@ -182,7 +182,7 @@ class GeoAreaSensorDTOTest {
     /**
      * get method for sensor units. gets units in ºC
      */
-    @org.junit.jupiter.api.Test
+    @Test
     void testGetUnits_get_C() {
         //Arrange
         String expectedResult = "ºC";

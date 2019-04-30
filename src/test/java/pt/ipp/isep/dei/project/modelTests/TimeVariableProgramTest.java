@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TimeVariableProgramTest {
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetProgramSpecs() {
         //Arrange
         String name = "Program 1";
@@ -47,7 +47,7 @@ public class TimeVariableProgramTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetProgramAttributeprogramNominalPower_NullChar() {
         //Arrange
         String name = "Program 1";
