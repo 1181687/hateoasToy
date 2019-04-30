@@ -37,7 +37,7 @@ public class LampTypeTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getTypeNameTest() {
         // Arrange
         String expectedResult = "Lamp";

@@ -24,7 +24,7 @@ class ReadingDTOTest {
     /**
      * Test that tries to get the value of the Reading DTO, which is expected to be 10.0.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     void testGetValue_whenTheValueIsSetTo10_ShouldReturn10() {
         // Arrange
         readingDTO.setValue(10);

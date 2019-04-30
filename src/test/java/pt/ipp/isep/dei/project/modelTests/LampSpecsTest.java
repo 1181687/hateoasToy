@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.project.modelTests;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.devices.Programmable;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
@@ -41,7 +42,7 @@ public class LampSpecsTest {
         lamp.setAttributesDevType("Time", 10.0);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getEnergyConsumptionInADayTestWithValidValues() {
 
         // Arrange
@@ -110,7 +111,7 @@ public class LampSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetSpecsInAListOfStrings() {
         // Arrange
         List<String> expectedResult = new ArrayList<>();
@@ -124,7 +125,7 @@ public class LampSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetAttributeValueNominalPower() {
         // Arrange
 
@@ -137,7 +138,7 @@ public class LampSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetAttributeValueNominalPowerNullChar() {
         // Arrange
 
@@ -150,7 +151,7 @@ public class LampSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetAttributeValueLuminousFlux() {
         // Arrange
         lamp.setAttributesDevType("Nominal Power", 30);
@@ -162,7 +163,7 @@ public class LampSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetAttributeValueLuminousFluxNullChar() {
         // Arrange
         lamp.setAttributesDevType("Nominal Power", 30);
@@ -174,7 +175,7 @@ public class LampSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetAttributeValueNotAValidSpec() {
         // Arrange
         lamp.setAttributesDevType("Nominal Power", 30);
@@ -186,7 +187,7 @@ public class LampSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetAttributeTimeValueNotAValidSpec() {
         // Arrange
         lamp.setAttributesDevType("Time", 50);
@@ -198,7 +199,7 @@ public class LampSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetAttributeTimeValueNullChar() {
         // Arrange
         lamp.setAttributesDevType("Time", 50);
@@ -210,7 +211,7 @@ public class LampSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetAttributeLuminousFlux() {
         // Arrange
         lamp.setAttributesDevType("Nominal Power", 30);
@@ -232,7 +233,7 @@ public class LampSpecsTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetAttributeLuminousFluxNullChar() {
         // Arrange
         String attribute = "stuff";
@@ -242,7 +243,7 @@ public class LampSpecsTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetAttributeLuminousFluxSameValue() {
         // Act
         boolean result = lamp.getSpecs().setAttributeValue("\0Luminous Flux", 50);
@@ -289,7 +290,7 @@ public class LampSpecsTest {
     }
 
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetAttributeTimeSameValue() {
         // Arrange
         lamp.setAttributesDevType("Time", 20);
@@ -309,7 +310,7 @@ public class LampSpecsTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetAttributeNominalPowerNullChar() {
         // Arrange
         String attribute = "stuff";
@@ -319,7 +320,7 @@ public class LampSpecsTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetAttributeNominalPowerSameValue() {
         // Arrange
         lamp.setAttributesDevType("Nominal Power", 1.5);
@@ -347,7 +348,7 @@ public class LampSpecsTest {
 
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetAttributeNotValid() {
         // Arrange
         String attribute = "stuff";
@@ -357,7 +358,7 @@ public class LampSpecsTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testIfDeviceIsProgrammableReturnsFalseBecauseItsNotProgrammable() {
         //Arrange
         lamp.getSpecs().asProgrammable();
@@ -365,5 +366,21 @@ public class LampSpecsTest {
         boolean result = lamp.getSpecs().isProgrammable();
         //Assert
         assertFalse(result);
+    }
+
+    /**
+     * Test the method that returns a Programmable if the device is Programmable.
+     * The Kettler is not programmable so the method only return "null" value.
+     */
+    @Test
+    public void testAsProgrammable_null() {
+        //Arrange
+        Programmable expectedResult = null;
+
+        //Act
+        Programmable result = lamp.getSpecs().asProgrammable();
+
+        //Assert
+        assertEquals(expectedResult, result);
     }
 }

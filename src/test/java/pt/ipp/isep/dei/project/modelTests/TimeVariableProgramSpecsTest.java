@@ -62,7 +62,7 @@ public class TimeVariableProgramSpecsTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetAttributeTimeTrue() {
         //Arrange
 
@@ -90,9 +90,8 @@ public class TimeVariableProgramSpecsTest {
         assertFalse(result);
     }
 
-    /////
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetAttributeNomPowerNotValid() {
         // Arrange
         String attribute = "stuff";
@@ -102,7 +101,7 @@ public class TimeVariableProgramSpecsTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetAttributeNomPowerNullChar() {
         // Arrange
         String attribute = "stuff";
@@ -140,7 +139,7 @@ public class TimeVariableProgramSpecsTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetEnergyConsumption() {
         //Arrange
 

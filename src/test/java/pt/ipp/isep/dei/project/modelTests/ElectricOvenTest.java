@@ -20,10 +20,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.TreeMap;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -90,7 +87,7 @@ public class ElectricOvenTest {
         map.put(time2, 7.0);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getNominalPowerTest() {
         //Arrange
         double expectedResult = 1200.0;
@@ -150,7 +147,7 @@ public class ElectricOvenTest {
         assertEquals(expectedResult, result, 0.000001);
     }
 
-    /*@Test
+    @Test
     public void setNameWithSameNameTest() {
         Throwable exception = assertThrows(RuntimeException.class, () -> electricOven.setName("Kenmore Elite 95053"));
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
@@ -160,7 +157,7 @@ public class ElectricOvenTest {
     public void setNameAlreadyInListTest() {
         Throwable exception = assertThrows(RuntimeException.class, () -> electricOven.setName("Kenmore Elite 95067"));
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
-    }*/
+    }
 
     @Test
     public void setNameFalseTest() {
@@ -189,7 +186,7 @@ public class ElectricOvenTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setLocationTrueTest() {
         // Act
         boolean result = electricOven.setLocation(laundry);
@@ -222,7 +219,7 @@ public class ElectricOvenTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getAttributesToStringTest() {
         // Arrange
         String expectedResult = "1 - Name: Kenmore Elite 95053\n" +
@@ -313,7 +310,7 @@ public class ElectricOvenTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getNumberOfSpecsAttributesTest() {
         // Arrange
         int expectedResult = 1;
@@ -397,7 +394,7 @@ public class ElectricOvenTest {
         assertEquals(expectedResult, result, 0.000001);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getDeactivationDate() {
         // arrange
         LocalDateTime date = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
@@ -419,14 +416,6 @@ public class ElectricOvenTest {
         assertEquals(date, result);
     }
 
-   /* @Test
-    void getIsActiveTrueTest() {
-        // Act
-        boolean result = electricOven.getIsActive();
-
-        // Assert
-        assertTrue(result);
-    }
 
     @Test
     void getIsActiveFalseTest() {
@@ -529,5 +518,5 @@ public class ElectricOvenTest {
         electricOven.setDeactivateDevice();
         boolean result = electricOven.setDeactivateDevice();
         assertEquals(expectedResult, result);
-    }*/
+    }
 }
