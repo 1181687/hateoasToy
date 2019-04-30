@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.project.controllersTests;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import pt.ipp.isep.dei.project.controllers.GetNominalPowerController;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.MeasurableList;
@@ -23,6 +24,7 @@ import pt.ipp.isep.dei.project.utils.Utils;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
 
 
 public class GetNominalPowerControllerTest {
@@ -37,6 +39,7 @@ public class GetNominalPowerControllerTest {
 
     @BeforeEach
     public void StartUp() {
+        MockitoAnnotations.initMocks(this);
         //Geographical Area
         Location location = new Location(41.178553, -8.608035, 111);
         AreaShape areaShape = new AreaShape(0.261, 0.249);
@@ -69,6 +72,7 @@ public class GetNominalPowerControllerTest {
         grid = new HouseGrid(new HouseGridId("Grid"));
         gridTwo = new HouseGrid(new HouseGridId("Grid2"));
 
+        when(houseService.getHouse()).thenReturn(this.houseEdificioB);
         this.controller = new GetNominalPowerController(houseService);
 
     }
