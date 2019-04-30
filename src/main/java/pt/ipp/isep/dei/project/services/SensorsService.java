@@ -38,6 +38,19 @@ public class SensorsService {
                     LocalDate localDateReading = roomReading.getDateTime().toLocalDate();
                     double valueReading = roomReading.getValue();
                     LocalDate localDateComfTempMax = mapComfTempDaily.getKey();
+
+                    if (!Objects.isNull(mapComfTempDaily.getValue()) && localDateReading.compareTo(localDateComfTempMax) == 0 && Double.compare(valueReading, mapComfTempDaily.getValue().get(1)) == 1) {
+
+
+                        mapInstantsAboveComfortTemperature.put(roomReading.getDateTime(), valueReading);
+                    }
+                }
+            }
+        }
+        return mapInstantsAboveComfortTemperature;
+    }
+
+
     public Map<LocalDateTime, Double> getMapInstantsBelowComfortTemperatureInInterval
             (Map<LocalDate, List<Double>> mapComfortTemperatureMinMaxByDay, List<Reading> roomReadings) {
 
@@ -80,14 +93,4 @@ public class SensorsService {
         return !getInstantListOutOfComfortLevel(mapOfInstantsOutOfComfortLevel).isEmpty();
     }
 
-                    if (!Objects.isNull(mapComfTempDaily.getValue()) && localDateReading.compareTo(localDateComfTempMax) == 0 && Double.compare(valueReading, mapComfTempDaily.getValue().get(1)) == 1) {
-
-
-                        mapInstantsAboveComfortTemperature.put(roomReading.getDateTime(), valueReading);
-                    }
-                }
-            }
-        }
-        return mapInstantsAboveComfortTemperature;
-    }
 }
