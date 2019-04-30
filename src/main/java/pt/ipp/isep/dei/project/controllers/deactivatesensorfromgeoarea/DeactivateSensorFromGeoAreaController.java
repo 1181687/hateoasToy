@@ -6,6 +6,7 @@ import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapper;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorDTO;
+import pt.ipp.isep.dei.project.model.sensor.SensorId;
 import pt.ipp.isep.dei.project.services.GeographicalAreaService;
 
 import java.util.ArrayList;
@@ -28,13 +29,11 @@ public class DeactivateSensorFromGeoAreaController {
     }
 
     public boolean deactivateSensor(GeoAreaSensorDTO sensorDTO) {
-        GeoAreaSensor sensor = geoAreaService.getSensorById(sensorDTO.getId());
+        GeoAreaSensor sensor = geoAreaService.getSensorById(new SensorId(sensorDTO.getId()));
         if (sensor.deactivateDevice()) {
             geoAreaService.updateRepository();
             return true;
         }
         return false;
     }
-
-
 }

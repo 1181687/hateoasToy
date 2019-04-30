@@ -1,4 +1,3 @@
-
 package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -55,7 +54,8 @@ class AddSensorToGeoAreaControllerTest {
 
         // Geographical area
         Location location = new Location(123, 456, 789);
-        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("city");
+        GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("city");
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType(geoAreaTypeId);
 
         AreaShape areaShape = new AreaShape(123, 456);
 

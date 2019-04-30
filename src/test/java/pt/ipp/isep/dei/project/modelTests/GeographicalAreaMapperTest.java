@@ -28,7 +28,8 @@ public class GeographicalAreaMapperTest {
         portoDTO.setElevation(10);
 
         // Geo Area
-        GeographicalAreaType city = new GeographicalAreaType(portoDTO.getType());
+        GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId(portoDTO.getType());
+        GeographicalAreaType city = new GeographicalAreaType(geoAreaTypeId);
         Location location = new Location(portoDTO.getLatitude(), portoDTO.getLongitude(), portoDTO.getElevation());
         AreaShape shape = new AreaShape(portoDTO.getWidth(), portoDTO.getLength());
         porto = new GeographicalArea(portoDTO.getId(), portoDTO.getDescription(), city, location, shape);

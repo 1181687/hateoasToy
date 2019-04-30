@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.project.controllersTests;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.AddGeoAreaTypeController;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaTypeId;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaTypeList;
 
@@ -18,7 +19,8 @@ public class AddGeographicalAreaTypeControllerTest {
         geographicalAreaTypeList = new GeographicalAreaTypeList();
 
         // Geographical Area Types
-        GeographicalAreaType city = new GeographicalAreaType("City");
+        GeoAreaTypeId geoAreaTypeId3 = new GeoAreaTypeId("City");
+        GeographicalAreaType city = new GeographicalAreaType(geoAreaTypeId3);
         geographicalAreaTypeList.addTypeOfGeoAreaToTheList(city);
 
         // Controller

@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.project.modelTests;
 
 
 import org.junit.jupiter.api.Test;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaTypeId;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaTypeList;
 
@@ -17,8 +18,8 @@ class GeographicalAreaTypeListTest {
     public void testaadicionarElementoAListaPositivo() {
         //Arrange
         GeographicalAreaTypeList lista = new GeographicalAreaTypeList();
-        String novoTipoAG = "Cidade";
-        GeographicalAreaType novoTipo = new GeographicalAreaType(novoTipoAG);
+        GeoAreaTypeId newTypeAG= new GeoAreaTypeId("Cidade");
+        GeographicalAreaType novoTipo = new GeographicalAreaType(newTypeAG);
 
         //Act
         boolean resultado = lista.addTypeOfGeoAreaToTheList(novoTipo);
@@ -31,8 +32,8 @@ class GeographicalAreaTypeListTest {
     public void testaadicionarElementoAListaNegativo() {
         //Arrange
         GeographicalAreaTypeList lista = new GeographicalAreaTypeList();
-        String novoTipoAG = "Cidade";
-        GeographicalAreaType novoTipo = new GeographicalAreaType(novoTipoAG);
+        GeoAreaTypeId newTypeAG= new GeoAreaTypeId("Cidade");
+        GeographicalAreaType novoTipo = new GeographicalAreaType(newTypeAG);
         lista.addTypeOfGeoAreaToTheList(novoTipo);
 
         //Act
@@ -46,7 +47,7 @@ class GeographicalAreaTypeListTest {
     public void testarNovoTipoAG() {
         //Arrange
         GeographicalAreaTypeList lista = new GeographicalAreaTypeList();
-        String novoTipoAG = "Cidade";
+        GeoAreaTypeId novoTipoAG = new GeoAreaTypeId("Cidade");
         GeographicalAreaType novoTipo = new GeographicalAreaType(novoTipoAG);
         lista.addTypeOfGeoAreaToTheList(novoTipo);
         GeographicalAreaType tipoDiferente = lista.newTypeOfGeoArea("Rua");
@@ -62,8 +63,10 @@ class GeographicalAreaTypeListTest {
     public void testarConstrutorNaoVazio() {
         //Arrange
         List<GeographicalAreaType> lista = new ArrayList<>();
-        GeographicalAreaType tipo1 = new GeographicalAreaType("Cidade");
-        GeographicalAreaType tipo2 = new GeographicalAreaType("Rua");
+        GeoAreaTypeId novoTipoAGCidade = new GeoAreaTypeId("Cidade");
+        GeographicalAreaType tipo1 = new GeographicalAreaType(novoTipoAGCidade);
+        GeoAreaTypeId novoTipoAGRua = new GeoAreaTypeId("Rua");
+        GeographicalAreaType tipo2 = new GeographicalAreaType(novoTipoAGRua);
         lista.add(tipo1);
         lista.add(tipo2);
         GeographicalAreaTypeList novaLista = new GeographicalAreaTypeList(lista);
@@ -80,7 +83,7 @@ class GeographicalAreaTypeListTest {
         //Arrange
 
         GeographicalAreaTypeList lista = new GeographicalAreaTypeList();
-        String nomeDoTipo1 = "Cidade";
+        GeoAreaTypeId nomeDoTipo1 = new GeoAreaTypeId("Cidade");
         GeographicalAreaType tipo1 = new GeographicalAreaType(nomeDoTipo1);
         lista.addTypeOfGeoAreaToTheList(tipo1);
         List<String> expectedResult = Arrays.asList("Cidade");
@@ -98,9 +101,9 @@ class GeographicalAreaTypeListTest {
         //Arrange
 
         GeographicalAreaTypeList lista = new GeographicalAreaTypeList();
-        String nomeDoTipo1 = "Cidade";
+        GeoAreaTypeId nomeDoTipo1 = new GeoAreaTypeId("Cidade");
         GeographicalAreaType tipo1 = new GeographicalAreaType(nomeDoTipo1);
-        String nomeDoTipo2 = "Freguesia";
+        GeoAreaTypeId nomeDoTipo2 = new GeoAreaTypeId("Freguesia");
         GeographicalAreaType tipo2 = new GeographicalAreaType(nomeDoTipo2);
         lista.addTypeOfGeoAreaToTheList(tipo1);
         lista.addTypeOfGeoAreaToTheList(tipo2);

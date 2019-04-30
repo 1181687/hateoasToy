@@ -6,6 +6,7 @@ import pt.ipp.isep.dei.project.controllers.EditConfigurationDeviceController;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaTypeId;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.house.Address;
@@ -30,7 +31,8 @@ class EditConfigurationDeviceControllerTest {
         //Geographical Area
         Location location = new Location(41.178553, -8.608035, 111);
         AreaShape areaShape = new AreaShape(0.261, 0.249);
-        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Urban area");
+        GeoAreaTypeId regionId = new GeoAreaTypeId("Urban area");
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType(regionId);
         GeographicalArea insertedGeoArea = new GeographicalArea("ISEP", "Campus do ISEP", geographicalAreaType, location, areaShape);
 
         //House

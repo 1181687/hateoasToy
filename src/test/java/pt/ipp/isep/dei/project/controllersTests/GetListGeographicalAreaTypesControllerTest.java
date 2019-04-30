@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.project.controllersTests;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.GetListGeoAreaTypesController;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaTypeId;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaTypeList;
 
@@ -28,8 +29,8 @@ public class GetListGeographicalAreaTypesControllerTest {
     @Test
     public void testarGetListaTiposDeAG() {
         //Arrange
-        String nameOfType = "Cidade";
-        GeographicalAreaType type = new GeographicalAreaType(nameOfType);
+        GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("Cidade");
+        GeographicalAreaType type = new GeographicalAreaType(geoAreaTypeId);
         this.geographicalAreaTypeList.addTypeOfGeoAreaToTheList(type);
         List<String> expectedResult = Arrays.asList("Cidade");
 
@@ -43,10 +44,10 @@ public class GetListGeographicalAreaTypesControllerTest {
     @Test
     public void testarGetListaDosTiposDeAGAdicionandoMaisDoQueUmTipo() {
         //Arrange
-        String nameOfType1 = "Cidade";
-        GeographicalAreaType type1 = new GeographicalAreaType(nameOfType1);
-        String nameOfType2 = "Freguesia";
-        GeographicalAreaType type2 = new GeographicalAreaType(nameOfType2);
+        GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("Cidade");
+        GeographicalAreaType type1 = new GeographicalAreaType(geoAreaTypeId);
+        GeoAreaTypeId geoAreaTypeId1 = new GeoAreaTypeId("Freguesia");
+        GeographicalAreaType type2 = new GeographicalAreaType(geoAreaTypeId1);
 
         this.geographicalAreaTypeList.addTypeOfGeoAreaToTheList(type1);
         this.geographicalAreaTypeList.addTypeOfGeoAreaToTheList(type2);
