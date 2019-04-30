@@ -18,15 +18,19 @@ public class RoomSensor implements Root {
     private SensorId id;
     private String sensorName;
     private LocalDateTime startingDate;
+
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "ROOM_READING",
             joinColumns = @JoinColumn(name = "SENSOR_ID"))
     private List<Reading> readings = new ArrayList<>();
+
     @Embedded
     private SensorTypeId sensorTypeId;
     private String units;
+
     @Embedded
     private SensorState isActive;
+
     @Embedded
     @JoinColumn(name = "ROOM_ID")
     private RoomId roomId;
@@ -158,7 +162,7 @@ public class RoomSensor implements Root {
         return Objects.hash(this.id);
     }
 
-    public List<Reading> u7hb(LocalDate startDate, LocalDate endDate) {
+    public List<Reading> getReadingsBetweenDates(LocalDate startDate, LocalDate endDate) {
         List<Reading> readingsBetweenDates = new ArrayList<>();
         for (Reading reading : this.readings) {
             if ((reading.getDateTime().toLocalDate().isEqual(startDate) || reading.getDateTime().toLocalDate().isAfter(startDate)) && (reading.getDateTime().toLocalDate().isEqual(endDate) || reading.getDateTime().toLocalDate().isBefore(endDate))) {
@@ -167,4 +171,5 @@ public class RoomSensor implements Root {
         }
         return readingsBetweenDates;
     }
+
 }

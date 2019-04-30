@@ -17,6 +17,7 @@ import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
 public class KettleTest {
 
     private Room kitchen;

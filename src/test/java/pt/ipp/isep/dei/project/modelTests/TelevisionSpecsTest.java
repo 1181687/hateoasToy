@@ -13,6 +13,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
 public class TelevisionSpecsTest {
     private static final String NOT_VALID_ATTRIBUTE = "not a valid attribute";
     private Room livingRoom;
