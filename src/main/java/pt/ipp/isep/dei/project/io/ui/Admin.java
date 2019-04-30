@@ -48,7 +48,7 @@ public class Admin {
 
             switch (option) {
                 case 1:
-                    AddGeoAreaType ui = new AddGeoAreaType(geographicalAreaTypeList);
+                    AddGeoAreaType ui = new AddGeoAreaType(geoAreaTypeService);
                     ui.run();
                     break;
                 case 2:
