@@ -25,7 +25,7 @@ public class StoveTypeTest {
         kitchen = new Room("Kitchen", "room", 1, dim);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetTypeName() {
         //Arrange
         String expectedResult = "Stove";

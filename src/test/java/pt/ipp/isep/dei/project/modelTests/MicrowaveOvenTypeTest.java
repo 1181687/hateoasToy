@@ -24,7 +24,7 @@ public class MicrowaveOvenTypeTest {
         kitchen = new Room("Kitchen", "room", 1, dim);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testCreateDevice() {
         // Arrange
         Device expectedResult = microwaveOvenType.createDevice("Microwave Teka");
