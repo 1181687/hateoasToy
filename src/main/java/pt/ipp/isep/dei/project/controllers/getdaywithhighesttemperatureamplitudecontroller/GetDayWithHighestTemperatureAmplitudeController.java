@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.project.controllers.getdaywithhighesttemperatureamplitud
 
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
+import pt.ipp.isep.dei.project.services.HouseService;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
@@ -20,10 +21,10 @@ public class GetDayWithHighestTemperatureAmplitudeController {
     /**
      * constructor that receives a House and a SensorType
      *
-     * @param house
+     * @param houseService
      */
-    public GetDayWithHighestTemperatureAmplitudeController(House house) {
-        this.house = house;
+    public GetDayWithHighestTemperatureAmplitudeController(HouseService houseService) {
+        this.house = houseService.getHouse();
         this.sensorTypeTemperature = new SensorTypeId("Temperature");
     }
 

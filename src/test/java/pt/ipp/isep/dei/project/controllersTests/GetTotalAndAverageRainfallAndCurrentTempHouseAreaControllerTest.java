@@ -2,6 +2,8 @@ package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import pt.ipp.isep.dei.project.controllers.GetTotalAndAverageRainfallAndCurrentTempHouseAreaController;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
@@ -16,22 +18,27 @@ import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorId;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
+import pt.ipp.isep.dei.project.services.HouseService;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.when;
 
 public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
 
     private GetTotalAndAverageRainfallAndCurrentTempHouseAreaController controller;
     private House house;
     private GeographicalArea geoArea;
+    @Mock
+    private HouseService houseService;
 
 
     @BeforeEach
     public void StartUp() {
+        MockitoAnnotations.initMocks(this);
         //Geographical Area
         Location location = new Location(42.1, -8.6, 100.0);
         AreaShape areaShape = new AreaShape(0.261, 0.249);
@@ -49,13 +56,12 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
         Location houseLocation = new Location(42.1, -8.6, 100.0);
         Address address = new Address("4200-072", houseLocation, geoArea);
         this.house.setAddress(address);
-
-        this.controller = new GetTotalAndAverageRainfallAndCurrentTempHouseAreaController(house);
     }
 
     @Test
     public void testTotalDailyMeasurementInAHouseArea() {
         //Arrange
+        when(houseService.getHouse()).thenReturn(house);
 
         //Instantiate sensor
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
@@ -93,6 +99,8 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
         LocalDateTime day = LocalDateTime.of(2018, 11, 1, 15, 20, 00);
         double expectedResult = 15;
 
+        this.controller = new GetTotalAndAverageRainfallAndCurrentTempHouseAreaController(houseService);
+
         //Act
         double result = this.controller.getTotalRainfallInTheHouseAreaInTheSelectedDay(day.toLocalDate());
 
@@ -103,6 +111,7 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
     @Test
     public void testeAverageRainfallOfHouseArea() {
         //Arrange
+        when(houseService.getHouse()).thenReturn(house);
         //Instanciar sensor
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
         SensorTypeId sensorType0 = new SensorTypeId("Rainfall");
@@ -142,6 +151,8 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
         LocalDateTime startDate1 = LocalDateTime.of(2018, 11, 1, 15, 20, 00);
         LocalDateTime endDate1 = LocalDateTime.of(2018, 11, 6, 17, 24, 00);
 
+        this.controller = new GetTotalAndAverageRainfallAndCurrentTempHouseAreaController(houseService);
+
         double expectedResult = 22.25;
 
         //Act
@@ -154,6 +165,8 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
     @Test
     public void testGetLastTemperatureOfTheHouseArea() {
         // ARRANGE
+        when(houseService.getHouse()).thenReturn(house);
+
         String name1 = "Kitchen";
         String description = "room";
         int houseFloor1 = 0;
@@ -199,6 +212,8 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
         s1.addReadingsToList(reading11);
         s1.addReadingsToList(reading12);
 
+        this.controller = new GetTotalAndAverageRainfallAndCurrentTempHouseAreaController(houseService);
+
         double expectedResult = 25.0;
 
         //Act
@@ -211,6 +226,8 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
     @Test
     public void testGetLastTemperatureOfTheHouseAreaWithoutMeasurements() {
         // ARRANGE
+        when(houseService.getHouse()).thenReturn(house);
+
         String name1 = "Kitchen";
         String description = "room";
         int houseFloor1 = 0;
@@ -238,6 +255,8 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
         GeoAreaSensor s1 = new GeoAreaSensor(new SensorId("S02"), "A123", dataFuncionamento1, sensorType1, locS1, "l/m2");
         this.geoArea.getSensorListInTheGeographicArea().addSensor(s1);
 
+        this.controller = new GetTotalAndAverageRainfallAndCurrentTempHouseAreaController(houseService);
+
         double expectedResult = Double.NaN;
 
         //Act
@@ -250,6 +269,8 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
     @Test
     public void testGetLastTemperatureOfTheHouseAreaWithoutSensors() {
         // ARRANGE
+        when(houseService.getHouse()).thenReturn(house);
+
         String name1 = "Kitchen";
         String description = "room";
         int houseFloor1 = 0;
@@ -263,6 +284,9 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
 
         house.addRoom(room1);
         house.addRoom(room2);
+
+        this.controller = new GetTotalAndAverageRainfallAndCurrentTempHouseAreaController(houseService);
+
         double expectedResult = Double.NaN;
 
         //Act
@@ -275,7 +299,11 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
     @Test
     public void testGetmTypeTemperature() {
         // Arrange
+        when(houseService.getHouse()).thenReturn(house);
+
         String expectedResult = "temperature";
+
+        this.controller = new GetTotalAndAverageRainfallAndCurrentTempHouseAreaController(houseService);
 
         //Act
         String result = this.controller.getTypeTemperature();
@@ -287,6 +315,8 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
     @Test
     public void testGetDateLastTemperatureOfTheHouseArea() {
         // ARRANGE
+        when(houseService.getHouse()).thenReturn(house);
+
         String name1 = "Kitchen";
         String description = "room";
         int houseFloor1 = 0;
@@ -332,6 +362,8 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
         s1.addReadingsToList(reading11);
         s1.addReadingsToList(reading12);
 
+        this.controller = new GetTotalAndAverageRainfallAndCurrentTempHouseAreaController(houseService);
+
         LocalDateTime expectedResult = LocalDateTime.of(2018, 11, 3, 17, 24);
 
         //Act
@@ -344,6 +376,8 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
     @Test
     public void testGetDateLastTemperatureOfTheHouseAreaWithoutMeasurements() {
         // ARRANGE
+        when(houseService.getHouse()).thenReturn(house);
+
         String name1 = "Kitchen";
         String description = "room";
         int houseFloor1 = 0;
@@ -371,6 +405,8 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
         GeoAreaSensor s1 = new GeoAreaSensor(new SensorId("S01"), "A123", dataFuncionamento1, sensorType1, locS1, "l/m2");
         this.geoArea.getSensorListInTheGeographicArea().addSensor(s1);
 
+        this.controller = new GetTotalAndAverageRainfallAndCurrentTempHouseAreaController(houseService);
+
         LocalDateTime expectedResult = null;
 
         //Act
@@ -383,6 +419,8 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
     @Test
     public void testGetDateLastTemperatureOfTheHouseAreaWithoutSensors() {
         // ARRANGE
+        when(houseService.getHouse()).thenReturn(house);
+
         String name1 = "Kitchen";
         String description = "room";
         int houseFloor1 = 0;
@@ -396,6 +434,9 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
 
         house.addRoom(room1);
         house.addRoom(room2);
+
+        this.controller = new GetTotalAndAverageRainfallAndCurrentTempHouseAreaController(houseService);
+
         LocalDateTime expectedResult = null;
 
         //Act

@@ -2,7 +2,7 @@ package pt.ipp.isep.dei.project.io.ui;
 
 
 import pt.ipp.isep.dei.project.controllers.getdaywithhighesttemperatureamplitudecontroller.GetDayWithHighestTemperatureAmplitudeController;
-import pt.ipp.isep.dei.project.model.house.House;
+import pt.ipp.isep.dei.project.services.HouseService;
 
 import java.time.LocalDate;
 
@@ -13,12 +13,12 @@ public class GetDayWithHighestTemperatureAmplitude {
     private GetDayWithHighestTemperatureAmplitudeController controller;
 
     /**
-     * constructor that receives a House
+     * constructor that receives a HouseService
      *
-     * @param house House
+     * @param houseService The HouseService
      */
-    public GetDayWithHighestTemperatureAmplitude(House house) {
-        this.controller = new GetDayWithHighestTemperatureAmplitudeController(house);
+    public GetDayWithHighestTemperatureAmplitude(HouseService houseService) {
+        this.controller = new GetDayWithHighestTemperatureAmplitudeController(houseService);
     }
 
     /**

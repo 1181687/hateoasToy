@@ -61,7 +61,7 @@ public class Main {
     private SensorTypeList sensorTypeList;
     private GeographicalAreaTypeList geographicalAreaTypeList;
 
-    //GeographicalArea Repository Injection
+    //GeographicalAreaService Repository Injection
     @Autowired
     private GeographicalAreaService geographicalAreaService;
 
@@ -105,10 +105,10 @@ public class Main {
             data();
 
             //UI levels
-            Admin admin = new Admin(geographicalAreaTypeList, geographicalAreaService, geoAreaTypeService, sensorTypeList, houseEdificioB, powerSourceTypeList, houseEdificioB.getRoomList(), houseService, geoAreaSensorService, roomSensorService, sensorTypeService);
-            RegularUser regularUser = new RegularUser(geographicalAreaTypeList, geographicalAreaService, sensorTypeList, houseEdificioB);
-            PowerUser powerUser = new PowerUser(houseEdificioB);
-            RoomOwner roomOwner = new RoomOwner(houseEdificioB);
+            Admin admin = new Admin(geographicalAreaTypeList, geographicalAreaService, geoAreaTypeService, sensorTypeList, powerSourceTypeList, houseEdificioB.getRoomList(), houseService, geoAreaSensorService, roomSensorService, sensorTypeService);
+            RegularUser regularUser = new RegularUser(geographicalAreaTypeList, geographicalAreaService, sensorTypeList, houseService);
+            PowerUser powerUser = new PowerUser(houseService);
+            RoomOwner roomOwner = new RoomOwner(houseService);
 
             int option = Menu.usersMenu();
             if (option == 0) {

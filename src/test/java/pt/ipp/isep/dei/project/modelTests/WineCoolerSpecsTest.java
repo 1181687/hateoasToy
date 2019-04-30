@@ -2,12 +2,6 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
-import org.springframework.test.context.support.AnnotationConfigContextLoader;
-import pt.ipp.isep.dei.project.io.ui.Main;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
@@ -44,7 +38,7 @@ public class WineCoolerSpecsTest {
         wineCooler.setAttributesDevType("Annual Energy Consumption", 10000.0);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getEnergyConsumptionInADayTestWithValidValues() {
         // Arrange
         //10000/365
@@ -82,7 +76,7 @@ public class WineCoolerSpecsTest {
 
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetAttributeValueNominalPower() {
         // Arrange
         Object expectedResult = 100.0;
@@ -139,7 +133,7 @@ public class WineCoolerSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetAttributeValueAnnualEnergyConsumption() {
         // Arrange
         Object expectedResult = 10000.0;
@@ -168,7 +162,7 @@ public class WineCoolerSpecsTest {
      * Test the return "not a valid attribute" of the method getAttributeValue,
      * when inserted an null character attribute.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetAttributeValue_NullNominalPower() {
         //Arrange
         String expectedResult = NOT_VALID_ATTRIBUTE;
@@ -195,7 +189,7 @@ public class WineCoolerSpecsTest {
      * Test the return "not a valid attribute" of the method getAttributeValue,
      * when inserted an null character attribute.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetAttributeValue_Null_AnnualEnergyConsumption() {
         //Arrange
         String expectedResult = NOT_VALID_ATTRIBUTE;
@@ -221,7 +215,7 @@ public class WineCoolerSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetAttributeNumberOfBottlesValueValidType() {
         // Arrange
         int number = 30;
@@ -233,7 +227,7 @@ public class WineCoolerSpecsTest {
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetAttributeNumberOfBottlesValueNotAValidType() {
         // Arrange
         String random = "random";
@@ -245,7 +239,7 @@ public class WineCoolerSpecsTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetAttributeAnnualEnergyConsumptionValueNotAValidType() {
         // Arrange
         String random = "random";
@@ -308,7 +302,7 @@ public class WineCoolerSpecsTest {
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetAttributeAnnualEnergyConsumptionSameValue() {
         // Arrange
         wineCooler.getSpecs().setAttributeValue("Annual Energy Consumption", 100);
@@ -320,7 +314,7 @@ public class WineCoolerSpecsTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetAttributeNominalPowerValueValidType() {
         // Arrange
         double nominalPower = 1.5;
@@ -371,7 +365,7 @@ public class WineCoolerSpecsTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testIfDeviceIsProgrammableFalse() {
         //Arrange
         //Act
@@ -439,8 +433,5 @@ public class WineCoolerSpecsTest {
         //Assert
         assertFalse(result);
     }
-
-    @Configuration
-    static class Config {
-    }
+    
 }

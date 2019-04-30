@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import pt.ipp.isep.dei.project.controllers.getlastcoldestdayhouseareacontroller.GetLastColdestDayHouseAreaController;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
@@ -15,8 +16,8 @@ import pt.ipp.isep.dei.project.model.house.Address;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorId;
-import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
+import pt.ipp.isep.dei.project.services.HouseService;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
@@ -37,6 +38,8 @@ public class GetLastColdestDayHouseAreaControllerTest {
     private Location location2;
     private House house;
     private GetLastColdestDayHouseAreaController controller;
+    @Mock
+    private HouseService houseService;
 
     @BeforeEach
     public void StartUp() {
@@ -107,7 +110,7 @@ public class GetLastColdestDayHouseAreaControllerTest {
         portoCity.getSensorListInTheGeographicArea().addSensor(temperatureSensor);
         portoCity.getSensorListInTheGeographicArea().addSensor(temperatureSensor1);
 
-        controller = new GetLastColdestDayHouseAreaController(house);
+        controller = new GetLastColdestDayHouseAreaController(houseService);
     }
 
     @Test
@@ -205,7 +208,7 @@ public class GetLastColdestDayHouseAreaControllerTest {
         Address address = new Address("4200-072", houseLocation, porto);
         house2.setAddress(address);
 
-        GetLastColdestDayHouseAreaController controller2 = new GetLastColdestDayHouseAreaController(house2);
+        GetLastColdestDayHouseAreaController controller2 = new GetLastColdestDayHouseAreaController(houseService);
         //Act
         boolean result = controller2.hasSensorsOfGivenTypeInGeoArea();
         //Assert

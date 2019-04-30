@@ -25,12 +25,12 @@ public class Admin {
 
 
     public Admin(GeographicalAreaTypeList geographicalAreaTypeList, GeographicalAreaService geographicalAreaService,
-                 GeoAreaTypeService geoAreaTypeService, SensorTypeList sensorTypeList, House house, PowerSourceTypeList powerSourceTypeList, RoomList roomList, HouseService houseService, GeoAreaSensorService geoAreaSensorService, RoomSensorService roomSensorService, SensorTypeService sensorTypeService) {
+                 GeoAreaTypeService geoAreaTypeService, SensorTypeList sensorTypeList, PowerSourceTypeList powerSourceTypeList, RoomList roomList, HouseService houseService, GeoAreaSensorService geoAreaSensorService, RoomSensorService roomSensorService, SensorTypeService sensorTypeService) {
         this.geographicalAreaTypeList = geographicalAreaTypeList;
         this.geographicalAreaService = geographicalAreaService;
         this.geoAreaTypeService = geoAreaTypeService;
         this.sensorTypeList = sensorTypeList;
-        this.house = house;
+        this.house = houseService.getHouse();
         this.powerSourceTypeList = powerSourceTypeList;
         this.roomList = roomList;
         this.houseService = houseService;
@@ -48,11 +48,11 @@ public class Admin {
 
             switch (option) {
                 case 1:
-                    AddGeoAreaType ui = new AddGeoAreaType(geographicalAreaTypeList);
+                    AddGeoAreaType ui = new AddGeoAreaType(geoAreaTypeService);
                     ui.run();
                     break;
                 case 2:
-                    GetListGeoAreaTypes ui2 = new GetListGeoAreaTypes(geographicalAreaTypeList);
+                    GetListGeoAreaTypes ui2 = new GetListGeoAreaTypes(geoAreaTypeService);
                     ui2.run();
                     break;
                 case 3:
@@ -60,7 +60,7 @@ public class Admin {
                     ui3.run();
                     break;
                 case 4:
-                    GetListOfTypeOfGeoArea ui4 = new GetListOfTypeOfGeoArea(geographicalAreaService, geographicalAreaTypeList);
+                    GetListOfTypeOfGeoArea ui4 = new GetListOfTypeOfGeoArea(geographicalAreaService, geoAreaTypeService);
                     ui4.run();
                     break;
                 case 5:
@@ -136,11 +136,11 @@ public class Admin {
                     ui215.run();
                     break;
                 case 8:
-                    GetNominalPowerOfARoom ui230 = new GetNominalPowerOfARoom(house);
+                    GetNominalPowerOfARoom ui230 = new GetNominalPowerOfARoom(houseService);
                     ui230.run();
                     break;
                 case 9:
-                    GetNominalPowerOfGrid ui172 = new GetNominalPowerOfGrid(house);
+                    GetNominalPowerOfGrid ui172 = new GetNominalPowerOfGrid(houseService);
                     ui172.run();
                     break;
                 case 10:

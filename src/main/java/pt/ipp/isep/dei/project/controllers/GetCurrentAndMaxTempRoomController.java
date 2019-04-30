@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.project.controllers;
 
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
+import pt.ipp.isep.dei.project.services.HouseService;
 
 public class GetCurrentAndMaxTempRoomController {
 
@@ -14,8 +15,8 @@ public class GetCurrentAndMaxTempRoomController {
      * @param house House received
      * @param typeId  SensorType received
      */
-    public GetCurrentAndMaxTempRoomController(House house, SensorTypeId typeId) {
-        this.house = house;
+    public GetCurrentAndMaxTempRoomController(HouseService houseService, SensorTypeId typeId) {
+        this.house = houseService.getHouse();
         this.sensorTypeId = typeId;
     }
 

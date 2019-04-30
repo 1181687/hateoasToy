@@ -1,12 +1,15 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.model.house.House;
+import pt.ipp.isep.dei.project.services.HouseService;
 
 public class PowerUser {
     House house;
+    HouseService houseService;
 
-    public PowerUser(House house) {
-        this.house = house;
+    public PowerUser(HouseService houseService) {
+        this.houseService = houseService;
+        this.house = houseService.getHouse();
     }
 
     public void runPowerUserMenu() {
@@ -37,11 +40,11 @@ public class PowerUser {
                     ui160.run();
                     break;
                 case 2:
-                    GetNominalPowerOfGrid ui172 = new GetNominalPowerOfGrid(house);
+                    GetNominalPowerOfGrid ui172 = new GetNominalPowerOfGrid(houseService);
                     ui172.run();
                     break;
                 case 3:
-                    GetNominalPowerOfARoom ui230 = new GetNominalPowerOfARoom(house);
+                    GetNominalPowerOfARoom ui230 = new GetNominalPowerOfARoom(houseService);
                     ui230.run();
                     break;
                 case 4:
@@ -61,11 +64,11 @@ public class PowerUser {
         while (option != 0) {
             switch (option) {
                 case 1:
-                    GetNominalPowerRoomsDevices ui705 = new GetNominalPowerRoomsDevices(house);
+                    GetNominalPowerRoomsDevices ui705 = new GetNominalPowerRoomsDevices(houseService);
                     ui705.run();
                     break;
                 case 2:
-                    EstimateEnergyOfWaterHeater ui752 = new EstimateEnergyOfWaterHeater(house);
+                    EstimateEnergyOfWaterHeater ui752 = new EstimateEnergyOfWaterHeater(houseService);
                     ui752.run();
                     break;
                 case 3:

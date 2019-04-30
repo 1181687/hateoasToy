@@ -67,6 +67,5 @@ public class GeographicalAreaTypeList {
         }
         return listOfGeoAreaTypes;
     }
-
 }
 

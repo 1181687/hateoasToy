@@ -2,59 +2,50 @@ package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import pt.ipp.isep.dei.project.controllers.AddGeoAreaTypeController;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaTypeId;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaTypeList;
+import pt.ipp.isep.dei.project.services.GeoAreaTypeService;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.when;
 
 public class AddGeographicalAreaTypeControllerTest {
+
+    @Mock
+    private GeoAreaTypeService geoAreaTypeService;
+
     private AddGeoAreaTypeController controller;
-    private GeographicalAreaTypeList geographicalAreaTypeList;
 
     @BeforeEach
     public void StartUp() {
-        // List of Geographical Area Types
-        geographicalAreaTypeList = new GeographicalAreaTypeList();
-
-        // Geographical Area Types
-        GeoAreaTypeId geoAreaTypeId3 = new GeoAreaTypeId("City");
-        GeographicalAreaType city = new GeographicalAreaType(geoAreaTypeId3);
-        geographicalAreaTypeList.addTypeOfGeoAreaToTheList(city);
-
-        // Controller
-        controller = new AddGeoAreaTypeController(geographicalAreaTypeList);
+        MockitoAnnotations.initMocks(this);
+        this.controller = new AddGeoAreaTypeController(geoAreaTypeService);
     }
 
     @Test
-    public void addTypeOfGeoAreaToTheListPositiveTest() {
-        // Act
-        boolean result = controller.addTypeOfGeoAreaToTheList("Region");
+    public void createGeoAreaType_ShouldReturnTrue() {
 
-        // Assert
+        String geoAreaTypeId = "geoAreaTypeId";
+
+        when(this.geoAreaTypeService.createGeoAreaType(geoAreaTypeId)).thenReturn(true);
+
+        boolean result = controller.createGeoAreaType(geoAreaTypeId);
+
         assertTrue(result);
     }
 
     @Test
-    public void addTypeOfGeoAreaToTheListNegativeTest() {
-        // Act
-        boolean result = controller.addTypeOfGeoAreaToTheList("City");
+    public void createGeoAreaType_ShouldReturnFalse() {
 
-        // Assert
+        String geoAreaTypeId = "geoAreaTypeId";
+
+        when(this.geoAreaTypeService.createGeoAreaType(geoAreaTypeId)).thenReturn(false);
+
+        boolean result = controller.createGeoAreaType(geoAreaTypeId);
+
         assertFalse(result);
-    }
-
-    @Test
-    public void getListTest() {
-        //Arrange
-        GeographicalAreaTypeList expectedResult = geographicalAreaTypeList;
-
-        // Act
-        GeographicalAreaTypeList result = controller.getList();
-
-        // Assert
-        assertEquals(expectedResult, result);
     }
 
 }
