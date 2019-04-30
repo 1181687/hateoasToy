@@ -198,4 +198,33 @@ public class GeoAreaSensorService {
         }
         return mapComfortTemperatureMinMaxByDay;
     }
+
+    /**
+     * receives a map of Daily Comfort Temperatures in an interval and returns a List<LocalDate> refered to a List of
+     * days that don't have value registers (they are null)
+     *
+     * @param mapComfortDailyTemperature
+     * @return List<LocalDate> list of
+     */
+    public List<LocalDate> getDaysWithoutComfortTemp(Map<LocalDate, List<Double>> mapComfortDailyTemperature) {
+        List<LocalDate> listOfDaysWithoutComfortTemp = new ArrayList<>();
+
+        Set<Map.Entry<LocalDate, List<Double>>> set = mapComfortDailyTemperature.entrySet();
+
+        if (!set.isEmpty()) {
+            for (Map.Entry<LocalDate, List<Double>> dailyComfortTemp : set) {
+                if (Objects.isNull(dailyComfortTemp.getValue())) {
+                    listOfDaysWithoutComfortTemp.add(dailyComfortTemp.getKey());
+                }
+            }
+        }
+        return listOfDaysWithoutComfortTemp;
+    }
+
+    public boolean existsDaysWithoutComfortTemp(Map<LocalDate, List<Double>> mapComfortDailyTemperature) {
+        return !getDaysWithoutComfortTemp(mapComfortDailyTemperature).isEmpty();
+    }
+
+
+
 }

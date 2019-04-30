@@ -12,8 +12,10 @@ import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridMapper;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensorList;
 import pt.ipp.isep.dei.project.repositories.HouseGridRepository;
+import pt.ipp.isep.dei.project.repositories.HouseRepository;
 import pt.ipp.isep.dei.project.repositories.RoomRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -28,6 +30,9 @@ public class HouseService {
 
     @Autowired
     private GeographicalAreaService geographicalAreaService;
+
+    @Autowired
+    private HouseRepository houseRepository;
 
     private Address address;
 
@@ -143,6 +148,14 @@ public class HouseService {
             roomSensorList.getListOfSensors().addAll(room.getSensorList().getListOfSensors());
         }
         return roomSensorList;
+    }
+
+    public House getHouse(){
+        List<House> houseList = new ArrayList<>();
+        for (House house : houseRepository.findAll()) {
+            houseList.add(house);
+        }
+        return houseList.get(0);
     }
 
 }

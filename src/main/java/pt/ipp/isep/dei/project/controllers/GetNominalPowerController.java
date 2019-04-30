@@ -6,6 +6,7 @@ import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
+import pt.ipp.isep.dei.project.services.HouseService;
 
 public class GetNominalPowerController {
     private House house;
@@ -13,8 +14,8 @@ public class GetNominalPowerController {
     private HouseGrid selectedHouseGrid;
     private MeasurableList measurableList;
 
-    public GetNominalPowerController(House house) {
-        this.house = house;
+    public GetNominalPowerController(HouseService houseService) {
+        this.house = houseService.getHouse();
         this.measurableList = house.getNewMeasurableObjList();
 
     }

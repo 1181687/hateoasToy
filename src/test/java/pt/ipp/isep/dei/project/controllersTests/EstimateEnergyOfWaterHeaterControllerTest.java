@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import pt.ipp.isep.dei.project.controllers.EstimateEnergyOfWaterHeaterController;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.devices.Device;
@@ -12,6 +13,7 @@ import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
+import pt.ipp.isep.dei.project.services.HouseService;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.List;
@@ -25,6 +27,8 @@ public class EstimateEnergyOfWaterHeaterControllerTest {
     private Room laundry;
     private Device device1;
     private Device device2;
+    @Mock
+    private HouseService houseService;
 
     @BeforeEach
     public void StartUp() {
@@ -63,7 +67,7 @@ public class EstimateEnergyOfWaterHeaterControllerTest {
         device2.setAttributesDevType("Volume Of Water To Heat", 70);
 
         // Controller Instantiation
-        this.controller = new EstimateEnergyOfWaterHeaterController(house);
+        this.controller = new EstimateEnergyOfWaterHeaterController(houseService);
     }
 
     @Test

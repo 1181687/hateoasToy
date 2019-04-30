@@ -2,12 +2,6 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
-import org.springframework.test.context.support.AnnotationConfigContextLoader;
-import pt.ipp.isep.dei.project.io.ui.Main;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
@@ -20,10 +14,6 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-@DataJpaTest
-@ContextConfiguration(classes = {Main.class},
-        loader = AnnotationConfigContextLoader.class)
-@SpringJUnitConfig(TelevisionSpecsTest.Config.class)
 public class TelevisionSpecsTest {
     private static final String NOT_VALID_ATTRIBUTE = "not a valid attribute";
     private Room livingRoom;
@@ -426,10 +416,6 @@ public class TelevisionSpecsTest {
         boolean result = television.getSpecs().isProgrammable();
         //Assert
         assertFalse(result);
-    }
-
-    @Configuration
-    static class Config {
     }
 
 }
