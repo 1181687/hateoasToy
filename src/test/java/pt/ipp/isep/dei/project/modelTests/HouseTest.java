@@ -8,6 +8,7 @@ import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaTypeId;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.house.Address;
@@ -50,7 +51,8 @@ public class HouseTest {
         // Geographical Area
         Location location = new Location(41.178553, -8.608035, 111);
         AreaShape areaShape = new AreaShape(1.261, 1.249);
-        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Urban area");
+        GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("Urban area");
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType(geoAreaTypeId);
         ag = new GeographicalArea("ISEP", "Campus do ISEP", geographicalAreaType, location, areaShape);
 
         // House
@@ -1535,7 +1537,8 @@ public class HouseTest {
         //initiate House
         Location location = new Location(42.0, -8.608035, 111);
         AreaShape areaShape = new AreaShape(1.5, 2.5);
-        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Urban area");
+        GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("Urban area");
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType(geoAreaTypeId);
         GeographicalArea geo = new GeographicalArea("ISEP", "Campus do ISEP", geographicalAreaType, location, areaShape);
 
         house.setInsertedGeoArea(geo);
@@ -1729,9 +1732,12 @@ public class HouseTest {
     public void getFirstHighestReading_WithOnlyOneDoubleNaNValue_Null() {
         //Arrange
         // Geographical Area Types
-        GeographicalAreaType region = new GeographicalAreaType("Region");
-        GeographicalAreaType district = new GeographicalAreaType("District");
-        GeographicalAreaType city = new GeographicalAreaType("City");
+        GeoAreaTypeId geoAreaTypeId1 = new GeoAreaTypeId("Region");
+        GeoAreaTypeId geoAreaTypeId2 = new GeoAreaTypeId("District");
+        GeoAreaTypeId geoAreaTypeId3 = new GeoAreaTypeId("City");
+        GeographicalAreaType region = new GeographicalAreaType(geoAreaTypeId1);
+        GeographicalAreaType district = new GeographicalAreaType(geoAreaTypeId2);
+        GeographicalAreaType city = new GeographicalAreaType(geoAreaTypeId3);
 
         // Geographical Areas
         Location location = new Location(32.1496, 7.6109, 98);
@@ -1894,9 +1900,12 @@ public class HouseTest {
     @Test
     public void getDailyAmplitudeInterval() {
         // Geographical Area Types
-        GeographicalAreaType region = new GeographicalAreaType("Region");
-        GeographicalAreaType district = new GeographicalAreaType("District");
-        GeographicalAreaType city = new GeographicalAreaType("City");
+        GeoAreaTypeId geoAreaTypeId1 = new GeoAreaTypeId("Region");
+        GeoAreaTypeId geoAreaTypeId2 = new GeoAreaTypeId("District");
+        GeoAreaTypeId geoAreaTypeId3 = new GeoAreaTypeId("City");
+        GeographicalAreaType region = new GeographicalAreaType(geoAreaTypeId1);
+        GeographicalAreaType district = new GeographicalAreaType(geoAreaTypeId2);
+        GeographicalAreaType city = new GeographicalAreaType(geoAreaTypeId3);
 
         // Geographical Areas
         Location location = new Location(32.1496, 7.6109, 98);
@@ -1991,9 +2000,12 @@ public class HouseTest {
     public void getDailyAmplitudeInterval_doubleNanValuesFor4_12_2018() {
 
         // Geographical Area Types
-        GeographicalAreaType region = new GeographicalAreaType("Region");
-        GeographicalAreaType district = new GeographicalAreaType("District");
-        GeographicalAreaType city = new GeographicalAreaType("City");
+        GeoAreaTypeId geoAreaTypeId1 = new GeoAreaTypeId("Region");
+        GeoAreaTypeId geoAreaTypeId2 = new GeoAreaTypeId("District");
+        GeoAreaTypeId geoAreaTypeId3 = new GeoAreaTypeId("City");
+        GeographicalAreaType region = new GeographicalAreaType(geoAreaTypeId1);
+        GeographicalAreaType district = new GeographicalAreaType(geoAreaTypeId2);
+        GeographicalAreaType city = new GeographicalAreaType(geoAreaTypeId3);
 
         // Geographical Areas
         Location location = new Location(32.1496, 7.6109, 98);
@@ -2088,9 +2100,12 @@ public class HouseTest {
     public void getDailyAmplitudeInterval_oneDayOneDoubleNanValueTwoValidValues_For4_12_2018() {
 
         // Geographical Area Types
-        GeographicalAreaType region = new GeographicalAreaType("Region");
-        GeographicalAreaType district = new GeographicalAreaType("District");
-        GeographicalAreaType city = new GeographicalAreaType("City");
+        GeoAreaTypeId geoAreaTypeId1 = new GeoAreaTypeId("Region");
+        GeoAreaTypeId geoAreaTypeId2 = new GeoAreaTypeId("District");
+        GeoAreaTypeId geoAreaTypeId3 = new GeoAreaTypeId("City");
+        GeographicalAreaType region = new GeographicalAreaType(geoAreaTypeId1);
+        GeographicalAreaType district = new GeographicalAreaType(geoAreaTypeId2);
+        GeographicalAreaType city = new GeographicalAreaType(geoAreaTypeId3);
 
         // Geographical Areas
         Location location = new Location(32.1496, 7.6109, 98);
@@ -2183,9 +2198,12 @@ public class HouseTest {
     public void getDailyAmplitudeInterval_emptySensor_emptyMap() {
 
         // Geographical Area Types
-        GeographicalAreaType region = new GeographicalAreaType("Region");
-        GeographicalAreaType district = new GeographicalAreaType("District");
-        GeographicalAreaType city = new GeographicalAreaType("City");
+        GeoAreaTypeId geoAreaTypeId1 = new GeoAreaTypeId("Region");
+        GeoAreaTypeId geoAreaTypeId2 = new GeoAreaTypeId("District");
+        GeoAreaTypeId geoAreaTypeId3 = new GeoAreaTypeId("City");
+        GeographicalAreaType region = new GeographicalAreaType(geoAreaTypeId1);
+        GeographicalAreaType district = new GeographicalAreaType(geoAreaTypeId2);
+        GeographicalAreaType city = new GeographicalAreaType(geoAreaTypeId3);
 
         // Geographical Areas
         Location location = new Location(32.1496, 7.6109, 98);
@@ -2261,9 +2279,12 @@ public class HouseTest {
     public void getHighestDailyAmplitude_4_12_2018_amplitude20() {
 
         // Geographical Area Types
-        GeographicalAreaType region = new GeographicalAreaType("Region");
-        GeographicalAreaType district = new GeographicalAreaType("District");
-        GeographicalAreaType city = new GeographicalAreaType("City");
+        GeoAreaTypeId geoAreaTypeId1 = new GeoAreaTypeId("Region");
+        GeoAreaTypeId geoAreaTypeId2 = new GeoAreaTypeId("District");
+        GeoAreaTypeId geoAreaTypeId3 = new GeoAreaTypeId("City");
+        GeographicalAreaType region = new GeographicalAreaType(geoAreaTypeId1);
+        GeographicalAreaType district = new GeographicalAreaType(geoAreaTypeId2);
+        GeographicalAreaType city = new GeographicalAreaType(geoAreaTypeId3);
 
         // Geographical Areas
         Location location = new Location(32.1496, 7.6109, 98);
@@ -2348,9 +2369,12 @@ public class HouseTest {
     public void getHighestDailyAmplitude_doubleNanValuesIn4_12_2018_highestAmplitude7() {
 
         // Geographical Area Types
-        GeographicalAreaType region = new GeographicalAreaType("Region");
-        GeographicalAreaType district = new GeographicalAreaType("District");
-        GeographicalAreaType city = new GeographicalAreaType("City");
+        GeoAreaTypeId geoAreaTypeId1 = new GeoAreaTypeId("Region");
+        GeoAreaTypeId geoAreaTypeId2 = new GeoAreaTypeId("District");
+        GeoAreaTypeId geoAreaTypeId3 = new GeoAreaTypeId("City");
+        GeographicalAreaType region = new GeographicalAreaType(geoAreaTypeId1);
+        GeographicalAreaType district = new GeographicalAreaType(geoAreaTypeId2);
+        GeographicalAreaType city = new GeographicalAreaType(geoAreaTypeId3);
 
         // Geographical Areas
         Location location = new Location(32.1496, 7.6109, 98);
@@ -2449,9 +2473,12 @@ public class HouseTest {
     public void getNearestSensorWithMostRecentReading_ValidReading() {
         //Arrange
         // Geographical Area Types
-        GeographicalAreaType region = new GeographicalAreaType("Region");
-        GeographicalAreaType district = new GeographicalAreaType("District");
-        GeographicalAreaType city = new GeographicalAreaType("City");
+        GeoAreaTypeId geoAreaTypeId1 = new GeoAreaTypeId("Region");
+        GeoAreaTypeId geoAreaTypeId2 = new GeoAreaTypeId("District");
+        GeoAreaTypeId geoAreaTypeId3 = new GeoAreaTypeId("City");
+        GeographicalAreaType region = new GeographicalAreaType(geoAreaTypeId1);
+        GeographicalAreaType district = new GeographicalAreaType(geoAreaTypeId2);
+        GeographicalAreaType city = new GeographicalAreaType(geoAreaTypeId3);
 
         // Geographical Areas
         Location location = new Location(32.1496, 7.6109, 98);
@@ -2514,9 +2541,12 @@ public class HouseTest {
     public void getNearestSensorWithMostRecentReading_isNull() {
         //Arrange
         // Geographical Area Types
-        GeographicalAreaType region = new GeographicalAreaType("Region");
-        GeographicalAreaType district = new GeographicalAreaType("District");
-        GeographicalAreaType city = new GeographicalAreaType("City");
+        GeoAreaTypeId geoAreaTypeId1 = new GeoAreaTypeId("Region");
+        GeoAreaTypeId geoAreaTypeId2 = new GeoAreaTypeId("District");
+        GeoAreaTypeId geoAreaTypeId3 = new GeoAreaTypeId("City");
+        GeographicalAreaType region = new GeographicalAreaType(geoAreaTypeId1);
+        GeographicalAreaType district = new GeographicalAreaType(geoAreaTypeId2);
+        GeographicalAreaType city = new GeographicalAreaType(geoAreaTypeId3);
 
         // Geographical Areas
         Location location = new Location(32.1496, 7.6109, 98);
@@ -2580,9 +2610,12 @@ public class HouseTest {
     public void isSensorListEmpty_False() {
         // Arrange
         // Geographical Area Types
-        GeographicalAreaType region = new GeographicalAreaType("Region");
-        GeographicalAreaType district = new GeographicalAreaType("District");
-        GeographicalAreaType city = new GeographicalAreaType("City");
+        GeoAreaTypeId geoAreaTypeId1 = new GeoAreaTypeId("Region");
+        GeoAreaTypeId geoAreaTypeId2 = new GeoAreaTypeId("District");
+        GeoAreaTypeId geoAreaTypeId3 = new GeoAreaTypeId("City");
+        GeographicalAreaType region = new GeographicalAreaType(geoAreaTypeId1);
+        GeographicalAreaType district = new GeographicalAreaType(geoAreaTypeId2);
+        GeographicalAreaType city = new GeographicalAreaType(geoAreaTypeId3);
 
         // Geographical Areas
         Location location = new Location(32.1496, 7.6109, 98);
@@ -2643,9 +2676,12 @@ public class HouseTest {
     public void isSensorListEmptyTest_True() {
         // Arrange
         // Geographical Area Types
-        GeographicalAreaType region = new GeographicalAreaType("Region");
-        GeographicalAreaType district = new GeographicalAreaType("District");
-        GeographicalAreaType city = new GeographicalAreaType("City");
+        GeoAreaTypeId geoAreaTypeId1 = new GeoAreaTypeId("Region");
+        GeoAreaTypeId geoAreaTypeId2 = new GeoAreaTypeId("District");
+        GeoAreaTypeId geoAreaTypeId3 = new GeoAreaTypeId("City");
+        GeographicalAreaType region = new GeographicalAreaType(geoAreaTypeId1);
+        GeographicalAreaType district = new GeographicalAreaType(geoAreaTypeId2);
+        GeographicalAreaType city = new GeographicalAreaType(geoAreaTypeId3);
 
         // Geographical Areas
         Location location = new Location(32.1496, 7.6109, 98);
@@ -2704,9 +2740,12 @@ public class HouseTest {
     public void getFirstHighestReading_ValidReading_Reading4() {
         //Arrange
         // Geographical Area Types
-        GeographicalAreaType region = new GeographicalAreaType("Region");
-        GeographicalAreaType district = new GeographicalAreaType("District");
-        GeographicalAreaType city = new GeographicalAreaType("City");
+        GeoAreaTypeId geoAreaTypeId1 = new GeoAreaTypeId("Region");
+        GeoAreaTypeId geoAreaTypeId2 = new GeoAreaTypeId("District");
+        GeoAreaTypeId geoAreaTypeId3 = new GeoAreaTypeId("City");
+        GeographicalAreaType region = new GeographicalAreaType(geoAreaTypeId1);
+        GeographicalAreaType district = new GeographicalAreaType(geoAreaTypeId2);
+        GeographicalAreaType city = new GeographicalAreaType(geoAreaTypeId3);
 
         // Geographical Areas
         Location location = new Location(32.1496, 7.6109, 98);
@@ -2785,9 +2824,12 @@ public class HouseTest {
     public void getFirstHighestReading_noReadingInGivenInterval_Null() {
         //Arrange
         // Geographical Area Types
-        GeographicalAreaType region = new GeographicalAreaType("Region");
-        GeographicalAreaType district = new GeographicalAreaType("District");
-        GeographicalAreaType city = new GeographicalAreaType("City");
+        GeoAreaTypeId geoAreaTypeId1 = new GeoAreaTypeId("Region");
+        GeoAreaTypeId geoAreaTypeId2 = new GeoAreaTypeId("District");
+        GeoAreaTypeId geoAreaTypeId3 = new GeoAreaTypeId("City");
+        GeographicalAreaType region = new GeographicalAreaType(geoAreaTypeId1);
+        GeographicalAreaType district = new GeographicalAreaType(geoAreaTypeId2);
+        GeographicalAreaType city = new GeographicalAreaType(geoAreaTypeId3);
 
         // Geographical Areas
         Location location = new Location(32.1496, 7.6109, 98);
@@ -2868,9 +2910,12 @@ public class HouseTest {
         //Arrange
         //Arrange
         // Geographical Area Types
-        GeographicalAreaType region = new GeographicalAreaType("Region");
-        GeographicalAreaType district = new GeographicalAreaType("District");
-        GeographicalAreaType city = new GeographicalAreaType("City");
+        GeoAreaTypeId geoAreaTypeId1 = new GeoAreaTypeId("Region");
+        GeoAreaTypeId geoAreaTypeId2 = new GeoAreaTypeId("District");
+        GeoAreaTypeId geoAreaTypeId3 = new GeoAreaTypeId("City");
+        GeographicalAreaType region = new GeographicalAreaType(geoAreaTypeId1);
+        GeographicalAreaType district = new GeographicalAreaType(geoAreaTypeId2);
+        GeographicalAreaType city = new GeographicalAreaType(geoAreaTypeId3);
 
         // Geographical Areas
         Location location = new Location(32.1496, 7.6109, 98);
