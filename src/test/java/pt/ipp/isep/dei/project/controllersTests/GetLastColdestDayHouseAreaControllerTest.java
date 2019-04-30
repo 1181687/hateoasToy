@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.project.controllersTests;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import pt.ipp.isep.dei.project.controllers.getlastcoldestdayhouseareacontroller.GetLastColdestDayHouseAreaController;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
@@ -25,6 +26,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
 
 public class GetLastColdestDayHouseAreaControllerTest {
 
@@ -37,12 +39,12 @@ public class GetLastColdestDayHouseAreaControllerTest {
     private SensorTypeId temperature;
     private Location location2;
     private House house;
-    private GetLastColdestDayHouseAreaController controller;
     @Mock
     private HouseService houseService;
 
     @BeforeEach
     public void StartUp() {
+        MockitoAnnotations.initMocks(this);
         // Geographical Area Types
         GeoAreaTypeId regionId = new GeoAreaTypeId("Region");
         GeoAreaTypeId districtId = new GeoAreaTypeId("District");
@@ -110,7 +112,6 @@ public class GetLastColdestDayHouseAreaControllerTest {
         portoCity.getSensorListInTheGeographicArea().addSensor(temperatureSensor);
         portoCity.getSensorListInTheGeographicArea().addSensor(temperatureSensor1);
 
-        controller = new GetLastColdestDayHouseAreaController(houseService);
     }
 
     @Test
@@ -118,6 +119,9 @@ public class GetLastColdestDayHouseAreaControllerTest {
         //Arrange
         LocalDate startDate = LocalDate.of(2018, 12, 1);
         LocalDate endDate = LocalDate.of(2018, 12, 2);
+
+        when(houseService.getHouse()).thenReturn(this.house);
+        GetLastColdestDayHouseAreaController controller = new GetLastColdestDayHouseAreaController(houseService);
         //Act
         boolean result = controller.hasReadingsBetweenDates(startDate, endDate);
         //Assert
@@ -129,6 +133,9 @@ public class GetLastColdestDayHouseAreaControllerTest {
         //Arrange
         LocalDate startDate = LocalDate.of(2018, 12, 2);
         LocalDate endDate = LocalDate.of(2018, 12, 5);
+
+        when(houseService.getHouse()).thenReturn(this.house);
+        GetLastColdestDayHouseAreaController controller = new GetLastColdestDayHouseAreaController(houseService);
         //Act
         boolean result = controller.hasReadingsBetweenDates(startDate, endDate);
         //Assert
@@ -147,6 +154,9 @@ public class GetLastColdestDayHouseAreaControllerTest {
         expectedResultDTO.setValue(value);
         expectedResultDTO.setDateTime(readingDate4);
         Reading expectedResult = ReadingMapper.mapToEntity(expectedResultDTO);
+
+        when(houseService.getHouse()).thenReturn(this.house);
+        GetLastColdestDayHouseAreaController controller = new GetLastColdestDayHouseAreaController(houseService);
 
         //Act
         ReadingDTO resultDTO = controller.getLastLowestMaximumReading(startDate, endDate);
@@ -171,6 +181,9 @@ public class GetLastColdestDayHouseAreaControllerTest {
         expectedResultDTO.setDateTime(readingDate);
         Reading expectedResult = ReadingMapper.mapToEntity(expectedResultDTO);
 
+        when(houseService.getHouse()).thenReturn(this.house);
+        GetLastColdestDayHouseAreaController controller = new GetLastColdestDayHouseAreaController(houseService);
+
         //Act
         ReadingDTO resultDTO = controller.getLastLowestMaximumReading(startDate, endDate);
         Reading result = ReadingMapper.mapToEntity(resultDTO);
@@ -180,8 +193,10 @@ public class GetLastColdestDayHouseAreaControllerTest {
 
     @Test
     public void hasSensorsOfGivenTypeInGeoArea_withSensorsOfGivenTypeInArea_ShouldReturnTrue() {
+        when(houseService.getHouse()).thenReturn(this.house);
+        GetLastColdestDayHouseAreaController controller = new GetLastColdestDayHouseAreaController(houseService);
         //Act
-        boolean result = this.controller.hasSensorsOfGivenTypeInGeoArea();
+        boolean result = controller.hasSensorsOfGivenTypeInGeoArea();
         //Assert
         assertTrue(result);
     }
@@ -208,9 +223,10 @@ public class GetLastColdestDayHouseAreaControllerTest {
         Address address = new Address("4200-072", houseLocation, porto);
         house2.setAddress(address);
 
-        GetLastColdestDayHouseAreaController controller2 = new GetLastColdestDayHouseAreaController(houseService);
+        when(houseService.getHouse()).thenReturn(house2);
+        GetLastColdestDayHouseAreaController controller = new GetLastColdestDayHouseAreaController(houseService);
         //Act
-        boolean result = controller2.hasSensorsOfGivenTypeInGeoArea();
+        boolean result = controller.hasSensorsOfGivenTypeInGeoArea();
         //Assert
         assertFalse(result);
     }
