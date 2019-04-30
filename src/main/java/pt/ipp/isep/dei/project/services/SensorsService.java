@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import pt.ipp.isep.dei.project.model.RoomReading;
+import pt.ipp.isep.dei.project.model.Reading;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -25,13 +25,13 @@ public class SensorsService {
      * @return Map<LocalDateTime, Double> map os instants and temperatures above the comfort temperature
      */
     public Map<LocalDateTime, Double> getMapInstantsAboveComfortTemperatureInInterval(Map<LocalDate, List<Double>> mapComfortTemperatureMinMaxByDay,
-                                                                                      List<RoomReading> intervalRoomReadings) {
+                                                                                      List<Reading> intervalRoomReadings) {
         Map<LocalDateTime, Double> mapInstantsAboveComfortTemperature = new HashMap<>();
 
         Set<Map.Entry<LocalDate, List<Double>>> mapComfTemp = mapComfortTemperatureMinMaxByDay.entrySet();
 
         if (!mapComfTemp.isEmpty()) {
-            for (RoomReading roomReading : intervalRoomReadings) {
+            for (Reading roomReading : intervalRoomReadings) {
 
                 for (Map.Entry<LocalDate, List<Double>> mapComfTempDaily : mapComfTemp) {
 
