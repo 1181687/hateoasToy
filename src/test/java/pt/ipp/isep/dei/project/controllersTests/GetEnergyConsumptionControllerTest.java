@@ -44,11 +44,9 @@ public class GetEnergyConsumptionControllerTest {
         int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
         List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
 
-        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
-
         Location houseLocation = new Location(41.177748, -8.607745, 112);
         Address address = new Address("4200-072", houseLocation, insertedGeoArea);
-        house.setAddress(address);
+        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice, address);
 
         // Dimension Instantiation
         Dimension dim = new Dimension(3, 5, 6);
@@ -314,8 +312,8 @@ public class GetEnergyConsumptionControllerTest {
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
         int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
         List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
-
-        House house1 = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+        Address address = new Address(null, null, null);
+        House house1 = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice, address);
 
         GetEnergyConsumptionController controller = new GetEnergyConsumptionController(house1);
         //Act

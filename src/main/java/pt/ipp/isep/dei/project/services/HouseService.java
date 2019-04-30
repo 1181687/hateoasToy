@@ -158,4 +158,7 @@ public class HouseService {
         return houseList.get(0);
     }
 
+    public void saveHouse(House house) {
+        houseRepository.save(house);
+    }
 }

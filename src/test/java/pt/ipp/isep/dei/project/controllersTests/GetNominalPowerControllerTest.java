@@ -52,12 +52,11 @@ public class GetNominalPowerControllerTest {
         int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
         List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
 
-        houseEdificioB = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
 
         Location houseLocation = new Location(41.177748, -8.607745, 112);
         Address address = new Address("4200-072", houseLocation, insertedGeoArea);
-        houseEdificioB.setAddress(address);
-        houseEdificioB.setInsertedGeoArea(insertedGeoArea);
+        houseEdificioB = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice, address);
+
 
         //Rooms
         Dimension dimensionRoom1 = new Dimension(5.2, 3.7, 8.5);

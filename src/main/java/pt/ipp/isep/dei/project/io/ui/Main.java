@@ -14,7 +14,10 @@ import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.Program;
 import pt.ipp.isep.dei.project.model.devices.Programmable;
-import pt.ipp.isep.dei.project.model.geographicalarea.*;
+import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaTypeId;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.house.Address;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
@@ -163,10 +166,9 @@ public class Main {
         GeographicalArea insertedGeoArea = new GeographicalArea("DUMMY", "DUMMY", geographicalAreaType, location2, areaShape);
 
         // HOUSE
-        Location houseLocation = new Location(41.177748, -8.607745, 112);
-        Address address = new Address("4200-072", houseLocation, insertedGeoArea);
-        houseEdificioB = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
-        //houseEdificioB.setAddress(address);
+        Address address = new Address("", null, null);
+        houseEdificioB = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice, address);
+        houseService.saveHouse(houseEdificioB);
 
 
         // READINGS

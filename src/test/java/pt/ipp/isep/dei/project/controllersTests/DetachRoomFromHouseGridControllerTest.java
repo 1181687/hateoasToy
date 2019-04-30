@@ -41,11 +41,10 @@ public class DetachRoomFromHouseGridControllerTest {
         int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
         List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
 
-        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
 
         Location houseLocation = new Location(41.177748, -8.607745, 112);
         Address address = new Address("4200-072", houseLocation, insertedGeoArea);
-        house.setAddress(address);
+        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice, address);
 
         //room0
         Dimension r0Dimension = new Dimension(2, 3, 4);

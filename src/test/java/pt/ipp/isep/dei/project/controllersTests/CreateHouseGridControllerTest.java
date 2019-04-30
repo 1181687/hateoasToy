@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.CreateHouseGridController;
+import pt.ipp.isep.dei.project.model.house.Address;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridDTO;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridMapper;
@@ -20,7 +21,8 @@ public class CreateHouseGridControllerTest {
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
         int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
         List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
-        House house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+        Address address = new Address(null, null, null);
+        House house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice, address);
 
         CreateHouseGridController ctrl = new CreateHouseGridController(house);
         HouseGridDTO grid = HouseGridMapper.newHouseGridDTO();
@@ -42,7 +44,8 @@ public class CreateHouseGridControllerTest {
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
         int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
         List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
-        House housegrid = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+        Address address = new Address(null, null, null);
+        House housegrid = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice, address);
 
         CreateHouseGridController ctrl = new CreateHouseGridController(housegrid);
         String gridName = "Grid";

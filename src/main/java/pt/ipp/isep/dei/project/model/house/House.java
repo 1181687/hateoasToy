@@ -53,13 +53,14 @@ public class House implements Root {
     private static final String CONFIG_PROPERTIES = "Configuration.properties";
 
 
-    public House(List<String> deviceTypeList, int meteringPeriodGrid, int meteringPeriodDevice) {
+    public House(List<String> deviceTypeList, int meteringPeriodGrid, int meteringPeriodDevice, Address address) {
         this.roomList = new RoomList();
         this.listHouseGrids = new ArrayList<>();
         this.deviceTypeList = new ArrayList<>();
         createDeviceTypes(deviceTypeList);
         this.meteringPeriodGrid = meteringPeriodGrid;
         this.meteringPeriodDevice = meteringPeriodDevice;
+        this.address = address;
     }
 
     protected House() {

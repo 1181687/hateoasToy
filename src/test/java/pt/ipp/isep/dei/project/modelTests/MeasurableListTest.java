@@ -46,10 +46,9 @@ public class MeasurableListTest {
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
         int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
         List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
-        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
         Location houseLocation = new Location(41.178553, -8.608035, 111);
         Address address = new Address("4200-072", houseLocation, insertedGeoArea);
-        this.house.setAddress(address);
+        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice, address);
 
         Dimension dim = new Dimension(3, 3.5, 3.5);
         this.room1 = new Room("Room1", "room", 2, dim);

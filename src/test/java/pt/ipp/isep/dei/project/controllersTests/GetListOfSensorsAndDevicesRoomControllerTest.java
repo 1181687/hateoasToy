@@ -44,14 +44,11 @@ public class GetListOfSensorsAndDevicesRoomControllerTest {
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
         int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
         List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
-
-        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
         this.roomList = house.getRoomList();
-
         Location houseLocation = new Location(41.177748, -8.607745, 112);
         Address address = new Address("4200-072", houseLocation, insertedGeoArea);
-        house.setAddress(address);
-        house.setInsertedGeoArea(insertedGeoArea);
+        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice, address);
+
 
         this.controller = new GetListOfSensorsAndDevicesRoomController(house);
     }
