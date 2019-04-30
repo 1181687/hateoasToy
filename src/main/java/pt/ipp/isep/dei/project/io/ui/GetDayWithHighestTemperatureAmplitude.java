@@ -13,9 +13,9 @@ public class GetDayWithHighestTemperatureAmplitude {
     private GetDayWithHighestTemperatureAmplitudeController controller;
 
     /**
-     * constructor that receives a House
+     * constructor that receives a HouseService
      *
-     * @param house House
+     * @param houseService The HouseService
      */
     public GetDayWithHighestTemperatureAmplitude(HouseService houseService) {
         this.controller = new GetDayWithHighestTemperatureAmplitudeController(houseService);
