@@ -60,7 +60,7 @@ public class Main {
     private SensorTypeList sensorTypeList;
     private GeographicalAreaTypeList geographicalAreaTypeList;
 
-    //GeographicalArea Repository Injection
+    //GeographicalAreaService Repository Injection
     @Autowired
     private GeographicalAreaService geographicalAreaService;
 
