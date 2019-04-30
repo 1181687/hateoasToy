@@ -113,8 +113,9 @@ public class HouseGridTest {
     public void testHashCode() {
         //Arrange
         String name = "Main Grid";
-        HouseGrid grid = new HouseGrid(new HouseGridId(name));
-        int expectedResult = Objects.hash(name);
+        HouseGridId id = new HouseGridId(name);
+        HouseGrid grid = new HouseGrid(id);
+        int expectedResult = Objects.hash(id);
 
         //Act
         int result = grid.hashCode();
