@@ -13,8 +13,6 @@ public class AreaShape implements ValueObject {
 
     private double width;
 
-    @Transient
-    private Location locationAreaShape;
 
     /**
      * constructor of AreaShape that receives a width, a length and a locationAreaShape.
@@ -24,7 +22,6 @@ public class AreaShape implements ValueObject {
     public AreaShape(double width, double length) {
         this.length = length;
         this.width = width;
-        this.locationAreaShape = locationAreaShape;
     }
 
     protected AreaShape() {
@@ -56,23 +53,6 @@ public class AreaShape implements ValueObject {
         this.length = length;
     }
 
-    /**
-     * method that check if a location is inserted in an area
-     * @param location
-     * @return a location with their geographical coordinates
-     */
-    public boolean checkIfLocationIsInsertedInAnArea(Location location){
-        double upperLeftCornerLatitude = locationAreaShape.getLatitude() + (width / 2);
-        double upperLeftCornerLongitude = locationAreaShape.getLongitude() - (length / 2);
-
-        double bottomRightCornerLatitude = locationAreaShape.getLatitude() - (width / 2);
-        double bottomRightCornerLongitude = locationAreaShape.getLongitude() + (length / 2);
-
-        return (location.getLatitude() >= bottomRightCornerLatitude
-                && location.getLatitude() <= upperLeftCornerLatitude
-                && location.getLongitude() <= bottomRightCornerLongitude
-                && location.getLongitude() >= upperLeftCornerLongitude);
-    }
 
     /**
      * method that creates the hashcode to address
@@ -98,15 +78,12 @@ public class AreaShape implements ValueObject {
         AreaShape local = (AreaShape) obj;
         Double comparablemLength = length;
         Double comparablemWidth = width;
-        Location comparablemLocationAreaShape = locationAreaShape;
 
         Double comparableAreaShapemLength = local.length;
         Double comparableAreaShapemWidth = local.width;
-        Location comparableAreaShapemLocationAreaShape = local.locationAreaShape;
 
         return comparableAreaShapemLength.equals(comparablemLength)
-                && comparableAreaShapemWidth.equals(comparablemWidth)
-                && comparableAreaShapemLocationAreaShape.equals(comparablemLocationAreaShape);
+                && comparableAreaShapemWidth.equals(comparablemWidth);
     }
 
 }

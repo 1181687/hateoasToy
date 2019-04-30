@@ -29,7 +29,7 @@ public class GeographicalArea implements Root {
     /**
      * Empty constructor.
      */
-    protected GeographicalArea(){
+    protected GeographicalArea() {
         //intentionally empty
     }
 
@@ -170,7 +170,19 @@ public class GeographicalArea implements Root {
      */
     public boolean checkIfSensorInInsideOfGeoArea(GeoAreaSensor sensor) {
 
-        return areaShape.checkIfLocationIsInsertedInAnArea(sensor.getLocation());
+        Location sensorLocation = sensor.getLocation();
+
+        double upperLeftCornerLatitude = this.id.getLocation().getLatitude() + (this.areaShape.getWidth() / 2);
+        double upperLeftCornerLongitude = this.id.getLocation().getLongitude() - (this.areaShape.getLength() / 2);
+
+        double bottomRightCornerLatitude = this.id.getLocation().getLatitude() - (this.areaShape.getWidth() / 2);
+        double bottomRightCornerLongitude = this.id.getLocation().getLongitude() + (this.areaShape.getLength() / 2);
+
+        return (sensorLocation.getLatitude() >= bottomRightCornerLatitude
+                && sensorLocation.getLatitude() <= upperLeftCornerLatitude
+                && sensorLocation.getLongitude() <= bottomRightCornerLongitude
+                && sensorLocation.getLongitude() >= upperLeftCornerLongitude);
+
 
     }
 
@@ -282,7 +294,7 @@ public class GeographicalArea implements Root {
      * Method that returns the last measurement of a given type in the area.
      *
      * @param location Location to be used.
-     * @param typeId     sensor type.
+     * @param typeId   sensor type.
      * @return Last measurement.
      */
     public double getLastMeasurementByLocationType(Location location, SensorTypeId typeId) {
@@ -364,10 +376,10 @@ public class GeographicalArea implements Root {
      * get Daily Amplitude Map <localdate, Double> in a given interval of Localdate by given sensortype and location
      *
      * @param sensorTypeId type of sensor
-     * @param location   location of the area wanted to get the daily amplitude
-     * @param startDate  initial Localdate of the interval
-     * @param endDate    final Localdate of the interval
-     * @return Map<LocalDate                               ,                                                               Double> map Of Daily Amplitude
+     * @param location     location of the area wanted to get the daily amplitude
+     * @param startDate    initial Localdate of the interval
+     * @param endDate      final Localdate of the interval
+     * @return Map<LocalDate, Double> map Of Daily Amplitude
      */
     public Map<LocalDate, Double> getDailyAmplitudeInInterval(SensorTypeId sensorTypeId, Location location, LocalDate startDate, LocalDate endDate) {
         Map<LocalDate, Double> mapOfDailyAmplitude = new HashMap<>();
@@ -446,7 +458,6 @@ public class GeographicalArea implements Root {
      * method to get the first highest reading of a sensor of a specific type (nearest one with most recent readings)
      * in a given interval
      *
-     *
      * @param typeId
      * @param startDate initial date of the period the user wants to consider
      * @param endDate   final date of the period the user wants to consider
@@ -462,10 +473,11 @@ public class GeographicalArea implements Root {
      * Method that returns the last lowest maximum Reading in a given period. It takes in consideration the readings
      * of the nearest sensor of a given type that has the most recent reading. If there are no sensors available
      * in the geographical area, the method return a null.
-     * @param location location of the house area
+     *
+     * @param location     location of the house area
      * @param sensorTypeId the type of the sensor
-     * @param startDate LocalDate of the beginning of the period
-     * @param endDate LocalDate of the ending of the period
+     * @param startDate    LocalDate of the beginning of the period
+     * @param endDate      LocalDate of the ending of the period
      * @return
      */
     public Reading getLastLowestMaximumReading(Location location, SensorTypeId sensorTypeId, LocalDate startDate, LocalDate endDate) {
@@ -480,7 +492,8 @@ public class GeographicalArea implements Root {
     /**
      * Method that returns the sensor, of a given type, that is closest to the given location and has the most recent
      * reading
-     * @param typeId sensor type
+     *
+     * @param typeId   sensor type
      * @param location location of the house area
      * @return
      */
