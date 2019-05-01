@@ -126,7 +126,7 @@ public class RoomSensor implements Root {
         return reading;
     }
 
-    public boolean addRoomReading(Reading reading) {
+    public boolean addReading(Reading reading) {
         if (!this.readingExistsBySensorIdLocalDateTime(reading)) {
             return this.readings.add(reading);
         }
@@ -162,7 +162,14 @@ public class RoomSensor implements Root {
         return Objects.hash(this.id);
     }
 
-    public List<Reading> getReadingsBetweenDates(LocalDate startDate, LocalDate endDate) {
+    /**
+     * gets room readings from a sensor, in an interval of days
+     *
+     * @param startDate initial LocalDate
+     * @param endDate   final LocalDate
+     * @return List of Reading
+     */
+    public List<Reading> getReadings(LocalDate startDate, LocalDate endDate) {
         List<Reading> readingsBetweenDates = new ArrayList<>();
         for (Reading reading : this.readings) {
             if ((reading.getDateTime().toLocalDate().isEqual(startDate) || reading.getDateTime().toLocalDate().isAfter(startDate))

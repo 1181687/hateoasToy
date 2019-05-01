@@ -1,7 +1,12 @@
 package pt.ipp.isep.dei.project.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaId;
+import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
+import pt.ipp.isep.dei.project.model.sensor.SensorId;
+import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -76,7 +81,36 @@ public class SensorsService {
         return mapOfInstancesBelowComfortTemp;
     }*/
 
-    public Map<LocalDateTime, Double> getInstantsOutOfComfortTemperature (Map<LocalDate, List<Double>> mapComfortTemperatureMinMaxByDay, List<Reading> intervalRoomReadings, int option) {
+    /**
+     * gets Map<LocalDate, List<Double>> with list of the Comfort Temperature Min
+     * and Max for category One or Two or Three, organized By LocalDate
+     *
+     * @param location
+     * @param geoAreaId
+     * @param typeId    type of sensor
+     * @param startDate
+     * @param endDate
+     * @param category  house category (int)
+     * @return Map<LocalDate, List < Double>> map with List of Comfort Temperature Min and Max,  By Day
+     */
+    public Map<LocalDate, List<Double>> getComfortTemperature(Location location, GeoAreaId geoAreaId, SensorTypeId typeId,
+                                                              LocalDate startDate, LocalDate endDate, int category) {
+
+        return this.geoAreaSensorService.getComfortTemperature(location, geoAreaId, typeId, startDate, endDate, category);
+    }
+
+    /**
+     * Method that gets a RoomSensor by its id.
+     *
+     * @param id Id of the RoomSensor.
+     * @return RoomSensor required.
+     */
+    public RoomSensor getRoomSensorById(SensorId id) {
+        return this.roomSensorService.getSensorById(id);
+    }
+
+
+    public Map<LocalDateTime, Double> getInstantsOutOfComfortTemperature(Map<LocalDate, List<Double>> mapComfortTemperatureMinMaxByDay, List<Reading> intervalRoomReadings, int option) {
 
         //controlar esta variavel na ui: if BELLOW --> int option = 0; if ABOVE --> int option = 1;
 
@@ -125,6 +159,18 @@ public class SensorsService {
 
     public boolean existsInstantsOutOfComfortLevel(Map<LocalDateTime, Double> mapOfInstantsOutOfComfortLevel) {
         return !getInstantListOutOfComfortLevel(mapOfInstantsOutOfComfortLevel).isEmpty();
+    }
+
+    /**
+     * gets room readings from a sensor by sensorId, in an interval of days
+     *
+     * @param startDate initial LocalDate
+     * @param endDate   final LocalDate
+     * @param sensorId  SensorId
+     * @return List of Reading
+     */
+    public List<Reading> getRoomReadings(LocalDate startDate, LocalDate endDate, SensorId sensorId) {
+        return this.roomSensorService.getReadings(startDate, endDate, sensorId);
     }
 
 }
