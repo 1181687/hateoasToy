@@ -10,8 +10,8 @@ public class InstantsTempBellowComfortLevel {
 
     private InstantsTempOutOfComfortLevelController controller;
 
-    public InstantsTempBellowComfortLevel(GeographicalAreaService geographicalAreaService, HouseService houseService, SensorsService sensorsService, RoomService roomService) {
-        controller = new InstantsTempOutOfComfortLevelController(geographicalAreaService, houseService, sensorsService, roomService);
+    public InstantsTempBellowComfortLevel(SensorsService sensorsService, RoomService roomService) {
+        controller = new InstantsTempOutOfComfortLevelController(sensorsService, roomService);
     }
 
     public void run(int option) {

@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaId;
+import pt.ipp.isep.dei.project.model.house.RoomId;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorId;
+import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 
 import java.time.LocalDate;
@@ -172,5 +174,14 @@ public class SensorsService {
     public List<Reading> getRoomReadings(LocalDate startDate, LocalDate endDate, SensorId sensorId) {
         return this.roomSensorService.getReadings(startDate, endDate, sensorId);
     }
+
+    public boolean existSensors (RoomId roomId, SensorTypeId sensorTypeId){
+        return this.roomSensorService.existSensors(roomId, sensorTypeId);
+    }
+
+    public SensorId getSensorId (RoomId roomId){
+        return this.roomSensorService.getSensorId(roomId);
+    }
+
 
 }
