@@ -1,4 +1,4 @@
-package pt.ipp.isep.dei.project.controllers.instantstempbellowcomfortlevelcontroller;
+package pt.ipp.isep.dei.project.controllers.instantstempoutofcomfortlevelcontroller;
 
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.services.GeographicalAreaService;
@@ -11,8 +11,6 @@ import java.util.List;
 public class InstantsTempOutOfComfortLevelController {
 
     private SensorsService sensorsService;
-    private HouseService houseService;
-    private GeographicalAreaService geographicalAreaService;
     private RoomService roomService;
 
 
@@ -24,10 +22,8 @@ public class InstantsTempOutOfComfortLevelController {
      *
      * @param sensorsService Service to be used.
      */
-    public InstantsTempOutOfComfortLevelController(GeographicalAreaService geographicalAreaService, HouseService houseService, SensorsService sensorsService, RoomService roomService) {
+    public InstantsTempOutOfComfortLevelController(SensorsService sensorsService, RoomService roomService) {
         this.sensorsService = sensorsService;
-        this.houseService = houseService;
-        this.geographicalAreaService = geographicalAreaService;
         this.roomService = roomService;
     }
 

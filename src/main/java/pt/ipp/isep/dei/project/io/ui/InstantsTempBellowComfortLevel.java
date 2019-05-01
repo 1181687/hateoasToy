@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.project.io.ui;
 
-import pt.ipp.isep.dei.project.controllers.instantstempbellowcomfortlevelcontroller.InstantsTempOutOfComfortLevelController;
+import pt.ipp.isep.dei.project.controllers.instantstempoutofcomfortlevelcontroller.InstantsTempOutOfComfortLevelController;
 import pt.ipp.isep.dei.project.services.GeographicalAreaService;
 import pt.ipp.isep.dei.project.services.HouseService;
 import pt.ipp.isep.dei.project.services.RoomService;
