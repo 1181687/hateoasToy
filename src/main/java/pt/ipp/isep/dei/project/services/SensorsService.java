@@ -128,13 +128,13 @@ public class SensorsService {
                     LocalDate localDateComfTempMax = mapComfTempDaily.getKey();
 
                     //IF OPTION IS ABOVE
-                    if (!Objects.isNull(mapComfTempDaily.getValue()) && localDateReading.compareTo(localDateComfTempMax) == 0
-                            && Double.compare(valueReading, mapComfTempDaily.getValue().get(1)) == 1) {
+                    if (option==1 && !Objects.isNull(mapComfTempDaily.getValue()) && localDateReading.compareTo(localDateComfTempMax) == 0
+                            && Double.compare(valueReading, mapComfTempDaily.getValue().get(option)) == 1) {
                         mapInstantsAboveComfortTemperature.put(roomReading.getDateTime(), valueReading);
                     }
                     //IF OPTION IS BELLOW
-                    if (!Objects.isNull(mapComfTempDaily.getValue()) && localDateComfTempMax.equals(localDateReading) &&
-                            Double.compare(mapComfTempDaily.getValue().get(0), valueReading) == 1) {
+                    if (option == 0 && !Objects.isNull(mapComfTempDaily.getValue()) && localDateComfTempMax.equals(localDateReading) &&
+                            Double.compare(mapComfTempDaily.getValue().get(option), valueReading) == 1) {
                         mapInstantsAboveComfortTemperature.put(roomReading.getDateTime(), valueReading);
                     }
                 }

@@ -70,12 +70,10 @@ public class HouseService {
 
         for (RoomDTO roomDTO : houseDTO.getRoomDTOList()) {
             Room room = RoomMapper.mapToEntity(roomDTO);
-            house.addRoom(room);
             roomRepository.save(room);
         }
         for (HouseGridDTO houseGridDTO : houseDTO.getHouseGridDTOList()) {
             HouseGrid houseGrid = HouseGridMapper.mapToEntity(houseGridDTO);
-            house.addGrid(houseGrid);
             houseGridRepository.save(houseGrid);
             for (Room room : houseGrid.getRoomList().getListOfRooms()) {
                 addRoomToHouseGrid(houseGrid.getHouseGridName(), room);

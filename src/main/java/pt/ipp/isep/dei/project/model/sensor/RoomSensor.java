@@ -126,7 +126,7 @@ public class RoomSensor implements Root {
         return reading;
     }
 
-    public boolean addRoomReading(Reading reading) {
+    public boolean addReading(Reading reading) {
         if (!this.readingExistsBySensorIdLocalDateTime(reading)) {
             return this.readings.add(reading);
         }
