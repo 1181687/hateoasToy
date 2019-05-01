@@ -1,123 +1,141 @@
 package pt.ipp.isep.dei.project.controllers.importreadingsfromcsvcontroller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import pt.ipp.isep.dei.project.model.ProjectFileReader;
 import pt.ipp.isep.dei.project.model.ReadingDTO;
-import pt.ipp.isep.dei.project.model.house.Room;
+import pt.ipp.isep.dei.project.model.ReadingMapper;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
-import pt.ipp.isep.dei.project.model.sensor.RoomSensorList;
-import pt.ipp.isep.dei.project.services.HouseService;
+import pt.ipp.isep.dei.project.model.sensor.SensorId;
+import pt.ipp.isep.dei.project.services.RoomSensorService;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ImportRoomReadingsController {
-    //private static final Logger LOGGER = Logger.getLogger(ImportRoomReadingsController.class.getName());
-    /*private static final String READING_MESSAGE_ERROR = "GeoAreaReading not imported: date of reading is before starting date of sensor. ";
-    private static final String DUPLICATE_READING_MESSAGE_ERROR = "GeoAreaReading not imported: duplicate reading ";
-    private static final String SENSOR_NOT_ACTIVE = "GeoAreaReading not imported: Sensor is deactive on the specific date.";
-    private static final String SENSOR_NOT_EXISTS = "GeoAreaReading not imported: Sensor does not exist.";
-    private static final String DATE_INVALID = "GeoAreaReading not imported: Invalid date. ";
-    */
     private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
-
-    @Autowired
-    private RoomSensor roomSensor;
-    private Room room;
-    private RoomSensorList allSensorInTheHouse;
-    private List<Object> readingDTOList;
+    private RoomSensorService roomSensorService;
+    private RoomSensor sensor;
+    private ProjectFileReader reader;
+    private List<Object> readingDTOs;
     private int numberOfNotImportedReadings;
-    @Autowired
-    private HouseService houseService;
 
     /**
-     * Constructor
+     * Constructor.
      *
-     * @param houseService
+     * @param roomSensorService Service to be used.
      */
-    public ImportRoomReadingsController(HouseService houseService) {
-        this.houseService = houseService;
-        this.allSensorInTheHouse = this.houseService.getAllSensors();
+    public ImportRoomReadingsController(RoomSensorService roomSensorService) {
+        this.roomSensorService = roomSensorService;
     }
-
 
     /**
-     * Method that checks if a given date time is before the starting date of the sensor.
+     * Method that creates a reader based on the path.
      *
-     * @param startingDate
-     * @param readingTimestamp
-     * @return
+     * @param path Path of the file.
      */
-    public boolean isDateTimeBeforeStartingDate(LocalDateTime startingDate, LocalDateTime readingTimestamp) {
-        return readingTimestamp.isBefore(startingDate);
+    public void createReader(String path) {
+        this.reader = Utils.createReader(path);
     }
 
-    public int getNumberOfNotImportedReadings() {
-        return this.numberOfNotImportedReadings;
+    /**
+     * Method that reads the information of the file.
+     *
+     * @param file File to be analyzed.
+     * @param path Path of the file.
+     * @return List of GeoAreaDTOs.
+     */
+    public List<Object> readFile(File file, String path) throws FileNotFoundException {
+        createReader(path);
+        readingDTOs = this.reader.readFile(file);
+        return readingDTOs;
     }
-/*
-    public boolean addReadingToRoomSensorById() {
+
+    /**
+     * Method that imports the readings.
+     *
+     * @return True or false.
+     */
+    public boolean importReadings() {
+        double startTime = System.nanoTime();
         boolean imported = false;
-        for (Object object : this.readingDTOList) {
-            ReadingDTO reading = (ReadingDTO) object;
-            roomSensor = houseService.getSensorById(reading.getId());
-
-            if (readingValidations(reading)) {
+        boolean save = false;
+        List<RoomSensor> sensors = new ArrayList<>();
+        for (int i = 0; i < readingDTOs.size(); i++) {
+            ReadingDTO reading = (ReadingDTO) readingDTOs.get(i);
+            SensorId sensorId = new SensorId(reading.getId());
+            if (Objects.isNull(sensor)) {
+                sensor = roomSensorService.getSensorById(sensorId);
+            }
+            if (Objects.nonNull(sensor) && !sensorId.equals(sensor.getId())) {
+                sensors.add(sensor);
+                save = true;
+                sensor = roomSensorService.getSensorById(sensorId);
+            }
+            if (!isReadingValid(reading)) {
+                if (i == (readingDTOs.size() - 1)) {
+                    sensors.add(sensor);
+                }
                 continue;
-            }
-
-            if (roomSensor.addRoomReading(new RoomReading(reading.getValue(), reading.getDateTime()))) {
-                imported = true;
             } else {
-                numberOfNotImportedReadings++;
-                String invalidInfo = "sensor id: " + reading.getId() + ", timestamp/date: " + reading.getDateTime() + ", value: " + reading.getValue() + ".";
-                LOGGER.log(Level.WARNING, "Room reading was not imported because the following reading is duplicated: \n" + invalidInfo);
+                if (i == (readingDTOs.size() - 1)) {
+                    sensors.add(sensor);
+                }
+                imported = true;
+            }
+            if (sensor.addReading(ReadingMapper.mapToEntity(reading)) && save) {
+                save = false;
             }
         }
+        roomSensorService.saveSensors(sensors);
+        double stopTime = System.nanoTime();
+        System.out.println("Total time = " + ((stopTime - startTime) / 1000000000));
         return imported;
-    }*/
+    }
 
-    private boolean readingValidations(ReadingDTO reading) {
-        if (Objects.isNull(roomSensor)) {
+    /**
+     * Method that validates the information of the ReadingDTO.
+     *
+     * @return True or false.
+     */
+    private boolean isReadingValid(ReadingDTO readingDTO) {
+        if (Objects.isNull(sensor)) {
             numberOfNotImportedReadings++;
-            String invalidInfo = "id: " + reading.getId() + ".";
-            LOGGER.log(Level.WARNING, "Room reading was not imported because the following sensor id doesn't exist: " + invalidInfo);
-            return true;
-        }
-        if (Objects.isNull(reading.getDateTime())) {
-            numberOfNotImportedReadings++;
-            String invalidInfo = "id: " + reading.getId() + ", value: " + reading.getValue() + ", timestamp/date: " + reading.getDateTime() + ", unit: " + reading.getUnits() + ".";
-            LOGGER.log(Level.WARNING, "Room reading not imported due to invalid timestamp/date " + invalidInfo);
-            return true;
-        }
-        if (isDateTimeBeforeStartingDate(roomSensor.getStartingDate(), reading.getDateTime())) {
-            numberOfNotImportedReadings++;
-            String invalidInfo = "id: " + reading.getId() + ", value: " + reading.getValue() + ", timestamp/date: " + reading.getDateTime() + ", unit: " + reading.getUnits() + ".";
-            LOGGER.log(Level.WARNING, "Room reading was not imported due to timestamp/date of reading being before starting date of sensor: " + invalidInfo);
-            return true;
-        }
-        if (reading.getUnits().equals("F")) {
-            double celsiusValue = Utils.convertFahrenheitToCelsius(reading.getValue());
-            reading.setValue(Utils.round(celsiusValue, 2));
-            reading.setUnits("C");
+            String invalidInfo = "id: " + readingDTO.getId() + ".";
+            LOGGER.log(Level.WARNING, "GeoAreaReading was not imported because the following sensor id doesn't exist: " + invalidInfo);
             return false;
         }
-        return false;
+        if (Objects.isNull(readingDTO.getDateTime())) {
+            numberOfNotImportedReadings++;
+            String invalidInfo = "id: " + readingDTO.getId() + ", value: " + readingDTO.getValue() + ", timestamp/date: " + readingDTO.getDateTime() + ", unit: " + readingDTO.getUnits() + ".";
+            LOGGER.log(Level.WARNING, "GeoAreaReading not imported due to invalid timestamp/date " + invalidInfo);
+            return false;
+        }
+        if (readingDTO.getDateTime().isBefore(sensor.getStartingDate())) {
+            numberOfNotImportedReadings++;
+            String invalidInfo = "id: " + readingDTO.getId() + ", value: " + readingDTO.getValue() + ", timestamp/date: " + readingDTO.getDateTime() + ", unit: " + readingDTO.getUnits() + ".";
+            LOGGER.log(Level.WARNING, "GeoAreaReading not imported due to timestamp/date of reading being before starting date of sensor: " + invalidInfo);
+            return false;
+        }
+        if (readingDTO.getUnits().equals("F")) {
+            double celsiusValue = Utils.convertFahrenheitToCelsius(readingDTO.getValue());
+            readingDTO.setValue(Utils.round(celsiusValue, 2));
+            readingDTO.setUnits("C");
+            return true;
+        }
+        return true;
     }
 
-    public ProjectFileReader createReader(String path) {
-        return Utils.createReader(path);
-    }
-
-    public List<Object> readFile(File file, String path) throws FileNotFoundException {
-        ProjectFileReader fileReader = createReader(path);
-        readingDTOList = fileReader.readFile(file);
-        return readingDTOList;
+    /**
+     * Get method.
+     *
+     * @return Integer.
+     */
+    public int getNumberOfNotImportedReadings() {
+        return this.numberOfNotImportedReadings;
     }
 }
