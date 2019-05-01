@@ -73,7 +73,7 @@ public class ImportGeoAreasFromJSONOrXMLControllerTest {
         String path = "datasets/geoAreas/json/JSONfile.json";
         File file = new File(path);
 
-        ImportGeoAreasFromJSONOrXMLController ctrl = new ImportGeoAreasFromJSONOrXMLController(geographicalAreaService, geoAreaSensorService);
+        ImportGeoAreasAndSensorsController ctrl = new ImportGeoAreasAndSensorsController(geographicalAreaService, geoAreaSensorService);
         ctrl.createReader(path);
         ctrl.readFile(file, path);
 

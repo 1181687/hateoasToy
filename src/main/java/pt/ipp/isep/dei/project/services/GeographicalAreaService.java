@@ -248,17 +248,13 @@ public class GeographicalAreaService {
         }
     }
 
-    public boolean saveGeoAreas(List<GeographicalArea> geoAreas) {
-        boolean saved = false;
-        List<GeographicalArea> geographicalAreas = new ArrayList<>();
-        for (GeographicalArea geoArea : geoAreas) {
-            if (!geoAreaRepository.existsById(geoArea.getId())) {
-                geographicalAreas.add(geoArea);
-                saved = true;
-            }
-        }
-        geoAreaRepository.saveAll(geographicalAreas);
-        return saved;
+    /**
+     * Method that saves a list of geographical areas in the repo.
+     *
+     * @param geoAreas List of geographical areas to be analyzed.
+     */
+    public void saveGeoAreas(List<GeographicalArea> geoAreas) {
+        geoAreaRepository.saveAll(geoAreas);
     }
 
     public List<GeographicalArea> getAllGeoAreas() {
@@ -283,4 +279,13 @@ public class GeographicalAreaService {
         return geoAreaRepository.existsById(new GeoAreaId(geoLocation, geoAreaId, new GeographicalAreaType(geoAreaTypeId1)));
     }
 
+    /**
+     * Method that checks if a geographical area exists in the repo by its id.
+     *
+     * @param geoAreaId Id to be used.
+     * @return True or false.
+     */
+    public boolean geoAreaExists(GeoAreaId geoAreaId) {
+        return this.geoAreaRepository.existsById(geoAreaId);
+    }
 }

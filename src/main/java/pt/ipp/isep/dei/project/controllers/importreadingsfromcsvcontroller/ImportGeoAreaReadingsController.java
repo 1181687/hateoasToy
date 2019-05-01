@@ -105,9 +105,10 @@ public class ImportGeoAreaReadingsController {
             }
         }
         double saveStart = System.nanoTime();
+        /*
         if (geoAreaSensorService.saveSensors(sensors, false)) {
             imported = true;
-        }
+        }*/
         double saveStop = System.nanoTime();
         double stopTime = System.nanoTime();
         System.out.println("Getting sensor time = " + getSensorTime / 1000000000
