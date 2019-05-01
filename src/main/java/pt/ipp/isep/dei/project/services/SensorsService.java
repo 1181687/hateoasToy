@@ -161,4 +161,16 @@ public class SensorsService {
         return !getInstantListOutOfComfortLevel(mapOfInstantsOutOfComfortLevel).isEmpty();
     }
 
+    /**
+     * gets room readings from a sensor by sensorId, in an interval of days
+     *
+     * @param startDate initial LocalDate
+     * @param endDate   final LocalDate
+     * @param sensorId  SensorId
+     * @return List of Reading
+     */
+    public List<Reading> getRoomReadings(LocalDate startDate, LocalDate endDate, SensorId sensorId) {
+        return this.roomSensorService.getReadings(startDate, endDate, sensorId);
+    }
+
 }
