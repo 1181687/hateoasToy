@@ -85,6 +85,9 @@ public class Main {
     @Autowired
     private GeoAreaTypeService geoAreaTypeService;
 
+    @Autowired
+    private RoomService roomService;
+
 
     public static void main(String[] args) {
 
@@ -107,7 +110,9 @@ public class Main {
             data();
 
             //UI levels
-            Admin admin = new Admin(geographicalAreaService, geoAreaTypeService, sensorTypeList, powerSourceTypeList, houseEdificioB.getRoomList(), houseService, geoAreaSensorService, roomSensorService, sensorTypeService);
+            Admin admin = new Admin(geographicalAreaService, geoAreaTypeService, sensorTypeList, powerSourceTypeList,
+                    houseEdificioB.getRoomList(), houseService, geoAreaSensorService, roomSensorService,
+                    sensorTypeService, roomService);
             RegularUser regularUser = new RegularUser(geoAreaTypeService, geographicalAreaService, sensorTypeList, houseService);
             PowerUser powerUser = new PowerUser(houseService);
             RoomOwner roomOwner = new RoomOwner(houseService);
