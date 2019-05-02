@@ -93,12 +93,20 @@ class GeographicalAreaTest {
     }
 
     @Test
-    public void testarEqualsTrue() {
+    public void equals_WithTwoEqualGeoAreas_ShouldReturnTrue() {
         //arrange
-        GeographicalArea ag1 = new GeographicalArea(portoCity.getId().getId(), portoCity.getDescription(), city, location2, areaShape2);
+
+        GeoAreaTypeId geoAreaTypeId2 = new GeoAreaTypeId("City");
+        GeographicalAreaType city = new GeographicalAreaType(geoAreaTypeId2);
+
+        Location location2 = new Location(42.1496, -8.6109, 97);
+        AreaShape areaShape2 = new AreaShape(10, 10);
+        GeographicalArea portoCity = new GeographicalArea("Porto", "Porto City", city, location2, areaShape2);
+        GeographicalArea portoCity2 = new GeographicalArea("Porto", "Porto City", city, location2, areaShape2);
+
 
         //act
-        boolean result = portoCity.equals(ag1);
+        boolean result = portoCity.equals(portoCity2);
 
         //assert
         assertTrue(result);

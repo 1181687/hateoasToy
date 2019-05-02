@@ -8,14 +8,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class HouseGridIdTest {
 
-    private HouseGridId houseGridId;
-    private HouseGrid houseGrid;
-
 
     @Test
     public void testGetHouseGridId_grid() {
         //Arrange
         String expectedResult = "grid";
+        HouseGridId houseGridId= new HouseGridId(expectedResult);
         //Act
         String result = houseGridId.getHousegridId();
         //Assert
