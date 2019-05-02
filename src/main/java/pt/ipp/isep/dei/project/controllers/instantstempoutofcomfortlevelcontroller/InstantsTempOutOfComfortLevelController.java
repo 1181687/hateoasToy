@@ -3,10 +3,8 @@ package pt.ipp.isep.dei.project.controllers.instantstempoutofcomfortlevelcontrol
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaId;
-import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.RoomDTO;
 import pt.ipp.isep.dei.project.model.house.RoomId;
-import pt.ipp.isep.dei.project.model.house.RoomMapper;
 import pt.ipp.isep.dei.project.model.sensor.SensorId;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 import pt.ipp.isep.dei.project.services.HouseService;
@@ -15,7 +13,6 @@ import pt.ipp.isep.dei.project.services.SensorsService;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -59,11 +56,7 @@ public class InstantsTempOutOfComfortLevelController {
     }
 
     public List<RoomDTO> getAllRoomsDTO() {
-        List<RoomDTO> roomDTOList = new ArrayList<>();
-        for(Room room: roomService.getAllRooms()){
-            roomDTOList.add(RoomMapper.mapToDTO(room));
-        }
-        return roomDTOList;
+        return this.roomService.getAllRoomsDTO();
     }
 
     public boolean isRoomListEmpty (){
