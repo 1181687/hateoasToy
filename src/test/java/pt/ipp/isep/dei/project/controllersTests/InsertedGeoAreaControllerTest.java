@@ -1,42 +1,38 @@
-/*
 package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.context.support.AnnotationConfigContextLoader;
+
+import org.mockito.MockitoAnnotations;
 import pt.ipp.isep.dei.project.controllers.InsertedGeoAreaController;
-import pt.ipp.isep.dei.project.io.ui.Main;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaTypeId;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
-import pt.ipp.isep.dei.project.repositories.GeoAreaRepository;
 import pt.ipp.isep.dei.project.services.GeographicalAreaService;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.when;
 
 
 public class InsertedGeoAreaControllerTest {
 
     private InsertedGeoAreaController controller;
     private GeographicalArea CidadeDoPorto;
-    @InjectMocks
-    private GeographicalAreaService geographicalAreaService;
-    private GeographicalArea RuaDoBonfim;
 
     @Mock
-    private GeoAreaRepository geoAreaRepository;
+    private GeographicalAreaService geographicalAreaService;
+
+    private GeographicalArea RuaDoBonfim;
+
 
     @BeforeEach
     public void StartUp() {
+        MockitoAnnotations.initMocks(this);
+
         //Geographical Area
         GeoAreaTypeId geoAreaTypeId1 = new GeoAreaTypeId("Cidade");
         GeographicalAreaType geographicalAreaType = new GeographicalAreaType(geoAreaTypeId1);
@@ -57,12 +53,11 @@ public class InsertedGeoAreaControllerTest {
     @Test
     public void testarApresentacaoDeListaComCriterioTrueComAreaInserida() {
         //Arrange
-        geographicalAreaService.addGeoArea(CidadeDoPorto);
-        geographicalAreaService.addGeoArea(RuaDoBonfim);
 
         String expectResult = "1 - ID: Porto, Description: Cidade do Porto, Type: Cidade, Latitude: 41.1496, Longitude: -8.6109\n" +
                 "2 - ID: Rua do Bonfim, Description: Rua do Bonfim, Type: Rua, Latitude: 41.1496, Longitude: -8.6109, Inserted in: Cidade Cidade do Porto\n";
 
+        when(geographicalAreaService.getGeoAreaListToString(true)).thenReturn(expectResult);
         //Act
         String result = controller.getConteudoLista(true);
 
@@ -73,11 +68,11 @@ public class InsertedGeoAreaControllerTest {
     @Test
     public void testarApresentacaoDeListaComCriterioTrueSemAreaInserida() {
         //Arrange
-        geographicalAreaService.addGeoArea(CidadeDoPorto);
-        geographicalAreaService.addGeoArea(RuaDoBonfim);
 
         String expectResult = "1 - ID: Porto, Description: Cidade do Porto, Type: Cidade, Latitude: 41.1496, Longitude: -8.6109\n" +
                 "2 - ID: Rua do Bonfim, Description: Rua do Bonfim, Type: Rua, Latitude: 41.1496, Longitude: -8.6109\n";
+
+        when(geographicalAreaService.getGeoAreaListToString(false)).thenReturn(expectResult);
 
         //Act
         String result = controller.getConteudoLista(false);
@@ -95,6 +90,8 @@ public class InsertedGeoAreaControllerTest {
 
         String expectResult = "1 - ID: Porto, Description: Cidade do Porto, Type: Cidade, Latitude: 41.1496, Longitude: -8.6109\n" +
                 "2 - ID: Rua do Bonfim, Description: Rua do Bonfim, Type: Rua, Latitude: 41.1496, Longitude: -8.6109\n";
+
+        when(geographicalAreaService.getGeoAreaListToString(false)).thenReturn(expectResult);
 
         //Act
         String result = controller.getConteudoLista(false);
@@ -274,4 +271,4 @@ public class InsertedGeoAreaControllerTest {
         //Assert
         assertEquals(expectedResult, result);
     }
-}*/
+}
