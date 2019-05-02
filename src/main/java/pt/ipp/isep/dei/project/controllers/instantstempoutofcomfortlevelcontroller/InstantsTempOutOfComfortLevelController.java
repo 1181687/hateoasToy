@@ -7,8 +7,6 @@ import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.house.*;
 import pt.ipp.isep.dei.project.model.sensor.SensorId;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
-import pt.ipp.isep.dei.project.services.GeographicalAreaService;
-import pt.ipp.isep.dei.project.services.HouseService;
 import pt.ipp.isep.dei.project.services.RoomService;
 import pt.ipp.isep.dei.project.services.SensorsService;
 
@@ -56,7 +54,7 @@ public class InstantsTempOutOfComfortLevelController {
         this.option = option;
     }
 
-    public List<RoomDTO> getAllRooms() {
+    public List<RoomDTO> getAllRoomsDTO() {
         List<RoomDTO> roomDTOList = new ArrayList<>();
         for(Room room: roomService.getAllRooms()){
             roomDTOList.add(RoomMapper.mapToDTO(room));
