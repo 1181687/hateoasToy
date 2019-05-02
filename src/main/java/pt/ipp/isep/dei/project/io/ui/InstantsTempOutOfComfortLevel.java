@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.instantstempoutofcomfortlevelcontroller.InstantsTempOutOfComfortLevelController;
 import pt.ipp.isep.dei.project.model.house.RoomDTO;
+import pt.ipp.isep.dei.project.services.HouseService;
 import pt.ipp.isep.dei.project.services.RoomService;
 import pt.ipp.isep.dei.project.services.SensorsService;
 
@@ -20,8 +21,8 @@ public class InstantsTempOutOfComfortLevel {
     private String bellowOrAbove;
 
 
-    public InstantsTempOutOfComfortLevel(SensorsService sensorsService, RoomService roomService) {
-        controller = new InstantsTempOutOfComfortLevelController(sensorsService, roomService);
+    public InstantsTempOutOfComfortLevel(HouseService houseService, SensorsService sensorsService, RoomService roomService) {
+        controller = new InstantsTempOutOfComfortLevelController(houseService, sensorsService, roomService);
         this.roomDTOS = controller.getAllRoomsDTO();
     }
 
@@ -214,11 +215,6 @@ public class InstantsTempOutOfComfortLevel {
 
         //get instants bellow or above
         List<LocalDateTime> instantlist = controller.getInstantListOutOfComfortLevel();
-
-        //get list of instants
-        // if(controller.existInstantsOutOfComfortLevel()) {
-        //     controller.getInstantListOutOfComfortLevel();
-        //}
 
         if (instantlist.isEmpty()) {
             System.out.println("There are no instants out of the Comfort level.");

@@ -3,10 +3,13 @@ package pt.ipp.isep.dei.project.controllers.instantstempoutofcomfortlevelcontrol
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaId;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
-import pt.ipp.isep.dei.project.model.house.*;
+import pt.ipp.isep.dei.project.model.house.Room;
+import pt.ipp.isep.dei.project.model.house.RoomDTO;
+import pt.ipp.isep.dei.project.model.house.RoomId;
+import pt.ipp.isep.dei.project.model.house.RoomMapper;
 import pt.ipp.isep.dei.project.model.sensor.SensorId;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
+import pt.ipp.isep.dei.project.services.HouseService;
 import pt.ipp.isep.dei.project.services.RoomService;
 import pt.ipp.isep.dei.project.services.SensorsService;
 
@@ -21,7 +24,6 @@ public class InstantsTempOutOfComfortLevelController {
     private SensorsService sensorsService;
     private RoomService roomService;
     private SensorTypeId sensorTypeId = new SensorTypeId("Temperature");
-    private Address houseId;
     private RoomId roomId;
     private SensorId roomSensorId;
     private Location location;
@@ -39,9 +41,11 @@ public class InstantsTempOutOfComfortLevelController {
      *
      * @param sensorsService Service to be used.
      */
-    public InstantsTempOutOfComfortLevelController(SensorsService sensorsService, RoomService roomService) {
+    public InstantsTempOutOfComfortLevelController(HouseService houseService, SensorsService sensorsService, RoomService roomService) {
         this.sensorsService = sensorsService;
         this.roomService = roomService;
+        this.location = houseService.getHouse().getLocation();
+        this.geoAreaId = houseService.getHouse().getInsertedGeoArea().getId();
     }
 
     //save category from UI
@@ -74,15 +78,6 @@ public class InstantsTempOutOfComfortLevelController {
         return sensorsService.existSensors(roomId, sensorTypeId);
     }
 
-    public Location getHouseLocation (){
-        return location = houseId.getLocation();
-    }
-
-    public GeoAreaId getGeoAreaId (){
-        GeographicalArea geoArea = houseId.getInsertedGeoArea();
-        return geoAreaId = geoArea.getId();
-    }
-
     public Map<LocalDate, List<Double>> getComfortTemperature (LocalDate startDate, LocalDate endDate){
         return comfortTemp = sensorsService.getComfortTemperature(location, geoAreaId, sensorTypeId, startDate, endDate, category);
     }
@@ -91,16 +86,9 @@ public class InstantsTempOutOfComfortLevelController {
         this.roomSensorId = sensorsService.getSensorId(roomId);
     }
 
-    public List<Reading> getRoomReadings (LocalDate startDate, LocalDate endDate){
-        return roomReadings = sensorsService.getRoomReadings(startDate, endDate, roomSensorId);
-    }
-
-    public Map<LocalDateTime, Double> getInstantsOutOfComfortTemperature (){
+    public Map<LocalDateTime, Double> getInstantsOutOfComfortTemperature(LocalDate startDate, LocalDate endDate) {
+        List<Reading> roomReadings = this.sensorsService.getRoomReadings(startDate, endDate, this.roomSensorId);
         return mapInstantsOutOfComfortTemp = sensorsService.getInstantsOutOfComfortTemperature(comfortTemp, roomReadings, option);
-    }
-
-    public boolean existInstantsOutOfComfortLevel (){
-        return sensorsService.existInstantsOutOfComfortLevel(mapInstantsOutOfComfortTemp);
     }
 
     public List<LocalDateTime> getInstantListOutOfComfortLevel (){
@@ -117,7 +105,5 @@ public class InstantsTempOutOfComfortLevelController {
 
 
     //public boolean readingsHouseAreaAndRoom
-
-
 
 }
