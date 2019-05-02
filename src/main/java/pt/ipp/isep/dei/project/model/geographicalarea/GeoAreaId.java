@@ -73,7 +73,7 @@ public class GeoAreaId implements Serializable {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof GeographicalArea)) {
+        if (!(obj instanceof GeoAreaId)) {
             return false;
         }
         GeoAreaId geoAreaId = (GeoAreaId) obj;
