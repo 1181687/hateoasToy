@@ -7,7 +7,10 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.context.annotation.Configuration;
 import pt.ipp.isep.dei.project.controllers.GetListOfTypeOfGeoAreaController;
 import pt.ipp.isep.dei.project.model.Location;
-import pt.ipp.isep.dei.project.model.geographicalarea.*;
+import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaTypeId;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.services.GeoAreaTypeService;
 import pt.ipp.isep.dei.project.services.GeographicalAreaService;
 
@@ -53,7 +56,7 @@ public class GetListOfTypeOfGeoAreaControllerTest {
 
         ArrayList<String> expectedResult = new ArrayList<>(Arrays.asList("Campus do ISEP"));
 
-        when(this.geographicalAreaService.getListOfGeographicalAreasByType(nameType)).thenReturn(expectedResult);
+        when(this.geographicalAreaService.getListOfGeoAreasTypeToString(nameType)).thenReturn(expectedResult);
 
         //Act
         List<String> result = controller.getListaAGPorTipo(nameType);

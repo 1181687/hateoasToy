@@ -23,6 +23,23 @@ public class GeoAreaTypeId implements Serializable {
     public void seTypeId(String typeId) {
         this.typeId = typeId;
     }
+
+    @Override
+    public boolean equals(Object obj){
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof GeoAreaTypeId)) {
+            return false;
+        }
+        GeoAreaTypeId ag = (GeoAreaTypeId) obj;
+        return this.typeId.equals(ag.getTypeId());
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }
 
 

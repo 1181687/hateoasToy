@@ -143,7 +143,7 @@ public class XMLReaderTest {
         String path = "rfg.xml";
         File file = new File(path);
 
-        List<Object> expectedResult = new ArrayList<>();
+        List<Object> expectedResult = null;
 
         // Act
         List<Object> result = XMLReader.readFile(file);
