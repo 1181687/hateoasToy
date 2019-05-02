@@ -2,7 +2,12 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.instantstempoutofcomfortlevelcontroller.InstantsTempOutOfComfortLevelController;
 import pt.ipp.isep.dei.project.model.house.RoomDTO;
+import pt.ipp.isep.dei.project.services.HouseService;
+import pt.ipp.isep.dei.project.services.RoomService;
+import pt.ipp.isep.dei.project.services.SensorsService;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -16,22 +21,22 @@ public class InstantsTempOutOfComfortLevel {
     private String bellowOrAbove;
 
 
-  /*  public InstantsTempOutOfComfortLevel(SensorsService sensorsService, RoomService roomService) {
-        controller = new InstantsTempOutOfComfortLevelController(sensorsService, roomService);
-        this.roomDTOS = controller.getListRoomDTo();
+    public InstantsTempOutOfComfortLevel(HouseService houseService, SensorsService sensorsService, RoomService roomService) {
+        controller = new InstantsTempOutOfComfortLevelController(houseService, sensorsService, roomService);
+        this.roomDTOS = controller.getAllRoomsDTO();
     }
 
-    *//**
+    /**
      * outputs the instants, that were above or bellow the comfort temperature in an interval, of a choosen room
      *
-     * @param roomId             given String room name
-     * @param instantlist        given list of instants (LocalDateTime)
-     * @param startdate          Localdate inicial
-     * @param endDate            Localdate end
-     *//*
+     * @param roomId      given String room name
+     * @param instantlist given list of instants (LocalDateTime)
+     * @param startdate   Localdate inicial
+     * @param endDate     Localdate end
+     */
     public void displayResults(String roomId, List<LocalDateTime> instantlist, LocalDate startdate, LocalDate endDate) {
         StringBuilder content = new StringBuilder();
-        content.append("The list of instants ";
+        content.append("The list of instants ");
         content.append(bellowOrAbove);
         content.append("for the room ");
         content.append(roomId);
@@ -40,11 +45,12 @@ public class InstantsTempOutOfComfortLevel {
         content.append("and ");
         content.append(endDate);
         content.append(" are:\n");
-        content.append(controller.getListInstantsToString(instantlist));
+        content.append(this.getListInstantsToString(instantlist));
         content.append("\n");
-        if (controller.existsDaysWithoutTempComf() {
-            content.append(" but there weren't enough measurements to calculate the instants in ");
-            content.append(controller.getListDaysWithoutTempComf().getDaysWithoutTempComfToString());
+        if (controller.existsDaysWithoutComfortTemp()) {
+            content.append(" therefore there weren't enough measurements to calculate the instants during:\n");
+            List<LocalDate> daysWithoutComfortTemp = controller.getDaysWithoutComfortTemp();
+            content.append(this.getDaysWithoutComfortTempToString(daysWithoutComfortTemp));
         }
         // content.append(localDateTime.toLocalTime().toString());
         //content.append(localDateTime.toString().substring(11));
@@ -52,9 +58,11 @@ public class InstantsTempOutOfComfortLevel {
         System.out.println(content.toString());
     }
 
-    *//**
+    /**
      * method that list to string the rooms available, so he can choose one
-     *//*
+     *
+     * @return strings
+     */
     public String getRoomListToString() {
         StringBuilder list = new StringBuilder();
 
@@ -74,10 +82,59 @@ public class InstantsTempOutOfComfortLevel {
         return list.toString();
     }
 
+    /**
+     * method that list to string the list LocalDate
+     *
+     * @param localDates given List<LocalDate>
+     * @return strings
+     */
+    public String getDaysWithoutComfortTempToString(List<LocalDate> localDates) {
+        StringBuilder list = new StringBuilder();
+
+        if (localDates.isEmpty()) {
+            return "There are no dates without Comfort temperature level.";
+        }
+
+        int listOrderByNumber = 1;
+        for (LocalDate localDate : localDates) {
+            list.append(listOrderByNumber);
+            list.append(" - Date: ");
+            list.append(localDate.toString());
+            list.append("\n");
+            listOrderByNumber++;
+        }
+        return list.toString();
+    }
+
+
+    /**
+     * method that list to string the instants LocalDateTime
+     *
+     * @param instantlist given List<LocalDateTime>
+     * @return strings
+     */
+    public String getListInstantsToString(List<LocalDateTime> instantlist) {
+        StringBuilder list = new StringBuilder();
+
+        if (instantlist.isEmpty()) {
+            return "There are no instants out of the Comfort level.";
+        }
+
+        int listOrderByNumber = 1;
+        for (LocalDateTime localDateTime : instantlist) {
+            list.append(listOrderByNumber);
+            list.append(" - Date time: ");
+            list.append(localDateTime.toString());
+            list.append("\n");
+            listOrderByNumber++;
+        }
+        return list.toString();
+    }
+
 
     public void run(int option) {
 
-        //optin us440 or us445
+        //option us440 or us445
 
         if (option == 1) {
             bellowOrAbove = "bellow";
@@ -86,6 +143,8 @@ public class InstantsTempOutOfComfortLevel {
             bellowOrAbove = "above";
         }
 
+        controller.setCategory(option);
+
         //category
         String label99 = "Choose the category to get the instants(options: 1, 2 or 3)";
         int categoryOption = InputValidator.getIntRange(label99, 1, 3);
@@ -93,7 +152,7 @@ public class InstantsTempOutOfComfortLevel {
 
 
         //No Rooms
-        if (controller.isListofRoomEmpty()) {
+        if (controller.isRoomListEmpty()) {
             System.out.println("There are no rooms available in the house.\n");
             return;
         }
@@ -111,15 +170,15 @@ public class InstantsTempOutOfComfortLevel {
         //get and set roomId
         String roomId = roomDTOS.get(roomOption).getRoomId();
         //controller.newChoosenRoomId(roomId);
-        controller.setRoomId();
+        controller.setRoomId(roomId);
 
         //if there are no temperature Sensor
-        if (controller.isRoomWithoutTemperatureSensor()) {
+        if (controller.existTempSensors()) {
             System.out.println("There are no temperature sensor available in the choosen room.\n");
             return;
         }
 
-        controller.setRoomSensorId(roomId);
+        controller.setSensorID(roomId);
 
         // inicial and final dates
         LocalDate startDate;
@@ -142,28 +201,28 @@ public class InstantsTempOutOfComfortLevel {
         }
         while (flag);
 
+/*
         //if there are not readings in house area or in the room
         if (controller.readingsHouseAreaAndRoom.isEmpty()) {
             System.out.println("There weren't enough measurements in that period, to calculate the instants.");
             return;
         }
+        */
+
 
         //get comfort Temp
         controller.getComfortTemperature(startDate, endDate);
 
         //get instants bellow or above
-        List<LocalDateTime> instantlist = controller.getInstantsOutOfComfortTemperature(option);
-
-        //get list of instants
-        controller.getInstantListOutOfComfortLevel();
+        List<LocalDateTime> instantlist = controller.getInstantListOutOfComfortLevel();
 
         if (instantlist.isEmpty()) {
             System.out.println("There are no instants out of the Comfort level.");
             return;
+        } else {
+            controller.getInstantListOutOfComfortLevel();
         }
 
         displayResults(roomId, instantlist, startDate, endDate);
-    }*/
-
-
+    }
 }

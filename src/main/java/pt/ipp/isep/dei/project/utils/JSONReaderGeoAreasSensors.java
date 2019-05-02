@@ -279,7 +279,19 @@ public class JSONReaderGeoAreasSensors implements ProjectFileReader {
             for (JsonObject object : list) {
                 // Get objects from reading
 
-                String sensorID = object.get("id").getAsString();
+                String sensorID;
+                try {
+                    sensorID = object.get("id").getAsString();
+                } catch (Exception e) {
+                    sensorID = "";
+                }
+                if (sensorID.equals("")) {
+                    try {
+                        sensorID = object.get("SensorID").getAsString();
+                    } catch (Exception e) {
+                        sensorID = "";
+                    }
+                }
 
                 String readingUnit = object.get("unit").getAsString();
 
@@ -296,7 +308,19 @@ public class JSONReaderGeoAreasSensors implements ProjectFileReader {
                 } catch (DateTimeException e) {
                     dateTime = null;
                 }
-                double value = object.get("value").getAsDouble();
+                double value;
+                try {
+                    value = object.get("value").getAsDouble();
+                } catch (Exception e) {
+                    value = Double.NaN;
+                }
+                if (Double.isNaN(value)) {
+                    try {
+                        value = object.get("Aux_Value").getAsDouble();
+                    } catch (Exception e) {
+                        value = Double.NaN;
+                    }
+                }
                 ReadingDTO readingDTO = ReadingMapper.mapToDTOwithIDandUnits(sensorID, dateTime, value, readingUnit);
                 readingList.add(readingDTO);
             }

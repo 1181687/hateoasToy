@@ -7,7 +7,6 @@ import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaId;
 import pt.ipp.isep.dei.project.model.house.RoomId;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorId;
-import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 
 import java.time.LocalDate;
@@ -179,8 +178,9 @@ public class SensorsService {
         return roomSensorService.existSensors(roomId, sensorTypeId);
     }
 
-    public SensorId getSensorId (RoomId roomId){
-        return roomSensorService.getSensorId(roomId);
+    public SensorId getSensorId(String roomId) {
+        RoomId roomId1 = new RoomId(roomId);
+        return roomSensorService.getSensorId(roomId1);
     }
 
     public List<LocalDate> getDaysWithoutComfortTemp(Map<LocalDate, List<Double>> mapComfortDailyTemperature){
