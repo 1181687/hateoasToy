@@ -2337,7 +2337,7 @@ public class SensorTest {
         LocalDate endDate = LocalDate.of(2018, 11, 3);
 
         Reading expectedResult = reading4;
-        List<Reading> readings = sensor1.getReadingsBetweenDates(startDate, endDate);
+        List<Reading> readings = sensor1.getReadings(startDate, endDate);
 
         //Act
         Reading result = sensor1.getLastLowestReading(readings);
@@ -2385,7 +2385,7 @@ public class SensorTest {
         LocalDate endDate = LocalDate.of(2018, 11, 3);
 
         Reading expectedResult = reading4;
-        List<Reading> readings = sensor1.getReadingsBetweenDates(startDate, endDate);
+        List<Reading> readings = sensor1.getReadings(startDate, endDate);
 
         //Act
         Reading result = sensor1.getLastLowestReading(readings);
@@ -2429,7 +2429,7 @@ public class SensorTest {
         LocalDate endDate = LocalDate.of(2018, 11, 3);
 
         Reading expectedResult = reading4;
-        List<Reading> readings = sensor1.getReadingsBetweenDates(startDate, endDate);
+        List<Reading> readings = sensor1.getReadings(startDate, endDate);
 
         //Act
         Reading result = sensor1.getLastLowestReading(readings);
@@ -2450,7 +2450,7 @@ public class SensorTest {
         LocalDate endDate = LocalDate.of(2018, 11, 3);
 
         Reading expectedResult = null;
-        List<Reading> readings = sensor1.getReadingsBetweenDates(startDate, endDate);
+        List<Reading> readings = sensor1.getReadings(startDate, endDate);
 
         //Act
         Reading result = sensor1.getLastLowestReading(readings);

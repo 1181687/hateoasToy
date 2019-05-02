@@ -1,6 +1,7 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.importreadingsfromcsvcontroller.ImportGeoAreaReadingsController;
+import pt.ipp.isep.dei.project.controllers.importreadingsfromcsvcontroller.ImportRoomReadingsController;
 import pt.ipp.isep.dei.project.services.GeoAreaSensorService;
 import pt.ipp.isep.dei.project.services.RoomSensorService;
 
@@ -11,25 +12,27 @@ import java.util.List;
 
 public class ImportReadings {
     private ImportGeoAreaReadingsController geoAreaReadingsController;
+    private ImportRoomReadingsController roomReadingsController;
 
     /**
      * Constructor.
+     *
      * @param geoAreaSensorService Service to used.
-     * @param roomSensorService Service to be used.
+     * @param roomSensorService    Service to be used.
      */
     public ImportReadings(GeoAreaSensorService geoAreaSensorService, RoomSensorService roomSensorService) {
         geoAreaReadingsController = new ImportGeoAreaReadingsController(geoAreaSensorService);
+        roomReadingsController = new ImportRoomReadingsController(roomSensorService);
     }
 
     /**
      * RUN!
      *
-     * @param option
-     * @throws FileNotFoundException
+     * @param option Option that defines if the importation if for geographical areas or rooms.
      */
     public void run(int option) throws FileNotFoundException {
         String pathFile = InputValidator.getString("Please specify the name of the file you would like to import (extensions accepted: json, csv, xml).\n");
-        if (!geoAreaReadingsController.isValidFormat(pathFile)) {
+        if (!isValidFormat(pathFile)) {
             System.out.println("\nERROR: Please insert a valid format.\n");
             return;
         }
@@ -42,11 +45,9 @@ public class ImportReadings {
         if (option == 1) {
             readings = geoAreaReadingsController.readFile(file, pathFile);
         }
-        /*if (option == 2) {
+        if (option == 2) {
             readings = roomReadingsController.readFile(file, pathFile);
-        }*/
-
-        // Import confirmation
+        }
         if (readings.isEmpty()) {
             System.out.println("\nSorry! The file is empty.\n");
             return;
@@ -56,14 +57,14 @@ public class ImportReadings {
             try {
                 int notImportedReadings = 0;
                 boolean chosenController = false;
-                //if (option == 1) {
-                chosenController = geoAreaReadingsController.importReadings();
-                notImportedReadings = geoAreaReadingsController.getNumberOfNotImportedReadings();
-                //}
-                /*if (option == 2) {
-                    chosenController = roomReadingsController.addReadingToRoomSensorById();
+                if (option == 1) {
+                    chosenController = geoAreaReadingsController.importReadings();
+                    notImportedReadings = geoAreaReadingsController.getNumberOfNotImportedReadings();
+                }
+                if (option == 2) {
+                    chosenController = roomReadingsController.importReadings();
                     notImportedReadings = roomReadingsController.getNumberOfNotImportedReadings();
-                }*/
+                }
                 if (chosenController) {
                     if (notImportedReadings > 0) {
                         System.out.println("\nThe file was partially imported. There were " + notImportedReadings + " readings that were not imported, due to invalid information.\n");
@@ -77,5 +78,15 @@ public class ImportReadings {
                 System.out.println("\nSorry! The file doesn't contain valid readings. It was not possible to import them.\n");
             }
         }
+    }
+
+    /**
+     * Method that checks if the file is in a valid format (CSV, JSON or XML).
+     *
+     * @param path Path of the file.
+     * @return True or false.
+     */
+    private boolean isValidFormat(String path) {
+        return path.endsWith(".csv") || path.endsWith(".json") || path.endsWith(".xml");
     }
 }

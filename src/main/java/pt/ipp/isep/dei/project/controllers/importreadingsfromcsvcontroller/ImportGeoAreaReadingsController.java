@@ -34,16 +34,6 @@ public class ImportGeoAreaReadingsController {
     }
 
     /**
-     * Method that checks if the file is in a valid format (CSV, JSON or XML).
-     *
-     * @param path Path of the file.
-     * @return True or false.
-     */
-    public boolean isValidFormat(String path) {
-        return path.endsWith(".csv") || path.endsWith(".json") || path.endsWith(".xml");
-    }
-
-    /**
      * Method that creates a reader based on the path.
      *
      * @param path Path of the file.
@@ -73,14 +63,11 @@ public class ImportGeoAreaReadingsController {
     public boolean importReadings() {
         double startTime = System.nanoTime();
         boolean imported = false;
-        double getSensorTime = 0;
-        double validationTime = 0;
         boolean save = false;
         List<GeoAreaSensor> sensors = new ArrayList<>();
         for (int i = 0; i < readingDTOs.size(); i++) {
             ReadingDTO reading = (ReadingDTO) readingDTOs.get(i);
             SensorId sensorId = new SensorId(reading.getId());
-            double sensorStart = System.nanoTime();
             if (Objects.isNull(sensor)) {
                 sensor = geoAreaSensorService.getSensorById(sensorId);
             }
@@ -89,31 +76,24 @@ public class ImportGeoAreaReadingsController {
                 save = true;
                 sensor = geoAreaSensorService.getSensorById(sensorId);
             }
-            double sensorStop = System.nanoTime();
-            getSensorTime += (sensorStop - sensorStart);
-            double validationStart = System.nanoTime();
-            if (readingValidations(reading)) {
+            if (!isReadingValid(reading)) {
                 if (i == (readingDTOs.size() - 1)) {
                     sensors.add(sensor);
                 }
                 continue;
+            } else {
+                if (i == (readingDTOs.size() - 1)) {
+                    sensors.add(sensor);
+                }
+                imported = true;
             }
-            double validationStop = System.nanoTime();
-            validationTime += (validationStop - validationStart);
             if (sensor.addReading(ReadingMapper.mapToEntity(reading)) && save) {
                 save = false;
             }
         }
-        double saveStart = System.nanoTime();
-        if (geoAreaSensorService.saveSensors(sensors, false)) {
-            imported = true;
-        }
-        double saveStop = System.nanoTime();
+        geoAreaSensorService.saveSensors(sensors);
         double stopTime = System.nanoTime();
-        System.out.println("Getting sensor time = " + getSensorTime / 1000000000
-                + "\nValidation time = " + validationTime / 1000000000
-                + "\nSaving time = " + (saveStop - saveStart) / 1000000000
-                + "\nTotal time = " + ((stopTime - startTime) / 1000000000));
+        System.out.println("Total time = " + ((stopTime - startTime) / 1000000000));
         return imported;
     }
 
@@ -122,32 +102,32 @@ public class ImportGeoAreaReadingsController {
      *
      * @return True or false.
      */
-    private boolean readingValidations(ReadingDTO readingDTO) {
+    private boolean isReadingValid(ReadingDTO readingDTO) {
         if (Objects.isNull(sensor)) {
             numberOfNotImportedReadings++;
             String invalidInfo = "id: " + readingDTO.getId() + ".";
             LOGGER.log(Level.WARNING, "GeoAreaReading was not imported because the following sensor id doesn't exist: " + invalidInfo);
-            return true;
+            return false;
         }
         if (Objects.isNull(readingDTO.getDateTime())) {
             numberOfNotImportedReadings++;
             String invalidInfo = "id: " + readingDTO.getId() + ", value: " + readingDTO.getValue() + ", timestamp/date: " + readingDTO.getDateTime() + ", unit: " + readingDTO.getUnits() + ".";
             LOGGER.log(Level.WARNING, "GeoAreaReading not imported due to invalid timestamp/date " + invalidInfo);
-            return true;
+            return false;
         }
         if (readingDTO.getDateTime().isBefore(sensor.getStartingDate())) {
             numberOfNotImportedReadings++;
             String invalidInfo = "id: " + readingDTO.getId() + ", value: " + readingDTO.getValue() + ", timestamp/date: " + readingDTO.getDateTime() + ", unit: " + readingDTO.getUnits() + ".";
             LOGGER.log(Level.WARNING, "GeoAreaReading not imported due to timestamp/date of reading being before starting date of sensor: " + invalidInfo);
-            return true;
+            return false;
         }
         if (readingDTO.getUnits().equals("F")) {
             double celsiusValue = Utils.convertFahrenheitToCelsius(readingDTO.getValue());
             readingDTO.setValue(Utils.round(celsiusValue, 2));
             readingDTO.setUnits("C");
-            return false;
+            return true;
         }
-        return false;
+        return true;
     }
 
     /**
