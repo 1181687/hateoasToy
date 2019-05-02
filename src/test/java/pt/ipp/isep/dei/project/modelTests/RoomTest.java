@@ -3,7 +3,6 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
@@ -14,7 +13,10 @@ import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.house.*;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
-import pt.ipp.isep.dei.project.model.sensor.*;
+import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
+import pt.ipp.isep.dei.project.model.sensor.RoomSensorList;
+import pt.ipp.isep.dei.project.model.sensor.SensorId;
+import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
@@ -48,12 +50,9 @@ public class RoomTest {
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
         int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
         List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
-
-        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
-
         Location houseLocation = new Location(41.177748, -8.607745, 112);
         Address address = new Address("4200-072", houseLocation, insertedGeoArea);
-        house.setAddress(address);
+        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice, address);
 
         // Room Instantiation
         Dimension dim = new Dimension(3, 3.5, 3.5);
@@ -289,7 +288,7 @@ public class RoomTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getDeviceListSize() {
         // Arrange
 
@@ -713,7 +712,7 @@ public class RoomTest {
     }
 
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testAddDeviceTrue() {
         Device lamp = house.createDevice(LAMP_TYPE, "Lamp", laundry);
 

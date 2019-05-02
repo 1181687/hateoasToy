@@ -36,7 +36,7 @@ class ReadingMapperTest {
      * Test that tries to create a Reading based on a ReadingDTO, which results in a new Reading with the information
      * contained by the ReadingDTO.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testMapToEntity_tryingToCreateBasedOnAReadingDTO_ShouldReturnTrue() {
         // Arrange
         Reading reading = new Reading(readingDTO.getValue(), readingDTO.getDateTime());
@@ -51,7 +51,7 @@ class ReadingMapperTest {
     /**
      * Test that tries to create a Reading based on a null Object, which results in a non creation.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testMapToEntity_tryingToCreateBasedOnANullObject_ShouldReturnNull() {
         // Act
         Reading result = ReadingMapper.mapToEntity(null);
@@ -64,7 +64,7 @@ class ReadingMapperTest {
      * Test that tries to create a ReadingDTO based on a Reading, which results in a new ReadingDTO with the information
      * contained by the Reading.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testMapToDTO_tryingToCreateBasedOnAReading_ShouldReturnTrue() {
         // Assert
         ReadingDTO dto = ReadingMapper.mapToDTO(reading);
@@ -89,7 +89,7 @@ class ReadingMapperTest {
         assertNull(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testMapToDTO_id_units_tryingToTestTheSets() {
         // act
         String id = "TT123";

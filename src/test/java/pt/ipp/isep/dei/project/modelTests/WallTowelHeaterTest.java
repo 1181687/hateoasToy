@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.walltowelheater.WallTowelHeaterType;
+import pt.ipp.isep.dei.project.model.house.Address;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
@@ -35,7 +36,8 @@ public class WallTowelHeaterTest {
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
         int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
         List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
-        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+        Address address = new Address(null, null, null);
+        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice, address);
 
         // Rooms
         Dimension dim = new Dimension(3, 5, 6);
@@ -63,7 +65,7 @@ public class WallTowelHeaterTest {
         wallTowerHeater.addReadingsToTheList(reading2);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getLocation() {
         //Arrange
         Room expectedResult = this.bathroom;
@@ -73,7 +75,7 @@ public class WallTowelHeaterTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getName() {
         //Arrange
         String expectedResult = "Towel Warmer XPT0";
@@ -83,7 +85,7 @@ public class WallTowelHeaterTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setLocation_WithRoomDifferentFromLocation_ShouldReturnTrue() {
         //Act
         boolean result = this.wallTowerHeater.setLocation(this.kitchen);
@@ -99,7 +101,7 @@ public class WallTowelHeaterTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setLocationTrueTestNullValue() {
         // Act
         WallTowelHeaterType type = new WallTowelHeaterType();
@@ -112,7 +114,7 @@ public class WallTowelHeaterTest {
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getIsActive_WithActiveDevice_ShouldReturnTrue() {
         //Act
         boolean result = this.wallTowerHeater.getIsActive();
@@ -130,7 +132,7 @@ public class WallTowelHeaterTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getDeactivationDate() {
         //Arrange
         LocalDateTime expectedResult = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
@@ -141,7 +143,7 @@ public class WallTowelHeaterTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setDeactivateDevice_WithActiveDevice_ShouldReturnTrue() {
         //Act
         boolean result = this.wallTowerHeater.setDeactivateDevice();
@@ -169,7 +171,6 @@ public class WallTowelHeaterTest {
         assertTrue(result);
     }
 
-    /*
         @Test
         public void setName_WithSameName_ShouldReturnFalse() {
             //Arrange
@@ -193,8 +194,8 @@ public class WallTowelHeaterTest {
             //Assert
             assertEquals("Name already exists. Please write a new one.", exception.getMessage());
         }
-    */
-    @org.junit.jupiter.api.Test
+
+    @Test
     public void getReadings() {
         //Arrange
         List<Reading> expectedResult = new ArrayList<>();
@@ -207,7 +208,7 @@ public class WallTowelHeaterTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getDevSpecsAttributesToString() {
         //Arrange
         String expectedResult = "1 - Nominal Power: 90.0\n";
@@ -217,7 +218,7 @@ public class WallTowelHeaterTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getAttributesToString() {
         //Arrange
         String expectedResult = "1 - Name: Towel Warmer XPT0\n" +
@@ -229,7 +230,7 @@ public class WallTowelHeaterTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setAttributesDevType_WithNewValueDifferentFromOldOne_ShouldReturnTrue() {
         //Arrange
         double newValue = 20.0;
@@ -249,7 +250,7 @@ public class WallTowelHeaterTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getNumberOfSpecsAttributes() {
         //Arrange
         int expectedResult = 1;
@@ -259,7 +260,7 @@ public class WallTowelHeaterTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getNameToString() {
         //Arrange
         String expectedResult = "Device: Towel Warmer XPT0, located in room: Bathroom\n";

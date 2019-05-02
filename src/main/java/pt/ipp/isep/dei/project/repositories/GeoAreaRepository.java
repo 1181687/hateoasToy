@@ -9,7 +9,5 @@ import java.util.List;
 
 public interface GeoAreaRepository extends CrudRepository<GeographicalArea, GeoAreaId> {
 
-    List<GeographicalArea> findById_GeographicalAreaTypeId(GeoAreaTypeId geoAreaTypeId);
-
-
+    List<GeographicalArea> findById_TypeId(GeoAreaTypeId geoAreaTypeId);
 }

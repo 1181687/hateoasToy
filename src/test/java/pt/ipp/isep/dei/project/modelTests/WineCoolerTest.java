@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.winecooler.WineCoolerType;
+import pt.ipp.isep.dei.project.model.house.Address;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
@@ -34,7 +35,8 @@ public class WineCoolerTest {
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
         int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
         List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
-        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+        Address address = new Address(null, null, null);
+        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice, address);
 
         // Rooms
         Dimension dim = new Dimension(3, 5, 6);
@@ -69,7 +71,7 @@ public class WineCoolerTest {
         map.put(time2, 7.0);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getLocationTest() {
         // Arrange
         Room expectedResult = kitchen;
@@ -105,7 +107,7 @@ public class WineCoolerTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getEnergyConsumptionInADayTest() {
         // Arrange
         //9000/365
@@ -118,7 +120,7 @@ public class WineCoolerTest {
         assertEquals(expectedResult, result, 0.001);
     }
 
-    /*
+
     @Test
     public void setNameWithSameNameTestAwesomeWineCooler() {
         Throwable exception = assertThrows(RuntimeException.class, () -> wineCooler.setName("Awesome Wine Cooler"));
@@ -143,8 +145,8 @@ public class WineCoolerTest {
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
     }
 
-*/
-    @org.junit.jupiter.api.Test
+
+    @Test
     public void setNameFalseTest() {
         // Act
         boolean result = wineCooler.setName("");
@@ -153,7 +155,7 @@ public class WineCoolerTest {
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setNameTrueTest() {
         // Act
         boolean result = wineCooler.setName("The Best Wine Cooler");
@@ -162,7 +164,7 @@ public class WineCoolerTest {
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setLocationFalseTest() {
         // Act
         boolean result = wineCooler.setLocation(kitchen);
@@ -171,7 +173,7 @@ public class WineCoolerTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setLocationTrueTest() {
         // Act
         boolean result = wineCooler.setLocation(livingRoom);
@@ -180,7 +182,7 @@ public class WineCoolerTest {
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setLocationTrueTestNullValue() {
         // Act
         WineCoolerType type = new WineCoolerType();
@@ -207,7 +209,7 @@ public class WineCoolerTest {
 
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetLocation_AnotherLocation_True() {
         //Arrange
         Room location = livingRoom;
@@ -220,7 +222,7 @@ public class WineCoolerTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getDevSpecsAttributesToStringTest() {
         // Arrange
         String expectedResult = "1 - Nominal Power: 90.0\n" +
@@ -256,7 +258,7 @@ public class WineCoolerTest {
     }
 
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void hashCodeTest() {
         // Arrange
         int expectedResult = Objects.hash(wineCooler.getName());
@@ -268,7 +270,7 @@ public class WineCoolerTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void equalsDifferentObjectTest() {
         // Arrange
         Object object = new Object();
@@ -280,7 +282,7 @@ public class WineCoolerTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getNumberOfSpecsAttributesTest() {
         // Arrange
         int expectedResult = 3;
@@ -292,7 +294,7 @@ public class WineCoolerTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getNameToStringTest() {
         // Arrange
         String expectedResult = "Device: Even More Awesome Wine Cooler, located in room: Kitchen\n";
@@ -304,7 +306,7 @@ public class WineCoolerTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getTotalEnergyConsumptionInAnIntervalWithoutSolutionsTest() {
         // Arrange
         double expectedResult = 0;
@@ -319,7 +321,7 @@ public class WineCoolerTest {
         assertEquals(expectedResult, result, 0.000001);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getTotalEnergyConsumptionInAnIntervalWithOneSolutionTest() {
         // Arrange
         double expectedResult = 7;
@@ -349,14 +351,14 @@ public class WineCoolerTest {
         assertEquals(expectedResult, result, 0.000001);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setDeactivateDeviceTrue() {
 
         boolean result = wineCooler.setDeactivateDevice();
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setDeactivateDeviceAlreadyDeactivatedFalse() {
 
         wineCooler.setDeactivateDevice();
@@ -375,7 +377,7 @@ public class WineCoolerTest {
         assertEquals(date, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getDateDeactivateDeviceToString() {
         // arrange
         String date = LocalDate.now().toString() + " " + LocalTime.now().toString().substring(0, 5);
@@ -387,7 +389,7 @@ public class WineCoolerTest {
     }
 
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getIsActiveTrueTest() {
         // Act
         boolean result = wineCooler.getIsActive();
@@ -396,7 +398,7 @@ public class WineCoolerTest {
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getIsActiveFalseTest() {
         // Assert
         wineCooler.setDeactivateDevice();
@@ -408,7 +410,7 @@ public class WineCoolerTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getDataSeriesTest() {
         // Assert
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
@@ -423,7 +425,7 @@ public class WineCoolerTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getSpecsListTest() {
         // Assert
         List<String> expectedResult = new ArrayList<>();
@@ -451,7 +453,7 @@ public class WineCoolerTest {
     }
 
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetSpecsToString() {
         // Arrange
         String expectedResult = "1 - Nominal Power: 90.0\n" +
@@ -463,7 +465,7 @@ public class WineCoolerTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetReadings() {
         //Arrange
         List<Reading> expectedResult = new ArrayList<>();
@@ -500,7 +502,7 @@ public class WineCoolerTest {
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testIfDeviceIsActiveFalse() {
         //Arrange
         wineCooler.setDeactivateDevice();

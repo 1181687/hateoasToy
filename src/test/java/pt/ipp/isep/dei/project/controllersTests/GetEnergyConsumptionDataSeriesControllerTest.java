@@ -45,12 +45,11 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
         List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
 
-        house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
 
         Location houseLocation = new Location(41.177748, -8.607745, 112);
         Address address = new Address("4200-072", houseLocation, insertedGeoArea);
-        house.setAddress(address);
-        house.setInsertedGeoArea(insertedGeoArea);
+        house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice, address);
+
 
         this.ctrl = new GetEnergyConsumptionDataSeriesController(house);
     }
@@ -157,7 +156,8 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
         List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
 
-        House emptyHouse = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+        Address address = new Address(null, null, null);
+        House emptyHouse = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice, address);
 
         int expectedResult = 0;
 
@@ -580,11 +580,10 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
         List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
 
-        house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
 
         Location houseLocation = new Location(41.177748, -8.607745, 112);
         Address address = new Address("4200-072", houseLocation, insertedGeoArea);
-        house.setAddress(address);
+        house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice, address);
 
         // Act
         boolean result = ctrl.houseGridListIsEmpty();

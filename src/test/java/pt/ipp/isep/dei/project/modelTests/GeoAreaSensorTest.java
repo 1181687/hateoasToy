@@ -40,12 +40,13 @@ class GeoAreaSensorTest {
     @Test
     public void setAndGetId() {
         //Arrange
-        SensorId id = new SensorId("GeoAreaSensor");
+        String id = "GeoAreaSensor";
+        SensorId sensorId = new SensorId(id);
         //Act
-        this.temperatureSensor.setId(id);
+        this.temperatureSensor.setId(sensorId);
         SensorId result = this.temperatureSensor.getId();
         //Assert
-        assertEquals(id, result);
+        assertEquals(sensorId, result);
     }
 
     @Test
@@ -88,7 +89,7 @@ class GeoAreaSensorTest {
         //Assert
         assertEquals(expectedResult, result);
     }
-    
+
 
     @Test
     void getUnits() {

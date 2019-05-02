@@ -1,7 +1,13 @@
 package pt.ipp.isep.dei.project.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaId;
+import pt.ipp.isep.dei.project.model.house.RoomId;
+import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
+import pt.ipp.isep.dei.project.model.sensor.SensorId;
+import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -24,7 +30,7 @@ public class SensorsService {
      * @param intervalRoomReadings             list of Reading in an interval
      * @return Map<LocalDateTime, Double> map os instants and temperatures above the comfort temperature
      */
-    public Map<LocalDateTime, Double> getMapInstantsAboveComfortTemperatureInInterval(Map<LocalDate, List<Double>> mapComfortTemperatureMinMaxByDay,
+   /* public Map<LocalDateTime, Double> getMapInstantsAboveComfortTemperatureInInterval(Map<LocalDate, List<Double>> mapComfortTemperatureMinMaxByDay,
                                                                                       List<Reading> intervalRoomReadings) {
         Map<LocalDateTime, Double> mapInstantsAboveComfortTemperature = new HashMap<>();
 
@@ -66,7 +72,7 @@ public class SensorsService {
                     double valueOfRoomReading = roomReading.getValue();
 
                     if (dayOfComfortTemp.equals(dayOfRoomReading)
-                            && !Objects.isNull(dailyComfortTemp.getValue().get(0)) &&
+                            && !Objects.isNull(dailyComfortTemp.getValue()) &&
                             Double.compare(dailyComfortTemp.getValue().get(0), valueOfRoomReading) == 1) {
                         mapOfInstancesBelowComfortTemp.put(roomReading.getDateTime(), valueOfRoomReading);
                     }
@@ -74,7 +80,70 @@ public class SensorsService {
             }
         }
         return mapOfInstancesBelowComfortTemp;
+    }*/
+
+    /**
+     * gets Map<LocalDate, List<Double>> with list of the Comfort Temperature Min
+     * and Max for category One or Two or Three, organized By LocalDate
+     *
+     * @param location
+     * @param geoAreaId
+     * @param typeId    type of sensor
+     * @param startDate
+     * @param endDate
+     * @param category  house category (int)
+     * @return Map<LocalDate, List < Double>> map with List of Comfort Temperature Min and Max,  By Day
+     */
+    public Map<LocalDate, List<Double>> getComfortTemperature(Location location, GeoAreaId geoAreaId, SensorTypeId typeId,
+                                                              LocalDate startDate, LocalDate endDate, int category) {
+
+        return this.geoAreaSensorService.getComfortTemperature(location, geoAreaId, typeId, startDate, endDate, category);
     }
+
+    /**
+     * Method that gets a RoomSensor by its id.
+     *
+     * @param id Id of the RoomSensor.
+     * @return RoomSensor required.
+     */
+    public RoomSensor getRoomSensorById(SensorId id) {
+        return this.roomSensorService.getSensorById(id);
+    }
+
+
+    public Map<LocalDateTime, Double> getInstantsOutOfComfortTemperature(Map<LocalDate, List<Double>> mapComfortTemperatureMinMaxByDay, List<Reading> intervalRoomReadings, int option) {
+
+        //controlar esta variavel na ui: if BELLOW --> int option = 0; if ABOVE --> int option = 1;
+
+        Map<LocalDateTime, Double> mapInstantsAboveComfortTemperature = new HashMap<>();
+
+        Set<Map.Entry<LocalDate, List<Double>>> mapComfTemp = mapComfortTemperatureMinMaxByDay.entrySet();
+
+        if (!mapComfTemp.isEmpty()) {
+            for (Reading roomReading : intervalRoomReadings) {
+
+                for (Map.Entry<LocalDate, List<Double>> mapComfTempDaily : mapComfTemp) {
+
+                    LocalDate localDateReading = roomReading.getDateTime().toLocalDate();
+                    double valueReading = roomReading.getValue();
+                    LocalDate localDateComfTempMax = mapComfTempDaily.getKey();
+
+                    //IF OPTION IS ABOVE
+                    if (option==1 && !Objects.isNull(mapComfTempDaily.getValue()) && localDateReading.compareTo(localDateComfTempMax) == 0
+                            && Double.compare(valueReading, mapComfTempDaily.getValue().get(option)) == 1) {
+                        mapInstantsAboveComfortTemperature.put(roomReading.getDateTime(), valueReading);
+                    }
+                    //IF OPTION IS BELLOW
+                    if (option == 0 && !Objects.isNull(mapComfTempDaily.getValue()) && localDateComfTempMax.equals(localDateReading) &&
+                            Double.compare(mapComfTempDaily.getValue().get(option), valueReading) == 1) {
+                        mapInstantsAboveComfortTemperature.put(roomReading.getDateTime(), valueReading);
+                    }
+                }
+            }
+        }
+        return mapInstantsAboveComfortTemperature;
+    }
+
 
     public List<LocalDateTime> getInstantListOutOfComfortLevel(Map<LocalDateTime, Double> mapOfInstantsOutOfComfortLevel) {
         Set<Map.Entry<LocalDateTime, Double>> set = mapOfInstantsOutOfComfortLevel.entrySet();
@@ -89,8 +158,38 @@ public class SensorsService {
         return listOfInstantsOutOfComfortLevel;
     }
 
-    public boolean existsInstantsOutOfComfortLevel(Map<LocalDateTime, Double> mapOfInstantsOutOfComfortLevel) {
+    public boolean existInstantsOutOfComfortLevel(Map<LocalDateTime, Double> mapOfInstantsOutOfComfortLevel) {
         return !getInstantListOutOfComfortLevel(mapOfInstantsOutOfComfortLevel).isEmpty();
     }
+
+    /**
+     * gets room readings from a sensor by sensorId, in an interval of days
+     *
+     * @param startDate initial LocalDate
+     * @param endDate   final LocalDate
+     * @param roomSensorId  SensorId
+     * @return List of Reading
+     */
+    public List<Reading> getRoomReadings(LocalDate startDate, LocalDate endDate, SensorId roomSensorId) {
+        return this.roomSensorService.getReadings(startDate, endDate, roomSensorId);
+    }
+
+    public boolean existSensors (RoomId roomId, SensorTypeId sensorTypeId){
+        return roomSensorService.existSensors(roomId, sensorTypeId);
+    }
+
+    public SensorId getSensorId(String roomId) {
+        RoomId roomId1 = new RoomId(roomId);
+        return roomSensorService.getSensorId(roomId1);
+    }
+
+    public List<LocalDate> getDaysWithoutComfortTemp(Map<LocalDate, List<Double>> mapComfortDailyTemperature){
+        return geoAreaSensorService.getDaysWithoutComfortTemp(mapComfortDailyTemperature);
+    }
+
+    public boolean existsDaysWithoutComfortTemp(Map<LocalDate, List<Double>> mapComfortDailyTemperature){
+        return  geoAreaSensorService.existsDaysWithoutComfortTemp(mapComfortDailyTemperature);
+    }
+
 
 }

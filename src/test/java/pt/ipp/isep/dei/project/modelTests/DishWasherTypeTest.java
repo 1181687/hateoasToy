@@ -23,7 +23,7 @@ public class DishWasherTypeTest {
         kitchen = new Room("Kitchen", "room", 1, dim);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testCreateDevice() {
         // Arrange
         Device expectedResult = dishWasherType.createDevice("Dish Washer Teka");

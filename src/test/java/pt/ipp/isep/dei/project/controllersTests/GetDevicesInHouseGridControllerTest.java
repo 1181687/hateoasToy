@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.GetDevicesInHouseGridController;
 import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.house.Address;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
@@ -34,8 +35,8 @@ public class GetDevicesInHouseGridControllerTest {
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
         int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
         List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
-
-        houseEdificioB = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+        Address address = new Address(null, null, null);
+        houseEdificioB = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice, address);
 
         //Controller
         this.ctrl = new GetDevicesInHouseGridController(houseEdificioB);
@@ -149,8 +150,9 @@ public class GetDevicesInHouseGridControllerTest {
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
         int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
         List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
+        Address address = new Address(null, null, null);
 
-        House emptyHouse = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+        House emptyHouse = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice, address);
 
         // Act
         boolean result = emptyHouse.isHouseGridListEmpty();
@@ -219,8 +221,9 @@ public class GetDevicesInHouseGridControllerTest {
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
         int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
         List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
+        Address address = new Address(null, null, null);
 
-        House emptyHouse = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+        House emptyHouse = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice, address);
 
         GetDevicesInHouseGridController controller = new GetDevicesInHouseGridController(emptyHouse);
 

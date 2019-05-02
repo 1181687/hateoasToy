@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.lamp.LampType;
+import pt.ipp.isep.dei.project.model.house.Address;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
@@ -34,7 +35,8 @@ class LampTest {
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
         int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
         List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
-        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+        Address address = new Address(null, null, null);
+        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice, address);
 
         // Rooms
         Dimension dim = new Dimension(3, 5, 6);
@@ -143,7 +145,7 @@ class LampTest {
         assertEquals(expectedResult, result, 0.000001);
     }
 
-    /*@Test
+    @Test
     public void setNameWithSameNameTest() {
         Throwable exception = assertThrows(RuntimeException.class, () -> lamp.setName("TaoTronics Elune TT-DL02"));
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
@@ -159,7 +161,7 @@ class LampTest {
     public void setNameAlreadyInListTest() {
         Throwable exception = assertThrows(RuntimeException.class, () -> lamp.setName("TaoTronics Elune TT-DL01"));
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
-    }*/
+    }
 
     @Test
     public void setNameFalseTest() {
@@ -170,7 +172,7 @@ class LampTest {
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setNameTrueTest() {
         // Act
         boolean result = lamp.setName("Miele PerfectCool Series 4000");
@@ -264,7 +266,7 @@ class LampTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void equalsDifferentObjectTest() {
         // Arrange
         Object object = new Object();
@@ -276,7 +278,7 @@ class LampTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void getNumberOfSpecsAttributesTest() {
         // Arrange
         int expectedResult = 2;
@@ -430,7 +432,7 @@ class LampTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void testGetSpecsToString() {
         // Arrange
         String expectedResult = "1 - Luminous Flux: 2800.0\n" +

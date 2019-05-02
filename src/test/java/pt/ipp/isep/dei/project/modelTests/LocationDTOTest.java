@@ -29,7 +29,7 @@ public class LocationDTOTest {
 
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetLatitude_200() {
         //Arrange
         locationDTO.setLatitude(200);
@@ -41,7 +41,7 @@ public class LocationDTOTest {
 
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetLongitude_200() {
         //Arrange
         double expectedResult = 200;
@@ -64,7 +64,7 @@ public class LocationDTOTest {
 
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetElevation_150() {
         //Arrange
         double expectedResult = 150;

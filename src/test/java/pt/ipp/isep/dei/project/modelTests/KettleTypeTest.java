@@ -26,7 +26,7 @@ public class KettleTypeTest {
     }
 
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetTypeName() {
         //Arrange
         String expectedResult = "Kettle";

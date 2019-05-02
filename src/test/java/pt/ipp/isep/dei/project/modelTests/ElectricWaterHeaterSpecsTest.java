@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.project.modelTests;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.house.Address;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
@@ -26,8 +27,8 @@ public class ElectricWaterHeaterSpecsTest {
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
         int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
         List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
-
-        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+        Address address = new Address(null, null, null);
+        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice, address);
         Dimension dim = new Dimension(3, 5, 6);
         kitchen = new Room("Kitchen", "room", 1, dim);
 
@@ -53,7 +54,7 @@ public class ElectricWaterHeaterSpecsTest {
         assertEquals(expectedResult, result, 0.000001);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getEnergyConsumptionInADayTestCoiso() {
         // Arrange
         // ElectricWaterHeaterSpecs Instantiation
@@ -72,7 +73,7 @@ public class ElectricWaterHeaterSpecsTest {
         assertEquals(expectedResult, result, 0.000001);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getEnergyConsumptionInADayTest2() {
         // Arrange
         // ElectricWaterHeaterSpecs Instantiation
@@ -91,7 +92,7 @@ public class ElectricWaterHeaterSpecsTest {
         assertEquals(expectedResult, result, 0.000001);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getAttributesToString() {
         // Arrange
         electricWaterHeater.setAttributesDevType("Nominal Power", 30);
@@ -136,7 +137,7 @@ public class ElectricWaterHeaterSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetAttributeValueNominalPowerNullChar() {
         // Arrange
         electricWaterHeater.setAttributesDevType("Nominal Power", 100.0);
@@ -148,7 +149,7 @@ public class ElectricWaterHeaterSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetAttributeValueVolumeOfWaterToHeat() {
         // Arrange
         electricWaterHeater.setAttributesDevType("Volume Of Water To Heat", 100);
@@ -160,7 +161,7 @@ public class ElectricWaterHeaterSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetAttributeValueVolumeOfWaterToHeatNullChar() {
         // Arrange
         electricWaterHeater.setAttributesDevType("Volume Of Water To Heat", 100);
@@ -172,7 +173,7 @@ public class ElectricWaterHeaterSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetAttributeValuePerformanceRatio() {
         // Arrange
         electricWaterHeater.setAttributesDevType("Performance Ratio", 0.9);
@@ -210,7 +211,7 @@ public class ElectricWaterHeaterSpecsTest {
     }
 
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetAttributeValueHotWaterTemperatureNullChar() {
         // Arrange
         // FridgeSpecs Instantiation
@@ -223,7 +224,7 @@ public class ElectricWaterHeaterSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetAttributeValueColdWaterTemperature() {
         // Arrange
         // FridgeSpecs Instantiation
@@ -251,7 +252,7 @@ public class ElectricWaterHeaterSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetAttributeValueNotAValidSpec() {
         // Arrange
         // FridgeSpecs Instantiation
@@ -265,7 +266,7 @@ public class ElectricWaterHeaterSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetAttributeNotAValidType() {
         // Arrange
         String attribute = "stuff";
@@ -285,7 +286,7 @@ public class ElectricWaterHeaterSpecsTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetAttributeVolumeOfWaterToHeatValueNullCharacter() {
         // Arrange
         String attribute = "stuff";
@@ -387,7 +388,7 @@ public class ElectricWaterHeaterSpecsTest {
     }
 
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetAttributeColdWaterTemperatureValueNotAValidType() {
         // Arrange
         String attribute = "stuff";
@@ -407,7 +408,7 @@ public class ElectricWaterHeaterSpecsTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetAttributeVolumeOfWaterToHeatValueNotAValidTypeNegative() {
         // Arrange
         double value = -200;
@@ -427,7 +428,7 @@ public class ElectricWaterHeaterSpecsTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setAttributeVolumeOfWaterToHeatTrueTest() {
         // Act
         boolean result = electricWaterHeater.getSpecs().setAttributeValue("Volume Of Water To Heat", 1);
@@ -457,7 +458,7 @@ public class ElectricWaterHeaterSpecsTest {
     }
 
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetAttributeNominalPowerTrue() {
         //Arrange
         double value1 = 30.5;
@@ -484,7 +485,7 @@ public class ElectricWaterHeaterSpecsTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetAttributePerformanceRatioTrue() {
         //Arrange
         double value1 = 0.8;
@@ -520,7 +521,7 @@ public class ElectricWaterHeaterSpecsTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testIfDeviceIsProgrammableReturnsFalseBecauseItsNotProgrammable() {
         //Arrange
         electricWaterHeater.getSpecs().asProgrammable();

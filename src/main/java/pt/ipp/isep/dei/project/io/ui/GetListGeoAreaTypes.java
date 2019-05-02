@@ -2,7 +2,6 @@ package pt.ipp.isep.dei.project.io.ui;
 
 
 import pt.ipp.isep.dei.project.controllers.GetListGeoAreaTypesController;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaTypeList;
 import pt.ipp.isep.dei.project.services.GeoAreaTypeService;
 
 /**

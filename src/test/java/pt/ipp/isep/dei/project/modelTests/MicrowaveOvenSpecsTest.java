@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.devices.*;
 import pt.ipp.isep.dei.project.model.devices.microwaveoven.MicrowaveOvenSpecs;
+import pt.ipp.isep.dei.project.model.house.Address;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
@@ -27,7 +28,8 @@ public class MicrowaveOvenSpecsTest {
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
         int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
         List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
-        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+        Address address = new Address(null, null, null);
+        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice, address);
         //Room
         Dimension dim = new Dimension(3, 5, 6);
         this.kitchen = new Room("Kitchen", "room", 1, dim);
@@ -64,7 +66,7 @@ public class MicrowaveOvenSpecsTest {
         assertEquals(expectedResult, result, 0.001);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testEmptyConstructor() {
         //Arrange
         microwaveOven.setAttributesDevType("Nominal Power", 30);
@@ -105,7 +107,7 @@ public class MicrowaveOvenSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetEnergyConsumptionInADay() {
 
         double expectedResult = 0;
@@ -117,7 +119,7 @@ public class MicrowaveOvenSpecsTest {
         assertEquals(expectedResult, result, 0.001);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetSpecsInAListOfStrings() {
         // Arrange
         List<String> expectedResult = new ArrayList<>();
@@ -142,7 +144,7 @@ public class MicrowaveOvenSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetAttributeValue_notAValidSpec() {
         // Arrange
         Object expectedResult = "not a valid attribute";
@@ -152,7 +154,7 @@ public class MicrowaveOvenSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetAttributeNominalPowerValue_NotAValidType() {
         // Arrange
         String attribute = "stuff";
@@ -162,7 +164,7 @@ public class MicrowaveOvenSpecsTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetAttributeNominalPower_ValidValue() {
         // Act
         boolean result = microwaveOven.getSpecs().setAttributeValue("Nominal Power", 1.3);
@@ -170,7 +172,7 @@ public class MicrowaveOvenSpecsTest {
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetAttribute_NotAValidAttribute() {
         // Act
         boolean result = microwaveOven.getSpecs().setAttributeValue("Wrong Attribute", 1.3);
@@ -208,7 +210,7 @@ public class MicrowaveOvenSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getAttributeDataTypeTest() {
         // arrange
         String expectedResult = "Double";
@@ -230,7 +232,7 @@ public class MicrowaveOvenSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testAddProgram_ProgramAlreadyInTheList_ShouldReturnFalse() {
         //Arrange
         String programName = "fast";
@@ -252,7 +254,7 @@ public class MicrowaveOvenSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testAddProgram_ProgramIsNotInTheList_ShouldReturnTrue() {
         //Arrange
         String programName = "fast";

@@ -48,10 +48,9 @@ public class DishWasherTest {
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
         int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
         List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
-        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
         Location houseLocation = new Location(41.178553, -8.608035, 111);
         Address address = new Address("4200-072", houseLocation, insertedGeoArea);
-        this.house.setAddress(address);
+        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice, address);
 
 
         // Rooms
@@ -87,7 +86,7 @@ public class DishWasherTest {
         map.put(time2, 7.0);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getNominalPowerTest() {
         //Arrange
         double expectedResult = 1200.0;
@@ -99,7 +98,7 @@ public class DishWasherTest {
         assertEquals(expectedResult, result, 0.001);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getLocationTest() {
         // Arrange
         Room expectedResult = kitchen;
@@ -123,7 +122,7 @@ public class DishWasherTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getTypeTest() {
         // Arrange
         String expectedResult = "DishWasher";
@@ -147,7 +146,7 @@ public class DishWasherTest {
         assertEquals(expectedResult, result, 0.000001);
     }
 
-    /*@Test
+    @Test
     public void setNameWithSameNameTest() {
         Throwable exception = assertThrows(RuntimeException.class, () -> dishWasher.setName("Bosch 500 Series"));
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
@@ -157,9 +156,9 @@ public class DishWasherTest {
     public void setNameAlreadyInListTest() {
         Throwable exception = assertThrows(RuntimeException.class, () -> dishWasher.setName("Bosch 600 Series"));
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
-    }*/
+    }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setNameFalseTest() {
         // Act
         boolean result = dishWasher.setName("");
@@ -177,7 +176,7 @@ public class DishWasherTest {
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setLocationFalseTest() {
         // Act
         boolean result = dishWasher.setLocation(kitchen);
@@ -208,7 +207,7 @@ public class DishWasherTest {
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getDevSpecsAttributesToStringTest() {
         // Arrange
         String expectedResult = "1 - Capacity: 10\n" +
@@ -220,7 +219,7 @@ public class DishWasherTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getAttributesToStringTest() {
         // Arrange
         String expectedResult = "1 - Name: Bosch 500 Series\n" +
@@ -233,7 +232,7 @@ public class DishWasherTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setSetAttributesDevTypeTrue() {
         //Act
         boolean result = dishWasher.setAttributesDevType("Capacity", 15);
@@ -241,7 +240,7 @@ public class DishWasherTest {
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setSetAttributesDevTypeFalse() {
         //Act
         boolean result = dishWasher.setAttributesDevType("Capacity", 10);
@@ -249,7 +248,7 @@ public class DishWasherTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void hashCodeTest() {
         // Arrange
         int expectedResult = Objects.hash(dishWasher.getName());
@@ -261,7 +260,7 @@ public class DishWasherTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void equalsDifferentObjectTest() {
         // Arrange
         Object object = new Object();
@@ -273,7 +272,7 @@ public class DishWasherTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getNumberOfSpecsAttributesTest() {
         // Arrange
         int expectedResult = 2;
@@ -285,7 +284,7 @@ public class DishWasherTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getNameToStringTest() {
         // Arrange
         String expectedResult = "Device: Bosch 500 Series, located in room: Kitchen\n";
@@ -297,7 +296,7 @@ public class DishWasherTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getTotalEnergyConsumptionInAnIntervalWithoutSolutionsTest() {
         // Arrange
         double expectedResult = 0;
@@ -312,7 +311,7 @@ public class DishWasherTest {
         assertEquals(expectedResult, result, 0.000001);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getTotalEnergyConsumptionInAnIntervalWithOneSolutionTest() {
         // Arrange
         double expectedResult = 12;
@@ -327,7 +326,7 @@ public class DishWasherTest {
         assertEquals(expectedResult, result, 0.000001);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getTotalEnergyConsumptionInAnIntervalWithOneSolutionTest2() {
         // Arrange
         double expectedResult = 7;
@@ -368,7 +367,7 @@ public class DishWasherTest {
         assertEquals(date, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getDateDeactivateDeviceToString() {
         // arrange
         String date = LocalDate.now().toString() + " " + LocalTime.now().toString().substring(0, 5);
@@ -379,7 +378,7 @@ public class DishWasherTest {
         assertEquals(date, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getIsActiveTrueTest() {
         // Act
         boolean result = dishWasher.getIsActive();
@@ -388,7 +387,7 @@ public class DishWasherTest {
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getIsActiveFalseTest() {
         // arrange
         dishWasher.setDeactivateDevice();
@@ -400,7 +399,7 @@ public class DishWasherTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getDataSeriesTest() {
         // Assert
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
@@ -415,7 +414,7 @@ public class DishWasherTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getSpecsListTest() {
         // Assert
         List<String> expectedResult = new ArrayList<>();
@@ -429,7 +428,7 @@ public class DishWasherTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getAttributeValueTest() {
         // Assert
         int expectedResult = 10;
@@ -441,7 +440,7 @@ public class DishWasherTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetReadings() {
         //Arrange
         List<Reading> expectedResult = new ArrayList<>();
@@ -464,7 +463,7 @@ public class DishWasherTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetDeactivateDevice_false() {
         boolean expectedResult = false;
         dishWasher.setDeactivateDevice();

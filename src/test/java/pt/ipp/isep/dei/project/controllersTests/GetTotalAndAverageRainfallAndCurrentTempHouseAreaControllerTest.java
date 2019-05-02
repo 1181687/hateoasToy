@@ -51,11 +51,10 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
         int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
         List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
 
-        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
 
         Location houseLocation = new Location(42.1, -8.6, 100.0);
         Address address = new Address("4200-072", houseLocation, geoArea);
-        this.house.setAddress(address);
+        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice, address);
     }
 
     @Test

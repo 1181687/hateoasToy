@@ -82,12 +82,12 @@ public class GeographicalAreaService {
      * @param geoAreaType
      * @return the geo area type list.
      */
-    public List<String> getListOfGeographicalAreasByType(String geoAreaType) {
+    public List<String> getListOfGeoAreasTypeToString(String geoAreaType) {
         GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId(geoAreaType);
         List<String> geoAreaListWithSameType = new ArrayList<>();
-        for (GeographicalArea areaGeo : geoAreaList) {
+        for (GeographicalArea areaGeo : geoAreaRepository.findAll()) {
             if (areaGeo.getGeoAreaType().equals(geoAreaTypeId)) {
-                geoAreaListWithSameType.add(areaGeo.getDescription());
+                geoAreaListWithSameType.add(areaGeo.getGeoAreaType().getTypeId());
             }
         }
         return geoAreaListWithSameType;
@@ -189,7 +189,9 @@ public class GeographicalAreaService {
         GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId(geoAreaTypeName);
         GeographicalAreaType geographicalAreaType = new GeographicalAreaType(geoAreaTypeId);
         AreaShape rectangleArea = new AreaShape(height, length);
-        return new GeographicalArea(geoID, geoAreaName, geographicalAreaType, location, rectangleArea);
+        GeographicalArea geoArea = new GeographicalArea(geoID, geoAreaName, geographicalAreaType, location, rectangleArea);
+        addGeoArea(geoArea);
+        return geoArea;
     }
 
     /**
@@ -208,15 +210,15 @@ public class GeographicalAreaService {
      */
     public GeoAreaSensorList getAllSensors() {
         GeoAreaSensorList geoAreaSensorList = new GeoAreaSensorList();
-        for (GeographicalArea geoArea : geoAreaList) {
+        for (GeographicalArea geoArea : geoAreaRepository.findAll()) {
             geoAreaSensorList.getListOfSensors().addAll(geoArea.getSensorListInTheGeographicArea().getListOfSensors());
         }
         return geoAreaSensorList;
     }
 
     public boolean checkIfGeoAreaExistsById(String geoAreaId) {
-        for (GeographicalArea geoArea : geoAreaList) {
-            if (geoArea.getId().equals(geoAreaId)) {
+        for (GeographicalArea geoArea : geoAreaRepository.findAll()) {
+            if (geoArea.getId().getId().equals(geoAreaId)) {
                 return true;
             }
         }
@@ -230,8 +232,8 @@ public class GeographicalAreaService {
      * @return Geographical area corresponding to the id (or null).
      */
     public GeographicalArea getGeoAreaById(String geoAreaId) {
-        for (GeographicalArea geographicalArea : geoAreaList) {
-            if (geographicalArea.getId().equals(geoAreaId)) {
+        for (GeographicalArea geographicalArea : geoAreaRepository.findAll()) {
+            if (geographicalArea.getId().getId().equals(geoAreaId)) {
                 return geographicalArea;
             }
         }
@@ -248,17 +250,13 @@ public class GeographicalAreaService {
         }
     }
 
-    public boolean saveGeoAreas(List<GeographicalArea> geoAreas) {
-        boolean saved = false;
-        List<GeographicalArea> geographicalAreas = new ArrayList<>();
-        for (GeographicalArea geoArea : geoAreas) {
-            if (!geoAreaRepository.existsById(geoArea.getId())) {
-                geographicalAreas.add(geoArea);
-                saved = true;
-            }
-        }
-        geoAreaRepository.saveAll(geographicalAreas);
-        return saved;
+    /**
+     * Method that saves a list of geographical areas in the repo.
+     *
+     * @param geoAreas List of geographical areas to be analyzed.
+     */
+    public void saveGeoAreas(List<GeographicalArea> geoAreas) {
+        geoAreaRepository.saveAll(geoAreas);
     }
 
     public List<GeographicalArea> getAllGeoAreas() {
@@ -283,4 +281,13 @@ public class GeographicalAreaService {
         return geoAreaRepository.existsById(new GeoAreaId(geoLocation, geoAreaId, new GeographicalAreaType(geoAreaTypeId1)));
     }
 
+    /**
+     * Method that checks if a geographical area exists in the repo by its id.
+     *
+     * @param geoAreaId Id to be used.
+     * @return True or false.
+     */
+    public boolean geoAreaExists(GeoAreaId geoAreaId) {
+        return this.geoAreaRepository.existsById(geoAreaId);
+    }
 }

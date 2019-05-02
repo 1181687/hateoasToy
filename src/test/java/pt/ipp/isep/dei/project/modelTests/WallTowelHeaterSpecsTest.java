@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
 import pt.ipp.isep.dei.project.model.devices.Programmable;
+import pt.ipp.isep.dei.project.model.house.Address;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
@@ -33,7 +34,8 @@ public class WallTowelHeaterSpecsTest {
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
         int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
         List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
-        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+        Address address = new Address(null, null, null);
+        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice, address);
 
         Dimension dim = new Dimension(3, 5, 6);
         kitchen = new Room("Kitchen", "room", 1, dim);
@@ -50,7 +52,7 @@ public class WallTowelHeaterSpecsTest {
      * Test the method that gives the programmable property to the device.
      * The Kettle is not programmable, so it just has the false return.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testIsProgrammable_False() {
         //Arrange
         boolean expectedResult = false;
@@ -65,7 +67,7 @@ public class WallTowelHeaterSpecsTest {
      * Test the method that returns a Programmable if the device is Programmable.
      * The Kettler is not programmable so the method only return "null" value.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testAsProgrammable_null() {
         //Arrange
         Programmable expectedResult = null;
@@ -80,7 +82,7 @@ public class WallTowelHeaterSpecsTest {
     /**
      * Test if the method really return the name of the Device Type.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetTypeName_typeName() {
         //Arrange
         String expectedResult = "WallTowelHeater";
@@ -97,7 +99,7 @@ public class WallTowelHeaterSpecsTest {
      * This test checks if we can set the Nominal Power value with the already existent
      * value.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetNominalPower_SameDoubleValue_False() {
         //Arrange
         boolean expectedResult = false;
@@ -151,7 +153,7 @@ public class WallTowelHeaterSpecsTest {
      * This test checks if we can set the Nominal Power value with another valid value,
      * for instance 100.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetNominalPower_ValidValue_True() {
         //Arrange
         boolean expectedResult = true;
@@ -203,7 +205,7 @@ public class WallTowelHeaterSpecsTest {
      * Test the setMaximumVolumeOfWater method with the method setAttributeValue.
      * This test checks if we can set the Maximum Volume of Water value with with an invalid Data Type.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetMaximumVolumeOfWater_InvalidDataType_False() {
         //Arrange
         boolean expectedResult = false;
@@ -221,7 +223,7 @@ public class WallTowelHeaterSpecsTest {
      * Test the setMaximumVolumeOfWater method with the method setAttributeValue.
      * This test checks if we can set the Maximum Volume of Water value with another valid value, for instance 1.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetMaximumVolumeOfWater_ValidValue_True() {
         //Arrange
         boolean expectedResult = true;
@@ -237,7 +239,7 @@ public class WallTowelHeaterSpecsTest {
     /**
      * Test the setAttributeValue method in the case that there isn't a valid attribute name.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetAttributeValue_InvalidAttributeName_False() {
         //Arrange
         boolean expectedResult = false;
@@ -253,7 +255,7 @@ public class WallTowelHeaterSpecsTest {
     /**
      * Test the setAttributeValue method in the case that there isn't a valid attribute name.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetAttributeValue_NullAttributeName_False() {
         //Arrange
         boolean expectedResult = false;
@@ -283,7 +285,7 @@ public class WallTowelHeaterSpecsTest {
      * Test if the getNominalPower method returns the correct value of Energy Consumption
      * formula.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetEnergyConsumptionInADay_EnergyConsumptionValue() {
         //Arrange
         double time = 2;
@@ -300,7 +302,7 @@ public class WallTowelHeaterSpecsTest {
      * Test if the method getAttributesToString returns the String of the Attributes
      * with the respective value.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetAttributesToString_ShowAttributesWithValue() {
         //Arrange
         String expectedResult =
@@ -316,7 +318,7 @@ public class WallTowelHeaterSpecsTest {
      * Test the method that shows the number of Attributes of this Device, in this case,
      * there is 1.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetNumberOfAttributes_NumberOfAttributes() {
         //Arrange
         int expectedResult = 1;
@@ -375,7 +377,7 @@ public class WallTowelHeaterSpecsTest {
      * Test the return "not a valid attribute" of the method getAttributeValue,
      * when inserted a null character attribute.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetAttributeValue_NullCharacterNomPower() {
         //Arrange
         String expectedResult = NOT_VALID_ATTRIBUTE;
@@ -388,7 +390,7 @@ public class WallTowelHeaterSpecsTest {
     /**
      * Test the return "not a valid attribute" of the method getAttributeValue.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetAttributeValue_NullAttribute() {
         //Arrange
         String expectedResult = NOT_VALID_ATTRIBUTE;
@@ -402,7 +404,7 @@ public class WallTowelHeaterSpecsTest {
      * Test if the method getAttributeDataType shows the Data type of a valid attribute,
      * in this case, the nominal power.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetAttributeDataType_NominalPower() {
         //Arrange
         String expectedResult = "Double";
@@ -419,7 +421,7 @@ public class WallTowelHeaterSpecsTest {
      * Test if the method getAttributeDataType shows the Data type of a valid attribute,
      * in this case, the Time.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetAttributeDataType_MaxVolumeOfWater() {
         //Arrange
         String expectedResult = "Double";
@@ -437,7 +439,7 @@ public class WallTowelHeaterSpecsTest {
      * Test if the method getAttributeDataType shows the String "not a valid attribute",
      * in case of do not insert a valid name of attribute.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetAttributeDataType_InvalidAttribute() {
         //Arrange
         String expectedResult = "not a valid attribute";

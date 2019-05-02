@@ -1,6 +1,5 @@
 package pt.ipp.isep.dei.project.io.ui;
 
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaTypeList;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.RoomList;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceTypeList;
@@ -11,7 +10,6 @@ import java.io.FileNotFoundException;
 
 public class Admin {
 
-    private GeographicalAreaTypeList geographicalAreaTypeList;
     private GeographicalAreaService geographicalAreaService;
     private GeoAreaTypeService geoAreaTypeService;
     private SensorTypeList sensorTypeList;
@@ -22,11 +20,13 @@ public class Admin {
     private GeoAreaSensorService geoAreaSensorService;
     private RoomSensorService roomSensorService;
     private SensorTypeService sensorTypeService;
+    private RoomService roomService;
 
 
-    public Admin(GeographicalAreaTypeList geographicalAreaTypeList, GeographicalAreaService geographicalAreaService,
-                 GeoAreaTypeService geoAreaTypeService, SensorTypeList sensorTypeList, PowerSourceTypeList powerSourceTypeList, RoomList roomList, HouseService houseService, GeoAreaSensorService geoAreaSensorService, RoomSensorService roomSensorService, SensorTypeService sensorTypeService) {
-        this.geographicalAreaTypeList = geographicalAreaTypeList;
+    public Admin(GeographicalAreaService geographicalAreaService,
+                 GeoAreaTypeService geoAreaTypeService, SensorTypeList sensorTypeList, PowerSourceTypeList powerSourceTypeList,
+                 RoomList roomList, HouseService houseService, GeoAreaSensorService geoAreaSensorService, RoomSensorService roomSensorService,
+                 SensorTypeService sensorTypeService, RoomService roomService) {
         this.geographicalAreaService = geographicalAreaService;
         this.geoAreaTypeService = geoAreaTypeService;
         this.sensorTypeList = sensorTypeList;
@@ -36,6 +36,8 @@ public class Admin {
         this.houseService = houseService;
         this.geoAreaSensorService = geoAreaSensorService;
         this.roomSensorService = roomSensorService;
+        this.sensorTypeService = sensorTypeService;
+        this.roomService = roomService;
     }
 
 
@@ -80,8 +82,8 @@ public class Admin {
                     ui8.run();
                     break;
                 case 9:
-                    ImportGeoAreasFromJSONOrXML ui9 = new ImportGeoAreasFromJSONOrXML(geographicalAreaService, geoAreaSensorService);
-                    ui9.jsonGeoAreaSensors();
+                    ImportGeoAreasAndSensors ui9 = new ImportGeoAreasAndSensors(geographicalAreaService, geoAreaSensorService);
+                    ui9.run();
                     break;
                 case 10:
                     ImportReadings ui10 = new ImportReadings(geoAreaSensorService, roomSensorService);
@@ -164,7 +166,7 @@ public class Admin {
                     }
                     break;
                 case 14:
-                    ImportRoomSensors ui260 = new ImportRoomSensors(houseService);
+                    ImportRoomSensors ui260 = new ImportRoomSensors(roomService, roomSensorService);
                     ui260.run();
                     break;
                 case 15:

@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.television.TelevisionType;
+import pt.ipp.isep.dei.project.model.house.Address;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
@@ -35,7 +36,8 @@ public class TelevisionTest {
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
         int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
         List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
-        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+        Address address = new Address(null, null, null);
+        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice, address);
 
         // Rooms
         Dimension dim = new Dimension(2, 2, 3);
@@ -119,7 +121,6 @@ public class TelevisionTest {
         assertEquals(expectedResult, result, 0.001);
     }
 
-    /*
         @Test
         public void setNameWithSameNameTestSmartTV() {
             Throwable exception = assertThrows(RuntimeException.class, () -> television.setName("Smart TV"));
@@ -143,7 +144,7 @@ public class TelevisionTest {
             Throwable exception = assertThrows(RuntimeException.class, () -> bedroom.getDeviceByPosition(0).setName("Flat Screen TV"));
             assertEquals("Name already exists. Please write a new one.", exception.getMessage());
         }
-    */
+
     @Test
     public void setNameTrueTest() {
         // Act
@@ -233,7 +234,7 @@ public class TelevisionTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getAttributesToStringTest() {
         // Arrange
         String expectedResult = "1 - Name: Smart TV\n" +
@@ -349,7 +350,7 @@ public class TelevisionTest {
         assertEquals(expectedResult, result, 0.000001);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setDeactivateDeviceTrue() {
 
         boolean result = television.setDeactivateDevice();
@@ -396,7 +397,7 @@ public class TelevisionTest {
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getIsActiveFalseTest() {
         // Assert
         television.setDeactivateDevice();
@@ -451,7 +452,7 @@ public class TelevisionTest {
     }
 
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetSpecsToString() {
         // Arrange
         String expectedResult = "1 - Nominal Power: 90.0\n" +
@@ -479,7 +480,7 @@ public class TelevisionTest {
 
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetNominalPowerTest() {
         //Arrange
         double expectedResult = 90.0;

@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.fridge.FridgeType;
+import pt.ipp.isep.dei.project.model.house.Address;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
@@ -36,7 +37,8 @@ public class FridgeTest {
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
         int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
         List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
-        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+        Address address = new Address(null, null, null);
+        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice, address);
 
         // Rooms
         Dimension dim = new Dimension(3, 5, 6);
@@ -148,8 +150,6 @@ public class FridgeTest {
         // Assert
         assertEquals(expectedResult, result, 0.000001);
     }
-
-    /*
         @Test
         public void setNameWithSameNameTest() {
             Throwable exception = assertThrows(RuntimeException.class, () -> fridge.setName("Miele PerfectCool Series 3500"));
@@ -173,7 +173,7 @@ public class FridgeTest {
             Throwable exception = assertThrows(RuntimeException.class, () -> fridge.setName("Miele PerfectCool Series 1000"));
             assertEquals("Name already exists. Please write a new one.", exception.getMessage());
         }
-    */
+
     @Test
     public void setNameFalseTest() {
         // Act

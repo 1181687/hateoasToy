@@ -14,7 +14,10 @@ import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.Program;
 import pt.ipp.isep.dei.project.model.devices.Programmable;
-import pt.ipp.isep.dei.project.model.geographicalarea.*;
+import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaTypeId;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.house.Address;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
@@ -59,7 +62,6 @@ public class Main {
     private House houseEdificioB;
     private PowerSourceTypeList powerSourceTypeList;
     private SensorTypeList sensorTypeList;
-    private GeographicalAreaTypeList geographicalAreaTypeList;
 
     //GeographicalAreaService Repository Injection
     @Autowired
@@ -83,6 +85,9 @@ public class Main {
     @Autowired
     private GeoAreaTypeService geoAreaTypeService;
 
+    @Autowired
+    private RoomService roomService;
+
 
     public static void main(String[] args) {
 
@@ -105,8 +110,10 @@ public class Main {
             data();
 
             //UI levels
-            Admin admin = new Admin(geographicalAreaTypeList, geographicalAreaService, geoAreaTypeService, sensorTypeList, powerSourceTypeList, houseEdificioB.getRoomList(), houseService, geoAreaSensorService, roomSensorService, sensorTypeService);
-            RegularUser regularUser = new RegularUser(geographicalAreaTypeList, geographicalAreaService, sensorTypeList, houseService);
+            Admin admin = new Admin(geographicalAreaService, geoAreaTypeService, sensorTypeList, powerSourceTypeList,
+                    houseEdificioB.getRoomList(), houseService, geoAreaSensorService, roomSensorService,
+                    sensorTypeService, roomService);
+            RegularUser regularUser = new RegularUser(geoAreaTypeService, geographicalAreaService, sensorTypeList, houseService);
             PowerUser powerUser = new PowerUser(houseService);
             RoomOwner roomOwner = new RoomOwner(houseService);
 
@@ -151,7 +158,7 @@ public class Main {
         }
         List<String> deviceTypeList = Utils.readConfigFileToList(configFile, "devicetype.count", "devicetype.name");
 
-        geographicalAreaTypeList = new GeographicalAreaTypeList();
+        //geographicalAreaTypeList = new GeographicalAreaTypeList();
         //geographicalAreaList = new GeographicalAreaList();
 
         // GEOGRAPHICAL AREAS
@@ -164,10 +171,9 @@ public class Main {
         GeographicalArea insertedGeoArea = new GeographicalArea("DUMMY", "DUMMY", geographicalAreaType, location2, areaShape);
 
         // HOUSE
-        Location houseLocation = new Location(41.177748, -8.607745, 112);
-        Address address = new Address("4200-072", houseLocation, insertedGeoArea);
-        houseEdificioB = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
-        //houseEdificioB.setAddress(address);
+        Address address = new Address("", null, null);
+        houseEdificioB = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice, address);
+        houseService.saveHouse(houseEdificioB);
 
 
         // READINGS

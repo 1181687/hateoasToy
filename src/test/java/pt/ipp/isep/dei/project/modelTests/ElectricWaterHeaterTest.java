@@ -48,10 +48,9 @@ public class ElectricWaterHeaterTest {
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
         int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
         List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
-        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
         Location houseLocation = new Location(41.178553, -8.608035, 111);
         Address address = new Address("4200-072", houseLocation, insertedGeoArea);
-        this.house.setAddress(address);
+        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice, address);
 
         // Rooms
         Dimension dim = new Dimension(3, 5, 6);
@@ -101,7 +100,7 @@ public class ElectricWaterHeaterTest {
 
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getNominalPowerTest() {
         //Arrange
         double expectedResult = 700.0;
@@ -125,7 +124,7 @@ public class ElectricWaterHeaterTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getNameTest() {
         // Arrange
         String expectedResult = "Bosch Tronic 3000";
@@ -161,7 +160,7 @@ public class ElectricWaterHeaterTest {
         assertEquals(expectedResult, result, 0.000001);
     }
 
-    /*@Test
+    @Test
     public void setNameWithSameNameTest() {
         Throwable exception = assertThrows(RuntimeException.class, () -> electricWaterHeater.setName("Bosch Tronic 3000"));
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
@@ -171,7 +170,7 @@ public class ElectricWaterHeaterTest {
     public void setNameAlreadyInListTest() {
         Throwable exception = assertThrows(RuntimeException.class, () -> electricWaterHeater.setName("Bosch Tronic 2000"));
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
-    }*/
+    }
 
     @Test
     public void setNameFalseTest() {
@@ -182,7 +181,7 @@ public class ElectricWaterHeaterTest {
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setNameTrueTest() {
         // Act
         boolean result = electricWaterHeater.setName("Bosch Tronic 4000");
@@ -191,7 +190,7 @@ public class ElectricWaterHeaterTest {
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setLocationFalseTest() {
         // Act
         boolean result = electricWaterHeater.setLocation(kitchen);
@@ -200,7 +199,7 @@ public class ElectricWaterHeaterTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setLocationTrueTest() {
         // Act
         boolean result = electricWaterHeater.setLocation(laundry);
@@ -235,7 +234,7 @@ public class ElectricWaterHeaterTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getAttributesToStringTest() {
         // Arrange
         String expectedResult = "1 - Name: Bosch Tronic 3000\n" +
@@ -248,7 +247,7 @@ public class ElectricWaterHeaterTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setAttributesDevTypeTrue() {
         //Act
         boolean result = this.electricWaterHeater.setAttributesDevType("Hot-Water Temperature", 50);
@@ -256,7 +255,7 @@ public class ElectricWaterHeaterTest {
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setAttributesDevTypeFalse() {
         //Act
         boolean result = this.electricWaterHeater.setAttributesDevType("Hot-Water Temperature", 55);
@@ -264,7 +263,7 @@ public class ElectricWaterHeaterTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void hashCodeTest() {
         // Arrange
         int expectedResult = Objects.hash(electricWaterHeater.getName());
@@ -276,7 +275,7 @@ public class ElectricWaterHeaterTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void equalsDifferentObjectTest() {
         // Arrange
         Object object = new Object();
@@ -300,7 +299,7 @@ public class ElectricWaterHeaterTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getNameToStringTest() {
         // Arrange
         String expectedResult = "Device: Bosch Tronic 3000, located in room: Kitchen\n";
@@ -312,7 +311,7 @@ public class ElectricWaterHeaterTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getTotalEnergyConsumptionInAnIntervalWithoutSolutionsTest() {
         // Arrange
         double expectedResult = 0;
@@ -327,7 +326,7 @@ public class ElectricWaterHeaterTest {
         assertEquals(expectedResult, result, 0.000001);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getTotalEnergyConsumptionInAnIntervalWithOneSolutionTest() {
         // Arrange
         double expectedResult = 7;
@@ -342,7 +341,7 @@ public class ElectricWaterHeaterTest {
         assertEquals(expectedResult, result, 0.000001);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getTotalEnergyConsumptionInAnIntervalWithThreeSolutionsTest() {
         // Arrange
         double expectedResult = 15;
@@ -357,7 +356,7 @@ public class ElectricWaterHeaterTest {
         assertEquals(expectedResult, result, 0.000001);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getDeactivationDate() {
         // arrange
         LocalDateTime date = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
@@ -368,7 +367,7 @@ public class ElectricWaterHeaterTest {
         assertEquals(date, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getDateDeactivateDeviceToString() {
         // arrange
         String date = LocalDate.now().toString() + " " + LocalTime.now().toString().substring(0, 5);
@@ -380,7 +379,7 @@ public class ElectricWaterHeaterTest {
     }
 
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getIsActiveTrueTest() {
         // Act
         boolean result = electricWaterHeater.getIsActive();
@@ -416,7 +415,7 @@ public class ElectricWaterHeaterTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getSpecsListTest() {
         // Assert
         List<String> expectedResult = new ArrayList<>();
@@ -443,7 +442,7 @@ public class ElectricWaterHeaterTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testSetDeactivateDevice_true() {
         boolean expectedResult = true;
         boolean result = electricWaterHeater.setDeactivateDevice();
