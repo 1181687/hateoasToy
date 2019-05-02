@@ -35,9 +35,9 @@ public class GeographicalAreaMapperTest {
         porto = new GeographicalArea(portoDTO.getId(), portoDTO.getDescription(), city, location, shape);
     }
 
-    /**
+ /*   *//**
      * method that transforms a map to DTO
-     */
+     *//*
     @Test
     public void testMapToDTO_mapToDTO_GeoAreaDTO() {
         // Arrange
@@ -79,12 +79,12 @@ public class GeographicalAreaMapperTest {
         assertEquals(width, result.getAreaShape().getWidth(), 0.00001);
         assertEquals(length, result.getAreaShape().getLength(), 0.00001);
 
-    }
+    }*/
 
-    /**
+/*    *//**
      * Test that tries to create a GeographicalArea based on a GeographicalAreaDTO, which results in a
      * new GeographicalArea with the information contained by the GeographicalAreaDTO.
-     */
+     *//*
     @Test
     public void testMapToEntity_tryingToCreateBasedOnAGeoAreaDTO_ShouldReturnTrue() {
         // Act
@@ -92,7 +92,7 @@ public class GeographicalAreaMapperTest {
 
         // Assert
         assertTrue(result);
-    }
+    }*/
 
     /**
      * Test that tries to create a GeographicalArea based on a null Object, which results in a non creation.
