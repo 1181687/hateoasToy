@@ -6,6 +6,7 @@ import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorId;
+import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 
 import java.time.LocalDateTime;
@@ -39,17 +40,16 @@ class GeoAreaSensorTest {
     @Test
     public void setAndGetId() {
         //Arrange
-        String id = "GeoAreaSensor";
-        String expectedResult = "GeoAreaSensor";
+        SensorId id = new SensorId("GeoAreaSensor");
         //Act
-        this.temperatureSensor.setId(new SensorId(id));
+        this.temperatureSensor.setId(id);
         SensorId result = this.temperatureSensor.getId();
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(id, result);
     }
 
     @Test
-    void getSensorName() {
+    public void getSensorName() {
         // Arrange
         String expectedResult = "A123";
         //Act
@@ -60,55 +60,114 @@ class GeoAreaSensorTest {
     }
 
     @Test
-    void getStartingDate() {
+    public void getStartingDate() {
+        // Arrange
+        LocalDateTime expectedResult = LocalDateTime.of(1991, 11, 2, 21, 10, 25);
+        // Act
+        LocalDateTime result = this.temperatureSensor.getStartingDate();
+        // Assert
+        assertEquals(expectedResult, result);
     }
 
     @Test
-    void getSensorType() {
+    public void getSensorType() {
+        // Arrange
+        SensorTypeId expectedResult = new SensorTypeId("Temperature");
+        // Act
+        SensorTypeId result = this.temperatureSensor.getSensorType();
+        // Assert
+        assertEquals(expectedResult, result);
     }
 
     @Test
-    void getLocation() {
+    public void getLocation() {
+        //Arrange
+        Location expectedResult = new Location(123, 345, 50);
+        //Act
+        Location result = this.temperatureSensor.getLocation();
+        //Assert
+        assertEquals(expectedResult, result);
     }
+    
 
     @Test
     void getUnits() {
+
+
     }
 
     @Test
     void setUnits() {
+
+
     }
 
     @Test
     void isActive() {
+
+
     }
 
     @Test
     void deactivateDevice() {
+
+
     }
 
     @Test
-    void equals1() {
+    public void testarEqualsSame() {
+        //Arrange
+        boolean expectedResult = true;
+        //Act
+        boolean result = this.temperatureSensor.equals(this.temperatureSensor);
+        //Assert
+        assertEquals(expectedResult, result);
     }
 
     @Test
-    void hashCode1() {
+    public void testarHashCode() {
+        // Arrange
+        int expectedResult = 1;
+        // Act
+        int result = this.temperatureSensor.hashCode();
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testarEqualsFalse() {
+        //Arrange
+        SensorTypeId sensorTypeId = new SensorTypeId("Temperatura");
+        SensorType sensorType = new SensorType(sensorTypeId);
+        boolean expectedResult = false;
+        //Act
+        boolean result = this.temperatureSensor.equals(sensorType);
+        //Assert
+        assertEquals(expectedResult, result);
     }
 
     @Test
     void distanceBetweenTwoLocations() {
+
+
     }
 
     @Test
     void getMeasurementValueBetweenDates() {
+
+
     }
 
     @Test
     void existReadingsBetweenDates() {
+
+
     }
 
     @Test
     void checkMeasurementExistenceBetweenDates() {
+
+
     }
 
     @Test
