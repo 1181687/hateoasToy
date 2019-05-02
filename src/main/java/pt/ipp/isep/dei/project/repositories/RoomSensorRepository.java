@@ -4,11 +4,11 @@ import org.springframework.data.repository.CrudRepository;
 import pt.ipp.isep.dei.project.model.house.RoomId;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorId;
-import pt.ipp.isep.dei.project.model.sensor.SensorType;
+import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 
 public interface RoomSensorRepository extends CrudRepository<RoomSensor, SensorId> {
 
-    boolean existsRoomSensorsByRoomIdAndSensorType (RoomId roomId, SensorType sensorType);
+    boolean existsRoomSensorsByRoomIdAndSensorTypeId(RoomId roomId, SensorTypeId sensorTypeId);
 
     RoomSensor findByRoomId (RoomId roomId);
 }
