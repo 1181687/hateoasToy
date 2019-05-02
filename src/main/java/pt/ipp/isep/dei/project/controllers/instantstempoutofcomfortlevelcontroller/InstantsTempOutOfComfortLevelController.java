@@ -70,7 +70,7 @@ public class InstantsTempOutOfComfortLevelController {
         this.roomId= new RoomId(roomId);
     }
 
-    public boolean existSensors (){
+    public boolean existTempSensors() {
         return sensorsService.existSensors(roomId, sensorTypeId);
     }
 
@@ -87,8 +87,8 @@ public class InstantsTempOutOfComfortLevelController {
         return comfortTemp = sensorsService.getComfortTemperature(location, geoAreaId, sensorTypeId, startDate, endDate, category);
     }
 
-    public SensorId getSensorID (){
-        return roomSensorId = sensorsService.getSensorId(roomId);
+    public void setSensorID(String roomId) {
+        this.roomSensorId = sensorsService.getSensorId(roomId);
     }
 
     public List<Reading> getRoomReadings (LocalDate startDate, LocalDate endDate){
@@ -114,6 +114,9 @@ public class InstantsTempOutOfComfortLevelController {
     public List<LocalDate> getDaysWithoutComfortTemp (){
         return sensorsService.getDaysWithoutComfortTemp(comfortTemp);
     }
+
+
+    //public boolean readingsHouseAreaAndRoom
 
 
 
