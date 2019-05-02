@@ -16,7 +16,7 @@ public class GetListOfTypeOfGeoAreaController {
     }
 
     public List<String> getListaAGPorTipo(String tipo) {
-        return this.geographicalAreaService.getListOfGeographicalAreasByType(tipo);
+        return this.geographicalAreaService.getListOfGeoAreasTypeToString(tipo);
     }
 
     public List<String> getListaDosTiposDeAG() {
