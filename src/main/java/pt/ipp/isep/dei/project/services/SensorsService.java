@@ -159,7 +159,7 @@ public class SensorsService {
         return listOfInstantsOutOfComfortLevel;
     }
 
-    public boolean existsInstantsOutOfComfortLevel(Map<LocalDateTime, Double> mapOfInstantsOutOfComfortLevel) {
+    public boolean existInstantsOutOfComfortLevel(Map<LocalDateTime, Double> mapOfInstantsOutOfComfortLevel) {
         return !getInstantListOutOfComfortLevel(mapOfInstantsOutOfComfortLevel).isEmpty();
     }
 
@@ -176,11 +176,19 @@ public class SensorsService {
     }
 
     public boolean existSensors (RoomId roomId, SensorTypeId sensorTypeId){
-        return this.roomSensorService.existSensors(roomId, sensorTypeId);
+        return roomSensorService.existSensors(roomId, sensorTypeId);
     }
 
     public SensorId getSensorId (RoomId roomId){
-        return this.roomSensorService.getSensorId(roomId);
+        return roomSensorService.getSensorId(roomId);
+    }
+
+    public List<LocalDate> getDaysWithoutComfortTemp(Map<LocalDate, List<Double>> mapComfortDailyTemperature){
+        return geoAreaSensorService.getDaysWithoutComfortTemp(mapComfortDailyTemperature);
+    }
+
+    public boolean existsDaysWithoutComfortTemp(Map<LocalDate, List<Double>> mapComfortDailyTemperature){
+        return  geoAreaSensorService.existsDaysWithoutComfortTemp(mapComfortDailyTemperature);
     }
 
 

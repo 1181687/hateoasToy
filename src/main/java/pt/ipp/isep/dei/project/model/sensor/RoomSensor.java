@@ -180,4 +180,8 @@ public class RoomSensor implements Root {
         return readingsBetweenDates;
     }
 
+    public boolean existReadingsBetweenDates(LocalDate startDate, LocalDate endDate) {
+        return getReadings(startDate, endDate) != null;
+    }
+
 }

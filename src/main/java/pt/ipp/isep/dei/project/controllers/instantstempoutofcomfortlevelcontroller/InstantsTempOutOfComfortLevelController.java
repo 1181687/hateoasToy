@@ -25,10 +25,11 @@ public class InstantsTempOutOfComfortLevelController {
     private SensorTypeId sensorTypeId = new SensorTypeId("Temperature");
     private Address houseId;
     private RoomId roomId;
+    private SensorId roomSensorId;
     private Location location;
     private GeoAreaId geoAreaId;
     private Map<LocalDate, List<Double>> comfortTemp;
-    private Map<LocalDateTime, Double> instantsOutOfComfortTemp;
+    private Map<LocalDateTime, Double> mapInstantsOutOfComfortTemp;
     private List<Reading> roomReadings;
     private int category;
     private int option;
@@ -89,14 +90,32 @@ public class InstantsTempOutOfComfortLevelController {
     }
 
     public SensorId getSensorID (){
-        return sensorsService.getSensorId(roomId);
+        return roomSensorId = sensorsService.getSensorId(roomId);
     }
 
-    
+    public List<Reading> getRoomReadings (LocalDate startDate, LocalDate endDate){
+        return roomReadings = sensorsService.getRoomReadings(startDate, endDate, roomSensorId);
+    }
 
+    public Map<LocalDateTime, Double> getInstantsOutOfComfortTemperature (){
+        return mapInstantsOutOfComfortTemp = sensorsService.getInstantsOutOfComfortTemperature(comfortTemp, roomReadings, option);
+    }
 
+    public boolean existInstantsOutOfComfortLevel (){
+        return sensorsService.existInstantsOutOfComfortLevel(mapInstantsOutOfComfortTemp);
+    }
 
+    public List<LocalDateTime> getInstantListOutOfComfortLevel (){
+        return listOfInstantsOutOfComfortTemp = sensorsService.getInstantListOutOfComfortLevel(mapInstantsOutOfComfortTemp);
+    }
 
+    public boolean existsDaysWithoutComfortTemp (){
+        return sensorsService.existsDaysWithoutComfortTemp(comfortTemp);
+    }
+
+    public List<LocalDate> getDaysWithoutComfortTemp (){
+        return sensorsService.getDaysWithoutComfortTemp(comfortTemp);
+    }
 
 
 
