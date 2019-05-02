@@ -166,11 +166,11 @@ public class SensorsService {
      *
      * @param startDate initial LocalDate
      * @param endDate   final LocalDate
-     * @param sensorId  SensorId
+     * @param roomSensorId  SensorId
      * @return List of Reading
      */
-    public List<Reading> getRoomReadings(LocalDate startDate, LocalDate endDate, SensorId sensorId) {
-        return this.roomSensorService.getReadings(startDate, endDate, sensorId);
+    public List<Reading> getRoomReadings(LocalDate startDate, LocalDate endDate, SensorId roomSensorId) {
+        return this.roomSensorService.getReadings(startDate, endDate, roomSensorId);
     }
 
 }
