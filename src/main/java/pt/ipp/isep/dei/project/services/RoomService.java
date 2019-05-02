@@ -18,6 +18,10 @@ public class RoomService {
         return roomRepository.findAll();
     }
 
+    public boolean isListOfRoomsEmpty(){
+        return getAllRooms().isEmpty();
+    }
+
     /**
      * Method that checks if a room exists in the repo by its id.
      *

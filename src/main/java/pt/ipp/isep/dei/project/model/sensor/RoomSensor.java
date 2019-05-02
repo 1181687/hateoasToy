@@ -172,11 +172,16 @@ public class RoomSensor implements Root {
     public List<Reading> getReadings(LocalDate startDate, LocalDate endDate) {
         List<Reading> readingsBetweenDates = new ArrayList<>();
         for (Reading reading : this.readings) {
-            if ((reading.getDateTime().toLocalDate().isEqual(startDate) || reading.getDateTime().toLocalDate().isAfter(startDate)) && (reading.getDateTime().toLocalDate().isEqual(endDate) || reading.getDateTime().toLocalDate().isBefore(endDate))) {
+            if ((reading.getDateTime().toLocalDate().isEqual(startDate) || reading.getDateTime().toLocalDate().isAfter(startDate))
+                    && (reading.getDateTime().toLocalDate().isEqual(endDate) || reading.getDateTime().toLocalDate().isBefore(endDate))) {
                 readingsBetweenDates.add(reading);
             }
         }
         return readingsBetweenDates;
+    }
+
+    public boolean existReadingsBetweenDates(LocalDate startDate, LocalDate endDate) {
+        return getReadings(startDate, endDate) != null;
     }
 
 }

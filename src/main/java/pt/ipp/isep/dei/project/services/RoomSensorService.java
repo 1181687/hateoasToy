@@ -2,9 +2,12 @@ package pt.ipp.isep.dei.project.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pt.ipp.isep.dei.project.model.house.RoomId;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorId;
+import pt.ipp.isep.dei.project.model.sensor.SensorType;
+import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 import pt.ipp.isep.dei.project.repositories.RoomSensorRepository;
 
 import java.time.LocalDate;
@@ -56,4 +59,14 @@ public class RoomSensorService {
         return this.roomSensorRepo.findById(sensorId).orElseGet(null).getReadings(startDate, endDate);
     }
 
+
+    public boolean existSensors (RoomId roomId, SensorTypeId sensorTypeId){
+        SensorType sensorType = new SensorType(sensorTypeId);
+        return this.roomSensorRepo.existsRoomSensorsByRoomIdAndSensorType(roomId, sensorType);
+    }
+
+    public SensorId getSensorId (RoomId roomId){
+        RoomSensor roomSensor = this.roomSensorRepo.findByRoomId(roomId);
+        return roomSensor.getId();
+    }
 }

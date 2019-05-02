@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaId;
+import pt.ipp.isep.dei.project.model.house.RoomId;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorId;
+import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 
 import java.time.LocalDate;
@@ -157,7 +159,7 @@ public class SensorsService {
         return listOfInstantsOutOfComfortLevel;
     }
 
-    public boolean existsInstantsOutOfComfortLevel(Map<LocalDateTime, Double> mapOfInstantsOutOfComfortLevel) {
+    public boolean existInstantsOutOfComfortLevel(Map<LocalDateTime, Double> mapOfInstantsOutOfComfortLevel) {
         return !getInstantListOutOfComfortLevel(mapOfInstantsOutOfComfortLevel).isEmpty();
     }
 
@@ -172,5 +174,22 @@ public class SensorsService {
     public List<Reading> getRoomReadings(LocalDate startDate, LocalDate endDate, SensorId roomSensorId) {
         return this.roomSensorService.getReadings(startDate, endDate, roomSensorId);
     }
+
+    public boolean existSensors (RoomId roomId, SensorTypeId sensorTypeId){
+        return roomSensorService.existSensors(roomId, sensorTypeId);
+    }
+
+    public SensorId getSensorId (RoomId roomId){
+        return roomSensorService.getSensorId(roomId);
+    }
+
+    public List<LocalDate> getDaysWithoutComfortTemp(Map<LocalDate, List<Double>> mapComfortDailyTemperature){
+        return geoAreaSensorService.getDaysWithoutComfortTemp(mapComfortDailyTemperature);
+    }
+
+    public boolean existsDaysWithoutComfortTemp(Map<LocalDate, List<Double>> mapComfortDailyTemperature){
+        return  geoAreaSensorService.existsDaysWithoutComfortTemp(mapComfortDailyTemperature);
+    }
+
 
 }
