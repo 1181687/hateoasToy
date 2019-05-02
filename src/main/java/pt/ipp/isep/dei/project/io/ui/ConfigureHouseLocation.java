@@ -4,6 +4,8 @@ import pt.ipp.isep.dei.project.controllers.ConfigureHouseLocationController;
 import pt.ipp.isep.dei.project.model.LocationDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.house.AddressDTO;
+import pt.ipp.isep.dei.project.model.house.House;
+import pt.ipp.isep.dei.project.services.GeographicalAreaService;
 import pt.ipp.isep.dei.project.services.HouseService;
 
 import java.util.List;
@@ -21,8 +23,8 @@ public class ConfigureHouseLocation {
     private List<GeographicalAreaDTO> geoAreaDTOS;
 
 
-    public ConfigureHouseLocation(HouseService houseService) {
-        this.controller = new ConfigureHouseLocationController(houseService);
+    public ConfigureHouseLocation(House house, HouseService houseService, GeographicalAreaService geographicalAreaService) {
+        this.controller = new ConfigureHouseLocationController(house, houseService, geographicalAreaService);
         this.geoAreaDTOS = this.controller.getGeoAreaList();
     }
 
@@ -32,7 +34,6 @@ public class ConfigureHouseLocation {
      */
     public void run() {
 
-        GeographicalAreaDTO geoAreaDTO = new GeographicalAreaDTO();
         AddressDTO addressDTO = new AddressDTO();
 
         if (controller.isGeoAreaRepositoryEmpty()) {
@@ -64,8 +65,8 @@ public class ConfigureHouseLocation {
         String label5 = "In which geographical area is the House included?\n" + listOfGeoAreaDTO;
         int uiIDGeoArea = InputValidator.getIntRange(label5, 1, this.getGeoAreaListSize()) - 1;
 
-        String Id = this.geoAreaDTOS.get(uiIDGeoArea).getId();
-        geoAreaDTO.setId(Id);
+        GeographicalAreaDTO geographicalAreaDTO = this.geoAreaDTOS.get(uiIDGeoArea);
+        addressDTO.setInsertedGeoArea(geographicalAreaDTO);
 
 
         controller.configureHouseLocation(addressDTO);

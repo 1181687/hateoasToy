@@ -1,25 +1,42 @@
 package pt.ipp.isep.dei.project.model.house;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import pt.ipp.isep.dei.project.model.Location;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaId;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.roles.ValueObject;
+import pt.ipp.isep.dei.project.services.GeographicalAreaService;
 
-import javax.persistence.Embeddable;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Embeddable
 public class Address implements ValueObject, Serializable {
     private static final long serialVersionUID = 1L;
+    @Column(name = "ADDRESS")
     private String completeAddress;
-    @Transient
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "latitude",
+                    column = @Column(name = "HOUSE_LATITUDE")),
+            @AttributeOverride(name = "longitude",
+                    column = @Column(name = "HOUSE_LONGITUDE")),
+            @AttributeOverride(name = "elevation",
+                    column = @Column(name = "HOUSE_ELEVATION"))
+    })
     private Location location;
+    @Embedded
+    private GeoAreaId houseAreaId;
+
+    @Autowired
     @Transient
-    private GeographicalArea insertedGeoArea;
+    private GeographicalAreaService service;
 
 
     /**
      * constructor of Address that receives a completeAddress and a location
+     *
      * @param completeAddress
      * @param location
      * @param insertedGeoArea
@@ -27,7 +44,9 @@ public class Address implements ValueObject, Serializable {
     public Address(String completeAddress, Location location, GeographicalArea insertedGeoArea) {
         this.completeAddress = completeAddress;
         this.location = location;
-        this.insertedGeoArea = insertedGeoArea;
+        if (Objects.nonNull(insertedGeoArea)) {
+            this.houseAreaId = insertedGeoArea.getId();
+        }
     }
 
     protected Address() {
@@ -45,6 +64,7 @@ public class Address implements ValueObject, Serializable {
     /**
      * Equals method to determine if two Addresses are equal.
      * They are equals if all atributtes (completeAddress and location) are equal.
+     *
      * @param obj
      * @return boolean
      */
@@ -59,11 +79,12 @@ public class Address implements ValueObject, Serializable {
         Address address = (Address) obj;
         return address.completeAddress.equals(this.completeAddress)
                 && address.location.equals(this.location)
-                && address.insertedGeoArea.equals(this.insertedGeoArea);
+                && address.houseAreaId.equals(this.houseAreaId);
     }
 
     /**
      * Get the Location on the Address.
+     *
      * @return a location
      */
     public Location getLocation() {
@@ -76,7 +97,7 @@ public class Address implements ValueObject, Serializable {
      * @return
      */
     public GeographicalArea getInsertedGeoArea() {
-        return insertedGeoArea;
+        return service.getGeoAreaById(houseAreaId.getId());
     }
 
     /**
@@ -85,7 +106,7 @@ public class Address implements ValueObject, Serializable {
      * @param geoArea House area.
      */
     public void setInsertedGeoArea(GeographicalArea geoArea) {
-        insertedGeoArea = geoArea;
+        houseAreaId = geoArea.getId();
     }
 
     /**

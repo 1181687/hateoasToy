@@ -7,6 +7,7 @@ import org.mockito.MockitoAnnotations;
 import pt.ipp.isep.dei.project.controllers.ConfigureHouseLocationController;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.*;
+import pt.ipp.isep.dei.project.services.GeographicalAreaService;
 import pt.ipp.isep.dei.project.services.HouseService;
 
 import java.util.ArrayList;
@@ -20,13 +21,15 @@ public class ConfigureHouseLocationControllerTest {
 
     @Mock
     private HouseService houseService;
+    @Mock
+    private GeographicalAreaService geographicalAreaService;
 
     private ConfigureHouseLocationController controller;
 
     @BeforeEach
     public void StartUp() {
         MockitoAnnotations.initMocks(this);
-        this.controller = new ConfigureHouseLocationController(houseService);
+        this.controller = new ConfigureHouseLocationController(null, houseService, geographicalAreaService);
     }
 
     @Test
