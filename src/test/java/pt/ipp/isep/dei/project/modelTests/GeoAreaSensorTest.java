@@ -40,12 +40,12 @@ class GeoAreaSensorTest {
     public void setAndGetId() {
         //Arrange
         String id = "GeoAreaSensor";
-        String expectedResult = "GeoAreaSensor";
+        SensorId sensorId = new SensorId(id);
         //Act
-        this.temperatureSensor.setId(new SensorId(id));
-        String result = this.temperatureSensor.getId().getSensorId();
+        this.temperatureSensor.setId(sensorId);
+        SensorId result = this.temperatureSensor.getId();
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(sensorId, result);
     }
 
     @Test

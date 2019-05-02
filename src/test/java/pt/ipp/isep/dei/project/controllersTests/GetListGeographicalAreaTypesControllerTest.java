@@ -2,6 +2,8 @@ package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import pt.ipp.isep.dei.project.controllers.GetListGeoAreaTypesController;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaTypeId;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
@@ -10,21 +12,19 @@ import pt.ipp.isep.dei.project.services.GeoAreaTypeService;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 public class GetListGeographicalAreaTypesControllerTest {
 
     private GetListGeoAreaTypesController controller;
-    //private GeographicalAreaTypeList geographicalAreaTypeList;
-
+    @Mock
     private GeoAreaTypeService geoAreaTypeService;
 
     @BeforeEach
     public void StartUp() {
-        //Geographical Area Type List
-        //this.geographicalAreaTypeList = new GeographicalAreaTypeList();
+        MockitoAnnotations.initMocks(this);
 
-        //Controller
         this.controller = new GetListGeoAreaTypesController(geoAreaTypeService);
     }
 
@@ -35,7 +35,7 @@ public class GetListGeographicalAreaTypesControllerTest {
         GeographicalAreaType type = new GeographicalAreaType(geoAreaTypeId);
         //this.geographicalAreaTypeList.addTypeOfGeoAreaToTheList(type);
         List<String> expectedResult = Arrays.asList("Cidade");
-
+        when(geoAreaTypeService.getListOfGeoAreaTypesToString()).thenReturn(expectedResult);
         //Act
         List<String> result = this.controller.getListaDosTiposDeAG();
 

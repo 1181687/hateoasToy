@@ -80,7 +80,7 @@ public class GeographicalArea implements Root {
             return false;
         }
         GeographicalArea ag = (GeographicalArea) obj;
-        return this.id.equals(ag.id) && this.id.getGeographicalAreaType().equals(ag.id.getGeographicalAreaType()) && this.id.getLocation().equals(ag.id.getLocation());
+        return this.id.equals(ag.getId());
     }
 
     public GeoAreaId getId() {
