@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.project.controllers.instantstempoutofcomfortlevelcontrol
 
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
+import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaId;
 import pt.ipp.isep.dei.project.model.house.RoomDTO;
 import pt.ipp.isep.dei.project.model.house.RoomId;
@@ -80,8 +81,8 @@ public class InstantsTempOutOfComfortLevelController {
     }
 
     public Map<LocalDateTime, Double> getInstantsOutOfComfortTemperature(LocalDate startDate, LocalDate endDate) {
-        List<Reading> roomReadings = this.sensorsService.getRoomReadings(startDate, endDate, this.roomSensorId);
-        return mapInstantsOutOfComfortTemp = sensorsService.getInstantsOutOfComfortTemperature(comfortTemp, roomReadings, option);
+        List<ReadingDTO> roomReadingsDTO = this.sensorsService.getRoomReadingsDTO(startDate, endDate, this.roomSensorId);
+        return mapInstantsOutOfComfortTemp = sensorsService.getInstantsOutOfComfortTemperature(comfortTemp, roomReadingsDTO, option);
     }
 
     public List<LocalDateTime> getInstantListOutOfComfortLevel (){
