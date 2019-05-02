@@ -21,6 +21,7 @@ public class AddNewGeographicalAreaControllerTest {
 
     @Mock
     private GeographicalAreaService geographicalAreaService;
+    @Mock
     private GeoAreaTypeService geoAreaTypeService;
 
     private AddNewGeographicalAreaController controller;
