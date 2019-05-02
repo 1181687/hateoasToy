@@ -20,7 +20,6 @@ public class InstantsTempOutOfComfortLevel {
     private List<RoomDTO> roomDTOS;
     private String bellowOrAbove;
 
-
     public InstantsTempOutOfComfortLevel(HouseService houseService, SensorsService sensorsService, RoomService roomService) {
         controller = new InstantsTempOutOfComfortLevelController(houseService, sensorsService, roomService);
         this.roomDTOS = controller.getAllRoomsDTO();
@@ -132,18 +131,24 @@ public class InstantsTempOutOfComfortLevel {
     }
 
 
-    public void run(int option) {
+    public void run() {
 
         //option us440 or us445
+        String label100 = "Choose one option:\n1- Get instants in which the temperature fell below the comfort level.\n 2- Get instants in which the temperature rose above the comfort level.\n\n";
+        int usOption = InputValidator.getIntRange(label100, 0, 2);
 
-        if (option == 1) {
+        if (usOption == 0) {
+            return;
+        }
+
+        if (usOption == 1) {
             bellowOrAbove = "bellow";
         }
-        if (option == 2) {
+        if (usOption == 2) {
             bellowOrAbove = "above";
         }
 
-        controller.setCategory(option);
+        controller.setCategory(usOption - 1);
 
         //category
         String label99 = "Choose the category to get the instants(options: 1, 2 or 3)";
