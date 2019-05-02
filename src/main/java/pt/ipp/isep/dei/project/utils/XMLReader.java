@@ -232,7 +232,8 @@ public class XMLReader implements ProjectFileReader {
             }
 
         } catch (SAXException | ParserConfigurationException | IOException e1) {
-            e1.printStackTrace();
+            //e1.printStackTrace();
+            return null;
 
         }
         return objectList;

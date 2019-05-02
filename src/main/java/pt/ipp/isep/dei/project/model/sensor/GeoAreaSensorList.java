@@ -254,7 +254,7 @@ public class GeoAreaSensorList {
      */
     public boolean checkIfSensorExistsById(String sensorId) {
         for (GeoAreaSensor sensor : listOfSensors) {
-            if (sensor.getId().equals(sensorId)) {
+            if (sensor.getId().getSensorId().equals(sensorId)) {
                 return true;
             }
         }

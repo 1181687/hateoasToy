@@ -5,8 +5,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import pt.ipp.isep.dei.project.controllers.GetListGeoAreaTypesController;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaTypeId;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.services.GeoAreaTypeService;
 
 import java.util.Arrays;
@@ -31,9 +29,6 @@ public class GetListGeographicalAreaTypesControllerTest {
     @Test
     public void testarGetListaTiposDeAG() {
         //Arrange
-        GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("Cidade");
-        GeographicalAreaType type = new GeographicalAreaType(geoAreaTypeId);
-        //this.geographicalAreaTypeList.addTypeOfGeoAreaToTheList(type);
         List<String> expectedResult = Arrays.asList("Cidade");
         when(geoAreaTypeService.getListOfGeoAreaTypesToString()).thenReturn(expectedResult);
         //Act
@@ -46,16 +41,9 @@ public class GetListGeographicalAreaTypesControllerTest {
     @Test
     public void testarGetListaDosTiposDeAGAdicionandoMaisDoQueUmTipo() {
         //Arrange
-        GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("Cidade");
-        GeographicalAreaType type1 = new GeographicalAreaType(geoAreaTypeId);
-        GeoAreaTypeId geoAreaTypeId1 = new GeoAreaTypeId("Freguesia");
-        GeographicalAreaType type2 = new GeographicalAreaType(geoAreaTypeId1);
-
-        //this.geographicalAreaTypeList.addTypeOfGeoAreaToTheList(type1);
-       // this.geographicalAreaTypeList.addTypeOfGeoAreaToTheList(type2);
 
         List<String> expectedResult = Arrays.asList("Cidade", "Freguesia");
-
+        when(geoAreaTypeService.getListOfGeoAreaTypesToString()).thenReturn(expectedResult);
         //Act
         List<String> result = this.controller.getListaDosTiposDeAG();
 
@@ -67,6 +55,7 @@ public class GetListGeographicalAreaTypesControllerTest {
     public void testarGetListaDosTiposDeAGASemAdicionarNenhumTipo() {
         //Arrange
         List<String> expectedResult = Arrays.asList();
+        when(geoAreaTypeService.getListOfGeoAreaTypesToString()).thenReturn(expectedResult);
 
         //Act
         List<String> result = this.controller.getListaDosTiposDeAG();

@@ -109,7 +109,9 @@ public class RegularUser {
             if (option == 1) {
                 GetNominalPowerOfARoom ui230 = new GetNominalPowerOfARoom(houseService);
                 ui230.run();
+                break;
             }
+            option = Menu.regularUserPowerConsuptionManagement();
         }
     }
 }
