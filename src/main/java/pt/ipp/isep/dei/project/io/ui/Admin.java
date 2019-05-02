@@ -158,7 +158,7 @@ public class Admin {
                     ui720.run();
                     break;
                 case 13:
-                    ConfigureHouseFromAFile ui13 = new ConfigureHouseFromAFile(house, houseService);
+                    ConfigureHouseFromAFile ui13 = new ConfigureHouseFromAFile(houseService);
                     try {
                         ui13.run();
                     } catch (Exception e) {
