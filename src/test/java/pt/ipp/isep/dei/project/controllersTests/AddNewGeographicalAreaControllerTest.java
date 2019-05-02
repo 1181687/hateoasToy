@@ -64,7 +64,7 @@ public class AddNewGeographicalAreaControllerTest {
         assertFalse(result);
     }
 
-    @Test
+   /* @Test
     public void getGeoAreaTypeList() {
 
         // GeoArea type
@@ -91,7 +91,7 @@ public class AddNewGeographicalAreaControllerTest {
         //assert
         assertEquals(anotherGeoAreaTypeDTO.getGeoAreaType(), geographicalAreaTypeResult.getGeoAreaType());
     }
-
+*/
     @Test
     public void addGeographicalArea_True() {
         //Arrange

@@ -1,3 +1,4 @@
+/*
 package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -52,6 +53,7 @@ public class GetListOfSensorsAndDevicesRoomControllerTest {
 
         this.controller = new GetListOfSensorsAndDevicesRoomController(house);
     }
+*/
 /*
     @Test
     public void getSensorsListContentOfARoomTest() {
@@ -111,7 +113,8 @@ public class GetListOfSensorsAndDevicesRoomControllerTest {
 
         // Assert
         assertFalse(result);
-    }*/
+    }*//*
+
 
     @Test
     public void getDeviceListContentTest() {
@@ -281,4 +284,4 @@ public class GetListOfSensorsAndDevicesRoomControllerTest {
         //assert
         assertEquals(expectResult, result);
     }
-}
+}*/
