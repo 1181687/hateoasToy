@@ -78,12 +78,12 @@ public class ConfigureHouseLocationControllerTest {
 
         when(this.houseService.getAllGeoAreas()).thenReturn(geoAreaList);
 
-
         // Geo Area DTO list
         List<GeographicalAreaDTO> geographicalAreaDTOList = new ArrayList<>();
         GeographicalAreaDTO geographicalAreaDTO = GeographicalAreaMapper.mapToDTO(geographicalArea);
         geographicalAreaDTOList.add(geographicalAreaDTO);
 
+        when(this.geographicalAreaService.getAllGeoAreas()).thenReturn(geoAreaList);
         List<GeographicalAreaDTO> result = this.controller.getGeoAreaList();
 
         GeographicalAreaDTO geoAreaDTO = geographicalAreaDTOList.get(0);
