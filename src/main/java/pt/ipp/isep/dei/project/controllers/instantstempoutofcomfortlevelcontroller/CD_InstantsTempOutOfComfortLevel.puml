@@ -30,6 +30,17 @@ HouseService "1" --> "1" "<<HouseRepository>>"
 RoomService "1" -> "<<RoomRepository>>"
 House "1" --> "1" Address
 Address "1" --> "1" Location
+SensorsService "1" -> "1" ReadingMapper: uses
+ReadingMapper "1" -> "1" Reading: creates
+ReadingMapper "1" --> "1" ReadingDTO: creates
+RoomService "1" -left-> "1" RoomMapper: uses
+RoomMapper "1" -left-> "1" RoomDTO: creates
+InstantsTempOutOfComfortLevelController "1" -right-> "1" LocationMapper: uses
+LocationMapper "1" -up> "1" LocationDTO: creates
+InstantsTempOutOfComfortLevelController "1" -right-> "1" GeoAreaIdMapper: uses
+GeoAreaIdMapper "1" -> "1" GeoAreaIdDTO: creates
+GeoAreaIdDTO "1" -> "1" LocationDTO
+
 
 
 Class InstantsTempOutOfComfortLevelUI {
@@ -164,19 +175,6 @@ Class LocationMapper {
 + mapToEntity ()
 }
 
-Class GeoAreaIdDTO {
-- String id
-- LocationDTO locationDTO
-- String geoAreaType
-+ get ()
-+ set()
-}
-
-Class GeoAreaIdMapper {
-+ mapToDTO ()
-+ mapToEntity ()
-}
-
 Class ReadingDTO {
 - String id
 - double value
@@ -184,6 +182,17 @@ Class ReadingDTO {
 - String units
 + get ()
 + set()
+}
+
+Class GeoAreaIdDTO {
+- String id
+- String geoAreaType
++getId()
+}
+
+Class GeoAreaIdMapper {
++ mapToDTO ()
++ mapToEntity ()
 }
 
 Class ReadingMapper {
