@@ -15,12 +15,24 @@ General Criteria:
 - All code, comments and documentation are in proper English.
 
 Specific Criteria:
-- given -
-- when -
+- given - As a Power User or as a Room Owner, I want to have a list of the instants in which the temperature fell
+below the comfort level in a given time interval and category
+- when - The user chooses the Option 3 "Power User" or 4 "Room Owner"
+
+Then the option 1- Get instants in which the temperature fell below the comfort level.
+
+And then selects the option - Choose the category of comfort temperature:
+1- Category I.
+2- Category II.
+3- Category III.
+
+The the user selects the option "Choose the room you want to get the instants:" and chooses the room he wants
+Finally the following options appear:
+
+"Please insert the first date of the period (yyyy-MM-dd):" and the user inserts a start date;
+"Please insert the second date of the period (yyyy-MM-dd):" and the user inserts an end date;
+
 - then:
-
-- but -
-
 
 
 Test Criteria:
@@ -29,6 +41,33 @@ Test Criteria:
 
 
 Acceptance Tests:
+
+
+// Measurements:
+"There weren't enough measurements in that period, to calculate the instants." - If there are no readings in house area
+or in the room
+"There weren't enough measurements to calculate the instants during.. [specified period] - Not enough measurements
+
+
+// Rooms
+"There are no rooms in the house. Please create a new room." - room list is empty
+
+
+// Dates
+"That is not a valid period. Please try again. - When the choosen period is not valid (is inserted in the wrong format
+yyyy-mm-dd)
+
+"There are no dates without Comfort temperature level." - When the choosen period does not have dates with comfort
+temperature level
+
+
+// Instants
+"There are no instants out of the Comfort level."
+
+
+//Temperature Sensors
+"There are no temperature sensors available in the choosen room." - no temperature sensors for the choosen room
+
 
 
 ASSUMPTIONS:

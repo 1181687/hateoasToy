@@ -112,7 +112,7 @@ public class Main {
             //UI levels
             Admin admin = new Admin(geographicalAreaService, geoAreaTypeService, sensorTypeList, powerSourceTypeList,
                     houseEdificioB.getRoomList(), houseService, geoAreaSensorService, roomSensorService,
-                    sensorTypeService, roomService);
+                    sensorTypeService, roomService, houseEdificioB);
             RegularUser regularUser = new RegularUser(geoAreaTypeService, geographicalAreaService, sensorTypeList, houseService);
             PowerUser powerUser = new PowerUser(houseService);
             RoomOwner roomOwner = new RoomOwner(houseService);
@@ -173,8 +173,6 @@ public class Main {
         // HOUSE
         Address address = new Address("", null, null);
         houseEdificioB = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice, address);
-        houseService.saveHouse(houseEdificioB);
-
 
         // READINGS
         // Electric Water Heater B107/B109

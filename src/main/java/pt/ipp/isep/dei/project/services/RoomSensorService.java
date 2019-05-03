@@ -75,4 +75,21 @@ public class RoomSensorService {
         RoomSensor roomSensor = this.roomSensorRepo.findByRoomId(roomId);
         return roomSensor.getId();
     }
+
+    public RoomSensor getRoomSensorBy(RoomId roomId, SensorTypeId sensorTypeId) {
+        return this.roomSensorRepo.findByRoomIdAndSensorType(roomId, sensorTypeId);
+    }
+
+    public ReadingDTO getLastMeasurement(RoomId roomId, SensorTypeId sensorTypeId) {
+        RoomSensor roomSensor = getRoomSensorBy(roomId, sensorTypeId);
+        Reading reading = roomSensor.getLastMeasurement();
+        ReadingDTO lastReadingDTO = ReadingMapper.mapToDTO(reading);
+        return lastReadingDTO;
+    }
+
+    public double getMaxMeasurementValueOfADay(RoomId roomId, SensorTypeId sensorTypeId, LocalDate date) {
+        RoomSensor roomSensor = getRoomSensorBy(roomId, sensorTypeId);
+        double maxValue = roomSensor.getMaximumValueOfDay(date);
+        return maxValue;
+    }
 }

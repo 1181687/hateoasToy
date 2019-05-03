@@ -1,20 +1,20 @@
 package pt.ipp.isep.dei.project.controllers.configurehouseinformationfromjsoncontroller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.ProjectFileReader;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
-import pt.ipp.isep.dei.project.model.house.*;
+import pt.ipp.isep.dei.project.model.house.HouseDTO;
+import pt.ipp.isep.dei.project.model.house.RoomDTO;
+import pt.ipp.isep.dei.project.model.house.RoomId;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridDTO;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 import pt.ipp.isep.dei.project.services.HouseService;
 import pt.ipp.isep.dei.project.utils.Utils;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
-import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -23,7 +23,6 @@ public class ConfigureHouseInformationFromJsonController {
 
     @Autowired
     private HouseService houseService;
-    private House house;
     private List<Object> houseObjects;
     private int numberOfNotImportedRooms;
     private int numberOfNotImportedGrids;
@@ -31,8 +30,7 @@ public class ConfigureHouseInformationFromJsonController {
 
     private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
-    public ConfigureHouseInformationFromJsonController(House house, HouseService houseService) {
-        this.house = house;
+    public ConfigureHouseInformationFromJsonController(HouseService houseService) {
         this.houseService = houseService;
     }
 
@@ -74,10 +72,9 @@ public class ConfigureHouseInformationFromJsonController {
         checkForInvalidGridInfo(houseDTO);
         if (!(numberOfNotImportedGrids == houseDTO.getHouseGridDTOList().size()
                 && numberOfNotImportedRooms == houseDTO.getRoomDTOList().size())) {
-            houseService.updateHouseWithRoomsAndGrids(houseDTO, house);
+            houseService.updateHouseWithRoomsAndGrids(houseDTO);
             imported = true;
         }
-        writeAddressToFile(house.getAddress());
         return imported;
     }
 
@@ -131,46 +128,6 @@ public class ConfigureHouseInformationFromJsonController {
                 houseGridDTOIterator.remove();
             }
             houseGridDTO.getRoomDTOS().removeIf(roomDTO -> !roomDTOS.contains(roomDTO));
-        }
-    }
-
-    public void writeAddressToFile(Address address) {
-        Properties prop = new Properties();
-        FileOutputStream fileOut = null;
-        FileInputStream fileIn = null;
-
-        try {
-            fileIn = new FileInputStream("Configuration.properties");
-            prop.load(fileIn);
-
-            prop.setProperty("completeAddress", address.getCompleteAddress());
-
-            Location houseLocation = address.getLocation();
-            if (Objects.nonNull(houseLocation)) {
-                prop.setProperty("latitude", houseLocation.getLatitude().toString());
-                prop.setProperty("longitude", houseLocation.getLongitude().toString());
-                prop.setProperty("altitude", houseLocation.getElevation().toString());
-            }
-
-            GeographicalArea insertedGeoArea = address.getInsertedGeoArea();
-            if (Objects.nonNull(insertedGeoArea)) {
-                prop.setProperty("id", insertedGeoArea.getId().toString());
-            }
-
-            fileOut = new FileOutputStream("Configuration.properties");
-
-            prop.store(fileOut, null);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (Objects.nonNull(fileOut)) {
-                try {
-                    fileOut.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
         }
     }
 }

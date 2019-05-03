@@ -16,20 +16,24 @@ skinparam sequence {
 	ActorFontSize 17
 	ActorFontName Aapex
 }
+autonumber
 
 activate ":SensorsService"
-":SensorsService" -> ":RoomSensorService": getRoomReadingsDTO(startDate, endDate, roomSensorId)
+":SensorsService" -> ":RoomSensorService": getRoomReadingsDTO\n(startDate, endDate, sensorId)
 activate ":RoomSensorService"
+
 ":RoomSensorService" -> ":RoomSensorRepo": getSensorById(sensorId)
+
 activate ":RoomSensorRepo"
 ":RoomSensorService" <-- ":RoomSensorRepo": S
 deactivate ":RoomSensorRepo"
 ":RoomSensorService" -> "S: RoomSensor": getReadings(startDate, endDate)
+activate "S: RoomSensor"
 "S: RoomSensor" -> "S: RoomSensor": getReadings(startDate, endDate)
 deactivate ":RoomSensorRepo"
-":RoomSensorService" <-- "S: RoomSensor": readingsList
+":RoomSensorService" <-- "S: RoomSensor": readingList
 deactivate "S: RoomSensor"
-":RoomSensorService" -> ":RoomSensorService": getReadingsDTO(readingsList)
+":RoomSensorService" -> ":RoomSensorService": getReadingsDTO(readingList)
 ":SensorsService" <-- ":RoomSensorService": readingDTOList
 deactivate ":SensorsService"
 
