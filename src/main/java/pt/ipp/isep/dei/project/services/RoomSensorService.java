@@ -12,6 +12,7 @@ import pt.ipp.isep.dei.project.repositories.RoomSensorRepository;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class RoomSensorService {
@@ -27,7 +28,10 @@ public class RoomSensorService {
     public RoomSensorDTO getSensorById(SensorIdDTO sensorIdDTO) {
         SensorId sensorId = SensorIdMapper.mapToEntity(sensorIdDTO);
         RoomSensor sensor = roomSensorRepo.findById(sensorId).orElse(null);
-        return RoomSensorMapper.mapToDTO(sensor);
+        if(Objects.nonNull(sensor)){
+            return RoomSensorMapper.mapToDTO(sensor);
+        }
+        return null;
     }
 
     /**
