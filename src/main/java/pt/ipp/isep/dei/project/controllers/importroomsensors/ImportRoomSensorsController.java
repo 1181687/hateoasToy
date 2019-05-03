@@ -66,14 +66,14 @@ public class ImportRoomSensorsController {
         List<RoomSensorDTO> sensorDTOs = new ArrayList<>();
         for (Object object : this.DTOs) {
             RoomSensorDTO sensorDTO = (RoomSensorDTO) object;
-            RoomIdDTO roomId = new RoomIdDTO();
-            roomId.setId(sensorDTO.getId());
+            RoomIdDTO roomIdDTO = new RoomIdDTO();
+            roomIdDTO.setId(sensorDTO.getRoomId());
             SensorIdDTO sensorIdDTO = new SensorIdDTO();
             sensorIdDTO.setId(sensorDTO.getId());
-            if (!this.roomService.roomExists(roomId)) {
+            if (!this.roomService.roomExists(roomIdDTO)) {
                 numberOfNotImportedReadings++;
                 String invalidInfo = "id: " + sensorDTO.getId() + ".";
-                LOGGER.log(Level.WARNING, "Sensor was not imported because room " + roomId.getId() + " doesn't exist: " + invalidInfo);
+                LOGGER.log(Level.WARNING, "Sensor was not imported because room " + roomIdDTO.getId() + " doesn't exist: " + invalidInfo);
             } else if (!this.roomSensorService.sensorExists(sensorIdDTO)) {
                 sensorDTOs.add(sensorDTO);
                 imported = true;

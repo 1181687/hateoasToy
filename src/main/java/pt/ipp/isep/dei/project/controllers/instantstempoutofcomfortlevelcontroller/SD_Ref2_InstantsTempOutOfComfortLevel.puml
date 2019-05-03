@@ -1,0 +1,37 @@
+@startuml
+skinparam sequenceMessageAlign center
+skinparam sequence {
+	ArrowColor Black
+	ActorBorderColor DarkBlue
+	LifeLineBorderColor black
+	LifeLineBackgroundColor LightGrey
+
+	ParticipantBorderColor Black
+	ParticipantBackgroundColor LightGrey
+	ParticipantFontStyle Bold
+
+	ActorBackgroundColor DimGrey
+	ActorFontColor DeepSkyBlue
+	ActorFontStyle Bold
+	ActorFontSize 17
+	ActorFontName Aapex
+}
+autonumber
+
+activate ":SensorsService"
+":SensorsService" -> ":SensorsService": S= getNearestSensorWith\nMostRecentReadings\n(geoAreaId, sensorTypeId, location, startDate, endDate)
+ref over ":SensorsService"
+getSensor
+end
+deactivate "S: RoomSensor"
+deactivate "M: Map"
+":SensorsService" -> ":SensorsService": M= getDailyAverage\n(startDate, endDate, S)
+ref over ":SensorsService"
+getDailyAverage
+end
+":SensorsService" -> ":SensorsService": getComfortTemperature(M, category)
+
+
+
+
+@enduml
