@@ -12,7 +12,7 @@ import pt.ipp.isep.dei.project.services.HouseService;
 public class GetMaxTemperatureRoom {
 
 
-    private GetCurrentAndMaxTempRoomController controller;
+    /*private GetCurrentAndMaxTempRoomController controller;
 
     /**
      * constructor that receives a House and a SensorTypeList
@@ -20,7 +20,7 @@ public class GetMaxTemperatureRoom {
      * @param house      House
      * @param sensorTypeId SensorType
      */
-    public GetMaxTemperatureRoom(HouseService houseService, SensorTypeId sensorTypeId) {
+    /*public GetMaxTemperatureRoom(HouseService houseService, SensorTypeId sensorTypeId) {
         this.controller = new GetCurrentAndMaxTempRoomController(houseService, sensorTypeId);
     }
 
@@ -45,6 +45,6 @@ public class GetMaxTemperatureRoom {
             return;
         }
 
-        System.out.println("The maximum temperature is " + temp + "ºC");*/
-    }
+        System.out.println("The maximum temperature is " + temp + "ºC");
+    }*/
 }

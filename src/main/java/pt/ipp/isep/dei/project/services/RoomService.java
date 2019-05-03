@@ -48,5 +48,4 @@ public class RoomService {
         }
         return roomDTOList;
     }
-
 }
