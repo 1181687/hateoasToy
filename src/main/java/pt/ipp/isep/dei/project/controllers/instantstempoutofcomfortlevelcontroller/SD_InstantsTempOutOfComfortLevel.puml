@@ -17,14 +17,15 @@ skinparam sequence {
     ActorFontName Aapex
 }
 
+autonumber
 
 actor RegularUser
 activate RegularUser
-RegularUser -> ":InstantsOutOf\nTempComfortLevel\nUI": 1- instantsOutOfTempComfort
-":InstantsOutOf\nTempComfortLevel\nUI" --> RegularUser: 5 - Ask if Bellow or Above
+RegularUser -> ":InstantsOutOf\nTempComfortLevel\nUI": instantsOutOfTempComfort
+":InstantsOutOf\nTempComfortLevel\nUI" --> RegularUser: Ask if Bellow or Above
 RegularUser -> ":InstantsOutOf\nTempComfortLevel\nUI": x - option
 ":InstantsOutOf\nTempComfortLevel\nUI" -> ":InstantsOutOf\nTempComfortLevel\nController" : x - option
-":InstantsOutOf\nTempComfortLevel\nUI" --> RegularUser: 5 - Ask house category
+":InstantsOutOf\nTempComfortLevel\nUI" --> RegularUser: Ask house category
 RegularUser -> ":InstantsOutOf\nTempComfortLevel\nUI": x - category
 ":InstantsOutOf\nTempComfortLevel\nUI" -> ":InstantsOutOf\nTempComfortLevel\nController" : x - category
 ":InstantsOutOf\nTempComfortLevel\nUI" -> ":InstantsOutOf\nTempComfortLevel\nController" : x - getRoomList()
@@ -38,7 +39,7 @@ deactivate ":InstantsOutOf\nTempComfortLevel\nUI"
 ":InstantsOutOf\nTempComfortLevel\nUI" --> RegularUser: x - Show room list content
 RegularUser -> ":InstantsOutOf\nTempComfortLevel\nUI": x - selected room
 ":InstantsOutOf\nTempComfortLevel\nUI" -> ":InstantsOutOf\nTempComfortLevel\nController" : x - roomId
-":InstantsOutOf\nTempComfortLevel\nUI" --> RegularUser: 5 - Ask for start Date and end Date
+":InstantsOutOf\nTempComfortLevel\nUI" --> RegularUser: Ask for start Date and end Date
 RegularUser -> ":InstantsOutOf\nTempComfortLevel\nUI": x - startDate
 RegularUser -> ":InstantsOutOf\nTempComfortLevel\nUI": x - endDate
 ":InstantsOutOf\nTempComfortLevel\nUI" -> ":InstantsOutOf\nTempComfortLevel\nController" : x - getComfortTemperature(startDate, endDate)
@@ -57,17 +58,8 @@ activate ":SensorsService"
 deactivate ":SensorsService"
 deactivate ":InstantsOutOf\nTempComfortLevel\nController"
 ":InstantsOutOf\nTempComfortLevel\nController" --> ":InstantsOutOf\nTempComfortLevel\nUI" : listOfInstantsOutOfComfortTemp
-":InstantsOutOf\nTempComfortLevel\nUI" --> RegularUser: 5 - List Of Instants \nOut Of Comfort Temperature
+":InstantsOutOf\nTempComfortLevel\nUI" --> RegularUser: List Of Instants \nOut Of Comfort Temperature
 deactivate RegularUser
-
-
-
-
-
-
-
-
-
 
 ref over ":GeographicalArea"
 getLastLowestMaximumReading
