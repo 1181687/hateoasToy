@@ -6,9 +6,7 @@ import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.ReadingMapper;
 import pt.ipp.isep.dei.project.model.house.RoomId;
-import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
-import pt.ipp.isep.dei.project.model.sensor.SensorId;
-import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
+import pt.ipp.isep.dei.project.model.sensor.*;
 import pt.ipp.isep.dei.project.repositories.RoomSensorRepository;
 
 import java.time.LocalDate;
@@ -74,5 +72,14 @@ public class RoomSensorService {
     public SensorId getSensorId (RoomId roomId){
         RoomSensor roomSensor = this.roomSensorRepo.findByRoomId(roomId);
         return roomSensor.getId();
+    }
+
+    public boolean newSensor(RoomSensorDTO roomSensorDTO){
+        RoomSensor roomSensor = RoomSensorMapper.mapToEntity(roomSensorDTO);
+        if (!roomSensorRepo.existsById(roomSensor.getId())){
+            roomSensorRepo.save(roomSensor);
+            return true;
+        }
+        return false;
     }
 }

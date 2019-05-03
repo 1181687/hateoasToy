@@ -66,7 +66,7 @@ public class Admin {
                     ui4.run();
                     break;
                 case 5:
-                    DefineSensorType ui5 = new DefineSensorType(sensorTypeList);
+                    DefineSensorType ui5 = new DefineSensorType(sensorTypeService);
                     ui5.run();
                     break;
                 case 6:
@@ -122,7 +122,7 @@ public class Admin {
                     runHouseGridUI();
                     break;
                 case 4:
-                    AddSensorToRoom ui253 = new AddSensorToRoom(house, roomList, sensorTypeList);
+                    AddSensorToRoom ui253 = new AddSensorToRoom(sensorTypeService, roomService, roomSensorService);
                     ui253.run();
                     break;
                 case 5:

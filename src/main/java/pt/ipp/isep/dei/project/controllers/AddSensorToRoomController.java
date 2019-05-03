@@ -1,26 +1,28 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.Location;
-import pt.ipp.isep.dei.project.model.house.House;
-import pt.ipp.isep.dei.project.model.house.Room;
-import pt.ipp.isep.dei.project.model.house.RoomList;
+import pt.ipp.isep.dei.project.model.house.RoomDTO;
+import pt.ipp.isep.dei.project.model.sensor.RoomSensorDTO;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
-import pt.ipp.isep.dei.project.model.sensor.SensorTypeList;
+import pt.ipp.isep.dei.project.model.sensor.SensorTypeDTO;
+import pt.ipp.isep.dei.project.model.sensor.SensorTypeMapper;
+import pt.ipp.isep.dei.project.services.RoomSensorService;
+import pt.ipp.isep.dei.project.services.RoomService;
+import pt.ipp.isep.dei.project.services.SensorTypeService;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class AddSensorToRoomController {
 
-    private SensorTypeList sensorTypeList;
-    private RoomList roomList;
-    private House house;
-    private Room selectedRoom;
-    private SensorType sensorType;
-    private Location locationOfTheHouse;
+    private SensorTypeService sensorTypeService;
+    private RoomService roomService;
+    private RoomSensorService roomSensorService;
 
-    public AddSensorToRoomController(SensorTypeList sensorTypeList, RoomList roomList, House house) {
-        this.sensorTypeList = sensorTypeList;
-        this.roomList = roomList;
-        this.house = house;
+    public AddSensorToRoomController(SensorTypeService sensorTypeService, RoomService roomService,RoomSensorService roomSensorService) {
+        this.sensorTypeService = sensorTypeService;
+        this.roomService = roomService;
+        this.roomSensorService = roomSensorService;
     }
 
     /**
@@ -28,17 +30,8 @@ public class AddSensorToRoomController {
      *
      * @return the RoomList.
      */
-    public String getRoomListContent() {
-        return this.roomList.getRoomListContent();
-    }
-
-    /**
-     * This method give de position of the room in the rooms list.
-     *
-     * @param position of the room in the list of rooms.
-     */
-    public void getRoomByIndex(int position) {
-        selectedRoom = this.roomList.getRoomFromPosition(position);
+    public List<RoomDTO> getRoomListContent() {
+        return this.roomService.getAllRoomsDTO();
     }
 
     /**
@@ -46,51 +39,21 @@ public class AddSensorToRoomController {
      *
      * @return the sensor type list.
      */
-    public String displayListOfSensorsType() {
-        return this.sensorTypeList.getSensorTypeListToString();
+    public List<SensorTypeDTO> getSensorTypes() {
+        List<SensorTypeDTO> sensorTypeDTOS = new ArrayList<>();
+        for (SensorType type : this.sensorTypeService.getSensorTypeList()) {
+            sensorTypeDTOS.add(SensorTypeMapper.mapToDto(type));
+        }
+        return sensorTypeDTOS;
     }
 
     /**
-     * This method get de position of the sensor type in the list of sensors type.
-     *
-     * @param position of sensors type in the sensors type list.
-     */
-    public void getSensorTypeByIndex(int position) {
-        sensorType = this.sensorTypeList.getSensorTypeByPosition(position);
-    }
-
-    /**
-     * This method get the location of the housegrid.
-     */
-    public void getLocationOfTheHouse() {
-        locationOfTheHouse = house.getLocation();
-    }
-
-    /*    *//**
      * This method create and add a sensor to the list of sensors in the room.
-     * @param name of the new sensor.
-     * @return a new sensor added in the list of sensors in the room.
-     *//*
-    public boolean createAndAddSensorToTheList(String id, String name, String units) {
-        GeoAreaSensor newSensor = selectedRoom.getSensorList().newSensor(id, name, sensorType, locationOfTheHouse, units);
-        return selectedRoom.addSensorToListOfSensorsInRoom(newSensor);
-    }*/
-
-    /**
-     * Method that checks if a room isn't already in the list of rooms.
      *
-     * @return true or false.
+     * @param roomSensorDTO DTO object of the sensor to create
+     * @return a new sensor added to the RoomSensor Repository.
      */
-    public boolean isRoomListEmpty() {
-        return roomList.isEmpty();
-    }
-
-    /**
-     * This method check if the list of Sensors Type is empty.
-     *
-     * @return true or false.
-     */
-    public boolean isSensorTypeListEmpty() {
-        return sensorTypeList.isEmpty();
+    public boolean createAndAddSensorToTheList(RoomSensorDTO roomSensorDTO) {
+        return roomSensorService.newSensor(roomSensorDTO);
     }
 }

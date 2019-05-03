@@ -49,4 +49,11 @@ public class RoomService {
         return roomDTOList;
     }
 
+    public Room getRoomById(RoomId roomId){
+        if (roomExists(roomId)){
+            return roomRepository.findById(roomId).orElse(null);
+        }
+        return null;
+    }
+
 }
