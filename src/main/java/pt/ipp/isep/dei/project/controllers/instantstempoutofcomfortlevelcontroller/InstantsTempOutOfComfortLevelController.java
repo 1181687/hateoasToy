@@ -77,7 +77,7 @@ public class InstantsTempOutOfComfortLevelController {
     }
 
     public void setSensorID(String roomId) {
-        this.roomSensorId = sensorsService.getSensorId(roomId);
+        this.roomSensorId = sensorsService.getSensorId(roomId, this.sensorTypeId);
     }
 
     public Map<LocalDateTime, Double> getInstantsOutOfComfortTemperature(LocalDate startDate, LocalDate endDate) {

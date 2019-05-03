@@ -71,8 +71,8 @@ public class RoomSensorService {
         return this.roomSensorRepo.existsRoomSensorsByRoomIdAndSensorTypeId(roomId, sensorTypeId);
     }
 
-    public SensorId getSensorId (RoomId roomId){
-        RoomSensor roomSensor = this.roomSensorRepo.findByRoomId(roomId);
+    public SensorId getSensorId (RoomId roomId, SensorTypeId sensorTypeId){
+        RoomSensor roomSensor = this.roomSensorRepo.findByRoomIdAndSensorTypeId(roomId, sensorTypeId);
         return roomSensor.getId();
     }
 }

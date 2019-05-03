@@ -185,9 +185,9 @@ public class SensorsService {
         return roomSensorService.existSensors(roomId, sensorTypeId);
     }
 
-    public SensorId getSensorId(String roomId) {
+    public SensorId getSensorId(String roomId, SensorTypeId sensorTypeId) {
         RoomId roomId1 = new RoomId(roomId);
-        return roomSensorService.getSensorId(roomId1);
+        return roomSensorService.getSensorId(roomId1, sensorTypeId);
     }
 
     public List<LocalDate> getDaysWithoutComfortTemp(Map<LocalDate, List<Double>> mapComfortDailyTemperature){
