@@ -1,0 +1,116 @@
+@startuml
+skinparam sequenceMessageAlign center
+skinparam sequence {
+	ArrowColor Black
+	ActorBorderColor DarkBlue
+	LifeLineBorderColor black
+	LifeLineBackgroundColor LightGrey
+
+	ParticipantBorderColor Black
+	ParticipantBackgroundColor LightGrey
+	ParticipantFontStyle Bold
+
+	ActorBackgroundColor DimGrey
+	ActorFontColor DeepSkyBlue
+	ActorFontStyle Bold
+	ActorFontSize 17
+	ActorFontName Aapex
+}
+
+autonumber
+actor AdminUser
+activate AdminUser
+actor AdminUser
+
+AdminUser -> "ui : ImportReadings": - Import readings
+activate "ui : ImportReadings"
+"ui : ImportReadings" --> AdminUser: - Ask for the file path
+deactivate "ui : ImportReadings"
+AdminUser -> "ui : ImportReadings": - File path
+activate "ui : ImportReadings"
+"ui : ImportReadings" -> "ctrl : ImportReadings\nController": - readFile(file, path)
+activate "ctrl : ImportReadings\nController"
+"ctrl : ImportReadings\nController" -> "//reader//\n //: ProjectFileReader//": - createReader(path)
+activate "//reader//\n //: ProjectFileReader//"
+"//reader//\n //: ProjectFileReader//" --> "ctrl : ImportReadings\nController": - reader
+deactivate "//reader//\n //: ProjectFileReader//"
+"ctrl : ImportReadings\nController" -> "//reader//\n //: ProjectFileReader//": - readFile(file)
+activate "//reader//\n //: ProjectFileReader//"
+ref over "//reader//\n //: ProjectFileReader//"
+readFile
+end
+"//reader//\n //: ProjectFileReader//" --> "ctrl : ImportReadings\nController":  - readingDTOs
+deactivate "//reader//\n //: ProjectFileReader//"
+"ctrl : ImportReadings\nController" --> "ui : ImportReadings": - readingDTOs
+deactivate "ctrl : ImportReadings\nController"
+"ui : ImportReadings" --> AdminUser: - Ask for confirmation
+deactivate "ui : ImportReadings"
+AdminUser -> "ui : ImportReadings": - Confirmation received
+activate "ui : ImportReadings"
+"ui : ImportReadings" -> "ctrl : ImportReadings\nController": - importReadings()
+activate "ctrl : ImportReadings\nController"
+loop for each readingDTO
+"ctrl : ImportReadings\nController" -> "service : GeoArea\nSensorService": - getSensorById(sensorId)
+activate "service : GeoArea\nSensorService"
+"service : GeoArea\nSensorService" -> "repo : GeoArea\nSensorRepository": - getById(sensorId)
+activate "repo : GeoArea\nSensorRepository"
+"repo : GeoArea\nSensorRepository" -> "sensor \n: GeoAreaSensor": - get()
+activate "sensor \n: GeoAreaSensor"
+"repo : GeoArea\nSensorRepository" <-- "sensor \n: GeoAreaSensor": - sensor
+deactivate "sensor \n: GeoAreaSensor"
+"service : GeoArea\nSensorService" <-- "repo : GeoArea\nSensorRepository": - sensor
+deactivate "repo : GeoArea\nSensorRepository"
+"service : GeoArea\nSensorService" -> "GeoArea\nSensorMapper": - mapToDTO(sensor)
+activate "GeoArea\nSensorMapper"
+"GeoArea\nSensorMapper" -> "sensorDTO \n: GeoAreaSensorDTO": - create
+activate "sensorDTO \n: GeoAreaSensorDTO"
+"GeoArea\nSensorMapper" <-- "sensorDTO \n: GeoAreaSensorDTO": - sensorDTO
+deactivate "sensorDTO \n: GeoAreaSensorDTO"
+loop for each reading
+"GeoArea\nSensorMapper" -> ReadingMapper: - mapToDTO(reading)
+activate ReadingMapper
+ReadingMapper -> "readingDTO \n: ReadingDTO": - create
+activate "readingDTO \n: ReadingDTO"
+ReadingMapper <-- "readingDTO \n: ReadingDTO": - readingDTO
+deactivate "readingDTO \n: ReadingDTO"
+"GeoArea\nSensorMapper" <-- ReadingMapper: - readingDTO
+deactivate ReadingMapper
+"GeoArea\nSensorMapper" -> "sensorDTO \n: GeoAreaSensorDTO": - addReading(readingDTO)
+end loop
+"service : GeoArea\nSensorService" <-- "GeoArea\nSensorMapper": - sensorDTO
+deactivate "GeoArea\nSensorMapper"
+"ctrl : ImportReadings\nController" <-- "service : GeoArea\nSensorService": - sensorDTO
+deactivate "service : GeoArea\nSensorService"
+"ctrl : ImportReadings\nController" -> "sensorDTO \n: GeoAreaSensorDTO": - addReading(readingDTO)
+end loop
+"ctrl : ImportReadings\nController" -> "service : GeoArea\nSensorService": - saveSensors(sensorDTOs)
+activate "service : GeoArea\nSensorService"
+loop for each sensorDTO
+"service : GeoArea\nSensorService" -> "GeoArea\nSensorMapper": - mapToEntity(sensorDTO)
+activate "GeoArea\nSensorMapper"
+"GeoArea\nSensorMapper" -> "sensor \n: GeoAreaSensor": - create
+activate "sensor \n: GeoAreaSensor"
+"GeoArea\nSensorMapper" <-- "sensor \n: GeoAreaSensor": - sensor
+deactivate "sensor \n: GeoAreaSensor"
+loop for each readingDTO
+"GeoArea\nSensorMapper" -> ReadingMapper: - mapToEntity(readingDTO)
+activate ReadingMapper
+ReadingMapper -> "reading \n: Reading": - create
+activate "reading \n: Reading"
+ReadingMapper <-- "reading \n: Reading": - reading
+deactivate "reading \n: Reading"
+"GeoArea\nSensorMapper" <-- ReadingMapper: - reading
+deactivate ReadingMapper
+"GeoArea\nSensorMapper" -> "sensor \n: GeoAreaSensor": - addReading(reading)
+end loop
+"service : GeoArea\nSensorService" <-- "GeoArea\nSensorMapper": - sensor
+deactivate "GeoArea\nSensorMapper"
+end loop
+"service : GeoArea\nSensorService" -> "repo : GeoArea\nSensorRepository": - saveAll(sensors)
+deactivate "service : GeoArea\nSensorService"
+"ctrl : ImportReadings\nController" --> "ui : ImportReadings": - true
+deactivate "ctrl : ImportReadings\nController"
+"ui : ImportReadings" --> AdminUser: - Give feedback
+deactivate "ui : ImportReadings"
+
+@enduml
