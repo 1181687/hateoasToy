@@ -37,10 +37,6 @@ public class GetCurrentAndMaxTempRoomController {
         return this.roomSensorService.getLastMeasurement(roomId, temperature);
     }
 
-    public List<RoomDTO> getAllRoomsDTOList() {
-        return roomService.getAllRoomsDTO();
-    }
-
     public double getMaximumTemperatureOfRoomInGivenDay(RoomId roomId, SensorTypeId temperature, LocalDate date) {
         return this.roomSensorService.getMaxMeasurementValueOfADay(roomId, temperature, date);
     }

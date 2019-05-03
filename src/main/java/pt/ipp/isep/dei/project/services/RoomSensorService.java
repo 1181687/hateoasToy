@@ -32,19 +32,25 @@ public class RoomSensorService {
     /**
      * Method that saves a list of sensors in the repo.
      *
-     * @param sensors List of sensors to be analyzed.
+     * @param sensorDTOs List of sensors to be analyzed.
      */
-    public void saveSensors(List<RoomSensor> sensors) {
+    public void saveSensors(List<RoomSensorDTO> sensorDTOs) {
+        List<RoomSensor> sensors = new ArrayList<>();
+        for (RoomSensorDTO sensorDTO : sensorDTOs) {
+            RoomSensor sensor = RoomSensorMapper.mapToEntity(sensorDTO);
+            sensors.add(sensor);
+        }
         roomSensorRepo.saveAll(sensors);
     }
 
     /**
      * Method that checks if a sensor exists in the repo by its id.
      *
-     * @param sensorId Id to be used.
+     * @param sensorIdDTO Id to be used.
      * @return True or false.
      */
-    public boolean sensorExists(SensorId sensorId) {
+    public boolean sensorExists(SensorIdDTO sensorIdDTO) {
+        SensorId sensorId = SensorIdMapper.mapToEntity(sensorIdDTO);
         return this.roomSensorRepo.existsById(sensorId);
     }
 
