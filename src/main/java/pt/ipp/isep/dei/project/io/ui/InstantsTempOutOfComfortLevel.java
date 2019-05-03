@@ -18,7 +18,7 @@ public class InstantsTempOutOfComfortLevel {
 
     private InstantsTempOutOfComfortLevelController controller;
     private List<RoomDTO> roomDTOS;
-    private String bellowOrAbove;
+    private String belowOrAbove;
 
     public InstantsTempOutOfComfortLevel(HouseService houseService, SensorsService sensorsService, RoomService roomService) {
         controller = new InstantsTempOutOfComfortLevelController(houseService, sensorsService, roomService);
@@ -36,7 +36,7 @@ public class InstantsTempOutOfComfortLevel {
     public void displayResults(String roomId, List<LocalDateTime> instantlist, LocalDate startdate, LocalDate endDate) {
         StringBuilder content = new StringBuilder();
         content.append("The list of instants ");
-        content.append(bellowOrAbove);
+        content.append(belowOrAbove);
         content.append("for the room ");
         content.append(roomId);
         content.append(" in the interval date between");
@@ -47,7 +47,7 @@ public class InstantsTempOutOfComfortLevel {
         content.append(this.getListInstantsToString(instantlist));
         content.append("\n");
         if (controller.existsDaysWithoutComfortTemp()) {
-            content.append(" therefore there weren't enough measurements to calculate the instants during:\n");
+            content.append("There weren't enough measurements to calculate the instants during:\n");
             List<LocalDate> daysWithoutComfortTemp = controller.getDaysWithoutComfortTemp();
             content.append(this.getDaysWithoutComfortTempToString(daysWithoutComfortTemp));
         }
@@ -142,10 +142,10 @@ public class InstantsTempOutOfComfortLevel {
         }
 
         if (usOption == 1) {
-            bellowOrAbove = "bellow";
+            belowOrAbove = "below";
         }
         if (usOption == 2) {
-            bellowOrAbove = "above";
+            belowOrAbove = "above";
         }
 
         controller.setOption(usOption - 1);
@@ -183,7 +183,7 @@ public class InstantsTempOutOfComfortLevel {
 
         //if there are no temperature Sensor
         if (controller.existTempSensors()) {
-            System.out.println("There are no temperature sensor available in the choosen room.\n");
+            System.out.println("There are no temperature sensors available in the choosen room.\n");
             return;
         }
 
