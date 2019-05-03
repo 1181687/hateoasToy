@@ -4,11 +4,9 @@ import pt.ipp.isep.dei.project.controllers.GetCurrentAndMaxTempRoomController;
 import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.house.RoomDTO;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
-import pt.ipp.isep.dei.project.services.HouseService;
 import pt.ipp.isep.dei.project.services.RoomSensorService;
 import pt.ipp.isep.dei.project.services.RoomService;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -25,7 +23,7 @@ public class GetCurrentTemperatureRoom {
 
     public GetCurrentTemperatureRoom(SensorTypeId typeId, RoomSensorService sensorService, RoomService rService) {
         this.controller = new GetCurrentAndMaxTempRoomController(typeId, sensorService,rService);
-        this.allRoomsDTOList=controller.getAllRoomsDTOList();
+        this.allRoomsDTOList=controller.getRoomDTOList();
     }
     /**
      * outputs the latest temperature with date, of the room
