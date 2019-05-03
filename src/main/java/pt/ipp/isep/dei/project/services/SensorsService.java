@@ -7,9 +7,7 @@ import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.ReadingMapper;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaId;
 import pt.ipp.isep.dei.project.model.house.RoomId;
-import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
-import pt.ipp.isep.dei.project.model.sensor.SensorId;
-import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
+import pt.ipp.isep.dei.project.model.sensor.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -105,11 +103,11 @@ public class SensorsService {
     /**
      * Method that gets a RoomSensor by its id.
      *
-     * @param id Id of the RoomSensor.
+     * @param idDTO Id of the RoomSensor.
      * @return RoomSensor required.
      */
-    public RoomSensor getRoomSensorById(SensorId id) {
-        return this.roomSensorService.getSensorById(id);
+    public RoomSensor getRoomSensorById(SensorIdDTO idDTO) {
+        return RoomSensorMapper.mapToEntity(this.roomSensorService.getSensorById(idDTO));
     }
 
 

@@ -44,9 +44,9 @@ public class GetCurrentAndMaxTempRoomControllerTest {
         SensorType sensorType = new SensorType(new SensorTypeId("Temperature"));
 
         ctrl = new GetCurrentAndMaxTempRoomController(house, sensorType);
-    }
+    }*/
 
-    @Test
+    /*@Test
     public void getDisplayRoomListTest() {
         //arrange
         String name1 = "Kitchen";

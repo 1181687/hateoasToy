@@ -2,9 +2,7 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeList;
-import pt.ipp.isep.dei.project.services.GeoAreaTypeService;
-import pt.ipp.isep.dei.project.services.GeographicalAreaService;
-import pt.ipp.isep.dei.project.services.HouseService;
+import pt.ipp.isep.dei.project.services.*;
 
 public class RegularUser {
 
@@ -13,13 +11,16 @@ public class RegularUser {
     SensorTypeList sensorTypeList;
     SensorTypeId sensorTypeTemperature = new SensorTypeId("Temperature");
     HouseService houseService;
+    RoomService roomService;
+    RoomSensorService roomSensorService;
 
-    public RegularUser(GeoAreaTypeService geographicalTypeService, GeographicalAreaService geographicalAreaService, SensorTypeList sensorTypeList, HouseService houseService) {
+    public RegularUser(GeoAreaTypeService geographicalTypeService, GeographicalAreaService geographicalAreaService, SensorTypeList sensorTypeList, HouseService houseService, RoomService rService, RoomSensorService sensorService) {
         this.geographicalAreaTypeService = geographicalTypeService;
         this.geographicalAreaService = geographicalAreaService;
         this.sensorTypeList = sensorTypeList;
         this.houseService = houseService;
-
+        this.roomService = rService;
+        this.roomSensorService=sensorService;
     }
 
     public void runRegularUserHouseArea() {
@@ -68,12 +69,12 @@ public class RegularUser {
 
             switch (option) {
                 case 1:
-                    GetCurrentTemperatureRoom ui605 = new GetCurrentTemperatureRoom(houseService, sensorTypeTemperature);
+                    GetCurrentTemperatureRoom ui605 = new GetCurrentTemperatureRoom(sensorTypeTemperature, roomSensorService, roomService);
                     ui605.run();
                     break;
                 case 2:
-                    GetMaxTemperatureRoom ui610 = new GetMaxTemperatureRoom(houseService, sensorTypeTemperature);
-                    ui610.run();
+                    //GetMaxTemperatureRoom ui610 = new GetMaxTemperatureRoom(houseService, sensorTypeTemperature);
+                    //ui610.run();
                     break;
                 case 3:
                     EstimateEnergyOfWaterHeater ui752 = new EstimateEnergyOfWaterHeater(houseService);
