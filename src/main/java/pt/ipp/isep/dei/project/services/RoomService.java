@@ -48,7 +48,7 @@ public class RoomService {
     }
 
     public Room getRoomById(RoomId roomId){
-        if (roomExists(roomId)){
+        if (roomExists(RoomIdMapper.mapToDTO(roomId))){
             return roomRepository.findById(roomId).orElse(null);
         }
         return null;

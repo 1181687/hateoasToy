@@ -41,7 +41,6 @@ public class AddSensorToRoom {
             System.out.println("There are no sensor types created. Please create one.");
         } else {
             // Select Room to add Sensor
-            System.out.println("To which room do you want to add a sensor?");
             System.out.println(getRoomToList());
             int positionOfTheRoom = InputValidator.getIntRange("To which room do you want to add a sensor?",1,roomDTOList.size())-1;
             roomDTO = roomDTOList.get(positionOfTheRoom);
