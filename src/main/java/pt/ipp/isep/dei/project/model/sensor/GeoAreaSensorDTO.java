@@ -1,9 +1,11 @@
 package pt.ipp.isep.dei.project.model.sensor;
 
 import pt.ipp.isep.dei.project.model.LocationDTO;
+import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaIdDTO;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class GeoAreaSensorDTO {
     private String id;
@@ -14,6 +16,7 @@ public class GeoAreaSensorDTO {
     private String units;
     private boolean isActive = true;
     private GeoAreaIdDTO geoAreaIdDTO;
+    private List<ReadingDTO> readingDTOs;
 
     /**
      * Constructor.
@@ -126,5 +129,19 @@ public class GeoAreaSensorDTO {
         this.geoAreaIdDTO = geoAreaIdDTO;
     }
 
+    public List<ReadingDTO> getReadingDTOs() {
+        return this.readingDTOs;
+    }
 
+    public void setReadingDTOs(List<ReadingDTO> readingDTOs) {
+        this.readingDTOs = readingDTOs;
+    }
+
+    public boolean addReadingDTO(ReadingDTO readingDTO) {
+        if (!this.readingDTOs.contains(readingDTO)) {
+            this.readingDTOs.add(readingDTO);
+            return true;
+        }
+        return false;
+    }
 }

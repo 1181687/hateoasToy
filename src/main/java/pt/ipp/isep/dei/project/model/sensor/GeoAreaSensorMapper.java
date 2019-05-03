@@ -1,9 +1,11 @@
 package pt.ipp.isep.dei.project.model.sensor;
 
-import pt.ipp.isep.dei.project.model.Location;
-import pt.ipp.isep.dei.project.model.LocationMapper;
+import pt.ipp.isep.dei.project.model.*;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaId;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaIdMapper;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public final class GeoAreaSensorMapper {
 
@@ -49,6 +51,13 @@ public final class GeoAreaSensorMapper {
         GeoAreaId geoAreaId = GeoAreaIdMapper.mapToEntity(sensorDTO.getGeographicalAreaId());
         SensorId geoAreaSensorId = new SensorId(sensorDTO.getId());
         SensorTypeId sensorTypeId = new SensorTypeId(sensorDTO.getSensorType());
-        return new GeoAreaSensor(geoAreaSensorId, sensorDTO.getName(), sensorDTO.getStartingDate().atStartOfDay(), sensorTypeId, sensorLocation, sensorDTO.getUnits(), geoAreaId);
+        List<Reading> readings = new ArrayList<>();
+        for (ReadingDTO readingDTO : sensorDTO.getReadingDTOs()) {
+            Reading reading = ReadingMapper.mapToEntity(readingDTO);
+            readings.add(reading);
+        }
+        GeoAreaSensor sensor = new GeoAreaSensor(geoAreaSensorId, sensorDTO.getName(), sensorDTO.getStartingDate().atStartOfDay(), sensorTypeId, sensorLocation, sensorDTO.getUnits(), geoAreaId);
+        sensor.getListOfReadings().addAll(readings);
+        return sensor;
     }
 }

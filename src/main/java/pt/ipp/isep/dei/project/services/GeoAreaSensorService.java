@@ -21,11 +21,13 @@ public class GeoAreaSensorService {
     /**
      * Method that searches for a sensor by its id.
      *
-     * @param id Id of the sensor.
+     * @param sensorIdDTO Id of the sensor.
      * @return Sensor required.
      */
-    public GeoAreaSensor getSensorById(SensorId id) {
-        return geoAreaSensorRepo.findById(id).orElse(null);
+    public GeoAreaSensorDTO getSensorById(SensorIdDTO sensorIdDTO) {
+        SensorId sensorId = SensorIdMapper.mapToEntity(sensorIdDTO);
+        GeoAreaSensor sensor = geoAreaSensorRepo.findById(sensorId).orElse(null);
+        return GeoAreaSensorMapper.mapToDTO(sensor);
     }
 
     /**
@@ -229,4 +231,6 @@ public class GeoAreaSensorService {
         SensorId sensorId = SensorIdMapper.mapToEntity(sensorIdDTO);
         return this.geoAreaSensorRepo.existsById(sensorId);
     }
+
+
 }
