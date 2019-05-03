@@ -20,38 +20,52 @@ skinparam sequence {
 
 actor RegularUser
 activate RegularUser
-RegularUser -> ":InstantsOutOf\nTempComfortLevel\nUI": 1- instantsOutOfTempComfort
-":InstantsOutOf\nTempComfortLevel\nUI" --> RegularUser: 5 - Ask if Bellow or Above
-RegularUser -> ":InstantsOutOf\nTempComfortLevel\nUI": x - option
-":InstantsOutOf\nTempComfortLevel\nUI" -> ":InstantsOutOf\nTempComfortLevel\nController" : x - option
-":InstantsOutOf\nTempComfortLevel\nUI" --> RegularUser: 5 - Ask house category
-RegularUser -> ":InstantsOutOf\nTempComfortLevel\nUI": x - category
-":InstantsOutOf\nTempComfortLevel\nUI" -> ":InstantsOutOf\nTempComfortLevel\nController" : x - category
-":InstantsOutOf\nTempComfortLevel\nUI" -> ":InstantsOutOf\nTempComfortLevel\nController" : x - getRoomList()
+RegularUser -> ":InstantsOutOf\nTempComfortLevel\nUI": instantsOutOfTempComfort
+":InstantsOutOf\nTempComfortLevel\nUI" --> RegularUser: Ask if Bellow or Above
+RegularUser -> ":InstantsOutOf\nTempComfortLevel\nUI": option
+":InstantsOutOf\nTempComfortLevel\nUI" -> ":InstantsOutOf\nTempComfortLevel\nController" : option
+":InstantsOutOf\nTempComfortLevel\nUI" --> RegularUser: Ask house category
+RegularUser -> ":InstantsOutOf\nTempComfortLevel\nUI": category
+":InstantsOutOf\nTempComfortLevel\nUI" -> ":InstantsOutOf\nTempComfortLevel\nController" : category
+":InstantsOutOf\nTempComfortLevel\nUI" -> ":InstantsOutOf\nTempComfortLevel\nController" : getRoomList()
 activate ":InstantsOutOf\nTempComfortLevel\nUI"
 activate ":InstantsOutOf\nTempComfortLevel\nController"
-":InstantsOutOf\nTempComfortLevel\nController" -> ":RoomService": x - getRoomList
+":InstantsOutOf\nTempComfortLevel\nController" -> ":RoomService": getRoomList
 ":RoomService" --> ":InstantsOutOf\nTempComfortLevel\nController": RoomListDTO
 ":InstantsOutOf\nTempComfortLevel\nController" --> ":InstantsOutOf\nTempComfortLevel\nUI" : RoomListDTO
 deactivate ":InstantsOutOf\nTempComfortLevel\nController"
 deactivate ":InstantsOutOf\nTempComfortLevel\nUI"
-":InstantsOutOf\nTempComfortLevel\nUI" --> RegularUser: x - Show room list content
-RegularUser -> ":InstantsOutOf\nTempComfortLevel\nUI": x - selected room
-":InstantsOutOf\nTempComfortLevel\nUI" -> ":InstantsOutOf\nTempComfortLevel\nController" : x - roomId
-":InstantsOutOf\nTempComfortLevel\nUI" --> RegularUser: 5 - Ask for start Date and end Date
-RegularUser -> ":InstantsOutOf\nTempComfortLevel\nUI": x - startDate
-RegularUser -> ":InstantsOutOf\nTempComfortLevel\nUI": x - endDate
-":InstantsOutOf\nTempComfortLevel\nUI" -> ":InstantsOutOf\nTempComfortLevel\nController" : x - getComfortTemperature(startDate, endDate)
+":InstantsOutOf\nTempComfortLevel\nUI" --> RegularUser: Show room list content
+RegularUser -> ":InstantsOutOf\nTempComfortLevel\nUI":  selected room
+":InstantsOutOf\nTempComfortLevel\nUI" -> ":InstantsOutOf\nTempComfortLevel\nController" : roomId
 activate ":InstantsOutOf\nTempComfortLevel\nController"
-":InstantsOutOf\nTempComfortLevel\nController" -> ":SensorsService": x - getComfortTemperature(startDate, endDate, option,\n category, location, geoAreaID, sensorTypeID)
+":InstantsOutOf\nTempComfortLevel\nController" -> ":InstantsOutOf\nTempComfortLevel\nController" : sensorId:\ngetSensorID()
+deactivate ":InstantsOutOf\nTempComfortLevel\nController"
+
+":InstantsOutOf\nTempComfortLevel\nUI" --> RegularUser: Ask for start Date and end Date
+RegularUser -> ":InstantsOutOf\nTempComfortLevel\nUI": startDate
+RegularUser -> ":InstantsOutOf\nTempComfortLevel\nUI": endDate
+":InstantsOutOf\nTempComfortLevel\nUI" -> ":InstantsOutOf\nTempComfortLevel\nController" : getComfortTemperature\n(startDate, endDate)
+activate ":InstantsOutOf\nTempComfortLevel\nController"
+":InstantsOutOf\nTempComfortLevel\nController" -> ":SensorsService": getComfortTemperature(startDate, endDate, option,\n category, location, geoAreaID, sensorTypeID)
 activate ":SensorsService"
+ref over ":SensorsService"
+getComfortTemperature
+end
 ":SensorsService" --> ":InstantsOutOf\nTempComfortLevel\nController" : mapComfortTemp
 deactivate ":SensorsService"
-":InstantsOutOf\nTempComfortLevel\nController" -> ":SensorsService": x - getRoomReadings(RoomId)
+":InstantsOutOf\nTempComfortLevel\nController" -> ":SensorsService": getRoomReadingsDTO(SensorId)
 activate ":SensorsService"
-":SensorsService" --> ":InstantsOutOf\nTempComfortLevel\nController" : roomReadingDTO
+ref over ":SensorsService"
+getRoomReadings
+end
+":SensorsService" --> ":InstantsOutOf\nTempComfortLevel\nController" : roomReadingsDTO
 deactivate ":SensorsService"
-":InstantsOutOf\nTempComfortLevel\nController" -> ":SensorsService": x - getListOfInstantsOutOfComfortTemp(mapComfortTemp, roomReadingDTO)
+":InstantsOutOf\nTempComfortLevel\nController" -> ":SensorsService": getMapOutOfTempComfort\n(mapComfortTemp, roomReadingsDTO)
+activate ":SensorsService"
+":SensorsService" --> ":InstantsOutOf\nTempComfortLevel\nController" : mapInstantsOutOfTempComfort
+deactivate ":SensorsService"
+":InstantsOutOf\nTempComfortLevel\nController" -> ":SensorsService": getListOfInstantsOutOf\nComfortTemp(mapInstantsOutOfTempComfort)
 activate ":SensorsService"
 ":SensorsService" --> ":InstantsOutOf\nTempComfortLevel\nController" : listOfInstantsOutOfComfortTemp
 deactivate ":SensorsService"
