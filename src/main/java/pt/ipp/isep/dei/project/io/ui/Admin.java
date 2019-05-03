@@ -26,11 +26,11 @@ public class Admin {
     public Admin(GeographicalAreaService geographicalAreaService,
                  GeoAreaTypeService geoAreaTypeService, SensorTypeList sensorTypeList, PowerSourceTypeList powerSourceTypeList,
                  RoomList roomList, HouseService houseService, GeoAreaSensorService geoAreaSensorService, RoomSensorService roomSensorService,
-                 SensorTypeService sensorTypeService, RoomService roomService) {
+                 SensorTypeService sensorTypeService, RoomService roomService, House house) {
         this.geographicalAreaService = geographicalAreaService;
         this.geoAreaTypeService = geoAreaTypeService;
         this.sensorTypeList = sensorTypeList;
-        this.house = houseService.getHouse();
+        this.house = house;
         this.powerSourceTypeList = powerSourceTypeList;
         this.roomList = roomList;
         this.houseService = houseService;
@@ -111,7 +111,7 @@ public class Admin {
 
             switch (option) {
                 case 1:
-                    ConfigureHouseLocation ui101 = new ConfigureHouseLocation(houseService);
+                    ConfigureHouseLocation ui101 = new ConfigureHouseLocation(house, houseService, geographicalAreaService);
                     ui101.run();
                     break;
                 case 2:
@@ -158,7 +158,7 @@ public class Admin {
                     ui720.run();
                     break;
                 case 13:
-                    ConfigureHouseFromAFile ui13 = new ConfigureHouseFromAFile(house, houseService);
+                    ConfigureHouseFromAFile ui13 = new ConfigureHouseFromAFile(houseService);
                     try {
                         ui13.run();
                     } catch (Exception e) {

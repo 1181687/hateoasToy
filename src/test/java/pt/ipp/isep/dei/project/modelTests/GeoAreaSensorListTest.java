@@ -56,8 +56,8 @@ class GeoAreaSensorListTest {
         reading0 = new Reading(20, dateTime0);
         reading1 = new Reading(25, dateTime1);
         nullReading = new Reading(Double.NaN, dateTime2);
-        temperatureSensor1.addReadingsToList(reading0);
-        temperatureSensor2.addReadingsToList(reading1);
+        temperatureSensor1.addReading(reading0);
+        temperatureSensor2.addReading(reading1);
         rainfallSensor.addReadingsToList(reading0);
     }
 

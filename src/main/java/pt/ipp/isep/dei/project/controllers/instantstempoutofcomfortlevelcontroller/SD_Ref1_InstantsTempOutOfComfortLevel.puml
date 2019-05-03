@@ -1,0 +1,38 @@
+@startuml
+skinparam sequenceMessageAlign center
+skinparam sequence {
+	ArrowColor Black
+	ActorBorderColor DarkBlue
+	LifeLineBorderColor black
+	LifeLineBackgroundColor LightGrey
+
+	ParticipantBorderColor Black
+	ParticipantBackgroundColor LightGrey
+	ParticipantFontStyle Bold
+
+	ActorBackgroundColor DimGrey
+	ActorFontColor DeepSkyBlue
+	ActorFontStyle Bold
+	ActorFontSize 17
+	ActorFontName Aapex
+}
+
+activate ":SensorsService"
+":SensorsService" -> ":RoomSensorService": getRoomReadingsDTO(startDate, endDate, roomSensorId)
+activate ":RoomSensorService"
+":RoomSensorService" -> ":RoomSensor": getReadingsDTO(startDate, endDate, roomSensorId)
+activate ":RoomSensor"
+":RoomSensorService" -> ":RoomSensorRepo":getSensorById(sensorId)
+activate ":RoomSensorRepo"
+":RoomSensorService" <-- ":RoomSensorRepo": Sensor
+deactivate ":RoomSensorRepo"
+":RoomSensor" -> ":RoomSensor": getReadings(startDate, endDate)
+deactivate ":RoomSensorRepo"
+":RoomSensorService" <-- ":RoomSensor": List<Readings>
+deactivate ":RoomSensor"
+":RoomSensorService" -> ":RoomSensorService": getReadingsDTO(startDate, endDate, roomSensorId)
+":SensorsService" <-- ":RoomSensorService": List<ReadingDTO>
+deactivate ":SensorsService"
+
+
+@enduml

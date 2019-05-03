@@ -3,6 +3,8 @@ package pt.ipp.isep.dei.project.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.model.Reading;
+import pt.ipp.isep.dei.project.model.ReadingDTO;
+import pt.ipp.isep.dei.project.model.ReadingMapper;
 import pt.ipp.isep.dei.project.model.house.RoomId;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorId;
@@ -10,6 +12,7 @@ import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 import pt.ipp.isep.dei.project.repositories.RoomSensorRepository;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -47,15 +50,20 @@ public class RoomSensorService {
     }
 
     /**
-     * gets room readings from a sensor by sensorId, in an interval of days
+     * gets room readings DTO from a sensor by sensorId, in an interval of days
      *
      * @param startDate initial LocalDate
      * @param endDate   final LocalDate
      * @param sensorId  SensorId
-     * @return List of Reading
+     * @return List of ReadingDTO
      */
-    public List<Reading> getReadings(LocalDate startDate, LocalDate endDate, SensorId sensorId) {
-        return this.roomSensorRepo.findById(sensorId).orElseGet(null).getReadings(startDate, endDate);
+    public List<ReadingDTO> getReadingsDTO(LocalDate startDate, LocalDate endDate, SensorId sensorId) {
+        List<Reading> readings = this.roomSensorRepo.findById(sensorId).orElseGet(null).getReadings(startDate, endDate);
+        List<ReadingDTO> readingsDTO = new ArrayList<>();
+        for (Reading reading : readings) {
+            readingsDTO.add(ReadingMapper.mapToDTO(reading));
+        }
+        return readingsDTO;
     }
 
 

@@ -2,11 +2,10 @@ package pt.ipp.isep.dei.project.controllers.instantstempoutofcomfortlevelcontrol
 
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
+import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaId;
-import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.RoomDTO;
 import pt.ipp.isep.dei.project.model.house.RoomId;
-import pt.ipp.isep.dei.project.model.house.RoomMapper;
 import pt.ipp.isep.dei.project.model.sensor.SensorId;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 import pt.ipp.isep.dei.project.services.HouseService;
@@ -15,7 +14,6 @@ import pt.ipp.isep.dei.project.services.SensorsService;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -59,11 +57,7 @@ public class InstantsTempOutOfComfortLevelController {
     }
 
     public List<RoomDTO> getAllRoomsDTO() {
-        List<RoomDTO> roomDTOList = new ArrayList<>();
-        for(Room room: roomService.getAllRooms()){
-            roomDTOList.add(RoomMapper.mapToDTO(room));
-        }
-        return roomDTOList;
+        return this.roomService.getAllRoomsDTO();
     }
 
     public boolean isRoomListEmpty (){
@@ -87,8 +81,8 @@ public class InstantsTempOutOfComfortLevelController {
     }
 
     public Map<LocalDateTime, Double> getInstantsOutOfComfortTemperature(LocalDate startDate, LocalDate endDate) {
-        List<Reading> roomReadings = this.sensorsService.getRoomReadings(startDate, endDate, this.roomSensorId);
-        return mapInstantsOutOfComfortTemp = sensorsService.getInstantsOutOfComfortTemperature(comfortTemp, roomReadings, option);
+        List<ReadingDTO> roomReadingsDTO = this.sensorsService.getRoomReadingsDTO(startDate, endDate, this.roomSensorId);
+        return mapInstantsOutOfComfortTemp = sensorsService.getInstantsOutOfComfortTemperature(comfortTemp, roomReadingsDTO, option);
     }
 
     public List<LocalDateTime> getInstantListOutOfComfortLevel (){
