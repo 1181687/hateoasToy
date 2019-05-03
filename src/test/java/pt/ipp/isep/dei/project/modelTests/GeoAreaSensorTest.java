@@ -506,7 +506,7 @@ class GeoAreaSensorTest {
         //Arrange
         this.temperatureSensor.getListOfReadings().remove(this.reading);
         this.temperatureSensor.getListOfReadings().remove(this.reading1);
-        
+
         Reading expectedResult = null;
 
         //Act
@@ -516,11 +516,26 @@ class GeoAreaSensorTest {
         assertEquals(expectedResult, result);
     }
 
-
+    @Test
+    public void sensorTypeEqualsSensorTypeTest_ShouldReturnTrue() {
+        //Arrange
+        SensorTypeId sensorTypeId = new SensorTypeId("Temperature");
+        //Act
+        boolean result = this.temperatureSensor.sensorTypeEqualsSensorType(sensorTypeId);
+        //Assert
+        assertTrue(result);
+    }
 
     @Test
-    void sensorTypeEqualsSensorType() {
+    public void sensorTypeEqualsSensorTypeTest_ShouldReturnFalse() {
+        //Arrange
+        SensorTypeId sensorTypeId = new SensorTypeId("Humidity");
+        //Act
+        boolean result = this.temperatureSensor.sensorTypeEqualsSensorType(sensorTypeId);
+        //Assert
+        assertFalse(result);
     }
+
 
     @Test
     void getDailyMeasurement() {
