@@ -24,15 +24,15 @@ public class SensorTypeService {
         return sensorTypeList;
     }
 
-    public boolean addType(SensorTypeId sensorTypeId){
-        if (!sensorTypeRepository.existsById(sensorTypeId)){
+    public boolean addType(SensorTypeId sensorTypeId) {
+        if (!sensorTypeRepository.existsById(sensorTypeId)) {
             sensorTypeRepository.save(new SensorType(sensorTypeId));
             return true;
         }
         return false;
     }
 
-    public SensorType getTypeById(SensorTypeId sensorTypeId){
+    public SensorType getTypeById(SensorTypeId sensorTypeId) {
         return sensorTypeRepository.findById(sensorTypeId).orElse(null);
     }
 }

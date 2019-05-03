@@ -26,7 +26,7 @@ public class AddSensorToRoom {
     private RoomDTO roomDTO;
 
     public AddSensorToRoom(SensorTypeService sensorTypeService, RoomService roomService, RoomSensorService roomSensorService) {
-        controller = new AddSensorToRoomController(sensorTypeService, roomService,roomSensorService);
+        controller = new AddSensorToRoomController(sensorTypeService, roomService, roomSensorService);
         roomDTOList = controller.getRoomListContent();
         sensorTypeDTOS = controller.getSensorTypes();
     }
@@ -42,12 +42,12 @@ public class AddSensorToRoom {
         } else {
             // Select Room to add Sensor
             System.out.println(getRoomToList());
-            int positionOfTheRoom = InputValidator.getIntRange("To which room do you want to add a sensor?",1,roomDTOList.size())-1;
+            int positionOfTheRoom = InputValidator.getIntRange("To which room do you want to add a sensor?", 1, roomDTOList.size()) - 1;
             roomDTO = roomDTOList.get(positionOfTheRoom);
             // Select SensorType
             System.out.println("Please, select a sensor type");
             System.out.println(getSensorTypeList());
-            int positionOfTheSensorType = InputValidator.getIntRange("Please, select a sensor type",1,sensorTypeDTOS.size()) - 1;
+            int positionOfTheSensorType = InputValidator.getIntRange("Please, select a sensor type", 1, sensorTypeDTOS.size()) - 1;
             sensorTypeDTO = sensorTypeDTOS.get(positionOfTheSensorType);
 
             String sensorId = InputValidator.getString("What's the Id of the new sensor?\n");
@@ -78,7 +78,7 @@ public class AddSensorToRoom {
         StringBuilder content = new StringBuilder();
         int numberInTheList = 1;
         for (RoomDTO roomDTO : roomDTOList) {
-            content.append(numberInTheList + "-"+" Name: "+ roomDTO.getRoomId()+", House Floor: "+ roomDTO.getHouseFloor()+" , "+roomDTO.getDescription()+"\n");
+            content.append(numberInTheList + "-" + " Name: " + roomDTO.getRoomId() + ", House Floor: " + roomDTO.getHouseFloor() + " , " + roomDTO.getDescription() + "\n");
             numberInTheList++;
         }
         return content.toString();

@@ -19,7 +19,7 @@ public class AddSensorToRoomController {
     private RoomService roomService;
     private RoomSensorService roomSensorService;
 
-    public AddSensorToRoomController(SensorTypeService sensorTypeService, RoomService roomService,RoomSensorService roomSensorService) {
+    public AddSensorToRoomController(SensorTypeService sensorTypeService, RoomService roomService, RoomSensorService roomSensorService) {
         this.sensorTypeService = sensorTypeService;
         this.roomService = roomService;
         this.roomSensorService = roomSensorService;

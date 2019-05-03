@@ -101,9 +101,10 @@ public class Room implements Root, Measurable {
 
     /**
      * Get method of the Id object
+     *
      * @return
      */
-    public RoomId getId(){
+    public RoomId getId() {
         return this.roomId;
     }
 

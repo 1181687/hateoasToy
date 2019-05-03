@@ -22,7 +22,7 @@ public class SensorTypeDTO {
      * @return boolean
      */
     @Override
-    public boolean equals(Object obj){
+    public boolean equals(Object obj) {
         if (this == obj) {
             return true;
         }

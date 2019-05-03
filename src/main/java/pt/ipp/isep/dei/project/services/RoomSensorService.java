@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.ReadingMapper;
-import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.RoomId;
 import pt.ipp.isep.dei.project.model.sensor.*;
 import pt.ipp.isep.dei.project.repositories.RoomSensorRepository;
@@ -104,9 +103,9 @@ public class RoomSensorService {
         return maxValue;
     }
 
-    public boolean newSensor(RoomSensorDTO roomSensorDTO){
+    public boolean newSensor(RoomSensorDTO roomSensorDTO) {
         RoomSensor roomSensor = RoomSensorMapper.mapToEntity(roomSensorDTO);
-        if (!roomSensorRepo.existsById(roomSensor.getId())){
+        if (!roomSensorRepo.existsById(roomSensor.getId())) {
             roomSensorRepo.save(roomSensor);
             return true;
         }
