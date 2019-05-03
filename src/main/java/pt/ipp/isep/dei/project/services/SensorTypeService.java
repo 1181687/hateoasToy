@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.project.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
+import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 import pt.ipp.isep.dei.project.repositories.SensorTypeRepository;
 
 import java.util.ArrayList;
@@ -21,5 +22,17 @@ public class SensorTypeService {
             sensorTypeList.add(sensorType);
         }
         return sensorTypeList;
+    }
+
+    public boolean addType(SensorTypeId sensorTypeId) {
+        if (!sensorTypeRepository.existsById(sensorTypeId)) {
+            sensorTypeRepository.save(new SensorType(sensorTypeId));
+            return true;
+        }
+        return false;
+    }
+
+    public SensorType getTypeById(SensorTypeId sensorTypeId) {
+        return sensorTypeRepository.findById(sensorTypeId).orElse(null);
     }
 }
