@@ -191,8 +191,9 @@ public class GeoAreaSensor implements Root {
      *
      * @return the hashcode created
      */
+    @Override
     public int hashCode() {
-        return 1;
+        return Objects.hash(this.id);
     }
 
     /**
@@ -226,7 +227,7 @@ public class GeoAreaSensor implements Root {
     }
 
     public boolean existReadingsBetweenDates(LocalDate startDate, LocalDate endDate) {
-        return getMeasurementValueBetweenDates(startDate, endDate) != null;
+        return (!getMeasurementValueBetweenDates(startDate, endDate).isEmpty());
     }
 
     /**

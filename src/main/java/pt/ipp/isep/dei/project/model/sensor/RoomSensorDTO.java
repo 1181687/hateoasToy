@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class RoomSensorDTO {
 
@@ -38,6 +39,9 @@ public class RoomSensorDTO {
     }
 
     public LocalDateTime getStartingDate() {
+        if (Objects.isNull(startingDate)){
+            startingDate = LocalDate.now();
+        }
         return startingDate.atStartOfDay();
     }
 
