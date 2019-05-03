@@ -5,6 +5,8 @@ import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapper;
 import pt.ipp.isep.dei.project.model.house.AddressDTO;
 import pt.ipp.isep.dei.project.model.house.AddressMapper;
+import pt.ipp.isep.dei.project.model.house.House;
+import pt.ipp.isep.dei.project.services.GeographicalAreaService;
 import pt.ipp.isep.dei.project.services.HouseService;
 
 import java.util.ArrayList;
@@ -13,13 +15,18 @@ import java.util.List;
 public class ConfigureHouseLocationController {
 
     private HouseService houseService;
+    private House house;
+    private GeographicalAreaService geographicalAreaService;
 
-    public ConfigureHouseLocationController(HouseService houseService) {
+    public ConfigureHouseLocationController(House house, HouseService houseService, GeographicalAreaService geographicalAreaService) {
         this.houseService = houseService;
+        this.house = house;
+        this.geographicalAreaService = geographicalAreaService;
     }
 
     public void configureHouseLocation(AddressDTO addressDTO) {
-        houseService.setAddress(AddressMapper.mapToEntity(addressDTO));
+        house.setAddress(AddressMapper.mapToEntity(addressDTO));
+        houseService.saveHouse(house);
     }
 
 
@@ -28,7 +35,7 @@ public class ConfigureHouseLocationController {
     }
 
     public List<GeographicalAreaDTO> getGeoAreaList() {
-        List<GeographicalArea> geoAreas = this.houseService.getAllGeoAreas();
+        List<GeographicalArea> geoAreas = this.geographicalAreaService.getAllGeoAreas();
         List<GeographicalAreaDTO> geoAreaDTOS = new ArrayList<>();
         for (GeographicalArea geoArea : geoAreas) {
             GeographicalAreaDTO geographicalAreaDTO = GeographicalAreaMapper.mapToDTO(geoArea);

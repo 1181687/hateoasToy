@@ -58,7 +58,9 @@ public class HouseService {
         return this.address.getLocation();
     }
 
-    public void updateHouseWithRoomsAndGrids(HouseDTO houseDTO, House house) {
+    public void updateHouseWithRoomsAndGrids(HouseDTO houseDTO) {
+        House house = this.getHouse();
+        houseRepository.deleteAll();
         Address houseAddress = AddressMapper.mapToEntity(houseDTO.getAddressDTO());
         if (Objects.isNull(houseAddress.getLocation())) {
             houseAddress.setLocation(house.getLocation());
@@ -67,6 +69,7 @@ public class HouseService {
             houseAddress.setInsertedGeoArea(house.getInsertedGeoArea());
         }
         house.setAddress(houseAddress);
+        houseRepository.save(house);
 
         for (RoomDTO roomDTO : houseDTO.getRoomDTOList()) {
             Room room = RoomMapper.mapToEntity(roomDTO);
@@ -150,10 +153,13 @@ public class HouseService {
 
     public House getHouse(){
         List<House> houseList = new ArrayList<>();
-        for (House house : houseRepository.findAll()) {
-            houseList.add(house);
+        if (houseRepository.count() != 0) {
+            for (House house : houseRepository.findAll()) {
+                houseList.add(house);
+            }
+            return houseList.get(0);
         }
-        return houseList.get(0);
+        return null;
     }
 
     public void saveHouse(House house) {

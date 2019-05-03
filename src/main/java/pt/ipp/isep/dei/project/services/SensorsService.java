@@ -3,6 +3,8 @@ package pt.ipp.isep.dei.project.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
+import pt.ipp.isep.dei.project.model.ReadingDTO;
+import pt.ipp.isep.dei.project.model.ReadingMapper;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaId;
 import pt.ipp.isep.dei.project.model.house.RoomId;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
@@ -111,16 +113,21 @@ public class SensorsService {
     }
 
 
-    public Map<LocalDateTime, Double> getInstantsOutOfComfortTemperature(Map<LocalDate, List<Double>> mapComfortTemperatureMinMaxByDay, List<Reading> intervalRoomReadings, int option) {
+    public Map<LocalDateTime, Double> getInstantsOutOfComfortTemperature(Map<LocalDate, List<Double>> mapComfortTemperatureMinMaxByDay, List<ReadingDTO> intervalRoomReadings, int option) {
 
         //controlar esta variavel na ui: if BELLOW --> int option = 0; if ABOVE --> int option = 1;
+
+        List<Reading> readings = new ArrayList<>();
+        for (ReadingDTO readingDTO : intervalRoomReadings) {
+            readings.add(ReadingMapper.mapToEntity(readingDTO));
+        }
 
         Map<LocalDateTime, Double> mapInstantsAboveComfortTemperature = new HashMap<>();
 
         Set<Map.Entry<LocalDate, List<Double>>> mapComfTemp = mapComfortTemperatureMinMaxByDay.entrySet();
 
         if (!mapComfTemp.isEmpty()) {
-            for (Reading roomReading : intervalRoomReadings) {
+            for (Reading roomReading : readings) {
 
                 for (Map.Entry<LocalDate, List<Double>> mapComfTempDaily : mapComfTemp) {
 
@@ -163,15 +170,15 @@ public class SensorsService {
     }
 
     /**
-     * gets room readings from a sensor by sensorId, in an interval of days
+     * gets room readings DTO from a sensor by sensorId, in an interval of days
      *
      * @param startDate initial LocalDate
      * @param endDate   final LocalDate
      * @param roomSensorId  SensorId
-     * @return List of Reading
+     * @return List of Reading DTO
      */
-    public List<Reading> getRoomReadings(LocalDate startDate, LocalDate endDate, SensorId roomSensorId) {
-        return this.roomSensorService.getReadings(startDate, endDate, roomSensorId);
+    public List<ReadingDTO> getRoomReadingsDTO(LocalDate startDate, LocalDate endDate, SensorId roomSensorId) {
+        return this.roomSensorService.getReadingsDTO(startDate, endDate, roomSensorId);
     }
 
     public boolean existSensors (RoomId roomId, SensorTypeId sensorTypeId){
