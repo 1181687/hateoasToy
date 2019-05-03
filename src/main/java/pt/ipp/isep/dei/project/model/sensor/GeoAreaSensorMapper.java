@@ -65,7 +65,7 @@ public final class GeoAreaSensorMapper {
             readings.add(reading);
         }
         GeoAreaSensor sensor = new GeoAreaSensor(geoAreaSensorId, sensorDTO.getName(), sensorDTO.getStartingDate().atStartOfDay(), sensorTypeId, sensorLocation, sensorDTO.getUnits(), geoAreaId);
-        sensor.getListOfReadings().addAll(readings);
+        sensor.addReadings(readings);
         return sensor;
     }
 }
