@@ -109,7 +109,7 @@ public class RoomSensor implements Root {
     }
 
     public boolean sensorTypeEqualsSensorType(SensorTypeId typeId) {
-        String tipoDoSensorPedido = typeId.getSensorTypeId();
+        SensorTypeId tipoDoSensorPedido = typeId;
         return (this.getSensorType().equals(tipoDoSensorPedido));
     }
 

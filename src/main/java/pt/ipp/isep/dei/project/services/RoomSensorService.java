@@ -109,4 +109,13 @@ public class RoomSensorService {
         double maxValue = roomSensor.getMaximumValueOfDay(date);
         return maxValue;
     }
+
+    public boolean newSensor(RoomSensorDTO roomSensorDTO) {
+        RoomSensor roomSensor = RoomSensorMapper.mapToEntity(roomSensorDTO);
+        if (!roomSensorRepo.existsById(roomSensor.getId())) {
+            roomSensorRepo.save(roomSensor);
+            return true;
+        }
+        return false;
+    }
 }

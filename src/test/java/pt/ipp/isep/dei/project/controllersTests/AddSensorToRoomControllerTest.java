@@ -1,40 +1,46 @@
-/*
 package pt.ipp.isep.dei.project.controllersTests;
 
 
-/*
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import pt.ipp.isep.dei.project.controllers.AddSensorToRoomController;
+import pt.ipp.isep.dei.project.model.house.*;
+import pt.ipp.isep.dei.project.model.sensor.*;
+import pt.ipp.isep.dei.project.services.RoomSensorService;
+import pt.ipp.isep.dei.project.services.RoomService;
+import pt.ipp.isep.dei.project.services.SensorTypeService;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
 
 public class AddSensorToRoomControllerTest {
-    private AddSensorToRoomController controller;
-    private GeographicalArea CampusDoIsep;
-    private House houseEdificioB;
+    private AddSensorToRoomController addSensorToRoomController;
+    @Mock
+    private SensorTypeService sensorTypeService;
+    @Mock
+    private RoomService roomService;
+    @Mock
+    private RoomSensorService roomSensorService;
 
     @BeforeEach
     public void StartUp() {
+        MockitoAnnotations.initMocks(this);
+        // Room
 
-        //Geographical Area
-        Location location = new Location(41.178553, -8.608035, 111);
-        AreaShape areaShape = new AreaShape(0.261, 0.249);
-        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Urban area");
-        this.CampusDoIsep = new GeographicalArea("ISEP", "Campus do ISEP", geographicalAreaType, location, areaShape);
+        this.addSensorToRoomController = new AddSensorToRoomController(sensorTypeService, roomService, roomSensorService);
 
-        //House
-
-        int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
-        int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
-        List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
-        this.houseEdificioB = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
-        Location houseLocation = new Location(41.177748, -8.607745, 112);
-
-        Address address = new Address("4200-072", houseLocation, CampusDoIsep);
-        houseEdificioB.setAddress(address);
     }
 
     @Test
     public void testDisplayRoomsInTheHouse() {
         // Arrange
         // RoomList with two rooms
-        RoomList roomList = new RoomList();
+        List<RoomDTO> roomDTOS = new ArrayList<>();
 
         String name1 = "Kitchen";
         String description = "room";
@@ -47,21 +53,22 @@ public class AddSensorToRoomControllerTest {
         Dimension dimension2 = new Dimension(2, 1.5, 1.3);
         Room room2 = new Room(name2, description, houseFloor2, dimension2);
 
-        roomList.addRoom(room1);
-        roomList.addRoom(room2);
+        roomDTOS.add(RoomMapper.mapToDTO(room1));
+        roomDTOS.add(RoomMapper.mapToDTO(room2));
 
-        // Sensors Type List
-        SensorTypeList listSensorsType = new SensorTypeList();
-
-
-        AddSensorToRoomController addSensorToRoomController = new AddSensorToRoomController(listSensorsType, roomList, houseEdificioB);
-
-        String expectResult = "1- Name: Kitchen, House Floor: 0, Dimension - Height: 2.0, Length: 2.0, Width: 2.0\n" +
-                "2- Name: Living Room, House Floor: 1, Dimension - Height: 2.0, Length: 1.5, Width: 1.3\n";
+        String expectResult = "1- Name: Kitchen, House Floor: 0, room\n" +
+                "2- Name: Living Room, House Floor: 1, room\n";
         //act
-        String result = addSensorToRoomController.getRoomListContent();
+        when(roomService.getAllRoomsDTO()).thenReturn(roomDTOS);
+        List<RoomDTO> roomDTOList = addSensorToRoomController.getRoomListContent();
+        StringBuilder result = new StringBuilder();
+        int numberInTheList = 1;
+        for (RoomDTO roomDTO : roomDTOList) {
+            result.append(numberInTheList + "-" + " Name: " + roomDTO.getRoomId() + ", House Floor: " + roomDTO.getHouseFloor() + ", " + roomDTO.getDescription() + "\n");
+            numberInTheList++;
+        }
         //assert
-        assertEquals(expectResult, result);
+        assertEquals(expectResult, result.toString());
     }
 
     @Test
@@ -79,75 +86,69 @@ public class AddSensorToRoomControllerTest {
         roomList.addRoom(room1);
 
         // Type of sensor
-        SensorType sensorType = new SensorType("Temperatura");
-
+        SensorTypeId sensorTypeId = new SensorTypeId("Temperature");
+        SensorType sensorType = new SensorType(sensorTypeId);
 
         // Sensors Type List
-        SensorTypeList listSensorsType = new SensorTypeList();
-        listSensorsType.addSensorType(sensorType);
+        List<SensorType> listSensorsType = new ArrayList<>();
+        listSensorsType.add(sensorType);
 
-        AddSensorToRoomController addSensorToRoomController = new AddSensorToRoomController(listSensorsType, roomList, houseEdificioB);
-
-        String expectedResult = "1 - sensor Type: Temperatura\n";
+        List<SensorTypeDTO> expectedResult = new ArrayList<>();
+        expectedResult.add(SensorTypeMapper.mapToDto(listSensorsType.get(0)));
 
         // Act
-        String result = addSensorToRoomController.displayListOfSensorsType();
+        when(sensorTypeService.getSensorTypeList()).thenReturn(listSensorsType);
+        List<SensorTypeDTO> result = addSensorToRoomController.getSensorTypes();
         // Assert
         assertEquals(expectedResult, result);
     }
 
-*/
-/*    @Test
+    @Test
     public void createAndAddSensorToTheList() {
         // Arrange
-
-        // sensor
-        SensorType sensorType = new SensorType("Temperatura");
-        String id = "123";
-        String sensorName = "A123";
-        String units = "l/m2";
+        // Arrange
+        List<RoomDTO> roomDTOS = new ArrayList<>();
 
         // Room
         String name1 = "Kitchen";
         String description = "room";
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
-        Room room1 = new Room(name1, description, houseFloor1, dimension1);
+        Room room = new Room(name1, description, houseFloor1, dimension1);
 
-        // Room list
-        RoomList roomList = new RoomList();
-        roomList.addRoom(room1);
+        roomDTOS.add(RoomMapper.mapToDTO(room));
+
+        // sensor
+        SensorTypeId sensorTypeId = new SensorTypeId("Temperature");
+        SensorType sensorType = new SensorType(sensorTypeId);
+        String id = "123";
+        String sensorName = "A123";
+        String units = "l/m2";
+
+        RoomSensorDTO roomSensorDTO = RoomSensorMapper.newRoomSensorDTO();
+        roomSensorDTO.setId(id);
+        roomSensorDTO.setName(sensorName);
+        roomSensorDTO.setSensorType(sensorTypeId.getSensorTypeId());
+        roomSensorDTO.setUnits(units);
+        roomSensorDTO.setRoomId(roomDTOS.get(0).getRoomId());
 
         // Sensors Type List
         SensorTypeList listSensorsType = new SensorTypeList();
         listSensorsType.addSensorType(sensorType);
 
-        AddSensorToRoomController addSensorToRoomController = new AddSensorToRoomController(listSensorsType, roomList, houseEdificioB);
-
-        addSensorToRoomController.getRoomByIndex(0);
-        addSensorToRoomController.getSensorTypeByIndex(0);
-        addSensorToRoomController.getLocationOfTheHouse();
-
         // Act
-        boolean result = addSensorToRoomController.createAndAddSensorToTheList(id, sensorName, units);
+        when(roomSensorService.newSensor(roomSensorDTO)).thenReturn(true);
+        boolean result = addSensorToRoomController.createAndAddSensorToTheList(roomSensorDTO);
 
         // Assert
         assertTrue(result);
-    }*//*
+    }
 
 
     @Test
     public void checkIfRoomListIsEmptyPositive() {
-        // Arrange
-        RoomList roomList = new RoomList();
-
-        // Sensors Type List
-        SensorTypeList listSensorsType = new SensorTypeList();
-
-        AddSensorToRoomController addSensorToRoomController = new AddSensorToRoomController(listSensorsType, roomList, houseEdificioB);
-
         // Act
-        boolean result = addSensorToRoomController.isRoomListEmpty();
+        boolean result = addSensorToRoomController.getRoomListContent().isEmpty();
         // Assert
         assertTrue(result);
     }
@@ -155,25 +156,37 @@ public class AddSensorToRoomControllerTest {
     @Test
     public void checkIfRoomListIsEmptyNegative() {
         // Arrange
-        RoomList roomList = new RoomList();
+        List<RoomDTO> roomDTOS = new ArrayList<>();
 
         // Room
         String name1 = "Kitchen";
         String description = "room";
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
-        Room room1 = new Room(name1, description, houseFloor1, dimension1);
+        Room room = new Room(name1, description, houseFloor1, dimension1);
 
-        roomList.addRoom(room1);
-
-
-        // Sensors Type List
-        SensorTypeList listSensorsType = new SensorTypeList();
-
-        AddSensorToRoomController addSensorToRoomController = new AddSensorToRoomController(listSensorsType, roomList, houseEdificioB);
+        roomDTOS.add(RoomMapper.mapToDTO(room));
 
         // Act
-        boolean result = addSensorToRoomController.isRoomListEmpty();
+        when(roomService.getAllRoomsDTO()).thenReturn(roomDTOS);
+        boolean result = addSensorToRoomController.getRoomListContent().isEmpty();
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void checkIfTheListOfSensorTypeIsEmptyNegative() {
+        // Arrange
+        // Sensors Type List
+        List<SensorType> listSensorsType = new ArrayList<>();
+
+        SensorTypeId sensorTypeId = new SensorTypeId("Temperature");
+        SensorType sensorType = new SensorType(sensorTypeId);
+        listSensorsType.add(sensorType);
+
+        when(sensorTypeService.getSensorTypeList()).thenReturn(listSensorsType);
+        // Act
+        boolean result = addSensorToRoomController.getSensorTypes().isEmpty();
         // Assert
         assertFalse(result);
     }
@@ -181,54 +194,12 @@ public class AddSensorToRoomControllerTest {
     @Test
     public void checkIfTheListOfSensorTypeIsEmptyPositive() {
         // Arrange
-        // RoomList with two rooms
-        RoomList roomList = new RoomList();
+        List<SensorType> listSensorsType = new ArrayList<>();
 
-        String name1 = "Kitchen";
-        int houseFloor1 = 0;
-        String description = "room";
-        Dimension dimension1 = new Dimension(2, 2, 2);
-        Room room1 = new Room(name1, description, houseFloor1, dimension1);
-
-        roomList.addRoom(room1);
-
-        // Sensors Type List
-        SensorTypeList listSensorsType = new SensorTypeList();
-
-        AddSensorToRoomController addSensorToRoomController = new AddSensorToRoomController(listSensorsType, roomList, houseEdificioB);
-
+        when(sensorTypeService.getSensorTypeList()).thenReturn(listSensorsType);
         // Act
-        boolean result = addSensorToRoomController.isSensorTypeListEmpty();
+        boolean result = addSensorToRoomController.getSensorTypes().isEmpty();
         // Assert
         assertTrue(result);
     }
-
-    @Test
-    public void checkIfTheListOfSensorTypeIsEmptyNegative() {
-        // Arrange
-        // RoomList with two rooms
-        RoomList roomList = new RoomList();
-
-        String name1 = "Kitchen";
-        String description = "room";
-        int houseFloor1 = 0;
-        Dimension dimension1 = new Dimension(2, 2, 2);
-        Room room1 = new Room(name1, description, houseFloor1, dimension1);
-
-        roomList.addRoom(room1);
-
-        // Tipo de sensor
-        SensorType sensorType = new SensorType("Temperatura");
-
-        // Sensors Type List
-        SensorTypeList listSensorsType = new SensorTypeList();
-        listSensorsType.addSensorType(sensorType);
-
-        AddSensorToRoomController addSensorToRoomController = new AddSensorToRoomController(listSensorsType, roomList, houseEdificioB);
-
-        // Act
-        boolean result = addSensorToRoomController.isSensorTypeListEmpty();
-        // Assert
-        assertFalse(result);
-    }
-}*/
+}

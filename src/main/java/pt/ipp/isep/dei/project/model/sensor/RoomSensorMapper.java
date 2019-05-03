@@ -28,6 +28,7 @@ public final class RoomSensorMapper {
             readings.add(reading);
         }
         RoomSensor sensor = new RoomSensor(sensorId, sensorDTO.getName(), sensorDTO.getStartingDate(), typeId, sensorDTO.getUnits(), roomId);
+
         sensor.getReadings().addAll(readings);
         return sensor;
     }

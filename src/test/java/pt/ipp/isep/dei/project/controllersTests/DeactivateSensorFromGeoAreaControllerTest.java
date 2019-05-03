@@ -46,7 +46,7 @@ public class DeactivateSensorFromGeoAreaControllerTest {
         LocalDateTime startDate = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         Location sensorLocation = new Location(38.1596, -8.6109, 97);
         SensorId sensorId = new SensorId("S01");
-        temperatureSensor = new GeoAreaSensor(sensorId, "A123", startDate, temperature, sensorLocation, "l/m2");
+        temperatureSensor = new GeoAreaSensor(sensorId, "A123", startDate, temperature, sensorLocation, "l/m2", porto.getId());
         porto.addSensor(temperatureSensor);
 
         // Controller
