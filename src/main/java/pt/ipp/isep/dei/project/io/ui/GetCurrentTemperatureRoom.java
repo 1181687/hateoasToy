@@ -60,7 +60,7 @@ public class GetCurrentTemperatureRoom {
      */
     public void run() {
        if (allRoomsDTOList.isEmpty()) {
-            System.out.println("There are no rooms available.\n");
+            System.out.println("Sorry! There are no rooms available.\n");
             return;
         }
         getRoomDTOListToString();
@@ -70,7 +70,7 @@ public class GetCurrentTemperatureRoom {
         String roomDTOId = selectedRoom.getRoomId();
         ReadingDTO temp = controller.getLatestMeasurementOfRoomSensor(roomDTOId);
         if (Objects.isNull(temp)) {
-            System.out.println("There are no temperature values available.");
+            System.out.println("Sorry! There are no temperature values available.");
             return;
         }
         displayResults(roomDTOId, temp.getValue(), temp.getDateTime().toString());
