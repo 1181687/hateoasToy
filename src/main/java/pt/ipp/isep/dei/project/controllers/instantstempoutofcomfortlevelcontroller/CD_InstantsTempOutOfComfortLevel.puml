@@ -16,20 +16,21 @@ InstantsTempOutOfComfortLevelUI "1" --> "1" InstantsTempOutOfComfortLevelControl
 InstantsTempOutOfComfortLevelController "1" --> "1" HouseService
 InstantsTempOutOfComfortLevelController "1" --> "1" "RoomService"
 InstantsTempOutOfComfortLevelController "1" -right-> "1" "SensorsService"
-HouseService "1" --> "1" AddressMapper: uses
-HouseService "1" --> "1" RoomMapper: uses
-HouseService "1" --> "1" HouseGridMapper: uses
-HouseService "1" -right-> "1" House: updates
+SensorsService "1" --> "1" RoomSensorService
+SensorsService "1" --> "1" GeoAreaSensorService
+RoomSensorService "1" --> "1" RoomSensorRepository
+RoomSensorRepository "1" -right-> "1" RoomSensor
+RoomSensor "1" -right-> "*" Reading
+GeoAreaSensorService "1" --> "1" GeoAreaSensorRepository
+GeoAreaSensorRepository "1" -right-> "1" GeoAreaSensor
 GeoAreaSensor "1" -down-> "1" Location: uses
 GeoAreaSensor "1" -down-> "*" Reading: uses
-JSONReader "1" -down-> "1" HouseGridMapper: uses
-JSONReader "1" -left-> "1" HouseDTO: uses
-AddressMapper "1" -down-> "1" AddressDTO: creates
-RoomMapper "1" --> "1" RoomDTO: creates
-HouseGridMapper "1" --> "1" HouseGridDTO: creates
+HouseService "1" -right-> "1" HouseRepository
+HouseRepository "1" -right-> "*" House
+RoomService "1" -> RoomRepository
+House "1" -right-> "1" Address
+Address "1" -right-> "1" Location
 
-
-JSONReader "1" -right-* "1" "<<ProjectFileReader>>" : implements
 
 Class InstantsTempOutOfComfortLevelUI {
 - InstantsTempOutOfComfortLevelController controller
@@ -79,7 +80,6 @@ Interface RoomRepository {
 
 Class RoomSensor {
 - SensorId id
-- List<Reading> readings
 - SensorTypeId sensorTypeId
 - RoomId roomId
 + existReadingsBetweenDates ()
@@ -148,11 +148,50 @@ Class RoomDTO {
 }
 
 Class RoomMapper {
-+ newRoomDTO ()
 + mapToDTO ()
 + mapToEntity ()
-
 }
+
+Class LocationDTO {
+- double latitude
+- double longitude
+- double elevation
++ get ()
++ set()
+}
+
+Class LocationMapper {
++ mapToDTO ()
++ mapToEntity ()
+}
+
+Class GeoAreaIdDTO {
+- String id
+- LocationDTO locationDTO
+- String geoAreaType
++ get ()
++ set()
+}
+
+Class GeoAreaIdMapper {
++ mapToDTO ()
++ mapToEntity ()
+}
+
+Class ReadingDTO {
+- String id
+- double value
+- LocalDateTime dateTime
+- String units
++ get ()
++ set()
+}
+
+Class ReadingMapper {
++ mapToDTO ()
++ mapToEntity ()
+}
+
 
 Interface "GeoAreaSensorRepository" {
 + findByGeoAreaIdAndSensorTypeId ()
@@ -174,7 +213,7 @@ Class Reading {
 + get ()
 }
 
-Class SensorService {
+Class SensorsService {
 + existSensors ()
 + getComfortTemperature ()
 + getSensorId ()
