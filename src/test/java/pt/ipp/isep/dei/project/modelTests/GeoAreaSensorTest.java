@@ -11,6 +11,7 @@ import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.GregorianCalendar;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -193,9 +194,156 @@ class GeoAreaSensorTest {
 
     }
 
+
     @Test
-    void getSmallestMeasurementOfMonth() {
+    public void getSmallestMeasurementOfMonthTest() {
+        // Arrange
+        LocalDateTime date1 = LocalDateTime.of(2017, 8, 15, 5, 30, 0);
+        LocalDateTime date2 = LocalDateTime.of(2017, 8, 15, 6, 02, 0);
+        LocalDateTime date3 = LocalDateTime.of(2017, 8, 16, 6, 30, 0);
+
+        Reading reading1 = new Reading(19, date1);
+        Reading reading2 = new Reading(20.1, date2);
+        Reading reading3 = new Reading(21.7, date3);
+
+        double expectedResult = 19;
+        LocalDate dayOfMonth = LocalDate.of(2017, 8, 5);
+
+        // Act
+        this.temperatureSensor.addReadingsToList(reading1);
+        this.temperatureSensor.addReadingsToList(reading2);
+        this.temperatureSensor.addReadingsToList(reading3);
+        double result = this.temperatureSensor.getSmallestMeasurementOfMonth(dayOfMonth);
+
+        // Assert
+        assertEquals(expectedResult, result, 0.001);
     }
+
+    @Test
+    public void getSmallestMeasurementOfMonthTest_AnyReading() {
+
+        // Arrange
+        double expectedResult = Double.NaN;
+        LocalDate dayOfMonth = LocalDate.of(2017, GregorianCalendar.AUGUST, 15);
+
+        // Act
+        double result = this.temperatureSensor.getSmallestMeasurementOfMonth(dayOfMonth);
+
+        // Assert
+        assertEquals(expectedResult, result, 0.001);
+    }
+
+    @Test
+    public void getSmallestMeasurementOfMonthTest_AnotherMonth() {
+
+        // Arrange
+        LocalDateTime date1 = LocalDateTime.of(2017, 8, 15, 5, 30, 0);
+        LocalDateTime date2 = LocalDateTime.of(2017, 8, 15, 6, 02, 0);
+        LocalDateTime date3 = LocalDateTime.of(2017, 8, 16, 6, 30, 0);
+
+        Reading reading1 = new Reading(20.5, date1);
+        Reading reading2 = new Reading(19, date2);
+        Reading reading3 = new Reading(21.7, date3);
+
+        double expectedResult = 19;
+        LocalDate dayOfMonth = LocalDate.of(2017, 8, 5);
+
+        // Act
+        this.temperatureSensor.addReadingsToList(reading1);
+        this.temperatureSensor.addReadingsToList(reading2);
+        this.temperatureSensor.addReadingsToList(reading3);
+        double result = this.temperatureSensor.getSmallestMeasurementOfMonth(dayOfMonth);
+
+        // Assert
+        assertEquals(expectedResult, result, 0.001);
+    }
+
+    @Test
+    public void getSmallestMeasurementOfMonthTest_AnotherSecondMonth() {
+
+        // Arrange
+        LocalDateTime date1 = LocalDateTime.of(2017, 8, 15, 5, 30, 0);
+        LocalDateTime date2 = LocalDateTime.of(2017, 8, 15, 6, 02, 0);
+        LocalDateTime date3 = LocalDateTime.of(2017, 8, 16, 6, 30, 0);
+
+        Reading reading1 = new Reading(19, date1);
+        Reading reading2 = new Reading(22, date2);
+        Reading reading3 = new Reading(19, date3);
+
+        double expectedResult = 19;
+        LocalDate dayOfMonth = LocalDate.of(2017, 8, 5);
+
+        // Act
+        this.temperatureSensor.addReadingsToList(reading1);
+        this.temperatureSensor.addReadingsToList(reading2);
+        this.temperatureSensor.addReadingsToList(reading3);
+        double result = this.temperatureSensor.getSmallestMeasurementOfMonth(dayOfMonth);
+
+        // Assert
+        assertEquals(expectedResult, result, 0.001);
+    }
+
+    @Test
+    public void getSmallestMeasurementOfMonthTest_AllEquals() {
+
+        // Arrange
+        LocalDateTime date1 = LocalDateTime.of(2017, 8, 15, 5, 30, 0);
+        LocalDateTime date2 = LocalDateTime.of(2017, 8, 15, 6, 02, 0);
+        LocalDateTime date3 = LocalDateTime.of(2017, 8, 16, 6, 30, 0);
+
+        Reading reading1 = new Reading(19, date1);
+        Reading reading2 = new Reading(19, date2);
+        Reading reading3 = new Reading(19, date3);
+
+        double expectedResult = 19;
+        LocalDate dayOfMonth = LocalDate.of(2017, 8, 5);
+
+        // Act
+        this.temperatureSensor.addReadingsToList(reading1);
+        this.temperatureSensor.addReadingsToList(reading2);
+        this.temperatureSensor.addReadingsToList(reading3);
+        double result = this.temperatureSensor.getSmallestMeasurementOfMonth(dayOfMonth);
+
+        // Assert
+        assertEquals(expectedResult, result, 0.001);
+    }
+
+    @Test
+    public void getSmallestMeasurementOfMonthTest_LastDifferent() {
+
+        // Arrange
+        LocalDateTime date1 = LocalDateTime.of(2017, 8, 15, 5, 30, 0);
+        LocalDateTime date2 = LocalDateTime.of(2017, 8, 15, 6, 02, 0);
+        LocalDateTime date3 = LocalDateTime.of(2017, 8, 16, 6, 30, 0);
+
+        Reading reading1 = new Reading(22, date1);
+        Reading reading2 = new Reading(22, date2);
+        Reading reading3 = new Reading(19, date3);
+
+        double expectedResult = 19;
+        LocalDate dayOfMonth = LocalDate.of(2017, 8, 5);
+
+        // Act
+        this.temperatureSensor.addReadingsToList(reading1);
+        this.temperatureSensor.addReadingsToList(reading2);
+        this.temperatureSensor.addReadingsToList(reading3);
+        double result = this.temperatureSensor.getSmallestMeasurementOfMonth(dayOfMonth);
+
+        // Assert
+        assertEquals(expectedResult, result, 0.001);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
     @Test
     void getBiggestMeasurementOfMonth() {
