@@ -12,10 +12,10 @@ hide circle
 
 
 
-ConfigureHouseFromAFileUI "1" --> "1" ConfigureHouseInformationFromJSONOController
-ConfigureHouseInformationFromJSONOController "1" --> "1" HouseService
-ConfigureHouseInformationFromJSONOController "1" --> "1" House
-ConfigureHouseInformationFromJSONOController "1" -right-> "1" "<<ProjectFileReader>>"
+InstantsTempOutOfComfortLevelUI "1" --> "1" InstantsTempOutOfComfortLevelController
+InstantsTempOutOfComfortLevelController "1" --> "1" HouseService
+InstantsTempOutOfComfortLevelController "1" --> "1" "RoomService"
+InstantsTempOutOfComfortLevelController "1" -right-> "1" "SensorsService"
 HouseService "1" --> "1" AddressMapper: uses
 HouseService "1" --> "1" RoomMapper: uses
 HouseService "1" --> "1" HouseGridMapper: uses
@@ -31,25 +31,37 @@ HouseGridMapper "1" --> "1" HouseGridDTO: creates
 
 JSONReader "1" -right-* "1" "<<ProjectFileReader>>" : implements
 
-Class ConfigureHouseFromAFileUI {
-- ConfigureHouseInformationFromJSONOController controller
+Class InstantsTempOutOfComfortLevelUI {
+- InstantsTempOutOfComfortLevelController controller
 + run()
 
 }
 
-Class ConfigureHouseInformationFromJSONOController {
-- List<Object> houseObjects
-- int numberOfNotImportedRooms
-- int numberOfNotImportedGrids
-- configLogFile ()
-+ createReader ()
-+ readFile ()
-+ importHouseInformation ()
-+ getNumberOfNotImportedRooms ()
-+ getNumberOfNotImportedGrids ()
-- writeAddressToFile ()
-- checkForInvalidRoomInfo ()
-- checkForInvalidGridInfo ()
+Class InstantsTempOutOfComfortLevelController {
+- SensorTypeId sensorTypeId
+- RoomId roomId
+- SensorId roomSensorId
+- LocationDTO location
+- GeoAreaIdDTO geoAreaId
+- Map<LocalDate, List<Double>> comfortTemp
+- Map<LocalDateTime, Double> mapInstantsOutOfComfortTemp
+- List<Reading> roomReadings
+- int category
+- int option
+- List<LocalDateTime> listOfInstantsOutOfComfortTemp
++ setCategory ()
++ setOption ()
++ getAllRoomsDTO ()
++ isRoomListEmpty ()
++ setRoomId ()
++ existTempSensors ()
++ getComfortTemperature ()
++ setSensorID ()
+- getInstantsOutOfComfortTemperature ()
++ getInstantListOutOfComfortLevel ()
++ existsDaysWithoutComfortTemp ()
++ getDaysWithoutComfortTemp ()
++ readingsHouseAreaAndRoom ()
 }
 
 
@@ -85,7 +97,7 @@ Class AddressDTO {
 }
 
 
-Class House {
+Class RoomService {
 - RoomList roomList
 - List<HouseGrid> listHouseGrids
 - Address address
@@ -137,7 +149,7 @@ Class RoomMapper {
 
 }
 
-Interface "<<ProjectFileReader>>" {
+Interface "SensorsService" {
 + getTypeName ()
 + readFile ()
 

@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.ReadingMapper;
-import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.RoomId;
 import pt.ipp.isep.dei.project.model.sensor.*;
 import pt.ipp.isep.dei.project.repositories.RoomSensorRepository;
@@ -83,14 +82,14 @@ public class RoomSensorService {
         return roomSensor.getId();
     }
 
-    public RoomSensorDTO getRoomSensorBy(RoomId roomId, SensorTypeId sensorTypeId){
+    public RoomSensorDTO getRoomSensor(RoomId roomId, SensorTypeId sensorTypeId){
         RoomSensor room = this.roomSensorRepo.findByRoomIdAndSensorTypeId(roomId, sensorTypeId);
         RoomSensorDTO roomSensorDTO = RoomSensorMapper.mapToDTO(room);
         return roomSensorDTO;
     }
 
     public ReadingDTO getLastMeasurement (RoomId roomId, SensorTypeId sensorTypeId) {
-        RoomSensorDTO roomSensorDTO = getRoomSensorBy(roomId,sensorTypeId);
+        RoomSensorDTO roomSensorDTO = getRoomSensor(roomId,sensorTypeId);
         RoomSensor roomSensor = RoomSensorMapper.mapToEntity(roomSensorDTO);
         Reading reading = roomSensor.getLastMeasurement();
         ReadingDTO lastReadingDTO = ReadingMapper.mapToDTO(reading);
@@ -98,7 +97,7 @@ public class RoomSensorService {
     }
 
     public double getMaxMeasurementValueOfADay (RoomId roomId, SensorTypeId sensorTypeId, LocalDate date) {
-        RoomSensorDTO roomSensorDTO = getRoomSensorBy(roomId,sensorTypeId);
+        RoomSensorDTO roomSensorDTO = getRoomSensor(roomId,sensorTypeId);
         RoomSensor roomSensor = RoomSensorMapper.mapToEntity(roomSensorDTO);
         double maxValue = roomSensor.getMaximumValueOfDay(date);
         return maxValue;
