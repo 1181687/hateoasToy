@@ -333,33 +333,124 @@ class GeoAreaSensorTest {
         assertEquals(expectedResult, result, 0.001);
     }
 
+    @Test
+    public void testaGetMaiorRegistoMes() {
+        //Arrange
+        LocalDateTime date1 = LocalDateTime.of(2018, 4, 11, 5, 55);
+        LocalDateTime date2 = LocalDateTime.of(2018, 2, 1, 6, 25);
+        LocalDateTime date3 = LocalDateTime.of(2018, 2, 11, 7, 30);
+        LocalDateTime date4 = LocalDateTime.of(2018, 2, 12, 15, 20);
 
+        Reading reading1 = new Reading(28, date1);
+        Reading reading2 = new Reading(25, date2);
+        Reading reading3 = new Reading(26, date3);
+        Reading reading4 = new Reading(27, date4);
 
+        double expectedResult = 27;
+        LocalDate dayOfMonth = LocalDate.of(2018, 2, 5);
 
+        this.temperatureSensor.addReadingsToList(reading1);
+        this.temperatureSensor.addReadingsToList(reading2);
+        this.temperatureSensor.addReadingsToList(reading3);
+        this.temperatureSensor.addReadingsToList(reading4);
 
+        //Act
+        double result = this.temperatureSensor.getBiggestMeasurementOfMonth(dayOfMonth);
 
-
-
-
-
-
-
+        //Assert
+        assertEquals(expectedResult, result, 0.001);
+    }
 
     @Test
-    void getBiggestMeasurementOfMonth() {
+    public void testaGetMaiorRegistoMes2() {
+        //Arrange
+        LocalDateTime date1 = LocalDateTime.of(2018, 4, 11, 5, 55);
+        LocalDateTime date2 = LocalDateTime.of(2018, 2, 1, 6, 25);
+        LocalDateTime date3 = LocalDateTime.of(2018, 2, 11, 7, 30);
+        LocalDateTime date4 = LocalDateTime.of(2018, 2, 12, 15, 20);
+
+        Reading reading1 = new Reading(28, date1);
+        Reading reading2 = new Reading(27, date2);
+        Reading reading3 = new Reading(26, date3);
+        Reading reading4 = new Reading(28, date4);
+
+        double expectedResult = 28;
+        LocalDate dataDoMes = LocalDate.of(2018, 2, 5);
+
+        this.temperatureSensor.addReadingsToList(reading1);
+        this.temperatureSensor.addReadingsToList(reading2);
+        this.temperatureSensor.addReadingsToList(reading3);
+        this.temperatureSensor.addReadingsToList(reading4);
+
+        //Act
+        double result = this.temperatureSensor.getBiggestMeasurementOfMonth(dataDoMes);
+
+        //Assert
+        assertEquals(expectedResult, result, 0.001);
     }
+
+    @Test
+    public void testaGetMaiorRegistoMesListaSemRegistos() {
+        //Arrange
+        LocalDate dateOfMonth = LocalDate.of(2018, 2, 15);
+        double expectedResult = Double.NaN;
+
+        //Act
+        double result = this.temperatureSensor.getBiggestMeasurementOfMonth(dateOfMonth);
+
+        //Assert
+        assertEquals(expectedResult, result, 0.001);
+    }
+
 
     @Test
     void getMonthlyAverageMeasurement() {
     }
 
+
     @Test
-    void addReading() {
+    public void getMonthlyAverageMeasurementTest() {
+        //Arrange
+        LocalDateTime date1 = LocalDateTime.of(2018, 4, 11, 5, 55);
+        LocalDateTime date2 = LocalDateTime.of(2018, 2, 1, 6, 25);
+        LocalDateTime date3 = LocalDateTime.of(2018, 2, 11, 7, 30);
+        LocalDateTime date4 = LocalDateTime.of(2018, 2, 12, 6, 25);
+
+        Reading reading1 = new Reading(21, date1);
+        Reading reading2 = new Reading(25, date2);
+        Reading reading3 = new Reading(26, date3);
+        Reading reading4 = new Reading(27, date4);
+
+        double expectedResult = 26;
+        LocalDate dayOfMonth = LocalDate.of(2018, 2, 15);
+
+        this.temperatureSensor.addReadingsToList(reading1);
+        this.temperatureSensor.addReadingsToList(reading2);
+        this.temperatureSensor.addReadingsToList(reading3);
+        this.temperatureSensor.addReadingsToList(reading4);
+        //Act
+        double result = this.temperatureSensor.getMonthlyAverageMeasurement(dayOfMonth);
+        //Assert
+        assertEquals(expectedResult, result, 0.001);
     }
+
+    @Test
+    public void getMonthlyAverageMeasurementTest_NoReadings() {
+        //Arrange
+        double expectedResult = Double.NaN;
+        LocalDate dayOfMonth = LocalDate.of(2018, 2, 20);
+
+        //Act
+        double result = this.temperatureSensor.getMonthlyAverageMeasurement(dayOfMonth);
+        //Assert
+        assertEquals(expectedResult, result, 0.001);
+    }
+
 
     @Test
     void readingExistsBySensorIdLocalDateTime() {
     }
+
 
     @Test
     public void isMeasurementListEmpty_ShouldReturnTrue() {
@@ -386,14 +477,65 @@ class GeoAreaSensorTest {
         assertFalse(result);
     }
 
-
     @Test
-    void getLastMeasurement() {
+    public void getLastMeasurementTest() {
+        //Arrange
+        Reading expectedResult = this.reading1;
+
+        //Act
+        Reading result = this.temperatureSensor.getLastMeasurement();
+
+        //Assert
+        assertEquals(expectedResult, result);
     }
 
     @Test
-    void sensorTypeEqualsSensorType() {
+    public void getLastMeasurementTestTwoReadings_reading2() {
+        //Arrange
+        Reading expectedResult = this.reading1;
+
+        //Act
+        Reading result = this.temperatureSensor.getLastMeasurement();
+
+        //Assert
+        assertEquals(expectedResult, result);
     }
+
+    @Test
+    public void getLastMeasurement_EmptyList() {
+        //Arrange
+        this.temperatureSensor.getListOfReadings().remove(this.reading);
+        this.temperatureSensor.getListOfReadings().remove(this.reading1);
+
+        Reading expectedResult = null;
+
+        //Act
+        Reading result = this.temperatureSensor.getLastMeasurement();
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void sensorTypeEqualsSensorTypeTest_ShouldReturnTrue() {
+        //Arrange
+        SensorTypeId sensorTypeId = new SensorTypeId("Temperature");
+        //Act
+        boolean result = this.temperatureSensor.sensorTypeEqualsSensorType(sensorTypeId);
+        //Assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void sensorTypeEqualsSensorTypeTest_ShouldReturnFalse() {
+        //Arrange
+        SensorTypeId sensorTypeId = new SensorTypeId("Humidity");
+        //Act
+        boolean result = this.temperatureSensor.sensorTypeEqualsSensorType(sensorTypeId);
+        //Assert
+        assertFalse(result);
+    }
+
 
     @Test
     void getDailyMeasurement() {
