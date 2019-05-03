@@ -24,6 +24,7 @@ JSONReader -down-> ReadingMapper : uses
 RoomSensorDTO "1" --> "0 *" ReadingDTO
 RoomSensorMapper "1" -down-> "1" RoomSensor: creates
 RoomSensorMapper "1" -right-> "1" ReadingMapper: uses
+RoomSensorService "1" --> "1" "<<RoomSensorRepository>>"
 
 
 Class ImportReadings {
@@ -124,5 +125,8 @@ Class RoomSensor{
 Interface "<<ProjectFileReader>>" {
 +getTypeName()
 +readFile()
+}
+
+Interface "<<RoomSensorRepository>>" {
 }
 @enduml

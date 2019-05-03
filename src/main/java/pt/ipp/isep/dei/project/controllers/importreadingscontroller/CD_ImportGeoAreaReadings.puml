@@ -24,6 +24,7 @@ JSONReader -down-> ReadingMapper : uses
 GeoAreaSensorDTO "1" --> "0 *" ReadingDTO
 GeoAreaSensorMapper "1" -down-> "1" GeoAreaSensor: creates
 GeoAreaSensorMapper "1" -right-> "1" ReadingMapper: uses
+GeoAreaSensorService "1" --> "1" "<<GeoAreaSensorRepository>>"
 
 
 Class ImportReadings {
@@ -123,8 +124,13 @@ Class GeoAreaSensor{
 +addReadings()
 }
 
+Class GeoAreaSensor
+
 Interface "<<ProjectFileReader>>" {
 +getTypeName()
 +readFile()
+}
+
+Interface "<<GeoAreaSensorRepository>>" {
 }
 @enduml
