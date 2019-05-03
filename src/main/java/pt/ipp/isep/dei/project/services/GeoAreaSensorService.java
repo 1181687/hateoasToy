@@ -5,9 +5,7 @@ import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaId;
-import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
-import pt.ipp.isep.dei.project.model.sensor.SensorId;
-import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
+import pt.ipp.isep.dei.project.model.sensor.*;
 import pt.ipp.isep.dei.project.repositories.GeoAreaSensorRepository;
 import pt.ipp.isep.dei.project.utils.Utils;
 
@@ -33,9 +31,14 @@ public class GeoAreaSensorService {
     /**
      * Method that saves a list of sensors in the repo.
      *
-     * @param sensors List of sensors to be analyzed.
+     * @param sensorDTOs List of sensors to be analyzed.
      */
-    public void saveSensors(List<GeoAreaSensor> sensors) {
+    public void saveSensors(List<GeoAreaSensorDTO> sensorDTOs) {
+        List<GeoAreaSensor> sensors = new ArrayList<>();
+        for (GeoAreaSensorDTO sensorDTO : sensorDTOs) {
+            GeoAreaSensor sensor = GeoAreaSensorMapper.mapToEntity(sensorDTO);
+            sensors.add(sensor);
+        }
         geoAreaSensorRepo.saveAll(sensors);
     }
 
@@ -219,10 +222,11 @@ public class GeoAreaSensorService {
     /**
      * Method that checks if a sensor exists in the repo by its id.
      *
-     * @param sensorId Id to be used.
+     * @param sensorIdDTO Id to be used.
      * @return True or false.
      */
-    public boolean sensorExists(SensorId sensorId) {
+    public boolean sensorExists(SensorIdDTO sensorIdDTO) {
+        SensorId sensorId = SensorIdMapper.mapToEntity(sensorIdDTO);
         return this.geoAreaSensorRepo.existsById(sensorId);
     }
 }
