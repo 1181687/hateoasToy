@@ -62,6 +62,14 @@ public class RoomSensor implements Root {
         return id;
     }
 
+    public String getSensorName(){
+        return this.sensorName;
+    }
+
+    public String getUnits(){
+        return this.units;
+    }
+
     public LocalDateTime getStartingDate() {
         return startingDate;
     }

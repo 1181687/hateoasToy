@@ -11,8 +11,11 @@ import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaTypeId;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.house.*;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
+import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.utils.Utils;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -53,24 +56,10 @@ public class GetListOfSensorsAndDevicesRoomControllerTest {
 
         this.controller = new GetListOfSensorsAndDevicesRoomController(house);
     }
-*/
-/*
     @Test
     public void getSensorsListContentOfARoomTest() {
         // Arrange
-        LocalDateTime dataFuncionamento0 = LocalDateTime.of(2015, 11, 2, 15, 20, 00);
-        SensorType sensorType0 = new SensorType("Temperatura");
-        Location locS0 = new Location(123, 345, 50);
-        GeoAreaSensor s0 = new GeoAreaSensor("A123", "sensor1", dataFuncionamento0, sensorType0, locS0, "C");
 
-        LocalDateTime dataFuncionamento1 = LocalDateTime.of(2010, 11, 2, 15, 20, 00);
-        SensorType sensorType1 = new SensorType("Temperatura");
-        Location locS1 = new Location(123, 300, 50);
-        GeoAreaSensor s1 = new GeoAreaSensor("A456", "sensor2", dataFuncionamento1, sensorType1, locS1, "C");
-
-        this.room.addSensorToListOfSensorsInRoom(s0);
-        this.room.addSensorToListOfSensorsInRoom(s1);
-        this.house.addRoom(this.room);
         int position = 0;
         String expectedResult =
                 "1 - Name of the sensor: sensor1\n" +
@@ -113,7 +102,7 @@ public class GetListOfSensorsAndDevicesRoomControllerTest {
 
         // Assert
         assertFalse(result);
-    }*//*
+    }
 
 
     @Test
@@ -284,4 +273,5 @@ public class GetListOfSensorsAndDevicesRoomControllerTest {
         //assert
         assertEquals(expectResult, result);
     }
-}*/
+}
+*/

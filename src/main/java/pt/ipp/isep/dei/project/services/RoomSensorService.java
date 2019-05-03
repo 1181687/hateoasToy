@@ -75,4 +75,8 @@ public class RoomSensorService {
         RoomSensor roomSensor = this.roomSensorRepo.findByRoomId(roomId);
         return roomSensor.getId();
     }
+
+    public List<RoomSensor> getAllSensorsOfRoom(RoomId roomId){
+        return this.roomSensorRepo.findAllByRoomId(roomId);
+    }
 }

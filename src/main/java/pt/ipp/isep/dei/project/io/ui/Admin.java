@@ -126,12 +126,12 @@ public class Admin {
                     ui253.run();
                     break;
                 case 5:
-                    GetListOfSensorsAndDevicesRoom ui201 = new GetListOfSensorsAndDevicesRoom(house);
+                    GetListOfSensorsAndDevicesRoom ui201 = new GetListOfSensorsAndDevicesRoom(this.roomService,this.roomSensorService);
                     ui201.listOfDevices();
                     break;
                 case 6:
-                    GetListOfSensorsAndDevicesRoom ui250 = new GetListOfSensorsAndDevicesRoom(house);
-                    //ui250.listOfSensors();
+                    GetListOfSensorsAndDevicesRoom ui250 = new GetListOfSensorsAndDevicesRoom(this.roomService,this.roomSensorService);
+                    ui250.listOfSensors();
                     break;
                 case 7:
                     EditConfigurationDevice ui215 = new EditConfigurationDevice(house);
