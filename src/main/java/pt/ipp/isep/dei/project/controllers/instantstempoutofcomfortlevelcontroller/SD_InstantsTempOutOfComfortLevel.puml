@@ -75,4 +75,16 @@ deactivate ":InstantsOutOf\nTempComfortLevel\nController"
 deactivate RegularUser
 
 
+
+
+
+
+
+
+
+
+ref over ":GeographicalArea"
+getLastLowestMaximumReading
+end
+
 @enduml
