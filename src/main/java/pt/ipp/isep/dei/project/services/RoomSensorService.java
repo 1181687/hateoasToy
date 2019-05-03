@@ -6,9 +6,7 @@ import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.ReadingMapper;
 import pt.ipp.isep.dei.project.model.house.RoomId;
-import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
-import pt.ipp.isep.dei.project.model.sensor.SensorId;
-import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
+import pt.ipp.isep.dei.project.model.sensor.*;
 import pt.ipp.isep.dei.project.repositories.RoomSensorRepository;
 
 import java.time.LocalDate;
@@ -33,19 +31,25 @@ public class RoomSensorService {
     /**
      * Method that saves a list of sensors in the repo.
      *
-     * @param sensors List of sensors to be analyzed.
+     * @param sensorDTOs List of sensors to be analyzed.
      */
-    public void saveSensors(List<RoomSensor> sensors) {
+    public void saveSensors(List<RoomSensorDTO> sensorDTOs) {
+        List<RoomSensor> sensors = new ArrayList<>();
+        for (RoomSensorDTO sensorDTO : sensorDTOs) {
+            RoomSensor sensor = RoomSensorMapper.mapToEntity(sensorDTO);
+            sensors.add(sensor);
+        }
         roomSensorRepo.saveAll(sensors);
     }
 
     /**
      * Method that checks if a sensor exists in the repo by its id.
      *
-     * @param sensorId Id to be used.
+     * @param sensorIdDTO Id to be used.
      * @return True or false.
      */
-    public boolean sensorExists(SensorId sensorId) {
+    public boolean sensorExists(SensorIdDTO sensorIdDTO) {
+        SensorId sensorId = SensorIdMapper.mapToEntity(sensorIdDTO);
         return this.roomSensorRepo.existsById(sensorId);
     }
 

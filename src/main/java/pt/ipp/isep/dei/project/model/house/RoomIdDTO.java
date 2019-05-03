@@ -1,11 +1,11 @@
-package pt.ipp.isep.dei.project.model.sensor;
+package pt.ipp.isep.dei.project.model.house;
 
 import java.util.Objects;
 
-public class SensorIdDTO {
+public class RoomIdDTO {
     private String id;
 
-    public SensorIdDTO() {
+    public RoomIdDTO() {
         //intentionally empty
     }
 
@@ -22,11 +22,11 @@ public class SensorIdDTO {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof SensorIdDTO)) {
+        if (!(obj instanceof RoomIdDTO)) {
             return false;
         }
-        SensorIdDTO sensorIdDTO = (SensorIdDTO) obj;
-        return this.id.equals(sensorIdDTO.id);
+        RoomIdDTO roomIdDTO = (RoomIdDTO) obj;
+        return this.id.equals(roomIdDTO.id);
     }
 
     @Override
