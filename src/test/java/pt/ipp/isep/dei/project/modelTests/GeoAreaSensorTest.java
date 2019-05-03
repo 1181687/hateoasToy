@@ -95,9 +95,8 @@ class GeoAreaSensorTest {
         assertEquals(expectedResult, result);
     }
 
-
     @Test
-    void getUnits() {
+    public void getUnits() {
         //Arrange
         String units = "3m/s2";
         //Act
@@ -109,7 +108,7 @@ class GeoAreaSensorTest {
 
 
     @Test
-    void isActive_ShouldReturnTrue() {
+    public void isActive_ShouldReturnTrue() {
         //Act
         boolean result = this.temperatureSensor.isActive();
         //Assert
@@ -117,7 +116,7 @@ class GeoAreaSensorTest {
     }
 
     @Test
-    void deactivateDevice() {
+    public void deactivateDevice() {
         //Act
         boolean result = this.temperatureSensor.deactivateDevice();
         //Assert
@@ -178,7 +177,7 @@ class GeoAreaSensorTest {
     }
 
     @Test
-    void getMeasurementValueBetweenDatesTest() {
+    public void getMeasurementValueBetweenDatesTest() {
         //Arrange
         //Registo 1
         LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 01, 00, 01);
@@ -236,17 +235,64 @@ class GeoAreaSensorTest {
     }
 
     @Test
-    void existReadingsBetweenDates() {
+    public void existReadingsBetweenDatesTest_ShouldReturnTrue() {
+        //Arrange
+        LocalDate searchDate = LocalDate.of(2018, 11, 2);
+        LocalDate searchFinalDate = LocalDate.of(2018, 11, 8);
 
+        //Act
+        boolean result = this.temperatureSensor.existReadingsBetweenDates(searchDate, searchFinalDate);
 
+        //Assert
+        assertTrue(result);
     }
 
     @Test
-    void checkMeasurementExistenceBetweenDates() {
+    public void existReadingsBetweenDatesTest_ShouldReturnFalse() {
+        //Arrange
+        LocalDate searchDate = LocalDate.of(2015, 11, 4);
+        LocalDate searchFinalDate = LocalDate.of(2016, 11, 8);
 
+        //Act
+        boolean result = this.temperatureSensor.existReadingsBetweenDates(searchDate, searchFinalDate);
 
+        //Assert
+        assertFalse(result);
     }
 
+    @Test
+    public void checkMeasurementExistenceBetweenDates_ShouldReturnTrue() {
+        // Arrange
+        LocalDateTime date1 = LocalDateTime.of(2017, 8, 15, 5, 30, 0);
+        LocalDateTime date2 = LocalDateTime.of(2017, 8, 15, 6, 02, 0);
+        LocalDateTime date3 = LocalDateTime.of(2017, 8, 16, 6, 30, 0);
+
+        Reading reading1 = new Reading(19, date1);
+        Reading reading2 = new Reading(20.1, date2);
+        Reading reading3 = new Reading(21.7, date3);
+
+        // Act
+        this.temperatureSensor.addReadingsToList(reading1);
+        this.temperatureSensor.addReadingsToList(reading2);
+        this.temperatureSensor.addReadingsToList(reading3);
+        boolean result = this.temperatureSensor.checkMeasurementExistenceBetweenDates(date1.toLocalDate(), date2.toLocalDate());
+
+        // Assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void checkMeasurementExistenceBetweenDates_ShouldReturnFalse() {
+        // Arrange
+        LocalDateTime date1 = LocalDateTime.of(2010, 8, 15, 5, 30, 0);
+        LocalDateTime date2 = LocalDateTime.of(2010, 8, 15, 6, 02, 0);
+
+        // Act
+        boolean result = this.temperatureSensor.checkMeasurementExistenceBetweenDates(date1.toLocalDate(), date2.toLocalDate());
+
+        // Assert
+        assertFalse(result);
+    }
 
     @Test
     public void getSmallestMeasurementOfMonthTest() {
@@ -359,7 +405,6 @@ class GeoAreaSensorTest {
 
     @Test
     public void getSmallestMeasurementOfMonthTest_LastDifferent() {
-
         // Arrange
         LocalDateTime date1 = LocalDateTime.of(2017, 8, 15, 5, 30, 0);
         LocalDateTime date2 = LocalDateTime.of(2017, 8, 15, 6, 02, 0);
@@ -490,7 +535,7 @@ class GeoAreaSensorTest {
     }
 
     @Test
-    void readingExistsBySensorIdLocalDateTime_ShouldReturnTrue() {
+    public void readingExistsBySensorIdLocalDateTime_ShouldReturnTrue() {
         //Act
         boolean result = this.temperatureSensor.readingExistsBySensorIdLocalDateTime(this.reading);
 
@@ -499,7 +544,7 @@ class GeoAreaSensorTest {
     }
 
     @Test
-    void readingExistsBySensorIdLocalDateTime_ShouldReturnFalse() {
+    public void readingExistsBySensorIdLocalDateTime_ShouldReturnFalse() {
         // Arrange
         LocalDateTime date1 = LocalDateTime.of(2018, 4, 11, 5, 55);
         Reading reading5 = new Reading(21, date1);
@@ -509,7 +554,6 @@ class GeoAreaSensorTest {
         //Assert
         assertFalse(result);
     }
-
 
     @Test
     public void isMeasurementListEmpty_ShouldReturnTrue() {
@@ -623,7 +667,7 @@ class GeoAreaSensorTest {
 
 
     @Test
-    void getDailyMeasurementWithDoubleNaN() {
+    public void getDailyMeasurementWithDoubleNaN() {
         //Arrange
         LocalDateTime sundayDate3 = LocalDateTime.of(2018, 11, 2, 21, 10, 25);
 
@@ -810,7 +854,7 @@ class GeoAreaSensorTest {
     }
 
     @Test
-    void getFirstDayOfWeek() {
+    public void getFirstDayOfWeek() {
         //Arrange
         LocalDateTime date = LocalDateTime.of(1991, 11, 2, 21, 10, 25);
         LocalDate expectedResult = LocalDate.of(1991, 10, 27);
@@ -1826,7 +1870,7 @@ class GeoAreaSensorTest {
 
 
     @Test
-    void getFirstHighestReading() {
+    public void getFirstHighestReading() {
 
         //Arrange
         this.temperatureSensor.getListOfReadings().remove(reading);
@@ -1867,7 +1911,6 @@ class GeoAreaSensorTest {
         //Assert
         assertEquals(reading2, result);
     }
-
 
     @Test
     public void getHighestReadingOfADay_WithSeveralReadingsInOneDay_ShouldReturnHighestReading() {
@@ -2241,7 +2284,7 @@ class GeoAreaSensorTest {
     }
 
     @Test
-    void getMostRecentValidReading() {
+    public void getMostRecentValidReading() {
         //Arrange
         //Reading 1
         LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 8, 00, 01);

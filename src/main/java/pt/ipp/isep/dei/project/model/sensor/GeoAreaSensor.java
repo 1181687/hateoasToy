@@ -218,7 +218,7 @@ public class GeoAreaSensor implements Root {
     }
 
     public boolean existReadingsBetweenDates(LocalDate startDate, LocalDate endDate) {
-        return getMeasurementValueBetweenDates(startDate, endDate) != null;
+        return (!getMeasurementValueBetweenDates(startDate, endDate).isEmpty());
     }
 
     /**

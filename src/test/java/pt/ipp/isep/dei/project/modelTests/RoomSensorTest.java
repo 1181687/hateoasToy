@@ -6,6 +6,8 @@ class RoomSensorTest {
 
     @Test
     void getId() {
+
+
     }
 
     @Test
@@ -60,7 +62,4 @@ class RoomSensorTest {
     void hashCode1() {
     }
 
-    @Test
-    void u7hb() {
-    }
 }
