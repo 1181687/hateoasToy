@@ -56,15 +56,4 @@ public final class RoomSensorMapper {
         sensorDTO.setReadingDTOs(readingDTOs);
         return sensorDTO;
     }
-
-    public static RoomSensorDTO mapToDTO(RoomSensor sensor) {
-        RoomSensorDTO sensorDTO = newRoomSensorDTO();
-        sensorDTO.setId(sensor.getId().getSensorId());
-        sensorDTO.setName(sensor.getSensorName());
-        sensorDTO.setStartingDate(sensor.getStartingDate().toLocalDate());
-        sensorDTO.setSensorType(sensor.getSensorType().getSensorTypeId());
-        sensorDTO.setUnits(sensor.getUnits());
-        sensorDTO.setActive(sensor.isActive());
-        return sensorDTO;
-    }
 }
