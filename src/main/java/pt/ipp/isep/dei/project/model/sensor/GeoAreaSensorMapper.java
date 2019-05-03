@@ -37,6 +37,14 @@ public final class GeoAreaSensorMapper {
         sensorDTO.setLocation(LocationMapper.mapToDTO(sensor.getLocation()));
         sensorDTO.setUnits(sensor.getUnits());
         sensorDTO.setActive(sensor.isActive());
+        List<ReadingDTO> readingDTOs = new ArrayList<>();
+        for (Reading reading : sensor.getListOfReadings()) {
+            ReadingDTO readingDTO = ReadingMapper.mapToDTO(reading);
+            readingDTO.setId(sensor.getId().getSensorId());
+            readingDTOs.add(readingDTO);
+        }
+        sensorDTO.setReadingDTOs(readingDTOs);
+        sensorDTO.setGeographicalAreaId(GeoAreaIdMapper.mapToDTO(sensor.getGeoAreaId()));
         return sensorDTO;
     }
 

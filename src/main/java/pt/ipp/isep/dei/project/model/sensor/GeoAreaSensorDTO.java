@@ -5,6 +5,7 @@ import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaIdDTO;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class GeoAreaSensorDTO {
@@ -16,7 +17,7 @@ public class GeoAreaSensorDTO {
     private String units;
     private boolean isActive = true;
     private GeoAreaIdDTO geoAreaIdDTO;
-    private List<ReadingDTO> readingDTOs;
+    private List<ReadingDTO> readingDTOs = new ArrayList<>();
 
     /**
      * Constructor.

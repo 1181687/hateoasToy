@@ -115,6 +115,9 @@ public class ImportGeoAreaReadingsController {
             LOGGER.log(Level.WARNING, "GeoAreaReading not imported due to invalid timestamp/date " + invalidInfo);
             return false;
         }
+        if (sensorDTO.getReadingDTOs().contains(readingDTO)) {
+            return false;
+        }
         if (readingDTO.getDateTime().toLocalDate().isBefore(sensorDTO.getStartingDate())) {
             numberOfNotImportedReadings++;
             String invalidInfo = "id: " + readingDTO.getId() + ", value: " + readingDTO.getValue() + ", timestamp/date: " + readingDTO.getDateTime() + ", unit: " + readingDTO.getUnits() + ".";
