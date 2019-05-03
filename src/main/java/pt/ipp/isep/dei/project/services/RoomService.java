@@ -46,4 +46,12 @@ public class RoomService {
         }
         return roomDTOList;
     }
+
+    public Room getRoomById(RoomId roomId){
+        if (roomExists(RoomIdMapper.mapToDTO(roomId))){
+            return roomRepository.findById(roomId).orElse(null);
+        }
+        return null;
+    }
+
 }

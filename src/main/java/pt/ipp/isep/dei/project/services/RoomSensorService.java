@@ -10,8 +10,10 @@ import pt.ipp.isep.dei.project.model.sensor.*;
 import pt.ipp.isep.dei.project.repositories.RoomSensorRepository;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class RoomSensorService {
@@ -27,7 +29,10 @@ public class RoomSensorService {
     public RoomSensorDTO getSensorById(SensorIdDTO sensorIdDTO) {
         SensorId sensorId = SensorIdMapper.mapToEntity(sensorIdDTO);
         RoomSensor sensor = roomSensorRepo.findById(sensorId).orElse(null);
-        return RoomSensorMapper.mapToDTO(sensor);
+        if(Objects.nonNull(sensor)){
+            return RoomSensorMapper.mapToDTO(sensor);
+        }
+        return null;
     }
 
     /**
@@ -96,10 +101,25 @@ public class RoomSensorService {
         return lastReadingDTO;
     }
 
+    public RoomSensorDTO getRoomSensorByRoomSensorTypeDate(RoomId roomId, SensorTypeId sensorTypeId, LocalDate date){
+        RoomSensor room = this.roomSensorRepo.findByRoomIdAndSensorTypeIdAndReadingsIn(roomId,sensorTypeId,date);
+        RoomSensorDTO roomSensorDTO = RoomSensorMapper.mapToDTO(room);
+        return roomSensorDTO;
+    }
+
     public double getMaxMeasurementValueOfADay (RoomId roomId, SensorTypeId sensorTypeId, LocalDate date) {
         RoomSensorDTO roomSensorDTO = getRoomSensor(roomId,sensorTypeId);
         RoomSensor roomSensor = RoomSensorMapper.mapToEntity(roomSensorDTO);
         double maxValue = roomSensor.getMaximumValueOfDay(date);
         return maxValue;
+    }
+
+    public boolean newSensor(RoomSensorDTO roomSensorDTO) {
+        RoomSensor roomSensor = RoomSensorMapper.mapToEntity(roomSensorDTO);
+        if (!roomSensorRepo.existsById(roomSensor.getId())) {
+            roomSensorRepo.save(roomSensor);
+            return true;
+        }
+        return false;
     }
 }

@@ -1,20 +1,35 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import pt.ipp.isep.dei.project.controllers.DefineSensorTypeController;
-import pt.ipp.isep.dei.project.model.sensor.SensorTypeList;
+import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
+import pt.ipp.isep.dei.project.services.SensorTypeService;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.when;
 
 public class DefineSensorTypeControllerTest {
+    @Mock
+    private SensorTypeService sensorTypeService;
+    private DefineSensorTypeController controller;
+
+    @BeforeEach
+    public void StartUp() {
+        MockitoAnnotations.initMocks(this);
+        controller = new DefineSensorTypeController(sensorTypeService);
+    }
+
 
     @Test
     public void criarEAdicionarTipoDeSensor() {
-        SensorTypeList lista = new SensorTypeList();
         String novoTipo = "Humidade";
-        DefineSensorTypeController controller = new DefineSensorTypeController(lista);
+        SensorTypeId sensorTypeId = new SensorTypeId(novoTipo);
         //Act
+        when(sensorTypeService.addType(sensorTypeId)).thenReturn(true);
         boolean resultado = controller.createAndAddSensorType(novoTipo);
         //Assert
         assertTrue(resultado);
@@ -22,13 +37,15 @@ public class DefineSensorTypeControllerTest {
 
     @Test
     public void criarEAdicionarTipoDeSensorTipoRepetido() {
-        SensorTypeList lista = new SensorTypeList();
-        String novoTipo = "Humidade";
-        String outroTipo = "Humidade";
-        DefineSensorTypeController controller = new DefineSensorTypeController(lista);
-        controller.createAndAddSensorType(novoTipo);
+        String newType = "Temperature";
+        String sameType = "Temperature";
+        SensorTypeId sensorTypeNewType = new SensorTypeId(newType);
+        SensorTypeId sensorTypeSameType = new SensorTypeId(sameType);
+        when(sensorTypeService.addType(sensorTypeNewType)).thenReturn(true);
+        controller.createAndAddSensorType(newType);
         //Act
-        boolean resultado = controller.createAndAddSensorType(outroTipo);
+        when(sensorTypeService.addType(sensorTypeSameType)).thenReturn(false);
+        boolean resultado = controller.createAndAddSensorType(sameType);
         //Assert
         assertFalse(resultado);
     }
