@@ -68,12 +68,12 @@ public class RegularUser {
 
             switch (option) {
                 case 1:
-                    GetCurrentTemperatureRoom ui605 = new GetCurrentTemperatureRoom(houseService, sensorTypeTemperature);
-                    ui605.run();
+                    //GetCurrentTemperatureRoom ui605 = new GetCurrentTemperatureRoom(houseService, sensorTypeTemperature);
+                    //ui605.run();
                     break;
                 case 2:
-                    GetMaxTemperatureRoom ui610 = new GetMaxTemperatureRoom(houseService, sensorTypeTemperature);
-                    ui610.run();
+                    //GetMaxTemperatureRoom ui610 = new GetMaxTemperatureRoom(houseService, sensorTypeTemperature);
+                    //ui610.run();
                     break;
                 case 3:
                     EstimateEnergyOfWaterHeater ui752 = new EstimateEnergyOfWaterHeater(houseService);

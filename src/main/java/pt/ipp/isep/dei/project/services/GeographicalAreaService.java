@@ -253,9 +253,14 @@ public class GeographicalAreaService {
     /**
      * Method that saves a list of geographical areas in the repo.
      *
-     * @param geoAreas List of geographical areas to be analyzed.
+     * @param geoAreaDTOs List of geographical areas to be added.
      */
-    public void saveGeoAreas(List<GeographicalArea> geoAreas) {
+    public void saveGeoAreas(List<GeographicalAreaDTO> geoAreaDTOs) {
+        List<GeographicalArea> geoAreas = new ArrayList<>();
+        for (GeographicalAreaDTO geoAreaDTO : geoAreaDTOs) {
+            GeographicalArea geoArea = GeographicalAreaMapper.mapToEntity(geoAreaDTO);
+            geoAreas.add(geoArea);
+        }
         geoAreaRepository.saveAll(geoAreas);
     }
 
@@ -284,10 +289,11 @@ public class GeographicalAreaService {
     /**
      * Method that checks if a geographical area exists in the repo by its id.
      *
-     * @param geoAreaId Id to be used.
+     * @param geoAreaIdDTO Id to the geographical area.
      * @return True or false.
      */
-    public boolean geoAreaExists(GeoAreaId geoAreaId) {
+    public boolean geoAreaExists(GeoAreaIdDTO geoAreaIdDTO) {
+        GeoAreaId geoAreaId = GeoAreaIdMapper.mapToEntity(geoAreaIdDTO);
         return this.geoAreaRepository.existsById(geoAreaId);
     }
 }

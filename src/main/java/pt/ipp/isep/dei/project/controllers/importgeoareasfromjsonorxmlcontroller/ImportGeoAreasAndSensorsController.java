@@ -1,13 +1,12 @@
 package pt.ipp.isep.dei.project.controllers.importgeoareasfromjsonorxmlcontroller;
 
 
-import pt.ipp.isep.dei.project.model.Location;
+import pt.ipp.isep.dei.project.model.LocationDTO;
 import pt.ipp.isep.dei.project.model.ProjectFileReader;
-import pt.ipp.isep.dei.project.model.geographicalarea.*;
-import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaIdDTO;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorDTO;
-import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorMapper;
-import pt.ipp.isep.dei.project.model.sensor.SensorId;
+import pt.ipp.isep.dei.project.model.sensor.SensorIdDTO;
 import pt.ipp.isep.dei.project.services.GeoAreaSensorService;
 import pt.ipp.isep.dei.project.services.GeographicalAreaService;
 import pt.ipp.isep.dei.project.utils.Utils;
@@ -63,21 +62,24 @@ public class ImportGeoAreasAndSensorsController {
      */
     public boolean importGeoAreasAndSensors() {
         boolean imported = false;
-        List<GeographicalArea> geographicalAreas = new ArrayList<>();
+        List<GeographicalAreaDTO> geoAreaDTOs = new ArrayList<>();
         for (Object geoObject : this.geoAreaDTOs) {
             GeographicalAreaDTO geoAreaDTO = (GeographicalAreaDTO) geoObject;
-            Location location = new Location(geoAreaDTO.getLatitude(), geoAreaDTO.getLongitude(), geoAreaDTO.getElevation());
-            GeoAreaTypeId typeId = new GeoAreaTypeId(geoAreaDTO.getType());
-            GeographicalAreaType type = new GeographicalAreaType(typeId);
-            GeoAreaId geoAreaId = new GeoAreaId(location, geoAreaDTO.getId(), type);
-            if (!this.geoAreaService.geoAreaExists(geoAreaId)) {
-                GeographicalArea geoArea = GeographicalAreaMapper.mapToEntity(geoAreaDTO);
-                geographicalAreas.add(geoArea);
+            LocationDTO locationDTO = new LocationDTO();
+            locationDTO.setLatitude(geoAreaDTO.getLatitude());
+            locationDTO.setLongitude(geoAreaDTO.getLongitude());
+            locationDTO.setElevation(geoAreaDTO.getElevation());
+            GeoAreaIdDTO geoAreaIdDTO = new GeoAreaIdDTO();
+            geoAreaIdDTO.setId(geoAreaDTO.getId());
+            geoAreaIdDTO.setLocationDTO(locationDTO);
+            geoAreaIdDTO.setGeoAreaType(geoAreaDTO.getType());
+            if (!this.geoAreaService.geoAreaExists(geoAreaIdDTO)) {
+                geoAreaDTOs.add(geoAreaDTO);
                 importSensors(geoAreaDTO);
                 imported = true;
             }
         }
-        geoAreaService.saveGeoAreas(geographicalAreas);
+        geoAreaService.saveGeoAreas(geoAreaDTOs);
         return imported;
     }
 
@@ -87,14 +89,14 @@ public class ImportGeoAreasAndSensorsController {
      * @param geoAreaDTO Geographical area to analyze.
      */
     private void importSensors(GeographicalAreaDTO geoAreaDTO) {
-        List<GeoAreaSensor> sensors = new ArrayList<>();
+        List<GeoAreaSensorDTO> sensorDTOs = new ArrayList<>();
         for (GeoAreaSensorDTO sensorDTO : geoAreaDTO.getSensors()) {
-            SensorId sensorId = new SensorId(sensorDTO.getId());
-            if (!this.geoAreaSensorService.sensorExists(sensorId)) {
-                GeoAreaSensor sensor = GeoAreaSensorMapper.mapToEntity(sensorDTO);
-                sensors.add(sensor);
+            SensorIdDTO sensorIdDTO = new SensorIdDTO();
+            sensorIdDTO.setId(sensorDTO.getId());
+            if (!this.geoAreaSensorService.sensorExists(sensorIdDTO)) {
+                sensorDTOs.add(sensorDTO);
             }
         }
-        geoAreaSensorService.saveSensors(sensors);
+        geoAreaSensorService.saveSensors(sensorDTOs);
     }
 }
