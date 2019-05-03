@@ -191,8 +191,9 @@ public class GeoAreaSensor implements Root {
      *
      * @return the hashcode created
      */
+    @Override
     public int hashCode() {
-        return 1;
+        return Objects.hash(this.id);
     }
 
     /**

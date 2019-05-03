@@ -11,10 +11,7 @@ import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.GregorianCalendar;
-import java.util.List;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -134,16 +131,6 @@ class GeoAreaSensorTest {
     }
 
     @Test
-    public void testarHashCode() {
-        // Arrange
-        int expectedResult = 1;
-        // Act
-        int result = this.temperatureSensor.hashCode();
-        // Assert
-        assertEquals(expectedResult, result);
-    }
-
-    @Test
     public void equalsTest_ShouldReturnFalse() {
         //Arrange
         SensorTypeId sensorTypeId = new SensorTypeId("Temperatura");
@@ -153,6 +140,34 @@ class GeoAreaSensorTest {
         boolean result = this.temperatureSensor.equals(sensorType);
         //Assert
         assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testHashCode() {
+        //Arrange
+        int expectedResult = Objects.hash(this.temperatureSensor.getId());
+
+        // Act
+        int result = this.temperatureSensor.hashCode();
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testHashCodeNotEquals() {
+        //Arrange
+        LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
+        SensorTypeId sensorTypeId = new SensorTypeId("Temperature");
+        Location locS1 = new Location(40, 10, 20);
+        SensorId sensorId = new SensorId("R");
+        GeoAreaSensor s1 = new GeoAreaSensor(sensorId, "A123", dataFuncionamento, sensorTypeId, locS1, "l/m2");
+
+
+        // Act
+        int hash1 = Objects.hash(this.temperatureSensor.getId());
+        int hash2 = Objects.hash(s1.getId());
+        // Assert
+        assertNotEquals(hash1, hash2);
     }
 
     @Test
