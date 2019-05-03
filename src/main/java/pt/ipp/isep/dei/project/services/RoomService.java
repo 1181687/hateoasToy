@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.project.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pt.ipp.isep.dei.project.model.house.*;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.RoomDTO;
@@ -31,10 +32,11 @@ public class RoomService {
     /**
      * Method that checks if a room exists in the repo by its id.
      *
-     * @param roomId Id to be used.
+     * @param roomIdDTO Id to be used.
      * @return True or false.
      */
-    public boolean roomExists(RoomId roomId) {
+    public boolean roomExists(RoomIdDTO roomIdDTO) {
+        RoomId roomId = RoomIdMapper.mapToEntity(roomIdDTO);
         return this.roomRepository.existsById(roomId);
     }
 
@@ -49,6 +51,13 @@ public class RoomService {
             roomDTOList.add(RoomMapper.mapToDTO(room));
         }
         return roomDTOList;
+    }
+
+    public Room getRoomById(RoomId roomId){
+        if (roomExists(RoomIdMapper.mapToDTO(roomId))){
+            return roomRepository.findById(roomId).orElse(null);
+        }
+        return null;
     }
 
     public List<Device> getAllDevicesOfRoom(String id) {

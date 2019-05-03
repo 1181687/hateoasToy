@@ -117,7 +117,7 @@ public class RoomSensor implements Root {
     }
 
     public boolean sensorTypeEqualsSensorType(SensorTypeId typeId) {
-        String tipoDoSensorPedido = typeId.getSensorTypeId();
+        SensorTypeId tipoDoSensorPedido = typeId;
         return (this.getSensorType().equals(tipoDoSensorPedido));
     }
 
@@ -192,4 +192,39 @@ public class RoomSensor implements Root {
         return getReadings(startDate, endDate) != null;
     }
 
+    /**
+     * Get method.
+     *
+     * @return RoomId.
+     */
+    public RoomId getRoomId() {
+        return this.roomId;
+    }
+
+    /**
+     * Get method.
+     *
+     * @return Sensor name.
+     */
+    public String getSensorName() {
+        return this.sensorName;
+    }
+
+    /**
+     * Get method.
+     *
+     * @return Units.
+     */
+    public String getUnits() {
+        return this.units;
+    }
+
+    /**
+     * Get method.
+     *
+     * @return List of readings.
+     */
+    public List<Reading> getReadings() {
+        return this.readings;
+    }
 }

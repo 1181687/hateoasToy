@@ -28,11 +28,19 @@ public class GeoAreaSensor implements Root {
     private List<Reading> listOfReadings = new ArrayList<>();
     @Embedded
     private SensorTypeId sensorTypeId;
-    @Transient
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "latitude",
+                    column = @Column(name = "SENSOR_LATITUDE")),
+            @AttributeOverride(name = "longitude",
+                    column = @Column(name = "SENSOR_LONGITUDE")),
+            @AttributeOverride(name = "elevation",
+                    column = @Column(name = "SENSOR_ELEVATION"))
+    })
     private Location location;
     private String units;
-    @Transient
-    private boolean isActive;
+    @Embedded
+    private SensorState isActive;
     @Embedded
     @JoinColumn(name = "geo_area_id")
     private GeoAreaId geoAreaId;
@@ -52,7 +60,7 @@ public class GeoAreaSensor implements Root {
         this.sensorTypeId = sensorTypeId;
         this.location = location;
         this.units = units;
-        this.isActive = true;
+        this.isActive = new SensorState();
     }
 
     /**
@@ -69,7 +77,7 @@ public class GeoAreaSensor implements Root {
         this.sensorTypeId = sensorTypeId;
         this.location = location;
         this.units = units;
-        this.isActive = true;
+        this.isActive = new SensorState();
     }
 
     /**
@@ -82,7 +90,7 @@ public class GeoAreaSensor implements Root {
         this.sensorTypeId = sensorTypeId;
         this.location = location;
         this.units = units;
-        this.isActive = true;
+        this.isActive = new SensorState();
         this.geoAreaId = geoAreaId;
     }
 
@@ -143,7 +151,7 @@ public class GeoAreaSensor implements Root {
     }
 
     public boolean isActive() {
-        return isActive;
+        return isActive.isActive();
     }
 
     /**
@@ -154,8 +162,8 @@ public class GeoAreaSensor implements Root {
      * @return
      */
     public boolean deactivateDevice() {
-        if (isActive) {
-            isActive = false;
+        if (isActive.isActive()) {
+            isActive.deactivateSensor();
             return true;
         }
         return false;
@@ -183,8 +191,9 @@ public class GeoAreaSensor implements Root {
      *
      * @return the hashcode created
      */
+    @Override
     public int hashCode() {
-        return 1;
+        return Objects.hash(this.id);
     }
 
     /**
@@ -218,7 +227,7 @@ public class GeoAreaSensor implements Root {
     }
 
     public boolean existReadingsBetweenDates(LocalDate startDate, LocalDate endDate) {
-        return getMeasurementValueBetweenDates(startDate, endDate) != null;
+        return (!getMeasurementValueBetweenDates(startDate, endDate).isEmpty());
     }
 
     /**
@@ -707,5 +716,12 @@ public class GeoAreaSensor implements Root {
         return mostRecentReading;
     }
 
-
+    /**
+     * Get method.
+     *
+     * @return Id of the geographical area.
+     */
+    public GeoAreaId getGeoAreaId() {
+        return geoAreaId;
+    }
 }
