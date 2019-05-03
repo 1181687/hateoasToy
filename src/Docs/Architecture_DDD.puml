@@ -1,0 +1,31 @@
+@startuml
+skinparam linetype ortho
+
+skinparam component {
+	BackgroundColor PaleTurquoise
+	ArrowColor Black
+	BorderColor Black
+	FontStyle Bold
+}
+
+hide circle
+
+package "pt.ipp.isep.dei.project" {
+[UI] -right(0- [Controller]
+[Service] -down(0- [DTO]
+[Controller] -right(0- [Service]
+[Service] -right(0- [Model]
+[Model] -down(0- [Repository]
+[Repository] -up(0- [Service]
+[Repository] -down(0- [DataBase]
+[Controller] -(0- [DTO]
+
+
+note right of [Model]
+
+DDD
+
+end note
+}
+
+@enduml
