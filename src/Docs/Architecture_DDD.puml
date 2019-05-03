@@ -18,7 +18,7 @@ package "pt.ipp.isep.dei.project" {
 [Model] -down(0- [Repository]
 [Repository] -up(0- [Service]
 [Repository] -down(0- [DataBase]
-[Controller] -(0- [DTO]
+
 
 
 note right of [Model]
