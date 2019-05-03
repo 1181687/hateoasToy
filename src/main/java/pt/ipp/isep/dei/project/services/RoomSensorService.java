@@ -22,11 +22,13 @@ public class RoomSensorService {
     /**
      * Method that searches for a sensor by its id.
      *
-     * @param id Id of the sensor.
+     * @param sensorIdDTO Id of the sensor.
      * @return Sensor required.
      */
-    public RoomSensor getSensorById(SensorId id) {
-        return roomSensorRepo.findById(id).orElse(null);
+    public RoomSensorDTO getSensorById(SensorIdDTO sensorIdDTO) {
+        SensorId sensorId = SensorIdMapper.mapToEntity(sensorIdDTO);
+        RoomSensor sensor = roomSensorRepo.findById(sensorId).orElse(null);
+        return RoomSensorMapper.mapToDTO(sensor);
     }
 
     /**
