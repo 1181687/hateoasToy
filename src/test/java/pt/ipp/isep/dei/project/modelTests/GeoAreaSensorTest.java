@@ -158,7 +158,6 @@ class GeoAreaSensorTest {
 
     @Test
     public void distanceBetweenTwoLocationsTest() {
-
         //Arrange
         LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorTypeId sensorTypeId = new SensorTypeId("Temperature");
@@ -176,13 +175,64 @@ class GeoAreaSensorTest {
 
         //Assert
         assertEquals(expectedResult, result, 0.0001);
-
     }
 
     @Test
-    void getMeasurementValueBetweenDates() {
+    void getMeasurementValueBetweenDatesTest() {
+        //Arrange
+        //Registo 1
+        LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 01, 00, 01);
+        Reading reading1 = new Reading(0.0, data1);
 
+        //Registo 2
+        LocalDateTime data2 = LocalDateTime.of(2018, 11, 3, 23, 59, 59);
+        Reading reading2 = new Reading(30.0, data2);
 
+        //Registo 3
+        LocalDateTime data3 = LocalDateTime.of(2018, 11, 4, 17, 20, 00);
+        Reading reading3 = new Reading(-2.0, data3);
+
+        //Registo 4
+        LocalDateTime data4 = LocalDateTime.of(2018, 11, 5, 17, 20, 00);
+        Reading reading4 = new Reading(-4.0, data4);
+
+        //Registo 5
+        LocalDateTime data5 = LocalDateTime.of(2018, 11, 6, 17, 20, 00);
+        Reading reading5 = new Reading(-2.0, data5);
+
+        //Registo 6
+        LocalDateTime data6 = LocalDateTime.of(2018, 11, 7, 17, 20, 00);
+        Reading reading6 = new Reading(-5.0, data6);
+
+        //Registo 7
+        LocalDateTime data7 = LocalDateTime.of(2018, 11, 8, 17, 20, 00);
+        Reading reading7 = new Reading(-2.0, data7);
+
+        //Adição das medições
+        this.temperatureSensor.addReadingsToList(reading1);
+        this.temperatureSensor.addReadingsToList(reading2);
+        this.temperatureSensor.addReadingsToList(reading3);
+        this.temperatureSensor.addReadingsToList(reading4);
+        this.temperatureSensor.addReadingsToList(reading5);
+        this.temperatureSensor.addReadingsToList(reading6);
+        this.temperatureSensor.addReadingsToList(reading7);
+
+        List<Double> expectedResult = new ArrayList<>();
+
+        expectedResult.add(-2.0);
+        expectedResult.add(-4.0);
+        expectedResult.add(-2.0);
+        expectedResult.add(-5.0);
+        expectedResult.add(-2.0);
+
+        LocalDate searchDate = LocalDate.of(2018, 11, 4);
+        LocalDate searchFinalDate = LocalDate.of(2018, 11, 8);
+
+        //Act
+        List<Double> result = this.temperatureSensor.getMeasurementValueBetweenDates(searchDate, searchFinalDate);
+
+        //Assert
+        assertEquals(expectedResult, result);
     }
 
     @Test
@@ -224,7 +274,6 @@ class GeoAreaSensorTest {
 
     @Test
     public void getSmallestMeasurementOfMonthTest_AnyReading() {
-
         // Arrange
         double expectedResult = Double.NaN;
         LocalDate dayOfMonth = LocalDate.of(2017, GregorianCalendar.AUGUST, 15);
@@ -238,7 +287,6 @@ class GeoAreaSensorTest {
 
     @Test
     public void getSmallestMeasurementOfMonthTest_AnotherMonth() {
-
         // Arrange
         LocalDateTime date1 = LocalDateTime.of(2017, 8, 15, 5, 30, 0);
         LocalDateTime date2 = LocalDateTime.of(2017, 8, 15, 6, 02, 0);
@@ -263,7 +311,6 @@ class GeoAreaSensorTest {
 
     @Test
     public void getSmallestMeasurementOfMonthTest_AnotherSecondMonth() {
-
         // Arrange
         LocalDateTime date1 = LocalDateTime.of(2017, 8, 15, 5, 30, 0);
         LocalDateTime date2 = LocalDateTime.of(2017, 8, 15, 6, 02, 0);
@@ -288,7 +335,6 @@ class GeoAreaSensorTest {
 
     @Test
     public void getSmallestMeasurementOfMonthTest_AllEquals() {
-
         // Arrange
         LocalDateTime date1 = LocalDateTime.of(2017, 8, 15, 5, 30, 0);
         LocalDateTime date2 = LocalDateTime.of(2017, 8, 15, 6, 02, 0);
@@ -405,12 +451,6 @@ class GeoAreaSensorTest {
         assertEquals(expectedResult, result, 0.001);
     }
 
-
-    @Test
-    void getMonthlyAverageMeasurement() {
-    }
-
-
     @Test
     public void getMonthlyAverageMeasurementTest() {
         //Arrange
@@ -449,9 +489,25 @@ class GeoAreaSensorTest {
         assertEquals(expectedResult, result, 0.001);
     }
 
+    @Test
+    void readingExistsBySensorIdLocalDateTime_ShouldReturnTrue() {
+        //Act
+        boolean result = this.temperatureSensor.readingExistsBySensorIdLocalDateTime(this.reading);
+
+        //Assert
+        assertTrue(result);
+    }
 
     @Test
-    void readingExistsBySensorIdLocalDateTime() {
+    void readingExistsBySensorIdLocalDateTime_ShouldReturnFalse() {
+        // Arrange
+        LocalDateTime date1 = LocalDateTime.of(2018, 4, 11, 5, 55);
+        Reading reading5 = new Reading(21, date1);
+        //Act
+        boolean result = this.temperatureSensor.readingExistsBySensorIdLocalDateTime(reading5);
+
+        //Assert
+        assertFalse(result);
     }
 
 
@@ -708,7 +764,6 @@ class GeoAreaSensorTest {
         double result = this.temperatureSensor.getLowestMeasurementOfDay(searchDate);
         //assert
         assertEquals(expectedResult, result, 0.001);
-
     }
 
     @Test
@@ -756,7 +811,6 @@ class GeoAreaSensorTest {
 
     @Test
     void getFirstDayOfWeek() {
-
         //Arrange
         LocalDateTime date = LocalDateTime.of(1991, 11, 2, 21, 10, 25);
         LocalDate expectedResult = LocalDate.of(1991, 10, 27);
@@ -765,11 +819,6 @@ class GeoAreaSensorTest {
 
         assertEquals(expectedResult, result);
     }
-
-    @Test
-    void lowestMeasurementsOfWeek() {
-    }
-
 
     @Test
     public void lowestMeasurementsOfWeekTest() {
