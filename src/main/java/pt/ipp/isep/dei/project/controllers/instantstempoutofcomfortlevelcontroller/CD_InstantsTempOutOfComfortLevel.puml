@@ -18,16 +18,16 @@ InstantsTempOutOfComfortLevelController "1" --> "1" "RoomService"
 InstantsTempOutOfComfortLevelController "1" --> "1" SensorsService
 SensorsService "1" --> "1" RoomSensorService
 SensorsService "1" --> "1" GeoAreaSensorService
-RoomSensorService "1" --> "1" RoomSensorRepository
-RoomSensorRepository "1" --> "1" RoomSensor
+RoomSensorService "1" --> "1" "<<RoomSensorRepository>>"
+"<<RoomSensorRepository>>" "1" --> "1" RoomSensor
 RoomSensor "1" --> "*" Reading
-GeoAreaSensorService "1" --> "1" GeoAreaSensorRepository
-GeoAreaSensorRepository "1" --> "1" GeoAreaSensor
+GeoAreaSensorService "1" --> "1" "<<GeoAreaSensorRepository>>"
+"<<GeoAreaSensorRepository>>" "1" --> "1" GeoAreaSensor
 GeoAreaSensor "1" --> "1" Location: uses
 GeoAreaSensor "1" --> "*" Reading: uses
-HouseService "1" --> "1" HouseRepository
-HouseRepository "1" --> "*" House
-RoomService "1" -> RoomRepository
+HouseService "1" --> "1" "<<HouseRepository>>"
+"<<HouseRepository>>" "1" --> "*" House
+RoomService "1" -> "<<RoomRepository>>"
 House "1" --> "1" Address
 Address "1" --> "1" Location
 
@@ -72,7 +72,7 @@ Class RoomService {
 + getAllRoomsDTO()
 }
 
-Interface RoomRepository {
+Interface "<<RoomRepository>>" {
 + findAll()
 }
 
@@ -96,7 +96,7 @@ Class RoomSensorService {
 }
 
 
-Interface RoomSensorRepository {
+Interface "<<RoomSensorRepository>>" {
 + findByRoomId ()
 + existsRoomSensorsByRoomIdAndSensorTypeId ()
 }
@@ -116,7 +116,7 @@ Class HouseService {
 + getHouse()
 }
 
-Interface HouseRepository {
+Interface "<<HouseRepository>>" {
 }
 
 Class House {
@@ -192,7 +192,7 @@ Class ReadingMapper {
 }
 
 
-Interface "GeoAreaSensorRepository" {
+Interface "<<GeoAreaSensorRepository>>" {
 + findByGeoAreaIdAndSensorTypeId ()
 + findGeoAreaSensorsById ()
 }
