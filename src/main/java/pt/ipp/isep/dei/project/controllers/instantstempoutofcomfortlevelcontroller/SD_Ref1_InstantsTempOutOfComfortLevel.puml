@@ -20,18 +20,17 @@ skinparam sequence {
 activate ":SensorsService"
 ":SensorsService" -> ":RoomSensorService": getRoomReadingsDTO(startDate, endDate, roomSensorId)
 activate ":RoomSensorService"
-":RoomSensorService" -> ":RoomSensor": getReadingsDTO(startDate, endDate, roomSensorId)
-activate ":RoomSensor"
-":RoomSensorService" -> ":RoomSensorRepo":getSensorById(sensorId)
+":RoomSensorService" -> ":RoomSensorRepo": getSensorById(sensorId)
 activate ":RoomSensorRepo"
-":RoomSensorService" <-- ":RoomSensorRepo": Sensor
+":RoomSensorService" <-- ":RoomSensorRepo": S
 deactivate ":RoomSensorRepo"
-":RoomSensor" -> ":RoomSensor": getReadings(startDate, endDate)
+":RoomSensorService" -> "S: RoomSensor": getReadings(startDate, endDate)
+"S: RoomSensor" -> "S: RoomSensor": getReadings(startDate, endDate)
 deactivate ":RoomSensorRepo"
-":RoomSensorService" <-- ":RoomSensor": List<Readings>
-deactivate ":RoomSensor"
-":RoomSensorService" -> ":RoomSensorService": getReadingsDTO(startDate, endDate, roomSensorId)
-":SensorsService" <-- ":RoomSensorService": List<ReadingDTO>
+":RoomSensorService" <-- "S: RoomSensor": readingsList
+deactivate "S: RoomSensor"
+":RoomSensorService" -> ":RoomSensorService": getReadingsDTO(readingsList)
+":SensorsService" <-- ":RoomSensorService": readingDTOList
 deactivate ":SensorsService"
 
 
