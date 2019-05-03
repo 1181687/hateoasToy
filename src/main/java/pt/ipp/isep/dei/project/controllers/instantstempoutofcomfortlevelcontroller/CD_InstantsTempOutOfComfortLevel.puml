@@ -20,8 +20,8 @@ HouseService "1" --> "1" AddressMapper: uses
 HouseService "1" --> "1" RoomMapper: uses
 HouseService "1" --> "1" HouseGridMapper: uses
 HouseService "1" -right-> "1" House: updates
-JSONReader "1" -down-> "1" AddressMapper: uses
-JSONReader "1" -down-> "1" RoomMapper: uses
+GeoAreaSensor "1" -down-> "1" Location: uses
+GeoAreaSensor "1" -down-> "*" Reading: uses
 JSONReader "1" -down-> "1" HouseGridMapper: uses
 JSONReader "1" -left-> "1" HouseDTO: uses
 AddressMapper "1" -down-> "1" AddressDTO: creates
@@ -66,67 +66,74 @@ Class InstantsTempOutOfComfortLevelController {
 
 
 
-Class HouseGridDTO {
-- String name;
-- List<RoomDTO> roomDTOS
-+ get ()
-+ set ()
-+ addRoomDTO ()
-
-}
-
-Class HouseGridMapper {
-+ newHouseGridDTO ()
-+ mapToEntity ()
-}
-
-
-Class AddressMapper {
-+ newAddressDTO ()
-+ mapToEntity ()
-
-}
-
-Class AddressDTO {
-- String completeAddress
-- LocationDTO location
-- GeographicalAreaDTO insertedGeoArea
-+ get ()
-+ set ()
-
-}
-
-
 Class RoomService {
-- RoomList roomList
-- List<HouseGrid> listHouseGrids
-- Address address
-+ addRoom ()
-+ addGrid ()
++ getAllRoomsDTO()
++ isListOfRoomsEmpty()
++ getAllRoomsDTO()
+}
+
+Interface RoomRepository {
++ findAll()
+}
+
+
+Class RoomSensor {
+- SensorId id
+- List<Reading> readings
+- SensorTypeId sensorTypeId
+- RoomId roomId
++ existReadingsBetweenDates ()
++ getReadings ()
 
 }
 
-Class HouseDTO {
-- AddressDTO addressDTO
-- List<RoomDTO> roomDTOList
-- List<HouseGridDTO> houseGridDTOList
-+ get ()
-+ set ()
+Class RoomSensorService {
++ getSensorId ()
++ getReadingsDTO ()
++ existSensors ()
++ getSensorId ()
++ getSensorById ()
++ getRoomSensor ()
+}
 
+
+Interface RoomSensorRepository {
++ findByRoomId ()
++ existsRoomSensorsByRoomIdAndSensorTypeId ()
+}
+
+Class GeoAreaSensorService {
++ getComfortTemperature ()
++ getMapAverageOfDailyMeasurements ()
++ getSensorsWithReadingsInInterval ()
++ getNearestSensorWithMostRecentReading ()
++ getNearestSensors ()
++ getDailyAverageBySensorId ()
++ existsDaysWithoutComfortTemp ()
++ getDaysWithoutComfortTemp ()
 }
 
 Class HouseService {
-- RoomRepository roomRepository
-- HouseGridRepository houseGridRepository
-+ mapToEntity ()
-+ updateHouseWithRoomsAndGrids ()
-+ addRoomToHouseGrid ()
-+ getRoomById ()
-+ roomExists ()
-+ gridExists ()
-
++ getHouse()
 }
 
+Interface HouseRepository {
+}
+
+Class House {
++ getLocation()
++ getGeoAreaId()
+}
+
+Class Address {
+- GeoAreaId geoAreaId
++ getLocation()
++ getGeoAreaId()
+}
+
+Class Location{
++ distanceBetweenTwoLocations ()
+}
 
 Class RoomDTO {
 - String id
@@ -138,8 +145,6 @@ Class RoomDTO {
 + get ()
 + set ()
 + getRooms ()
-+ addRoom ()
-
 }
 
 Class RoomMapper {
@@ -149,19 +154,36 @@ Class RoomMapper {
 
 }
 
-Interface "SensorsService" {
-+ getTypeName ()
-+ readFile ()
-
+Interface "GeoAreaSensorRepository" {
++ findByGeoAreaIdAndSensorTypeId ()
++ findGeoAreaSensorsById ()
 }
 
 
-Class JSONReader {
-+ readFile ()
-+ getTypeName ()
-- parseJsonObjectsHouse ()
-- getRoomDtoById ()
+Class GeoAreaSensor {
++ existReadingsBetweenDates()
++ getLocation ()
++ getReadingsBetweenDates ()
++ getDailyAverage ()
++ getMostRecentValidReading ()
+}
 
+Class Reading {
+- LocalDateTime date
+- double value
++ get ()
+}
+
+Class SensorService {
++ existSensors ()
++ getComfortTemperature ()
++ getSensorId ()
++ getInstantsOutOfComfortTemperature ()
++ getInstantListOutOfComfortLevel ()
++ existSensors ()
++ existsDaysWithoutComfortTemp ()
++ getDaysWithoutComfortTemp ()
++ getRoomReadingsDTO ()
 }
 
 
