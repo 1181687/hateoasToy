@@ -15,9 +15,4 @@ public interface GeoAreaSensorRepository extends CrudRepository<GeoAreaSensor, S
 
     GeoAreaSensor findGeoAreaSensorsById(SensorId id);
 
-    List<GeoAreaSensor> findBySensorTypeId(SensorTypeId typeId);
-
-
-    List<GeoAreaSensor> findByGeoAreaId(GeoAreaId geoAreaId);
-
 }

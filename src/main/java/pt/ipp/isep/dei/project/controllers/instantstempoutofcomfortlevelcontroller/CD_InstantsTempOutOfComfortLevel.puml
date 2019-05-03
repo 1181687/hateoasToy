@@ -1,0 +1,230 @@
+@startuml
+skinparam linetype ortho
+
+skinparam class {
+	BackgroundColor PaleTurquoise
+	ArrowColor Black
+	BorderColor Black
+	FontStyle Bold
+}
+
+hide circle
+
+
+
+InstantsTempOutOfComfortLevelUI "1" --> "1" InstantsTempOutOfComfortLevelController
+InstantsTempOutOfComfortLevelController "1" --> "1" HouseService
+InstantsTempOutOfComfortLevelController "1" --> "1" "RoomService"
+InstantsTempOutOfComfortLevelController "1" -right-> "1" "SensorsService"
+SensorsService "1" --> "1" RoomSensorService
+SensorsService "1" --> "1" GeoAreaSensorService
+RoomSensorService "1" --> "1" RoomSensorRepository
+RoomSensorRepository "1" -right-> "1" RoomSensor
+RoomSensor "1" -right-> "*" Reading
+GeoAreaSensorService "1" --> "1" GeoAreaSensorRepository
+GeoAreaSensorRepository "1" -right-> "1" GeoAreaSensor
+GeoAreaSensor "1" -down-> "1" Location: uses
+GeoAreaSensor "1" -down-> "*" Reading: uses
+HouseService "1" -right-> "1" HouseRepository
+HouseRepository "1" -right-> "*" House
+RoomService "1" -> RoomRepository
+House "1" -right-> "1" Address
+Address "1" -right-> "1" Location
+
+
+Class InstantsTempOutOfComfortLevelUI {
+- InstantsTempOutOfComfortLevelController controller
++ run()
+
+}
+
+Class InstantsTempOutOfComfortLevelController {
+- SensorTypeId sensorTypeId
+- RoomId roomId
+- SensorId roomSensorId
+- LocationDTO location
+- GeoAreaIdDTO geoAreaId
+- Map<LocalDate, List<Double>> comfortTemp
+- Map<LocalDateTime, Double> mapInstantsOutOfComfortTemp
+- List<Reading> roomReadings
+- int category
+- int option
+- List<LocalDateTime> listOfInstantsOutOfComfortTemp
++ setCategory ()
++ setOption ()
++ getAllRoomsDTO ()
++ isRoomListEmpty ()
++ setRoomId ()
++ existTempSensors ()
++ getComfortTemperature ()
++ setSensorID ()
+- getInstantsOutOfComfortTemperature ()
++ getInstantListOutOfComfortLevel ()
++ existsDaysWithoutComfortTemp ()
++ getDaysWithoutComfortTemp ()
++ readingsHouseAreaAndRoom ()
+}
+
+
+
+Class RoomService {
++ getAllRoomsDTO()
++ isListOfRoomsEmpty()
++ getAllRoomsDTO()
+}
+
+Interface RoomRepository {
++ findAll()
+}
+
+
+Class RoomSensor {
+- SensorId id
+- SensorTypeId sensorTypeId
+- RoomId roomId
++ existReadingsBetweenDates ()
++ getReadings ()
+
+}
+
+Class RoomSensorService {
++ getSensorId ()
++ getReadingsDTO ()
++ existSensors ()
++ getSensorId ()
++ getSensorById ()
++ getRoomSensor ()
+}
+
+
+Interface RoomSensorRepository {
++ findByRoomId ()
++ existsRoomSensorsByRoomIdAndSensorTypeId ()
+}
+
+Class GeoAreaSensorService {
++ getComfortTemperature ()
++ getMapAverageOfDailyMeasurements ()
++ getSensorsWithReadingsInInterval ()
++ getNearestSensorWithMostRecentReading ()
++ getNearestSensors ()
++ getDailyAverageBySensorId ()
++ existsDaysWithoutComfortTemp ()
++ getDaysWithoutComfortTemp ()
+}
+
+Class HouseService {
++ getHouse()
+}
+
+Interface HouseRepository {
+}
+
+Class House {
++ getLocation()
++ getGeoAreaId()
+}
+
+Class Address {
+- GeoAreaId geoAreaId
++ getLocation()
++ getGeoAreaId()
+}
+
+Class Location{
++ distanceBetweenTwoLocations ()
+}
+
+Class RoomDTO {
+- String id
+- String description
+- int houseFloor
+- double width
+- double length
+- double height
++ get ()
++ set ()
++ getRooms ()
+}
+
+Class RoomMapper {
++ mapToDTO ()
++ mapToEntity ()
+}
+
+Class LocationDTO {
+- double latitude
+- double longitude
+- double elevation
++ get ()
++ set()
+}
+
+Class LocationMapper {
++ mapToDTO ()
++ mapToEntity ()
+}
+
+Class GeoAreaIdDTO {
+- String id
+- LocationDTO locationDTO
+- String geoAreaType
++ get ()
++ set()
+}
+
+Class GeoAreaIdMapper {
++ mapToDTO ()
++ mapToEntity ()
+}
+
+Class ReadingDTO {
+- String id
+- double value
+- LocalDateTime dateTime
+- String units
++ get ()
++ set()
+}
+
+Class ReadingMapper {
++ mapToDTO ()
++ mapToEntity ()
+}
+
+
+Interface "GeoAreaSensorRepository" {
++ findByGeoAreaIdAndSensorTypeId ()
++ findGeoAreaSensorsById ()
+}
+
+
+Class GeoAreaSensor {
++ existReadingsBetweenDates()
++ getLocation ()
++ getReadingsBetweenDates ()
++ getDailyAverage ()
++ getMostRecentValidReading ()
+}
+
+Class Reading {
+- LocalDateTime date
+- double value
++ get ()
+}
+
+Class SensorsService {
++ existSensors ()
++ getComfortTemperature ()
++ getSensorId ()
++ getInstantsOutOfComfortTemperature ()
++ getInstantListOutOfComfortLevel ()
++ existSensors ()
++ existsDaysWithoutComfortTemp ()
++ getDaysWithoutComfortTemp ()
++ getRoomReadingsDTO ()
+}
+
+
+
+@enduml
