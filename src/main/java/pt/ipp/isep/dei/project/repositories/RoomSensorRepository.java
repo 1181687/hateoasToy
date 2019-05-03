@@ -12,5 +12,5 @@ public interface RoomSensorRepository extends CrudRepository<RoomSensor, SensorI
 
     RoomSensor findByRoomId (RoomId roomId);
 
-    RoomSensor findByRoomIdAndSensorType(RoomId roomId, SensorTypeId sensorTypeId);
+    RoomSensor findByRoomIdAndSensorTypeId(RoomId roomId, SensorTypeId sensorTypeId);
 }
