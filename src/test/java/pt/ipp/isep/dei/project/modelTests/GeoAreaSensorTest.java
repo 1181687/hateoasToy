@@ -12,6 +12,7 @@ import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -540,6 +541,35 @@ class GeoAreaSensorTest {
     @Test
     void getDailyMeasurement() {
     }
+
+
+    @Test
+    public void getDailyMeasurementTest() {
+        //Arrange
+        LocalDateTime sundayDate3 = LocalDateTime.of(2018, 11, 2, 21, 10, 25);
+
+        //act
+        List<Reading> result = this.temperatureSensor.getDailyMeasurement(sundayDate3.toLocalDate());
+
+        //assert
+        assertEquals(this.temperatureSensor.getListOfReadings(), result);
+
+    }
+
+    @Test
+    public void getDailyMeasurementTest_ValueNan() {
+        //Arrange
+        this.temperatureSensor.getListOfReadings().remove(this.reading);
+        this.temperatureSensor.getListOfReadings().remove(this.reading1);
+        LocalDateTime sundayDate = LocalDateTime.of(2000, 1, 2, 21, 10, 25);
+
+        //act
+        List<Reading> result = this.temperatureSensor.getDailyMeasurement(sundayDate.toLocalDate());
+
+        //assert
+        assertEquals(this.temperatureSensor.getListOfReadings(), result);
+    }
+
 
     @Test
     void checkIfDaysAreEqual() {
