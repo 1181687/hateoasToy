@@ -70,6 +70,14 @@ public class RoomSensor implements Root {
         return sensorTypeId;
     }
 
+    public String getSensorName(){
+        return sensorName;
+    }
+
+    public String getUnits(){
+        return units;
+    }
+
     public boolean isActive() {
         return isActive.isActive();
     }

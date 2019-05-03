@@ -113,7 +113,7 @@ public class Main {
             Admin admin = new Admin(geographicalAreaService, geoAreaTypeService, sensorTypeList, powerSourceTypeList,
                     houseEdificioB.getRoomList(), houseService, geoAreaSensorService, roomSensorService,
                     sensorTypeService, roomService, houseEdificioB);
-            RegularUser regularUser = new RegularUser(geoAreaTypeService, geographicalAreaService, sensorTypeList, houseService);
+            RegularUser regularUser = new RegularUser(geoAreaTypeService, geographicalAreaService, sensorTypeList, houseService, roomService, roomSensorService);
             PowerUser powerUser = new PowerUser(houseService);
             RoomOwner roomOwner = new RoomOwner(houseService);
 
