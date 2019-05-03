@@ -1,9 +1,10 @@
 package pt.ipp.isep.dei.project.model;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 public class ReadingDTO {
-    private String Id;
+    private String id;
     private double value;
     private LocalDateTime dateTime;
     private String units;
@@ -51,11 +52,11 @@ public class ReadingDTO {
     }
 
     public String getId() {
-        return Id;
+        return id;
     }
 
     public void setId(String id) {
-        this.Id = id;
+        this.id = id;
     }
 
     public String getUnits() {
@@ -64,5 +65,22 @@ public class ReadingDTO {
 
     public void setUnits(String units) {
         this.units = units;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof ReadingDTO)) {
+            return false;
+        }
+        ReadingDTO readingDTO = (ReadingDTO) obj;
+        return this.id.equals(readingDTO.id) && this.dateTime.equals(readingDTO.dateTime);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.id);
     }
 }

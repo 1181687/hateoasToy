@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.ReadingMapper;
+import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.RoomId;
 import pt.ipp.isep.dei.project.model.sensor.*;
 import pt.ipp.isep.dei.project.repositories.RoomSensorRepository;
@@ -21,29 +22,37 @@ public class RoomSensorService {
     /**
      * Method that searches for a sensor by its id.
      *
-     * @param id Id of the sensor.
+     * @param sensorIdDTO Id of the sensor.
      * @return Sensor required.
      */
-    public RoomSensor getSensorById(SensorId id) {
-        return roomSensorRepo.findById(id).orElse(null);
+    public RoomSensorDTO getSensorById(SensorIdDTO sensorIdDTO) {
+        SensorId sensorId = SensorIdMapper.mapToEntity(sensorIdDTO);
+        RoomSensor sensor = roomSensorRepo.findById(sensorId).orElse(null);
+        return RoomSensorMapper.mapToDTO(sensor);
     }
 
     /**
      * Method that saves a list of sensors in the repo.
      *
-     * @param sensors List of sensors to be analyzed.
+     * @param sensorDTOs List of sensors to be analyzed.
      */
-    public void saveSensors(List<RoomSensor> sensors) {
+    public void saveSensors(List<RoomSensorDTO> sensorDTOs) {
+        List<RoomSensor> sensors = new ArrayList<>();
+        for (RoomSensorDTO sensorDTO : sensorDTOs) {
+            RoomSensor sensor = RoomSensorMapper.mapToEntity(sensorDTO);
+            sensors.add(sensor);
+        }
         roomSensorRepo.saveAll(sensors);
     }
 
     /**
      * Method that checks if a sensor exists in the repo by its id.
      *
-     * @param sensorId Id to be used.
+     * @param sensorIdDTO Id to be used.
      * @return True or false.
      */
-    public boolean sensorExists(SensorId sensorId) {
+    public boolean sensorExists(SensorIdDTO sensorIdDTO) {
+        SensorId sensorId = SensorIdMapper.mapToEntity(sensorIdDTO);
         return this.roomSensorRepo.existsById(sensorId);
     }
 
@@ -74,19 +83,23 @@ public class RoomSensorService {
         return roomSensor.getId();
     }
 
-    public RoomSensor getRoomSensorBy(RoomId roomId, SensorTypeId sensorTypeId){
-        return this.roomSensorRepo.findByRoomIdAndSensorType(roomId, sensorTypeId);
+    public RoomSensorDTO getRoomSensorBy(RoomId roomId, SensorTypeId sensorTypeId){
+        RoomSensor room = this.roomSensorRepo.findByRoomIdAndSensorTypeId(roomId, sensorTypeId);
+        RoomSensorDTO roomSensorDTO = RoomSensorMapper.mapToDTO(room);
+        return roomSensorDTO;
     }
 
     public ReadingDTO getLastMeasurement (RoomId roomId, SensorTypeId sensorTypeId) {
-        RoomSensor roomSensor = getRoomSensorBy(roomId,sensorTypeId);
+        RoomSensorDTO roomSensorDTO = getRoomSensorBy(roomId,sensorTypeId);
+        RoomSensor roomSensor = RoomSensorMapper.mapToEntity(roomSensorDTO);
         Reading reading = roomSensor.getLastMeasurement();
         ReadingDTO lastReadingDTO = ReadingMapper.mapToDTO(reading);
         return lastReadingDTO;
     }
 
     public double getMaxMeasurementValueOfADay (RoomId roomId, SensorTypeId sensorTypeId, LocalDate date) {
-        RoomSensor roomSensor = getRoomSensorBy(roomId,sensorTypeId);
+        RoomSensorDTO roomSensorDTO = getRoomSensorBy(roomId,sensorTypeId);
+        RoomSensor roomSensor = RoomSensorMapper.mapToEntity(roomSensorDTO);
         double maxValue = roomSensor.getMaximumValueOfDay(date);
         return maxValue;
     }

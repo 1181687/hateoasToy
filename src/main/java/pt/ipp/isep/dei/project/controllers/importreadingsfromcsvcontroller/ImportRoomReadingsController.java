@@ -2,9 +2,8 @@ package pt.ipp.isep.dei.project.controllers.importreadingsfromcsvcontroller;
 
 import pt.ipp.isep.dei.project.model.ProjectFileReader;
 import pt.ipp.isep.dei.project.model.ReadingDTO;
-import pt.ipp.isep.dei.project.model.ReadingMapper;
-import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
-import pt.ipp.isep.dei.project.model.sensor.SensorId;
+import pt.ipp.isep.dei.project.model.sensor.RoomSensorDTO;
+import pt.ipp.isep.dei.project.model.sensor.SensorIdDTO;
 import pt.ipp.isep.dei.project.services.RoomSensorService;
 import pt.ipp.isep.dei.project.utils.Utils;
 
@@ -19,7 +18,7 @@ import java.util.logging.Logger;
 public class ImportRoomReadingsController {
     private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
     private RoomSensorService roomSensorService;
-    private RoomSensor sensor;
+    private RoomSensorDTO sensorDTO;
     private ProjectFileReader reader;
     private List<Object> readingDTOs;
     private int numberOfNotImportedReadings;
@@ -64,34 +63,35 @@ public class ImportRoomReadingsController {
         double startTime = System.nanoTime();
         boolean imported = false;
         boolean save = false;
-        List<RoomSensor> sensors = new ArrayList<>();
+        List<RoomSensorDTO> sensorDTOs = new ArrayList<>();
         for (int i = 0; i < readingDTOs.size(); i++) {
-            ReadingDTO reading = (ReadingDTO) readingDTOs.get(i);
-            SensorId sensorId = new SensorId(reading.getId());
-            if (Objects.isNull(sensor)) {
-                sensor = roomSensorService.getSensorById(sensorId);
+            ReadingDTO readingDTO = (ReadingDTO) readingDTOs.get(i);
+            SensorIdDTO sensorIdDTO = new SensorIdDTO();
+            sensorIdDTO.setId(readingDTO.getId());
+            if (Objects.isNull(sensorDTO)) {
+                sensorDTO = roomSensorService.getSensorById(sensorIdDTO);
             }
-            if (Objects.nonNull(sensor) && !sensorId.equals(sensor.getId())) {
-                sensors.add(sensor);
+            if (Objects.nonNull(sensorDTO) && !sensorIdDTO.getId().equals(sensorDTO.getId())) {
+                sensorDTOs.add(sensorDTO);
                 save = true;
-                sensor = roomSensorService.getSensorById(sensorId);
+                sensorDTO = roomSensorService.getSensorById(sensorIdDTO);
             }
-            if (!isReadingValid(reading)) {
+            if (!isReadingValid(readingDTO)) {
                 if (i == (readingDTOs.size() - 1)) {
-                    sensors.add(sensor);
+                    sensorDTOs.add(sensorDTO);
                 }
                 continue;
             } else {
                 if (i == (readingDTOs.size() - 1)) {
-                    sensors.add(sensor);
+                    sensorDTOs.add(sensorDTO);
                 }
                 imported = true;
             }
-            if (sensor.addReading(ReadingMapper.mapToEntity(reading)) && save) {
+            if (sensorDTO.addReadingDTO(readingDTO) && save) {
                 save = false;
             }
         }
-        roomSensorService.saveSensors(sensors);
+        roomSensorService.saveSensors(sensorDTOs);
         double stopTime = System.nanoTime();
         System.out.println("Total time = " + ((stopTime - startTime) / 1000000000));
         return imported;
@@ -103,7 +103,7 @@ public class ImportRoomReadingsController {
      * @return True or false.
      */
     private boolean isReadingValid(ReadingDTO readingDTO) {
-        if (Objects.isNull(sensor)) {
+        if (Objects.isNull(sensorDTO)) {
             numberOfNotImportedReadings++;
             String invalidInfo = "id: " + readingDTO.getId() + ".";
             LOGGER.log(Level.WARNING, "GeoAreaReading was not imported because the following sensor id doesn't exist: " + invalidInfo);
@@ -115,7 +115,10 @@ public class ImportRoomReadingsController {
             LOGGER.log(Level.WARNING, "GeoAreaReading not imported due to invalid timestamp/date " + invalidInfo);
             return false;
         }
-        if (readingDTO.getDateTime().isBefore(sensor.getStartingDate())) {
+        if (sensorDTO.getReadingDTOs().contains(readingDTO)) {
+            return false;
+        }
+        if (readingDTO.getDateTime().isBefore(sensorDTO.getStartingDate())) {
             numberOfNotImportedReadings++;
             String invalidInfo = "id: " + readingDTO.getId() + ", value: " + readingDTO.getValue() + ", timestamp/date: " + readingDTO.getDateTime() + ", unit: " + readingDTO.getUnits() + ".";
             LOGGER.log(Level.WARNING, "GeoAreaReading not imported due to timestamp/date of reading being before starting date of sensor: " + invalidInfo);
