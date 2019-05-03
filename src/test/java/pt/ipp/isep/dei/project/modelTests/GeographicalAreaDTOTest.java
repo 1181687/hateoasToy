@@ -5,6 +5,10 @@ package pt.ipp.isep.dei.project.modelTests;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Location;
+import pt.ipp.isep.dei.project.model.LocationDTO;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaId;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaIdDTO;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaIdMapper;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.sensor.*;
 
@@ -27,12 +31,26 @@ public class GeographicalAreaDTOTest {
         portoCity.setId("S001");
         portoCity.setDescription("Sensor1");
         portoCity.setType("City");
+        portoCity.setElevation(3);
+        portoCity.setLatitude(3);
+        portoCity.setLongitude(5);
+        portoCity.setWidth(6);
+        portoCity.setLength(7);
 
         // Sensors
         temperature = new SensorTypeId("Temperature");
         LocalDateTime startDate = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         Location sensorLocation = new Location(42.1596, -8.6109, 97);
-        GeoAreaSensor sensor = new GeoAreaSensor(new SensorId("123"), "A123", startDate, temperature, sensorLocation, "l/m2");
+        GeoAreaIdDTO geoAreaIdDTO = new GeoAreaIdDTO();
+        geoAreaIdDTO.setId(portoCity.getId());
+        geoAreaIdDTO.setGeoAreaType(portoCity.getType());
+        LocationDTO locationDTO = new LocationDTO();
+        locationDTO.setElevation(portoCity.getElevation());
+        locationDTO.setLongitude(portoCity.getLongitude());
+        locationDTO.setLatitude(portoCity.getLatitude());
+        geoAreaIdDTO.setLocationDTO(locationDTO);
+        GeoAreaId geoAreaId = GeoAreaIdMapper.mapToEntity(geoAreaIdDTO);
+        GeoAreaSensor sensor = new GeoAreaSensor(new SensorId("123"), "A123", startDate, temperature, sensorLocation, "l/m2", geoAreaId);
         temperatureSensor = GeoAreaSensorMapper.mapToDTO(sensor);
         portoCity.addSensor(temperatureSensor);
     }
