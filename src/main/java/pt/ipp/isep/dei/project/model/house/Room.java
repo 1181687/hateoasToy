@@ -100,6 +100,15 @@ public class Room implements Root, Measurable {
     }
 
     /**
+     * Get method of the Id object
+     *
+     * @return
+     */
+    public RoomId getId() {
+        return this.roomId;
+    }
+
+    /**
      * Method that defines the name of the room
      *
      * @param name name of a room (string)

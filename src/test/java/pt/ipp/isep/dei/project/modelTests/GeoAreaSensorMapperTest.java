@@ -3,6 +3,9 @@ package pt.ipp.isep.dei.project.modelTests;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.LocationDTO;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaId;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaTypeId;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.sensor.*;
 
 import java.time.LocalDate;
@@ -32,9 +35,12 @@ public class GeoAreaSensorMapperTest {
         String units = "1/ms";
 
         SensorTypeId temperature = new SensorTypeId(typeName);
-        Location locationSensor = new Location(123, 345, 50);
+        Location locationSensor = new Location(50, 50, 50);
 
-        GeoAreaSensor expectedResult = new GeoAreaSensor(new SensorId(id), name, startingDate, temperature, locationSensor, units);
+        GeographicalAreaType type = new GeographicalAreaType(new GeoAreaTypeId("s"));
+        GeoAreaId geoAreaId = new GeoAreaId(locationSensor, "id", type);
+
+        GeoAreaSensor expectedResult = new GeoAreaSensor(new SensorId(id), name, startingDate, temperature, locationSensor, units, geoAreaId);
 
         //Act
         GeoAreaSensorDTO sensorDTO = GeoAreaSensorMapper.mapToDTO(expectedResult);

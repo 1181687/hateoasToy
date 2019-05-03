@@ -12,6 +12,8 @@ import pt.ipp.isep.dei.project.services.GeoAreaSensorService;
 import pt.ipp.isep.dei.project.services.GeographicalAreaService;
 import pt.ipp.isep.dei.project.services.SensorTypeService;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -124,8 +126,14 @@ class AddSensorToGeoAreaControllerTest {
         SensorId geoAreaSensorId = new SensorId("geoAreaSensorId");
         SensorTypeId sensorTypeId = new SensorTypeId("Humidity");
         Location location = new Location(123, 456, 789);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType(new GeoAreaTypeId("City"));
+        AreaShape areaShape = new AreaShape(25, 23);
+        GeographicalArea geoArea = new GeographicalArea("Id", "Description", geographicalAreaType, location, areaShape);
+        when(this.geographicalAreaService.getGeoAreaById("id")).thenReturn(geoArea);
 
-        GeoAreaSensor geoAreaSensor = new GeoAreaSensor(geoAreaSensorId, "GeoAreaSensor", sensorTypeId, location, "1m/s");
+        GeoAreaId geoAreaId = new GeoAreaId(location, "id", geographicalAreaType);
+        LocalDateTime localDateTime = LocalDate.of(1999, 12, 31).atStartOfDay();
+        GeoAreaSensor geoAreaSensor = new GeoAreaSensor(geoAreaSensorId, "GeoAreaSensor", localDateTime, sensorTypeId, location, "1m/s", geoAreaId);
 
         // GeoAreaSensor DTO
         GeoAreaSensorDTO geoAreaSensorDTO = GeoAreaSensorMapper.mapToDTO(geoAreaSensor);
@@ -141,8 +149,15 @@ class AddSensorToGeoAreaControllerTest {
         SensorId geoAreaSensorId = new SensorId("geoAreaSensorId");
         SensorTypeId sensorTypeId = new SensorTypeId("Humidity");
         Location location = new Location(123, 456, 789);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType(new GeoAreaTypeId("City"));
+        AreaShape areaShape = new AreaShape(25, 23);
+        GeographicalArea geoArea = new GeographicalArea("Id", "Description", geographicalAreaType, location, areaShape);
+        when(this.geographicalAreaService.getGeoAreaById("id")).thenReturn(geoArea);
 
-        GeoAreaSensor geoAreaSensor = new GeoAreaSensor(geoAreaSensorId, "GeoAreaSensor", sensorTypeId, location, "1m/s");
+        GeoAreaId geoAreaId = new GeoAreaId(location, "id", geographicalAreaType);
+        LocalDateTime localDateTime = LocalDate.of(1999, 12, 31).atStartOfDay();
+
+        GeoAreaSensor geoAreaSensor = new GeoAreaSensor(geoAreaSensorId, "GeoAreaSensor", localDateTime, sensorTypeId, location, "1m/s", geoAreaId);
 
         // GeoAreaSensor DTO
         GeoAreaSensorDTO geoAreaSensorDTO = GeoAreaSensorMapper.mapToDTO(geoAreaSensor);
