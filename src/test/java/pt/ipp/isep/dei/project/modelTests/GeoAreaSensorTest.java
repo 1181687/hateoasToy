@@ -553,7 +553,6 @@ class GeoAreaSensorTest {
 
         //assert
         assertEquals(this.temperatureSensor.getListOfReadings(), result);
-
     }
 
     @Test
@@ -570,14 +569,185 @@ class GeoAreaSensorTest {
         assertEquals(this.temperatureSensor.getListOfReadings(), result);
     }
 
-
     @Test
-    void checkIfDaysAreEqual() {
+    public void checkIfDaysAreEqualTest() {
+        //Arrange
+        LocalDateTime date = LocalDateTime.of(2018, 2, 16, 16, 20, 00);
+        LocalDateTime date2 = LocalDateTime.of(2018, 1, 2, 15, 20, 00);
+        boolean expectedResult = false;
+        boolean result = this.temperatureSensor.checkIfDaysAreEqual(date.toLocalDate(), date2.toLocalDate());
+
+        //assert
+        assertEquals(expectedResult, result);
     }
 
     @Test
-    void getLowestMeasurementOfDay() {
+    public void checkIfDaysAreEqualTest_ShouldReturnTrue() {
+        //Arrange
+
+        LocalDateTime date = LocalDateTime.of(2018, 10, 2, 15, 20, 00);
+        LocalDateTime date2 = LocalDateTime.of(2018, 10, 2, 16, 20, 00);
+
+        boolean expectedResult = true;
+
+        //Act
+        boolean result = this.temperatureSensor.checkIfDaysAreEqual(date.toLocalDate(), date2.toLocalDate());
+
+        //assert
+        assertEquals(expectedResult, result);
     }
+
+    @Test
+    public void checkIfDaysAreEqualTest_SameDate() {
+        //Arrange
+        LocalDateTime date = LocalDateTime.of(2018, 10, 2, 15, 20, 00);
+        LocalDateTime date1 = LocalDateTime.of(2018, 10, 2, 15, 20, 00);
+
+        //Act
+        boolean result = this.temperatureSensor.checkIfDaysAreEqual(date.toLocalDate(), date1.toLocalDate());
+
+        //assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void getLowestMeasurementOfDayTest() {
+        //Arrange
+
+        //Registo 1
+        LocalDateTime data1 = LocalDateTime.of(2018, 10, 2, 00, 00, 01);
+        Reading reading1 = new Reading(40, data1);
+
+        //Registo 2
+        LocalDateTime data2 = LocalDateTime.of(2018, 10, 2, 23, 59, 59);
+        Reading reading2 = new Reading(30, data2);
+
+        //Registo 3
+        LocalDateTime data3 = LocalDateTime.of(2018, 10, 2, 17, 20, 00);
+        Reading reading3 = new Reading(-2, data3);
+
+        //Adição das medições
+        this.temperatureSensor.addReadingsToList(reading1);
+        this.temperatureSensor.addReadingsToList(reading2);
+        this.temperatureSensor.addReadingsToList(reading3);
+
+        LocalDate searchDate = LocalDate.of(2018, 10, 2);
+
+        double expectedResult = -2;
+
+        //Act
+        double result = this.temperatureSensor.getLowestMeasurementOfDay(searchDate);
+        //assert
+        assertEquals(expectedResult, result, 0.001);
+    }
+
+    @Test
+    public void getLowestMeasurementOfDayTest_LowestDay() {
+        //Arrange
+        //Registo 1
+        LocalDateTime data1 = LocalDateTime.of(2018, 10, 2, 00, 00, 01);
+        Reading reading1 = new Reading(-2, data1);
+
+        //Registo 2
+        LocalDateTime data2 = LocalDateTime.of(2018, 10, 2, 23, 59, 59);
+        Reading reading2 = new Reading(-3, data2);
+
+        //Registo 3
+        LocalDateTime data3 = LocalDateTime.of(2018, 10, 2, 17, 20, 00);
+        Reading reading3 = new Reading(-4, data3);
+
+        //Adição das medições
+        this.temperatureSensor.addReadingsToList(reading1);
+        this.temperatureSensor.addReadingsToList(reading2);
+        this.temperatureSensor.addReadingsToList(reading3);
+
+        LocalDate searchDate = LocalDate.of(2018, 10, 2);
+
+        double expectedResult = -4;
+
+        //Act
+        double result = this.temperatureSensor.getLowestMeasurementOfDay(searchDate);
+        //assert
+        assertEquals(expectedResult, result, 0.001);
+    }
+
+    @Test
+    public void getLowestMeasurementOfDayTest_Boundaries() {
+        //Arrange
+        //Registo 1
+        LocalDateTime data1 = LocalDateTime.of(2018, 10, 2, 00, 00, 01);
+        Reading reading1 = new Reading(0, data1);
+
+        //Registo 2
+        LocalDateTime data2 = LocalDateTime.of(2018, 10, 2, 23, 59, 59);
+        Reading reading2 = new Reading(1, data2);
+
+        //Registo 3
+        LocalDateTime data3 = LocalDateTime.of(2018, 10, 2, 17, 20, 00);
+        Reading reading3 = new Reading(2, data3);
+
+        //Adição das medições
+        this.temperatureSensor.addReadingsToList(reading1);
+        this.temperatureSensor.addReadingsToList(reading2);
+        this.temperatureSensor.addReadingsToList(reading3);
+
+        LocalDate searchDate = LocalDate.of(2018, 10, 2);
+
+        double expectedResult = 0;
+
+        //Act
+        double result = this.temperatureSensor.getLowestMeasurementOfDay(searchDate);
+        //assert
+        assertEquals(expectedResult, result, 0.001);
+
+    }
+
+    @Test
+    public void getLowestMeasurementOfDayTest_EmptyList() {
+        //Arrange
+        LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
+
+        double expectedResult = Double.NaN;
+
+        //Act
+        double result = this.temperatureSensor.getLowestMeasurementOfDay(data.toLocalDate());
+        //assert
+        assertEquals(expectedResult, result, 0.001);
+    }
+
+    @Test
+    public void getLowestMeasurementOfDayTest_NaNValue() {
+        //Arrange
+        //Registo 1
+        LocalDateTime data1 = LocalDateTime.of(2018, 10, 2, 00, 00, 01);
+        Reading reading1 = new Reading(Double.NaN, data1);
+
+        //Registo 2
+        LocalDateTime data2 = LocalDateTime.of(2018, 10, 2, 23, 59, 59);
+        Reading reading2 = new Reading(30, data2);
+
+        //Registo 3
+        LocalDateTime data3 = LocalDateTime.of(2018, 10, 2, 17, 20, 00);
+        Reading reading3 = new Reading(-2, data3);
+
+        //Adição das medições
+        this.temperatureSensor.addReadingsToList(reading1);
+        this.temperatureSensor.addReadingsToList(reading2);
+        this.temperatureSensor.addReadingsToList(reading3);
+
+        double expectedResult = -2;
+
+        LocalDate searchDate = LocalDate.of(2018, 10, 2);
+
+        //Act
+        double result = this.temperatureSensor.getLowestMeasurementOfDay(searchDate);
+        //assert
+        assertEquals(expectedResult, result, 0.001);
+    }
+
+
+
+
 
     @Test
     void getFirstDayOfWeek() {
