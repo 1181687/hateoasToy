@@ -1,7 +1,11 @@
 package pt.ipp.isep.dei.project.model.sensor;
 
+import pt.ipp.isep.dei.project.model.ReadingDTO;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RoomSensorDTO {
 
@@ -12,6 +16,7 @@ public class RoomSensorDTO {
     private String RoomId;
     private String units;
     private boolean isActive = true;
+    private List<ReadingDTO> readingDTOs = new ArrayList<>();
 
     public RoomSensorDTO() {
     }
@@ -70,5 +75,21 @@ public class RoomSensorDTO {
 
     public void setActive(boolean active) {
         isActive = active;
+    }
+
+    public List<ReadingDTO> getReadingDTOs() {
+        return this.readingDTOs;
+    }
+
+    public void setReadingDTOs(List<ReadingDTO> readingDTOs) {
+        this.readingDTOs = readingDTOs;
+    }
+
+    public boolean addReadingDTO(ReadingDTO readingDTO) {
+        if (!this.readingDTOs.contains(readingDTO)) {
+            this.readingDTOs.add(readingDTO);
+            return true;
+        }
+        return false;
     }
 }
