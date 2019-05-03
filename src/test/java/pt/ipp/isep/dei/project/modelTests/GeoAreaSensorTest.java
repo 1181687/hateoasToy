@@ -1338,41 +1338,774 @@ class GeoAreaSensorTest {
         assertEquals(expectedResult, result);
     }
 
+    @Test
+    public void getAverageOfBiggestMeasurementsWeekTest() {
+
+        //Arrange
+        //Registo 1
+        LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 01, 00, 01);
+        Reading reading1 = new Reading(10.0, data1);
+
+        //Registo 2
+        LocalDateTime data2 = LocalDateTime.of(2018, 11, 3, 23, 59, 59);
+        Reading reading2 = new Reading(9.5, data2);
+
+        //Registo 3
+        LocalDateTime data3 = LocalDateTime.of(2018, 11, 4, 17, 20, 00);
+        Reading reading3 = new Reading(7.5, data3);
+
+        //Registo 4
+        LocalDateTime data4 = LocalDateTime.of(2018, 11, 5, 17, 20, 00);
+        Reading reading4 = new Reading(9.7, data4);
+
+        //Registo 5
+        LocalDateTime data5 = LocalDateTime.of(2018, 11, 6, 17, 20, 00);
+        Reading reading5 = new Reading(10.1, data5);
+
+        //Registo 6
+        LocalDateTime data6 = LocalDateTime.of(2018, 11, 7, 17, 20, 00);
+        Reading reading6 = new Reading(11.2, data6);
+
+        //Registo 7
+        LocalDateTime data7 = LocalDateTime.of(2018, 11, 8, 17, 20, 00);
+        Reading reading7 = new Reading(8.9, data7);
 
 
+        //Adição das medições
+        this.temperatureSensor.addReadingsToList(reading1);
+        this.temperatureSensor.addReadingsToList(reading2);
+        this.temperatureSensor.addReadingsToList(reading3);
+        this.temperatureSensor.addReadingsToList(reading4);
+        this.temperatureSensor.addReadingsToList(reading5);
+        this.temperatureSensor.addReadingsToList(reading6);
+        this.temperatureSensor.addReadingsToList(reading7);
 
+        double expectedResult = 47.4 / 5;
+
+        LocalDate searchDate = LocalDate.of(2018, 11, 4);
+
+        //Act
+        double result = this.temperatureSensor.getAverageOfBiggestMeasurementsWeek(searchDate);
+
+        //Assert
+        assertEquals(expectedResult, result, 0.001);
+    }
 
     @Test
-    void getAverageOfBiggestMeasurementsWeek() {
+    public void getAverageOfBiggestMeasurementsWeekTest_DoubleNan() {
+
+        //Arrange
+        double expectedResult = Double.NaN;
+        LocalDate searchDate = LocalDate.of(2018, 12, 4);
+
+        //Act
+        double result = this.temperatureSensor.getAverageOfBiggestMeasurementsWeek(searchDate);
+
+        //Assert
+        assertEquals(expectedResult, result, 0.001);
     }
+
+    @Test
+    public void getAverageOfBiggestMeasurementsWeekTest_FiveDaysOfReadings() {
+
+        //Arrange
+        //Registo 1
+        LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 01, 00, 01);
+        Reading reading1 = new Reading(10.0, data1);
+
+        //Registo 2
+        LocalDateTime data2 = LocalDateTime.of(2018, 11, 3, 23, 59, 59);
+        Reading reading2 = new Reading(9.5, data2);
+
+        //Registo 3
+        LocalDateTime data3 = LocalDateTime.of(2018, 11, 4, 17, 20, 00);
+        Reading reading3 = new Reading(7.5, data3);
+
+        //Registo 4
+        LocalDateTime data4 = LocalDateTime.of(2018, 11, 5, 17, 20, 00);
+        Reading reading4 = new Reading(9.7, data4);
+
+        //Registo 5
+        LocalDateTime data5 = LocalDateTime.of(2018, 11, 6, 17, 20, 00);
+        Reading reading5 = new Reading(10.1, data5);
+
+        //Adição das medições
+        this.temperatureSensor.addReadingsToList(reading1);
+        this.temperatureSensor.addReadingsToList(reading2);
+        this.temperatureSensor.addReadingsToList(reading3);
+        this.temperatureSensor.addReadingsToList(reading4);
+        this.temperatureSensor.addReadingsToList(reading5);
+
+        double expectedResult = 9.1;
+        LocalDate searchDate = LocalDate.of(2018, 11, 4);
+
+        //Act
+        double result = this.temperatureSensor.getAverageOfBiggestMeasurementsWeek(searchDate);
+
+        //Assert
+        assertEquals(expectedResult, result, 0.001);
+    }
+
+
 
     @Test
     void distanceBetweenSensorAndLocation() {
     }
 
+
     @Test
-    void getTotalDailyMeasurements() {
+    public void getTotalDailyMeasurementsTest_SameDay() {
+        //Arrange
+        this.temperatureSensor.getListOfReadings().remove(reading);
+        this.temperatureSensor.getListOfReadings().remove(reading1);
+        //Registo 1
+        LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 8, 00, 01);
+        Reading reading1 = new Reading(10.0, data1);
+
+        //Registo 2
+        LocalDateTime data2 = LocalDateTime.of(2018, 11, 2, 15, 59, 59);
+        Reading reading2 = new Reading(10, data2);
+
+        //Registo 3
+        LocalDateTime data3 = LocalDateTime.of(2018, 11, 2, 17, 15, 00);
+        Reading reading3 = new Reading(5, data3);
+
+        //Registo 4
+        LocalDateTime data4 = LocalDateTime.of(2018, 11, 2, 17, 20, 00);
+        Reading reading4 = new Reading(5, data4);
+
+        //Registo 5
+        LocalDateTime data5 = LocalDateTime.of(2018, 11, 2, 17, 20, 10);
+        Reading reading5 = new Reading(10, data5);
+
+        //Adição das medições
+        this.temperatureSensor.addReadingsToList(reading1);
+        this.temperatureSensor.addReadingsToList(reading2);
+        this.temperatureSensor.addReadingsToList(reading3);
+        this.temperatureSensor.addReadingsToList(reading4);
+        this.temperatureSensor.addReadingsToList(reading5);
+
+        double expectedResult = 40;
+
+        LocalDateTime searchDate = LocalDateTime.of(2018, 11, 2, 17, 20, 10);
+
+        //Act
+        double result = this.temperatureSensor.getTotalDailyMeasurements(searchDate.toLocalDate());
+
+        //Assert
+        assertEquals(expectedResult, result, 0.001);
     }
 
     @Test
-    void getDailyAverage() {
+    public void getTotalDailyMeasurementsTest_Empty() {
+        //Arrange
+        this.temperatureSensor.getListOfReadings().remove(reading);
+        this.temperatureSensor.getListOfReadings().remove(reading1);
+        double expectedResult = 0.0;
+        LocalDateTime searchDate = LocalDateTime.of(2018, 11, 2, 17, 20, 10);
+
+        //Act
+        double result = this.temperatureSensor.getTotalDailyMeasurements(searchDate.toLocalDate());
+
+        //Assert
+        assertEquals(expectedResult, result, 0.001);
     }
 
     @Test
-    void getReadingsBetweenDates() {
+    public void getTotalDailyMeasurementsTest_WithDifferentDays() {
+        //Arrange
+        this.temperatureSensor.getListOfReadings().remove(reading);
+        this.temperatureSensor.getListOfReadings().remove(reading1);
+        //Registo 1
+        LocalDateTime data1 = LocalDateTime.of(2018, 10, 2, 8, 00, 01);
+        Reading reading1 = new Reading(10.0, data1);
+
+        //Registo 2
+        LocalDateTime data2 = LocalDateTime.of(2018, 11, 2, 15, 59, 59);
+        Reading reading2 = new Reading(10, data2);
+
+        //Registo 3
+        LocalDateTime data3 = LocalDateTime.of(2018, 11, 2, 17, 15, 00);
+        Reading reading3 = new Reading(5, data3);
+
+        //Registo 4
+        LocalDateTime data4 = LocalDateTime.of(2018, 11, 2, 17, 20, 00);
+        Reading reading4 = new Reading(5, data4);
+
+        //Registo 5
+        LocalDateTime data5 = LocalDateTime.of(2018, 11, 2, 17, 20, 10);
+        Reading reading5 = new Reading(10, data5);
+
+        //Adição das medições
+        this.temperatureSensor.addReadingsToList(reading1);
+        this.temperatureSensor.addReadingsToList(reading2);
+        this.temperatureSensor.addReadingsToList(reading3);
+        this.temperatureSensor.addReadingsToList(reading4);
+        this.temperatureSensor.addReadingsToList(reading5);
+
+        double expectedResult = 30;
+
+        LocalDateTime searchDate = LocalDateTime.of(2018, 11, 2, 17, 20, 10);
+
+        //Act
+        double result = this.temperatureSensor.getTotalDailyMeasurements(searchDate.toLocalDate());
+
+        //Assert
+        assertEquals(expectedResult, result, 0.001);
     }
+
+    @Test
+    public void getDailyAverageTest() {
+        //Arrange
+        this.temperatureSensor.getListOfReadings().remove(reading);
+        this.temperatureSensor.getListOfReadings().remove(reading1);
+        //Registo 1
+        LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 8, 00, 01);
+        Reading reading1 = new Reading(10.0, data1);
+
+        //Registo 2
+        LocalDateTime data2 = LocalDateTime.of(2018, 11, 2, 15, 59, 59);
+        Reading reading2 = new Reading(9.5, data2);
+
+        //Registo 3
+        LocalDateTime data3 = LocalDateTime.of(2018, 11, 2, 17, 15, 00);
+        Reading reading3 = new Reading(7.5, data3);
+
+        //Registo 4
+        LocalDateTime data4 = LocalDateTime.of(2018, 11, 2, 17, 20, 00);
+        Reading reading4 = new Reading(9.7, data4);
+
+        //Registo 5
+        LocalDateTime data5 = LocalDateTime.of(2018, 11, 2, 17, 20, 10);
+        Reading reading5 = new Reading(10.1, data5);
+
+        //Adição das medições
+        this.temperatureSensor.addReadingsToList(reading1);
+        this.temperatureSensor.addReadingsToList(reading2);
+        this.temperatureSensor.addReadingsToList(reading3);
+        this.temperatureSensor.addReadingsToList(reading4);
+        this.temperatureSensor.addReadingsToList(reading5);
+
+        double expectedResult = 9.36;
+
+        LocalDateTime searchDate = LocalDateTime.of(2018, 11, 2, 17, 20, 10);
+
+        //Act
+        double result = this.temperatureSensor.getDailyAverage(searchDate.toLocalDate());
+
+        //Assert
+        assertEquals(expectedResult, result, 0.001);
+    }
+
+    @Test
+    public void getLastLowestReading_SensorWithValidReadings_ShouldReturnLastLowestReading() {
+        //Arrange
+        //Reading 1
+        LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 8, 00, 01);
+        Reading reading1 = new Reading(11, data1);
+
+        //Reading 2
+        LocalDateTime data2 = LocalDateTime.of(2018, 11, 2, 15, 59, 59);
+        Reading reading2 = new Reading(14, data2);
+
+        //Reading 3
+        LocalDateTime data3 = LocalDateTime.of(2018, 11, 3, 17, 15, 00);
+        Reading reading3 = new Reading(5, data3);
+
+        //Reading 4
+        LocalDateTime data4 = LocalDateTime.of(2018, 11, 3, 17, 20, 00);
+        Reading reading4 = new Reading(5, data4);
+
+        //Reading 5
+        LocalDateTime data5 = LocalDateTime.of(2018, 11, 3, 17, 20, 10);
+        Reading reading5 = new Reading(10, data5);
+
+        //Adding readings to sensor
+        this.temperatureSensor.addReadingsToList(reading1);
+        this.temperatureSensor.addReadingsToList(reading2);
+        this.temperatureSensor.addReadingsToList(reading3);
+        this.temperatureSensor.addReadingsToList(reading4);
+        this.temperatureSensor.addReadingsToList(reading5);
+
+        LocalDate startDate = LocalDate.of(2018, 11, 2);
+        LocalDate endDate = LocalDate.of(2018, 11, 3);
+
+        Reading expectedResult = reading4;
+        List<Reading> readings = this.temperatureSensor.getReadingsBetweenDates(startDate, endDate);
+
+        //Act
+        Reading result = this.temperatureSensor.getLastLowestReading(readings);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void getLastLowestReading_SensorWithDayWithDoubleNaNReadings_ShouldReturnLastLowestReading() {
+        //Arrange
+        //Reading 1
+        LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 8, 00, 01);
+        Reading reading1 = new Reading(11, data1);
+
+        //Reading 2
+        LocalDateTime data2 = LocalDateTime.of(2018, 11, 2, 15, 59, 59);
+        Reading reading2 = new Reading(Double.NaN, data2);
+
+        //Reading 3
+        LocalDateTime data3 = LocalDateTime.of(2018, 11, 3, 17, 15, 00);
+        Reading reading3 = new Reading(5, data3);
+
+        //Reading 4
+        LocalDateTime data4 = LocalDateTime.of(2018, 11, 3, 17, 20, 00);
+        Reading reading4 = new Reading(5, data4);
+
+        //Reading 5
+        LocalDateTime data5 = LocalDateTime.of(2018, 11, 3, 17, 20, 10);
+        Reading reading5 = new Reading(10, data5);
+
+        //Adding readings to sensor
+        this.temperatureSensor.addReadingsToList(reading1);
+        this.temperatureSensor.addReadingsToList(reading2);
+        this.temperatureSensor.addReadingsToList(reading3);
+        this.temperatureSensor.addReadingsToList(reading4);
+        this.temperatureSensor.addReadingsToList(reading5);
+
+        LocalDate startDate = LocalDate.of(2018, 11, 2);
+        LocalDate endDate = LocalDate.of(2018, 11, 3);
+
+        Reading expectedResult = reading4;
+        List<Reading> readings = this.temperatureSensor.getReadingsBetweenDates(startDate, endDate);
+
+        //Act
+        Reading result = this.temperatureSensor.getLastLowestReading(readings);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void getLastLowestReading_SensorWithOnlyDoubleNaNReadings_ShouldReturnReadingWithDoubleNaN() {
+        //Arrange
+        this.temperatureSensor.getListOfReadings().remove(reading);
+        this.temperatureSensor.getListOfReadings().remove(reading1);
+        //Reading 1
+        LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 8, 00, 01);
+        Reading reading1 = new Reading(Double.NaN, data1);
+
+        //Reading 2
+        LocalDateTime data2 = LocalDateTime.of(2018, 11, 2, 15, 59, 59);
+        Reading reading2 = new Reading(Double.NaN, data2);
+
+        //Reading 3
+        LocalDateTime data3 = LocalDateTime.of(2018, 11, 3, 17, 15, 00);
+        Reading reading3 = new Reading(Double.NaN, data3);
+
+        //Reading 4
+        LocalDateTime data4 = LocalDateTime.of(2018, 11, 3, 17, 20, 00);
+        Reading reading4 = new Reading(Double.NaN, data4);
+
+
+        //Adding readings to sensor
+        this.temperatureSensor.addReadingsToList(reading1);
+        this.temperatureSensor.addReadingsToList(reading2);
+        this.temperatureSensor.addReadingsToList(reading3);
+        this.temperatureSensor.addReadingsToList(reading4);
+
+        LocalDate startDate = LocalDate.of(2018, 11, 2);
+        LocalDate endDate = LocalDate.of(2018, 11, 3);
+
+        Reading expectedResult = reading4;
+        List<Reading> readings = this.temperatureSensor.getReadingsBetweenDates(startDate, endDate);
+
+        //Act
+        Reading result = this.temperatureSensor.getLastLowestReading(readings);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void getLastLowestReading_SensorWithNoReadings_ShouldReturnNull() {
+        //Arrange
+        this.temperatureSensor.getListOfReadings().remove(reading);
+        this.temperatureSensor.getListOfReadings().remove(reading1);
+        LocalDate startDate = LocalDate.of(2018, 11, 2);
+        LocalDate endDate = LocalDate.of(2018, 11, 3);
+
+        Reading expectedResult = null;
+        List<Reading> readings = this.temperatureSensor.getReadingsBetweenDates(startDate, endDate);
+
+        //Act
+        Reading result = this.temperatureSensor.getLastLowestReading(readings);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
 
     @Test
     void getFirstHighestReading() {
     }
 
+
     @Test
-    void getHighestReadingOfADay() {
+    public void getHighestReadingOfADay_WithSeveralReadingsInOneDay_ShouldReturnHighestReading() {
+        //Arrange
+        this.temperatureSensor.getListOfReadings().remove(reading);
+        this.temperatureSensor.getListOfReadings().remove(reading1);
+        //Reading 1
+        LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 8, 00, 01);
+        Reading reading1 = new Reading(10.0, data1);
+
+        //Reading 2
+        LocalDateTime data2 = LocalDateTime.of(2018, 11, 2, 15, 59, 59);
+        Reading reading2 = new Reading(11, data2);
+
+        //Reading 3
+        LocalDateTime data3 = LocalDateTime.of(2018, 11, 2, 17, 15, 00);
+        Reading reading3 = new Reading(5, data3);
+
+        //Reading 4
+        LocalDateTime data4 = LocalDateTime.of(2018, 11, 2, 17, 20, 00);
+        Reading reading4 = new Reading(5, data4);
+
+        //Reading 5
+        LocalDateTime data5 = LocalDateTime.of(2018, 11, 2, 17, 20, 10);
+        Reading reading5 = new Reading(10, data5);
+
+        //Adding readings to sensor
+        this.temperatureSensor.addReadingsToList(reading1);
+        this.temperatureSensor.addReadingsToList(reading2);
+        this.temperatureSensor.addReadingsToList(reading3);
+        this.temperatureSensor.addReadingsToList(reading4);
+        this.temperatureSensor.addReadingsToList(reading5);
+
+        LocalDate day = LocalDate.of(2018, 11, 2);
+
+        Reading expectedResult = reading2;
+
+        //Act
+        Reading result = this.temperatureSensor.getHighestReadingOfADay(day);
+
+        //Assert
+        assertEquals(expectedResult, result);
     }
 
     @Test
-    void getDailyMaxReadingsInAnInterval() {
+    public void getHighestReadingOfADay_WithSeveralReadingsInTwoDays_ShouldReturnHighestReadingOfSelectedDay() {
+        //Arrange
+        //Reading 1
+        LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 8, 00, 01);
+        Reading reading1 = new Reading(10.0, data1);
+
+        //Reading 2
+        LocalDateTime data2 = LocalDateTime.of(2018, 11, 2, 15, 59, 59);
+        Reading reading2 = new Reading(11, data2);
+
+        //Reading 3
+        LocalDateTime data3 = LocalDateTime.of(2018, 11, 3, 17, 15, 00);
+        Reading reading3 = new Reading(5, data3);
+
+        //Reading 4
+        LocalDateTime data4 = LocalDateTime.of(2018, 11, 3, 17, 20, 00);
+        Reading reading4 = new Reading(5, data4);
+
+        //Reading 5
+        LocalDateTime data5 = LocalDateTime.of(2018, 11, 3, 17, 20, 10);
+        Reading reading5 = new Reading(13, data5);
+
+        //Adding readings to sensor
+        this.temperatureSensor.addReadingsToList(reading1);
+        this.temperatureSensor.addReadingsToList(reading2);
+        this.temperatureSensor.addReadingsToList(reading3);
+        this.temperatureSensor.addReadingsToList(reading4);
+        this.temperatureSensor.addReadingsToList(reading5);
+
+        LocalDate day = LocalDate.of(2018, 11, 3);
+
+        Reading expectedResult = reading5;
+
+        //Act
+        Reading result = this.temperatureSensor.getHighestReadingOfADay(day);
+
+        //Assert
+        assertEquals(expectedResult, result);
     }
+
+    @Test
+    public void getHighestReadingOfADay_WithSeveralHighestReadingsInOneDay_ShouldReturnMostRecentOne() {
+        //Arrange
+        this.temperatureSensor.getListOfReadings().remove(reading);
+        this.temperatureSensor.getListOfReadings().remove(reading1);
+        //Reading 1
+        LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 8, 00, 01);
+        Reading reading1 = new Reading(11, data1);
+
+        //Reading 2
+        LocalDateTime data2 = LocalDateTime.of(2018, 11, 2, 15, 59, 59);
+        Reading reading2 = new Reading(11, data2);
+
+        //Reading 3
+        LocalDateTime data3 = LocalDateTime.of(2018, 11, 2, 17, 15, 00);
+        Reading reading3 = new Reading(5, data3);
+
+        //Reading 4
+        LocalDateTime data4 = LocalDateTime.of(2018, 11, 2, 17, 20, 00);
+        Reading reading4 = new Reading(5, data4);
+
+        //Reading 5
+        LocalDateTime data5 = LocalDateTime.of(2018, 11, 2, 17, 20, 10);
+        Reading reading5 = new Reading(10, data5);
+
+        //Adding readings to sensor
+        this.temperatureSensor.addReadingsToList(reading1);
+        this.temperatureSensor.addReadingsToList(reading2);
+        this.temperatureSensor.addReadingsToList(reading3);
+        this.temperatureSensor.addReadingsToList(reading4);
+        this.temperatureSensor.addReadingsToList(reading5);
+
+        LocalDate day = LocalDate.of(2018, 11, 2);
+        Reading expectedResult = reading2;
+
+        //Act
+        Reading result = this.temperatureSensor.getHighestReadingOfADay(day);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void getHighestReadingOfADay_WithNoReadings_ShouldReturnNull() {
+        //Arrange
+        //Reading 1
+        LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 8, 00, 01);
+        Reading reading1 = new Reading(11, data1);
+
+        //Reading 2
+        LocalDateTime data2 = LocalDateTime.of(2018, 11, 2, 15, 59, 59);
+        Reading reading2 = new Reading(11, data2);
+
+        //Adding readings to sensor
+        this.temperatureSensor.addReadingsToList(reading1);
+        this.temperatureSensor.addReadingsToList(reading2);
+
+        LocalDate day = LocalDate.of(2018, 11, 5);
+
+        Reading expectedResult = null;
+
+        //Act
+        Reading result = this.temperatureSensor.getHighestReadingOfADay(day);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void getHighestReadingOfADay_WithDoubleNaNReadings_ShouldReturnHighestReading() {
+        //Arrange
+        this.temperatureSensor.getListOfReadings().remove(reading);
+        this.temperatureSensor.getListOfReadings().remove(reading1);
+        //Reading 1
+        LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 8, 00, 01);
+        Reading reading1 = new Reading(11, data1);
+
+        //Reading 2
+        LocalDateTime data2 = LocalDateTime.of(2018, 11, 2, 15, 59, 59);
+        Reading reading2 = new Reading(Double.NaN, data2);
+
+        //Reading 3
+        LocalDateTime data3 = LocalDateTime.of(2018, 11, 2, 17, 15, 00);
+        Reading reading3 = new Reading(5, data3);
+
+        //Reading 4
+        LocalDateTime data4 = LocalDateTime.of(2018, 11, 2, 17, 20, 00);
+        Reading reading4 = new Reading(5, data4);
+
+        //Reading 5
+        LocalDateTime data5 = LocalDateTime.of(2018, 11, 2, 17, 20, 10);
+        Reading reading5 = new Reading(10, data5);
+
+        //Adding readings to sensor
+        this.temperatureSensor.addReadingsToList(reading1);
+        this.temperatureSensor.addReadingsToList(reading2);
+        this.temperatureSensor.addReadingsToList(reading3);
+        this.temperatureSensor.addReadingsToList(reading4);
+        this.temperatureSensor.addReadingsToList(reading5);
+
+        LocalDate day = LocalDate.of(2018, 11, 2);
+
+        Reading expectedResult = reading1;
+
+        //Act
+        Reading result = this.temperatureSensor.getHighestReadingOfADay(day);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void getHighestReadingOfADay_WithOnlyOneDoubleNaNReadings_ShouldReturnDoubleNaN() {
+        //Arrange
+        this.temperatureSensor.getListOfReadings().remove(reading);
+        this.temperatureSensor.getListOfReadings().remove(reading1);
+        //Reading 2
+        LocalDateTime data2 = LocalDateTime.of(2018, 11, 2, 15, 59, 59);
+        Reading reading2 = new Reading(Double.NaN, data2);
+        LocalDateTime data3 = LocalDateTime.of(2018, 11, 2, 16, 59, 59);
+        Reading reading3 = new Reading(Double.NaN, data3);
+
+        //Adding readings to sensor
+        this.temperatureSensor.addReadingsToList(reading2);
+        this.temperatureSensor.addReadingsToList(reading3);
+
+        LocalDate day = LocalDate.of(2018, 11, 2);
+
+        Reading expectedResult = reading2;
+
+        //Act
+        Reading result = this.temperatureSensor.getHighestReadingOfADay(day);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void getDailyMaxReadingsInAnInterval_With2DatesWithValidReadings_ShouldReturnListWith2Readings() {
+        //Arrange
+        //Reading 1
+        LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 8, 00, 01);
+        Reading reading1 = new Reading(11, data1);
+
+        //Reading 2
+        LocalDateTime data2 = LocalDateTime.of(2018, 11, 2, 15, 59, 59);
+        Reading reading2 = new Reading(14, data2);
+
+        //Reading 3
+        LocalDateTime data3 = LocalDateTime.of(2018, 11, 3, 17, 15, 00);
+        Reading reading3 = new Reading(5, data3);
+
+        //Reading 4
+        LocalDateTime data4 = LocalDateTime.of(2018, 11, 3, 17, 20, 00);
+        Reading reading4 = new Reading(15, data4);
+
+        //Reading 5
+        LocalDateTime data5 = LocalDateTime.of(2018, 11, 3, 17, 20, 10);
+        Reading reading5 = new Reading(10, data5);
+
+        //Adding readings to sensor
+        this.temperatureSensor.addReadingsToList(reading1);
+        this.temperatureSensor.addReadingsToList(reading2);
+        this.temperatureSensor.addReadingsToList(reading3);
+        this.temperatureSensor.addReadingsToList(reading4);
+        this.temperatureSensor.addReadingsToList(reading5);
+
+        LocalDate startDate = LocalDate.of(2018, 11, 2);
+        LocalDate endDate = LocalDate.of(2018, 11, 3);
+
+        List<Reading> expectedResult = new ArrayList<>();
+        expectedResult.add(reading2);
+        expectedResult.add(reading4);
+
+        //Act
+        List<Reading> result = this.temperatureSensor.getDailyMaxReadingsInAnInterval(startDate, endDate);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void getDailyMaxReadingsInAnInterval_WithOneDateWithOnlyInvalidReadings_ShouldReturnListWith1ValidReadingAnd1DoubleNaN() {
+        //Arrange
+        this.temperatureSensor.getListOfReadings().remove(reading);
+        this.temperatureSensor.getListOfReadings().remove(reading1);
+        //Reading 1
+        LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 8, 00, 01);
+        Reading reading1 = new Reading(Double.NaN, data1);
+
+        //Reading 2
+        LocalDateTime data2 = LocalDateTime.of(2018, 11, 2, 15, 59, 59);
+        Reading reading2 = new Reading(Double.NaN, data2);
+
+        //Reading 3
+        LocalDateTime data3 = LocalDateTime.of(2018, 11, 3, 17, 15, 00);
+        Reading reading3 = new Reading(5, data3);
+
+        //Reading 4
+        LocalDateTime data4 = LocalDateTime.of(2018, 11, 3, 17, 20, 00);
+        Reading reading4 = new Reading(15, data4);
+
+        //Reading 5
+        LocalDateTime data5 = LocalDateTime.of(2018, 11, 3, 17, 20, 10);
+        Reading reading5 = new Reading(10, data5);
+
+        //Adding readings to sensor
+        this.temperatureSensor.addReadingsToList(reading1);
+        this.temperatureSensor.addReadingsToList(reading2);
+        this.temperatureSensor.addReadingsToList(reading3);
+        this.temperatureSensor.addReadingsToList(reading4);
+        this.temperatureSensor.addReadingsToList(reading5);
+
+        LocalDate startDate = LocalDate.of(2018, 11, 2);
+        LocalDate endDate = LocalDate.of(2018, 11, 3);
+
+        List<Reading> expectedResult = new ArrayList<>();
+        expectedResult.add(reading1);
+        expectedResult.add(reading4);
+
+        //Act
+        List<Reading> result = this.temperatureSensor.getDailyMaxReadingsInAnInterval(startDate, endDate);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void getDailyMaxReadingsInAnInterval_WithDatesWithOnlyDoubleNaNReadings_ShouldReturnListWithDoubleNaNReadings() {
+        //Arrange
+        this.temperatureSensor.getListOfReadings().remove(reading);
+        this.temperatureSensor.getListOfReadings().remove(reading1);
+        //Reading 1
+        LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 8, 00, 01);
+        Reading reading1 = new Reading(Double.NaN, data1);
+
+        //Reading 2
+        LocalDateTime data2 = LocalDateTime.of(2018, 11, 2, 15, 59, 59);
+        Reading reading2 = new Reading(Double.NaN, data2);
+
+        //Reading 3
+        LocalDateTime data3 = LocalDateTime.of(2018, 11, 3, 17, 15, 00);
+        Reading reading3 = new Reading(Double.NaN, data3);
+
+        //Reading 4
+        LocalDateTime data4 = LocalDateTime.of(2018, 11, 3, 17, 20, 00);
+        Reading reading4 = new Reading(Double.NaN, data4);
+
+        //Reading 5
+        LocalDateTime data5 = LocalDateTime.of(2018, 11, 3, 17, 20, 10);
+        Reading reading5 = new Reading(Double.NaN, data5);
+
+        //Adding readings to sensor
+        this.temperatureSensor.addReadingsToList(reading1);
+        this.temperatureSensor.addReadingsToList(reading2);
+        this.temperatureSensor.addReadingsToList(reading3);
+        this.temperatureSensor.addReadingsToList(reading4);
+        this.temperatureSensor.addReadingsToList(reading5);
+
+        LocalDate startDate = LocalDate.of(2018, 11, 2);
+        LocalDate endDate = LocalDate.of(2018, 11, 3);
+
+        List<Reading> expectedResult = new ArrayList<>();
+        expectedResult.add(reading1);
+        expectedResult.add(reading3);
+
+        //Act
+        List<Reading> result = this.temperatureSensor.getDailyMaxReadingsInAnInterval(startDate, endDate);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+
 
     @Test
     void getLastLowestReading() {

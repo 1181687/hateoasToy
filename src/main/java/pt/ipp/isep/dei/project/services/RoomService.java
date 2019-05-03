@@ -2,10 +2,7 @@ package pt.ipp.isep.dei.project.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pt.ipp.isep.dei.project.model.house.Room;
-import pt.ipp.isep.dei.project.model.house.RoomDTO;
-import pt.ipp.isep.dei.project.model.house.RoomId;
-import pt.ipp.isep.dei.project.model.house.RoomMapper;
+import pt.ipp.isep.dei.project.model.house.*;
 import pt.ipp.isep.dei.project.repositories.RoomRepository;
 
 import java.util.ArrayList;
@@ -29,10 +26,11 @@ public class RoomService {
     /**
      * Method that checks if a room exists in the repo by its id.
      *
-     * @param roomId Id to be used.
+     * @param roomIdDTO Id to be used.
      * @return True or false.
      */
-    public boolean roomExists(RoomId roomId) {
+    public boolean roomExists(RoomIdDTO roomIdDTO) {
+        RoomId roomId = RoomIdMapper.mapToEntity(roomIdDTO);
         return this.roomRepository.existsById(roomId);
     }
 
@@ -48,5 +46,4 @@ public class RoomService {
         }
         return roomDTOList;
     }
-
 }
