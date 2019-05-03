@@ -539,12 +539,6 @@ class GeoAreaSensorTest {
         assertFalse(result);
     }
 
-
-    @Test
-    void getDailyMeasurement() {
-    }
-
-
     @Test
     public void getDailyMeasurementTest() {
         //Arrange
@@ -566,6 +560,19 @@ class GeoAreaSensorTest {
 
         //act
         List<Reading> result = this.temperatureSensor.getDailyMeasurement(sundayDate.toLocalDate());
+
+        //assert
+        assertEquals(this.temperatureSensor.getListOfReadings(), result);
+    }
+
+
+    @Test
+    void getDailyMeasurementWithDoubleNaN() {
+        //Arrange
+        LocalDateTime sundayDate3 = LocalDateTime.of(2018, 11, 2, 21, 10, 25);
+
+        //act
+        List<Reading> result = this.temperatureSensor.getDailyMeasurementWithDoubleNaN(sundayDate3.toLocalDate());
 
         //assert
         assertEquals(this.temperatureSensor.getListOfReadings(), result);
@@ -1446,12 +1453,38 @@ class GeoAreaSensorTest {
         assertEquals(expectedResult, result, 0.001);
     }
 
-
-
     @Test
-    void distanceBetweenSensorAndLocation() {
+    public void distanceBetweenSensorAndLocationTest() {
+        double lat2 = 52.3740;
+        double lon2 = 4.8897;
+        double alt2 = 13;
+        Location local2 = new Location(lat2, lon2, alt2);
+
+        LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
+
+        SensorTypeId sensorTypeId = new SensorTypeId("Temperatura");
+        Location locS1 = new Location(40, 10, 20);
+        SensorId sensorId = new SensorId("R003");
+        GeoAreaSensor s1 = new GeoAreaSensor(sensorId, "A123", dataFuncionamento, sensorTypeId, locS1, "l/m2");
+
+        double expectedResult = 1430143.18061553;
+
+        double result = s1.distanceBetweenSensorAndLocation(local2);
+        assertEquals(expectedResult, result, 0.001);
     }
 
+    @Test
+    public void distanceBetweenSensorAndLocationTest_OutOfInterval() {
+
+        double lat2 = 52.3740;
+        double lon2 = 4.8897;
+        double alt2 = 13;
+        Location local2 = new Location(lat2, lon2, alt2);
+
+        double expectedResult = Double.NaN;
+        double result = this.temperatureSensor.distanceBetweenSensorAndLocation(local2);
+        assertEquals(expectedResult, result, 0.001);
+    }
 
     @Test
     public void getTotalDailyMeasurementsTest_SameDay() {
@@ -1745,6 +1778,45 @@ class GeoAreaSensorTest {
 
     @Test
     void getFirstHighestReading() {
+
+        //Arrange
+        this.temperatureSensor.getListOfReadings().remove(reading);
+        this.temperatureSensor.getListOfReadings().remove(reading1);
+        //Reading 1
+        LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 8, 00, 01);
+        Reading reading1 = new Reading(10.0, data1);
+
+        //Reading 2
+        LocalDateTime data2 = LocalDateTime.of(2018, 11, 2, 15, 59, 59);
+        Reading reading2 = new Reading(11, data2);
+
+        //Reading 3
+        LocalDateTime data3 = LocalDateTime.of(2018, 11, 2, 17, 15, 00);
+        Reading reading3 = new Reading(5, data3);
+
+        //Reading 4
+        LocalDateTime data4 = LocalDateTime.of(2018, 11, 2, 17, 20, 00);
+        Reading reading4 = new Reading(5, data4);
+
+        //Reading 5
+        LocalDateTime data5 = LocalDateTime.of(2018, 11, 2, 17, 20, 10);
+        Reading reading5 = new Reading(10, data5);
+
+        //Adding readings to sensor
+        this.temperatureSensor.addReadingsToList(reading1);
+        this.temperatureSensor.addReadingsToList(reading2);
+        this.temperatureSensor.addReadingsToList(reading3);
+        this.temperatureSensor.addReadingsToList(reading4);
+        this.temperatureSensor.addReadingsToList(reading5);
+
+        LocalDate firstDay = LocalDate.of(2018, 11, 2);
+        LocalDate nextDay = LocalDate.of(2018, 12, 30);
+
+        //Act
+        Reading result = this.temperatureSensor.getFirstHighestReading(firstDay, nextDay);
+
+        //Assert
+        assertEquals(reading2, result);
     }
 
 
@@ -2105,21 +2177,60 @@ class GeoAreaSensorTest {
         assertEquals(expectedResult, result);
     }
 
-
-
     @Test
-    void getLastLowestReading() {
-    }
+    public void testGetListOfReadings_tryingToGetAnExistingList_ShouldReturnTheCorrespondingList() {
+        // Arrange
+        List<Reading> expectedResult = new ArrayList<>();
+        expectedResult.add(reading);
+        expectedResult.add(reading1);
 
-    @Test
-    void getListOfReadings() {
-    }
+        // Act
+        List<Reading> result = temperatureSensor.getListOfReadings();
 
-    @Test
-    void getDailyMeasurementWithDoubleNaN() {
+        // Arrange
+        assertEquals(expectedResult, result);
     }
 
     @Test
     void getMostRecentValidReading() {
+        //Arrange
+        //Reading 1
+        LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 8, 00, 01);
+        Reading reading1 = new Reading(11, data1);
+
+        //Reading 2
+        LocalDateTime data2 = LocalDateTime.of(2018, 11, 2, 15, 59, 59);
+        Reading reading2 = new Reading(14, data2);
+
+        //Reading 3
+        LocalDateTime data3 = LocalDateTime.of(2018, 11, 3, 17, 15, 00);
+        Reading reading3 = new Reading(5, data3);
+
+        //Reading 4
+        LocalDateTime data4 = LocalDateTime.of(2018, 11, 3, 17, 20, 00);
+        Reading reading4 = new Reading(5, data4);
+
+        //Reading 5
+        LocalDateTime data5 = LocalDateTime.of(2018, 11, 3, 17, 20, 10);
+        Reading reading5 = new Reading(10, data5);
+
+        //Adding readings to sensor
+        this.temperatureSensor.addReadingsToList(reading1);
+        this.temperatureSensor.addReadingsToList(reading2);
+        this.temperatureSensor.addReadingsToList(reading3);
+        this.temperatureSensor.addReadingsToList(reading4);
+        this.temperatureSensor.addReadingsToList(reading5);
+
+        LocalDate startDate = LocalDate.of(2018, 11, 2);
+        LocalDate endDate = LocalDate.of(2018, 11, 3);
+
+        Reading expectedResult = reading5;
+        List<Reading> readings = this.temperatureSensor.getReadingsBetweenDates(startDate, endDate);
+
+        //Act
+        Reading result = this.temperatureSensor.getMostRecentValidReading(readings);
+
+        //Assert
+        assertEquals(expectedResult, result);
     }
 }
