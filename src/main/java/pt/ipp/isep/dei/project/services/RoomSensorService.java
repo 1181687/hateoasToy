@@ -6,9 +6,7 @@ import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.ReadingMapper;
 import pt.ipp.isep.dei.project.model.house.RoomId;
-import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
-import pt.ipp.isep.dei.project.model.sensor.SensorId;
-import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
+import pt.ipp.isep.dei.project.model.sensor.*;
 import pt.ipp.isep.dei.project.repositories.RoomSensorRepository;
 
 import java.time.LocalDate;
@@ -74,5 +72,22 @@ public class RoomSensorService {
     public SensorId getSensorId (RoomId roomId){
         RoomSensor roomSensor = this.roomSensorRepo.findByRoomId(roomId);
         return roomSensor.getId();
+    }
+
+    public RoomSensor getRoomSensorBy(RoomId roomId, SensorTypeId sensorTypeId){
+        return this.roomSensorRepo.findByRoomIdAndSensorType(roomId, sensorTypeId);
+    }
+
+    public ReadingDTO getLastMeasurement (RoomId roomId, SensorTypeId sensorTypeId) {
+        RoomSensor roomSensor = getRoomSensorBy(roomId,sensorTypeId);
+        Reading reading = roomSensor.getLastMeasurement();
+        ReadingDTO lastReadingDTO = ReadingMapper.mapToDTO(reading);
+        return lastReadingDTO;
+    }
+
+    public double getMaxMeasurementValueOfADay (RoomId roomId, SensorTypeId sensorTypeId, LocalDate date) {
+        RoomSensor roomSensor = getRoomSensorBy(roomId,sensorTypeId);
+        double maxValue = roomSensor.getMaximumValueOfDay(date);
+        return maxValue;
     }
 }

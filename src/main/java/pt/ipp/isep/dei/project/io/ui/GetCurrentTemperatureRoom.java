@@ -14,13 +14,13 @@ public class GetCurrentTemperatureRoom {
 
     private GetCurrentAndMaxTempRoomController controller;
 
-    /**
+    /*/**
      * constructor that receives a House and a SensorType
      *
      * @param house          House
      * @param sensorTypeId   SensorType
      */
-    public GetCurrentTemperatureRoom(HouseService houseService, SensorTypeId sensorTypeId) {
+    /*public GetCurrentTemperatureRoom(HouseService houseService, SensorTypeId sensorTypeId) {
         this.controller = new GetCurrentAndMaxTempRoomController(houseService, sensorTypeId);
     }
     /**
@@ -30,7 +30,7 @@ public class GetCurrentTemperatureRoom {
      * @param temp     given double temperature
      * @param dateTime given string date and time
      */
-    public void displayResults(String roomName, double temp, String dateTime) {
+    /*public void displayResults(String roomName, double temp, String dateTime) {
         StringBuilder content = new StringBuilder();
         content.append("The latest temperature of the room ");
         content.append(roomName);
@@ -46,9 +46,9 @@ public class GetCurrentTemperatureRoom {
      * method that displays the rooms available to the user, so he can choose one
      * to get the current temperature.
      */
-    public void run() {
+    /*public void run() {
 
-       /* if (controller.getRoomListContent().isEmpty()) {
+       if (controller.getRoomListContent().isEmpty()) {
             System.out.println("There are no rooms available\n");
             return;
         }
@@ -63,8 +63,6 @@ public class GetCurrentTemperatureRoom {
             System.out.println("There are no temperature values available");
             return;
         }
-
-        displayResults(roomName, temp.getValue(), temp.getDateTime().toString());*/
-    }
-
+        displayResults(roomName, temp.getValue(), temp.getDateTime().toString());
+    }*/
 }
