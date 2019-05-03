@@ -15,21 +15,21 @@ hide circle
 InstantsTempOutOfComfortLevelUI "1" --> "1" InstantsTempOutOfComfortLevelController
 InstantsTempOutOfComfortLevelController "1" --> "1" HouseService
 InstantsTempOutOfComfortLevelController "1" --> "1" "RoomService"
-InstantsTempOutOfComfortLevelController "1" -right-> "1" "SensorsService"
+InstantsTempOutOfComfortLevelController "1" --> "1" SensorsService
 SensorsService "1" --> "1" RoomSensorService
 SensorsService "1" --> "1" GeoAreaSensorService
 RoomSensorService "1" --> "1" RoomSensorRepository
-RoomSensorRepository "1" -right-> "1" RoomSensor
-RoomSensor "1" -right-> "*" Reading
+RoomSensorRepository "1" --> "1" RoomSensor
+RoomSensor "1" --> "*" Reading
 GeoAreaSensorService "1" --> "1" GeoAreaSensorRepository
-GeoAreaSensorRepository "1" -right-> "1" GeoAreaSensor
-GeoAreaSensor "1" -down-> "1" Location: uses
-GeoAreaSensor "1" -down-> "*" Reading: uses
-HouseService "1" -right-> "1" HouseRepository
-HouseRepository "1" -right-> "*" House
+GeoAreaSensorRepository "1" --> "1" GeoAreaSensor
+GeoAreaSensor "1" --> "1" Location: uses
+GeoAreaSensor "1" --> "*" Reading: uses
+HouseService "1" --> "1" HouseRepository
+HouseRepository "1" --> "*" House
 RoomService "1" -> RoomRepository
-House "1" -right-> "1" Address
-Address "1" -right-> "1" Location
+House "1" --> "1" Address
+Address "1" --> "1" Location
 
 
 Class InstantsTempOutOfComfortLevelUI {
@@ -64,7 +64,6 @@ Class InstantsTempOutOfComfortLevelController {
 + getDaysWithoutComfortTemp ()
 + readingsHouseAreaAndRoom ()
 }
-
 
 
 Class RoomService {
