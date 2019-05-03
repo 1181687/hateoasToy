@@ -25,12 +25,12 @@ create "SLR:List<Sensor>"
 ":GeoAreaSensorService" -> "SLR:List<Sensor>" : create()
 activate "SLR:List<Sensor>"
 loop
-":GeoAreaSensorService" -> "SL:List<Sensor>": S=get (I)
+":GeoAreaSensorService" -> "SL:List<Sensor>": S=get(I)
 activate "SL:List<Sensor>"
 ":GeoAreaSensorService" -> "S:Sensor": hasReadings (startDate, endDate)
 activate "S:Sensor"
 opt
-":GeoAreaSensorService" -> "SLR:List<Sensor>" : add (S)
+":GeoAreaSensorService" -> "SLR:List<Sensor>" : add(S)
 end
 end
 ":GeoAreaSensorService" -> ":GeoAreaSensorService": Closest=NULL
@@ -40,7 +40,7 @@ loop
 ":GeoAreaSensorService" -> "S:Sensor": distance=getDistance (location)
 opt Closest == NULL or distance < previousDistance
 ":GeoAreaSensorService" -> ":GeoAreaSensorService": Closest=S
-":GeoAreaSensorService" -> ":GeoAreaSensorService": previousDistance = distance
+":GeoAreaSensorService" -> ":GeoAreaSensorService": previousDistance=distance
 end
 end
 deactivate "Closest:Sensor"
