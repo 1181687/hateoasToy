@@ -247,7 +247,7 @@ public class GeoAreaSensorService {
     public List<GeoAreaSensorDTO> getSensorsByGeoAreaId(GeoAreaIdDTO geoAreaIdDTO){
         List<GeoAreaSensorDTO> geoAreaSensorDTOS = new ArrayList<>();
         GeoAreaId geoAreaId = GeoAreaIdMapper.mapToEntity(geoAreaIdDTO);
-        for (GeoAreaSensor sensor : this.geoAreaSensorRepo.findByGeoAreaId(geoAreaId)) {
+        for (GeoAreaSensor sensor : this.geoAreaSensorRepo.findAllByGeoAreaId(geoAreaId)) {
             geoAreaSensorDTOS.add(GeoAreaSensorMapper.mapToDTO(sensor));
         }
         return geoAreaSensorDTOS;
@@ -258,6 +258,18 @@ public class GeoAreaSensorService {
         SensorId sensorId = SensorIdMapper.mapToEntity(sensorIdDTO);
         if (sensorExists(sensorIdDTO)){
             this.geoAreaSensorRepo.deleteById(sensorId);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean deactivateSensor(GeoAreaSensorDTO geoAreaSensorDTO){
+        SensorId sensorId = new SensorId(geoAreaSensorDTO.getId());
+        SensorIdDTO sensorIdDTO = SensorIdMapper.mapToDTO(sensorId);
+        if (sensorExists(sensorIdDTO)){
+            GeoAreaSensor sensor = geoAreaSensorRepo.findById(sensorId).orElse(null);
+            sensor.deactivateDevice();
+            saveGeoAreaSensor(sensor);
             return true;
         }
         return false;
