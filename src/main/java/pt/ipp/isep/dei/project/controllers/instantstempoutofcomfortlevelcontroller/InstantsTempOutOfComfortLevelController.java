@@ -96,8 +96,4 @@ public class InstantsTempOutOfComfortLevelController {
     public List<LocalDate> getDaysWithoutComfortTemp (){
         return sensorsService.getDaysWithoutComfortTemp(comfortTemp);
     }
-
-
-    //public boolean readingsHouseAreaAndRoom
-
 }
