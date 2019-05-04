@@ -71,18 +71,6 @@ public class GeographicalAreaServiceTest {
     }
 
     @Test
-    public void getGeoAreaList() {
-        // Arrange
-        List<GeographicalArea> expectedResult = geographicalAreaService.getGeoAreaList();
-
-        // Act
-        List<GeographicalArea> result = geographicalAreaService.getGeoAreaList();
-
-        // Assert
-        assertEquals(expectedResult, result);
-    }
-
-    @Test
     public void getListOfGeoAreasTypeToString_TestReturnsTheRightTypes() {
         //Arrange
         List<GeographicalArea> geographicalAreaList = new ArrayList<>();
