@@ -232,5 +232,9 @@ public class GeoAreaSensorService {
         return this.geoAreaSensorRepo.existsById(sensorId);
     }
 
+    public GeoAreaSensor getGeoAreaSensor(GeoAreaId geoAreaId, SensorTypeId sensorTypeId) {
+        return geoAreaSensorRepo.findGeoAreaSensorsByGeoAreaIdAndSensorTypeId(geoAreaId, sensorTypeId);
+    }
+
 
 }
