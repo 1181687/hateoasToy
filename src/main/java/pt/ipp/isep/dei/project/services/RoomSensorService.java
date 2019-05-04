@@ -87,14 +87,17 @@ public class RoomSensorService {
         return roomSensor.getId();
     }
 
-    public RoomSensorDTO getRoomSensor(RoomId roomId, SensorTypeId sensorTypeId){
-        RoomSensor room = this.roomSensorRepo.findByRoomIdAndSensorTypeId(roomId, sensorTypeId);
-        RoomSensorDTO roomSensorDTO = RoomSensorMapper.mapToDTO(room);
-        return roomSensorDTO;
+    public RoomSensor getRoomSensor(RoomId roomId, SensorTypeId sensorTypeId){
+        return this.roomSensorRepo.findByRoomIdAndSensorTypeId(roomId, sensorTypeId);
+
+    }
+
+    public RoomSensorDTO getRoomSensorDTO (RoomId roomId, SensorTypeId sensorTypeId){
+        return RoomSensorMapper.mapToDTO(this.getRoomSensor(roomId, sensorTypeId));
     }
 
     public ReadingDTO getLastMeasurement (RoomId roomId, SensorTypeId sensorTypeId) {
-        RoomSensorDTO roomSensorDTO = getRoomSensor(roomId,sensorTypeId);
+        RoomSensorDTO roomSensorDTO = getRoomSensorDTO(roomId,sensorTypeId);
         RoomSensor roomSensor = RoomSensorMapper.mapToEntity(roomSensorDTO);
         Reading reading = roomSensor.getLastMeasurement();
         ReadingDTO lastReadingDTO = ReadingMapper.mapToDTO(reading);
@@ -108,7 +111,7 @@ public class RoomSensorService {
     }
 
     public double getMaxMeasurementValueOfADay (RoomId roomId, SensorTypeId sensorTypeId, LocalDate date) {
-        RoomSensorDTO roomSensorDTO = getRoomSensor(roomId,sensorTypeId);
+        RoomSensorDTO roomSensorDTO = getRoomSensorDTO(roomId,sensorTypeId);
         RoomSensor roomSensor = RoomSensorMapper.mapToEntity(roomSensorDTO);
         double maxValue = roomSensor.getMaximumValueOfDay(date);
         return maxValue;

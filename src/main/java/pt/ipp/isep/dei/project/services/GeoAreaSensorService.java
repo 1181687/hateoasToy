@@ -30,6 +30,7 @@ public class GeoAreaSensorService {
         return GeoAreaSensorMapper.mapToDTO(sensor);
     }
 
+
     /**
      * Method that saves a list of sensors in the repo.
      *
@@ -230,6 +231,10 @@ public class GeoAreaSensorService {
     public boolean sensorExists(SensorIdDTO sensorIdDTO) {
         SensorId sensorId = SensorIdMapper.mapToEntity(sensorIdDTO);
         return this.geoAreaSensorRepo.existsById(sensorId);
+    }
+
+    public GeoAreaSensor getGeoAreaSensor (GeoAreaId geoAreaId, SensorTypeId sensorTypeId){
+        return geoAreaSensorRepo.findGeoAreaSensorsByGeoAreaIdAndSensorTypeId(geoAreaId, sensorTypeId);
     }
 
 

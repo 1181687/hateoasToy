@@ -7,6 +7,8 @@ import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.ReadingMapper;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaId;
 import pt.ipp.isep.dei.project.model.house.RoomId;
+import pt.ipp.isep.dei.project.model.house.RoomIdDTO;
+import pt.ipp.isep.dei.project.model.house.RoomIdMapper;
 import pt.ipp.isep.dei.project.model.sensor.*;
 
 import java.time.LocalDate;
@@ -134,6 +136,16 @@ public class SensorsService {
 
     public boolean existsDaysWithoutComfortTemp(Map<LocalDate, List<Double>> mapComfortDailyTemperature){
         return  geoAreaSensorService.existsDaysWithoutComfortTemp(mapComfortDailyTemperature);
+    }
+
+    public boolean existReadingsHouseAreaAndRoom (RoomId roomId, SensorTypeId sensorTypeId, GeoAreaId geoAreaId,
+                                                  LocalDate startDate, LocalDate endDate){
+        RoomSensor roomSensor = roomSensorService.getRoomSensor(roomId, sensorTypeId);
+        GeoAreaSensor geoAreaSensor = geoAreaSensorService.getGeoAreaSensor(geoAreaId, sensorTypeId);
+        if(roomSensor.existReadingsBetweenDates(startDate, endDate) && geoAreaSensor.existReadingsBetweenDates(startDate, endDate)){
+            return true;
+        }
+        return false;
     }
 
 

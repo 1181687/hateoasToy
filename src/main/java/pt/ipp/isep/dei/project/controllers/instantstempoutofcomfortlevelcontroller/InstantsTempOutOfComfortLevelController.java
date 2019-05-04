@@ -98,6 +98,8 @@ public class InstantsTempOutOfComfortLevelController {
     }
 
 
-    //public boolean readingsHouseAreaAndRoom
+    public boolean readingsHouseAreaAndRoom (LocalDate startDate, LocalDate endDate){
+        return sensorsService.existReadingsHouseAreaAndRoom(this.roomId, this.sensorTypeId,this.geoAreaId,startDate, endDate);
+    }
 
 }
