@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaId;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaIdDTO;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaIdMapper;
 import pt.ipp.isep.dei.project.model.sensor.*;
 import pt.ipp.isep.dei.project.repositories.GeoAreaSensorRepository;
 import pt.ipp.isep.dei.project.utils.Utils;
@@ -230,6 +232,31 @@ public class GeoAreaSensorService {
     public boolean sensorExists(SensorIdDTO sensorIdDTO) {
         SensorId sensorId = SensorIdMapper.mapToEntity(sensorIdDTO);
         return this.geoAreaSensorRepo.existsById(sensorId);
+    }
+
+    /**
+     * Method that finds the sensors that belong to a specific GeoArea by its Id
+     * @param geoAreaIdDTO
+     * @return
+     */
+
+    public List<GeoAreaSensorDTO> getSensorsByGeoAreaId(GeoAreaIdDTO geoAreaIdDTO){
+        List<GeoAreaSensorDTO> geoAreaSensorDTOS = new ArrayList<>();
+        GeoAreaId geoAreaId = GeoAreaIdMapper.mapToEntity(geoAreaIdDTO);
+        for (GeoAreaSensor sensor : this.geoAreaSensorRepo.findByGeoAreaId(geoAreaId)) {
+            geoAreaSensorDTOS.add(GeoAreaSensorMapper.mapToDTO(sensor));
+        }
+        return geoAreaSensorDTOS;
+    }
+
+
+    public boolean removeSensor(SensorIdDTO sensorIdDTO){
+        SensorId sensorId = SensorIdMapper.mapToEntity(sensorIdDTO);
+        if (sensorExists(sensorIdDTO)){
+            this.geoAreaSensorRepo.deleteById(sensorId);
+            return true;
+        }
+        return false;
     }
 
 

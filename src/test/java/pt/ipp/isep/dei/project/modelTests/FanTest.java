@@ -374,33 +374,4 @@ public class FanTest {
         // Assert
         assertEquals(expectedResult, result);
     }
-
-    @Test
-    public void testGetSpecs() {
-    }
-
-    @Test
-    public void getEnergyConsumptionInADayTest() {
-
-    }
-
-    @Test
-    public void getTotalEnergyConsumptionInAnIntervalWithoutSolutionsTest() {
-
-    }
-
-    @Test
-    public void getTotalEnergyConsumptionInAnIntervalWithOneSolutionTest() {
-
-    }
-
-    @Test
-    public void getTotalEnergyConsumptionInAnIntervalWithOneSolutionTest2() {
-
-    }
-
-    @Test
-    public void getTotalEnergyConsumptionInAnIntervalWithThreeSolutionsTest() {
-
-    }
 }
