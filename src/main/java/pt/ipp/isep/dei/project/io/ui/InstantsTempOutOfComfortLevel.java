@@ -210,14 +210,12 @@ public class InstantsTempOutOfComfortLevel {
         }
         while (flag);
 
-/*      //aguarda que gabi x faça este metodo
 
         //if there are not readings in house area or in the room
-        if (controller.readingsHouseAreaAndRoom.isEmpty()) {
+        if (controller.existsReadingsHouseAreaAndRoom(startDate, endDate)) {
             System.out.println("There weren't enough measurements in that period, to calculate the instants.");
             return;
         }
-        */
 
         //get comfort Temp
         controller.getComfortTemperature(startDate, endDate);

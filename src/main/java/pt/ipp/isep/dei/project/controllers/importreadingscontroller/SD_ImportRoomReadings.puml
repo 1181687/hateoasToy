@@ -1,0 +1,116 @@
+@startuml
+skinparam sequenceMessageAlign center
+skinparam sequence {
+	ArrowColor Black
+	ActorBorderColor DarkBlue
+	LifeLineBorderColor black
+	LifeLineBackgroundColor LightGrey
+
+	ParticipantBorderColor Black
+	ParticipantBackgroundColor LightGrey
+	ParticipantFontStyle Bold
+
+	ActorBackgroundColor DimGrey
+	ActorFontColor DeepSkyBlue
+	ActorFontStyle Bold
+	ActorFontSize 17
+	ActorFontName Aapex
+}
+
+autonumber
+actor AdminUser
+activate AdminUser
+actor AdminUser
+
+AdminUser -> "ui : ImportReadings": - Import readings
+activate "ui : ImportReadings"
+"ui : ImportReadings" --> AdminUser: - Ask for the file path
+deactivate "ui : ImportReadings"
+AdminUser -> "ui : ImportReadings": - File path
+activate "ui : ImportReadings"
+"ui : ImportReadings" -> "ctrl : ImportReadings\nController": - readFile(file, path)
+activate "ctrl : ImportReadings\nController"
+"ctrl : ImportReadings\nController" -> "//reader//\n //: ProjectFileReader//": - createReader(path)
+activate "//reader//\n //: ProjectFileReader//"
+"//reader//\n //: ProjectFileReader//" --> "ctrl : ImportReadings\nController": - reader
+deactivate "//reader//\n //: ProjectFileReader//"
+"ctrl : ImportReadings\nController" -> "//reader//\n //: ProjectFileReader//": - readFile(file)
+activate "//reader//\n //: ProjectFileReader//"
+ref over "//reader//\n //: ProjectFileReader//"
+readFile
+end
+"//reader//\n //: ProjectFileReader//" --> "ctrl : ImportReadings\nController":  - readingDTOs
+deactivate "//reader//\n //: ProjectFileReader//"
+"ctrl : ImportReadings\nController" --> "ui : ImportReadings": - readingDTOs
+deactivate "ctrl : ImportReadings\nController"
+"ui : ImportReadings" --> AdminUser: - Ask for confirmation
+deactivate "ui : ImportReadings"
+AdminUser -> "ui : ImportReadings": - Confirmation received
+activate "ui : ImportReadings"
+"ui : ImportReadings" -> "ctrl : ImportReadings\nController": - importReadings()
+activate "ctrl : ImportReadings\nController"
+loop for each readingDTO
+"ctrl : ImportReadings\nController" -> "service : Room\nSensorService": - getSensorById(sensorId)
+activate "service : Room\nSensorService"
+"service : Room\nSensorService" -> "repo : Room\nSensorRepository": - getById(sensorId)
+activate "repo : Room\nSensorRepository"
+"repo : Room\nSensorRepository" -> "sensor \n: RoomSensor": - get()
+activate "sensor \n: RoomSensor"
+"repo : Room\nSensorRepository" <-- "sensor \n: RoomSensor": - sensor
+deactivate "sensor \n: RoomSensor"
+"service : Room\nSensorService" <-- "repo : Room\nSensorRepository": - sensor
+deactivate "repo : Room\nSensorRepository"
+"service : Room\nSensorService" -> "Room\nSensorMapper": - mapToDTO(sensor)
+activate "Room\nSensorMapper"
+"Room\nSensorMapper" -> "sensorDTO \n: RoomSensorDTO": - create
+activate "sensorDTO \n: RoomSensorDTO"
+"Room\nSensorMapper" <-- "sensorDTO \n: RoomSensorDTO": - sensorDTO
+deactivate "sensorDTO \n: RoomSensorDTO"
+loop for each reading
+"Room\nSensorMapper" -> ReadingMapper: - mapToDTO(reading)
+activate ReadingMapper
+ReadingMapper -> "readingDTO \n: ReadingDTO": - create
+activate "readingDTO \n: ReadingDTO"
+ReadingMapper <-- "readingDTO \n: ReadingDTO": - readingDTO
+deactivate "readingDTO \n: ReadingDTO"
+"Room\nSensorMapper" <-- ReadingMapper: - readingDTO
+deactivate ReadingMapper
+"Room\nSensorMapper" -> "sensorDTO \n: RoomSensorDTO": - addReading(readingDTO)
+end loop
+"service : Room\nSensorService" <-- "Room\nSensorMapper": - sensorDTO
+deactivate "Room\nSensorMapper"
+"ctrl : ImportReadings\nController" <-- "service : Room\nSensorService": - sensorDTO
+deactivate "service : Room\nSensorService"
+"ctrl : ImportReadings\nController" -> "sensorDTO \n: RoomSensorDTO": - addReading(readingDTO)
+end loop
+"ctrl : ImportReadings\nController" -> "service : Room\nSensorService": - saveSensors(sensorDTOs)
+activate "service : Room\nSensorService"
+loop for each sensorDTO
+"service : Room\nSensorService" -> "Room\nSensorMapper": - mapToEntity(sensorDTO)
+activate "Room\nSensorMapper"
+"Room\nSensorMapper" -> "sensor \n: RoomSensor": - create
+activate "sensor \n: RoomSensor"
+"Room\nSensorMapper" <-- "sensor \n: RoomSensor": - sensor
+deactivate "sensor \n: RoomSensor"
+loop for each readingDTO
+"Room\nSensorMapper" -> ReadingMapper: - mapToEntity(readingDTO)
+activate ReadingMapper
+ReadingMapper -> "reading \n: Reading": - create
+activate "reading \n: Reading"
+ReadingMapper <-- "reading \n: Reading": - reading
+deactivate "reading \n: Reading"
+"Room\nSensorMapper" <-- ReadingMapper: - reading
+deactivate ReadingMapper
+"Room\nSensorMapper" -> "sensor \n: RoomSensor": - addReading(reading)
+end loop
+"service : Room\nSensorService" <-- "Room\nSensorMapper": - sensor
+deactivate "Room\nSensorMapper"
+end loop
+"service : Room\nSensorService" -> "repo : Room\nSensorRepository": - saveAll(sensors)
+deactivate "service : Room\nSensorService"
+"ctrl : ImportReadings\nController" --> "ui : ImportReadings": - true
+deactivate "ctrl : ImportReadings\nController"
+"ui : ImportReadings" --> AdminUser: - Give feedback
+deactivate "ui : ImportReadings"
+
+@enduml

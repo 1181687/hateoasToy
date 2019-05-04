@@ -1,0 +1,36 @@
+@startuml
+skinparam sequenceMessageAlign center
+skinparam sequence {
+	ArrowColor Black
+	ActorBorderColor DarkBlue
+	LifeLineBorderColor black
+	LifeLineBackgroundColor LightGrey
+
+	ParticipantBorderColor Black
+	ParticipantBackgroundColor LightGrey
+	ParticipantFontStyle Bold
+
+	ActorBackgroundColor DimGrey
+	ActorFontColor DeepSkyBlue
+	ActorFontStyle Bold
+	ActorFontSize 17
+	ActorFontName Aapex
+}
+autonumber
+
+activate ":GeoAreaSensorService"
+create ":Map <date,double>"
+":GeoAreaSensorService" -> ":Map <date,double>"
+loop startingDate,endDate
+":GeoAreaSensorService" -> "Closest:Sensor" : average=getDailyAverage (day)
+activate "Closest:Sensor"
+":GeoAreaSensorService" -> ":Map <date,double>" : put (day,average)
+end
+deactivate "Closest:Sensor"
+deactivate ":Map <date,double>"
+deactivate ":GeoAreaSensorService"
+
+
+
+
+@enduml

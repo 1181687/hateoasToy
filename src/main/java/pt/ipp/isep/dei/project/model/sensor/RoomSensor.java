@@ -109,7 +109,7 @@ public class RoomSensor implements Root {
     }
 
     public boolean sensorTypeEqualsSensorType(SensorTypeId typeId) {
-        String tipoDoSensorPedido = typeId.getSensorTypeId();
+        SensorTypeId tipoDoSensorPedido = typeId;
         return (this.getSensorType().equals(tipoDoSensorPedido));
     }
 
@@ -218,5 +218,14 @@ public class RoomSensor implements Root {
      */
     public List<Reading> getReadings() {
         return this.readings;
+    }
+
+    /**
+     * Method that adds a list of readings to the sensor.
+     *
+     * @param readings List of readings.
+     */
+    public void addReadings(List<Reading> readings) {
+        this.readings.addAll(readings);
     }
 }

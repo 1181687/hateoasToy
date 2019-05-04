@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.io.ui;
 
-import pt.ipp.isep.dei.project.controllers.importreadingsfromcsvcontroller.ImportGeoAreaReadingsController;
-import pt.ipp.isep.dei.project.controllers.importreadingsfromcsvcontroller.ImportRoomReadingsController;
+import pt.ipp.isep.dei.project.controllers.importreadingscontroller.ImportGeoAreaReadingsController;
+import pt.ipp.isep.dei.project.controllers.importreadingscontroller.ImportRoomReadingsController;
 import pt.ipp.isep.dei.project.services.GeoAreaSensorService;
 import pt.ipp.isep.dei.project.services.RoomSensorService;
 
