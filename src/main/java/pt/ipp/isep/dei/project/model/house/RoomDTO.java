@@ -96,11 +96,11 @@ public class RoomDTO {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof Room)) {
+        if (!(obj instanceof RoomDTO)) {
             return false;
         }
-        Room roomOne = (Room) obj;
-        return this.id.equalsIgnoreCase(roomOne.getId().getId());
+        RoomDTO roomOne = (RoomDTO) obj;
+        return this.id.equalsIgnoreCase(roomOne.getRoomId());
     }
 
 
