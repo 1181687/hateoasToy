@@ -90,11 +90,11 @@ public class Admin {
                     ui10.run(1);
                     break;
                 case 11:
-                    DeactivateSensorFromGeoArea ui11 = new DeactivateSensorFromGeoArea(geographicalAreaService);
+                    DeactivateSensorFromGeoArea ui11 = new DeactivateSensorFromGeoArea(geographicalAreaService,geoAreaSensorService);
                     ui11.run();
                     break;
                 case 12:
-                    RemoveSensorFromGeoArea ui12 = new RemoveSensorFromGeoArea(geographicalAreaService);
+                    RemoveSensorFromGeoArea ui12 = new RemoveSensorFromGeoArea(geographicalAreaService,geoAreaSensorService);
                     ui12.run();
                     break;
             }

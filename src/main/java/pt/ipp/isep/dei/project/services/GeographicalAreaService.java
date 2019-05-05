@@ -33,7 +33,7 @@ public class GeographicalAreaService {
      * @return a list of geographical areas
      */
     public List<GeographicalArea> getGeoAreaList() {
-        return geoAreaList;
+        return (List<GeographicalArea>) this.geoAreaRepository.findAll();
     }
 
     /**
@@ -120,16 +120,6 @@ public class GeographicalAreaService {
      */
     public boolean removeGeoArea(GeographicalArea geoArea) {
         return geoAreaList.remove(geoArea);
-    }
-
-    /**
-     * that method add a geo area to the list, in a specific position.
-     *
-     * @param position
-     * @param geoArea
-     */
-    public void addGeoAreaInASpecificPosition(int position, GeographicalArea geoArea) {
-        geoAreaList.add(position, geoArea);
     }
 
     /**
