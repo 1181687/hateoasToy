@@ -1,6 +1,5 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
-import org.apache.tomcat.jni.Local;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -11,13 +10,11 @@ import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.DeviceDTO;
 import pt.ipp.isep.dei.project.model.devices.DeviceMapper;
 import pt.ipp.isep.dei.project.model.devices.DeviceType;
-import pt.ipp.isep.dei.project.model.devices.electricwaterheater.ElectricWaterHeater;
 import pt.ipp.isep.dei.project.model.devices.electricwaterheater.ElectricWaterHeaterType;
 import pt.ipp.isep.dei.project.model.house.*;
 import pt.ipp.isep.dei.project.model.sensor.*;
 import pt.ipp.isep.dei.project.services.RoomSensorService;
 import pt.ipp.isep.dei.project.services.RoomService;
-import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
