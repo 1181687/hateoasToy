@@ -161,6 +161,6 @@ public class GeoAreaSensorDTO {
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.id);
+        return Objects.hash(this.id,this.location,this.sensorType);
     }
 }
