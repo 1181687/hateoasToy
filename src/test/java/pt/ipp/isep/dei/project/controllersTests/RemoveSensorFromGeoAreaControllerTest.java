@@ -87,23 +87,23 @@ public class RemoveSensorFromGeoAreaControllerTest {
      * Test that tries to get the list of SensorDTOs.
      */
 
-    /*@Test
+    @Test
     public void testGetSensorList_ShouldReturnTheCorrespondingList() {
         // Arrange
-        when(geographicalAreaService.getGeoAreaById(porto.getId().getId())).thenReturn(porto);
-        controller.setGeoAreaById("Porto");
+        GeoAreaIdDTO geoAreaIdDTO = GeoAreaIdMapper.mapToDTO(porto.getId());
+        when(geographicalAreaService.getGeoAreaById(geoAreaIdDTO)).thenReturn(porto);
+
         List<GeoAreaSensorDTO> expectedResult = new ArrayList<>();
         expectedResult.add(temperatureSensorDTO);
 
         // Act
-        GeoAreaIdDTO geoAreaIdDTO = GeoAreaIdMapper.mapToDTO(porto.getId());
 
         when(geoAreaSensorService.getSensorsByGeoAreaId(geoAreaIdDTO)).thenReturn(expectedResult);
-        List<GeoAreaSensorDTO> result = controller.getSensorList();
+        List<GeoAreaSensorDTO> result = controller.getSensorList(geoAreaIdDTO);
 
         // Assert
         assertEquals(expectedResult, result);
-    }*/
+    }
 
 
     /**
@@ -113,8 +113,9 @@ public class RemoveSensorFromGeoAreaControllerTest {
     @Test
     public void testRemoveSensor_whenIdDoesntCorrespond_ShouldReturnFalse() {
         // Arrange
-        when(geographicalAreaService.getGeoAreaById("Porto")).thenReturn(porto);
-        controller.setGeoAreaById("Porto");
+        GeoAreaIdDTO geoAreaIdDTO = GeoAreaIdMapper.mapToDTO(porto.getId());
+        when(geographicalAreaService.getGeoAreaById(geoAreaIdDTO)).thenReturn(porto);
+
         SensorId sensorId = new SensorId("S02");
         SensorIdDTO sensorIdDTO = SensorIdMapper.mapToDTO(sensorId);
 
@@ -134,8 +135,9 @@ public class RemoveSensorFromGeoAreaControllerTest {
     @Test
     public void testRemoveSensor_whenIdCorresponds_ShouldReturnTrue() {
         // Arrange
-        when(geographicalAreaService.getGeoAreaById("Porto")).thenReturn(porto);
-        controller.setGeoAreaById("Porto");
+        GeoAreaIdDTO geoAreaIdDTO = GeoAreaIdMapper.mapToDTO(porto.getId());
+        when(geographicalAreaService.getGeoAreaById(geoAreaIdDTO)).thenReturn(porto);
+
         SensorId sensorId = new SensorId("S01");
         SensorIdDTO sensorIdDTO = SensorIdMapper.mapToDTO(sensorId);
 

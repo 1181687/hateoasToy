@@ -129,7 +129,8 @@ class AddSensorToGeoAreaControllerTest {
         GeographicalAreaType geographicalAreaType = new GeographicalAreaType(new GeoAreaTypeId("City"));
         AreaShape areaShape = new AreaShape(25, 23);
         GeographicalArea geoArea = new GeographicalArea("Id", "Description", geographicalAreaType, location, areaShape);
-        when(this.geographicalAreaService.getGeoAreaById("id")).thenReturn(geoArea);
+        GeoAreaIdDTO geoAreaIdDTO = GeoAreaIdMapper.mapToDTO(geoArea.getId());
+        when(this.geographicalAreaService.getGeoAreaById(geoAreaIdDTO)).thenReturn(geoArea);
 
         GeoAreaId geoAreaId = new GeoAreaId(location, "id", geographicalAreaType);
         LocalDateTime localDateTime = LocalDate.of(1999, 12, 31).atStartOfDay();
@@ -152,7 +153,8 @@ class AddSensorToGeoAreaControllerTest {
         GeographicalAreaType geographicalAreaType = new GeographicalAreaType(new GeoAreaTypeId("City"));
         AreaShape areaShape = new AreaShape(25, 23);
         GeographicalArea geoArea = new GeographicalArea("Id", "Description", geographicalAreaType, location, areaShape);
-        when(this.geographicalAreaService.getGeoAreaById("id")).thenReturn(geoArea);
+        GeoAreaIdDTO geoAreaIdDTO = GeoAreaIdMapper.mapToDTO(geoArea.getId());
+        when(this.geographicalAreaService.getGeoAreaById(geoAreaIdDTO)).thenReturn(geoArea);
 
         GeoAreaId geoAreaId = new GeoAreaId(location, "id", geographicalAreaType);
         LocalDateTime localDateTime = LocalDate.of(1999, 12, 31).atStartOfDay();
