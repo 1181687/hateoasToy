@@ -1,6 +1,8 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.deactivatesensorfromgeoarea.DeactivateSensorFromGeoAreaController;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaIdDTO;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaIdMapper;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorDTO;
 import pt.ipp.isep.dei.project.services.GeoAreaSensorService;
@@ -34,7 +36,8 @@ public class DeactivateSensorFromGeoArea {
                 return;
             }
             geographicalAreaDTO = geographicalAreaDTOS.get(chosenGeoArea);
-            geoAreaSensorDTOList = ctrl.listOfSensors(geographicalAreaDTO);
+            GeoAreaIdDTO geoAreaId = positionToGeoAreaId(chosenGeoArea);
+            geoAreaSensorDTOList = ctrl.listOfSensors(geoAreaId);
             if (getListOfActiveSensors().isEmpty()) {
                 System.out.println("\nThere are no active Sensors in " + geographicalAreaDTO.getId());
                 continue;
@@ -98,6 +101,21 @@ public class DeactivateSensorFromGeoArea {
 
         }
         return false;
+    }
+
+    /**
+     * Method that turns the UI's Id corresponding to a GeographicalAreaDTO into the real Id of the GeographicalAreaDTO.
+     *
+     * @param uiId Position in the list.
+     * @return String corresponding to the Id of the GeographicalAreaDTO.
+     */
+
+    private GeoAreaIdDTO positionToGeoAreaId(int uiId) {
+        GeoAreaIdDTO geoAreaIdDTO = GeoAreaIdMapper.newDTO();
+        geoAreaIdDTO.setId(geographicalAreaDTOS.get(uiId).getId());
+        geoAreaIdDTO.setLocationDTO(geographicalAreaDTOS.get(uiId).getLocation());
+        geoAreaIdDTO.setGeoAreaType(geographicalAreaDTOS.get(uiId).getType());
+        return geoAreaIdDTO;
     }
 
 

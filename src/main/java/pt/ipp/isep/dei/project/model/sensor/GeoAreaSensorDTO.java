@@ -7,6 +7,7 @@ import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaIdDTO;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class GeoAreaSensorDTO {
     private String id;
@@ -144,5 +145,22 @@ public class GeoAreaSensorDTO {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof GeoAreaSensorDTO)) {
+            return false;
+        }
+        GeoAreaSensorDTO geoAreaSensorDTO = (GeoAreaSensorDTO) obj;
+        return this.id.equals(geoAreaSensorDTO.getId()) && this.sensorType.equals(geoAreaSensorDTO.getSensorType()) && this.location.equals(geoAreaSensorDTO.getLocation());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.id);
     }
 }
