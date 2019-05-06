@@ -96,4 +96,21 @@ public class RoomSensorDTO {
         }
         return false;
     }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (!(object instanceof RoomSensorDTO)) {
+            return false;
+        }
+        RoomSensorDTO sensorDTO = (RoomSensorDTO) object;
+        return this.id.equals(sensorDTO.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.id);
+    }
 }

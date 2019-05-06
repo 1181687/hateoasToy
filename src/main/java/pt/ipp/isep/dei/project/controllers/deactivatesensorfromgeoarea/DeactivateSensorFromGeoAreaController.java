@@ -1,7 +1,10 @@
 package pt.ipp.isep.dei.project.controllers.deactivatesensorfromgeoarea;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import pt.ipp.isep.dei.project.model.geographicalarea.*;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaIdDTO;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapper;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorDTO;
 import pt.ipp.isep.dei.project.services.GeoAreaSensorService;
 import pt.ipp.isep.dei.project.services.GeographicalAreaService;
@@ -28,11 +31,7 @@ public class DeactivateSensorFromGeoAreaController {
         return dtoList;
     }
 
-    public List<GeoAreaSensorDTO> listOfSensors(GeographicalAreaDTO geographicalAreaDTO){
-        GeoAreaIdDTO geoAreaIdDTO = GeoAreaIdMapper.newDTO();
-        geoAreaIdDTO.setGeoAreaType(geographicalAreaDTO.getType());
-        geoAreaIdDTO.setId(geographicalAreaDTO.getId());
-        geoAreaIdDTO.setLocationDTO(geographicalAreaDTO.getLocation());
+    public List<GeoAreaSensorDTO> listOfSensors(GeoAreaIdDTO geoAreaIdDTO){
         return geoAreaSensorService.getSensorsByGeoAreaId(geoAreaIdDTO);
     }
 
