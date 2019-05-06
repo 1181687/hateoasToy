@@ -1,0 +1,55 @@
+@startuml
+skinparam sequenceMessageAlign center
+skinparam sequence {
+	ArrowColor Black
+	ActorBorderColor DarkBlue
+	LifeLineBorderColor black
+	LifeLineBackgroundColor LightGrey
+
+	ParticipantBorderColor Black
+	ParticipantBackgroundColor LightGrey
+	ParticipantFontStyle Bold
+
+	ActorBackgroundColor DimGrey
+	ActorFontColor DeepSkyBlue
+	ActorFontStyle Bold
+	ActorFontSize 17
+	ActorFontName Aapex
+}
+autonumber
+
+activate ":GeoAreaSensorService"
+":GeoAreaSensorService" -> ":GeoAreaSensorRepo": SL=getSensorsOfAreas (TypeId, AreaId)
+activate ":GeoAreaSensorRepo"
+create "SLR:List<Sensor>"
+":GeoAreaSensorService" -> "SLR:List<Sensor>" : create()
+activate "SLR:List<Sensor>"
+loop
+":GeoAreaSensorService" -> "SL:List<Sensor>": S=get(I)
+activate "SL:List<Sensor>"
+":GeoAreaSensorService" -> "S:Sensor": hasReadings (startDate, endDate)
+activate "S:Sensor"
+opt
+":GeoAreaSensorService" -> "SLR:List<Sensor>" : add(S)
+end
+end
+":GeoAreaSensorService" -> ":GeoAreaSensorService": Closest=NULL
+":GeoAreaSensorService" -> ":GeoAreaSensorService": previousDistance=Double.Max
+loop
+":GeoAreaSensorService" -> "SLR:List<Sensor>": S=get (I)
+":GeoAreaSensorService" -> "S:Sensor": distance=getDistance (location)
+opt Closest == NULL or distance < previousDistance
+":GeoAreaSensorService" -> ":GeoAreaSensorService": Closest=S
+":GeoAreaSensorService" -> ":GeoAreaSensorService": previousDistance=distance
+end
+end
+deactivate "Closest:Sensor"
+deactivate "S:Sensor"
+deactivate "SLR:List<Sensor>"
+deactivate ":GeoAreaSensorRepo"
+deactivate ":GeoAreaSensorService"
+
+
+
+
+@enduml

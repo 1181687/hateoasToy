@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.project.io.ui;
 import pt.ipp.isep.dei.project.controllers.deactivatesensorfromgeoarea.DeactivateSensorFromGeoAreaController;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorDTO;
+import pt.ipp.isep.dei.project.services.GeoAreaSensorService;
 import pt.ipp.isep.dei.project.services.GeographicalAreaService;
 
 import java.util.ArrayList;
@@ -13,9 +14,10 @@ public class DeactivateSensorFromGeoArea {
     private static final String EXIT = "\r0 - Exit";
     private List<GeographicalAreaDTO> geographicalAreaDTOS;
     private GeographicalAreaDTO geographicalAreaDTO;
+    private List<GeoAreaSensorDTO> geoAreaSensorDTOList;
 
-    public DeactivateSensorFromGeoArea(GeographicalAreaService geographicalAreaService) {
-        this.ctrl = new DeactivateSensorFromGeoAreaController(geographicalAreaService);
+    public DeactivateSensorFromGeoArea(GeographicalAreaService geographicalAreaService, GeoAreaSensorService geoAreaSensorService) {
+        this.ctrl = new DeactivateSensorFromGeoAreaController(geographicalAreaService,geoAreaSensorService);
         this.geographicalAreaDTOS = ctrl.listOfGeographicalAreas();
     }
 
@@ -32,6 +34,7 @@ public class DeactivateSensorFromGeoArea {
                 return;
             }
             geographicalAreaDTO = geographicalAreaDTOS.get(chosenGeoArea);
+            geoAreaSensorDTOList = ctrl.listOfSensors(geographicalAreaDTO);
             if (getListOfActiveSensors().isEmpty()) {
                 System.out.println("\nThere are no active Sensors in " + geographicalAreaDTO.getId());
                 continue;
@@ -72,7 +75,7 @@ public class DeactivateSensorFromGeoArea {
 
     private List<GeoAreaSensorDTO> getListOfActiveSensors() {
         List<GeoAreaSensorDTO> activeList = new ArrayList<>();
-        for (GeoAreaSensorDTO sensorDTO : geographicalAreaDTO.getSensors()) {
+        for (GeoAreaSensorDTO sensorDTO : geoAreaSensorDTOList) {
             if (sensorDTO.getIsActive()) {
                 activeList.add(sensorDTO);
             }

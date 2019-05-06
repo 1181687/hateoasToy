@@ -10,7 +10,6 @@ import pt.ipp.isep.dei.project.model.sensor.*;
 import pt.ipp.isep.dei.project.repositories.RoomSensorRepository;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -82,11 +81,18 @@ public class RoomSensorService {
         return this.roomSensorRepo.existsRoomSensorsByRoomIdAndSensorTypeId(roomId, sensorTypeId);
     }
 
-    public SensorId getSensorId (RoomId roomId){
-        RoomSensor roomSensor = this.roomSensorRepo.findByRoomId(roomId);
+    public SensorId getSensorId (RoomId roomId, SensorTypeId sensorTypeId){
+        RoomSensor roomSensor = this.roomSensorRepo.findByRoomIdAndSensorTypeId(roomId, sensorTypeId);
         return roomSensor.getId();
     }
 
+    public RoomSensor getRoomSensor(RoomId roomId, SensorTypeId sensorTypeId) {
+        return this.roomSensorRepo.findByRoomIdAndSensorTypeId(roomId, sensorTypeId);
+
+    }
+
+    public RoomSensorDTO getRoomSensorDTO(RoomId roomId, SensorTypeId sensorTypeId) {
+        return RoomSensorMapper.mapToDTO(this.getRoomSensor(roomId, sensorTypeId));
     public RoomSensorDTO getRoomSensor(RoomId roomId, SensorTypeId sensorTypeId){
         RoomSensor roomSensor = null;
         RoomSensorDTO roomSensorDTO = null;
@@ -103,6 +109,7 @@ public class RoomSensorService {
             ReadingDTO readingDTO = null;
             return readingDTO;
         }
+        RoomSensorDTO roomSensorDTO = getRoomSensorDTO(roomId, sensorTypeId);
         RoomSensor roomSensor = RoomSensorMapper.mapToEntity(roomSensorDTO);
         Reading reading = roomSensor.getLastMeasurement();
         ReadingDTO lastReadingDTO = ReadingMapper.mapToDTO(reading);

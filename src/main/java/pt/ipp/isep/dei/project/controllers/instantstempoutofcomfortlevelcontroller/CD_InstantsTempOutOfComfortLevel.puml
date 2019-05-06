@@ -1,0 +1,238 @@
+@startuml
+skinparam linetype ortho
+
+skinparam class {
+	BackgroundColor PaleTurquoise
+	ArrowColor Black
+	BorderColor Black
+	FontStyle Bold
+}
+
+hide circle
+
+
+
+InstantsTempOutOfComfortLevelUI "1" --> "1" InstantsTempOutOfComfortLevelController
+InstantsTempOutOfComfortLevelController "1" --> "1" HouseService
+InstantsTempOutOfComfortLevelController "1" -left-> "1" "RoomService"
+InstantsTempOutOfComfortLevelController "1" -> "1" SensorsService
+SensorsService "1" --> "1" RoomSensorService
+SensorsService "1" --> "1" GeoAreaSensorService
+RoomSensorService "1" -left-> "1" "<<RoomSensorRepository>>"
+"<<RoomSensorRepository>>" "1" --> "1" RoomSensor
+RoomSensor "1" --> "*" Reading
+GeoAreaSensorService "1" --> "1" "<<GeoAreaSensorRepository>>"
+"<<GeoAreaSensorRepository>>" "1" --> "1" GeoAreaSensor
+GeoAreaSensor "1" -left-> "1" Location: uses
+GeoAreaSensor "1" -right-> "*" Reading: uses
+HouseService "1" -left-> "1" "<<HouseRepository>>"
+"<<HouseRepository>>" "1" --> "*" House
+RoomService "1" -up-> "<<RoomRepository>>"
+House "1" --> "1" Address
+Address "1" -right-> "1" Location
+SensorsService "1" -> "1" ReadingMapper: uses
+ReadingMapper "1" -> "1" Reading: creates
+ReadingMapper "1" -right-> "1" ReadingDTO: creates
+RoomService "1" -left-> "1" RoomMapper: uses
+RoomMapper "1" -up-> "1" RoomDTO: creates
+HouseService "1" --> "1" LocationMapper: uses
+LocationMapper "1" -down-> "1" LocationDTO: creates
+HouseService "1" -> "1" GeoAreaIdMapper: uses
+GeoAreaIdMapper "1" -> "1" GeoAreaIdDTO: creates
+GeoAreaIdDTO "1" -> "1" LocationDTO
+
+
+
+Class InstantsTempOutOfComfortLevelUI {
+- InstantsTempOutOfComfortLevelController controller
++ run()
+
+}
+
+Class InstantsTempOutOfComfortLevelController {
+- SensorTypeId sensorTypeId
+- RoomId roomId
+- SensorId roomSensorId
+- LocationDTO location
+- GeoAreaIdDTO geoAreaId
+- Map<LocalDate, List<Double>> comfortTemp
+- Map<LocalDateTime, Double> mapInstantsOutOfComfortTemp
+- List<Reading> roomReadings
+- int category
+- int option
+- List<LocalDateTime> listOfInstantsOutOfComfortTemp
++ setCategory ()
++ setOption ()
++ getAllRoomsDTO ()
++ isRoomListEmpty ()
++ setRoomId ()
++ existTempSensors ()
++ getComfortTemperature ()
++ setSensorID ()
+- getInstantsOutOfComfortTemperature ()
++ getInstantListOutOfComfortLevel ()
++ existsDaysWithoutComfortTemp ()
++ getDaysWithoutComfortTemp ()
++ readingsHouseAreaAndRoom ()
+}
+
+
+Class RoomService {
++ getAllRoomsDTO()
++ isListOfRoomsEmpty()
++ getAllRoomsDTO()
+}
+
+Interface "<<RoomRepository>>" {
++ findAll()
+}
+
+
+Class RoomSensor {
+- SensorId id
+- SensorTypeId sensorTypeId
+- RoomId roomId
++ existReadingsBetweenDates ()
++ getReadings ()
+
+}
+
+Class RoomSensorService {
++ getSensorId ()
++ getReadingsDTO ()
++ existSensors ()
++ getSensorId ()
++ getSensorById ()
++ getRoomSensor ()
+}
+
+
+Interface "<<RoomSensorRepository>>" {
++ findByRoomId ()
++ existsRoomSensorsByRoomIdAndSensorTypeId ()
+}
+
+Class GeoAreaSensorService {
++ getComfortTemperature ()
++ getMapAverageOfDailyMeasurements ()
++ getSensorsWithReadingsInInterval ()
++ getNearestSensorWithMostRecentReading ()
++ getNearestSensors ()
++ getDailyAverageBySensorId ()
++ existsDaysWithoutComfortTemp ()
++ getDaysWithoutComfortTemp ()
+}
+
+Class HouseService {
++ getHouse()
+}
+
+Interface "<<HouseRepository>>" {
+}
+
+Class House {
++ getLocation()
++ getGeoAreaId()
+}
+
+Class Address {
+- GeoAreaId geoAreaId
++ getLocation()
++ getGeoAreaId()
+}
+
+Class Location{
++ distanceBetweenTwoLocations ()
+}
+
+Class RoomDTO {
+- String id
+- String description
+- int houseFloor
+- double width
+- double length
+- double height
++ get ()
++ set ()
++ getRooms ()
+}
+
+Class RoomMapper {
++ mapToDTO ()
++ mapToEntity ()
+}
+
+Class LocationDTO {
+- double latitude
+- double longitude
+- double elevation
++ get ()
++ set()
+}
+
+Class LocationMapper {
++ mapToDTO ()
++ mapToEntity ()
+}
+
+Class ReadingDTO {
+- String id
+- double value
+- LocalDateTime dateTime
+- String units
++ get ()
++ set()
+}
+
+Class GeoAreaIdDTO {
+- String id
+- String geoAreaType
++getId()
+}
+
+Class GeoAreaIdMapper {
++ mapToDTO ()
++ mapToEntity ()
+}
+
+Class ReadingMapper {
++ mapToDTO ()
++ mapToEntity ()
+}
+
+
+Interface "<<GeoAreaSensorRepository>>" {
++ findByGeoAreaIdAndSensorTypeId ()
++ findGeoAreaSensorsById ()
+}
+
+
+Class GeoAreaSensor {
++ existReadingsBetweenDates()
++ getLocation ()
++ getReadingsBetweenDates ()
++ getDailyAverage ()
++ getMostRecentValidReading ()
+}
+
+Class Reading {
+- LocalDateTime date
+- double value
++ get ()
+}
+
+Class SensorsService {
++ existSensors ()
++ getComfortTemperature ()
++ getSensorId ()
++ getInstantsOutOfComfortTemperature ()
++ getInstantListOutOfComfortLevel ()
++ existSensors ()
++ existsDaysWithoutComfortTemp ()
++ getDaysWithoutComfortTemp ()
++ getRoomReadingsDTO ()
+}
+
+
+
+@enduml
