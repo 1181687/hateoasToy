@@ -97,7 +97,7 @@ public class GetListOfSensorsAndDevicesRoomControllerTest {
 
     }
 
- /*   @Test
+    @Test
     public void getDeviceDTOList() {
         DeviceType type = new ElectricWaterHeaterType();
         Device electricWaterHeater = type.createDevice("ewh2000");
@@ -117,5 +117,5 @@ public class GetListOfSensorsAndDevicesRoomControllerTest {
         List<DeviceDTO> result = controller.getDeviceDTOList(roomId);
 
         assertEquals(expectedResult, result);
-    }*/
+    }
 }
