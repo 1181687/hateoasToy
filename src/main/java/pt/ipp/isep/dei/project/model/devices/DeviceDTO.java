@@ -2,6 +2,8 @@ package pt.ipp.isep.dei.project.model.devices;
 
 import pt.ipp.isep.dei.project.model.house.RoomDTO;
 
+import java.util.Objects;
+
 public class DeviceDTO {
     private String name;
     private String deviceType;
@@ -44,5 +46,20 @@ public class DeviceDTO {
         this.nominalPower = nominalPower;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof DeviceDTO)) {
+            return false;
+        }
+        DeviceDTO listOne = (DeviceDTO) obj;
+        return this.name.equalsIgnoreCase(listOne.getName());
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.name);
+    }
 }
