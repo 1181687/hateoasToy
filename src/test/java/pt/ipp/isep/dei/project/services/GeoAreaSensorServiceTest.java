@@ -12,7 +12,10 @@ import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.sensor.*;
 import pt.ipp.isep.dei.project.repositories.GeoAreaSensorRepository;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -49,16 +52,13 @@ public class GeoAreaSensorServiceTest {
     }
 
     @Test
-    public void getSensorById() {
+    public void getSensorByIdTest() {
         // Arrange
         SensorIdDTO sensorIdDTO = new SensorIdDTO();
-        SensorId sensorId = new SensorId("Temperature");
-
-        when(geoAreaSensorRepo.save(geoAreaSensor)).thenReturn(geoAreaSensor);
         when(geoAreaSensorRepo.findById(any(SensorId.class))).thenReturn(Optional.of(geoAreaSensor));
 
-        GeoAreaSensorDTO expectedResult = GeoAreaSensorMapper.mapToDTO(this.geoAreaSensor);
         // Act
+        GeoAreaSensorDTO expectedResult = GeoAreaSensorMapper.mapToDTO(this.geoAreaSensor);
         GeoAreaSensorDTO result = this.geoAreaSensorService.getSensorById(sensorIdDTO);
 
         // Assert
@@ -66,27 +66,41 @@ public class GeoAreaSensorServiceTest {
     }
 
     @Test
-    public void saveSensors() {
+    public void getSensorsWithReadingsInIntervalTest() {
 
+        // Arrange
+        List<GeoAreaSensor> geoAreaSensorList = new ArrayList<>();
+        Location location = new Location(123, 456, 789);
+        GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("City");
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType(geoAreaTypeId);
 
-    }
+        GeoAreaId geoAreaId = new GeoAreaId(location, "Espinho", geographicalAreaType);
+        SensorTypeId sensorTypeId = new SensorTypeId("Temperature");
+        LocalDate startDate = LocalDate.of(1991, 4, 12);
+        LocalDate endDate = LocalDate.of(2019, 5, 6);
 
-    @Test
-    public void saveGeoAreaSensor() {
+        when(geoAreaSensorRepo.findByGeoAreaIdAndSensorTypeId(any(GeoAreaId.class), any(SensorTypeId.class))).thenReturn(geoAreaSensorList);
 
+        // Act
+        List<GeoAreaSensor> result = geoAreaSensorService.getSensorsWithReadingsInInterval(geoAreaId, sensorTypeId, startDate, endDate);
 
-    }
-
-    @Test
-    public void getSensorsWithReadingsInInterval() {
-
-
+        // Assert
+        assertEquals(geoAreaSensorList, result);
     }
 
     @Test
     public void getNearestSensors() {
+        // Arrange
+        List<GeoAreaSensor> geoAreaSensorList = new ArrayList<>();
 
+        Location location = new Location(123, 456, 789);
+        List<GeoAreaSensor> sensors = new ArrayList<>();
 
+        // Act
+        List<GeoAreaSensor> result = geoAreaSensorService.getNearestSensors(location, sensors);
+
+        // Assert
+        assertEquals(geoAreaSensorList, result);
     }
 
     @Test
