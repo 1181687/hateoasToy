@@ -58,7 +58,7 @@ public final class RoomSensorMapper {
         return sensorDTO;
     }
 
-    public static RoomSensorDTO mapToDTO(RoomSensor sensor) {
+    public static RoomSensorDTO mapToDTOWithoutReadings(RoomSensor sensor) {
         RoomSensorDTO sensorDTO = newRoomSensorDTO();
         sensorDTO.setId(sensor.getId().getSensorId());
         sensorDTO.setName(sensor.getSensorName());

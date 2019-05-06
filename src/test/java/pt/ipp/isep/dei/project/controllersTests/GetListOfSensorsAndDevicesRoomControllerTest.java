@@ -86,7 +86,7 @@ public class GetListOfSensorsAndDevicesRoomControllerTest {
 
         when(this.sensorService.getAllSensorsOfRoom(roomId)).thenReturn(sensors);
 
-        List<RoomSensorDTO> expectedResult = Arrays.asList(RoomSensorMapper.mapToDTO(sensor),RoomSensorMapper.mapToDTO(sensor2));
+        List<RoomSensorDTO> expectedResult = Arrays.asList(RoomSensorMapper.mapToDTOWithoutReadings(sensor),RoomSensorMapper.mapToDTOWithoutReadings(sensor2));
 
         //Act
         List<RoomSensorDTO> result = this.controller.getRoomSensorDTOList(this.room.getRoomId());
