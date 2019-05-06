@@ -8,13 +8,19 @@ import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 
 import java.util.List;
 
-public interface RoomSensorRepository extends CrudRepository<RoomSensor, SensorId> {
+import java.time.LocalDate;
 
+import java.util.List;
+
+public interface RoomSensorRepository extends CrudRepository<RoomSensor, SensorId> {
     boolean existsRoomSensorsByRoomIdAndSensorTypeId(RoomId roomId, SensorTypeId sensorTypeId);
 
-    RoomSensor findByRoomId (RoomId roomId);
+    RoomSensor findByRoomId(RoomId roomId);
 
     RoomSensor findByRoomIdAndSensorTypeId (RoomId roomId, SensorTypeId sensorTypeId);
 
     List<RoomSensor> findAllByRoomId(RoomId roomId);
+
+
+    RoomSensor findByRoomIdAndSensorTypeIdAndReadingsIn(RoomId roomId, SensorTypeId sensorTypeId, LocalDate localDate);
 }

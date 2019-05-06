@@ -73,8 +73,8 @@ public class RegularUser {
                     ui605.run();
                     break;
                 case 2:
-                    //GetMaxTemperatureRoom ui610 = new GetMaxTemperatureRoom(houseService, sensorTypeTemperature);
-                    //ui610.run();
+                    GetMaxTemperatureRoom ui610 = new GetMaxTemperatureRoom(sensorTypeTemperature, roomSensorService, roomService);
+                    ui610.run();
                     break;
                 case 3:
                     EstimateEnergyOfWaterHeater ui752 = new EstimateEnergyOfWaterHeater(houseService);

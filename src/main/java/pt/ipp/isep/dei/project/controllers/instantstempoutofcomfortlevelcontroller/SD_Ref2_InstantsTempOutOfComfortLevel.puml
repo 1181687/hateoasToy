@@ -19,13 +19,13 @@ skinparam sequence {
 autonumber
 
 activate ":SensorsService"
-":SensorsService" -> ":SensorsService": S= getNearestSensorWith\nMostRecentReadings\n(geoAreaId, sensorTypeId, location, startDate, endDate)
+":SensorsService" -> ":SensorsService": S=getNearestSensorWith\nMostRecentReadings\n(geoAreaId, sensorTypeId, location, startDate, endDate)
 ref over ":SensorsService"
 getSensor
 end
 deactivate "S: RoomSensor"
 deactivate "M: Map"
-":SensorsService" -> ":SensorsService": M= getDailyAverage\n(startDate, endDate, S)
+":SensorsService" -> ":SensorsService": M=getDailyAverage\n(startDate, endDate, S)
 ref over ":SensorsService"
 getDailyAverage
 end

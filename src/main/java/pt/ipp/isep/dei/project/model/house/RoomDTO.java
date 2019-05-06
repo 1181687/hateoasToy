@@ -78,11 +78,6 @@ public class RoomDTO {
         this.rooms.add(room);
     }
 
-    /**
-     * method that creates the same hashcode to rooms with the same attribute name.
-     *
-     * @return the hashcode created
-     */
     @Override
     public int hashCode() {
         return Objects.hash(this.id);
@@ -90,7 +85,7 @@ public class RoomDTO {
 
     /**
      * Equals method to determine if two Rooms are equal.
-     * They are equals if name are equal.
+     * They are equals if name (id) are equal.
      * Names are case insensitive.
      *
      * @param obj receives an object
@@ -107,6 +102,7 @@ public class RoomDTO {
         RoomDTO roomOne = (RoomDTO) obj;
         return this.id.equalsIgnoreCase(roomOne.getRoomId());
     }
+
 
 }
 

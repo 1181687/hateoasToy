@@ -1,0 +1,136 @@
+@startuml
+skinparam linetype ortho
+
+skinparam class {
+	BackgroundColor PaleTurquoise
+	ArrowColor Black
+	BorderColor Black
+	FontStyle Bold
+}
+
+hide circle
+
+ImportReadings "1" --> "1" ImportReadingsController
+ImportReadingsController "1" -right-> "1" GeoAreaSensorService
+GeoAreaSensorService "1" --> "1" GeoAreaSensorMapper :uses
+ImportReadingsController "1" -down-> "1" GeoAreaSensorDTO
+ImportReadingsController "1" -left-> "1" "<<ProjectFileReader>>"
+XMLReader -down-* "<<ProjectFileReader>>" : implements
+CSVReader -down-* "<<ProjectFileReader>>" : implements
+JSONReader -down-* "<<ProjectFileReader>>" : implements
+XMLReader -down-> ReadingMapper : uses
+CSVReader -down-> ReadingMapper : uses
+JSONReader -down-> ReadingMapper : uses
+GeoAreaSensorDTO "1" --> "0 *" ReadingDTO
+GeoAreaSensorMapper "1" -down-> "1" GeoAreaSensor: creates
+GeoAreaSensorMapper "1" -right-> "1" ReadingMapper: uses
+GeoAreaSensorService "1" --> "1" "<<GeoAreaSensorRepository>>"
+
+
+Class ImportReadings {
+-controller: ImportReadingsController
++run()
+- isValidFormat()
+}
+
+Class ImportReadingsController {
+-readingDTOs: List<Object>
+-numberOfNotImportedReadings: int
++createReader()
++readFile()
++importReadings()
++isReadingValid()
++getNumberOfNotImportedReadings()
+}
+
+Class XMLReader {
+-readerName : String
++readFile()
++getTypeName()w
+-readReadingsFile()
+-getReadingDTO()
+-getTagValue()
+-getTag()
+}
+
+Class GeoAreaSensorMapper {
++mapToEntity()
++mapToDTO()
+}
+
+Class ReadingMapper {
++mapToEntity()
++mapToDTO()
+}
+
+Class CSVReader {
+-readerName : String
++readFile()
++getTypeName()
+-parseLine()
+}
+
+Class JSONReader {
+-readerName : String
++readFile()
++getTypeName()
+-parseReadings()
+}
+
+Class GeoAreaSensorService {
+-repo: GeoAreaSensorRepository
++getSensorById()
++saveSensors()
+}
+
+Class ReadingDTO {
+-id: String
+-value: double
+-dateTime: LocalDateTime
+-unit: String
++getValue()
++setValue()
++getDateTime()
++setDateTime()
++getId()
++setId()
++getUnit()
++setUnit()
+}
+
+Class GeoAreaSensorDTO {
+-id: String
+-name: String
+-startingDate: LocalDate
+-sensorType: String
+-location: LocationDTO
+-units: String
+-isActive: boolean
+-geoAreaId: GeoAreaIdDTO
+-readings: List<ReadingDTO>
++addReadingDTO()
+}
+
+Class GeoAreaSensor{
+-id: SensorId
+-name: String
+-startingDate: LocalDate
+-sensorTypeId: SensorTypeId
+-location: Location
+-readings: List<Reading>
+-units: String
+-isActive: SensorState
+-GeoAreaId: geoAreaId
++addReadings()
+}
+
+Class GeoAreaSensor
+
+Interface "<<ProjectFileReader>>" {
++getTypeName()
++readFile()
+}
+
+Interface "<<GeoAreaSensorRepository>>" {
+}
+@enduml

@@ -218,21 +218,6 @@ public class GeographicalAreaServiceTest {
     }
 
     @Test
-    public void addGeoAreaInASpecificPositionTest() {
-        // Arrange
-        geographicalAreaService.removeGeoArea(bonfimStreet);
-        geographicalAreaService.addGeoAreaInASpecificPosition(0, bonfimStreet);
-
-        GeographicalArea expectedResult = bonfimStreet;
-
-        // Act
-        GeographicalArea result = geographicalAreaService.getGeoAreaList().get(0);
-
-        // Assert
-        assertEquals(expectedResult, result);
-    }
-
-    @Test
     public void removeGeoAreaTrueTest() {
         // Act
         boolean result = geographicalAreaService.removeGeoArea(portoCity);
