@@ -147,4 +147,8 @@ public class RoomSensorService {
         }
         return false;
     }
+
+    public List<RoomSensor> getAllSensorsOfRoom(RoomId roomId){
+        return this.roomSensorRepo.findAllByRoomId(roomId);
+    }
 }
