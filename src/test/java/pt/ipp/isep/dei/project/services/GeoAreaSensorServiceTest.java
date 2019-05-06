@@ -106,7 +106,13 @@ public class GeoAreaSensorServiceTest {
 
     @Test
     public void getLatestGeoAreaReadingInInterval() {
+        // Arrange
 
+
+        // Act
+
+
+        // Assert
 
     }
 
@@ -166,6 +172,7 @@ public class GeoAreaSensorServiceTest {
 
     @Test
     public void getSensorsByGeoAreaIdTest() {
+        // Arrange
         Location location = new Location(123, 456, 789);
         GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("City");
         GeographicalAreaType geographicalAreaType = new GeographicalAreaType(geoAreaTypeId);
@@ -183,6 +190,5 @@ public class GeoAreaSensorServiceTest {
 
         // assert
         assertEquals(geoAreaSensorDTOList, result);
-
     }
 }
