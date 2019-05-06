@@ -9,6 +9,7 @@ import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 import java.util.List;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import java.util.List;
 
@@ -22,5 +23,5 @@ public interface RoomSensorRepository extends CrudRepository<RoomSensor, SensorI
     List<RoomSensor> findAllByRoomId(RoomId roomId);
 
 
-    RoomSensor findByRoomIdAndSensorTypeIdAndReadingsIn(RoomId roomId, SensorTypeId sensorTypeId, LocalDate localDate);
+    RoomSensor findByRoomIdAndSensorTypeIdAndReadingsBetween(RoomId roomId, SensorTypeId sensorTypeId, LocalDateTime localDate1, LocalDateTime localDate2);
 }

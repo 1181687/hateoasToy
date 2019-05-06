@@ -1,5 +1,9 @@
 package pt.ipp.isep.dei.project.model;
 
+import pt.ipp.isep.dei.project.utils.Utils;
+
+import java.util.Objects;
+
 public class LocationDTO {
     private double latitude;
     private double longitude;
@@ -34,5 +38,22 @@ public class LocationDTO {
 
     public void setElevation(double elevation) {
         this.elevation = elevation;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof LocationDTO)) {
+            return false;
+        }
+        LocationDTO locationDTO = (LocationDTO) obj;
+        return Utils.isSameDouble(this.latitude,locationDTO.getLatitude()) && Utils.isSameDouble(this.longitude,locationDTO.getLongitude()) && Utils.isSameDouble(this.elevation,locationDTO.getElevation());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.latitude,this.longitude,this.elevation);
     }
 }

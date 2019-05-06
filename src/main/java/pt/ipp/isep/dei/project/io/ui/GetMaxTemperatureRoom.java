@@ -29,6 +29,17 @@ public class GetMaxTemperatureRoom {
      */
     public GetMaxTemperatureRoom(SensorTypeId typeId, RoomSensorService sensorService, RoomService rService){
         this.controller = new GetCurrentAndMaxTempRoomController(typeId, sensorService, rService);
+        this.allRoomsDTOList=controller.getRoomDTOList();
+    }
+
+    public String getRoomDTOListToString(){
+        StringBuilder roomListContent = new StringBuilder();
+        int numberOfRoom = 1;
+        for (RoomDTO roomDto:allRoomsDTOList) {
+            roomListContent.append (numberOfRoom+" - Id: "+roomDto.getRoomId()+"\n");
+            numberOfRoom++;
+        }
+        return roomListContent.toString();
     }
 
     public void run() {
@@ -36,7 +47,7 @@ public class GetMaxTemperatureRoom {
             System.out.println("Sorry! There are no rooms available.\n");
             return;
         }
-        String label0 = "Please, choose the room you would like to get the maximum temperature.";
+        String label0 = "Please, choose the room you would like to get the maximum temperature:\n"+getRoomDTOListToString()+"\n";
         int option = InputValidator.getIntRange(label0, 1, allRoomsDTOList.size())-1;
         RoomDTO selectedRoom = allRoomsDTOList.get(option);
         String roomDTOId = selectedRoom.getRoomId();
@@ -48,6 +59,6 @@ public class GetMaxTemperatureRoom {
             return;
         }
 
-        System.out.println("The maximum temperature is " + temp + "ºC");
+        System.out.println("The maximum temperature is " + temp + "ºC.\n");
     }
 }

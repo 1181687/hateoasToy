@@ -34,7 +34,8 @@ public class GetCurrentAndMaxTempRoomController {
 
     public ReadingDTO getLatestMeasurementOfRoomSensor(String roomIdString) {
         RoomId roomId = new RoomId(roomIdString);
-        return this.roomSensorService.getLastMeasurement(roomId, temperature);
+        ReadingDTO readingDTO = this.roomSensorService.getLastMeasurement(roomId,temperature);
+        return readingDTO;
     }
 
     public List<RoomDTO> getRoomDTOList(){

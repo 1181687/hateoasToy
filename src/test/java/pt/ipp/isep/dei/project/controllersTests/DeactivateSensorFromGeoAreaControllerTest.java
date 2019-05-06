@@ -7,10 +7,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import pt.ipp.isep.dei.project.controllers.deactivatesensorfromgeoarea.DeactivateSensorFromGeoAreaController;
 import pt.ipp.isep.dei.project.model.Location;
-import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaTypeId;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
+import pt.ipp.isep.dei.project.model.geographicalarea.*;
 import pt.ipp.isep.dei.project.model.sensor.*;
 import pt.ipp.isep.dei.project.services.GeoAreaSensorService;
 import pt.ipp.isep.dei.project.services.GeographicalAreaService;
@@ -59,7 +56,8 @@ public class DeactivateSensorFromGeoAreaControllerTest {
     @Test
     public void testDeactivateDevice_ChecksDeactivated_True() {
         // Act
-        when(geographicalAreaService.getSensorById(any(SensorId.class))).thenReturn(temperatureSensor);
+        GeoAreaSensorDTO geoAreaSensorDTO = GeoAreaSensorMapper.mapToDTO(temperatureSensor);
+        when(geoAreaSensorService.getSensorById(any(SensorIdDTO.class))).thenReturn(geoAreaSensorDTO);
         temperatureSensor.deactivateDevice();
 
         boolean result = temperatureSensor.isActive();
@@ -117,5 +115,21 @@ public class DeactivateSensorFromGeoAreaControllerTest {
 
         // Assert
         assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testGetListOfSensors(){
+        // Arrange
+        List<GeoAreaSensorDTO> expectedResult = new ArrayList<>();
+        expectedResult.add(GeoAreaSensorMapper.mapToDTO(temperatureSensor));
+
+        // Act
+        GeoAreaIdDTO geoAreaIdDTO = GeoAreaIdMapper.mapToDTO(porto.getId());
+        when(geoAreaSensorService.getSensorsByGeoAreaId(geoAreaIdDTO)).thenReturn(expectedResult);
+
+        List<GeoAreaSensorDTO> result = controller.listOfSensors(geoAreaIdDTO);
+
+        // Assert
+        assertEquals(expectedResult,result);
     }
 }
