@@ -82,7 +82,7 @@ public class GeoAreaId implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.id);
+        return Objects.hash(this.id,this.typeId,this.location);
     }
 
 }
