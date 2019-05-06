@@ -150,7 +150,7 @@ public class GeoAreaSensorService {
 
         if (!sensors.isEmpty()) {
             GeoAreaSensor sensor = this.getNearestSensorWithMostRecentReading(location, sensors, startDate, endDate);
-            for (LocalDate dateIterator = startDate; dateIterator.isBefore(endDate); dateIterator = dateIterator.plusDays(1)) {
+            for (LocalDate dateIterator = startDate; !dateIterator.isAfter(endDate); dateIterator = dateIterator.plusDays(1)) {
                 double dailyAverage = this.getDailyAverageBySensorId(sensor.getId(), dateIterator);
                 if (!Double.isNaN(dailyAverage)) {
                     mapOfDailyAverages.put(dateIterator, dailyAverage);

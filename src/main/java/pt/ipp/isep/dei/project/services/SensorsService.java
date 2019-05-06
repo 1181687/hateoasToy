@@ -142,7 +142,7 @@ public class SensorsService {
                                                  LocalDate startDate, LocalDate endDate) {
         RoomSensor roomSensor = roomSensorService.getRoomSensor(roomId, sensorTypeId);
         GeoAreaSensor geoAreaSensor = geoAreaSensorService.getGeoAreaSensor(geoAreaId, sensorTypeId);
-        return roomSensor.existReadingsBetweenDates(startDate, endDate) || geoAreaSensor.existReadingsBetweenDates(startDate, endDate);
+        return roomSensor.existReadingsBetweenDates(startDate, endDate) && geoAreaSensor.existReadingsBetweenDates(startDate, endDate);
     }
 
 

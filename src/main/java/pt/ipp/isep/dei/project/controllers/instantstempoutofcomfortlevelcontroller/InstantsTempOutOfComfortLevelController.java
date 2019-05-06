@@ -80,7 +80,7 @@ public class InstantsTempOutOfComfortLevelController {
         this.roomSensorId = sensorsService.getSensorId(roomId, this.sensorTypeId);
     }
 
-    private Map<LocalDateTime, Double> getInstantsOutOfComfortTemperature(LocalDate startDate, LocalDate endDate) {
+    public Map<LocalDateTime, Double> getInstantsOutOfComfortTemperature(LocalDate startDate, LocalDate endDate) {
         List<ReadingDTO> roomReadingsDTO = this.sensorsService.getRoomReadingsDTO(startDate, endDate, this.roomSensorId);
         return mapInstantsOutOfComfortTemp = sensorsService.getInstantsOutOfComfortTemperature(comfortTemp, roomReadingsDTO, option);
     }
