@@ -8,6 +8,8 @@ import org.mockito.MockitoAnnotations;
 import pt.ipp.isep.dei.project.controllers.GetListOfSensorsAndDevicesRoomController;
 import pt.ipp.isep.dei.project.model.devices.Device;
 
+import pt.ipp.isep.dei.project.model.devices.DeviceDTO;
+import pt.ipp.isep.dei.project.model.devices.DeviceMapper;
 import pt.ipp.isep.dei.project.model.devices.DeviceType;
 import pt.ipp.isep.dei.project.model.devices.electricwaterheater.ElectricWaterHeater;
 import pt.ipp.isep.dei.project.model.devices.electricwaterheater.ElectricWaterHeaterType;
@@ -65,38 +67,38 @@ public class GetListOfSensorsAndDevicesRoomControllerTest {
         //Act
         List<RoomDTO> result = this.controller.getRoomDTOList();
         //Assert
-        assertEquals(expectedResult,result);
+        assertEquals(expectedResult, result);
     }
 
     @Test
-    public void getRoomSensorDTOList(){
+    public void getRoomSensorDTOList() {
         //Arrange
         RoomId roomId = new RoomId(this.room.getRoomId());
-        LocalDateTime startingDate = LocalDateTime.of(2018,11,14,23,50);
+        LocalDateTime startingDate = LocalDateTime.of(2018, 11, 14, 23, 50);
         SensorId sensorId = new SensorId("TT1234");
         SensorTypeId typeId = new SensorTypeId("Temperature");
-        RoomSensor sensor = new RoomSensor(sensorId,"TT12345",startingDate,typeId,"C",roomId);
+        RoomSensor sensor = new RoomSensor(sensorId, "TT12345", startingDate, typeId, "C", roomId);
 
-        LocalDateTime startingDate2 = LocalDateTime.of(2017,1,14,23,50);
+        LocalDateTime startingDate2 = LocalDateTime.of(2017, 1, 14, 23, 50);
         SensorId sensorId2 = new SensorId("H1234");
         SensorTypeId typeId2 = new SensorTypeId("Humidity");
-        RoomSensor sensor2 = new RoomSensor(sensorId2,"TT12345",startingDate2,typeId2,"l/m3",roomId);
+        RoomSensor sensor2 = new RoomSensor(sensorId2, "TT12345", startingDate2, typeId2, "l/m3", roomId);
 
-        List<RoomSensor> sensors = Arrays.asList(sensor,sensor2);
+        List<RoomSensor> sensors = Arrays.asList(sensor, sensor2);
 
         when(this.sensorService.getAllSensorsOfRoom(roomId)).thenReturn(sensors);
 
-        List<RoomSensorDTO> expectedResult = Arrays.asList(RoomSensorMapper.mapToDTOWithoutReadings(sensor),RoomSensorMapper.mapToDTOWithoutReadings(sensor2));
+        List<RoomSensorDTO> expectedResult = Arrays.asList(RoomSensorMapper.mapToDTOWithoutReadings(sensor), RoomSensorMapper.mapToDTOWithoutReadings(sensor2));
 
         //Act
         List<RoomSensorDTO> result = this.controller.getRoomSensorDTOList(this.room.getRoomId());
         //Assert
-        assertEquals(expectedResult,result);
+        assertEquals(expectedResult, result);
 
     }
 
-    @Test
-    public void getDeviceDTOList(){
+ /*   @Test
+    public void getDeviceDTOList() {
         DeviceType type = new ElectricWaterHeaterType();
         Device electricWaterHeater = type.createDevice("ewh2000");
         electricWaterHeater.setLocation(this.room);
@@ -104,5 +106,16 @@ public class GetListOfSensorsAndDevicesRoomControllerTest {
         electricWaterHeater.setAttributesDevType("Performance Ratio", 0.9);
         electricWaterHeater.setAttributesDevType("Nominal Power", 700);
 
-    }
+        List<Device> devices = Arrays.asList(electricWaterHeater);
+
+        String roomId = this.room.getRoomId();
+
+        when(roomService.getAllDevicesOfRoom(roomId)).thenReturn(devices);
+
+        List<DeviceDTO> expectedResult = Arrays.asList(DeviceMapper.mapToDTO(electricWaterHeater));
+
+        List<DeviceDTO> result = controller.getDeviceDTOList(roomId);
+
+        assertEquals(expectedResult, result);
+    }*/
 }
