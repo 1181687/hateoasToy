@@ -78,13 +78,14 @@ public class RoomDTO {
         this.rooms.add(room);
     }
 
+
     @Override
     public int hashCode() {
         return Objects.hash(this.id);
     }
 
     /**
-     * Equals method to determine if two Rooms are equal.
+     * Equals method to determine if two RoomsDTO are equal.
      * They are equals if name (id) are equal.
      * Names are case insensitive.
      *
@@ -102,7 +103,5 @@ public class RoomDTO {
         RoomDTO roomOne = (RoomDTO) obj;
         return this.id.equalsIgnoreCase(roomOne.getRoomId());
     }
-
-
 }
 

@@ -6,6 +6,7 @@ import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,7 +18,7 @@ public class ReadingTest {
         //Arrange
         LocalDateTime date = LocalDateTime.of(2018, 2, 3, 12, 30);
         Reading reading = new Reading(23.2, date);
-        int expectedResult = 1;
+        int expectedResult = Objects.hash(reading.getDateTime(),reading.getValue());
         //Act
         int result = reading.hashCode();
         //Assert
