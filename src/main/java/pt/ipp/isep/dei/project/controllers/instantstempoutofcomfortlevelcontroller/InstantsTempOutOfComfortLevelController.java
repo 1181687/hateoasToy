@@ -21,7 +21,7 @@ public class InstantsTempOutOfComfortLevelController {
 
     private SensorsService sensorsService;
     private RoomService roomService;
-    private SensorTypeId sensorTypeId = new SensorTypeId("Temperature");
+    private SensorTypeId sensorTypeId = new SensorTypeId("temperature");
     private RoomId roomId;
     private SensorId roomSensorId;
     private Location location;
