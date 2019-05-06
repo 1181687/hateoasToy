@@ -7,9 +7,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import pt.ipp.isep.dei.project.model.house.*;
-import pt.ipp.isep.dei.project.repositories.HouseRepository;
 import pt.ipp.isep.dei.project.repositories.RoomRepository;
-import pt.ipp.isep.dei.project.services.HouseService;
 import pt.ipp.isep.dei.project.services.RoomService;
 
 import java.util.ArrayList;
@@ -24,10 +22,8 @@ public class RoomServiceTest {
 
     @Mock
     private RoomRepository roomRepository;
-    private HouseRepository houseRepository;
     @InjectMocks
     private RoomService roomService;
-    private HouseService houseService;
     private Room b107;
     private Room b109;
     private Room b210;
@@ -46,9 +42,7 @@ public class RoomServiceTest {
         b107 = new Room("B107", "Classroom", 1, dimB107);
         b109 = new Room("B109", "Classroom", 1, dimB109);
         b210 = new Room("B210", "Classroom", 2, dimB210);
-        roomRepository.save(b107);
-        roomRepository.save(b109);
-        roomRepository.save(b210);
+
     }
 // when(CLASS.FUNCTION(PARAMETERS)).thenReturn(RETURN_VALUE)
 
@@ -66,9 +60,6 @@ public class RoomServiceTest {
     @Test
     public void testGetAllRooms_twoRooms() {
         //Arrange
-        when(roomRepository.save(b109)).thenReturn(b109);
-        when(roomRepository.save(b107)).thenReturn(b107);
-
         List<Room> expectedResult = new ArrayList<>();
         expectedResult.add(b107);
         expectedResult.add(b109);
@@ -93,9 +84,6 @@ public class RoomServiceTest {
     @Test
     public void testIsListOfRoomsEmpty_boolean_False() {
         //Arrange
-        when(roomRepository.save(b109)).thenReturn(b109);
-        when(roomRepository.save(b107)).thenReturn(b107);
-
         List<Room> roomList = new ArrayList<>();
         roomList.add(b107);
         roomList.add(b109);
@@ -106,7 +94,6 @@ public class RoomServiceTest {
         // Assert
         assertFalse(finalResult);
     }
-
 
 
     @Test
@@ -123,12 +110,7 @@ public class RoomServiceTest {
     @Test
     public void testRoomExists_boolean_true() {
         //Arrange
-        when(roomRepository.save(b107)).thenReturn(b107);
-        List<Room> roomList = new ArrayList<>();
-        roomList.add(b107);
-        when(roomRepository.findAll()).thenReturn(roomList);
         when(roomRepository.existsById(b107.getId())).thenReturn(true);
-
         RoomIdDTO b107DTO = RoomIdMapper.mapToDTO(b107.getId());
 
         //Act
@@ -139,23 +121,25 @@ public class RoomServiceTest {
 
     @Test
     public void testGetAllRoomsDTO_b107() {
-
-        when(roomRepository.save(b107)).thenReturn(b107);
+        //Arrange
         List<Room> roomList = new ArrayList<>();
         roomList.add(b107);
+        roomList.add(b109);
         when(roomRepository.findAll()).thenReturn(roomList);
-        when(roomRepository.existsById(b107.getId())).thenReturn(true);
-        when(roomRepository.findById(b107.getId())).thenReturn(Optional.of(b107));
 
         RoomDTO roomDTO = RoomMapper.mapToDTO(b107);
+        RoomDTO roomDTO2 = RoomMapper.mapToDTO(b109);
+
         List<RoomDTO> roomDTOList = new ArrayList<>();
         roomDTOList.add(roomDTO);
+        roomDTOList.add(roomDTO2);
 
-        RoomDTO expectedResult = roomDTOList.get(0);
-        RoomDTO result = roomService.getAllRoomsDTO().get(0);
+        List<RoomDTO> expectedResult = roomDTOList;
+        List<RoomDTO> result = roomService.getAllRoomsDTO();
 
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult.get(0).getRoomId(), result.get(0).getRoomId());
+        assertEquals(expectedResult.get(1).getRoomId(), result.get(1).getRoomId());
     }
 
     @Test
@@ -182,14 +166,10 @@ public class RoomServiceTest {
     @Test
     public void testGetRoomById_b107() {
         //Arrange
-        when(roomRepository.save(b107)).thenReturn(b107);
-        List<Room> roomList = new ArrayList<>();
-        roomList.add(b107);
-        when(roomRepository.findAll()).thenReturn(roomList);
         when(roomRepository.existsById(b107.getId())).thenReturn(true);
+        when(roomRepository.findById(b107.getId())).thenReturn(Optional.of(b107));
 
         Room expectedResult = b107;
-        when(roomRepository.findById(b107.getId())).thenReturn(Optional.of(expectedResult));
 
         //Act
         Room result = roomService.getRoomById(b107.getId());
