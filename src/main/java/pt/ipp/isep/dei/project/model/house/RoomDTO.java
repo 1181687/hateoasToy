@@ -2,7 +2,6 @@ package pt.ipp.isep.dei.project.model.house;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class RoomDTO {
 
@@ -77,32 +76,6 @@ public class RoomDTO {
     public void addRoom(RoomDTO room) {
         this.rooms.add(room);
     }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(this.id);
-    }
-
-    /**
-     * Equals method to determine if two Rooms are equal.
-     * They are equals if name (id) are equal.
-     * Names are case insensitive.
-     *
-     * @param obj receives an object
-     * @return boolean
-     */
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof RoomDTO)) {
-            return false;
-        }
-        RoomDTO roomOne = (RoomDTO) obj;
-        return this.id.equalsIgnoreCase(roomOne.getRoomId());
-    }
-
 
 }
 
