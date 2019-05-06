@@ -7,6 +7,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaId;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaIdMapper;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaTypeId;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.sensor.*;
@@ -160,6 +161,28 @@ public class GeoAreaSensorServiceTest {
     @Test
     public void sensorExists() {
 
+
+    }
+
+    @Test
+    public void getSensorsByGeoAreaIdTest() {
+        Location location = new Location(123, 456, 789);
+        GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("City");
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType(geoAreaTypeId);
+
+        GeoAreaId geoAreaId = new GeoAreaId(location, "Espinho", geographicalAreaType);
+        List<GeoAreaSensorDTO> geoAreaSensorDTOList = new ArrayList<>();
+
+        List<GeoAreaSensor> geoAreaSensorList = new ArrayList<>();
+
+
+        when(this.geoAreaSensorRepo.findAllByGeoAreaId(geoAreaId)).thenReturn(geoAreaSensorList);
+
+        // Act
+        List<GeoAreaSensorDTO> result = geoAreaSensorService.getSensorsByGeoAreaId(GeoAreaIdMapper.mapToDTO(geoAreaId));
+
+        // assert
+        assertEquals(geoAreaSensorDTOList, result);
 
     }
 }
