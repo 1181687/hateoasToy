@@ -14,7 +14,7 @@ public class RoomService {
     @Autowired
     RoomRepository roomRepository;
 
-    //nao se deve usar este metodo mas o abaixo que retorna RoomDTos
+    //nao se deve usar este metodo mas o abaixo que retorna RoomDTos qd se usa no controller
     public List<Room> getAllRooms() {
         return roomRepository.findAll();
     }
@@ -53,5 +53,4 @@ public class RoomService {
         }
         return null;
     }
-
 }

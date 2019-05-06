@@ -28,6 +28,10 @@ RegularUser -> ":InstantsOutOf\nTempComfortLevel\nUI": Chosen option
 activate ":InstantsOutOf\nTempComfortLevel\nUI"
 ":InstantsOutOf\nTempComfortLevel\nUI" -> ":InstantsOutOf\nTempComfortLevel\nController" : Chosen option
 activate ":InstantsOutOf\nTempComfortLevel\nController"
+":InstantsOutOf\nTempComfortLevel\nController" -> ":HouseService" : location=getLocation()
+activate ":HouseService"
+":InstantsOutOf\nTempComfortLevel\nController" -> ":HouseService" : geoAreaId=getGeoAreaId()
+deactivate ":HouseService"
 deactivate ":InstantsOutOf\nTempComfortLevel\nController"
 ":InstantsOutOf\nTempComfortLevel\nUI" --> RegularUser: House category
 deactivate ":InstantsOutOf\nTempComfortLevel\nUI"
@@ -57,7 +61,7 @@ activate ":InstantsOutOf\nTempComfortLevel\nUI"
 RegularUser -> ":InstantsOutOf\nTempComfortLevel\nUI": endDate
 ":InstantsOutOf\nTempComfortLevel\nUI" -> ":InstantsOutOf\nTempComfortLevel\nController" : getComfortTemperature\n(startDate, endDate)
 activate ":InstantsOutOf\nTempComfortLevel\nController"
-":InstantsOutOf\nTempComfortLevel\nController" -> ":SensorsService": getComfortTemperature(startDate, endDate, option,\n category, location, geoAreaID, sensorTypeID)
+":InstantsOutOf\nTempComfortLevel\nController" -> ":SensorsService": getComfortTemperature(startDate, endDate, option,\n category, location, geoAreaId, sensorTypeId)
 activate ":SensorsService"
 ref over ":SensorsService"
 getComfortTemperature

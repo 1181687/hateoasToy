@@ -1,4 +1,4 @@
-package pt.ipp.isep.dei.project.controllers.importreadingsfromcsvcontroller;
+package pt.ipp.isep.dei.project.controllers.importreadingscontroller;
 
 import pt.ipp.isep.dei.project.model.ProjectFileReader;
 import pt.ipp.isep.dei.project.model.ReadingDTO;

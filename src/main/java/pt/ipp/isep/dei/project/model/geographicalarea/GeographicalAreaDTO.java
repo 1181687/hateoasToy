@@ -1,5 +1,7 @@
 package pt.ipp.isep.dei.project.model.geographicalarea;
 
+import pt.ipp.isep.dei.project.model.LocationDTO;
+import pt.ipp.isep.dei.project.model.LocationMapper;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorDTO;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorMapper;
@@ -93,6 +95,14 @@ public class GeographicalAreaDTO {
 
     public void addSensor(GeoAreaSensorDTO sensor) {
         this.sensors.add(sensor);
+    }
+
+    public LocationDTO getLocation(){
+        LocationDTO location = LocationMapper.newLocationDTO();
+        location.setLatitude(latitude);
+        location.setLongitude(longitude);
+        location.setElevation(elevation);
+        return location;
     }
 
     public void addAllSensors(List<GeoAreaSensor> sensorList) {

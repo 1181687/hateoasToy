@@ -724,4 +724,13 @@ public class GeoAreaSensor implements Root {
     public GeoAreaId getGeoAreaId() {
         return geoAreaId;
     }
+
+    /**
+     * Method that adds a list of readings to the sensor.
+     *
+     * @param readings List of readings.
+     */
+    public void addReadings(List<Reading> readings) {
+        this.listOfReadings.addAll(readings);
+    }
 }

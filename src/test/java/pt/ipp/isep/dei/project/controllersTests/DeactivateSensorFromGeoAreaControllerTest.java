@@ -12,6 +12,7 @@ import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaTypeId;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.sensor.*;
+import pt.ipp.isep.dei.project.services.GeoAreaSensorService;
 import pt.ipp.isep.dei.project.services.GeographicalAreaService;
 
 import java.time.LocalDateTime;
@@ -29,6 +30,8 @@ public class DeactivateSensorFromGeoAreaControllerTest {
 
     @Mock
     private GeographicalAreaService geographicalAreaService;
+    @Mock
+    private GeoAreaSensorService geoAreaSensorService;
 
     @BeforeEach
     public void StartUp() {
@@ -50,7 +53,7 @@ public class DeactivateSensorFromGeoAreaControllerTest {
         porto.addSensor(temperatureSensor);
 
         // Controller
-        this.controller = new DeactivateSensorFromGeoAreaController(geographicalAreaService);
+        this.controller = new DeactivateSensorFromGeoAreaController(geographicalAreaService,geoAreaSensorService);
     }
 
     @Test
@@ -68,7 +71,7 @@ public class DeactivateSensorFromGeoAreaControllerTest {
     public void testDeactivateDevice_DeviceActive_ReturnsTrue() {
         // Act
         GeoAreaSensorDTO geoAreaSensorDTO = GeoAreaSensorMapper.mapToDTO(temperatureSensor);
-        when(geographicalAreaService.getSensorById(any(SensorId.class))).thenReturn(temperatureSensor);
+        when(geoAreaSensorService.deactivateSensor(any(GeoAreaSensorDTO.class))).thenReturn(true);
 
         boolean result = controller.deactivateSensor(geoAreaSensorDTO);
         // Assert
@@ -80,7 +83,7 @@ public class DeactivateSensorFromGeoAreaControllerTest {
         // Act
         temperatureSensor.deactivateDevice();
         GeoAreaSensorDTO geoAreaSensorDTO = GeoAreaSensorMapper.mapToDTO(temperatureSensor);
-        when(geographicalAreaService.getSensorById(any(SensorId.class))).thenReturn(temperatureSensor);
+        when(geoAreaSensorService.deactivateSensor(any(GeoAreaSensorDTO.class))).thenReturn(false);
 
         boolean result = controller.deactivateSensor(geoAreaSensorDTO);
         // Assert
