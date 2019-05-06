@@ -4,9 +4,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.LocationDTO;
 import pt.ipp.isep.dei.project.model.LocationMapper;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorDTO;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorMapper;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class LocationDTOTest {
     private LocationDTO locationDTO;
@@ -136,6 +137,59 @@ public class LocationDTOTest {
         LocationDTO result = locationDTO;
         //Assert
         assertNotEquals(testLocation, result);
+    }
+
+    @Test
+    public void testEquals_Location_False() {
+        //Arrange
+        LocationDTO testLocation = LocationMapper.newLocationDTO();
+        testLocation.setLatitude(34);
+        testLocation.setLongitude(23);
+        testLocation.setElevation(100);
+        //Act
+        LocationDTO result = locationDTO;
+        //Assert
+        assertNotEquals(testLocation, result);
+    }
+
+    @Test
+    public void testEquals_NotALocationObject_False() {
+        //Arrange
+        GeoAreaSensorDTO expectedResult = GeoAreaSensorMapper.newSensorDTO();
+        //Act
+        boolean result = locationDTO.equals(expectedResult);
+        //Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testHashcode_Location_NotEquals() {
+        //Arrange
+        LocationDTO testLocation = LocationMapper.newLocationDTO();
+        testLocation.setLatitude(45);
+        testLocation.setLongitude(20);
+        testLocation.setElevation(150);
+
+        int expectedResult = testLocation.hashCode();
+        //Act
+        int result = locationDTO.hashCode();
+        //Assert
+        assertNotEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testHashcode_Location_Equals() {
+        //Arrange
+        LocationDTO testLocation = LocationMapper.newLocationDTO();
+        testLocation.setLatitude(45);
+        testLocation.setLongitude(45);
+        testLocation.setElevation(150);
+
+        int expectedResult = testLocation.hashCode();
+        //Act
+        int result = locationDTO.hashCode();
+        //Assert
+        assertEquals(expectedResult, result);
     }
 
 }
