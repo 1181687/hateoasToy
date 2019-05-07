@@ -96,6 +96,20 @@ public class GetCurrentAndMaxTempRoomControllerTest {
     }
 
     @Test
+    public void getRoomDTOListTest_EmptyList() {
+        // RoomList with two rooms
+        List<RoomDTO> roomDTOS = new ArrayList<>();
+
+        List<RoomDTO> expectResult = roomDTOS;
+        //act
+        when(roomService.getAllRoomsDTO()).thenReturn(roomDTOS);
+        List<RoomDTO> result = ctrl.getRoomDTOList();
+
+        //assert
+        assertEquals(expectResult, result);
+    }
+
+    @Test
     public void getSensorType(){
         //arrange
         SensorTypeId expectedResult = sensorTypeTemperatureId;
@@ -127,6 +141,25 @@ public class GetCurrentAndMaxTempRoomControllerTest {
     }
 
     @Test
+    public void getLatestMeasurementOfRoomSensorTest_RoomIsNull(){
+        //arrange
+        room1.addSensorToListOfSensorsInRoom(roomSensor);
+
+        roomSensor.addReading(reading1);
+        roomSensor.addReading(reading2);
+
+        ReadingDTO expectedResult = null;
+
+        //act
+        RoomId roomId2 = new RoomId(room2.getRoomId());
+        when(roomSensorService.getLastMeasurement(roomId2,sensorTypeTemperatureId)).thenReturn(expectedResult);
+        ReadingDTO result = ctrl.getLatestMeasurementOfRoomSensor(room2.getRoomId());
+
+        //assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
     public void getMaximumTemperatureOfRoomInGivenDay(){
         //arrange
         room1.addSensorToListOfSensorsInRoom(roomSensor);
@@ -146,4 +179,56 @@ public class GetCurrentAndMaxTempRoomControllerTest {
         //assert
         assertEquals(expectedResult, result);
     }
+
+    @Test
+    public void getMaximumTemperatureOfRoomInGivenDay_WithReadingIsDoubleNaN(){
+        //arrange
+        room1.addSensorToListOfSensorsInRoom(roomSensor);
+
+        roomSensor.addReading(reading1);
+        roomSensor.addReading(reading2);
+
+        double value2 = Double.NaN;
+        LocalDateTime dateTime3 = LocalDateTime.of(2019,5,7,23,01,59);
+        Reading reading3 = new Reading(value2,dateTime3);
+
+        roomSensor.addReading(reading3);
+
+        LocalDate date1 = LocalDate.of(2019,5,7);
+
+        double expectedResult = reading1.getValue();
+
+        //act
+        RoomId roomId1 = new RoomId(room1.getRoomId());
+        when(roomSensorService.getMaxMeasurementValueOfADay(roomId1,sensorTypeTemperatureId,date1)).thenReturn(expectedResult);
+        double result = ctrl.getMaximumTemperatureOfRoomInGivenDay(room1.getRoomId(),date1);
+
+        //assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void getMaximumTemperatureOfRoomInGivenDay_WithOnlyOneReadingIsDoubleNaN(){
+        //arrange
+        room1.addSensorToListOfSensorsInRoom(roomSensor);
+
+        double value2 = Double.NaN;
+        LocalDateTime dateTime3 = LocalDateTime.of(2019,5,7,23,01,59);
+        Reading reading3 = new Reading(value2,dateTime3);
+
+        roomSensor.addReading(reading3);
+
+        LocalDate date1 = LocalDate.of(2019,5,7);
+
+        double expectedResult = reading3.getValue();
+
+        //act
+        RoomId roomId1 = new RoomId(room1.getRoomId());
+        when(roomSensorService.getMaxMeasurementValueOfADay(roomId1,sensorTypeTemperatureId,date1)).thenReturn(expectedResult);
+        double result = ctrl.getMaximumTemperatureOfRoomInGivenDay(room1.getRoomId(),date1);
+
+        //assert
+        assertEquals(expectedResult, result);
+    }
+
 }
