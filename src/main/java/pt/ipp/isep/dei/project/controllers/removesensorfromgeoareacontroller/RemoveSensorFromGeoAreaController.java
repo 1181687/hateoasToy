@@ -13,8 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RemoveSensorFromGeoAreaController {
-    private GeographicalAreaService geographicalAreaService;
-    private GeoAreaSensorService geoAreaSensorService;
+    private final GeographicalAreaService geographicalAreaService;
+    private final GeoAreaSensorService geoAreaSensorService;
 
     /**
      * Constructor.

@@ -15,9 +15,9 @@ import java.util.List;
 
 public class AddSensorToRoomController {
 
-    private SensorTypeService sensorTypeService;
-    private RoomService roomService;
-    private RoomSensorService roomSensorService;
+    private final SensorTypeService sensorTypeService;
+    private final RoomService roomService;
+    private final RoomSensorService roomSensorService;
 
     public AddSensorToRoomController(SensorTypeService sensorTypeService, RoomService roomService, RoomSensorService roomSensorService) {
         this.sensorTypeService = sensorTypeService;
