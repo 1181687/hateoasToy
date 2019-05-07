@@ -90,11 +90,11 @@ public class Admin {
                     ui10.run(1);
                     break;
                 case 11:
-                    DeactivateSensorFromGeoArea ui11 = new DeactivateSensorFromGeoArea(geographicalAreaService,geoAreaSensorService);
+                    DeactivateSensorFromGeoArea ui11 = new DeactivateSensorFromGeoArea(geographicalAreaService, geoAreaSensorService);
                     ui11.run();
                     break;
                 case 12:
-                    RemoveSensorFromGeoArea ui12 = new RemoveSensorFromGeoArea(geographicalAreaService,geoAreaSensorService);
+                    RemoveSensorFromGeoArea ui12 = new RemoveSensorFromGeoArea(geographicalAreaService, geoAreaSensorService);
                     ui12.run();
                     break;
             }
@@ -126,11 +126,11 @@ public class Admin {
                     ui253.run();
                     break;
                 case 5:
-                    GetListOfSensorsAndDevicesRoom ui201 = new GetListOfSensorsAndDevicesRoom(this.roomService,this.roomSensorService);
+                    GetListOfSensorsAndDevicesRoom ui201 = new GetListOfSensorsAndDevicesRoom(this.roomService, this.roomSensorService);
                     ui201.listOfDevices();
                     break;
                 case 6:
-                    GetListOfSensorsAndDevicesRoom ui250 = new GetListOfSensorsAndDevicesRoom(this.roomService,this.roomSensorService);
+                    GetListOfSensorsAndDevicesRoom ui250 = new GetListOfSensorsAndDevicesRoom(this.roomService, this.roomSensorService);
                     ui250.listOfSensors();
                     break;
                 case 7:

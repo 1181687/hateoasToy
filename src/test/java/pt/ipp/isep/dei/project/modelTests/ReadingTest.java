@@ -18,7 +18,7 @@ public class ReadingTest {
         //Arrange
         LocalDateTime date = LocalDateTime.of(2018, 2, 3, 12, 30);
         Reading reading = new Reading(23.2, date);
-        int expectedResult = Objects.hash(reading.getDateTime(),reading.getValue());
+        int expectedResult = Objects.hash(reading.getDateTime(), reading.getValue());
         //Act
         int result = reading.hashCode();
         //Assert

@@ -6,7 +6,6 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import pt.ipp.isep.dei.project.controllers.GetListOfSensorsAndDevicesRoomController;
 import pt.ipp.isep.dei.project.model.devices.Device;
-
 import pt.ipp.isep.dei.project.model.devices.DeviceDTO;
 import pt.ipp.isep.dei.project.model.devices.DeviceMapper;
 import pt.ipp.isep.dei.project.model.devices.DeviceType;
@@ -21,8 +20,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.when;
 
 
 public class GetListOfSensorsAndDevicesRoomControllerTest {

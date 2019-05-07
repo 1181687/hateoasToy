@@ -118,7 +118,7 @@ public class RoomSensorService {
         RoomSensorDTO roomSensorDTO = null;
         if (!Objects.isNull(this.roomSensorRepo.findByRoomIdAndSensorTypeId(roomId, sensorTypeId))) {
             roomSensor = this.roomSensorRepo.findByRoomIdAndSensorTypeId(roomId, sensorTypeId);
-            if(roomSensor.existReadingsBetweenDates(date,date)){
+            if (roomSensor.existReadingsBetweenDates(date, date)) {
                 roomSensorDTO = RoomSensorMapper.mapToDTO(roomSensor);
             }
         }
@@ -145,7 +145,7 @@ public class RoomSensorService {
         return false;
     }
 
-    public List<RoomSensor> getAllSensorsOfRoom(RoomId roomId){
+    public List<RoomSensor> getAllSensorsOfRoom(RoomId roomId) {
         return this.roomSensorRepo.findAllByRoomId(roomId);
     }
 }
