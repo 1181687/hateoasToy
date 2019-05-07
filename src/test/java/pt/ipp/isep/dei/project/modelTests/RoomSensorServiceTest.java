@@ -55,7 +55,7 @@ class RoomSensorServiceTest {
     }
 
     @Test
-    void getSensorById() {
+    public void getSensorById_SensorExists_ShouldReturnRightSensor() {
         // Arrange
         SensorId sensorId = new SensorId("S01");
 
@@ -69,11 +69,38 @@ class RoomSensorServiceTest {
     }
 
     @Test
-    void saveSensors() {
+    public void getSensorById_SensorDoesntExists_ShouldReturnNull() {
+        // Arrange
+        SensorId sensorId = new SensorId("S02");
+
+        // Act
+        SensorIdDTO sensorIdDTO = SensorIdMapper.mapToDTO(sensorId);
+
+
+        RoomSensorDTO result = roomSensorService.getSensorById(sensorIdDTO);
+        // Assert
+        assertNull(result);
     }
 
     @Test
-    void testSensorExists_SensorExists_ShouldReturnTrue() {
+    public void saveSensors() {
+        // Arrange
+        List<RoomSensorDTO> roomSensorDTOList = new ArrayList<>();
+        roomSensorDTOList.add(kitchenSensorDTO);
+
+        List<RoomSensor> roomSensorList = new ArrayList<>();
+        roomSensorList.add(kitchenSensor);
+
+        // Act
+        when(roomSensorRepository.saveAll(roomSensorList)).thenReturn(roomSensorList);
+        roomSensorService.saveSensors(roomSensorDTOList);
+
+        // Assert
+        assertNotEquals(roomSensorDTOList,roomSensorList);
+    }
+
+    @Test
+    public void testSensorExists_SensorExists_ShouldReturnTrue() {
         // Arrange
         SensorId sensorId = new SensorId("S01");
 
@@ -87,7 +114,7 @@ class RoomSensorServiceTest {
     }
 
     @Test
-    void testSensorExists_SensorDoesNotExists_ShouldReturnFalse() {
+    public void testSensorExists_SensorDoesNotExists_ShouldReturnFalse() {
         // Arrange
         SensorId sensorId = new SensorId("S02");
         SensorIdDTO sensorIdDTO = SensorIdMapper.mapToDTO(sensorId);
@@ -102,7 +129,7 @@ class RoomSensorServiceTest {
     }
 
     @Test
-    void getReadingsDTO_ReadingsExist_ShouldBeEquals() {
+    public void getReadingsDTO_ReadingsExist_ShouldBeEquals() {
         // Arrange
         SensorId sensorId = new SensorId("S01");
 
@@ -129,7 +156,7 @@ class RoomSensorServiceTest {
     }
 
     @Test
-    void getReadingsDTO_ReadingsDontExist_ShouldNotBeEquals() {
+    public void getReadingsDTO_ReadingsDontExist_ShouldNotBeEquals() {
         // Arrange
         SensorId sensorId = new SensorId("S01");
 
@@ -156,7 +183,7 @@ class RoomSensorServiceTest {
     }
 
     @Test
-    void existSensors_SensorsExist_ShouldReturnTrue() {
+    public void existSensors_SensorsExist_ShouldReturnTrue() {
         // Arrange
         SensorTypeId sensorTypeId = new SensorTypeId("Temperature");
 
@@ -170,7 +197,7 @@ class RoomSensorServiceTest {
     }
 
     @Test
-    void existSensors_SensorsDontExist_ShouldReturnFalse() {
+    public void existSensors_SensorsDontExist_ShouldReturnFalse() {
         // Arrange
         SensorTypeId sensorTypeId = new SensorTypeId("Temperature");
 
@@ -184,7 +211,7 @@ class RoomSensorServiceTest {
     }
 
     @Test
-    void getSensorId_SensorExists_ShouldNotBeEquals() {
+    public void getSensorId_SensorExists_ShouldNotBeEquals() {
         // Arrange
         SensorTypeId sensorTypeId = new SensorTypeId("Rainfall");
 
@@ -198,7 +225,7 @@ class RoomSensorServiceTest {
     }
 
     @Test
-    void getSensorId_SensorTypeDoesntExist_Should() {
+    public void getSensorId_SensorTypeDoesntExist_Should() {
         // Arrange
         SensorTypeId sensorTypeId = new SensorTypeId("Temperature");
 
@@ -212,7 +239,7 @@ class RoomSensorServiceTest {
     }
 
     @Test
-    void getRoomSensor_SensorExists_ShouldReturnRightSensor() {
+    public void getRoomSensor_SensorExists_ShouldReturnRightSensor() {
         // Arrange
         SensorTypeId sensorTypeId = new SensorTypeId("Temperature");
 
@@ -226,7 +253,7 @@ class RoomSensorServiceTest {
     }
 
     @Test
-    void getRoomSensor_SensorDoesntExists_ShouldReturnNull() {
+    public void getRoomSensor_SensorDoesntExists_ShouldReturnNull() {
         // Arrange
         SensorTypeId sensorTypeId = new SensorTypeId("Rainfall");
 
@@ -240,7 +267,7 @@ class RoomSensorServiceTest {
     }
 
     @Test
-    void getRoomSensorDTO() {
+    public void getRoomSensorDTO() {
         // Arrange
         SensorTypeId sensorTypeId = new SensorTypeId("Rainfall");
 
@@ -254,7 +281,7 @@ class RoomSensorServiceTest {
     }
 
     @Test
-    void getLastMeasurement_ReadingExists_ShouldBeEquals() {
+    public void getLastMeasurement_ReadingExists_ShouldBeEquals() {
         // Arrange
         SensorTypeId sensorTypeId = new SensorTypeId("Temperature");
 
@@ -275,7 +302,7 @@ class RoomSensorServiceTest {
     }
 
     @Test
-    void getLastMeasurement_ReadingDoesntExists_ShouldBeEquals() {
+    public void getLastMeasurement_ReadingDoesntExists_ShouldBeEquals() {
         // Arrange
         SensorTypeId sensorTypeId = new SensorTypeId("Temperature");
 
@@ -289,7 +316,19 @@ class RoomSensorServiceTest {
     }
 
     @Test
-    void getRoomSensorByRoomSensorTypeDate_SensorExists_ShouldBeEquals() {
+    public void getLastMeasurement_SensorDoesntExists_ShouldReturnNull() {
+        // Arrange
+        SensorTypeId sensorTypeId = new SensorTypeId("Temperature");
+
+        // Act
+        ReadingDTO result = roomSensorService.getLastMeasurement(kitchen.getId(), sensorTypeId);
+
+        // Assert
+        assertNull(result);
+    }
+
+    @Test
+    public void getRoomSensorByRoomSensorTypeDate_SensorExists_ShouldBeEquals() {
         // Arrange
         SensorTypeId sensorTypeId = new SensorTypeId("Temperature");
 
@@ -310,24 +349,8 @@ class RoomSensorServiceTest {
         assertEquals(kitchenSensorDTO, result);
     }
 
-    /*@Test
-    void getRoomSensorByRoomSensorTypeDate_ReadingDoesNotExists_ShouldNotBeEquals() {
-        // Arrange
-        SensorTypeId sensorTypeId = new SensorTypeId("Temperature");
-
-        LocalDate localDate = LocalDate.now();
-
-        // Act
-        when(roomSensorRepository.findByRoomIdAndSensorTypeId(kitchen.getId(),sensorTypeId)).thenReturn(kitchenSensor);
-
-        RoomSensorDTO result = roomSensorService.getRoomSensorByRoomSensorTypeDate(kitchen.getId(),sensorTypeId,localDate);
-
-        // Assert
-        assertNotEquals(kitchenSensorDTO,result);
-    }*/
-
     @Test
-    void getMaxMeasurementValueOfADay_DayWithNoReadings_ShouldReturnDoubleNaN() {
+    public void getMaxMeasurementValueOfADay_DayWithNoReadings_ShouldReturnDoubleNaN() {
         // Arrange
         SensorTypeId sensorTypeId = new SensorTypeId("Temperature");
 
@@ -351,7 +374,7 @@ class RoomSensorServiceTest {
     }
 
     @Test
-    void getMaxMeasurementValueOfADay_DayWithReadings_ShouldReturnTheRightValue() {
+    public void getMaxMeasurementValueOfADay_DayWithReadings_ShouldReturnTheRightValue() {
         // Arrange
         SensorTypeId sensorTypeId = new SensorTypeId("Temperature");
 
@@ -375,7 +398,30 @@ class RoomSensorServiceTest {
     }
 
     @Test
-    void newSensor_SensorDoesNotExist_ShouldReturnTrue() {
+    public void getMaxMeasurementValueOfADay_SensorDoesntExist_ShouldReturnDoubleNan() {
+        // Arrange
+        SensorTypeId sensorTypeId = new SensorTypeId("Temperature");
+
+        ReadingDTO readingDTO = new ReadingDTO();
+        readingDTO.setId("S01");
+        readingDTO.setValue(20);
+        readingDTO.setDateTime(LocalDateTime.of(2018, 01, 29, 12, 25));
+        readingDTO.setUnits("C");
+
+        kitchenSensor.addReading(ReadingMapper.mapToEntity(readingDTO));
+
+        double expectedResult = Double.NaN;
+
+        // Act
+
+        double result = roomSensorService.getMaxMeasurementValueOfADay(kitchen.getId(), sensorTypeId, LocalDate.of(2018, 01, 29));
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void newSensor_SensorDoesNotExist_ShouldReturnTrue() {
         // Arrange
         SensorId sensorId = new SensorId("S02");
         // New SensorDTO
@@ -401,7 +447,7 @@ class RoomSensorServiceTest {
     }
 
     @Test
-    void newSensor_SensorAlreadyExist_ShouldReturnFalse() {
+    public void newSensor_SensorAlreadyExist_ShouldReturnFalse() {
         // Arrange
         SensorId sensorId = new SensorId("S01");
         // New SensorDTO
@@ -427,7 +473,7 @@ class RoomSensorServiceTest {
     }
 
     @Test
-    void getAllSensorsOfRoom() {
+    public void getAllSensorsOfRoom() {
         // Arrange
         SensorId sensorId = new SensorId("S02");
         // New SensorDTO

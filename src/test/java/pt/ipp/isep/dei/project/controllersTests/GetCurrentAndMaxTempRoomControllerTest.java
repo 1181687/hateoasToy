@@ -6,14 +6,18 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import pt.ipp.isep.dei.project.controllers.GetCurrentAndMaxTempRoomController;
-import pt.ipp.isep.dei.project.model.house.Dimension;
-import pt.ipp.isep.dei.project.model.house.Room;
-import pt.ipp.isep.dei.project.model.house.RoomDTO;
-import pt.ipp.isep.dei.project.model.house.RoomMapper;
+import pt.ipp.isep.dei.project.model.Reading;
+import pt.ipp.isep.dei.project.model.ReadingDTO;
+import pt.ipp.isep.dei.project.model.ReadingMapper;
+import pt.ipp.isep.dei.project.model.house.*;
+import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
+import pt.ipp.isep.dei.project.model.sensor.SensorId;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 import pt.ipp.isep.dei.project.services.RoomSensorService;
 import pt.ipp.isep.dei.project.services.RoomService;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,7 +61,7 @@ public class GetCurrentAndMaxTempRoomControllerTest {
 
 
     @Test
-    public void getRoomDTOListTest() {
+    public void getRoomDTOListTest_TwoDTORooms() {
         // RoomList with two rooms
         List<RoomDTO> roomDTOS = new ArrayList<>();
 
@@ -82,6 +86,104 @@ public class GetCurrentAndMaxTempRoomControllerTest {
 
         //assert
         assertEquals(expectResult, result);
+    }
+
+    @Test
+    public void getSensorType(){
+        //arrange
+        SensorTypeId sensorTypeTemperatureId = new SensorTypeId("temperature");
+        SensorTypeId expectedResult = sensorTypeTemperatureId;
+
+        //act
+        SensorTypeId result = ctrl.getType();
+
+        //assert
+        assertEquals(expectedResult,result);
+    }
+
+    @Test
+    public void getLatestMeasurementOfRoomSensorTest(){
+        //arrange
+        String name1 = "Kitchen";
+        RoomId roomId = new RoomId(name1);
+        String description = "room";
+        int houseFloor1 = 0;
+        Dimension dimension1 = new Dimension(2, 2, 2);
+        Room room1 = new Room(name1, description, houseFloor1, dimension1);
+
+        SensorId sensorId = new SensorId("sensor1");
+        String sensorName = "Sensor numero 1";
+        LocalDateTime startDateTime = LocalDateTime.of(2019,5,5,23,59,59);
+        SensorTypeId sensorTypeId = new SensorTypeId("Temperature");
+        String units = "C";
+        RoomSensor roomSensor = new RoomSensor(sensorId,sensorName,startDateTime,sensorTypeId,units);
+
+        room1.addSensorToListOfSensorsInRoom(roomSensor);
+
+        double value1 = 31.2;
+        LocalDateTime dateTime1 = LocalDateTime.of(2019,5,7,22,59,59);
+        Reading reading1 = new Reading(value1,dateTime1);
+
+        double value2 = 30.2;
+        LocalDateTime dateTime2 = LocalDateTime.of(2019,5,7,23,01,59);
+        Reading reading2 = new Reading(value2,dateTime2);
+
+        roomSensor.addReading(reading1);
+        roomSensor.addReading(reading2);
+
+        ReadingDTO readingDTO = ReadingMapper.mapToDTO(reading2);
+
+        ReadingDTO expectedResult = readingDTO;
+
+        //act
+        when(roomSensorService.getLastMeasurement(roomId,sensorTypeId)).thenReturn(expectedResult);
+        ReadingDTO result = ctrl.getLatestMeasurementOfRoomSensor(name1);
+
+        //assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void getMaximumTemperatureOfRoomInGivenDay(){
+        //arrange
+        String name1 = "Kitchen";
+        RoomId roomId = new RoomId(name1);
+        String description = "room";
+        int houseFloor1 = 0;
+        Dimension dimension1 = new Dimension(2, 2, 2);
+        Room room1 = new Room(name1, description, houseFloor1, dimension1);
+
+        SensorId sensorId = new SensorId("sensor1");
+        String sensorName = "Sensor numero 1";
+        LocalDateTime startDateTime = LocalDateTime.of(2019,5,5,23,59,59);
+        SensorTypeId sensorTypeId = new SensorTypeId("Temperature");
+        String units = "C";
+        RoomSensor roomSensor = new RoomSensor(sensorId,sensorName,startDateTime,sensorTypeId,units);
+
+        room1.addSensorToListOfSensorsInRoom(roomSensor);
+
+        double value1 = 31.2;
+        LocalDateTime dateTime1 = LocalDateTime.of(2019,5,7,22,59,59);
+        Reading reading1 = new Reading(value1,dateTime1);
+
+        double value2 = 30.2;
+        LocalDateTime dateTime2 = LocalDateTime.of(2019,5,7,23,01,59);
+        Reading reading2 = new Reading(value2,dateTime2);
+
+        roomSensor.addReading(reading1);
+        roomSensor.addReading(reading2);
+
+        LocalDate date1 = LocalDate.of(2019,5,7);
+
+        double expectedResult = reading1.getValue();
+
+        //act
+
+        when(roomSensorService.getMaxMeasurementValueOfADay(roomId,sensorTypeId,date1)).thenReturn(expectedResult);
+        double result = ctrl.getMaximumTemperatureOfRoomInGivenDay(name1,date1);
+
+        //assert
+        assertEquals(expectedResult, result);
     }
 }
 

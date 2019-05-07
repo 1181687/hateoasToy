@@ -1,8 +1,7 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
+
 /*
-
-
 public class ImportGeoAreasFromJSONOrXMLControllerTest {
     @Autowired
     private GeographicalAreaService geographicalAreaService;
@@ -10,11 +9,10 @@ public class ImportGeoAreasFromJSONOrXMLControllerTest {
     @Autowired
     private GeoAreaSensorService geoAreaSensorService;
 
-    */
 /**
      * Test that imports imports geo areas and sensors
- *//*
-
+ */
+/*
     @Test
     public void testImportGeographicalAreaAndSensors_True() throws FileNotFoundException {
         MockitoAnnotations.initMocks(this);
@@ -88,4 +86,5 @@ public class ImportGeoAreasFromJSONOrXMLControllerTest {
     static class Config {
     }
 
-}*/
+}
+*/
