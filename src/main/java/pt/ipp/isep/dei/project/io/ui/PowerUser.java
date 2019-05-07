@@ -11,9 +11,10 @@ public class PowerUser {
     SensorsService sensorsService;
     RoomService roomService;
 
-    public PowerUser(HouseService houseService) {
+    public PowerUser(HouseService houseService, RoomService roomService, SensorsService sensorsService) {
         this.houseService = houseService;
-        this.house = houseService.getHouse();
+        this.roomService = roomService;
+        this.sensorsService = sensorsService;
     }
 
     public void runPowerUserMenu() {
@@ -60,7 +61,7 @@ public class PowerUser {
                         InstantsTempOutOfComfortLevel ui440and445 = new InstantsTempOutOfComfortLevel(houseService, sensorsService, roomService);
                         ui440and445.run();
                     } catch (NullPointerException e) {
-                        System.out.println("Problems with location and GeoArea of the house, please configure it.");
+                        System.out.println("Problems with house configuration.\n");
                     }
                     break;
             }

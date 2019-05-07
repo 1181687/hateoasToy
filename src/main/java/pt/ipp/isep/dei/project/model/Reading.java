@@ -4,6 +4,7 @@ import pt.ipp.isep.dei.project.roles.ValueObject;
 
 import javax.persistence.Embeddable;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Embeddable
 public class Reading implements ValueObject {
@@ -59,7 +60,7 @@ public class Reading implements ValueObject {
      */
     @Override
     public int hashCode() {
-        return 1;
+        return Objects.hash(this.dateTime,this.value);
     }
 
     /**
