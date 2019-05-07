@@ -2,20 +2,23 @@ package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import pt.ipp.isep.dei.project.controllers.getfirsthottestdayhouseareacontroller.GetFirstHottestDayHouseAreaController;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.ReadingMapper;
 import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaTypeId;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.house.Address;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorId;
-import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
+import pt.ipp.isep.dei.project.services.HouseService;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
@@ -23,9 +26,11 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
+
 
 public class GetFirstHottestDayHouseAreaControllerTest {
-    /*private static final String CONFIG_PROPERTIES = "Configuration.properties";
+    private static final String CONFIG_PROPERTIES = "Configuration.properties";
     private GeographicalArea northernRegion;
     private GeographicalArea portoDistrict;
     private GeographicalArea portoCity;
@@ -34,14 +39,18 @@ public class GetFirstHottestDayHouseAreaControllerTest {
     private SensorTypeId temperature;
     private Location location2;
     private House house;
+    @Mock
+    private HouseService houseService;
     private GetFirstHottestDayHouseAreaController controller;
 
     @BeforeEach
     public void StartUp() {
         // Geographical Area Types
-        GeographicalAreaType region = new GeographicalAreaType("Region");
-        GeographicalAreaType district = new GeographicalAreaType("District");
-        GeographicalAreaType city = new GeographicalAreaType("City");
+        MockitoAnnotations.initMocks(this);
+
+        GeographicalAreaType region = new GeographicalAreaType(new GeoAreaTypeId("Region"));
+        GeographicalAreaType district = new GeographicalAreaType(new GeoAreaTypeId("District"));
+        GeographicalAreaType city = new GeographicalAreaType(new GeoAreaTypeId("City"));
 
         // Geographical Areas
         Location location = new Location(32.1496, 7.6109, 98);
@@ -60,9 +69,9 @@ public class GetFirstHottestDayHouseAreaControllerTest {
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile(CONFIG_PROPERTIES, "MeteringPeriodGrid"));
         int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile(CONFIG_PROPERTIES, "MeteringPeriodDevice"));
         List<String> deviceTypeList = Utils.readConfigFileToList(CONFIG_PROPERTIES, "devicetype.count", "devicetype.name");
-        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
         Location houseLocation = new Location(41.178553, -8.608035, 111);
         Address address = new Address("4200-072", houseLocation, portoCity);
+        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice, address);
         this.house.setAddress(address);
 
         // Sensors
@@ -72,7 +81,7 @@ public class GetFirstHottestDayHouseAreaControllerTest {
         temperatureSensor = new GeoAreaSensor(new SensorId("S01"), "A123", startDate, temperature, sensorLocation, "l/m2");
         LocalDateTime startDate1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         Location sensorLocation1 = new Location(42.1496, -8.6109, 97);
-        temperatureSensor1 = new GeoAreaSensor(new SensorId("S01"), "B123", startDate1, temperature, sensorLocation1, "l/m2");
+        temperatureSensor1 = new GeoAreaSensor(new SensorId("S02"), "B123", startDate1, temperature, sensorLocation1, "l/m2");
 
         // Reading
         LocalDateTime readingDate = LocalDateTime.of(2018, 12, 2, 13, 20, 00);
@@ -83,9 +92,9 @@ public class GetFirstHottestDayHouseAreaControllerTest {
         temperatureSensor.addReadingsToList(reading1);
         LocalDateTime readingDate2 = LocalDateTime.of(2018, 12, 3, 05, 20, 00);
         LocalDateTime readingDate3 = LocalDateTime.of(2018, 12, 3, 05, 24, 00);
-        LocalDateTime readingDate4 = LocalDateTime.of(2018, 12, 4, 05, 24, 00);
-        LocalDateTime readingDate5 = LocalDateTime.of(2018, 12, 5, 05, 24, 00);
-        LocalDateTime readingDate6 = LocalDateTime.of(2018, 12, 4, 04, 24, 00);
+        LocalDateTime readingDate4 = LocalDateTime.of(2018, 12, 4, 05, 26, 00);
+        LocalDateTime readingDate5 = LocalDateTime.of(2018, 12, 5, 05, 27, 00);
+        LocalDateTime readingDate6 = LocalDateTime.of(2018, 12, 4, 04, 28, 00);
         Reading reading2 = new Reading(22, readingDate2);
         Reading reading3 = new Reading(25, readingDate3);
         Reading reading4 = new Reading(20, readingDate4);
@@ -102,14 +111,16 @@ public class GetFirstHottestDayHouseAreaControllerTest {
         portoCity.getSensorListInTheGeographicArea().addSensor(temperatureSensor);
         portoCity.getSensorListInTheGeographicArea().addSensor(temperatureSensor1);
 
-        controller = new GetFirstHottestDayHouseAreaController(house);
+        when(houseService.getHouse()).thenReturn(house);
+
+        controller = new GetFirstHottestDayHouseAreaController(houseService);
     }
 
     /**
      * There are 2 temperature sensors in Geographical area portocity
      * expected that isSensorListEmpty method returns false;
      **/
-    /*@Test
+    @Test
     public void isSensorListEmpty_False() {
         // Arrange
 
@@ -124,10 +135,10 @@ public class GetFirstHottestDayHouseAreaControllerTest {
      * There are no temperature sensors in Geographical area "newGeoArea"
      * expected that isSensorListEmpty method returns true;
      **/
-    /*@Test
+    @Test
     public void isSensorListEmptyTest_True() {
         // Arrange
-        GeographicalAreaType street = new GeographicalAreaType("Street");
+        GeographicalAreaType street = new GeographicalAreaType(new GeoAreaTypeId("Street"));
 
         // Geographical Area
 
@@ -150,7 +161,7 @@ public class GetFirstHottestDayHouseAreaControllerTest {
      * there are 5 measurements in that period (reading2, reading3, reading4, reading5 and reading6)
      * expected to return true;
      **/
-    /*@Test
+    @Test
     public void checkNearestSensorReadingsExistenceBetweenDates_True() {
         // Arrange
         LocalDate initialDate = LocalDate.of(2018, 12, 2);
@@ -168,7 +179,7 @@ public class GetFirstHottestDayHouseAreaControllerTest {
      * there are no measurements in that period
      * expected to return false;
      **/
-    /*@Test
+    @Test
     public void checkNearestSensorReadingsExistenceBetweenDates_False() {
         // Arrange
         LocalDate initialDate = LocalDate.of(2018, 12, 7);
@@ -187,23 +198,24 @@ public class GetFirstHottestDayHouseAreaControllerTest {
      * after calculating the first highest reading, it should be turned into a readingDTO
      * expected to return ReadingDTO;
      **/
-    /*@Test
+    @Test
     public void getFirstHighestReadingHouseArea_ReadingDTO() {
         //Arrange
         LocalDate startDate = LocalDate.of(2018, 12, 2);
         LocalDate endDate = LocalDate.of(2018, 12, 6);
 
-        LocalDateTime readingDate3 = LocalDateTime.of(2018, 12, 3, 05, 24, 00);
-        double valueReading3 = 25;
+        LocalDateTime readingDate3 = LocalDateTime.of(2018, 12, 3, 06, 24, 00);
+        double valueReading3 = 45;
         ReadingDTO expectedResultDTO = ReadingMapper.newReadingDTO();
         expectedResultDTO.setValue(valueReading3);
         expectedResultDTO.setDateTime(readingDate3);
         Reading expectedResult = ReadingMapper.mapToEntity(expectedResultDTO);
+        this.temperatureSensor1.addReading(expectedResult);
 
         //Act
         ReadingDTO resultDTO = controller.getFirstHighestReadingHouseArea(startDate, endDate);
         Reading result = ReadingMapper.mapToEntity(resultDTO);
         //Assert
         assertEquals(expectedResult, result);
-    }*/
+    }
 }

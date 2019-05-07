@@ -3,13 +3,18 @@ package pt.ipp.isep.dei.project.modelTests;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.LocationDTO;
+import pt.ipp.isep.dei.project.model.ReadingDTO;
+import pt.ipp.isep.dei.project.model.ReadingMapper;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaIdDTO;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaIdMapper;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorDTO;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorMapper;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 class GeoAreaSensorDTOTest {
@@ -204,5 +209,236 @@ class GeoAreaSensorDTOTest {
         String result = sensorDTO.getUnits();
         //Assert
         assertEquals(expectedResult, result);
+    }
+
+    @Test
+    void testEquals_Id_True() {
+        //Arrange
+        GeoAreaSensorDTO geoAreaSensorDTO = GeoAreaSensorMapper.newSensorDTO();
+
+        geoAreaSensorDTO.setId("ISEP-Temperature");
+        geoAreaSensorDTO.setName("Temperature sensor");
+        geoAreaSensorDTO.setSensorType("Temperature");
+        geoAreaSensorDTO.setLocation(sensorDTO.getLocation());
+        geoAreaSensorDTO.setStartingDate(LocalDate.now());
+        geoAreaSensorDTO.setUnits("ºC");
+
+        GeoAreaSensorDTO expectedResult = sensorDTO;
+        //Act
+        GeoAreaSensorDTO result = geoAreaSensorDTO;
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    void testEquals_Id_False() {
+        //Arrange
+        GeoAreaSensorDTO geoAreaSensorDTO = GeoAreaSensorMapper.newSensorDTO();
+
+        geoAreaSensorDTO.setId("ISEP");
+        geoAreaSensorDTO.setName("Temperature sensor");
+        geoAreaSensorDTO.setSensorType("Temperature");
+        geoAreaSensorDTO.setLocation(sensorDTO.getLocation());
+        geoAreaSensorDTO.setStartingDate(LocalDate.now());
+        geoAreaSensorDTO.setUnits("ºC");
+
+        GeoAreaSensorDTO expectedResult = sensorDTO;
+        //Act
+        GeoAreaSensorDTO result = geoAreaSensorDTO;
+        //Assert
+        assertNotEquals(expectedResult, result);
+    }
+
+    @Test
+    void testEquals_Name_True() {
+        //Arrange
+        GeoAreaSensorDTO geoAreaSensorDTO = GeoAreaSensorMapper.newSensorDTO();
+
+        geoAreaSensorDTO.setId("ISEP-Temperature");
+        geoAreaSensorDTO.setName("Temperature sensor");
+        geoAreaSensorDTO.setSensorType("Temperature");
+        geoAreaSensorDTO.setLocation(sensorDTO.getLocation());
+        geoAreaSensorDTO.setStartingDate(LocalDate.now());
+        geoAreaSensorDTO.setUnits("ºC");
+
+        GeoAreaSensorDTO expectedResult = sensorDTO;
+        //Act
+        GeoAreaSensorDTO result = geoAreaSensorDTO;
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    void testEquals_Name_False() {
+        //Arrange
+        GeoAreaSensorDTO geoAreaSensorDTO = GeoAreaSensorMapper.newSensorDTO();
+
+        geoAreaSensorDTO.setId("ISEP-Temperature");
+        geoAreaSensorDTO.setName("Temperature");
+        geoAreaSensorDTO.setSensorType("Temperature");
+        geoAreaSensorDTO.setLocation(sensorDTO.getLocation());
+        geoAreaSensorDTO.setStartingDate(LocalDate.now());
+        geoAreaSensorDTO.setUnits("ºC");
+
+        GeoAreaSensorDTO expectedResult = sensorDTO;
+        //Act
+        GeoAreaSensorDTO result = geoAreaSensorDTO;
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    void testEquals_Type_True() {
+        //Arrange
+        GeoAreaSensorDTO geoAreaSensorDTO = GeoAreaSensorMapper.newSensorDTO();
+
+        geoAreaSensorDTO.setId("ISEP-Temperature");
+        geoAreaSensorDTO.setName("Temperature sensor");
+        geoAreaSensorDTO.setSensorType("Temperature");
+        geoAreaSensorDTO.setLocation(sensorDTO.getLocation());
+        geoAreaSensorDTO.setStartingDate(LocalDate.now());
+        geoAreaSensorDTO.setUnits("ºC");
+
+        GeoAreaSensorDTO expectedResult = sensorDTO;
+        //Act
+        GeoAreaSensorDTO result = geoAreaSensorDTO;
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    void testEquals_Type_False() {
+        //Arrange
+        GeoAreaSensorDTO geoAreaSensorDTO = GeoAreaSensorMapper.newSensorDTO();
+
+        geoAreaSensorDTO.setId("ISEP-Temperature");
+        geoAreaSensorDTO.setName("Temperature sensor");
+        geoAreaSensorDTO.setSensorType("Rainfall");
+        geoAreaSensorDTO.setLocation(sensorDTO.getLocation());
+        geoAreaSensorDTO.setStartingDate(LocalDate.now());
+        geoAreaSensorDTO.setUnits("ºC");
+
+        GeoAreaSensorDTO expectedResult = sensorDTO;
+        //Act
+        GeoAreaSensorDTO result = geoAreaSensorDTO;
+        //Assert
+        assertNotEquals(expectedResult, result);
+    }
+
+    @Test
+    void testEquals_Location_True() {
+        //Arrange
+        GeoAreaSensorDTO geoAreaSensorDTO = sensorDTO;
+
+        GeoAreaSensorDTO expectedResult = sensorDTO;
+        //Act
+        GeoAreaSensorDTO result = geoAreaSensorDTO;
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    void testEquals_Location_False() {
+        //Arrange
+        GeoAreaSensorDTO geoAreaSensorDTO = GeoAreaSensorMapper.newSensorDTO();
+
+        LocationDTO locationDTO = sensorDTO.getLocation();
+        locationDTO.setLongitude(23);
+
+        geoAreaSensorDTO.setId("ISEP-Temperature");
+        geoAreaSensorDTO.setName("Temperature sensor");
+        geoAreaSensorDTO.setSensorType("Rainfall");
+        geoAreaSensorDTO.setLocation(locationDTO);
+        geoAreaSensorDTO.setStartingDate(LocalDate.now());
+        geoAreaSensorDTO.setUnits("ºC");
+
+        GeoAreaSensorDTO expectedResult = sensorDTO;
+        //Act
+        GeoAreaSensorDTO result = geoAreaSensorDTO;
+        //Assert
+        assertNotEquals(expectedResult, result);
+    }
+
+    @Test
+    void testHashCode_Same_True() {
+        //Arrange
+        GeoAreaSensorDTO geoAreaSensorDTO = GeoAreaSensorMapper.newSensorDTO();
+
+        geoAreaSensorDTO.setId("ISEP-Temperature");
+        geoAreaSensorDTO.setName("Temperature sensor");
+        geoAreaSensorDTO.setSensorType("Temperature");
+        geoAreaSensorDTO.setLocation(sensorDTO.getLocation());
+        geoAreaSensorDTO.setStartingDate(sensorDTO.getStartingDate());
+        geoAreaSensorDTO.setUnits("ºC");
+
+        int expectedResult = sensorDTO.hashCode();
+        //Act
+        int result = geoAreaSensorDTO.hashCode();
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    void testHashCode_DifferentObject_False() {
+        //Arrange
+        GeoAreaSensorDTO geoAreaSensorDTO = GeoAreaSensorMapper.newSensorDTO();
+
+        LocationDTO locationDTO = sensorDTO.getLocation();
+        locationDTO.setLatitude(23);
+
+        geoAreaSensorDTO.setId("ISEP");
+        geoAreaSensorDTO.setName("Temperature sensor");
+        geoAreaSensorDTO.setSensorType("Rainfall");
+        geoAreaSensorDTO.setLocation(locationDTO);
+        geoAreaSensorDTO.setStartingDate(LocalDate.now());
+        geoAreaSensorDTO.setUnits("ºC");
+
+        int expectedResult = sensorDTO.hashCode();
+        //Act
+        int result = geoAreaSensorDTO.hashCode();
+        //Assert
+        assertNotEquals(expectedResult, result);
+    }
+
+    @Test
+    void testEquals_DifferentObject_False() {
+        //Arrange
+        GeoAreaIdDTO geoAreaIdDTO = GeoAreaIdMapper.newDTO();
+
+        //Act
+        boolean result = sensorDTO.equals(geoAreaIdDTO);
+        //Assert
+        assertFalse(result);
+    }
+
+    @Test
+    void testAddReadingDTO_ValidReadingDTO_True() {
+        //Arrange
+        ReadingDTO readingDTO = ReadingMapper.newReadingDTO();
+        readingDTO.setValue(20);
+        readingDTO.setDateTime(sensorDTO.getStartingDate().atStartOfDay());
+        readingDTO.setId(sensorDTO.getId());
+        readingDTO.setUnits("C");
+
+        //Act
+        boolean result = sensorDTO.addReadingDTO(readingDTO);
+        //Assert
+        assertTrue(result);
+    }
+
+    @Test
+    void testAddReadingDTO_InvalidReadingDTO_False() {
+        //Arrange
+        ReadingDTO readingDTO = ReadingMapper.newReadingDTO();
+        readingDTO.setValue(20);
+        readingDTO.setDateTime(sensorDTO.getStartingDate().atStartOfDay());
+        readingDTO.setId(sensorDTO.getId());
+        readingDTO.setUnits("C");
+        sensorDTO.addReadingDTO(readingDTO);
+
+        //Act
+        boolean result = sensorDTO.addReadingDTO(readingDTO);
+        //Assert
+        assertFalse(result);
     }
 }

@@ -2,11 +2,13 @@ package pt.ipp.isep.dei.project.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.house.*;
 import pt.ipp.isep.dei.project.repositories.RoomRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class RoomService {
@@ -14,12 +16,12 @@ public class RoomService {
     @Autowired
     RoomRepository roomRepository;
 
-    //nao se deve usar este metodo mas o abaixo que retorna RoomDTos
+    //nao se deve usar este metodo mas o abaixo que retorna RoomDTos qd se usa no controller
     public List<Room> getAllRooms() {
         return roomRepository.findAll();
     }
 
-    public boolean isListOfRoomsEmpty(){
+    public boolean isListOfRoomsEmpty() {
         return getAllRooms().isEmpty();
     }
 
@@ -52,6 +54,15 @@ public class RoomService {
             return roomRepository.findById(roomId).orElse(null);
         }
         return null;
+    }
+
+    public List<Device> getAllDevicesOfRoom(String id) {
+        RoomId roomId = new RoomId(id);
+        Room room = this.roomRepository.findById(roomId).orElse(null);
+        if (Objects.nonNull(room)) {
+            return room.getDeviceList();
+        }
+        return new ArrayList<>();
     }
 
 }

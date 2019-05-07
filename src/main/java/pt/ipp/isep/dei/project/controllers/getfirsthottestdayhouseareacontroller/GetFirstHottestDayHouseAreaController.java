@@ -15,7 +15,7 @@ public class GetFirstHottestDayHouseAreaController {
     /**
      * constructor that receives a House and a SensorType
      *
-     * @param house parameter
+     * @param houseService parameter
      */
     public GetFirstHottestDayHouseAreaController(HouseService houseService) {
         this.house = houseService.getHouse();

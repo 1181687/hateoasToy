@@ -44,14 +44,14 @@ public class GetCurrentTemperatureRoom {
         System.out.println(content.toString());
     }
 
-    public void getRoomDTOListToString(){
+    public String getRoomDTOListToString() {
         StringBuilder roomListContent = new StringBuilder();
         int numberOfRoom = 1;
         for (RoomDTO roomDto:allRoomsDTOList) {
-            roomListContent.append (numberOfRoom+" - Id: "+roomDto.getRoomId());
+            roomListContent.append(numberOfRoom + " - Id: " + roomDto.getRoomId() + "\n");
             numberOfRoom++;
         }
-        System.out.println(roomListContent.toString());
+        return roomListContent.toString();
     }
 
     /**
@@ -60,17 +60,16 @@ public class GetCurrentTemperatureRoom {
      */
     public void run() {
        if (allRoomsDTOList.isEmpty()) {
-            System.out.println("Sorry! There are no rooms available.\n");
-            return;
-        }
-        getRoomDTOListToString();
-        String label0 = "Please, choose the room you would like to get the current temperature.";
+           System.out.println("Sorry! There are no rooms available.\n");
+           return;
+       }
+        String label0 = "Please, choose the room you would like to get the current temperature:\n" + getRoomDTOListToString() + "\n";
         int option = InputValidator.getIntRange(label0, 1, allRoomsDTOList.size())-1;
         RoomDTO selectedRoom = allRoomsDTOList.get(option);
         String roomDTOId = selectedRoom.getRoomId();
         ReadingDTO temp = controller.getLatestMeasurementOfRoomSensor(roomDTOId);
         if (Objects.isNull(temp)) {
-            System.out.println("Sorry! There are no temperature values available.");
+            System.out.println("Sorry! There are no temperature values available.\n");
             return;
         }
         displayResults(roomDTOId, temp.getValue(), temp.getDateTime().toString());

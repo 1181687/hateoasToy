@@ -33,7 +33,7 @@ public class GeographicalAreaService {
      * @return a list of geographical areas
      */
     public List<GeographicalArea> getGeoAreaList() {
-        return geoAreaList;
+        return (List<GeographicalArea>) this.geoAreaRepository.findAll();
     }
 
     /**
@@ -120,16 +120,6 @@ public class GeographicalAreaService {
      */
     public boolean removeGeoArea(GeographicalArea geoArea) {
         return geoAreaList.remove(geoArea);
-    }
-
-    /**
-     * that method add a geo area to the list, in a specific position.
-     *
-     * @param position
-     * @param geoArea
-     */
-    public void addGeoAreaInASpecificPosition(int position, GeographicalArea geoArea) {
-        geoAreaList.add(position, geoArea);
     }
 
     /**
@@ -228,12 +218,13 @@ public class GeographicalAreaService {
     /**
      * Method that returns a geographical area by searching for it by its id. If it's not on the list it returns null.
      *
-     * @param geoAreaId Id of the geographical area.
+     * @param geoAreaIdDTO Id of the geographical area.
      * @return Geographical area corresponding to the id (or null).
      */
-    public GeographicalArea getGeoAreaById(String geoAreaId) {
+    public GeographicalArea getGeoAreaById(GeoAreaIdDTO geoAreaIdDTO) {
+        GeoAreaId geoAreaId = GeoAreaIdMapper.mapToEntity(geoAreaIdDTO);
         for (GeographicalArea geographicalArea : geoAreaRepository.findAll()) {
-            if (geographicalArea.getId().getId().equals(geoAreaId)) {
+            if (geographicalArea.getId().equals(geoAreaId)) {
                 return geographicalArea;
             }
         }
