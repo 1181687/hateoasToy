@@ -165,9 +165,14 @@ public class GeoAreaSensorServiceTest {
         SensorId sensorId = new SensorId("s1");
         LocalDate date = LocalDate.of(2000, 1, 1);
 
+        LocalDateTime date1 = LocalDateTime.of(2000, 1, 1, 0, 0, 0);
+        Reading reading1 = new Reading(12, date1);
+
+        this.geoAreaSensor.addReading(reading1);
+
         when(this.geoAreaSensorRepo.findGeoAreaSensorsById(sensorId)).thenReturn(geoAreaSensor);
 
-        Double expectedResult = 5.0;
+        Double expectedResult = 12.0;
         // Act
         Double result = geoAreaSensorService.getDailyAverageBySensorId(sensorId, date);
 
