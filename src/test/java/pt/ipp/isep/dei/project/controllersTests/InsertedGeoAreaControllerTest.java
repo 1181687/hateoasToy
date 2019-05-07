@@ -3,7 +3,6 @@ package pt.ipp.isep.dei.project.controllersTests;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
-
 import org.mockito.MockitoAnnotations;
 import pt.ipp.isep.dei.project.controllers.InsertedGeoAreaController;
 import pt.ipp.isep.dei.project.model.Location;
@@ -166,7 +165,7 @@ public class InsertedGeoAreaControllerTest {
     @Test
     public void testarSeAGEstaContidaNoutraComCasoFalso() {
         //Arrange
-        when(geographicalAreaService.checkIfGeoAreaIsInsertedInAnother(2,0)).thenReturn(false);
+        when(geographicalAreaService.checkIfGeoAreaIsInsertedInAnother(2, 0)).thenReturn(false);
         //Act
         boolean result = controller.verificarSeAGEstaContidaDiretaOuIndiretamenteNoutraAG(2, 0);
         //Assert
@@ -176,7 +175,7 @@ public class InsertedGeoAreaControllerTest {
     @Test
     public void testarSeAGEstaInseridaEmAGDiretamenteComCasoVerdadeiro() {
         //Arrange
-        when(geographicalAreaService.checkIfGeoAreaIsInsertedInAnother(1,0)).thenReturn(true);
+        when(geographicalAreaService.checkIfGeoAreaIsInsertedInAnother(1, 0)).thenReturn(true);
 
         //Act
         boolean result = controller.verificarSeAGEstaContidaDiretaOuIndiretamenteNoutraAG(1, 0);

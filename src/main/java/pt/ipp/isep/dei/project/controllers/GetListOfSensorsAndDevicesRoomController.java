@@ -23,7 +23,7 @@ public class GetListOfSensorsAndDevicesRoomController {
 
     public GetListOfSensorsAndDevicesRoomController(RoomService roomAggregateService, RoomSensorService roomSensorService) {
         this.roomService = roomAggregateService;
-        this.sensorService=roomSensorService;
+        this.sensorService = roomSensorService;
     }
 
 
@@ -45,9 +45,9 @@ public class GetListOfSensorsAndDevicesRoomController {
     }
 
     public List<DeviceDTO> getDeviceDTOList(String id) {
-        List<Device> devices =roomService.getAllDevicesOfRoom(id);
+        List<Device> devices = roomService.getAllDevicesOfRoom(id);
         List<DeviceDTO> deviceDTOList = new ArrayList<>();
-        if(!devices.isEmpty()){
+        if (!devices.isEmpty()) {
             for (Device device : devices) {
                 deviceDTOList.add(DeviceMapper.mapToDTO(device));
             }

@@ -97,7 +97,7 @@ public class GeographicalAreaDTO {
         this.sensors.add(sensor);
     }
 
-    public LocationDTO getLocation(){
+    public LocationDTO getLocation() {
         LocationDTO location = LocationMapper.newLocationDTO();
         location.setLatitude(latitude);
         location.setLongitude(longitude);

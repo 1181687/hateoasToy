@@ -13,8 +13,8 @@ import pt.ipp.isep.dei.project.services.GeoAreaTypeService;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.when;
 
 public class GeoAreaTypeServiceTest {
 
@@ -24,13 +24,13 @@ public class GeoAreaTypeServiceTest {
     private GeoAreaTypeService service;
 
     @BeforeEach
-    public void StartUp(){
+    public void StartUp() {
         MockitoAnnotations.initMocks(this);
 
     }
 
     @Test
-    public void getListOfGeoAreaTypes(){
+    public void getListOfGeoAreaTypes() {
         //Arrange
         GeoAreaTypeId id1 = new GeoAreaTypeId("City");
         GeographicalAreaType geoAreaType1 = new GeographicalAreaType(id1);
@@ -38,7 +38,7 @@ public class GeoAreaTypeServiceTest {
         GeoAreaTypeId id2 = new GeoAreaTypeId("Forest");
         GeographicalAreaType geoAreaType2 = new GeographicalAreaType(id2);
 
-        List<GeographicalAreaType> expectedResult = Arrays.asList(geoAreaType1,geoAreaType2);
+        List<GeographicalAreaType> expectedResult = Arrays.asList(geoAreaType1, geoAreaType2);
 
         when(this.geoAreaTypeRepository.findAll()).thenReturn(expectedResult);
 
@@ -46,11 +46,11 @@ public class GeoAreaTypeServiceTest {
         List<GeographicalAreaType> result = this.service.getListOfGeoAreaTypes();
 
         //Assert
-        assertEquals(expectedResult,result);
+        assertEquals(expectedResult, result);
     }
 
     @Test
-    public void getListOfGeoAreaTypesToString(){
+    public void getListOfGeoAreaTypesToString() {
         //Arrange
         GeoAreaTypeId id1 = new GeoAreaTypeId("City");
         GeographicalAreaType geoAreaType1 = new GeographicalAreaType(id1);
@@ -58,21 +58,21 @@ public class GeoAreaTypeServiceTest {
         GeoAreaTypeId id2 = new GeoAreaTypeId("Forest");
         GeographicalAreaType geoAreaType2 = new GeographicalAreaType(id2);
 
-        List<GeographicalAreaType> types = Arrays.asList(geoAreaType1,geoAreaType2);
+        List<GeographicalAreaType> types = Arrays.asList(geoAreaType1, geoAreaType2);
 
         when(this.geoAreaTypeRepository.findAll()).thenReturn(types);
 
-        List<String> expectedResult = Arrays.asList(id1.getTypeId(),id2.getTypeId());
+        List<String> expectedResult = Arrays.asList(id1.getTypeId(), id2.getTypeId());
 
         //Act
         List<String> result = this.service.getListOfGeoAreaTypesToString();
 
         //Assert
-        assertEquals(expectedResult,result);
+        assertEquals(expectedResult, result);
     }
 
     @Test
-    public void newTypeOfGeoArea(){
+    public void newTypeOfGeoArea() {
         //Arrange
         String typeName = "City";
         GeoAreaTypeId id1 = new GeoAreaTypeId(typeName);
@@ -80,7 +80,7 @@ public class GeoAreaTypeServiceTest {
         //Act
         GeographicalAreaType result = this.service.newTypeOfGeoArea(typeName);
         //Assert
-        assertEquals(expectedResult,result);
+        assertEquals(expectedResult, result);
     }
 
 }

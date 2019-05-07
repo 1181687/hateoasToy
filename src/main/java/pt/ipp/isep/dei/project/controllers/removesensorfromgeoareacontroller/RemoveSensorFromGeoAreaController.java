@@ -21,7 +21,7 @@ public class RemoveSensorFromGeoAreaController {
      *
      * @param geographicalAreaService Geographical area list to use.
      */
-    public RemoveSensorFromGeoAreaController(GeographicalAreaService geographicalAreaService,GeoAreaSensorService geoAreaSensorService) {
+    public RemoveSensorFromGeoAreaController(GeographicalAreaService geographicalAreaService, GeoAreaSensorService geoAreaSensorService) {
         this.geographicalAreaService = geographicalAreaService;
         this.geoAreaSensorService = geoAreaSensorService;
     }

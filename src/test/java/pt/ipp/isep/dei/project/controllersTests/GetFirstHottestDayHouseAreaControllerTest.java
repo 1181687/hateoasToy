@@ -26,7 +26,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.when;
 
 
 public class GetFirstHottestDayHouseAreaControllerTest {
@@ -71,7 +71,7 @@ public class GetFirstHottestDayHouseAreaControllerTest {
         List<String> deviceTypeList = Utils.readConfigFileToList(CONFIG_PROPERTIES, "devicetype.count", "devicetype.name");
         Location houseLocation = new Location(41.178553, -8.608035, 111);
         Address address = new Address("4200-072", houseLocation, portoCity);
-        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice,address);
+        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice, address);
         this.house.setAddress(address);
 
         // Sensors

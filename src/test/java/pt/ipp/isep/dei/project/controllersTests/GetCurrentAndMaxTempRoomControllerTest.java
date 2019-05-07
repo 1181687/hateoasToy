@@ -10,7 +10,7 @@ import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.RoomDTO;
 import pt.ipp.isep.dei.project.model.house.RoomMapper;
-import pt.ipp.isep.dei.project.model.sensor.*;
+import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 import pt.ipp.isep.dei.project.services.RoomSensorService;
 import pt.ipp.isep.dei.project.services.RoomService;
 
@@ -75,7 +75,7 @@ public class GetCurrentAndMaxTempRoomControllerTest {
         roomDTOS.add(RoomMapper.mapToDTO(room1));
         roomDTOS.add(RoomMapper.mapToDTO(room2));
 
-       List<RoomDTO> expectResult = roomDTOS;
+        List<RoomDTO> expectResult = roomDTOS;
         //act
         when(roomService.getAllRoomsDTO()).thenReturn(roomDTOS);
         List<RoomDTO> result = ctrl.getRoomDTOList();
