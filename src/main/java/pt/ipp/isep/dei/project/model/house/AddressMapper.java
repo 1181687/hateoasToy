@@ -32,9 +32,12 @@ public class AddressMapper {
      *
      * @return AddressDTO.
      */
-    public static AddressDTO newDTO() {
+    public static AddressDTO mapToDTO(Address address) {
 
         AddressDTO addressDTO = new AddressDTO();
+        addressDTO.setCompleteAddress(address.getCompleteAddress());
+        addressDTO.setInsertedGeoArea(GeographicalAreaMapper.mapToDTO(address.getInsertedGeoArea()));
+        addressDTO.setLocation(LocationMapper.mapToDTO(address.getLocation()));
         return addressDTO;
     }
 
