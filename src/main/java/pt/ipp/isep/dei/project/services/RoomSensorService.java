@@ -10,7 +10,6 @@ import pt.ipp.isep.dei.project.model.sensor.*;
 import pt.ipp.isep.dei.project.repositories.RoomSensorRepository;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -116,13 +115,13 @@ public class RoomSensorService {
     }
 
     public RoomSensorDTO getRoomSensorByRoomSensorTypeDate(RoomId roomId, SensorTypeId sensorTypeId, LocalDate date) {
-        LocalDateTime date1 = date.atStartOfDay();
-        LocalDateTime date2 = date.atTime(23, 59, 59);
         RoomSensor roomSensor = null;
         RoomSensorDTO roomSensorDTO = null;
-        if (!Objects.isNull(this.roomSensorRepo.findByRoomIdAndSensorTypeIdAndReadingsBetween(roomId, sensorTypeId, date1, date2))) {
+        if (!Objects.isNull(this.roomSensorRepo.findByRoomIdAndSensorTypeId(roomId, sensorTypeId))) {
             roomSensor = this.roomSensorRepo.findByRoomIdAndSensorTypeId(roomId, sensorTypeId);
-            roomSensorDTO = RoomSensorMapper.mapToDTO(roomSensor);
+            if (roomSensor.existReadingsBetweenDates(date, date)) {
+                roomSensorDTO = RoomSensorMapper.mapToDTO(roomSensor);
+            }
         }
         return roomSensorDTO;
     }
@@ -147,7 +146,7 @@ public class RoomSensorService {
         return false;
     }
 
-    public List<RoomSensor> getAllSensorsOfRoom(RoomId roomId){
+    public List<RoomSensor> getAllSensorsOfRoom(RoomId roomId) {
         return this.roomSensorRepo.findAllByRoomId(roomId);
     }
 }

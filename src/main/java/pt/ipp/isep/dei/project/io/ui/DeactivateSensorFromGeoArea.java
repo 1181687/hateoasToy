@@ -19,7 +19,7 @@ public class DeactivateSensorFromGeoArea {
     private List<GeoAreaSensorDTO> geoAreaSensorDTOList;
 
     public DeactivateSensorFromGeoArea(GeographicalAreaService geographicalAreaService, GeoAreaSensorService geoAreaSensorService) {
-        this.ctrl = new DeactivateSensorFromGeoAreaController(geographicalAreaService,geoAreaSensorService);
+        this.ctrl = new DeactivateSensorFromGeoAreaController(geographicalAreaService, geoAreaSensorService);
         this.geographicalAreaDTOS = ctrl.listOfGeographicalAreas();
     }
 

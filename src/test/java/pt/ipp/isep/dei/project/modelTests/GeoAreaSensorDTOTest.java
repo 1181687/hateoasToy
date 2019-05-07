@@ -222,7 +222,7 @@ class GeoAreaSensorDTOTest {
         geoAreaSensorDTO.setLocation(sensorDTO.getLocation());
         geoAreaSensorDTO.setStartingDate(LocalDate.now());
         geoAreaSensorDTO.setUnits("ºC");
-        
+
         GeoAreaSensorDTO expectedResult = sensorDTO;
         //Act
         GeoAreaSensorDTO result = geoAreaSensorDTO;

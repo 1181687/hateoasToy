@@ -46,7 +46,7 @@ public class RemoveSensorFromGeoAreaControllerTest {
         SensorTypeId temperature = new SensorTypeId("temperature");
         LocalDateTime startDate = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         Location sensorLocation = new Location(38.1596, -8.6109, 97);
-        temperatureSensor = new GeoAreaSensor(new SensorId("S01"), "A123", startDate, temperature, sensorLocation, "l/m2",porto.getId());
+        temperatureSensor = new GeoAreaSensor(new SensorId("S01"), "A123", startDate, temperature, sensorLocation, "l/m2", porto.getId());
 
         // Geographical Area DTO
         portoDTO = GeographicalAreaMapper.mapToDTOwithSensors(porto);
@@ -55,7 +55,7 @@ public class RemoveSensorFromGeoAreaControllerTest {
         temperatureSensorDTO = GeoAreaSensorMapper.mapToDTO(temperatureSensor);
 
         // Controller
-        this.controller = new RemoveSensorFromGeoAreaController(geographicalAreaService,geoAreaSensorService);
+        this.controller = new RemoveSensorFromGeoAreaController(geographicalAreaService, geoAreaSensorService);
     }
 
 
