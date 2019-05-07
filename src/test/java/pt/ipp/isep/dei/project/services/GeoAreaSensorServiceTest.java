@@ -7,7 +7,10 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
-import pt.ipp.isep.dei.project.model.geographicalarea.*;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaId;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaIdMapper;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaTypeId;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.sensor.*;
 import pt.ipp.isep.dei.project.repositories.GeoAreaSensorRepository;
 
@@ -41,7 +44,6 @@ public class GeoAreaSensorServiceTest {
         GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("City");
         GeographicalAreaType geographicalAreaType = new GeographicalAreaType(geoAreaTypeId);
         GeoAreaId geoAreaId = new GeoAreaId(location, "Espinho", geographicalAreaType);
-        AreaShape areaShape = new AreaShape(123, 456);
 
         this.geoAreaSensor = new GeoAreaSensor(new SensorId("s1"), "TT123123", startDate, temperature, location, "l/m2", geoAreaId);
 
@@ -287,15 +289,33 @@ public class GeoAreaSensorServiceTest {
     }
 
     @Test
-    public void existsDaysWithoutComfortTemp() {
+    public void sensorExists_ShouldReturnTrue() {
+        // Arrange
+        SensorIdDTO sensorIdDTO = SensorIdMapper.mapToDTO(geoAreaSensor.getId());
+        SensorId sensorId = SensorIdMapper.mapToEntity(sensorIdDTO);
 
+        when(geoAreaSensorRepo.existsById(sensorId)).thenReturn(true);
 
+        // Act
+        boolean result = geoAreaSensorService.sensorExists(sensorIdDTO);
+
+        // Assert
+        assertTrue(result);
     }
 
     @Test
-    public void sensorExists() {
+    public void sensorExists_ShouldReturnFalse() {
+        // Arrange
+        SensorIdDTO sensorIdDTO = SensorIdMapper.mapToDTO(geoAreaSensor.getId());
+        SensorId sensorId = SensorIdMapper.mapToEntity(sensorIdDTO);
 
+        when(geoAreaSensorRepo.existsById(sensorId)).thenReturn(false);
 
+        // Act
+        boolean result = geoAreaSensorService.sensorExists(sensorIdDTO);
+
+        // Assert
+        assertFalse(result);
     }
 
     @Test
