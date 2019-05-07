@@ -28,7 +28,7 @@ public class InstantsTempOutOfComfortLevel {
     public void run() {
 
         //option us440 or us445
-        String label100 = "Choose one option:\n1- Get instants in which the temperature fell below the comfort level.\n 2- Get instants in which the temperature rose above the comfort level.\n 0- Exit.\n\n";
+        String label100 = "Choose one option:\n1- Get instants in which the temperature fell below the comfort level.\n2- Get instants in which the temperature rose above the comfort level.\n 0- Exit.\n\n";
         int usOption = InputValidator.getIntRange(label100, 0, 2);
 
         if (usOption == 0) {
@@ -45,7 +45,7 @@ public class InstantsTempOutOfComfortLevel {
         controller.setOption(usOption - 1);
 
         //category
-        String label99 = "Choose the category of comfort temperature:\n 1- Category I.\n 2- Category II.\n  3- Category III.\n 0- Exit.\n\n";
+        String label99 = "Choose the category of comfort temperature:\n1- Category I.\n2- Category II.\n3- Category III.\n0- Exit.\n\n";
         int categoryOption = InputValidator.getIntRange(label99, 0, 3);
 
         if (categoryOption == 0) {
