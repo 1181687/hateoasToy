@@ -6,6 +6,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import pt.ipp.isep.dei.project.model.Location;
+import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaId;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaIdMapper;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaTypeId;
@@ -28,7 +29,7 @@ public class GeoAreaSensorServiceTest {
     @Mock
     private GeoAreaSensorRepository geoAreaSensorRepo;
     private GeoAreaSensor geoAreaSensor;
-    private GeoAreaSensorDTO geoAreaSensorDTO;
+    private GeoAreaSensor geoAreaSensor1;
     @InjectMocks
     private GeoAreaSensorService geoAreaSensorService;
 
@@ -39,7 +40,7 @@ public class GeoAreaSensorServiceTest {
         // GeoAreaSensor
         Location location = new Location(41.1496, -8.6109, 97);
         SensorTypeId temperature = new SensorTypeId("Temperature");
-        LocalDateTime startDate = LocalDateTime.of(2018, 05, 02, 11, 45, 00);
+        LocalDateTime startDate = LocalDateTime.of(2018, 5, 2, 11, 45, 0);
 
         // GeoAreaId
         GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("City");
@@ -48,8 +49,19 @@ public class GeoAreaSensorServiceTest {
 
         this.geoAreaSensor = new GeoAreaSensor(new SensorId("s1"), "TT123123", startDate, temperature, location, "l/m2", geoAreaId);
 
-        // GeoAreaSensorDTO
-        this.geoAreaSensorDTO = new GeoAreaSensorDTO();
+
+        // GeoAreaSensor1
+        Location location1 = new Location(41.1357, -8.6057, 99);
+        SensorTypeId temperature1 = new SensorTypeId("Temperature");
+        LocalDateTime startDate1 = LocalDateTime.of(2017, 5, 2, 12, 45, 0);
+
+        // GeoAreaId1
+        GeoAreaTypeId geoAreaTypeId1 = new GeoAreaTypeId("City");
+        GeographicalAreaType geographicalAreaType1 = new GeographicalAreaType(geoAreaTypeId1);
+        GeoAreaId geoAreaId1 = new GeoAreaId(location, "Porto", geographicalAreaType1);
+
+        this.geoAreaSensor1 = new GeoAreaSensor(new SensorId("s2"), "TT111111", startDate1, temperature1, location1, "l/m2", geoAreaId1);
+
     }
 
     @Test
@@ -118,14 +130,49 @@ public class GeoAreaSensorServiceTest {
 
     @Test
     public void getNearestSensorWithMostRecentReading() {
+        // Arrange
+        Location location = new Location(123, 456, 789);
+        List<GeoAreaSensor> geoAreaSensorList = new ArrayList<>();
+        LocalDate startDate = LocalDate.of(1991, 4, 12);
+        LocalDate endDate = LocalDate.of(2019, 5, 6);
 
+        geoAreaSensorList.add(this.geoAreaSensor);
+        geoAreaSensorList.add(this.geoAreaSensor1);
 
+        // Reading sensor
+        LocalDateTime date = LocalDateTime.of(2000, 1, 1, 0, 0, 0);
+        Reading reading = new Reading(12, date);
+
+        this.geoAreaSensor.addReading(reading);
+
+        // Reading sensor1
+        LocalDateTime date1 = LocalDateTime.of(2000, 1, 1, 0, 0, 0);
+        Reading reading1 = new Reading(12, date1);
+
+        this.geoAreaSensor1.addReading(reading1);
+
+        GeoAreaSensor expectedResult = this.geoAreaSensor1;
+        // Act
+        GeoAreaSensor result = geoAreaSensorService.getNearestSensorWithMostRecentReading(location, geoAreaSensorList, startDate, endDate);
+
+        // Assert
+        assertEquals(expectedResult, result);
     }
 
     @Test
     public void getDailyAverageBySensorId() {
+        // Arrange
+        SensorId sensorId = new SensorId("s1");
+        LocalDate date = LocalDate.of(2000, 1, 1);
 
+        when(this.geoAreaSensorRepo.findGeoAreaSensorsById(sensorId)).thenReturn(geoAreaSensor);
 
+        Double expectedResult = 5.0;
+        // Act
+        Double result = geoAreaSensorService.getDailyAverageBySensorId(sensorId, date);
+
+        // Assert
+        assertEquals(expectedResult, result);
     }
 
     @Test
