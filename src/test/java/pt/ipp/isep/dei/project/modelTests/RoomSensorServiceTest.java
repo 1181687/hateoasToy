@@ -55,7 +55,7 @@ class RoomSensorServiceTest {
     }
 
     @Test
-    public void getSensorById() {
+    public void getSensorById_SensorExists_ShouldReturnRightSensor() {
         // Arrange
         SensorId sensorId = new SensorId("S01");
 
@@ -66,6 +66,20 @@ class RoomSensorServiceTest {
         RoomSensorDTO result = roomSensorService.getSensorById(sensorIdDTO);
         // Assert
         assertEquals(kitchenSensorDTO, result);
+    }
+
+    @Test
+    public void getSensorById_SensorDoesntExists_ShouldReturnNull() {
+        // Arrange
+        SensorId sensorId = new SensorId("S02");
+
+        // Act
+        SensorIdDTO sensorIdDTO = SensorIdMapper.mapToDTO(sensorId);
+
+
+        RoomSensorDTO result = roomSensorService.getSensorById(sensorIdDTO);
+        // Assert
+        assertNull(result);
     }
 
     @Test
@@ -310,22 +324,6 @@ class RoomSensorServiceTest {
         assertEquals(kitchenSensorDTO, result);
     }
 
-    /*@Test
-    public void getRoomSensorByRoomSensorTypeDate_ReadingDoesNotExists_ShouldNotBeEquals() {
-        // Arrange
-        SensorTypeId sensorTypeId = new SensorTypeId("Temperature");
-
-        LocalDate localDate = LocalDate.now();
-
-        // Act
-        when(roomSensorRepository.findByRoomIdAndSensorTypeId(kitchen.getId(),sensorTypeId)).thenReturn(kitchenSensor);
-
-        RoomSensorDTO result = roomSensorService.getRoomSensorByRoomSensorTypeDate(kitchen.getId(),sensorTypeId,localDate);
-
-        // Assert
-        assertNotEquals(kitchenSensorDTO,result);
-    }*/
-
     @Test
     public void getMaxMeasurementValueOfADay_DayWithNoReadings_ShouldReturnDoubleNaN() {
         // Arrange
@@ -372,6 +370,29 @@ class RoomSensorServiceTest {
 
         // Assert
         assertEquals(expectedResult, result, 0.00001);
+    }
+
+    @Test
+    public void getMaxMeasurementValueOfADay_SensorDoesntExist_ShouldReturnDoubleNan() {
+        // Arrange
+        SensorTypeId sensorTypeId = new SensorTypeId("Temperature");
+
+        ReadingDTO readingDTO = new ReadingDTO();
+        readingDTO.setId("S01");
+        readingDTO.setValue(20);
+        readingDTO.setDateTime(LocalDateTime.of(2018, 01, 29, 12, 25));
+        readingDTO.setUnits("C");
+
+        kitchenSensor.addReading(ReadingMapper.mapToEntity(readingDTO));
+
+        double expectedResult = Double.NaN;
+
+        // Act
+
+        double result = roomSensorService.getMaxMeasurementValueOfADay(kitchen.getId(), sensorTypeId, LocalDate.of(2018, 01, 29));
+
+        // Assert
+        assertEquals(expectedResult, result);
     }
 
     @Test
