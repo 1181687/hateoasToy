@@ -228,7 +228,7 @@ public final class Menu {
         return InputValidator.getIntRange(label, 0, 5);
     }
 
-    public static int powerUserEnergyConsumtionMenu() {
+    public static int powerUserEnergyConsumptionMenu() {
         StringBuilder content = new StringBuilder();
         content.append(CHOOSE_OPTIONS);
         content.append("\n");

@@ -50,4 +50,8 @@ public class GeoAreaTypeService {
         GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId(newType);
         return new GeographicalAreaType(geoAreaTypeId);
     }
+
+    public void save(GeographicalAreaType geographicalAreaType) {
+        geoAreaTypeRepository.save(geographicalAreaType);
+    }
 }
