@@ -12,7 +12,7 @@ hide circle
 
 
 
-InstantsTempOutOfComfortLevelUI "1" --> "1" InstantsTempOutOfComfortLevelController
+InstantsTempOutOfComfortLevelUI "1" -right-> "1" InstantsTempOutOfComfortLevelController
 InstantsTempOutOfComfortLevelController "1" --> "1" HouseService
 InstantsTempOutOfComfortLevelController "1" --> "1" "RoomService"
 InstantsTempOutOfComfortLevelController "1" --> "1" SensorsService
@@ -33,13 +33,13 @@ Address "1" --> "1" Location
 SensorsService "1" -> "1" ReadingMapper: uses
 ReadingMapper "1" -> "1" Reading: creates
 ReadingMapper "1" --> "1" ReadingDTO: creates
-RoomService "1" -left-> "1" RoomMapper: uses
-RoomMapper "1" -left-> "1" RoomDTO: creates
-InstantsTempOutOfComfortLevelController "1" -right-> "1" LocationMapper: uses
-LocationMapper "1" -up> "1" LocationDTO: creates
+RoomService "1" -up-> "1" RoomMapper: uses
+RoomMapper "1" -right-> "1" RoomDTO: creates
+InstantsTempOutOfComfortLevelController "1" -> "1" LocationMapper: uses
+LocationMapper "1" -up-> "1" LocationDTO: creates
 InstantsTempOutOfComfortLevelController "1" -right-> "1" GeoAreaIdMapper: uses
-GeoAreaIdMapper "1" -> "1" GeoAreaIdDTO: creates
-GeoAreaIdDTO "1" -> "1" LocationDTO
+GeoAreaIdMapper "1" -down-> "1" GeoAreaIdDTO: creates
+GeoAreaIdDTO "1" -down-> "1" LocationDTO
 
 
 
