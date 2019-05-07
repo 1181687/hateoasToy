@@ -126,8 +126,8 @@ public class GeoAreaSensorService {
     }
 
     public boolean addGeoAreaSensor(GeoAreaSensor geoAreaSensor) {
-        if (!this.doesSensorExist(geoAreaSensor.getId())) {
-            this.saveGeoAreaSensor(geoAreaSensor);
+        if (!doesSensorExist(geoAreaSensor.getId())) {
+            saveGeoAreaSensor(geoAreaSensor);
             return true;
         }
         return false;
