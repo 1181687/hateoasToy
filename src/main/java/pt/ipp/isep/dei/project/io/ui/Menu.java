@@ -199,7 +199,7 @@ public final class Menu {
         StringBuilder content = new StringBuilder();
         content.append(CHOOSE_OPTIONS);
         content.append("\n");
-        content.append("1-House configuration.");
+        content.append("1-House management.");
         content.append("\n");
         content.append("2-Energy consumption management.");
         content.append("\n");
@@ -228,7 +228,7 @@ public final class Menu {
         return InputValidator.getIntRange(label, 0, 5);
     }
 
-    public static int powerUserEnergyConsumtionMenu() {
+    public static int powerUserEnergyConsumptionMenu() {
         StringBuilder content = new StringBuilder();
         content.append(CHOOSE_OPTIONS);
         content.append("\n");
