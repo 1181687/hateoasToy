@@ -13,9 +13,7 @@ import pt.ipp.isep.dei.project.repositories.GeoAreaSensorRepository;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -220,9 +218,29 @@ public class GeoAreaSensorServiceTest {
     }
 
     @Test
-    public void getMapAverageOfDailyMeasurements() {
+    public void getMapAverageOfDailyMeasurementsTest() {
+        // Arrange
+        GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("City");
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType(geoAreaTypeId);
 
+        Location location = new Location(123, 456, 789);
+        GeoAreaId geoAreaId = new GeoAreaId(location, "Espinho", geographicalAreaType);
 
+        SensorTypeId sensorTypeId = new SensorTypeId("Temperature");
+        LocalDate startDate = LocalDate.of(1991, 4, 12);
+        LocalDate endDate = LocalDate.of(2019, 5, 6);
+
+        LocalDate date = LocalDate.of(2015, 9, 30);
+
+        Map<LocalDate, Double> expectedResult = new HashMap<>();
+        expectedResult.put(date, 15.0);
+
+        // Act
+        Map<LocalDate, Double> result = geoAreaSensorService.getMapAverageOfDailyMeasurements(location, geoAreaId, sensorTypeId, startDate, endDate);
+        result.put(date, 15.0);
+
+        // Assert
+        assertEquals(expectedResult, result);
     }
 
     @Test
