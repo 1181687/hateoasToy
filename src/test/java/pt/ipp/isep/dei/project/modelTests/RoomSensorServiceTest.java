@@ -84,6 +84,19 @@ class RoomSensorServiceTest {
 
     @Test
     public void saveSensors() {
+        // Arrange
+        List<RoomSensorDTO> roomSensorDTOList = new ArrayList<>();
+        roomSensorDTOList.add(kitchenSensorDTO);
+
+        List<RoomSensor> roomSensorList = new ArrayList<>();
+        roomSensorList.add(kitchenSensor);
+
+        // Act
+        when(roomSensorRepository.saveAll(roomSensorList)).thenReturn(roomSensorList);
+        roomSensorService.saveSensors(roomSensorDTOList);
+
+        // Assert
+        assertNotEquals(roomSensorDTOList,roomSensorList);
     }
 
     @Test
@@ -296,6 +309,18 @@ class RoomSensorServiceTest {
         // Act
         when(roomSensorRepository.findByRoomIdAndSensorTypeId(kitchen.getId(), sensorTypeId)).thenReturn(kitchenSensor);
 
+        ReadingDTO result = roomSensorService.getLastMeasurement(kitchen.getId(), sensorTypeId);
+
+        // Assert
+        assertNull(result);
+    }
+
+    @Test
+    public void getLastMeasurement_SensorDoesntExists_ShouldReturnNull() {
+        // Arrange
+        SensorTypeId sensorTypeId = new SensorTypeId("Temperature");
+
+        // Act
         ReadingDTO result = roomSensorService.getLastMeasurement(kitchen.getId(), sensorTypeId);
 
         // Assert
