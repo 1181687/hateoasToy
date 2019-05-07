@@ -159,20 +159,8 @@ class DeviceDTOTest {
 
     @Test
     public void testEquals_SameObject_ShouldReturnTrue() {
-        // Arrange
-        RoomDTO roomDTO = new RoomDTO();
-        roomDTO.setRoomId("Kitchen");
-        roomDTO.setDescription("First Floor kitchen");
-        roomDTO.setHouseFloor(1);
-
-        DeviceDTO expectedResult = DeviceMapper.newDeviceDTO();
-        expectedResult.setName("Fridge Ariston");
-        expectedResult.setDeviceType("Fridge");
-        expectedResult.setLocation(roomDTO);
-        expectedResult.setNominalPower(2.4);
-
         // Act
-        boolean result = deviceDTO.equals(expectedResult);
+        boolean result = deviceDTO.equals(deviceDTO);
 
         // Assert
         assertTrue(result);

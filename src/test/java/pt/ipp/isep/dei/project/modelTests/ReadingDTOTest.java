@@ -84,7 +84,9 @@ class ReadingDTOTest {
     public void testHashcode_ReadingDTO_Equals() {
         //Arrange
         ReadingDTO testReading = ReadingMapper.newReadingDTO();
-        testReading.setId("reading");
+        testReading.setValue(10);
+        LocalDateTime dateTime = LocalDateTime.of(2019, 3, 11, 0, 0, 0);
+        testReading.setDateTime(dateTime);
 
         int expectedResult = testReading.hashCode();
         //Act
