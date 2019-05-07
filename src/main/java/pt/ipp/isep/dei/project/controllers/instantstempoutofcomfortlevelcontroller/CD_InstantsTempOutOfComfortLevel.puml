@@ -12,10 +12,10 @@ hide circle
 
 
 
-InstantsTempOutOfComfortLevelUI "1" --> "1" InstantsTempOutOfComfortLevelController
-InstantsTempOutOfComfortLevelController "1" --> "1" HouseService
-InstantsTempOutOfComfortLevelController "1" -left-> "1" "RoomService"
-InstantsTempOutOfComfortLevelController "1" -> "1" SensorsService
+InstantsTemperatureOutOfComfortLevelUI "1" --> "1" InstantsTemperatureOutOfComfortLevelController
+InstantsTemperatureOutOfComfortLevelController "1" --> "1" HouseService
+InstantsTemperatureOutOfComfortLevelController "1" -left-> "1" "RoomService"
+InstantsTemperatureOutOfComfortLevelController "1" -> "1" SensorsService
 SensorsService "1" --> "1" RoomSensorService
 SensorsService "1" --> "1" GeoAreaSensorService
 RoomSensorService "1" -left-> "1" "<<RoomSensorRepository>>"
@@ -43,36 +43,36 @@ GeoAreaIdDTO "1" -> "1" LocationDTO
 
 
 
-Class InstantsTempOutOfComfortLevelUI {
-- InstantsTempOutOfComfortLevelController controller
+Class InstantsTemperatureOutOfComfortLevelUI {
+- InstantsTemperatureOutOfComfortLevelController controller
 + run()
 
 }
 
-Class InstantsTempOutOfComfortLevelController {
+Class InstantsTemperatureOutOfComfortLevelController {
 - SensorTypeId sensorTypeId
 - RoomId roomId
 - SensorId roomSensorId
 - LocationDTO location
 - GeoAreaIdDTO geoAreaId
-- Map<LocalDate, List<Double>> comfortTemp
-- Map<LocalDateTime, Double> mapInstantsOutOfComfortTemp
+- Map<LocalDate, List<Double>> comfortTemperature
+- Map<LocalDateTime, Double> mapInstantsOutOfComfortTemperature
 - List<Reading> roomReadings
 - int category
 - int option
-- List<LocalDateTime> listOfInstantsOutOfComfortTemp
+- List<LocalDateTime> listOfInstantsOutOfComfortTemperature
 + setCategory ()
 + setOption ()
 + getAllRoomsDTO ()
 + isRoomListEmpty ()
 + setRoomId ()
-+ existTempSensors ()
++ existTemperatureSensors ()
 + getComfortTemperature ()
 + setSensorID ()
 - getInstantsOutOfComfortTemperature ()
 + getInstantListOutOfComfortLevel ()
-+ existsDaysWithoutComfortTemp ()
-+ getDaysWithoutComfortTemp ()
++ existsDaysWithoutComfortTemperature ()
++ getDaysWithoutComfortTemperature ()
 + readingsHouseAreaAndRoom ()
 }
 
@@ -119,8 +119,8 @@ Class GeoAreaSensorService {
 + getNearestSensorWithMostRecentReading ()
 + getNearestSensors ()
 + getDailyAverageBySensorId ()
-+ existsDaysWithoutComfortTemp ()
-+ getDaysWithoutComfortTemp ()
++ existsDaysWithoutComfortTemperature ()
++ getDaysWithoutComfortTemperature ()
 }
 
 Class HouseService {
@@ -228,8 +228,8 @@ Class SensorsService {
 + getInstantsOutOfComfortTemperature ()
 + getInstantListOutOfComfortLevel ()
 + existSensors ()
-+ existsDaysWithoutComfortTemp ()
-+ getDaysWithoutComfortTemp ()
++ existsDaysWithoutComfortTemperature ()
++ getDaysWithoutComfortTemperature ()
 + getRoomReadingsDTO ()
 }
 
