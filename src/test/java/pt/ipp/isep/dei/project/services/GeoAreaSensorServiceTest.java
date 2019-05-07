@@ -7,10 +7,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaId;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaIdMapper;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaTypeId;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
+import pt.ipp.isep.dei.project.model.geographicalarea.*;
 import pt.ipp.isep.dei.project.model.sensor.*;
 import pt.ipp.isep.dei.project.repositories.GeoAreaSensorRepository;
 
@@ -46,9 +43,9 @@ public class GeoAreaSensorServiceTest {
         GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("City");
         GeographicalAreaType geographicalAreaType = new GeographicalAreaType(geoAreaTypeId);
         GeoAreaId geoAreaId = new GeoAreaId(location, "Espinho", geographicalAreaType);
+        AreaShape areaShape = new AreaShape(123, 456);
 
         this.geoAreaSensor = new GeoAreaSensor(new SensorId("s1"), "TT123123", startDate, temperature, location, "l/m2", geoAreaId);
-
 
         // GeoAreaSensor1
         Location location1 = new Location(41.1357, -8.6057, 99);
@@ -61,7 +58,6 @@ public class GeoAreaSensorServiceTest {
         GeoAreaId geoAreaId1 = new GeoAreaId(location, "Porto", geographicalAreaType1);
 
         this.geoAreaSensor1 = new GeoAreaSensor(new SensorId("s2"), "TT111111", startDate1, temperature1, location1, "l/m2", geoAreaId1);
-
     }
 
     @Test
@@ -206,17 +202,22 @@ public class GeoAreaSensorServiceTest {
         assertFalse(result);
     }
 
-/*    @Test
+    @Test
     public void addGeoAreaSensor_ShouldReturnTrue() {
-        // Arrange
-        when(geoAreaSensorService.addGeoAreaSensor(geoAreaSensor)).thenReturn(true);
-        when(geoAreaSensorService.saveGeoAreaSensor(geoAreaSensor));
-        // Act
+
+        boolean result = geoAreaSensorService.addGeoAreaSensor(geoAreaSensor);
+        assertTrue(result);
+    }
+
+    @Test
+    public void addGeoAreaSensor_ShouldReturnFalse() {
+
+        geoAreaSensorService.addGeoAreaSensor(geoAreaSensor);
+        when(geoAreaSensorRepo.existsById(geoAreaSensor.getId())).thenReturn(true);
         boolean result = geoAreaSensorService.addGeoAreaSensor(geoAreaSensor);
 
-        // Assert
-        assertTrue(result);
-    }*/
+        assertFalse(result);
+    }
 
     @Test
     public void getMapAverageOfDailyMeasurements() {
