@@ -88,6 +88,9 @@ public class Main {
     @Autowired
     private RoomService roomService;
 
+    @Autowired
+    private SensorsService sensorsService;
+
 
     public static void main(String[] args) {
 
@@ -114,8 +117,8 @@ public class Main {
                     houseEdificioB.getRoomList(), houseService, geoAreaSensorService, roomSensorService,
                     sensorTypeService, roomService, houseEdificioB);
             RegularUser regularUser = new RegularUser(geoAreaTypeService, geographicalAreaService, sensorTypeList, houseService, roomService, roomSensorService);
-            PowerUser powerUser = new PowerUser(houseService);
-            RoomOwner roomOwner = new RoomOwner(houseService);
+            PowerUser powerUser = new PowerUser(houseService, roomService, sensorsService);
+            RoomOwner roomOwner = new RoomOwner(houseService, roomService, sensorsService);
 
             int option = Menu.usersMenu();
             if (option == 0) {

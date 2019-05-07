@@ -17,14 +17,28 @@ General Criteria:
 Specific Criteria:
 - given - As a Power User or as a Room Owner, I want to have a list of the instants in which the temperature rose
 above the comfort level in a given time interval and category
-- when - The user chooses the Option 3 "Power User" or 4 "Room Owner"
+- when -
 
-Then the option 2- Get instants in which the temperature rose above the comfort level.
+
+As a Power User he/she chooses the following options:
+
+3 - Power User;
+1 - House Management;
+5 - Get instants of a Room where temperature was out of temperature comfort in a given period.
+
+As a Room Owner he/she chooses the following options:
+
+4 - Room Owner;
+2 - Get instants of a Room where temperature was out of temperature comfort in a given period.
+
+
+The user then chooses the option:
+1- Get instants in which the temperature fell below the comfort level.
 
 And then selects the option - Choose the category of comfort temperature:
-1- Category I.
-2- Category II.
-3- Category III.
+1 - Category I.
+2 - Category II.
+3 - Category III.
 
 The the user selects the option "Choose the room you want to get the instants:" and chooses the room he wants
 Finally the following options appear:
@@ -32,8 +46,13 @@ Finally the following options appear:
 "Please insert the first date of the period (yyyy-MM-dd):" and the user inserts a start date;
 "Please insert the second date of the period (yyyy-MM-dd):" and the user inserts an end date;
 
+
 - then:
 
+In case of success, the following message is displayed:
+
+"The list of instants [belowOrAbove] for the room [roomId] in the interval date between [startDate] and [endDate] are
+[listOfInstants]
 
 
 Test Criteria:
@@ -91,7 +110,7 @@ cooling systems. The following formulas are given in annex A.2
 * When this user story is executed, the user (Power User or Room Owner) chooses the category he/she wishes to associate to
 the room and the math regarding the US are made considering the chosen category.
 
-* It is assumed that "to" in the formula to calculate the temperature is the outside temperature in the house area.
+* It is assumed that "to" in the formula is the daily average temperature in the house area.
 
 * The standard EN 15251:2006 provides the formula of a weighted average of several days, and, at the least, the number
 of days may be one. At this time, it is not necessary to consider the average of several days, but only the average of

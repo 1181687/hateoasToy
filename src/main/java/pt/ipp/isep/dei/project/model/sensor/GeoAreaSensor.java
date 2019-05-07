@@ -591,7 +591,8 @@ public class GeoAreaSensor implements Root {
     public List<Reading> getReadingsBetweenDates(LocalDate startDate, LocalDate endDate) {
         List<Reading> measurementsBetweenDates = new ArrayList<>();
         for (Reading reading : listOfReadings) {
-            if ((reading.getDateTime().toLocalDate().isEqual(startDate) || reading.getDateTime().toLocalDate().isAfter(startDate)) && (reading.getDateTime().toLocalDate().isEqual(endDate) || reading.getDateTime().toLocalDate().isBefore(endDate))) {
+            if ((reading.getDateTime().toLocalDate().isEqual(startDate) || reading.getDateTime().toLocalDate().isAfter(startDate))
+                    && (reading.getDateTime().toLocalDate().isEqual(endDate) || reading.getDateTime().toLocalDate().isBefore(endDate))) {
                 measurementsBetweenDates.add(reading);
             }
         }

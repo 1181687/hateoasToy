@@ -50,7 +50,7 @@ public class DeactivateSensorFromGeoAreaControllerTest {
         porto.addSensor(temperatureSensor);
 
         // Controller
-        this.controller = new DeactivateSensorFromGeoAreaController(geographicalAreaService,geoAreaSensorService);
+        this.controller = new DeactivateSensorFromGeoAreaController(geographicalAreaService, geoAreaSensorService);
     }
 
     @Test
@@ -118,7 +118,7 @@ public class DeactivateSensorFromGeoAreaControllerTest {
     }
 
     @Test
-    public void testGetListOfSensors(){
+    public void testGetListOfSensors() {
         // Arrange
         List<GeoAreaSensorDTO> expectedResult = new ArrayList<>();
         expectedResult.add(GeoAreaSensorMapper.mapToDTO(temperatureSensor));
@@ -130,6 +130,6 @@ public class DeactivateSensorFromGeoAreaControllerTest {
         List<GeoAreaSensorDTO> result = controller.listOfSensors(geoAreaIdDTO);
 
         // Assert
-        assertEquals(expectedResult,result);
+        assertEquals(expectedResult, result);
     }
 }

@@ -1,31 +1,40 @@
-/*
+
 package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import pt.ipp.isep.dei.project.controllers.GetCurrentAndMaxTempRoomController;
-import pt.ipp.isep.dei.project.model.Location;
-import pt.ipp.isep.dei.project.model.Reading;
-import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
-import pt.ipp.isep.dei.project.model.house.*;
-import pt.ipp.isep.dei.project.model.sensor.*;
-import pt.ipp.isep.dei.project.utils.Utils;
+import pt.ipp.isep.dei.project.model.house.Dimension;
+import pt.ipp.isep.dei.project.model.house.Room;
+import pt.ipp.isep.dei.project.model.house.RoomDTO;
+import pt.ipp.isep.dei.project.model.house.RoomMapper;
+import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
+import pt.ipp.isep.dei.project.services.RoomSensorService;
+import pt.ipp.isep.dei.project.services.RoomService;
 
-import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.when;
 
 public class GetCurrentAndMaxTempRoomControllerTest {
     private GetCurrentAndMaxTempRoomController ctrl;
-    private House house;
+
+    @Mock
+    private RoomSensorService roomSensorService;
+
+    @Mock
+    private RoomService roomService;
+
 
     @BeforeEach
     public void StartUp() {
+        MockitoAnnotations.initMocks(this);
         //Geographical Area
-        Location location = new Location(41.178553, -8.608035, 111);
+        /*Location location = new Location(41.178553, -8.608035, 111);
         AreaShape areaShape = new AreaShape(0.261, 0.249, location);
         GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Urban area");
         GeographicalArea insertedGeoArea = new GeographicalArea("ISEP", "Campus do ISEP", geographicalAreaType, location, areaShape);
@@ -39,15 +48,45 @@ public class GetCurrentAndMaxTempRoomControllerTest {
 
         Location houseLocation = new Location(41.177748, -8.607745, 112);
         Address address = new Address("4200-072", houseLocation, insertedGeoArea);
-        house.setAddress(address);
+        house.setAddress(address);*/
 
-        SensorType sensorType = new SensorType(new SensorTypeId("Temperature"));
+        SensorTypeId sensorTypeId = new SensorTypeId("Temperature");
 
-        ctrl = new GetCurrentAndMaxTempRoomController(house, sensorType);
-    }*/
+        this.ctrl = new GetCurrentAndMaxTempRoomController(sensorTypeId, roomSensorService, roomService);
+    }
 
-    /*@Test
-    public void getDisplayRoomListTest() {
+
+    @Test
+    public void getRoomDTOListTest() {
+        // RoomList with two rooms
+        List<RoomDTO> roomDTOS = new ArrayList<>();
+
+        String name1 = "Kitchen";
+        String description = "room";
+        int houseFloor1 = 0;
+        Dimension dimension1 = new Dimension(2, 2, 2);
+        Room room1 = new Room(name1, description, houseFloor1, dimension1);
+
+        String name2 = "Living Room";
+        int houseFloor2 = 1;
+        Dimension dimension2 = new Dimension(2, 1.5, 1.3);
+        Room room2 = new Room(name2, description, houseFloor2, dimension2);
+
+        roomDTOS.add(RoomMapper.mapToDTO(room1));
+        roomDTOS.add(RoomMapper.mapToDTO(room2));
+
+        List<RoomDTO> expectResult = roomDTOS;
+        //act
+        when(roomService.getAllRoomsDTO()).thenReturn(roomDTOS);
+        List<RoomDTO> result = ctrl.getRoomDTOList();
+
+        //assert
+        assertEquals(expectResult, result);
+    }
+}
+
+
+    /*public void getDisplayRoomListTest() {
         //arrange
         String name1 = "Kitchen";
         String description = "room";

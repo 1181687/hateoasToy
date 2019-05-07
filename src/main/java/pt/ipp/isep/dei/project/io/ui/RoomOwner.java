@@ -12,8 +12,10 @@ public class RoomOwner {
     RoomService roomService;
 
 
-    public RoomOwner(HouseService houseService) {
+    public RoomOwner(HouseService houseService, RoomService roomService, SensorsService sensorsService) {
         this.houseService = houseService;
+        this.roomService = roomService;
+        this.sensorsService = sensorsService;
     }
 
     public void runRoomOwnerMenu() {
@@ -31,7 +33,7 @@ public class RoomOwner {
                     InstantsTempOutOfComfortLevel ui440and445 = new InstantsTempOutOfComfortLevel(houseService, sensorsService, roomService);
                     ui440and445.run();
                 } catch (Exception e) {
-                    System.out.println("Problems with location and GeoArea of the house, please configure it");
+                    System.out.println("Problems with house configuration.\n");
                 }
             }
             option = Menu.roomOwnerMenu();

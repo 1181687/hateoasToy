@@ -49,11 +49,11 @@ public class LocationDTO {
             return false;
         }
         LocationDTO locationDTO = (LocationDTO) obj;
-        return Utils.isSameDouble(this.latitude,locationDTO.getLatitude()) && Utils.isSameDouble(this.longitude,locationDTO.getLongitude()) && Utils.isSameDouble(this.elevation,locationDTO.getElevation());
+        return Utils.isSameDouble(this.latitude, locationDTO.getLatitude()) && Utils.isSameDouble(this.longitude, locationDTO.getLongitude()) && Utils.isSameDouble(this.elevation, locationDTO.getElevation());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.latitude,this.longitude,this.elevation);
+        return Objects.hash(this.latitude, this.longitude, this.elevation);
     }
 }

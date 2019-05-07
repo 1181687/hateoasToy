@@ -24,7 +24,7 @@ public class RemoveSensorFromGeoArea {
      * @param geographicalAreaService List that contains all of the geographical areas in the system.
      */
     public RemoveSensorFromGeoArea(GeographicalAreaService geographicalAreaService, GeoAreaSensorService geoAreaSensorService) {
-        controller = new RemoveSensorFromGeoAreaController(geographicalAreaService,geoAreaSensorService);
+        controller = new RemoveSensorFromGeoAreaController(geographicalAreaService, geoAreaSensorService);
         geographicalAreaDTOS = controller.getGeographicalAreaDTO();
     }
 

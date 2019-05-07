@@ -150,7 +150,7 @@ public class GeoAreaSensorService {
 
         if (!sensors.isEmpty()) {
             GeoAreaSensor sensor = this.getNearestSensorWithMostRecentReading(location, sensors, startDate, endDate);
-            for (LocalDate dateIterator = startDate; dateIterator.isBefore(endDate); dateIterator = dateIterator.plusDays(1)) {
+            for (LocalDate dateIterator = startDate; !dateIterator.isAfter(endDate); dateIterator = dateIterator.plusDays(1)) {
                 double dailyAverage = this.getDailyAverageBySensorId(sensor.getId(), dateIterator);
                 if (!Double.isNaN(dailyAverage)) {
                     mapOfDailyAverages.put(dateIterator, dailyAverage);
@@ -240,11 +240,12 @@ public class GeoAreaSensorService {
 
     /**
      * Method that finds the sensors that belong to a specific GeoArea by its Id
+     *
      * @param geoAreaIdDTO
      * @return
      */
 
-    public List<GeoAreaSensorDTO> getSensorsByGeoAreaId(GeoAreaIdDTO geoAreaIdDTO){
+    public List<GeoAreaSensorDTO> getSensorsByGeoAreaId(GeoAreaIdDTO geoAreaIdDTO) {
         List<GeoAreaSensorDTO> geoAreaSensorDTOS = new ArrayList<>();
         GeoAreaId geoAreaId = GeoAreaIdMapper.mapToEntity(geoAreaIdDTO);
         for (GeoAreaSensor sensor : this.geoAreaSensorRepo.findAllByGeoAreaId(geoAreaId)) {
@@ -254,19 +255,19 @@ public class GeoAreaSensorService {
     }
 
 
-    public boolean removeSensor(SensorIdDTO sensorIdDTO){
+    public boolean removeSensor(SensorIdDTO sensorIdDTO) {
         SensorId sensorId = SensorIdMapper.mapToEntity(sensorIdDTO);
-        if (sensorExists(sensorIdDTO)){
+        if (sensorExists(sensorIdDTO)) {
             this.geoAreaSensorRepo.deleteById(sensorId);
             return true;
         }
         return false;
     }
 
-    public boolean deactivateSensor(GeoAreaSensorDTO geoAreaSensorDTO){
+    public boolean deactivateSensor(GeoAreaSensorDTO geoAreaSensorDTO) {
         SensorId sensorId = new SensorId(geoAreaSensorDTO.getId());
         SensorIdDTO sensorIdDTO = SensorIdMapper.mapToDTO(sensorId);
-        if (sensorExists(sensorIdDTO)){
+        if (sensorExists(sensorIdDTO)) {
             GeoAreaSensor sensor = geoAreaSensorRepo.findById(sensorId).orElse(null);
             sensor.deactivateDevice();
             saveGeoAreaSensor(sensor);

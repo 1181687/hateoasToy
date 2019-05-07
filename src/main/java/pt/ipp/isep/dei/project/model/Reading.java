@@ -60,7 +60,7 @@ public class Reading implements ValueObject {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(this.dateTime,this.value);
+        return Objects.hash(this.dateTime, this.value);
     }
 
     /**
