@@ -111,18 +111,6 @@ public class GeoAreaSensorServiceTest {
     }
 
     @Test
-    public void getLatestGeoAreaReadingInInterval() {
-        // Arrange
-
-
-        // Act
-
-
-        // Assert
-
-    }
-
-    @Test
     public void getNearestSensorWithMostRecentReading() {
         // Arrange
         Location location = new Location(123, 456, 789);
@@ -245,8 +233,33 @@ public class GeoAreaSensorServiceTest {
 
     @Test
     public void getComfortTemperature() {
+        // Arrange
+        GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("City");
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType(geoAreaTypeId);
 
+        Location location = new Location(123, 456, 789);
+        GeoAreaId geoAreaId = new GeoAreaId(location, "Espinho", geographicalAreaType);
 
+        SensorTypeId sensorTypeId = new SensorTypeId("Temperature");
+        LocalDate startDate = LocalDate.of(1991, 4, 12);
+        LocalDate endDate = LocalDate.of(2019, 5, 6);
+
+        LocalDate date = LocalDate.of(2015, 9, 30);
+
+        List<Double> doubleList = new ArrayList<>();
+        doubleList.add(1.0);
+        doubleList.add(2.0);
+        doubleList.add(3.0);
+
+        Map<LocalDate, List<Double>> expectedResult = new HashMap<>();
+        expectedResult.put(date, doubleList);
+
+        // Act
+        Map<LocalDate, List<Double>> result = geoAreaSensorService.getComfortTemperature(location, geoAreaId, sensorTypeId, startDate, endDate, 15);
+        result.put(date, doubleList);
+
+        // Assert
+        assertEquals(expectedResult, result);
     }
 
     @Test
@@ -278,8 +291,6 @@ public class GeoAreaSensorServiceTest {
         List<GeoAreaSensorDTO> geoAreaSensorDTOList = new ArrayList<>();
 
         List<GeoAreaSensor> geoAreaSensorList = new ArrayList<>();
-
-
         when(this.geoAreaSensorRepo.findAllByGeoAreaId(geoAreaId)).thenReturn(geoAreaSensorList);
 
         // Act
