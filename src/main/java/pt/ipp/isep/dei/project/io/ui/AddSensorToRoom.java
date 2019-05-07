@@ -10,7 +10,6 @@ import pt.ipp.isep.dei.project.services.RoomService;
 import pt.ipp.isep.dei.project.services.SensorTypeService;
 
 import java.util.List;
-import java.util.Scanner;
 
 /**
  * US253 As an Administrator, I want to add a new sensor to a room from the list of available
@@ -19,11 +18,9 @@ import java.util.Scanner;
 
 public class AddSensorToRoom {
 
-    private AddSensorToRoomController controller;
-    private List<RoomDTO> roomDTOList;
-    private List<SensorTypeDTO> sensorTypeDTOS;
-    private SensorTypeDTO sensorTypeDTO;
-    private RoomDTO roomDTO;
+    private final AddSensorToRoomController controller;
+    private final List<RoomDTO> roomDTOList;
+    private final List<SensorTypeDTO> sensorTypeDTOS;
 
     public AddSensorToRoom(SensorTypeService sensorTypeService, RoomService roomService, RoomSensorService roomSensorService) {
         controller = new AddSensorToRoomController(sensorTypeService, roomService, roomSensorService);
@@ -33,8 +30,6 @@ public class AddSensorToRoom {
 
     public void run() {
 
-        Scanner read = new Scanner(System.in);
-
         if (roomDTOList.isEmpty()) {
             System.out.println("There are no rooms in the housegrid. Please create a room");
         } else if (sensorTypeDTOS.isEmpty()) {
@@ -43,12 +38,12 @@ public class AddSensorToRoom {
             // Select Room to add Sensor
             System.out.println(getRoomToList());
             int positionOfTheRoom = InputValidator.getIntRange("To which room do you want to add a sensor?", 1, roomDTOList.size()) - 1;
-            roomDTO = roomDTOList.get(positionOfTheRoom);
+            RoomDTO roomDTO = roomDTOList.get(positionOfTheRoom);
             // Select SensorType
             System.out.println("Please, select a sensor type");
             System.out.println(getSensorTypeList());
             int positionOfTheSensorType = InputValidator.getIntRange("Please, select a sensor type", 1, sensorTypeDTOS.size()) - 1;
-            sensorTypeDTO = sensorTypeDTOS.get(positionOfTheSensorType);
+            SensorTypeDTO sensorTypeDTO = sensorTypeDTOS.get(positionOfTheSensorType);
 
             String sensorId = InputValidator.getString("What's the Id of the new sensor?\n");
             String nameOfSensor = InputValidator.getString("What's the name of the new sensor?\n");

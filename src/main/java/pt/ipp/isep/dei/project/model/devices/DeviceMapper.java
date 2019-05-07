@@ -8,6 +8,10 @@ public final class DeviceMapper {
         // Empty
     }
 
+    public static DeviceDTO newDeviceDTO(){
+        return new DeviceDTO();
+    }
+
     public static DeviceDTO mapToDTO(Device device) {
         DeviceDTO deviceDTO = new DeviceDTO();
         deviceDTO.setName(device.getName());
