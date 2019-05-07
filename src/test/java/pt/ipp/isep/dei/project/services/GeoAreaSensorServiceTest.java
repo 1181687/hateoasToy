@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -176,16 +176,42 @@ public class GeoAreaSensorServiceTest {
     }
 
     @Test
-    public void doesSensorExist() {
+    public void doesSensorExistTest_ShouldBeTrue() {
+        // Arrange
+        SensorId sensorId = new SensorId("s1");
+        when(geoAreaSensorRepo.existsById(sensorId)).thenReturn(true);
 
+        // Act
+        boolean result = geoAreaSensorService.doesSensorExist(sensorId);
 
+        // Assert
+        assertTrue(result);
     }
 
     @Test
-    public void addGeoAreaSensor() {
+    public void doesSensorExistTest_ShouldReturnFalse() {
+        // Arrange
+        SensorId sensorId = new SensorId("s1");
+        when(geoAreaSensorRepo.existsById(sensorId)).thenReturn(false);
 
+        // Act
+        boolean result = geoAreaSensorService.doesSensorExist(sensorId);
 
+        // Assert
+        assertFalse(result);
     }
+
+/*    @Test
+    public void addGeoAreaSensor_ShouldReturnTrue() {
+        // Arrange
+        when(geoAreaSensorService.addGeoAreaSensor(geoAreaSensor)).thenReturn(true);
+        when(geoAreaSensorService.saveGeoAreaSensor(geoAreaSensor));
+        // Act
+        boolean result = geoAreaSensorService.addGeoAreaSensor(geoAreaSensor);
+
+        // Assert
+        assertTrue(result);
+    }*/
 
     @Test
     public void getMapAverageOfDailyMeasurements() {
