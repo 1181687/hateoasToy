@@ -70,7 +70,7 @@ public class PowerUser {
     }
 
     public void runPowerUserEnergyConsumptionManagement() {
-        int option = Menu.powerUserEnergyConsumtionMenu();
+        int option = Menu.powerUserEnergyConsumptionMenu();
         if (option == 0) {
             return;
         }
@@ -102,7 +102,7 @@ public class PowerUser {
                     break;
 
             }
-            option = Menu.powerUserEnergyConsumtionMenu();
+            option = Menu.powerUserEnergyConsumptionMenu();
         }
     }
 }

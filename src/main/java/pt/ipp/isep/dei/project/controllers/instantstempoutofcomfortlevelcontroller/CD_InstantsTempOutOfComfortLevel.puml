@@ -32,7 +32,7 @@ House "1" --> "1" Address
 Address "1" -right-> "1" Location
 SensorsService "1" -> "1" ReadingMapper: uses
 ReadingMapper "1" -> "1" Reading: creates
-ReadingMapper "1" -right-> "1" ReadingDTO: creates
+ReadingMapper "1" -down-> "1" ReadingDTO: creates
 RoomService "1" -left-> "1" RoomMapper: uses
 RoomMapper "1" -up-> "1" RoomDTO: creates
 HouseService "1" --> "1" LocationMapper: uses
