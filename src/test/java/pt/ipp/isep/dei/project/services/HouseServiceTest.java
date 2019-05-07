@@ -1,6 +1,5 @@
 package pt.ipp.isep.dei.project.services;
 
-import org.hibernate.annotations.CollectionType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -15,7 +14,6 @@ import pt.ipp.isep.dei.project.model.house.*;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridDTO;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
-import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridMapper;
 import pt.ipp.isep.dei.project.repositories.HouseGridRepository;
 import pt.ipp.isep.dei.project.repositories.HouseRepository;
 import pt.ipp.isep.dei.project.repositories.RoomRepository;
