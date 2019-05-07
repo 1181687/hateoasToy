@@ -115,10 +115,9 @@ public class RoomSensorService {
     }
 
     public RoomSensorDTO getRoomSensorByRoomSensorTypeDate(RoomId roomId, SensorTypeId sensorTypeId, LocalDate date) {
-        RoomSensor roomSensor = null;
         RoomSensorDTO roomSensorDTO = null;
         if (!Objects.isNull(this.roomSensorRepo.findByRoomIdAndSensorTypeId(roomId, sensorTypeId))) {
-            roomSensor = this.roomSensorRepo.findByRoomIdAndSensorTypeId(roomId, sensorTypeId);
+            RoomSensor roomSensor = this.roomSensorRepo.findByRoomIdAndSensorTypeId(roomId, sensorTypeId);
             if (roomSensor.existReadingsBetweenDates(date, date)) {
                 roomSensorDTO = RoomSensorMapper.mapToDTO(roomSensor);
             }
@@ -129,12 +128,10 @@ public class RoomSensorService {
     public double getMaxMeasurementValueOfADay(RoomId roomId, SensorTypeId sensorTypeId, LocalDate date) {
         RoomSensorDTO roomSensorDTO = getRoomSensorByRoomSensorTypeDate(roomId, sensorTypeId, date);
         if (Objects.isNull(roomSensorDTO)) {
-            double value = Double.NaN;
-            return value;
+            return Double.NaN;
         }
         RoomSensor roomSensor = RoomSensorMapper.mapToEntity(roomSensorDTO);
-        double maxValue = roomSensor.getMaximumValueOfDay(date);
-        return maxValue;
+        return roomSensor.getMaximumValueOfDay(date);
     }
 
     public boolean newSensor(RoomSensorDTO roomSensorDTO) {
