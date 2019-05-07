@@ -33,13 +33,13 @@ class RoomSensorServiceTest {
 
 
     @BeforeEach
-    public void startup(){
+    public void startup() {
         MockitoAnnotations.initMocks(this);
         // Room
-        Dimension kitchenDimensions = new Dimension(3,2,3);
-        kitchen = new Room("Kitchen","First floor kitchen",1,kitchenDimensions);
+        Dimension kitchenDimensions = new Dimension(3, 2, 3);
+        kitchen = new Room("Kitchen", "First floor kitchen", 1, kitchenDimensions);
         // RoomSensor
-        LocalDate startDate = LocalDate.of(2018,01,20);
+        LocalDate startDate = LocalDate.of(2018, 01, 20);
         kitchenSensorDTO = RoomSensorMapper.newRoomSensorDTO();
         kitchenSensorDTO.setRoomId("Kitchen");
         kitchenSensorDTO.setUnits("C");
@@ -65,7 +65,7 @@ class RoomSensorServiceTest {
 
         RoomSensorDTO result = roomSensorService.getSensorById(sensorIdDTO);
         // Assert
-        assertEquals(kitchenSensorDTO,result);
+        assertEquals(kitchenSensorDTO, result);
     }
 
     @Test
@@ -109,7 +109,7 @@ class RoomSensorServiceTest {
         ReadingDTO readingDTO = new ReadingDTO();
         readingDTO.setId("S01");
         readingDTO.setValue(20);
-        readingDTO.setDateTime(LocalDateTime.of(2018,12,30,12,25));
+        readingDTO.setDateTime(LocalDateTime.of(2018, 12, 30, 12, 25));
         readingDTO.setUnits("C");
 
         List<ReadingDTO> expectedResult = new ArrayList<>();
@@ -119,13 +119,13 @@ class RoomSensorServiceTest {
         // Act
         when(roomSensorRepository.findById(sensorId)).thenReturn(Optional.of(kitchenSensor));
 
-        LocalDate startDate = LocalDate.of(2018,12,29);
-        LocalDate endDate = LocalDate.of(2018,12,31);
+        LocalDate startDate = LocalDate.of(2018, 12, 29);
+        LocalDate endDate = LocalDate.of(2018, 12, 31);
 
-        List<ReadingDTO> result = roomSensorService.getReadingsDTO(startDate,endDate,sensorId);
+        List<ReadingDTO> result = roomSensorService.getReadingsDTO(startDate, endDate, sensorId);
 
         // Assert
-        assertEquals(expectedResult,result);
+        assertEquals(expectedResult, result);
     }
 
     @Test
@@ -136,7 +136,7 @@ class RoomSensorServiceTest {
         ReadingDTO readingDTO = new ReadingDTO();
         readingDTO.setId("S01");
         readingDTO.setValue(20);
-        readingDTO.setDateTime(LocalDateTime.of(2018,12,30,12,25));
+        readingDTO.setDateTime(LocalDateTime.of(2018, 12, 30, 12, 25));
         readingDTO.setUnits("C");
 
         List<ReadingDTO> expectedResult = new ArrayList<>();
@@ -146,13 +146,13 @@ class RoomSensorServiceTest {
         // Act
         when(roomSensorRepository.findById(sensorId)).thenReturn(Optional.of(kitchenSensor));
 
-        LocalDate startDate = LocalDate.of(2018,01,29);
-        LocalDate endDate = LocalDate.of(2018,01,31);
+        LocalDate startDate = LocalDate.of(2018, 01, 29);
+        LocalDate endDate = LocalDate.of(2018, 01, 31);
 
-        List<ReadingDTO> result = roomSensorService.getReadingsDTO(startDate,endDate,sensorId);
+        List<ReadingDTO> result = roomSensorService.getReadingsDTO(startDate, endDate, sensorId);
 
         // Assert
-        assertNotEquals(expectedResult,result);
+        assertNotEquals(expectedResult, result);
     }
 
     @Test
@@ -161,9 +161,9 @@ class RoomSensorServiceTest {
         SensorTypeId sensorTypeId = new SensorTypeId("Temperature");
 
         // Act
-        when(roomSensorRepository.existsRoomSensorsByRoomIdAndSensorTypeId(kitchen.getId(),sensorTypeId)).thenReturn(true);
+        when(roomSensorRepository.existsRoomSensorsByRoomIdAndSensorTypeId(kitchen.getId(), sensorTypeId)).thenReturn(true);
 
-        boolean result = roomSensorService.existSensors(kitchen.getId(),kitchenSensor.getSensorType());
+        boolean result = roomSensorService.existSensors(kitchen.getId(), kitchenSensor.getSensorType());
 
         // Assert
         assertTrue(result);
@@ -175,9 +175,9 @@ class RoomSensorServiceTest {
         SensorTypeId sensorTypeId = new SensorTypeId("Temperature");
 
         // Act
-        when(roomSensorRepository.existsRoomSensorsByRoomIdAndSensorTypeId(kitchen.getId(),sensorTypeId)).thenReturn(false);
+        when(roomSensorRepository.existsRoomSensorsByRoomIdAndSensorTypeId(kitchen.getId(), sensorTypeId)).thenReturn(false);
 
-        boolean result = roomSensorService.existSensors(kitchen.getId(),kitchenSensor.getSensorType());
+        boolean result = roomSensorService.existSensors(kitchen.getId(), kitchenSensor.getSensorType());
 
         // Assert
         assertFalse(result);
@@ -189,12 +189,12 @@ class RoomSensorServiceTest {
         SensorTypeId sensorTypeId = new SensorTypeId("Rainfall");
 
         // Act
-        when(roomSensorRepository.findByRoomIdAndSensorTypeId(kitchen.getId(),sensorTypeId)).thenReturn(kitchenSensor);
+        when(roomSensorRepository.findByRoomIdAndSensorTypeId(kitchen.getId(), sensorTypeId)).thenReturn(kitchenSensor);
 
-        SensorId result = roomSensorService.getSensorId(kitchen.getId(),kitchenSensor.getSensorType());
+        SensorId result = roomSensorService.getSensorId(kitchen.getId(), kitchenSensor.getSensorType());
 
         // Assert
-        assertNotEquals(kitchenSensor.getId(),result);
+        assertNotEquals(kitchenSensor.getId(), result);
     }
 
     @Test
@@ -203,12 +203,12 @@ class RoomSensorServiceTest {
         SensorTypeId sensorTypeId = new SensorTypeId("Temperature");
 
         // Act
-        when(roomSensorRepository.findByRoomIdAndSensorTypeId(kitchen.getId(),sensorTypeId)).thenReturn(kitchenSensor);
+        when(roomSensorRepository.findByRoomIdAndSensorTypeId(kitchen.getId(), sensorTypeId)).thenReturn(kitchenSensor);
 
-        SensorId result = roomSensorService.getSensorId(kitchen.getId(),kitchenSensor.getSensorType());
+        SensorId result = roomSensorService.getSensorId(kitchen.getId(), kitchenSensor.getSensorType());
 
         // Assert
-        assertEquals(kitchenSensor.getId(),result);
+        assertEquals(kitchenSensor.getId(), result);
     }
 
     @Test
@@ -217,12 +217,12 @@ class RoomSensorServiceTest {
         SensorTypeId sensorTypeId = new SensorTypeId("Temperature");
 
         // Act
-        when(roomSensorRepository.findByRoomIdAndSensorTypeId(kitchen.getId(),sensorTypeId)).thenReturn(kitchenSensor);
+        when(roomSensorRepository.findByRoomIdAndSensorTypeId(kitchen.getId(), sensorTypeId)).thenReturn(kitchenSensor);
 
-        RoomSensor result = roomSensorService.getRoomSensor(kitchen.getId(),kitchenSensor.getSensorType());
+        RoomSensor result = roomSensorService.getRoomSensor(kitchen.getId(), kitchenSensor.getSensorType());
 
         // Assert
-        assertEquals(kitchenSensor,result);
+        assertEquals(kitchenSensor, result);
     }
 
     @Test
@@ -231,9 +231,9 @@ class RoomSensorServiceTest {
         SensorTypeId sensorTypeId = new SensorTypeId("Rainfall");
 
         // Act
-        when(roomSensorRepository.findByRoomIdAndSensorTypeId(kitchen.getId(),sensorTypeId)).thenReturn(kitchenSensor);
+        when(roomSensorRepository.findByRoomIdAndSensorTypeId(kitchen.getId(), sensorTypeId)).thenReturn(kitchenSensor);
 
-        RoomSensor result = roomSensorService.getRoomSensor(kitchen.getId(),kitchenSensor.getSensorType());
+        RoomSensor result = roomSensorService.getRoomSensor(kitchen.getId(), kitchenSensor.getSensorType());
 
         // Assert
         assertNull(result);
@@ -245,9 +245,9 @@ class RoomSensorServiceTest {
         SensorTypeId sensorTypeId = new SensorTypeId("Rainfall");
 
         // Act
-        when(roomSensorRepository.findByRoomIdAndSensorTypeId(kitchen.getId(),sensorTypeId)).thenReturn(kitchenSensor);
+        when(roomSensorRepository.findByRoomIdAndSensorTypeId(kitchen.getId(), sensorTypeId)).thenReturn(kitchenSensor);
 
-        RoomSensor result = roomSensorService.getRoomSensor(kitchen.getId(),kitchenSensor.getSensorType());
+        RoomSensor result = roomSensorService.getRoomSensor(kitchen.getId(), kitchenSensor.getSensorType());
 
         // Assert
         assertNull(result);
@@ -261,17 +261,17 @@ class RoomSensorServiceTest {
         ReadingDTO readingDTO = new ReadingDTO();
         readingDTO.setId("S01");
         readingDTO.setValue(20);
-        readingDTO.setDateTime(LocalDateTime.of(2018,12,30,12,25));
+        readingDTO.setDateTime(LocalDateTime.of(2018, 12, 30, 12, 25));
         readingDTO.setUnits("C");
 
         kitchenSensor.addReading(ReadingMapper.mapToEntity(readingDTO));
         // Act
-        when(roomSensorRepository.findByRoomIdAndSensorTypeId(kitchen.getId(),sensorTypeId)).thenReturn(kitchenSensor);
+        when(roomSensorRepository.findByRoomIdAndSensorTypeId(kitchen.getId(), sensorTypeId)).thenReturn(kitchenSensor);
 
-        ReadingDTO result = roomSensorService.getLastMeasurement(kitchen.getId(),sensorTypeId);
+        ReadingDTO result = roomSensorService.getLastMeasurement(kitchen.getId(), sensorTypeId);
 
         // Assert
-        assertEquals(readingDTO,result);
+        assertEquals(readingDTO, result);
     }
 
     @Test
@@ -280,48 +280,179 @@ class RoomSensorServiceTest {
         SensorTypeId sensorTypeId = new SensorTypeId("Temperature");
 
         // Act
-        when(roomSensorRepository.findByRoomIdAndSensorTypeId(kitchen.getId(),sensorTypeId)).thenReturn(kitchenSensor);
+        when(roomSensorRepository.findByRoomIdAndSensorTypeId(kitchen.getId(), sensorTypeId)).thenReturn(kitchenSensor);
 
-        ReadingDTO result = roomSensorService.getLastMeasurement(kitchen.getId(),sensorTypeId);
+        ReadingDTO result = roomSensorService.getLastMeasurement(kitchen.getId(), sensorTypeId);
 
         // Assert
         assertNull(result);
     }
 
     @Test
-    void getRoomSensorByRoomSensorTypeDate() {
+    void getRoomSensorByRoomSensorTypeDate_SensorExists_ShouldBeEquals() {
         // Arrange
         SensorTypeId sensorTypeId = new SensorTypeId("Temperature");
 
         ReadingDTO readingDTO = new ReadingDTO();
         readingDTO.setId("S01");
         readingDTO.setValue(20);
-        readingDTO.setDateTime(LocalDateTime.of(2018,01,29,12,25));
+        readingDTO.setDateTime(LocalDateTime.of(2018, 01, 29, 12, 25));
         readingDTO.setUnits("C");
 
         kitchenSensor.addReading(ReadingMapper.mapToEntity(readingDTO));
 
-        LocalDateTime startDate = LocalDateTime.of(2018,01,27,20,15);
-        LocalDateTime endDate = LocalDateTime.of(2018,01,30,20,15);
-
         // Act
-        when(roomSensorRepository.findByRoomIdAndSensorTypeIdAndReadingsBetween(kitchen.getId(),sensorTypeId,startDate,endDate)).thenReturn(kitchenSensor);
+        when(roomSensorRepository.findByRoomIdAndSensorTypeId(kitchen.getId(), sensorTypeId)).thenReturn(kitchenSensor);
 
-        RoomSensorDTO result = roomSensorService.getRoomSensorByRoomSensorTypeDate(kitchen.getId(),sensorTypeId,kitchenSensor.getStartingDate().toLocalDate());
+        RoomSensorDTO result = roomSensorService.getRoomSensorByRoomSensorTypeDate(kitchen.getId(), sensorTypeId, kitchenSensor.getStartingDate().toLocalDate());
 
         // Assert
-        assertEquals(kitchenSensorDTO,result);
+        assertEquals(kitchenSensorDTO, result);
+    }
+
+    /*@Test
+    void getRoomSensorByRoomSensorTypeDate_ReadingDoesNotExists_ShouldNotBeEquals() {
+        // Arrange
+        SensorTypeId sensorTypeId = new SensorTypeId("Temperature");
+
+        LocalDate localDate = LocalDate.now();
+
+        // Act
+        when(roomSensorRepository.findByRoomIdAndSensorTypeId(kitchen.getId(),sensorTypeId)).thenReturn(kitchenSensor);
+
+        RoomSensorDTO result = roomSensorService.getRoomSensorByRoomSensorTypeDate(kitchen.getId(),sensorTypeId,localDate);
+
+        // Assert
+        assertNotEquals(kitchenSensorDTO,result);
+    }*/
+
+    @Test
+    void getMaxMeasurementValueOfADay_DayWithNoReadings_ShouldReturnDoubleNaN() {
+        // Arrange
+        SensorTypeId sensorTypeId = new SensorTypeId("Temperature");
+
+        ReadingDTO readingDTO = new ReadingDTO();
+        readingDTO.setId("S01");
+        readingDTO.setValue(20);
+        readingDTO.setDateTime(LocalDateTime.of(2018, 01, 29, 12, 25));
+        readingDTO.setUnits("C");
+
+        kitchenSensor.addReading(ReadingMapper.mapToEntity(readingDTO));
+
+        double expectedResult = Double.NaN;
+
+        // Act
+        when(roomSensorRepository.findByRoomIdAndSensorTypeId(kitchen.getId(), sensorTypeId)).thenReturn(kitchenSensor);
+
+        double result = roomSensorService.getMaxMeasurementValueOfADay(kitchen.getId(), sensorTypeId, kitchenSensor.getStartingDate().toLocalDate());
+
+        // Assert
+        assertEquals(expectedResult, result);
     }
 
     @Test
-    void getMaxMeasurementValueOfADay() {
+    void getMaxMeasurementValueOfADay_DayWithReadings_ShouldReturnTheRightValue() {
+        // Arrange
+        SensorTypeId sensorTypeId = new SensorTypeId("Temperature");
+
+        ReadingDTO readingDTO = new ReadingDTO();
+        readingDTO.setId("S01");
+        readingDTO.setValue(20);
+        readingDTO.setDateTime(LocalDateTime.of(2018, 01, 29, 12, 25));
+        readingDTO.setUnits("C");
+
+        kitchenSensor.addReading(ReadingMapper.mapToEntity(readingDTO));
+
+        double expectedResult = 20;
+
+        // Act
+        when(roomSensorRepository.findByRoomIdAndSensorTypeId(kitchen.getId(), sensorTypeId)).thenReturn(kitchenSensor);
+
+        double result = roomSensorService.getMaxMeasurementValueOfADay(kitchen.getId(), sensorTypeId, LocalDate.of(2018, 01, 29));
+
+        // Assert
+        assertEquals(expectedResult, result, 0.00001);
     }
 
     @Test
-    void newSensor() {
+    void newSensor_SensorDoesNotExist_ShouldReturnTrue() {
+        // Arrange
+        SensorId sensorId = new SensorId("S02");
+        // New SensorDTO
+        LocalDate startDate = LocalDate.of(2018, 01, 20);
+        RoomSensorDTO roomSensorDTO = RoomSensorMapper.newRoomSensorDTO();
+        roomSensorDTO.setRoomId("Kitchen");
+        roomSensorDTO.setUnits("%");
+        roomSensorDTO.setSensorType("Humidity");
+        roomSensorDTO.setName("Kitchen sensor 2");
+        roomSensorDTO.setId("S02");
+        roomSensorDTO.setStartingDate(startDate);
+
+        RoomSensor roomSensor = RoomSensorMapper.mapToEntity(roomSensorDTO);
+
+        when(roomSensorRepository.existsById(sensorId)).thenReturn(false);
+        when(roomSensorRepository.save(roomSensor)).thenReturn(roomSensor);
+
+        // Act
+
+        boolean result = roomSensorService.newSensor(roomSensorDTO);
+        // Assert
+        assertTrue(result);
+    }
+
+    @Test
+    void newSensor_SensorAlreadyExist_ShouldReturnFalse() {
+        // Arrange
+        SensorId sensorId = new SensorId("S01");
+        // New SensorDTO
+        LocalDate startDate = LocalDate.of(2018, 01, 20);
+        RoomSensorDTO roomSensorDTO = RoomSensorMapper.newRoomSensorDTO();
+        roomSensorDTO.setRoomId("Kitchen");
+        roomSensorDTO.setUnits("%");
+        roomSensorDTO.setSensorType("Temperature");
+        roomSensorDTO.setName("Kitchen sensor 1");
+        roomSensorDTO.setId("S01");
+        roomSensorDTO.setStartingDate(startDate);
+
+        RoomSensor roomSensor = RoomSensorMapper.mapToEntity(roomSensorDTO);
+
+        when(roomSensorRepository.existsById(sensorId)).thenReturn(true);
+        when(roomSensorRepository.save(roomSensor)).thenReturn(roomSensor);
+
+        // Act
+
+        boolean result = roomSensorService.newSensor(roomSensorDTO);
+        // Assert
+        assertFalse(result);
     }
 
     @Test
     void getAllSensorsOfRoom() {
+        // Arrange
+        SensorId sensorId = new SensorId("S02");
+        // New SensorDTO
+        LocalDate startDate = LocalDate.of(2018, 01, 20);
+        RoomSensorDTO roomSensorDTO = RoomSensorMapper.newRoomSensorDTO();
+        roomSensorDTO.setRoomId("Kitchen");
+        roomSensorDTO.setUnits("%");
+        roomSensorDTO.setSensorType("Humidity");
+        roomSensorDTO.setName("Kitchen sensor 2");
+        roomSensorDTO.setId("S02");
+        roomSensorDTO.setStartingDate(startDate);
+
+        RoomSensor roomSensor = RoomSensorMapper.mapToEntity(roomSensorDTO);
+
+        when(roomSensorRepository.existsById(sensorId)).thenReturn(false);
+        when(roomSensorRepository.save(roomSensor)).thenReturn(roomSensor);
+
+        List<RoomSensor> roomSensorList = new ArrayList<>();
+        roomSensorList.add(roomSensor);
+        roomSensorList.add(kitchenSensor);
+
+        // Act
+        when(roomSensorRepository.findAllByRoomId(kitchen.getId())).thenReturn(roomSensorList);
+        List<RoomSensor> result = roomSensorService.getAllSensorsOfRoom(kitchen.getId());
+        // Assert
+        assertEquals(roomSensorList,result);
     }
 }
