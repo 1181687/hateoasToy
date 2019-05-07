@@ -15,10 +15,7 @@ import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.Program;
 import pt.ipp.isep.dei.project.model.devices.Programmable;
 import pt.ipp.isep.dei.project.model.geographicalarea.*;
-import pt.ipp.isep.dei.project.model.house.Address;
-import pt.ipp.isep.dei.project.model.house.Dimension;
-import pt.ipp.isep.dei.project.model.house.House;
-import pt.ipp.isep.dei.project.model.house.Room;
+import pt.ipp.isep.dei.project.model.house.*;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceType;
@@ -182,7 +179,7 @@ public class Main {
         houseEdificioB = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice, address);
 
 ////////////(des)comentar///////////////
-        //      houseService.saveHouse(houseEdificioB);
+        houseService.saveHouse(houseEdificioB);
 
 
 
@@ -304,7 +301,7 @@ public class Main {
         houseEdificioB.addRoom(room1);
 
         ////////////(des)comentar///////////////
-        //  roomService.saveRoom(room1);
+        roomService.saveRoom(room1);
 
         // Room 2
         String id2 = "B109";
@@ -312,7 +309,7 @@ public class Main {
         houseEdificioB.addRoom(room2);
 
         ////////////(des)comentar///////////////
-        //  roomService.saveRoom(room2);
+        roomService.saveRoom(room2);
 
         // Room 3
         String id3 = "B106";
@@ -580,7 +577,7 @@ public class Main {
         SensorType sensorType = new SensorType(temperature);
 
 ////////////(des)comentar///////////////
-/*
+
 
         // Readings - GEO AREA Sensors
         LocalDateTime readingDate = LocalDateTime.of(2018, 12, 2, 13, 20, 00);
@@ -592,8 +589,8 @@ public class Main {
         LocalDateTime readingDate2 = LocalDateTime.of(2018, 12, 3, 05, 20, 00);
         LocalDateTime readingDate3 = LocalDateTime.of(2018, 12, 3, 05, 24, 00);
         LocalDateTime readingDate4 = LocalDateTime.of(2018, 12, 4, 05, 24, 00);
-        LocalDateTime readingDate5 = LocalDateTime.of(2018, 12, 5, 05, 24, 00);
-        LocalDateTime readingDate6 = LocalDateTime.of(2018, 12, 4, 04, 24, 00);
+        LocalDateTime readingDate6 = LocalDateTime.of(2018, 12, 5, 05, 24, 00);
+        LocalDateTime readingDate5 = LocalDateTime.of(2018, 12, 4, 04, 24, 00);
         Reading reading2 = new Reading(22, readingDate2);
         Reading reading3 = new Reading(25, readingDate3);
         Reading reading4 = new Reading(20, readingDate4);
@@ -641,7 +638,8 @@ public class Main {
         roomSensorsDTO.add(RoomSensorMapper.mapToDTO(roomSensor1));
         roomSensorsDTO.add(RoomSensorMapper.mapToDTO(roomSensor3));
         roomSensorService.saveSensors(roomSensorsDTO);
-*/
+//*/
+
     }
 
 
