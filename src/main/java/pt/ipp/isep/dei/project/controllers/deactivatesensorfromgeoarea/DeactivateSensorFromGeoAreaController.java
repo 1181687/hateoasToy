@@ -31,7 +31,7 @@ public class DeactivateSensorFromGeoAreaController {
         return dtoList;
     }
 
-    public List<GeoAreaSensorDTO> listOfSensors(GeoAreaIdDTO geoAreaIdDTO){
+    public List<GeoAreaSensorDTO> listOfSensors(GeoAreaIdDTO geoAreaIdDTO) {
         return geoAreaSensorService.getSensorsByGeoAreaId(geoAreaIdDTO);
     }
 

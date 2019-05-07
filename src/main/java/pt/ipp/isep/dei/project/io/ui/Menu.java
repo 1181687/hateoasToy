@@ -199,7 +199,7 @@ public final class Menu {
         StringBuilder content = new StringBuilder();
         content.append(CHOOSE_OPTIONS);
         content.append("\n");
-        content.append("1-House configuration.");
+        content.append("1-House management.");
         content.append("\n");
         content.append("2-Energy consumption management.");
         content.append("\n");

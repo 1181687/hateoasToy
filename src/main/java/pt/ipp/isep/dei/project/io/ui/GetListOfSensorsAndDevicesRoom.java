@@ -29,7 +29,7 @@ public class GetListOfSensorsAndDevicesRoom {
 
     public void listOfSensors() {
         String label = "In which room do you want to see the list of sensors?";
-        int chosenOption= chooseRoom(label);
+        int chosenOption = chooseRoom(label);
         String roomId = this.roomDTOList.get(chosenOption).getRoomId();
         this.roomSensorDTOList = this.controller.getRoomSensorDTOList(roomId);
 
@@ -46,7 +46,7 @@ public class GetListOfSensorsAndDevicesRoom {
 
     public void listOfDevices() {
         String label = "In which room do you want to see the list of devices?";
-        int chosenOption =chooseRoom(label);
+        int chosenOption = chooseRoom(label);
 
 
         RoomDTO chosenRoom = roomDTOList.get(chosenOption);

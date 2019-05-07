@@ -44,11 +44,11 @@ public class GetCurrentTemperatureRoom {
         System.out.println(content.toString());
     }
 
-    public String getRoomDTOListToString(){
+    public String getRoomDTOListToString() {
         StringBuilder roomListContent = new StringBuilder();
         int numberOfRoom = 1;
         for (RoomDTO roomDto:allRoomsDTOList) {
-            roomListContent.append (numberOfRoom+" - Id: "+roomDto.getRoomId()+"\n");
+            roomListContent.append(numberOfRoom + " - Id: " + roomDto.getRoomId() + "\n");
             numberOfRoom++;
         }
         return roomListContent.toString();
@@ -63,7 +63,7 @@ public class GetCurrentTemperatureRoom {
            System.out.println("Sorry! There are no rooms available.\n");
            return;
        }
-        String label0 = "Please, choose the room you would like to get the current temperature:\n"+getRoomDTOListToString()+"\n";
+        String label0 = "Please, choose the room you would like to get the current temperature:\n" + getRoomDTOListToString() + "\n";
         int option = InputValidator.getIntRange(label0, 1, allRoomsDTOList.size())-1;
         RoomDTO selectedRoom = allRoomsDTOList.get(option);
         String roomDTOId = selectedRoom.getRoomId();

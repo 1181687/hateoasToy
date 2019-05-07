@@ -1,5 +1,7 @@
 package pt.ipp.isep.dei.project.model;
 
+import pt.ipp.isep.dei.project.utils.Utils;
+
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -76,11 +78,11 @@ public class ReadingDTO {
             return false;
         }
         ReadingDTO readingDTO = (ReadingDTO) obj;
-        return this.id.equals(readingDTO.id) && this.dateTime.equals(readingDTO.dateTime);
+        return Utils.isSameDouble(this.value,readingDTO.value) && this.dateTime.equals(readingDTO.dateTime);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.id);
+        return Objects.hash(this.value,this.dateTime);
     }
 }
