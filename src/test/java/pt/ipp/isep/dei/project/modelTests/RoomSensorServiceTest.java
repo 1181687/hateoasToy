@@ -55,7 +55,7 @@ class RoomSensorServiceTest {
     }
 
     @Test
-    void getSensorById() {
+    public void getSensorById() {
         // Arrange
         SensorId sensorId = new SensorId("S01");
 
@@ -69,11 +69,11 @@ class RoomSensorServiceTest {
     }
 
     @Test
-    void saveSensors() {
+    public void saveSensors() {
     }
 
     @Test
-    void testSensorExists_SensorExists_ShouldReturnTrue() {
+    public void testSensorExists_SensorExists_ShouldReturnTrue() {
         // Arrange
         SensorId sensorId = new SensorId("S01");
 
@@ -87,7 +87,7 @@ class RoomSensorServiceTest {
     }
 
     @Test
-    void testSensorExists_SensorDoesNotExists_ShouldReturnFalse() {
+    public void testSensorExists_SensorDoesNotExists_ShouldReturnFalse() {
         // Arrange
         SensorId sensorId = new SensorId("S02");
         SensorIdDTO sensorIdDTO = SensorIdMapper.mapToDTO(sensorId);
@@ -102,7 +102,7 @@ class RoomSensorServiceTest {
     }
 
     @Test
-    void getReadingsDTO_ReadingsExist_ShouldBeEquals() {
+    public void getReadingsDTO_ReadingsExist_ShouldBeEquals() {
         // Arrange
         SensorId sensorId = new SensorId("S01");
 
@@ -129,7 +129,7 @@ class RoomSensorServiceTest {
     }
 
     @Test
-    void getReadingsDTO_ReadingsDontExist_ShouldNotBeEquals() {
+    public void getReadingsDTO_ReadingsDontExist_ShouldNotBeEquals() {
         // Arrange
         SensorId sensorId = new SensorId("S01");
 
@@ -156,7 +156,7 @@ class RoomSensorServiceTest {
     }
 
     @Test
-    void existSensors_SensorsExist_ShouldReturnTrue() {
+    public void existSensors_SensorsExist_ShouldReturnTrue() {
         // Arrange
         SensorTypeId sensorTypeId = new SensorTypeId("Temperature");
 
@@ -170,7 +170,7 @@ class RoomSensorServiceTest {
     }
 
     @Test
-    void existSensors_SensorsDontExist_ShouldReturnFalse() {
+    public void existSensors_SensorsDontExist_ShouldReturnFalse() {
         // Arrange
         SensorTypeId sensorTypeId = new SensorTypeId("Temperature");
 
@@ -184,7 +184,7 @@ class RoomSensorServiceTest {
     }
 
     @Test
-    void getSensorId_SensorExists_ShouldNotBeEquals() {
+    public void getSensorId_SensorExists_ShouldNotBeEquals() {
         // Arrange
         SensorTypeId sensorTypeId = new SensorTypeId("Rainfall");
 
@@ -198,7 +198,7 @@ class RoomSensorServiceTest {
     }
 
     @Test
-    void getSensorId_SensorTypeDoesntExist_Should() {
+    public void getSensorId_SensorTypeDoesntExist_Should() {
         // Arrange
         SensorTypeId sensorTypeId = new SensorTypeId("Temperature");
 
@@ -212,7 +212,7 @@ class RoomSensorServiceTest {
     }
 
     @Test
-    void getRoomSensor_SensorExists_ShouldReturnRightSensor() {
+    public void getRoomSensor_SensorExists_ShouldReturnRightSensor() {
         // Arrange
         SensorTypeId sensorTypeId = new SensorTypeId("Temperature");
 
@@ -226,7 +226,7 @@ class RoomSensorServiceTest {
     }
 
     @Test
-    void getRoomSensor_SensorDoesntExists_ShouldReturnNull() {
+    public void getRoomSensor_SensorDoesntExists_ShouldReturnNull() {
         // Arrange
         SensorTypeId sensorTypeId = new SensorTypeId("Rainfall");
 
@@ -240,7 +240,7 @@ class RoomSensorServiceTest {
     }
 
     @Test
-    void getRoomSensorDTO() {
+    public void getRoomSensorDTO() {
         // Arrange
         SensorTypeId sensorTypeId = new SensorTypeId("Rainfall");
 
@@ -254,7 +254,7 @@ class RoomSensorServiceTest {
     }
 
     @Test
-    void getLastMeasurement_ReadingExists_ShouldBeEquals() {
+    public void getLastMeasurement_ReadingExists_ShouldBeEquals() {
         // Arrange
         SensorTypeId sensorTypeId = new SensorTypeId("Temperature");
 
@@ -275,7 +275,7 @@ class RoomSensorServiceTest {
     }
 
     @Test
-    void getLastMeasurement_ReadingDoesntExists_ShouldBeEquals() {
+    public void getLastMeasurement_ReadingDoesntExists_ShouldBeEquals() {
         // Arrange
         SensorTypeId sensorTypeId = new SensorTypeId("Temperature");
 
@@ -289,7 +289,7 @@ class RoomSensorServiceTest {
     }
 
     @Test
-    void getRoomSensorByRoomSensorTypeDate_SensorExists_ShouldBeEquals() {
+    public void getRoomSensorByRoomSensorTypeDate_SensorExists_ShouldBeEquals() {
         // Arrange
         SensorTypeId sensorTypeId = new SensorTypeId("Temperature");
 
@@ -311,7 +311,7 @@ class RoomSensorServiceTest {
     }
 
     /*@Test
-    void getRoomSensorByRoomSensorTypeDate_ReadingDoesNotExists_ShouldNotBeEquals() {
+    public void getRoomSensorByRoomSensorTypeDate_ReadingDoesNotExists_ShouldNotBeEquals() {
         // Arrange
         SensorTypeId sensorTypeId = new SensorTypeId("Temperature");
 
@@ -327,7 +327,7 @@ class RoomSensorServiceTest {
     }*/
 
     @Test
-    void getMaxMeasurementValueOfADay_DayWithNoReadings_ShouldReturnDoubleNaN() {
+    public void getMaxMeasurementValueOfADay_DayWithNoReadings_ShouldReturnDoubleNaN() {
         // Arrange
         SensorTypeId sensorTypeId = new SensorTypeId("Temperature");
 
@@ -351,7 +351,7 @@ class RoomSensorServiceTest {
     }
 
     @Test
-    void getMaxMeasurementValueOfADay_DayWithReadings_ShouldReturnTheRightValue() {
+    public void getMaxMeasurementValueOfADay_DayWithReadings_ShouldReturnTheRightValue() {
         // Arrange
         SensorTypeId sensorTypeId = new SensorTypeId("Temperature");
 
@@ -375,7 +375,7 @@ class RoomSensorServiceTest {
     }
 
     @Test
-    void newSensor_SensorDoesNotExist_ShouldReturnTrue() {
+    public void newSensor_SensorDoesNotExist_ShouldReturnTrue() {
         // Arrange
         SensorId sensorId = new SensorId("S02");
         // New SensorDTO
@@ -401,7 +401,7 @@ class RoomSensorServiceTest {
     }
 
     @Test
-    void newSensor_SensorAlreadyExist_ShouldReturnFalse() {
+    public void newSensor_SensorAlreadyExist_ShouldReturnFalse() {
         // Arrange
         SensorId sensorId = new SensorId("S01");
         // New SensorDTO
@@ -427,7 +427,7 @@ class RoomSensorServiceTest {
     }
 
     @Test
-    void getAllSensorsOfRoom() {
+    public void getAllSensorsOfRoom() {
         // Arrange
         SensorId sensorId = new SensorId("S02");
         // New SensorDTO
