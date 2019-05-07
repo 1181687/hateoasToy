@@ -263,9 +263,27 @@ public class GeoAreaSensorServiceTest {
     }
 
     @Test
-    public void getDaysWithoutComfortTemp() {
+    public void getDaysWithoutComfortTempTest() {
+        // Arrange
+        List<Double> doubleList = new ArrayList<>();
+        doubleList.add(1.0);
+        doubleList.add(2.0);
+        doubleList.add(3.0);
 
+        List<LocalDate> expectedResult = new ArrayList<>();
+        expectedResult.add(LocalDate.of(2017, 9, 30));
+        expectedResult.add(LocalDate.of(2015, 9, 30));
 
+        Map<LocalDate, List<Double>> listHashMap = new HashMap<>();
+        listHashMap.put(LocalDate.of(2017, 9, 30), doubleList);
+
+        // Act
+        List<LocalDate> result = geoAreaSensorService.getDaysWithoutComfortTemp(listHashMap);
+        result.add(LocalDate.of(2017, 9, 30));
+        result.add(LocalDate.of(2015, 9, 30));
+
+        // Assert
+        assertEquals(expectedResult, result);
     }
 
     @Test
