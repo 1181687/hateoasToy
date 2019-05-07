@@ -65,4 +65,9 @@ public class RoomService {
         return new ArrayList<>();
     }
 
+    public void saveRoom(Room room) {
+        roomRepository.save(room);
+    }
+
+
 }

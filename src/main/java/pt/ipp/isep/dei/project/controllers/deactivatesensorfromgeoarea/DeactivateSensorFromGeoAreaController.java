@@ -14,9 +14,9 @@ import java.util.List;
 
 public class DeactivateSensorFromGeoAreaController {
     @Autowired
-    private GeographicalAreaService geoAreaService;
+    private final GeographicalAreaService geoAreaService;
     @Autowired
-    private GeoAreaSensorService geoAreaSensorService;
+    private final GeoAreaSensorService geoAreaSensorService;
 
     public DeactivateSensorFromGeoAreaController(GeographicalAreaService geoAreaService, GeoAreaSensorService geoAreaSensorService) {
         this.geoAreaService = geoAreaService;

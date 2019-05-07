@@ -1,6 +1,5 @@
 package pt.ipp.isep.dei.project.services;
 
-import org.hibernate.annotations.CollectionType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -12,9 +11,9 @@ import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaTypeId;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.house.*;
+import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridDTO;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
-import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridMapper;
 import pt.ipp.isep.dei.project.repositories.HouseGridRepository;
 import pt.ipp.isep.dei.project.repositories.HouseRepository;
 import pt.ipp.isep.dei.project.repositories.RoomRepository;
@@ -285,5 +284,61 @@ class HouseServiceTest {
         House result = this.service.getHouse();
 
         assertEquals(house,result);
+    }
+
+    @Test
+    public void updateHouseWithRoomsAndGrids(){
+
+        GeoAreaTypeId typeId = new GeoAreaTypeId("City");
+        GeographicalAreaType type = new GeographicalAreaType(typeId);
+        Location location1 = new Location(25.6,42.3,74.8);
+        AreaShape areaShape1 = new AreaShape(25,24);
+        GeographicalArea geoArea1 = new GeographicalArea("Porto","Porto",type,location1,areaShape1);
+
+        Location location2 = new Location(26.6,42.3,74.8);
+
+        Address address = new Address("Rua do Marco",location2,geoArea1);
+
+        int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile(CONFIG_PROPERTIES, "MeteringPeriodGrid"));
+        int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile(CONFIG_PROPERTIES, "MeteringPeriodDevice"));
+        List<String> deviceTypeList = Utils.readConfigFileToList(CONFIG_PROPERTIES, "devicetype.count", "devicetype.name");
+        House house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice, address);
+
+        Dimension dimension = new Dimension(2,3,2);
+        Room room = new Room("Bathroom","Bathroom",1,dimension);
+        List<RoomDTO> roomDTOS = Arrays.asList(RoomMapper.mapToDTO(room));
+
+        HouseGridId gridId = new HouseGridId("main grid");
+        HouseGrid grid = new HouseGrid(gridId);
+        grid.addRoom(room);
+
+        HouseGridDTO gridDTO = new HouseGridDTO();
+        gridDTO.setName(gridId.getHousegridId());
+        gridDTO.addRoomDTO(RoomMapper.mapToDTO(room));
+        List<HouseGridDTO> gridDTOS = Arrays.asList(gridDTO);
+
+        AddressDTO addressDTO = AddressMapper.newAddressDTO();
+        addressDTO.setCompleteAddress("Rua do Marco");
+
+        HouseDTO houseDTO = new HouseDTO();
+        houseDTO.setAddressDTO(addressDTO);
+        houseDTO.setRoomDTOList(roomDTOS);
+        houseDTO.setHouseGridDTOList(gridDTOS);
+
+        doNothing().when(houseRepository).deleteAll();
+        when(houseRepository.save(house)).thenReturn(house);
+        when(roomRepository.save(room)).thenReturn(room);
+        when(houseGridRepository.save(grid)).thenReturn(grid);
+
+        List<House> houseList = Collections.singletonList(house);
+        when(houseRepository.count()).thenReturn(1L);
+        when(houseRepository.findAll()).thenReturn(houseList);
+
+        this.service.updateHouseWithRoomsAndGrids(houseDTO);
+
+        House result = this.service.getHouse();
+
+        assertEquals(house,result);
+
     }
 }

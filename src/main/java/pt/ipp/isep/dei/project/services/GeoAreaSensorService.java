@@ -126,8 +126,8 @@ public class GeoAreaSensorService {
     }
 
     public boolean addGeoAreaSensor(GeoAreaSensor geoAreaSensor) {
-        if (!this.doesSensorExist(geoAreaSensor.getId())) {
-            this.saveGeoAreaSensor(geoAreaSensor);
+        if (!doesSensorExist(geoAreaSensor.getId())) {
+            saveGeoAreaSensor(geoAreaSensor);
             return true;
         }
         return false;
@@ -202,7 +202,7 @@ public class GeoAreaSensorService {
      * days that don't have value registers (they are null)
      *
      * @param mapComfortDailyTemperature
-     * @return List<LocalDate> list of
+     * @return List<LocalDate> list of dates.
      */
     public List<LocalDate> getDaysWithoutComfortTemp(Map<LocalDate, List<Double>> mapComfortDailyTemperature) {
         List<LocalDate> listOfDaysWithoutComfortTemp = new ArrayList<>();
