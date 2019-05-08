@@ -115,7 +115,7 @@ public class ConfigureHouseInformationFromJsonController {
         for (Iterator<HouseGridDTO> houseGridDTOIterator = houseGridDTOS.iterator(); houseGridDTOIterator.hasNext(); ) {
             HouseGridDTO houseGridDTO = houseGridDTOIterator.next();
             HouseGridId houseGridId = new HouseGridId(houseGridDTO.getName());
-            if (Objects.isNull(houseGridId.getHousegridId())) {
+            if (Objects.isNull(houseGridId.getHouseGridId())) {
                 numberOfNotImportedGrids++;
                 LOGGER.log(Level.WARNING, "House grid was not imported because it has a null id.");
                 houseGridDTOIterator.remove();
@@ -124,7 +124,7 @@ public class ConfigureHouseInformationFromJsonController {
             if (this.houseService.gridExists(houseGridId)) {
                 numberOfNotImportedGrids++;
                 String invalidInfo = "id: " + houseGridId + ".";
-                LOGGER.log(Level.WARNING, "House grid was not imported because " + houseGridId.getHousegridId() + " already exists: " + invalidInfo);
+                LOGGER.log(Level.WARNING, "House grid was not imported because " + houseGridId.getHouseGridId() + " already exists: " + invalidInfo);
                 houseGridDTOIterator.remove();
             }
             houseGridDTO.getRoomDTOS().removeIf(roomDTO -> !roomDTOS.contains(roomDTO));
