@@ -4,6 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.*;
+import pt.ipp.isep.dei.project.model.house.Room;
+import pt.ipp.isep.dei.project.model.house.RoomDTO;
+import pt.ipp.isep.dei.project.model.house.RoomMapper;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorList;
 import pt.ipp.isep.dei.project.model.sensor.SensorId;
@@ -140,6 +143,19 @@ public class GeographicalAreaService {
             }
         }
         return false;
+    }
+
+    /**
+     * gets all GeoAreas in geoAreaRepository and map them to List<GeoAreaDtos>
+     *
+     * @return List<GeoAreaDtos>
+     */
+    public List<GeographicalAreaDTO> getAllGeoAreaDTO() {
+        List<GeographicalAreaDTO> geoAreaDTOList = new ArrayList<>();
+        for (GeographicalArea geoArea : geoAreaList) {
+            geoAreaDTOList.add(GeographicalAreaMapper.mapToDTO(geoArea));
+        }
+        return geoAreaDTOList;
     }
 
     /**
