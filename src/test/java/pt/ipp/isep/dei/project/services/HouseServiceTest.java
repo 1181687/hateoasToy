@@ -53,51 +53,6 @@ class HouseServiceTest {
 
     }
 
-    @Test
-    void isGeoAreaRepositoryEmpty_ShouldReturnTrue() {
-        //Arrange
-        when(geographicalAreaService.isGeoAreaRepositoryEmpty()).thenReturn(true);
-        //Act
-        boolean result = this.service.isGeoAreaRepositoryEmpty();
-        //Assert
-        assertTrue(result);
-    }
-
-    @Test
-    void isGeoAreaRepositoryEmpty_ShouldReturnFalse() {
-        //Arrange
-        when(geographicalAreaService.isGeoAreaRepositoryEmpty()).thenReturn(false);
-        //Act
-        boolean result = this.service.isGeoAreaRepositoryEmpty();
-        //Assert
-        assertFalse(result);
-    }
-
-    @Test
-    void getAllGeoAreas() {
-        //Arrange
-        GeoAreaTypeId typeId = new GeoAreaTypeId("City");
-        GeographicalAreaType type = new GeographicalAreaType(typeId);
-        Location location1 = new Location(25.6,42.3,74.8);
-        AreaShape areaShape1 = new AreaShape(25,24);
-        GeographicalArea geoArea1 = new GeographicalArea("Porto","Porto",type,location1,areaShape1);
-
-        Location location2 = new Location(29.6,42.3,74.8);
-        AreaShape areaShape2 = new AreaShape(19,24);
-
-        GeographicalArea geoArea2 = new GeographicalArea("Lisboa", "Lisboa",type,location2,areaShape2);
-
-        List<GeographicalArea> expectedResult = Arrays.asList(geoArea1,geoArea2);
-
-        when(geographicalAreaService.getAllGeoAreas()).thenReturn(expectedResult);
-
-        //Act
-        List<GeographicalArea> result = this.service.getAllGeoAreas();
-
-        //Assert
-        assertEquals(expectedResult,result);
-
-    }
 
     @Test
     void setAndGetAddress() {
