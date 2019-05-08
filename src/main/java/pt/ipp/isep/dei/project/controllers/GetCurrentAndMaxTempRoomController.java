@@ -12,9 +12,9 @@ import java.util.List;
 
 public class GetCurrentAndMaxTempRoomController {
 
-    private SensorTypeId temperature;
-    private RoomSensorService roomSensorService;
-    private RoomService roomService;
+    private final SensorTypeId temperature;
+    private final RoomSensorService roomSensorService;
+    private final RoomService roomService;
 
 
     /**
@@ -34,8 +34,7 @@ public class GetCurrentAndMaxTempRoomController {
 
     public ReadingDTO getLatestMeasurementOfRoomSensor(String roomIdString) {
         RoomId roomId = new RoomId(roomIdString);
-        ReadingDTO readingDTO = this.roomSensorService.getLastMeasurement(roomId, temperature);
-        return readingDTO;
+        return this.roomSensorService.getLastMeasurement(roomId, temperature);
     }
 
     public List<RoomDTO> getRoomDTOList(){
