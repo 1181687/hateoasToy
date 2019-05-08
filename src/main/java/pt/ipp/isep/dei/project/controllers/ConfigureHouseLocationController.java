@@ -31,7 +31,7 @@ public class ConfigureHouseLocationController {
 
 
     public boolean isGeoAreaRepositoryEmpty() {
-        return this.houseService.isGeoAreaRepositoryEmpty();
+        return this.geographicalAreaService.isGeoAreaRepositoryEmpty();
     }
 
     public List<GeographicalAreaDTO> getGeoAreaList() {

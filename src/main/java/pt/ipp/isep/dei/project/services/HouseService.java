@@ -27,21 +27,11 @@ public class HouseService {
     private HouseGridRepository houseGridRepository;
 
     @Autowired
-    private GeographicalAreaService geographicalAreaService;
-
-    @Autowired
     private HouseRepository houseRepository;
 
     private Address address;
 
 
-    public boolean isGeoAreaRepositoryEmpty() {
-        return this.geographicalAreaService.isGeoAreaRepositoryEmpty();
-    }
-
-    public List<GeographicalArea> getAllGeoAreas() {
-        return this.geographicalAreaService.getAllGeoAreas();
-    }
 
     public Address getAddress() {
         return this.address;
