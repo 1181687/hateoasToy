@@ -19,6 +19,7 @@ public class GeographicalAreaDTO {
     private double latitude;
     private double longitude;
     private double elevation;
+    private GeographicalAreaDTO parentGeoArea;
     private List<GeoAreaSensorDTO> sensors = new ArrayList<>();
 
     public GeographicalAreaDTO() {
@@ -109,5 +110,13 @@ public class GeographicalAreaDTO {
         for (GeoAreaSensor sensor : sensorList) {
             this.sensors.add(GeoAreaSensorMapper.mapToDTO(sensor));
         }
+    }
+
+    public void setParentGeoArea(GeographicalAreaDTO geographicalAreaDTO){
+        this.parentGeoArea = geographicalAreaDTO;
+    }
+
+    public GeographicalAreaDTO getParentGeoArea(){
+        return this.parentGeoArea;
     }
 }

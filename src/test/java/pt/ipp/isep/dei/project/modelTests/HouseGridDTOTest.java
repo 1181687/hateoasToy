@@ -49,6 +49,18 @@ public class HouseGridDTOTest {
     }
 
     @Test
+    public void testSetGridName_EmptyString_NameShouldStayTheSame() {
+        //Arrange
+        houseGridDTO.setName("");
+        String expectedResult = "grid";
+        //Act
+        String result = houseGridDTO.getName();
+        //Assert
+        assertEquals(expectedResult, result);
+
+    }
+
+    @Test
     public void testGetRoomDTOS_roomDTOList() {
         //Arrange
         List<RoomDTO> expectedResult = roomDTOList;

@@ -84,6 +84,9 @@ public final class GeographicalAreaMapper {
         geographicalAreaDTO.setLength(geographicalArea.getAreaShape().getLength());
         geographicalAreaDTO.setWidth(geographicalArea.getAreaShape().getWidth());
         geographicalAreaDTO.setType(geographicalArea.getId().getGeographicalAreaType().getTypeId());
+        while (Objects.nonNull(geographicalArea.getInsertedIn())) {
+            geographicalAreaDTO.setParentGeoArea(mapToDTO(geographicalArea.getInsertedIn()));
+        }
         return geographicalAreaDTO;
     }
 

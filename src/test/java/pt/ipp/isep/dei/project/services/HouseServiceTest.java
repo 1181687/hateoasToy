@@ -268,7 +268,7 @@ class HouseServiceTest {
         grid.addRoom(room);
 
         HouseGridDTO gridDTO = new HouseGridDTO();
-        gridDTO.setName(gridId.getHousegridId());
+        gridDTO.setName(gridId.getHouseGridId());
         gridDTO.addRoomDTO(RoomMapper.mapToDTO(room));
         List<HouseGridDTO> gridDTOS = Arrays.asList(gridDTO);
 
@@ -326,7 +326,7 @@ class HouseServiceTest {
         grid.addRoom(room);
 
         HouseGridDTO gridDTO = new HouseGridDTO();
-        gridDTO.setName(gridId.getHousegridId());
+        gridDTO.setName(gridId.getHouseGridId());
         gridDTO.addRoomDTO(RoomMapper.mapToDTO(room));
         List<HouseGridDTO> gridDTOS = Arrays.asList(gridDTO);
 
