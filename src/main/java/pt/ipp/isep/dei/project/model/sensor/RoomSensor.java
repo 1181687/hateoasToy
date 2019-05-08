@@ -228,4 +228,6 @@ public class RoomSensor implements Root {
     public void addReadings(List<Reading> readings) {
         this.readings.addAll(readings);
     }
+
+
 }
