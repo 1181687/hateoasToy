@@ -305,6 +305,28 @@ public class GeoAreaSensorServiceTest {
     }
 
     @Test
+    public void getMapAverageOfDailyMeasurementsTest_EmptyList() {
+        // Arrange
+        GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("City");
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType(geoAreaTypeId);
+
+        Location location = new Location(123, 456, 789);
+        GeoAreaId geoAreaId = new GeoAreaId(location, "Espinho", geographicalAreaType);
+
+        SensorTypeId sensorTypeId = new SensorTypeId("Temperature");
+        LocalDate startDate = LocalDate.of(1991, 4, 12);
+        LocalDate endDate = LocalDate.of(2019, 5, 6);
+
+        Map<LocalDate, Double> expectedResult = new HashMap<>();
+
+        // Act
+        Map<LocalDate, Double> result = geoAreaSensorService.getMapAverageOfDailyMeasurements(location, geoAreaId, sensorTypeId, startDate, endDate);
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
     public void getComfortTemperature() {
         // Arrange
         GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("City");
@@ -330,6 +352,28 @@ public class GeoAreaSensorServiceTest {
         // Act
         Map<LocalDate, List<Double>> result = geoAreaSensorService.getComfortTemperature(location, geoAreaId, sensorTypeId, startDate, endDate, 15);
         result.put(date, doubleList);
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void getComfortTemperature_EmptyList() {
+        // Arrange
+        GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("City");
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType(geoAreaTypeId);
+
+        Location location = new Location(123, 456, 789);
+        GeoAreaId geoAreaId = new GeoAreaId(location, "Espinho", geographicalAreaType);
+
+        SensorTypeId sensorTypeId = new SensorTypeId("Temperature");
+        LocalDate startDate = LocalDate.of(1991, 4, 12);
+        LocalDate endDate = LocalDate.of(2019, 5, 6);
+
+        Map<LocalDate, List<Double>> expectedResult = new HashMap<>();
+
+        // Act
+        Map<LocalDate, List<Double>> result = geoAreaSensorService.getComfortTemperature(location, geoAreaId, sensorTypeId, startDate, endDate, 15);
 
         // Assert
         assertEquals(expectedResult, result);
