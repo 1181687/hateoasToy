@@ -77,11 +77,4 @@ class SensorTypeServiceTest {
         assertTrue(result);
     }
 
-    @Test
-    public void getTypeById() {
-    }
-
-    @Test
-    public void save() {
-    }
 }
