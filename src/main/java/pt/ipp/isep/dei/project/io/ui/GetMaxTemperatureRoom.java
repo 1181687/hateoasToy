@@ -17,8 +17,8 @@ import java.util.List;
 public class GetMaxTemperatureRoom {
 
 
-    private GetCurrentAndMaxTempRoomController controller;
-    private List<RoomDTO> allRoomsDTOList;
+    private final GetCurrentAndMaxTempRoomController controller;
+    private final List<RoomDTO> allRoomsDTOList;
 
     /**
      * constructor that receives a House and a SensorTypeList
