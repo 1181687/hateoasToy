@@ -28,7 +28,7 @@ public class InstantsTempOutOfComfortLevel {
     public void run() {
 
         //option us440 or us445
-        String label100 = "Choose one option:\n1- Get instants in which the temperature fell below the comfort level.\n2- Get instants in which the temperature rose above the comfort level.\n 0- Exit.\n\n";
+        String label100 = "Choose one option:\n1- Get instants in which the temperature fell below the comfort level.\n2- Get instants in which the temperature rose above the comfort level.\n0- Exit.\n\n";
         int usOption = InputValidator.getIntRange(label100, 0, 2);
 
         if (usOption == 0) {
@@ -141,9 +141,9 @@ public class InstantsTempOutOfComfortLevel {
         if (!controller.instantListIsEmpty()) {
             content.append("The list of instants ");
             content.append(belowOrAbove);
-            content.append(" for the room ");
+            content.append("the comfort Temperature, for the room ");
             content.append(roomId);
-            content.append(" in the interval date between ");
+            content.append(" in the date interval between ");
             content.append(startdate);
             content.append(" and ");
             content.append(endDate);

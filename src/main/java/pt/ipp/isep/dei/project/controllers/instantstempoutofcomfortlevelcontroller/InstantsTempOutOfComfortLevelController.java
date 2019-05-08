@@ -33,7 +33,7 @@ public class InstantsTempOutOfComfortLevelController {
     private int category;
     private int option;
     private List<LocalDateTime> listOfInstantsOutOfComfortTemp;
-    private List<LocalDate> daysNotConsidered;
+    private List<LocalDate> daysNotConsidered = new ArrayList<>();
 
 
     /**
