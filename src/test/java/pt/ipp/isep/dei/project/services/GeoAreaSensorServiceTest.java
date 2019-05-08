@@ -347,8 +347,11 @@ public class GeoAreaSensorServiceTest {
 
         GeoAreaId geoAreaId = new GeoAreaId(location, "Espinho", geographicalAreaType);
         List<GeoAreaSensorDTO> geoAreaSensorDTOList = new ArrayList<>();
+        geoAreaSensorDTOList.add(GeoAreaSensorMapper.mapToDTO(geoAreaSensor));
 
         List<GeoAreaSensor> geoAreaSensorList = new ArrayList<>();
+        geoAreaSensorList.add(geoAreaSensor);
+        
         when(this.geoAreaSensorRepo.findAllByGeoAreaId(geoAreaId)).thenReturn(geoAreaSensorList);
 
         // Act
