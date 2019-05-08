@@ -13,7 +13,7 @@ import pt.ipp.isep.dei.project.services.GeoAreaTypeService;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 public class GeoAreaTypeServiceTest {
@@ -81,6 +81,30 @@ public class GeoAreaTypeServiceTest {
         GeographicalAreaType result = this.service.newTypeOfGeoArea(typeName);
         //Assert
         assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void createGeoAreaType_WhenTypeDoesntExistInRepo_ShouldReturnTrue(){
+        //Arrange
+        String typeId = "City";
+        GeographicalAreaType geoAreaTypeId = new GeographicalAreaType(new GeoAreaTypeId(typeId));
+        when(geoAreaTypeRepository.existsById(typeId)).thenReturn(false);
+        when(geoAreaTypeRepository.save(geoAreaTypeId)).thenReturn(geoAreaTypeId);
+        //Act
+        boolean result = this.service.createGeoAreaType(typeId);
+        //Assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void createGeoAreaType_WhenTypeAlreadyExistsInRepo_ShouldReturnFalse(){
+        //Arrange
+        String typeId = "City";
+        when(geoAreaTypeRepository.existsById(typeId)).thenReturn(true);
+        //Act
+        boolean result = this.service.createGeoAreaType(typeId);
+        //Assert
+        assertFalse(result);
     }
 
 }
