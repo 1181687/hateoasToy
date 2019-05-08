@@ -157,7 +157,7 @@ public class GeographicalAreaService {
      */
     public List<GeographicalAreaDTO> getAllGeoAreaDTO() {
         List<GeographicalAreaDTO> geoAreaDTOList = new ArrayList<>();
-        for (GeographicalArea geoArea : geoAreaList) {
+        for (GeographicalArea geoArea : this.geoAreaRepository.findAll()) {
             geoAreaDTOList.add(GeographicalAreaMapper.mapToDTO(geoArea));
         }
         return geoAreaDTOList;

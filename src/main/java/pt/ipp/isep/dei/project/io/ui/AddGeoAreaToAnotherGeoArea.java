@@ -39,7 +39,8 @@ public class AddGeoAreaToAnotherGeoArea {
 
     public void run() {
         String label1 = "Please choose the number that corresponds to the geographical area you wish to include in " +
-                "another geographical area:\n" + getGeoAreaDTOListToString(true);
+                "another geographical area:\n";
+        System.out.println(getGeoAreaDTOListToString(true));
         int firstOption = InputValidator.getIntRange(label1, 1, controller.getListSize())-1;
         GeographicalAreaDTO mainGeoAreaDTO = geoAreaDTOList.get(firstOption);
         if (!controller.checkIfGeoAreaHasAnInsertedArea(mainGeoAreaDTO)) {
