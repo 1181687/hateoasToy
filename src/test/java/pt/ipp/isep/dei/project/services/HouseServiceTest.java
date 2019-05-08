@@ -53,51 +53,6 @@ class HouseServiceTest {
 
     }
 
-    @Test
-    void isGeoAreaRepositoryEmpty_ShouldReturnTrue() {
-        //Arrange
-        when(geographicalAreaService.isGeoAreaRepositoryEmpty()).thenReturn(true);
-        //Act
-        boolean result = this.service.isGeoAreaRepositoryEmpty();
-        //Assert
-        assertTrue(result);
-    }
-
-    @Test
-    void isGeoAreaRepositoryEmpty_ShouldReturnFalse() {
-        //Arrange
-        when(geographicalAreaService.isGeoAreaRepositoryEmpty()).thenReturn(false);
-        //Act
-        boolean result = this.service.isGeoAreaRepositoryEmpty();
-        //Assert
-        assertFalse(result);
-    }
-
-    @Test
-    void getAllGeoAreas() {
-        //Arrange
-        GeoAreaTypeId typeId = new GeoAreaTypeId("City");
-        GeographicalAreaType type = new GeographicalAreaType(typeId);
-        Location location1 = new Location(25.6,42.3,74.8);
-        AreaShape areaShape1 = new AreaShape(25,24);
-        GeographicalArea geoArea1 = new GeographicalArea("Porto","Porto",type,location1,areaShape1);
-
-        Location location2 = new Location(29.6,42.3,74.8);
-        AreaShape areaShape2 = new AreaShape(19,24);
-
-        GeographicalArea geoArea2 = new GeographicalArea("Lisboa", "Lisboa",type,location2,areaShape2);
-
-        List<GeographicalArea> expectedResult = Arrays.asList(geoArea1,geoArea2);
-
-        when(geographicalAreaService.getAllGeoAreas()).thenReturn(expectedResult);
-
-        //Act
-        List<GeographicalArea> result = this.service.getAllGeoAreas();
-
-        //Assert
-        assertEquals(expectedResult,result);
-
-    }
 
     @Test
     void setAndGetAddress() {
@@ -287,7 +242,7 @@ class HouseServiceTest {
     }
 
     @Test
-    public void updateHouseWithRoomsAndGrids(){
+    public void updateHouseWithRoomsAndGrids_WithNullLocationAndParentGeoArea(){
 
         GeoAreaTypeId typeId = new GeoAreaTypeId("City");
         GeographicalAreaType type = new GeographicalAreaType(typeId);
@@ -319,6 +274,61 @@ class HouseServiceTest {
 
         AddressDTO addressDTO = AddressMapper.newAddressDTO();
         addressDTO.setCompleteAddress("Rua do Marco");
+
+        HouseDTO houseDTO = new HouseDTO();
+        houseDTO.setAddressDTO(addressDTO);
+        houseDTO.setRoomDTOList(roomDTOS);
+        houseDTO.setHouseGridDTOList(gridDTOS);
+
+        doNothing().when(houseRepository).deleteAll();
+        when(houseRepository.save(house)).thenReturn(house);
+        when(roomRepository.save(room)).thenReturn(room);
+        when(houseGridRepository.save(grid)).thenReturn(grid);
+
+        List<House> houseList = Collections.singletonList(house);
+        when(houseRepository.count()).thenReturn(1L);
+        when(houseRepository.findAll()).thenReturn(houseList);
+
+        this.service.updateHouseWithRoomsAndGrids(houseDTO);
+
+        House result = this.service.getHouse();
+
+        assertEquals(house,result);
+
+    }
+
+    @Test
+    public void updateHouseWithRoomsAndGrids(){
+
+        GeoAreaTypeId typeId = new GeoAreaTypeId("City");
+        GeographicalAreaType type = new GeographicalAreaType(typeId);
+        Location location1 = new Location(25.6,42.3,74.8);
+        AreaShape areaShape1 = new AreaShape(25,24);
+        GeographicalArea geoArea1 = new GeographicalArea("Porto","Porto",type,location1,areaShape1);
+
+        Location location2 = new Location(26.6,42.3,74.8);
+
+        Address address = new Address("Rua do Marco",location2,geoArea1);
+
+        int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile(CONFIG_PROPERTIES, "MeteringPeriodGrid"));
+        int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile(CONFIG_PROPERTIES, "MeteringPeriodDevice"));
+        List<String> deviceTypeList = Utils.readConfigFileToList(CONFIG_PROPERTIES, "devicetype.count", "devicetype.name");
+        House house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice, address);
+
+        Dimension dimension = new Dimension(2,3,2);
+        Room room = new Room("Bathroom","Bathroom",1,dimension);
+        List<RoomDTO> roomDTOS = Arrays.asList(RoomMapper.mapToDTO(room));
+
+        HouseGridId gridId = new HouseGridId("main grid");
+        HouseGrid grid = new HouseGrid(gridId);
+        grid.addRoom(room);
+
+        HouseGridDTO gridDTO = new HouseGridDTO();
+        gridDTO.setName(gridId.getHousegridId());
+        gridDTO.addRoomDTO(RoomMapper.mapToDTO(room));
+        List<HouseGridDTO> gridDTOS = Arrays.asList(gridDTO);
+
+        AddressDTO addressDTO = AddressMapper.mapToDTO(address);
 
         HouseDTO houseDTO = new HouseDTO();
         houseDTO.setAddressDTO(addressDTO);

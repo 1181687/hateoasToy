@@ -31,12 +31,4 @@ public class SensorTypeService {
         }
         return false;
     }
-
-    public SensorType getTypeById(SensorTypeId sensorTypeId) {
-        return sensorTypeRepository.findById(sensorTypeId).orElse(null);
-    }
-
-    public void save(SensorType sensorType) {
-        sensorTypeRepository.save(sensorType);
-    }
 }

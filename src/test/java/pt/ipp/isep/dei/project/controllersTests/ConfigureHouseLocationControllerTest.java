@@ -35,7 +35,7 @@ public class ConfigureHouseLocationControllerTest {
     @Test
     public void isGeoAreaRepositoryEmpty_ShouldReturnTrue() {
 
-        when(this.houseService.isGeoAreaRepositoryEmpty()).thenReturn(true);
+        when(this.geographicalAreaService.isGeoAreaRepositoryEmpty()).thenReturn(true);
 
         boolean result = controller.isGeoAreaRepositoryEmpty();
 
@@ -45,7 +45,7 @@ public class ConfigureHouseLocationControllerTest {
     @Test
     public void isGeoAreaRepositoryEmpty_ShouldReturnFalse() {
 
-        when(this.houseService.isGeoAreaRepositoryEmpty()).thenReturn(false);
+        when(this.geographicalAreaService.isGeoAreaRepositoryEmpty()).thenReturn(false);
 
         boolean result = controller.isGeoAreaRepositoryEmpty();
 
@@ -76,7 +76,7 @@ public class ConfigureHouseLocationControllerTest {
         List<GeographicalArea> geoAreaList = new ArrayList<>();
         geoAreaList.add(geographicalArea);
 
-        when(this.houseService.getAllGeoAreas()).thenReturn(geoAreaList);
+        when(this.geographicalAreaService.getAllGeoAreas()).thenReturn(geoAreaList);
 
         // Geo Area DTO list
         List<GeographicalAreaDTO> geographicalAreaDTOList = new ArrayList<>();
