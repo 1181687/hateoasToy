@@ -337,4 +337,27 @@ public class GeoAreaSensorServiceTest {
         // assert
         assertEquals(geoAreaSensorDTOList, result);
     }
+
+    @Test
+    public void saveSensorsAndSaveGeoAreaSensors() {
+        // Arrange
+        Location location = new Location(123, 456, 789);
+        GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("City");
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType(geoAreaTypeId);
+
+        GeoAreaId geoAreaId = new GeoAreaId(location, "Espinho", geographicalAreaType);
+        List<GeoAreaSensorDTO> geoAreaSensorDTOList = new ArrayList<>();
+
+        List<GeoAreaSensor> geoAreaSensorList = new ArrayList<>();
+        when(this.geoAreaSensorRepo.findAllByGeoAreaId(geoAreaId)).thenReturn(geoAreaSensorList);
+
+        // Act
+        this.geoAreaSensorService.saveSensors(geoAreaSensorDTOList);
+        this.geoAreaSensorService.saveGeoAreaSensor(geoAreaSensor);
+        List<GeoAreaSensorDTO> result = this.geoAreaSensorService.getSensorsByGeoAreaId(GeoAreaIdMapper.mapToDTO(geoAreaId));
+
+        // Assert
+        assertEquals(geoAreaSensorDTOList, result);
+    }
+
 }
