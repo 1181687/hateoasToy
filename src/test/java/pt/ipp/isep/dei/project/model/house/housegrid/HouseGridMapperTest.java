@@ -37,4 +37,21 @@ class HouseGridMapperTest {
         assertEquals(expectedResult,result);
 
     }
+
+    @Test
+    void mapToEntity_WithoutRooms() {
+        //Arrange
+
+        HouseGridDTO gridDTO = HouseGridMapper.newHouseGridDTO();
+        gridDTO.setName("main grid");
+
+        HouseGrid expectedResult = new HouseGrid(new HouseGridId("main grid"));
+
+        //Act
+        HouseGrid result = HouseGridMapper.mapToEntity(gridDTO);
+
+        //Assert
+        assertEquals(expectedResult,result);
+
+    }
 }
