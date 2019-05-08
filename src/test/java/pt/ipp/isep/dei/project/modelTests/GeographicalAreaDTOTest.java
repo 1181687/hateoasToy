@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.LocationDTO;
+import pt.ipp.isep.dei.project.model.LocationMapper;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaId;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaIdDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaIdMapper;
@@ -249,6 +250,21 @@ public class GeographicalAreaDTOTest {
         //act
         List<GeoAreaSensorDTO> result = portoCity.getSensors();
 
+
+        //assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testGetLocation_get_temperatureSensor() {
+        //arrange
+        LocationDTO expectedResult = LocationMapper.newLocationDTO();
+        expectedResult.setLatitude(3);
+        expectedResult.setLongitude(5);
+        expectedResult.setElevation(3);
+
+        //act
+        LocationDTO result = portoCity.getLocation();
 
         //assert
         assertEquals(expectedResult, result);

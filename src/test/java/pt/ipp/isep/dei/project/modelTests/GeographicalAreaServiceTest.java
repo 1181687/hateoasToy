@@ -7,6 +7,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import pt.ipp.isep.dei.project.model.Location;
+import pt.ipp.isep.dei.project.model.LocationMapper;
 import pt.ipp.isep.dei.project.model.geographicalarea.*;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorId;
@@ -68,18 +69,6 @@ public class GeographicalAreaServiceTest {
 
         // Assert
         assertFalse(result);
-    }
-
-    @Test
-    public void getGeoAreaList() {
-        // Arrange
-        List<GeographicalArea> expectedResult = geographicalAreaService.getGeoAreaList();
-
-        // Act
-        List<GeographicalArea> result = geographicalAreaService.getGeoAreaList();
-
-        // Assert
-        assertEquals(expectedResult, result);
     }
 
     @Test
@@ -218,21 +207,6 @@ public class GeographicalAreaServiceTest {
     }
 
     @Test
-    public void addGeoAreaInASpecificPositionTest() {
-        // Arrange
-        geographicalAreaService.removeGeoArea(bonfimStreet);
-        geographicalAreaService.addGeoAreaInASpecificPosition(0, bonfimStreet);
-
-        GeographicalArea expectedResult = bonfimStreet;
-
-        // Act
-        GeographicalArea result = geographicalAreaService.getGeoAreaList().get(0);
-
-        // Assert
-        assertEquals(expectedResult, result);
-    }
-
-    @Test
     public void removeGeoAreaTrueTest() {
         // Act
         boolean result = geographicalAreaService.removeGeoArea(portoCity);
@@ -336,28 +310,15 @@ public class GeographicalAreaServiceTest {
     @Test
     public void testGetGeoAreaById_tryingToTestANonExistingId_ShouldReturnNull() {
         // Act
-        GeographicalArea result = geographicalAreaService.getGeoAreaById("Gondomar");
+        GeoAreaIdDTO geoAreaIdDTO = GeoAreaIdMapper.newDTO();
+        geoAreaIdDTO.setId("Gondomar");
+        geoAreaIdDTO.setGeoAreaType("City");
+        geoAreaIdDTO.setLocationDTO(LocationMapper.mapToDTO(portoCity.getLocation()));
+        GeographicalArea result = geographicalAreaService.getGeoAreaById(geoAreaIdDTO);
 
         // Assert
         assertNull(result);
     }
-
-
-    /**
-     * Test that finds a sensor in all of the geographical areas by its Id
-     **/
-
-    /*@Test
-    public void testGetSensorById_ExistingId_ShouldReturnTheSensor() {
-        // Act
-        SensorId sensorId = new SensorId("s1");
-
-        GeoAreaSensor result = geographicalAreaService.getSensorById(sensorId);
-
-        // Assert
-        assertEquals(sensor, result);
-    }*/
-
 
     /**
      * Test that tries to finds a sensor in all of the geographical areas by its Id but there are non.

@@ -1,8 +1,13 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.removesensorfromgeoareacontroller.RemoveSensorFromGeoAreaController;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaIdDTO;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaIdMapper;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorDTO;
+import pt.ipp.isep.dei.project.model.sensor.SensorIdDTO;
+import pt.ipp.isep.dei.project.model.sensor.SensorIdMapper;
+import pt.ipp.isep.dei.project.services.GeoAreaSensorService;
 import pt.ipp.isep.dei.project.services.GeographicalAreaService;
 
 import java.util.List;
@@ -18,8 +23,8 @@ public class RemoveSensorFromGeoArea {
      *
      * @param geographicalAreaService List that contains all of the geographical areas in the system.
      */
-    public RemoveSensorFromGeoArea(GeographicalAreaService geographicalAreaService) {
-        controller = new RemoveSensorFromGeoAreaController(geographicalAreaService);
+    public RemoveSensorFromGeoArea(GeographicalAreaService geographicalAreaService, GeoAreaSensorService geoAreaSensorService) {
+        controller = new RemoveSensorFromGeoAreaController(geographicalAreaService, geoAreaSensorService);
         geographicalAreaDTOS = controller.getGeographicalAreaDTO();
     }
 
@@ -38,9 +43,8 @@ public class RemoveSensorFromGeoArea {
             if (chosenGeoArea == -1) {
                 return;
             }
-            String geoAreaId = positionToGeoAreaId(chosenGeoArea);
-            controller.setGeoAreaById(geoAreaId);
-            sensorDTOS = controller.getSensorList();
+            GeoAreaIdDTO geoAreaId = positionToGeoAreaId(chosenGeoArea);
+            sensorDTOS = controller.getSensorList(geoAreaId);
             if (sensorDTOS.isEmpty()) {
                 System.out.println("\nThere are no sensors in the selected geographical area. Please create or import some.");
                 continue;
@@ -50,13 +54,13 @@ public class RemoveSensorFromGeoArea {
             if (chosenSensor == -1) {
                 continue;
             }
-            String sensorId = positionToSensorId(chosenSensor);
+            SensorIdDTO sensorId = positionToSensorId(chosenSensor);
             String confirmation = InputValidator.confirmValidation("\nAll the data relative to the sensor will be removed too and can not be recovered anymore. Confirm? (Y/N)");
             if ("N".equalsIgnoreCase(confirmation)) {
                 System.out.println("\nNo changes were made.");
                 continue;
             }
-            //controller.removeSensor(sensorId);
+            controller.removeSensor(sensorId);
             flag = false;
         } while (flag);
         System.out.println("\nThe sensor was removed with success!\n");
@@ -83,8 +87,12 @@ public class RemoveSensorFromGeoArea {
      * @param uiId Position in the list.
      * @return String corresponding to the Id of the GeographicalAreaDTO.
      */
-    private String positionToGeoAreaId(int uiId) {
-        return geographicalAreaDTOS.get(uiId).getId();
+    private GeoAreaIdDTO positionToGeoAreaId(int uiId) {
+        GeoAreaIdDTO geoAreaIdDTO = GeoAreaIdMapper.newDTO();
+        geoAreaIdDTO.setId(geographicalAreaDTOS.get(uiId).getId());
+        geoAreaIdDTO.setLocationDTO(geographicalAreaDTOS.get(uiId).getLocation());
+        geoAreaIdDTO.setGeoAreaType(geographicalAreaDTOS.get(uiId).getType());
+        return geoAreaIdDTO;
     }
 
     /**
@@ -108,7 +116,9 @@ public class RemoveSensorFromGeoArea {
      * @param uiId Position in the list.
      * @return String corresponding to the Id of the GeoAreaSensorDTO.
      */
-    private String positionToSensorId(int uiId) {
-        return sensorDTOS.get(uiId).getId();
+    private SensorIdDTO positionToSensorId(int uiId) {
+        SensorIdDTO sensorIdDTO = SensorIdMapper.newDTO();
+        sensorIdDTO.setId(sensorDTOS.get(uiId).getId());
+        return sensorIdDTO;
     }
 }

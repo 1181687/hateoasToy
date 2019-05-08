@@ -4,6 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.*;
+import pt.ipp.isep.dei.project.model.house.Room;
+import pt.ipp.isep.dei.project.model.house.RoomDTO;
+import pt.ipp.isep.dei.project.model.house.RoomMapper;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorList;
 import pt.ipp.isep.dei.project.model.sensor.SensorId;
@@ -33,7 +36,7 @@ public class GeographicalAreaService {
      * @return a list of geographical areas
      */
     public List<GeographicalArea> getGeoAreaList() {
-        return geoAreaList;
+        return (List<GeographicalArea>) this.geoAreaRepository.findAll();
     }
 
     /**
@@ -123,16 +126,6 @@ public class GeographicalAreaService {
     }
 
     /**
-     * that method add a geo area to the list, in a specific position.
-     *
-     * @param position
-     * @param geoArea
-     */
-    public void addGeoAreaInASpecificPosition(int position, GeographicalArea geoArea) {
-        geoAreaList.add(position, geoArea);
-    }
-
-    /**
      * method that check if a geo area is inserted in another geo area.
      *
      * @param selection1
@@ -150,6 +143,19 @@ public class GeographicalAreaService {
             }
         }
         return false;
+    }
+
+    /**
+     * gets all GeoAreas in geoAreaRepository and map them to List<GeoAreaDtos>
+     *
+     * @return List<GeoAreaDtos>
+     */
+    public List<GeographicalAreaDTO> getAllGeoAreaDTO() {
+        List<GeographicalAreaDTO> geoAreaDTOList = new ArrayList<>();
+        for (GeographicalArea geoArea : geoAreaList) {
+            geoAreaDTOList.add(GeographicalAreaMapper.mapToDTO(geoArea));
+        }
+        return geoAreaDTOList;
     }
 
     /**
@@ -228,12 +234,13 @@ public class GeographicalAreaService {
     /**
      * Method that returns a geographical area by searching for it by its id. If it's not on the list it returns null.
      *
-     * @param geoAreaId Id of the geographical area.
+     * @param geoAreaIdDTO Id of the geographical area.
      * @return Geographical area corresponding to the id (or null).
      */
-    public GeographicalArea getGeoAreaById(String geoAreaId) {
+    public GeographicalArea getGeoAreaById(GeoAreaIdDTO geoAreaIdDTO) {
+        GeoAreaId geoAreaId = GeoAreaIdMapper.mapToEntity(geoAreaIdDTO);
         for (GeographicalArea geographicalArea : geoAreaRepository.findAll()) {
-            if (geographicalArea.getId().getId().equals(geoAreaId)) {
+            if (geographicalArea.getId().equals(geoAreaId)) {
                 return geographicalArea;
             }
         }

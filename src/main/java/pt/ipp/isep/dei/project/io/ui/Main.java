@@ -14,10 +14,7 @@ import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.Program;
 import pt.ipp.isep.dei.project.model.devices.Programmable;
-import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaTypeId;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
+import pt.ipp.isep.dei.project.model.geographicalarea.*;
 import pt.ipp.isep.dei.project.model.house.Address;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
@@ -26,12 +23,13 @@ import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceType;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceTypeList;
-import pt.ipp.isep.dei.project.model.sensor.SensorTypeList;
+import pt.ipp.isep.dei.project.model.sensor.*;
 import pt.ipp.isep.dei.project.services.*;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @EnableJpaRepositories(basePackages = "pt.ipp.isep.dei.project")
@@ -88,6 +86,9 @@ public class Main {
     @Autowired
     private RoomService roomService;
 
+    @Autowired
+    private SensorsService sensorsService;
+
 
     public static void main(String[] args) {
 
@@ -114,8 +115,8 @@ public class Main {
                     houseEdificioB.getRoomList(), houseService, geoAreaSensorService, roomSensorService,
                     sensorTypeService, roomService, houseEdificioB);
             RegularUser regularUser = new RegularUser(geoAreaTypeService, geographicalAreaService, sensorTypeList, houseService, roomService, roomSensorService);
-            PowerUser powerUser = new PowerUser(houseService);
-            RoomOwner roomOwner = new RoomOwner(houseService);
+            PowerUser powerUser = new PowerUser(houseService, roomService, sensorsService);
+            RoomOwner roomOwner = new RoomOwner(houseService, roomService, sensorsService);
 
             int option = Menu.usersMenu();
             if (option == 0) {
@@ -169,10 +170,22 @@ public class Main {
         GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("Urban area");
         GeographicalAreaType geographicalAreaType = new GeographicalAreaType(geoAreaTypeId);
         GeographicalArea insertedGeoArea = new GeographicalArea("DUMMY", "DUMMY", geographicalAreaType, location2, areaShape);
+        List<GeographicalAreaDTO> geographicalAreas = new ArrayList<>();
+        GeographicalAreaDTO geographicalAreaDTO = (GeographicalAreaMapper.mapToDTOwithSensors(insertedGeoArea));
+        geographicalAreas.add(geographicalAreaDTO);
+        geographicalAreaService.saveGeoAreas(geographicalAreas);
+        geoAreaTypeService.save(geographicalAreaType);
+
 
         // HOUSE
-        Address address = new Address("", null, null);
+        Address address = new Address("4500", location2, insertedGeoArea);
         houseEdificioB = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice, address);
+
+////////////(des)comentar///////////////
+        //      houseService.saveHouse(houseEdificioB);
+
+
+
 
         // READINGS
         // Electric Water Heater B107/B109
@@ -290,10 +303,16 @@ public class Main {
         Room room1 = new Room(id, description, houseFloor, dimension);
         houseEdificioB.addRoom(room1);
 
+        ////////////(des)comentar///////////////
+        //  roomService.saveRoom(room1);
+
         // Room 2
         String id2 = "B109";
         Room room2 = new Room(id2, description, houseFloor, dimension);
         houseEdificioB.addRoom(room2);
+
+        ////////////(des)comentar///////////////
+        //  roomService.saveRoom(room2);
 
         // Room 3
         String id3 = "B106";
@@ -304,6 +323,7 @@ public class Main {
         Dimension dimension3 = new Dimension(height3, length3, width3);
         Room room3 = new Room(id3, description, houseFloor3, dimension3);
         houseEdificioB.addRoom(room3);
+        roomService.saveRoom(room3);
 
         // DEVICES
         double durationNotAsked = 30;
@@ -549,6 +569,79 @@ public class Main {
         powerSourceTypeList.addPowerSourceType(powerSourceType1);
         powerSourceTypeList.addPowerSourceType(powerSourceType2);
 
+        // GEO AREA Sensors
+        SensorTypeId temperature = new SensorTypeId("temperature");
+        LocalDateTime startDate = LocalDateTime.of(2018, 12, 1, 15, 20, 00);
+        Location sensorLocation = new Location(38.1596, -8.6109, 97);
+        //GeoAreaSensor temperatureSensor = new GeoAreaSensor(new SensorId("S01"), "A123", startDate, temperature, sensorLocation, "l/m2");
+        LocalDateTime startDate1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
+        Location sensorLocation1 = new Location(42.1496, -8.6109, 97);
+        GeoAreaSensor temperatureSensor1 = new GeoAreaSensor(new SensorId("S02"), "B123", startDate1, temperature, location2, "ºC", insertedGeoArea.getId());
+        SensorType sensorType = new SensorType(temperature);
+
+////////////(des)comentar///////////////
+/*
+
+        // Readings - GEO AREA Sensors
+        LocalDateTime readingDate = LocalDateTime.of(2018, 12, 2, 13, 20, 00);
+        LocalDateTime readingDate1 = LocalDateTime.of(2018, 12, 2, 13, 24, 00);
+        Reading reading = new Reading(23, readingDate);
+        Reading reading1 = new Reading(30, readingDate1);
+        //temperatureSensor.addReadingsToList(reading);
+        //temperatureSensor.addReadingsToList(reading1);
+        LocalDateTime readingDate2 = LocalDateTime.of(2018, 12, 3, 05, 20, 00);
+        LocalDateTime readingDate3 = LocalDateTime.of(2018, 12, 3, 05, 24, 00);
+        LocalDateTime readingDate4 = LocalDateTime.of(2018, 12, 4, 05, 24, 00);
+        LocalDateTime readingDate5 = LocalDateTime.of(2018, 12, 5, 05, 24, 00);
+        LocalDateTime readingDate6 = LocalDateTime.of(2018, 12, 4, 04, 24, 00);
+        Reading reading2 = new Reading(22, readingDate2);
+        Reading reading3 = new Reading(25, readingDate3);
+        Reading reading4 = new Reading(20, readingDate4);
+        Reading reading5 = new Reading(23, readingDate5);
+        Reading reading6 = new Reading(19, readingDate6);
+        temperatureSensor1.addReadingsToList(reading2);
+        temperatureSensor1.addReadingsToList(reading3);
+        temperatureSensor1.addReadingsToList(reading4);
+        temperatureSensor1.addReadingsToList(reading5);
+        temperatureSensor1.addReadingsToList(reading6);
+
+        sensorTypeService.save(sensorType);
+        geoAreaSensorService.saveGeoAreaSensor(temperatureSensor1);
+
+
+        //ROOM SENSORS
+        //Room1 - Sensors
+        SensorId sensorId = new SensorId("S01");
+        String sensorName = "A123";
+        RoomId roomId1 = room1.getId();
+        RoomSensor roomSensor1 = new RoomSensor(sensorId, sensorName, startDate, temperature, "ºC", roomId1);
+
+        //Room3 - Sensor
+        SensorId sensorId3 = new SensorId("S03");
+        String sensorName3 = "A124";
+        RoomId roomId3 = room3.getId();
+        RoomSensor roomSensor3 = new RoomSensor(sensorId3, sensorName3, startDate, temperature, "ºC", roomId3);
+
+
+        //Readings - RoomSensor1
+        Reading roomReading1 = new Reading(11, readingDate1);
+        Reading roomReading2 = new Reading(32, readingDate2);
+        Reading roomReading3 = new Reading(9, readingDate3);
+        Reading roomReading4 = new Reading(33, readingDate4);
+        Reading roomReading5 = new Reading(7, readingDate);
+        Reading roomReading6 = new Reading(35, readingDate5);
+        roomSensor1.addReading(roomReading1);
+        roomSensor1.addReading(roomReading2);
+        roomSensor1.addReading(roomReading3);
+        roomSensor1.addReading(roomReading4);
+        roomSensor1.addReading(roomReading5);
+        roomSensor1.addReading(roomReading6);
+
+        List<RoomSensorDTO> roomSensorsDTO = new ArrayList<>();
+        roomSensorsDTO.add(RoomSensorMapper.mapToDTO(roomSensor1));
+        roomSensorsDTO.add(RoomSensorMapper.mapToDTO(roomSensor3));
+        roomSensorService.saveSensors(roomSensorsDTO);
+*/
     }
 
 

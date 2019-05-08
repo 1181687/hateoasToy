@@ -12,9 +12,9 @@ import java.util.List;
 
 public class GetCurrentAndMaxTempRoomController {
 
-    private SensorTypeId temperature;
-    private RoomSensorService roomSensorService;
-    private RoomService roomService;
+    private final SensorTypeId temperature;
+    private final RoomSensorService roomSensorService;
+    private final RoomService roomService;
 
 
     /**

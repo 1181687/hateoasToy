@@ -199,7 +199,7 @@ public final class Menu {
         StringBuilder content = new StringBuilder();
         content.append(CHOOSE_OPTIONS);
         content.append("\n");
-        content.append("1-House configuration.");
+        content.append("1-House management.");
         content.append("\n");
         content.append("2-Energy consumption management.");
         content.append("\n");
@@ -220,12 +220,15 @@ public final class Menu {
         content.append("\n");
         content.append("4-Deactivate a device from a room");
         content.append("\n");
+        content.append("5-Get instants of a Room where temperature was out of temperature comfort in a given period.");
+        content.append("\n");
+
         content.append(RETURN_MENU);
         String label = content.toString();
-        return InputValidator.getIntRange(label, 0, 4);
+        return InputValidator.getIntRange(label, 0, 5);
     }
 
-    public static int powerUserEnergyConsumtionMenu() {
+    public static int powerUserEnergyConsumptionMenu() {
         StringBuilder content = new StringBuilder();
         content.append(CHOOSE_OPTIONS);
         content.append("\n");
@@ -252,9 +255,11 @@ public final class Menu {
         content.append("\n");
         content.append("1-Check nominal power of a room.");
         content.append("\n");
+        content.append("2-Get instants of a Room where temperature was out of temperature comfort in a given period.");
+        content.append("\n");
         content.append(RETURN_MENU);
         String label = content.toString();
-        return InputValidator.getIntRange(label, 0, 1);
+        return InputValidator.getIntRange(label, 0, 2);
     }
 
     public static String menuDataSeries() {

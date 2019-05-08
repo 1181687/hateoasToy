@@ -1,42 +1,36 @@
-/*
 package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.context.support.AnnotationConfigContextLoader;
+import org.mockito.MockitoAnnotations;
 import pt.ipp.isep.dei.project.controllers.InsertedGeoAreaController;
-import pt.ipp.isep.dei.project.io.ui.Main;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaTypeId;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
-import pt.ipp.isep.dei.project.repositories.GeoAreaRepository;
 import pt.ipp.isep.dei.project.services.GeographicalAreaService;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
 
 
 public class InsertedGeoAreaControllerTest {
 
     private InsertedGeoAreaController controller;
     private GeographicalArea CidadeDoPorto;
-    @InjectMocks
-    private GeographicalAreaService geographicalAreaService;
-    private GeographicalArea RuaDoBonfim;
 
     @Mock
-    private GeoAreaRepository geoAreaRepository;
+    private GeographicalAreaService geographicalAreaService;
+
+    private GeographicalArea ruaDoBonfim;
+
 
     @BeforeEach
     public void StartUp() {
+        MockitoAnnotations.initMocks(this);
+
         //Geographical Area
         GeoAreaTypeId geoAreaTypeId1 = new GeoAreaTypeId("Cidade");
         GeographicalAreaType geographicalAreaType = new GeographicalAreaType(geoAreaTypeId1);
@@ -48,8 +42,8 @@ public class InsertedGeoAreaControllerTest {
         GeographicalAreaType geographicalAreaType2 = new GeographicalAreaType(geoAreaTypeId2);
         Location local2 = new Location(41.1496, -8.6109, 97);
         AreaShape area2 = new AreaShape(10, 10);
-        this.RuaDoBonfim = new GeographicalArea("Rua do Bonfim", "Rua do Bonfim", geographicalAreaType2, local2, area2);
-        RuaDoBonfim.setInsertedIn(CidadeDoPorto);
+        this.ruaDoBonfim = new GeographicalArea("Rua do Bonfim", "Rua do Bonfim", geographicalAreaType2, local2, area2);
+        ruaDoBonfim.setInsertedIn(CidadeDoPorto);
 
         this.controller = new InsertedGeoAreaController(geographicalAreaService);
     }
@@ -57,12 +51,11 @@ public class InsertedGeoAreaControllerTest {
     @Test
     public void testarApresentacaoDeListaComCriterioTrueComAreaInserida() {
         //Arrange
-        geographicalAreaService.addGeoArea(CidadeDoPorto);
-        geographicalAreaService.addGeoArea(RuaDoBonfim);
 
         String expectResult = "1 - ID: Porto, Description: Cidade do Porto, Type: Cidade, Latitude: 41.1496, Longitude: -8.6109\n" +
                 "2 - ID: Rua do Bonfim, Description: Rua do Bonfim, Type: Rua, Latitude: 41.1496, Longitude: -8.6109, Inserted in: Cidade Cidade do Porto\n";
 
+        when(geographicalAreaService.getGeoAreaListToString(true)).thenReturn(expectResult);
         //Act
         String result = controller.getConteudoLista(true);
 
@@ -73,11 +66,11 @@ public class InsertedGeoAreaControllerTest {
     @Test
     public void testarApresentacaoDeListaComCriterioTrueSemAreaInserida() {
         //Arrange
-        geographicalAreaService.addGeoArea(CidadeDoPorto);
-        geographicalAreaService.addGeoArea(RuaDoBonfim);
 
         String expectResult = "1 - ID: Porto, Description: Cidade do Porto, Type: Cidade, Latitude: 41.1496, Longitude: -8.6109\n" +
                 "2 - ID: Rua do Bonfim, Description: Rua do Bonfim, Type: Rua, Latitude: 41.1496, Longitude: -8.6109\n";
+
+        when(geographicalAreaService.getGeoAreaListToString(false)).thenReturn(expectResult);
 
         //Act
         String result = controller.getConteudoLista(false);
@@ -89,12 +82,11 @@ public class InsertedGeoAreaControllerTest {
     @Test
     public void testarApresentacaoDeListaComCriterioFalseComAreaInserida() {
         //Arrange
-        RuaDoBonfim.setInsertedIn(CidadeDoPorto);
-        geographicalAreaService.addGeoArea(CidadeDoPorto);
-        geographicalAreaService.addGeoArea(RuaDoBonfim);
 
         String expectResult = "1 - ID: Porto, Description: Cidade do Porto, Type: Cidade, Latitude: 41.1496, Longitude: -8.6109\n" +
                 "2 - ID: Rua do Bonfim, Description: Rua do Bonfim, Type: Rua, Latitude: 41.1496, Longitude: -8.6109\n";
+
+        when(geographicalAreaService.getGeoAreaListToString(false)).thenReturn(expectResult);
 
         //Act
         String result = controller.getConteudoLista(false);
@@ -106,11 +98,11 @@ public class InsertedGeoAreaControllerTest {
     @Test
     public void testarApresentacaoDeListaComCriterioFalseSemAreaInserida() {
         //Arrange
-        geographicalAreaService.addGeoArea(CidadeDoPorto);
-        geographicalAreaService.addGeoArea(RuaDoBonfim);
 
         String expectResult = "1 - ID: Porto, Description: Cidade do Porto, Type: Cidade, Latitude: 41.1496, Longitude: -8.6109\n" +
                 "2 - ID: Rua do Bonfim, Description: Rua do Bonfim, Type: Rua, Latitude: 41.1496, Longitude: -8.6109\n";
+
+        when(geographicalAreaService.getGeoAreaListToString(false)).thenReturn(expectResult);
 
         //Act
         String result = controller.getConteudoLista(false);
@@ -122,12 +114,12 @@ public class InsertedGeoAreaControllerTest {
     @Test
     public void testarGetAreaGeograficaNaListaApresentada() {
         //Arrange
-        geographicalAreaService.addGeoArea(CidadeDoPorto);
-        geographicalAreaService.addGeoArea(RuaDoBonfim);
 
         int selectedOption = 1;
 
-        GeographicalArea expectedResult = RuaDoBonfim;
+        GeographicalArea expectedResult = ruaDoBonfim;
+
+        when(geographicalAreaService.getGeographicalAreaInTheList(selectedOption)).thenReturn(this.ruaDoBonfim);
 
         //Act
         GeographicalArea result = controller.getAGNaListaApresentada(selectedOption);
@@ -147,64 +139,43 @@ public class InsertedGeoAreaControllerTest {
         AreaShape area3 = new AreaShape(10, 10);
         GeographicalArea ag3 = new GeographicalArea(nomeAG3, "Região Sul", tipo3, local3, area3);
 
-        RuaDoBonfim.setInsertedIn(CidadeDoPorto);
-
-        boolean expectedResult = true;
+        when(geographicalAreaService.checkIfGeoAreaDoesntHaveAnInsertedArea(ag3)).thenReturn(true);
 
         //Act
         boolean result = controller.verSeAGTemAreaInseridaVazia(ag3);
 
         //Assert
-        assertEquals(expectedResult, result);
+        assertTrue(result);
 
     }
 
     @Test
     public void testarSeAGNaoTemAreaInseridaQuandoTem() {
         //Arrange
-        RuaDoBonfim.setInsertedIn(CidadeDoPorto);
 
-        boolean expectedResult = false;
+        when(geographicalAreaService.checkIfGeoAreaDoesntHaveAnInsertedArea(ruaDoBonfim)).thenReturn(false);
 
         //Act
-        boolean result = controller.verSeAGTemAreaInseridaVazia(RuaDoBonfim);
+        boolean result = controller.verSeAGTemAreaInseridaVazia(ruaDoBonfim);
 
         //Assert
-        assertEquals(expectedResult, result);
+        assertFalse(result);
     }
 
     @Test
     public void testarSeAGEstaContidaNoutraComCasoFalso() {
         //Arrange
-        String nomeAG = "Porto";
-        GeoAreaTypeId geoAreaTypeId3 = new GeoAreaTypeId("Distrito");
-        GeographicalAreaType tipo = new GeographicalAreaType(geoAreaTypeId3);
-        Location local = new Location(41.1496, -8.6109, 97);
-        AreaShape area = new AreaShape(10, 10);
-        GeographicalArea ag2 = new GeographicalArea(nomeAG, "Distrito do Porto", tipo, local, area);
-        String nomeAG3 = "Sul";
-        GeoAreaTypeId geoAreaTypeId4 = new GeoAreaTypeId("Região");
-        GeographicalAreaType tipo3 = new GeographicalAreaType(geoAreaTypeId4);
-        Location local3 = new Location(41.1496, -8.6109, 97);
-        AreaShape area3 = new AreaShape(10, 10);
-        GeographicalArea ag3 = new GeographicalArea(nomeAG3, "Região Sul", tipo3, local3, area3);
-        geographicalAreaService.addGeoArea(CidadeDoPorto);
-        geographicalAreaService.addGeoArea(ag2);
-        geographicalAreaService.addGeoArea(ag3);
-        ag2.setInsertedIn(CidadeDoPorto);
-        boolean expectedResult = false;
+        when(geographicalAreaService.checkIfGeoAreaIsInsertedInAnother(2, 0)).thenReturn(false);
         //Act
         boolean result = controller.verificarSeAGEstaContidaDiretaOuIndiretamenteNoutraAG(2, 0);
         //Assert
-        assertEquals(expectedResult, result);
+        assertFalse(result);
     }
 
     @Test
     public void testarSeAGEstaInseridaEmAGDiretamenteComCasoVerdadeiro() {
         //Arrange
-        RuaDoBonfim.setInsertedIn(CidadeDoPorto);
-        geographicalAreaService.addGeoArea(CidadeDoPorto);
-        geographicalAreaService.addGeoArea(RuaDoBonfim);
+        when(geographicalAreaService.checkIfGeoAreaIsInsertedInAnother(1, 0)).thenReturn(true);
 
         //Act
         boolean result = controller.verificarSeAGEstaContidaDiretaOuIndiretamenteNoutraAG(1, 0);
@@ -213,65 +184,4 @@ public class InsertedGeoAreaControllerTest {
         assertTrue(result);
     }
 
-    @Test
-    public void testarSeAGEstaContidaNoutraNoCasoDeDuasIguais() {
-        //Arrange
-        String nomeAG = "Porto";
-        GeoAreaTypeId geoAreaTypeId4 = new GeoAreaTypeId("Distrito");
-        GeographicalAreaType tipo = new GeographicalAreaType(geoAreaTypeId4);
-        Location local = new Location(41.1496, -8.6109, 97);
-        AreaShape area = new AreaShape(10, 10);
-        GeographicalArea ag2 = new GeographicalArea(nomeAG, "Distrito do Porto", tipo, local, area);
-
-        String nomeAG3 = "Sul";
-        GeoAreaTypeId geoAreaTypeId3 = new GeoAreaTypeId("Região");
-        GeographicalAreaType tipo3 = new GeographicalAreaType(geoAreaTypeId3);
-        Location local3 = new Location(41.1496, -8.6109, 97);
-        AreaShape area3 = new AreaShape(10, 10);
-        GeographicalArea ag3 = new GeographicalArea(nomeAG3, "Região Sul", tipo3, local3, area3);
-
-        geographicalAreaService.addGeoArea(CidadeDoPorto);
-        geographicalAreaService.addGeoArea(ag2);
-        geographicalAreaService.addGeoArea(ag3);
-
-        boolean expectedResult = false;
-
-        //Act
-        boolean result = controller.verificarSeAGEstaContidaDiretaOuIndiretamenteNoutraAG(1, 0);
-
-        //Assert
-        assertEquals(expectedResult, result);
-    }
-
-    @Test
-    public void testarSeAGEstaContidaNoutraNoCasoDeEstarIndiretamente() {
-        //Arrange
-        String nomeAG2 = "Porto";
-        GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("Distrito");
-        GeographicalAreaType tipo2 = new GeographicalAreaType(geoAreaTypeId);
-        Location local2 = new Location(41.1496, -8.6109, 97);
-        AreaShape area2 = new AreaShape(10, 10);
-        GeographicalArea ag2 = new GeographicalArea(nomeAG2, "Distrito do Porto", tipo2, local2, area2);
-
-        String nomeAG3 = "Norte";
-        GeoAreaTypeId geoAreaTypeId1 = new GeoAreaTypeId("Região");
-        GeographicalAreaType tipo3 = new GeographicalAreaType(geoAreaTypeId1);
-        Location local3 = new Location(41.1496, -8.6109, 97);
-        AreaShape area3 = new AreaShape(10, 10);
-        GeographicalArea ag3 = new GeographicalArea(nomeAG3, "Região do Norte", tipo3, local3, area3);
-
-        geographicalAreaService.addGeoArea(CidadeDoPorto);
-        geographicalAreaService.addGeoArea(ag2);
-        geographicalAreaService.addGeoArea(ag3);
-        CidadeDoPorto.setInsertedIn(ag2);
-        ag2.setInsertedIn(ag3);
-
-        boolean expectedResult = true;
-
-        //Act
-        boolean result = controller.verificarSeAGEstaContidaDiretaOuIndiretamenteNoutraAG(0, 2);
-
-        //Assert
-        assertEquals(expectedResult, result);
-    }
-}*/
+}

@@ -7,18 +7,18 @@ import java.io.Serializable;
 public class HouseGridId implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private String housegridId;
+    private String houseGridId;
 
 
-    public HouseGridId(String housegridId) {
-        this.housegridId = housegridId;
+    public HouseGridId(String houseGridId) {
+        this.houseGridId = houseGridId;
     }
 
     protected HouseGridId() {
         //empty
     }
 
-    public String getHousegridId() {
-        return housegridId;
+    public String getHouseGridId() {
+        return houseGridId;
     }
 }

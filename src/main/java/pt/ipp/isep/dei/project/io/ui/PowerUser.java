@@ -2,14 +2,19 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.services.HouseService;
+import pt.ipp.isep.dei.project.services.RoomService;
+import pt.ipp.isep.dei.project.services.SensorsService;
 
 public class PowerUser {
     House house;
     HouseService houseService;
+    SensorsService sensorsService;
+    RoomService roomService;
 
-    public PowerUser(HouseService houseService) {
+    public PowerUser(HouseService houseService, RoomService roomService, SensorsService sensorsService) {
         this.houseService = houseService;
-        this.house = houseService.getHouse();
+        this.roomService = roomService;
+        this.sensorsService = sensorsService;
     }
 
     public void runPowerUserMenu() {
@@ -51,13 +56,21 @@ public class PowerUser {
                     DeactivateDeviceFromRoom ui222 = new DeactivateDeviceFromRoom(house);
                     ui222.run();
                     break;
+                case 5:
+                    try {
+                        InstantsTempOutOfComfortLevel ui440and445 = new InstantsTempOutOfComfortLevel(houseService, sensorsService, roomService);
+                        ui440and445.run();
+                    } catch (NullPointerException e) {
+                        System.out.println("Problems with house configuration.\n");
+                    }
+                    break;
             }
             option = Menu.powerUserHouseMenu();
         }
     }
 
     public void runPowerUserEnergyConsumptionManagement() {
-        int option = Menu.powerUserEnergyConsumtionMenu();
+        int option = Menu.powerUserEnergyConsumptionMenu();
         if (option == 0) {
             return;
         }
@@ -89,7 +102,7 @@ public class PowerUser {
                     break;
 
             }
-            option = Menu.powerUserEnergyConsumtionMenu();
+            option = Menu.powerUserEnergyConsumptionMenu();
         }
     }
 }

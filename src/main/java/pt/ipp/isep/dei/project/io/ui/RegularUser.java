@@ -9,7 +9,7 @@ public class RegularUser {
     GeoAreaTypeService geographicalAreaTypeService;
     GeographicalAreaService geographicalAreaService;
     SensorTypeList sensorTypeList;
-    SensorTypeId sensorTypeTemperature = new SensorTypeId("Temperature");
+    SensorTypeId sensorTypeTemperature = new SensorTypeId("temperature");
     HouseService houseService;
     RoomService roomService;
     RoomSensorService roomSensorService;

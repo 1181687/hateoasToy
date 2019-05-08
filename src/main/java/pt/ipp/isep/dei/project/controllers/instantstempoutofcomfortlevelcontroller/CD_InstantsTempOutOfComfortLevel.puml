@@ -12,67 +12,67 @@ hide circle
 
 
 
-InstantsTempOutOfComfortLevelUI "1" --> "1" InstantsTempOutOfComfortLevelController
-InstantsTempOutOfComfortLevelController "1" --> "1" HouseService
-InstantsTempOutOfComfortLevelController "1" --> "1" "RoomService"
-InstantsTempOutOfComfortLevelController "1" --> "1" SensorsService
+InstantsTemperatureOutOfComfortLevelUI "1" --> "1" InstantsTemperatureOutOfComfortLevelController
+InstantsTemperatureOutOfComfortLevelController "1" --> "1" HouseService
+InstantsTemperatureOutOfComfortLevelController "1" -left-> "1" "RoomService"
+InstantsTemperatureOutOfComfortLevelController "1" -> "1" SensorsService
 SensorsService "1" --> "1" RoomSensorService
 SensorsService "1" --> "1" GeoAreaSensorService
-RoomSensorService "1" --> "1" "<<RoomSensorRepository>>"
+RoomSensorService "1" -left-> "1" "<<RoomSensorRepository>>"
 "<<RoomSensorRepository>>" "1" --> "1" RoomSensor
 RoomSensor "1" --> "*" Reading
 GeoAreaSensorService "1" --> "1" "<<GeoAreaSensorRepository>>"
 "<<GeoAreaSensorRepository>>" "1" --> "1" GeoAreaSensor
-GeoAreaSensor "1" --> "1" Location: uses
-GeoAreaSensor "1" --> "*" Reading: uses
-HouseService "1" --> "1" "<<HouseRepository>>"
+GeoAreaSensor "1" -left-> "1" Location: uses
+GeoAreaSensor "1" -right-> "*" Reading: uses
+HouseService "1" -left-> "1" "<<HouseRepository>>"
 "<<HouseRepository>>" "1" --> "*" House
-RoomService "1" -> "<<RoomRepository>>"
+RoomService "1" -up-> "<<RoomRepository>>"
 House "1" --> "1" Address
-Address "1" --> "1" Location
+Address "1" -right-> "1" Location
 SensorsService "1" -> "1" ReadingMapper: uses
 ReadingMapper "1" -> "1" Reading: creates
-ReadingMapper "1" --> "1" ReadingDTO: creates
+ReadingMapper "1" -down-> "1" ReadingDTO: creates
 RoomService "1" -left-> "1" RoomMapper: uses
-RoomMapper "1" -left-> "1" RoomDTO: creates
-InstantsTempOutOfComfortLevelController "1" -right-> "1" LocationMapper: uses
-LocationMapper "1" -up> "1" LocationDTO: creates
-InstantsTempOutOfComfortLevelController "1" -right-> "1" GeoAreaIdMapper: uses
+RoomMapper "1" -up-> "1" RoomDTO: creates
+HouseService "1" --> "1" LocationMapper: uses
+LocationMapper "1" -down-> "1" LocationDTO: creates
+HouseService "1" -> "1" GeoAreaIdMapper: uses
 GeoAreaIdMapper "1" -> "1" GeoAreaIdDTO: creates
 GeoAreaIdDTO "1" -> "1" LocationDTO
 
 
 
-Class InstantsTempOutOfComfortLevelUI {
-- InstantsTempOutOfComfortLevelController controller
+Class InstantsTemperatureOutOfComfortLevelUI {
+- InstantsTemperatureOutOfComfortLevelController controller
 + run()
 
 }
 
-Class InstantsTempOutOfComfortLevelController {
+Class InstantsTemperatureOutOfComfortLevelController {
 - SensorTypeId sensorTypeId
 - RoomId roomId
 - SensorId roomSensorId
 - LocationDTO location
 - GeoAreaIdDTO geoAreaId
-- Map<LocalDate, List<Double>> comfortTemp
-- Map<LocalDateTime, Double> mapInstantsOutOfComfortTemp
+- Map<LocalDate, List<Double>> comfortTemperature
+- Map<LocalDateTime, Double> mapInstantsOutOfComfortTemperature
 - List<Reading> roomReadings
 - int category
 - int option
-- List<LocalDateTime> listOfInstantsOutOfComfortTemp
+- List<LocalDateTime> listOfInstantsOutOfComfortTemperature
 + setCategory ()
 + setOption ()
 + getAllRoomsDTO ()
 + isRoomListEmpty ()
 + setRoomId ()
-+ existTempSensors ()
++ existTemperatureSensors ()
 + getComfortTemperature ()
 + setSensorID ()
 - getInstantsOutOfComfortTemperature ()
 + getInstantListOutOfComfortLevel ()
-+ existsDaysWithoutComfortTemp ()
-+ getDaysWithoutComfortTemp ()
++ existsDaysWithoutComfortTemperature ()
++ getDaysWithoutComfortTemperature ()
 + readingsHouseAreaAndRoom ()
 }
 
@@ -119,8 +119,8 @@ Class GeoAreaSensorService {
 + getNearestSensorWithMostRecentReading ()
 + getNearestSensors ()
 + getDailyAverageBySensorId ()
-+ existsDaysWithoutComfortTemp ()
-+ getDaysWithoutComfortTemp ()
++ existsDaysWithoutComfortTemperature ()
++ getDaysWithoutComfortTemperature ()
 }
 
 Class HouseService {
@@ -228,8 +228,8 @@ Class SensorsService {
 + getInstantsOutOfComfortTemperature ()
 + getInstantListOutOfComfortLevel ()
 + existSensors ()
-+ existsDaysWithoutComfortTemp ()
-+ getDaysWithoutComfortTemp ()
++ existsDaysWithoutComfortTemperature ()
++ getDaysWithoutComfortTemperature ()
 + getRoomReadingsDTO ()
 }
 

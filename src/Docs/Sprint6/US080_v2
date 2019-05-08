@@ -6,30 +6,44 @@ available whenever the application is running.
 
 TEAM MEMBERS: Developer -  Joana Figueira/Sónia Silva; QA - Ricardo Araújo;
 
-ACCEPTANCE CRITERIA:
+- given - The user (admin) wants the data related to geographical areas (including sensors and their readings) and to
+the house (including grids, rooms and sensors) to be persisted in a relational database, so that this data is available
+whenever the application is run.
 
-General Criteria:
-- Correct Sequence and Class Diagrams.
-- JavaDoc documentation in both code and tests.
-- JUnit conventions in code and tests. (eg. tests should be named like this:
-                                        testNameOfTheMethod_conditionThatIsBeingTested_expectedResult).
-- All code, comments and documentation are in proper English.
+- when - We can see if this user story works if, for example:
+          - the user chooses option "1" from Menu (Administrator), then option "2" (Geographical Area) and then option
+         "9" (Import geographical areas and sensors from JSON or XML File).
+         Then User inserts the name of the file to be imported.
+         He/She then chooses the option "YES" in "Do you want to import these geographic areas and their sensors? (Y/N)".
+         He/She then chooses option "10" (Import readings);
+         Then User inserts the name of the file to be imported and chooses the option "YES" in "Do you want to import
+         these readings? (Y/N)"
 
-Specific Criteria:
-- given - 
-- when - 
-- then:
-- but - 
+         - the user chooses option "1" from Menu (Administrator), then option "1" (House) and then option "13" (Configure
+          House from a file).
+          Then User inserts the name of the file to be imported.
+          He/She then chooses the option "YES" in "Do you want to configure the house with this information (Y/N)".
+          He/She then chooses option "14" (Import house sensors);
+          Then User inserts the name of the file to be imported and chooses the option "YES" in "Do you want to import
+          these house sensors? (Y/N)"
+          He/She then chooses option "15" (Import readings for house sensors);
+          Then User inserts the name of the file to be imported and chooses the option "YES" in "Do you want to import
+          these readings? (Y/N)"
 
-"
+After that, the user have access to the database, where the user can see the persistence data, on the link:
 
+port: 8080
+spring.h2.console.path=/h2-console
+spring.datasource.url=jdbc:h2:file:~/test2;DB_CLOSE_ON_EXIT=FALSE;AUTO_RECONNECT=TRUE
 
-Test Criteria:
+- then - If the Geographical Areas, their sensors and readings are on the database and also the House rooms, grids, sensors
+and their readings, the persistence has been accomplished.
 
+- but - If the condition mentioned above is not met, the persistence has not been accomplished.
 
-Acceptance Tests:
 
 
 ASSUMPTIONS:
-
+- There is no user interaction. However, the user stories 100, 260 and 265 must implement this new functionality.
+- Both user stories need to work to have persistence.
 
