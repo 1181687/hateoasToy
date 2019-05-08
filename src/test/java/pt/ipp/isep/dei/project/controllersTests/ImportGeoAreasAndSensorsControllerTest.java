@@ -1,91 +1,75 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
-/*
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import pt.ipp.isep.dei.project.controllers.importgeoareasandsensorscontroller.ImportGeoAreasAndSensorsController;
+import pt.ipp.isep.dei.project.model.LocationDTO;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaIdDTO;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
+import pt.ipp.isep.dei.project.services.GeoAreaSensorService;
+import pt.ipp.isep.dei.project.services.GeographicalAreaService;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 
-public class ImportGeoAreasFromJSONOrXMLControllerTest {
-    @Autowired
-    private GeographicalAreaService geographicalAreaService;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.when;
 
-    @Autowired
+public class ImportGeoAreasAndSensorsControllerTest {
+    @Mock
+    private GeographicalAreaService geoAreaService;
+    @Mock
     private GeoAreaSensorService geoAreaSensorService;
+    private ImportGeoAreasAndSensorsController controller;
+    private List<Object> geoAreaDTOs;
 
-    */
-/**
-     * Test that imports imports geo areas and sensors
- *//*
+    @BeforeEach
+    public void StartUp() {
+        // Mockito
+        MockitoAnnotations.initMocks(this);
+
+        // Controller
+        this.controller = new ImportGeoAreasAndSensorsController(geoAreaService, geoAreaSensorService);
+
+        // Geographical Areas and Sensors
+        String path = "datasets/sprint7/DataSet_sprint07_GA.json";
+        File file = new File(path);
+        try {
+            geoAreaDTOs = this.controller.readFile(file, path);
+        } catch (FileNotFoundException e) {
+            geoAreaDTOs = null;
+        }
+    }
 
     @Test
-    public void testImportGeographicalAreaAndSensors_True() throws FileNotFoundException {
-        MockitoAnnotations.initMocks(this);
-        // arrange
-        // DTO's
-        List<Object> geographicalAreaDTOList = new ArrayList<>();
+    public void importGeoAreasAndSensors() {
+        // Arrange
+        GeographicalAreaDTO geoAreaDTO = new GeographicalAreaDTO();
+        List<GeographicalAreaDTO> geoAreas = new ArrayList<>();
+        for (Object geoAreaObject : geoAreaDTOs) {
+            geoAreaDTO = (GeographicalAreaDTO) geoAreaObject;
+            LocationDTO locationDTO = new LocationDTO();
+            locationDTO.setLatitude(geoAreaDTO.getLatitude());
+            locationDTO.setElevation(geoAreaDTO.getElevation());
+            locationDTO.setLongitude(geoAreaDTO.getLongitude());
+            GeoAreaIdDTO geoAreaIdDTO = new GeoAreaIdDTO();
+            geoAreaIdDTO.setId(geoAreaDTO.getId());
+            geoAreaIdDTO.setGeoAreaType(geoAreaDTO.getType());
+            geoAreaIdDTO.setLocationDTO(locationDTO);
+            when(geoAreaService.geoAreaExists(geoAreaIdDTO)).thenReturn(false);
+            geoAreas.add(geoAreaDTO);
+        }
+        doNothing().when(geoAreaService).saveGeoAreas(geoAreas);
 
-        // LocationDTO
-        double latitude1 = 45;
-        double longitude1 = 45;
-        double altitude1 = 45;
-        LocationDTO locationDTO = LocationMapper.newLocationDTO();
-        locationDTO.setLatitude(latitude1);
-        locationDTO.setLongitude(longitude1);
-        locationDTO.setElevation(altitude1);
+        // Act
+        boolean result = this.controller.importGeoAreasAndSensors();
 
-        // GeoAreaSensorDTO
-        String idSensor = "S1";
-        String nameSensor = "sensor";
-        LocalDate startingDate = LocalDate.of(2017, GregorianCalendar.AUGUST, 15);
-        String typeSensor = "Temperature";
-        String units = "1m/s";
-
-        GeoAreaSensorDTO sensorDTO = GeoAreaSensorMapper.newSensorDTO();
-        sensorDTO.setId(idSensor);
-        sensorDTO.setName(nameSensor);
-        sensorDTO.setSensorType(typeSensor);
-        sensorDTO.setStartingDate(startingDate);
-        sensorDTO.setLocation(locationDTO);
-        sensorDTO.setUnits(units);
-
-        // Geo area DTO
-        String id = "A01";
-        String description = "Espinho";
-        String type = "Urban area";
-        double width = 24;
-        double length = 34;
-        double latitude = -516;
-        double longitude = 12;
-        double altitude = 156;
-        GeographicalAreaDTO geographicalAreaDTO = GeographicalAreaMapper.newDTO();
-        geographicalAreaDTO.setId(id);
-        geographicalAreaDTO.setDescription(description);
-        geographicalAreaDTO.setType(type);
-        geographicalAreaDTO.setWidth(width);
-        geographicalAreaDTO.setLength(length);
-        geographicalAreaDTO.setLatitude(latitude);
-        geographicalAreaDTO.setLongitude(longitude);
-        geographicalAreaDTO.setElevation(altitude);
-
-
-        // add
-        geographicalAreaDTOList.add(geographicalAreaDTO);
-        geographicalAreaDTO.addSensor(sensorDTO);
-
-        String path = "datasets/geoAreas/json/JSONfile.json";
-        File file = new File(path);
-
-        ImportGeoAreasAndSensorsController ctrl = new ImportGeoAreasAndSensorsController(geographicalAreaService, geoAreaSensorService);
-        ctrl.createReader(path);
-        ctrl.readFile(file, path);
-
-        // act
-        boolean result = ctrl.importGeographicalAreaAndSensors();
-
-        // assert
+        // Assert
         assertTrue(result);
     }
-
-    @Configuration
-    static class Config {
-    }
-
-}*/
+}
