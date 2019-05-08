@@ -7,10 +7,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaId;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaIdMapper;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaTypeId;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
+import pt.ipp.isep.dei.project.model.geographicalarea.*;
 import pt.ipp.isep.dei.project.model.sensor.*;
 import pt.ipp.isep.dei.project.repositories.GeoAreaSensorRepository;
 
@@ -20,6 +17,7 @@ import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
 public class GeoAreaSensorServiceTest {
@@ -404,6 +402,36 @@ public class GeoAreaSensorServiceTest {
     }
 
     @Test
+    public void existsDaysWithoutComfortTemp_EmptyList_ShouldReturnTrue() {
+        // Arrange
+        Map<LocalDate, List<Double>> listHashMap = new HashMap<>();
+
+        // Act
+        boolean result = geoAreaSensorService.existsDaysWithoutComfortTemp(listHashMap);
+
+        // assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void existsDaysWithoutComfortTemp_EmptyList_ShouldReturnFalse() {
+        // Arrange
+        List<Double> doubleList = new ArrayList<>();
+        doubleList.add(1.0);
+        doubleList.add(2.0);
+        doubleList.add(3.0);
+
+        Map<LocalDate, List<Double>> listHashMap = new HashMap<>();
+        listHashMap.put(LocalDate.of(2017, 9, 30), doubleList);
+
+        // Act
+        boolean result = geoAreaSensorService.existsDaysWithoutComfortTemp(listHashMap);
+
+        // assert
+        assertFalse(result);
+    }
+
+    @Test
     public void sensorExists_ShouldReturnTrue() {
         // Arrange
         SensorIdDTO sensorIdDTO = SensorIdMapper.mapToDTO(geoAreaSensor.getId());
@@ -478,4 +506,83 @@ public class GeoAreaSensorServiceTest {
         assertEquals(geoAreaSensorDTOList, result);
     }
 
+    @Test
+    public void testRemoveSensor_whenIdCorresponds_ShouldReturnTrue() {
+        // Arrange
+        SensorId sensorId = new SensorId("S01");
+        SensorIdDTO sensorIdDTO = SensorIdMapper.mapToDTO(sensorId);
+
+        List<GeoAreaSensorDTO> geoAreaSensorDTOS = new ArrayList<>();
+        GeoAreaSensorDTO geoAreaSensorDTO = GeoAreaSensorMapper.mapToDTO(geoAreaSensor);
+        geoAreaSensorDTO.setId(sensorId.getSensorId());
+        geoAreaSensorDTOS.add(geoAreaSensorDTO);
+
+        GeoAreaIdDTO geoAreaIdDTO = GeoAreaIdMapper.mapToDTO(geoAreaSensor.getGeoAreaId());
+        when(geoAreaSensorService.getSensorsByGeoAreaId(geoAreaIdDTO)).thenReturn(geoAreaSensorDTOS);
+        when(geoAreaSensorRepo.existsById(sensorId)).thenReturn(true);
+
+        doNothing().when(this.geoAreaSensorRepo).deleteById(sensorId);
+
+        // Act
+        boolean result = geoAreaSensorService.removeSensor(sensorIdDTO);
+
+        // Assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void testRemoveSensor_whenIdCorresponds_ShouldReturnFalse() {
+        // Arrange
+        SensorId sensorId = new SensorId("S01");
+        SensorIdDTO sensorIdDTO = SensorIdMapper.mapToDTO(sensorId);
+
+        List<GeoAreaSensorDTO> geoAreaSensorDTOS = new ArrayList<>();
+        GeoAreaSensorDTO geoAreaSensorDTO = GeoAreaSensorMapper.mapToDTO(geoAreaSensor);
+        geoAreaSensorDTO.setId(sensorId.getSensorId());
+        geoAreaSensorDTOS.add(geoAreaSensorDTO);
+
+        GeoAreaIdDTO geoAreaIdDTO = GeoAreaIdMapper.mapToDTO(geoAreaSensor.getGeoAreaId());
+        when(geoAreaSensorService.getSensorsByGeoAreaId(geoAreaIdDTO)).thenReturn(geoAreaSensorDTOS);
+        when(geoAreaSensorRepo.existsById(sensorId)).thenReturn(false);
+
+        doNothing().when(this.geoAreaSensorRepo).deleteById(sensorId);
+
+        // Act
+        boolean result = geoAreaSensorService.removeSensor(sensorIdDTO);
+
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testDeactivateDevice_DeviceActive_ReturnsTrue() {
+        // Arrange
+        GeoAreaSensorDTO geoAreaSensorDTO = GeoAreaSensorMapper.mapToDTO(geoAreaSensor);
+        geoAreaSensorDTO.setId(geoAreaSensor.getId().getSensorId());
+
+        when(geoAreaSensorRepo.existsById(geoAreaSensor.getId())).thenReturn(true);
+        when(geoAreaSensorRepo.findById(geoAreaSensor.getId())).thenReturn(Optional.of(geoAreaSensor));
+
+        // Act
+        boolean result = geoAreaSensorService.deactivateSensor(GeoAreaSensorMapper.mapToDTO(geoAreaSensor));
+
+        // Assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void testDeactivateDevice_DeviceActive_ReturnsFalse() {
+        // Arrange
+        GeoAreaSensorDTO geoAreaSensorDTO = GeoAreaSensorMapper.mapToDTO(geoAreaSensor);
+        geoAreaSensorDTO.setId(geoAreaSensor.getId().getSensorId());
+
+        when(geoAreaSensorRepo.existsById(geoAreaSensor.getId())).thenReturn(false);
+        when(geoAreaSensorRepo.findById(geoAreaSensor.getId())).thenReturn(Optional.of(geoAreaSensor));
+
+        // Act
+        boolean result = geoAreaSensorService.deactivateSensor(GeoAreaSensorMapper.mapToDTO(geoAreaSensor));
+
+        // Assert
+        assertFalse(result);
+    }
 }
