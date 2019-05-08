@@ -18,8 +18,8 @@ import java.util.Objects;
 
 public class GetCurrentTemperatureRoom {
 
-    private GetCurrentAndMaxTempRoomController controller;
-    private List<RoomDTO> allRoomsDTOList;
+    private final GetCurrentAndMaxTempRoomController controller;
+    private final List<RoomDTO> allRoomsDTOList;
 
     public GetCurrentTemperatureRoom(SensorTypeId typeId, RoomSensorService sensorService, RoomService rService) {
         this.controller = new GetCurrentAndMaxTempRoomController(typeId, sensorService,rService);
