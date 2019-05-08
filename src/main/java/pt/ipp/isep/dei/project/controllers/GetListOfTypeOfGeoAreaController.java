@@ -8,7 +8,7 @@ import java.util.List;
 public class GetListOfTypeOfGeoAreaController {
 
     private GeographicalAreaService geographicalAreaService;
-    private GeoAreaTypeService geoAreaTypeService;
+    private final GeoAreaTypeService geoAreaTypeService;
 
     public GetListOfTypeOfGeoAreaController(GeographicalAreaService geographicalAreaService, GeoAreaTypeService geoTypeService) {
         this.geographicalAreaService = geographicalAreaService;

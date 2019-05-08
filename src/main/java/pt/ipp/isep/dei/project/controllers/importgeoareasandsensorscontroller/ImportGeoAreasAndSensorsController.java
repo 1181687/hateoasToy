@@ -1,4 +1,4 @@
-package pt.ipp.isep.dei.project.controllers.importgeoareasfromjsonorxmlcontroller;
+package pt.ipp.isep.dei.project.controllers.importgeoareasandsensorscontroller;
 
 
 import pt.ipp.isep.dei.project.model.LocationDTO;
