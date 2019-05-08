@@ -537,6 +537,6 @@ public class HouseGridTest {
         HouseGridId result = mainGrid.getHouseGridName();
 
         //Assert
-        assertEquals(expectedResult.getHousegridId(),result.getHousegridId());
+        assertEquals(expectedResult.getHouseGridId(),result.getHouseGridId());
     }
 }
