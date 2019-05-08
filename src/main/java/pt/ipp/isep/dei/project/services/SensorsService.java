@@ -138,6 +138,7 @@ public class SensorsService {
         return  geoAreaSensorService.existsDaysWithoutComfortTemp(mapComfortDailyTemperature);
     }
 
+
     public boolean existReadingsHouseAreaAndRoom(RoomId roomId, SensorTypeId sensorTypeId, GeoAreaId geoAreaId,
                                                  LocalDate startDate, LocalDate endDate) {
         RoomSensor roomSensor = roomSensorService.getRoomSensor(roomId, sensorTypeId);
@@ -145,5 +146,9 @@ public class SensorsService {
         return roomSensor.existReadingsBetweenDates(startDate, endDate) && geoAreaSensor.existReadingsBetweenDates(startDate, endDate);
     }
 
+    public boolean existReadingsBothHouseAreaAndRoomDaily(LocalDate startdate, LocalDate endDate) {
+
+        geoAreaSensorService.
+    }
 
 }

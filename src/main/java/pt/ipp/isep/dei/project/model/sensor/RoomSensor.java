@@ -231,6 +231,5 @@ public class RoomSensor implements Root {
 
     public boolean hasReadingsInGivenDay(LocalDate date) {
         return !getDailyMeasurement(date).isEmpty();
-
     }
 }
