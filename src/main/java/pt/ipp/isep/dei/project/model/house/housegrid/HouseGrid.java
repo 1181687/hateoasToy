@@ -42,7 +42,7 @@ public class HouseGrid implements Root, Measurable {
      */
 
     public HouseGrid(HouseGridId houseGridName) {
-        validateName(houseGridName.getHousegridId());
+        validateName(houseGridName.getHouseGridId());
         this.houseGridName = houseGridName;
         this.roomList = new RoomList();
         this.powerSourceList = new PowerSourceList();
@@ -85,14 +85,14 @@ public class HouseGrid implements Root, Measurable {
             return false;
         }
         HouseGrid houseGrid = (HouseGrid) obj;
-        return this.houseGridName.getHousegridId().equalsIgnoreCase(houseGrid.houseGridName.getHousegridId());
+        return this.houseGridName.getHouseGridId().equalsIgnoreCase(houseGrid.houseGridName.getHouseGridId());
     }
 
     /**
      * method that gets the name of the housegrid grid.
      */
     public String getName() {
-        return this.houseGridName.getHousegridId();
+        return this.houseGridName.getHouseGridId();
     }
 
     public HouseGridId getHouseGridName() {
@@ -257,7 +257,7 @@ public class HouseGrid implements Root, Measurable {
     @Override
     public String getNameToString() {
         StringBuilder name = new StringBuilder();
-        name.append("housegrid: " + this.houseGridName.getHousegridId() + "\n");
+        name.append("housegrid: " + this.houseGridName.getHouseGridId() + "\n");
         return name.toString();
     }
 

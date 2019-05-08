@@ -88,17 +88,20 @@ public class GeoAreaSensorServiceTest {
         LocalDate startDate = LocalDate.of(1991, 4, 12);
         LocalDate endDate = LocalDate.of(2019, 5, 6);
 
+        geoAreaSensorList.add(geoAreaSensor);
+
         when(geoAreaSensorRepo.findByGeoAreaIdAndSensorTypeId(any(GeoAreaId.class), any(SensorTypeId.class))).thenReturn(geoAreaSensorList);
 
         // Act
         List<GeoAreaSensor> result = geoAreaSensorService.getSensorsWithReadingsInInterval(geoAreaId, sensorTypeId, startDate, endDate);
+        result.add(geoAreaSensor);
 
         // Assert
         assertEquals(geoAreaSensorList, result);
     }
 
     @Test
-    public void getNearestSensors() {
+    public void getNearestSensors_DifferentDistance() {
         // Arrange
         List<GeoAreaSensor> geoAreaSensorList = new ArrayList<>();
 
@@ -110,6 +113,74 @@ public class GeoAreaSensorServiceTest {
 
         // Assert
         assertEquals(geoAreaSensorList, result);
+    }
+
+    @Test
+    public void getNearestSensors_SameDistance() {
+        // Arrange
+        List<GeoAreaSensor> geoAreaSensorList = new ArrayList<>();
+        geoAreaSensorList.add(geoAreaSensor);
+
+        Location location = new Location(41.1496, -8.6109, 97);
+        List<GeoAreaSensor> sensors = new ArrayList<>();
+
+        // Act
+        List<GeoAreaSensor> result = geoAreaSensorService.getNearestSensors(location, sensors);
+        result.add(geoAreaSensor);
+
+        // Assert
+        assertEquals(geoAreaSensorList, result);
+    }
+
+    @Test
+    public void getNearestSensors_AnotherSameDistance() {
+        // Arrange
+        Location location = new Location(41.1496, -8.6109, 97);
+        SensorTypeId temperature = new SensorTypeId("Temperature");
+        LocalDateTime startDate = LocalDateTime.of(2018, 5, 2, 11, 45, 0);
+        SensorId sensorId = new SensorId("s1");
+
+        // GeoAreaId
+        GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("City");
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType(geoAreaTypeId);
+        GeoAreaId geoAreaId = new GeoAreaId(location, "Espinho", geographicalAreaType);
+
+        GeoAreaSensor geoAreaSensor = new GeoAreaSensor(sensorId, "TT123123", startDate, temperature, location, "l/m2", geoAreaId);
+
+        List<GeoAreaSensor> geoAreaSensorList = new ArrayList<>();
+        geoAreaSensorList.add(geoAreaSensor);
+
+        Location location1 = new Location(41.1496, -8.6109, 97);
+
+        // Act
+        List<GeoAreaSensor> result = geoAreaSensorService.getNearestSensors(location1, geoAreaSensorList);
+
+        // Assert
+        assertEquals(geoAreaSensorList, result);
+    }
+
+    @Test
+    public void getLatestGeoAreaReadingInIntervalTest() {
+        // Arrange
+        LocalDate startDate = LocalDate.of(1991, 4, 12);
+        LocalDate endDate = LocalDate.of(2019, 5, 6);
+
+        LocalDateTime date = LocalDateTime.of(1999, 1, 1, 0, 0, 0);
+        Reading reading = new Reading(12, date);
+
+        LocalDateTime date1 = LocalDateTime.of(2000, 1, 1, 0, 0, 0);
+        Reading reading1 = new Reading(12, date1);
+
+        List<GeoAreaSensor> geoAreaSensorList = new ArrayList<>();
+        geoAreaSensorList.add(geoAreaSensor);
+        geoAreaSensor.addReading(reading);
+        geoAreaSensor.addReading(reading1);
+
+        // Act
+        Reading result = geoAreaSensorService.getLatestGeoAreaReadingInInterval(geoAreaSensorList, startDate, endDate);
+
+        // Assert
+        assertEquals(reading1, result);
     }
 
     @Test
@@ -337,4 +408,30 @@ public class GeoAreaSensorServiceTest {
         // assert
         assertEquals(geoAreaSensorDTOList, result);
     }
+
+    @Test
+    public void saveSensorsAndSaveGeoAreaSensors() {
+        // Arrange
+        Location location = new Location(123, 456, 789);
+        GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("City");
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType(geoAreaTypeId);
+
+        GeoAreaId geoAreaId = new GeoAreaId(location, "Espinho", geographicalAreaType);
+        List<GeoAreaSensorDTO> geoAreaSensorDTOList = new ArrayList<>();
+        geoAreaSensorDTOList.add(GeoAreaSensorMapper.mapToDTO(geoAreaSensor));
+
+        List<GeoAreaSensor> geoAreaSensorList = new ArrayList<>();
+        geoAreaSensorList.add(geoAreaSensor);
+
+        when(this.geoAreaSensorRepo.findAllByGeoAreaId(geoAreaId)).thenReturn(geoAreaSensorList);
+
+        // Act
+        this.geoAreaSensorService.saveSensors(geoAreaSensorDTOList);
+        this.geoAreaSensorService.saveGeoAreaSensor(geoAreaSensor);
+        List<GeoAreaSensorDTO> result = this.geoAreaSensorService.getSensorsByGeoAreaId(GeoAreaIdMapper.mapToDTO(geoAreaId));
+
+        // Assert
+        assertEquals(geoAreaSensorDTOList, result);
+    }
+
 }

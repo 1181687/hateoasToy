@@ -243,7 +243,7 @@ class HouseServiceTest {
 
     @Test
     public void updateHouseWithRoomsAndGrids_WithNullLocationAndParentGeoArea(){
-
+        //Arrange
         GeoAreaTypeId typeId = new GeoAreaTypeId("City");
         GeographicalAreaType type = new GeographicalAreaType(typeId);
         Location location1 = new Location(25.6,42.3,74.8);
@@ -268,7 +268,7 @@ class HouseServiceTest {
         grid.addRoom(room);
 
         HouseGridDTO gridDTO = new HouseGridDTO();
-        gridDTO.setName(gridId.getHousegridId());
+        gridDTO.setName(gridId.getHouseGridId());
         gridDTO.addRoomDTO(RoomMapper.mapToDTO(room));
         List<HouseGridDTO> gridDTOS = Arrays.asList(gridDTO);
 
@@ -289,17 +289,19 @@ class HouseServiceTest {
         when(houseRepository.count()).thenReturn(1L);
         when(houseRepository.findAll()).thenReturn(houseList);
 
+        //Act
         this.service.updateHouseWithRoomsAndGrids(houseDTO);
 
         House result = this.service.getHouse();
 
+        //Assert
         assertEquals(house,result);
 
     }
 
     @Test
     public void updateHouseWithRoomsAndGrids(){
-
+        //Arrange
         GeoAreaTypeId typeId = new GeoAreaTypeId("City");
         GeographicalAreaType type = new GeographicalAreaType(typeId);
         Location location1 = new Location(25.6,42.3,74.8);
@@ -324,7 +326,7 @@ class HouseServiceTest {
         grid.addRoom(room);
 
         HouseGridDTO gridDTO = new HouseGridDTO();
-        gridDTO.setName(gridId.getHousegridId());
+        gridDTO.setName(gridId.getHouseGridId());
         gridDTO.addRoomDTO(RoomMapper.mapToDTO(room));
         List<HouseGridDTO> gridDTOS = Arrays.asList(gridDTO);
 
@@ -344,10 +346,12 @@ class HouseServiceTest {
         when(houseRepository.count()).thenReturn(1L);
         when(houseRepository.findAll()).thenReturn(houseList);
 
+        //Act
         this.service.updateHouseWithRoomsAndGrids(houseDTO);
 
         House result = this.service.getHouse();
 
+        //Assert
         assertEquals(house,result);
 
     }
