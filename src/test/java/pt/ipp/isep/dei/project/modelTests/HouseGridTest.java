@@ -334,7 +334,7 @@ public class HouseGridTest {
     }
 
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getListSizeEmptyList() {
         //arrange
 
@@ -372,55 +372,48 @@ public class HouseGridTest {
         assertFalse(result);
     }
 
-    /*
-        @Test
-        public void testValidateNameWithEmptyNameShouldThrowException() {
-            //Arrange
-            String name = " ";
 
-            //Act
-            Throwable exception = assertThrows(RuntimeException.class, () ->
-                    new HouseGrid(name)
-            );
-            //Assert
-            assertEquals("Please enter a valid name. Name should not be empty", exception.getMessage());
-        }
+    @Test
+    public void testValidateNameWithEmptyNameShouldThrowException() {
+        //Arrange
+        String name = " ";
+        HouseGridId id = new HouseGridId(name);
+        //Act
+        Throwable exception = assertThrows(RuntimeException.class, () ->
+                new HouseGrid(id)
+        );
+        //Assert
+        assertEquals("Please enter a valid name. Name should not be empty", exception.getMessage());
+    }
 
-        @Test
-        public void testValidateNameWithNullNameShouldThrowException() {
-            //Act
-            Throwable exception = assertThrows(RuntimeException.class, () ->
-                    new HouseGrid(null)
-            );
-            //Assert
-            assertEquals("Please enter a valid name. Name should not be empty", exception.getMessage());
-        }
+    @Test
+    public void testValidateNameWithNullNameShouldThrowException() {
+        //Act
+        HouseGridId id = new HouseGridId(null);
 
-        @Test
-        public void testConstructorWithEmptyNameShouldThrowException() {
-            //Arrange
-            String name = "";
+        Throwable exception = assertThrows(RuntimeException.class, () ->
+                new HouseGrid(id)
+        );
+        //Assert
+        assertEquals("Please enter a valid name. Name should not be empty", exception.getMessage());
+    }
 
-            //Act
-            Throwable exception = assertThrows(RuntimeException.class, () ->
-                    new HouseGrid(name)
-            );
+    @Test
+    public void testConstructorWithEmptyNameShouldThrowException() {
+        //Arrange
+        String name = "";
+        HouseGridId id = new HouseGridId(name);
 
-            //Assert
-            assertEquals("Please enter a valid name. Name should not be empty", exception.getMessage());
-        }
+        //Act
+        Throwable exception = assertThrows(RuntimeException.class, () ->
+                new HouseGrid(id)
+        );
 
-        @Test
-        public void testConstructorWithNullNameShouldThrowException() {
-            //Act
-            Throwable exception = assertThrows(RuntimeException.class, () ->
-                    new HouseGrid(null)
-            );
+        //Assert
+        assertEquals("Please enter a valid name. Name should not be empty", exception.getMessage());
+    }
 
-            //Assert
-            assertEquals("Please enter a valid name. Name should not be empty", exception.getMessage());
-        }
-    */
+
     @Test
     public void testGetNameToString() {
         // Arrange
@@ -461,7 +454,7 @@ public class HouseGridTest {
         assertEquals(expectedResult, result, 0.001);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetEnergyConsumptionInAnIntervalWithNoValidReadingss() {
 
         //Arrange
@@ -510,7 +503,7 @@ public class HouseGridTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getReadings() {
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
         Reading reading0 = new Reading(3, time0);
@@ -533,5 +526,17 @@ public class HouseGridTest {
         //Assert
         assertEquals(expectedResult, result);
 
+    }
+
+    @Test
+    public void getHouseGridName_ShouldReturnStringMainGrid(){
+        //Arrange
+        HouseGridId expectedResult = new HouseGridId("Main grid");
+
+        //Act
+        HouseGridId result = mainGrid.getHouseGridName();
+
+        //Assert
+        assertEquals(expectedResult.getHousegridId(),result.getHousegridId());
     }
 }
