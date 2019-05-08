@@ -76,7 +76,7 @@ public class SensorsService {
                     LocalDate localDateComfTempMax = mapComfTempDaily.getKey();
 
                     //IF OPTION IS ABOVE
-                    if (option==1 && !Objects.isNull(mapComfTempDaily.getValue()) && localDateReading.compareTo(localDateComfTempMax) == 0
+                    if (option == 1 && !Objects.isNull(mapComfTempDaily.getValue()) && localDateReading.compareTo(localDateComfTempMax) == 0
                             && Double.compare(valueReading, mapComfTempDaily.getValue().get(option)) == 1) {
                         mapInstantsAboveComfortTemperature.put(roomReading.getDateTime(), valueReading);
                     }
@@ -112,16 +112,16 @@ public class SensorsService {
     /**
      * gets room readings DTO from a sensor by sensorId, in an interval of days
      *
-     * @param startDate initial LocalDate
-     * @param endDate   final LocalDate
-     * @param roomSensorId  SensorId
+     * @param startDate    initial LocalDate
+     * @param endDate      final LocalDate
+     * @param roomSensorId SensorId
      * @return List of Reading DTO
      */
     public List<ReadingDTO> getRoomReadingsDTO(LocalDate startDate, LocalDate endDate, SensorId roomSensorId) {
         return this.roomSensorService.getReadingsDTO(startDate, endDate, roomSensorId);
     }
 
-    public boolean existSensors (RoomId roomId, SensorTypeId sensorTypeId){
+    public boolean existSensors(RoomId roomId, SensorTypeId sensorTypeId) {
         return roomSensorService.existSensors(roomId, sensorTypeId);
     }
 
@@ -130,12 +130,12 @@ public class SensorsService {
         return roomSensorService.getSensorId(roomId1, sensorTypeId);
     }
 
-    public List<LocalDate> getDaysWithoutComfortTemp(Map<LocalDate, List<Double>> mapComfortDailyTemperature){
+    public List<LocalDate> getDaysWithoutComfortTemp(Map<LocalDate, List<Double>> mapComfortDailyTemperature) {
         return geoAreaSensorService.getDaysWithoutComfortTemp(mapComfortDailyTemperature);
     }
 
-    public boolean existsDaysWithoutComfortTemp(Map<LocalDate, List<Double>> mapComfortDailyTemperature){
-        return  geoAreaSensorService.existsDaysWithoutComfortTemp(mapComfortDailyTemperature);
+    public boolean existsDaysWithoutComfortTemp(Map<LocalDate, List<Double>> mapComfortDailyTemperature) {
+        return geoAreaSensorService.existsDaysWithoutComfortTemp(mapComfortDailyTemperature);
     }
 
 
@@ -145,10 +145,20 @@ public class SensorsService {
         GeoAreaSensor geoAreaSensor = geoAreaSensorService.getGeoAreaSensor(geoAreaId, sensorTypeId);
         return roomSensor.existReadingsBetweenDates(startDate, endDate) && geoAreaSensor.existReadingsBetweenDates(startDate, endDate);
     }
+/*
+    //GGG////////////////////////////////////////////////////////////
+    public boolean existReadingsBothHouseAreaAndRoomDaily(Location location, SensorTypeId sensorTypeId,
+                                                          LocalDate startDate, LocalDate endDate, RoomId roomId) {
 
-    public boolean existReadingsBothHouseAreaAndRoomDaily(LocalDate startdate, LocalDate endDate) {
+        for (LocalDate dateIterator = startDate; !dateIterator.isAfter(endDate); dateIterator = dateIterator.plusDays(1)) {
 
-        geoAreaSensorService.
-    }
+            if (geoAreaSensorService.hasReadingsInGivenDay(location, sensorTypeId, startDate, endDate, dateIterator) &&
+                    (roomSensorService.hasReadingsInGivenDay(dateIterator, roomId, sensorTypeId))) {
+                return true;
+            }
+
+        }
+        return false;
+    }*/
 
 }

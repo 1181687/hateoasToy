@@ -735,9 +735,10 @@ public class GeoAreaSensor implements Root {
         this.listOfReadings.addAll(readings);
     }
 
+    /*
+    //GGG/////////possivelmente p apagar//////////////////////////////////////////////////////
     public boolean hasReadingsInGivenDay(LocalDate date) {
         return !getDailyMeasurement(date).isEmpty();
-
     }
-
+    */
 }

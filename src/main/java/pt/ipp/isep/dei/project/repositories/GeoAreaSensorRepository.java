@@ -1,13 +1,11 @@
 package pt.ipp.isep.dei.project.repositories;
 
 import org.springframework.data.repository.CrudRepository;
-import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaId;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorId;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeId;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public interface GeoAreaSensorRepository extends CrudRepository<GeoAreaSensor, SensorId> {
@@ -21,7 +19,11 @@ public interface GeoAreaSensorRepository extends CrudRepository<GeoAreaSensor, S
 
     List<GeoAreaSensor> findAllByGeoAreaId(GeoAreaId geoAreaId);
 
+    /*
+    possivelmente p apagar ou subsituir alguns metodos que vao filtrando os sensores por esta query
     List<GeoAreaSensor> findByLocationAndSensorTypeIdAndListOfReadingsBetween(Location location, SensorTypeId sensorTypeId,
                                                                               LocalDate startDate, LocalDate endDate);
 
+
+     */
 }

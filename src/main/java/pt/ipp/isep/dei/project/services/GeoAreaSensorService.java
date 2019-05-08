@@ -278,21 +278,23 @@ public class GeoAreaSensorService {
         return false;
     }
 
-    /**
-     * gets list geoAreaSensors by GeoAreaId, by sensor Type, that contain readigs in the given interval
+    /*
+    //GGG///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    *//**
+     * gets list geoAreaSensors by location, by sensor Type, that contain readings in the given interval
      *
      * @param location
      * @param sensorTypeId
      * @param startDate
      * @param endDate
      * @return List<GeoAreaSensor> that's needs to be filtrated by the nearest to the location and/or most recent readings
-     */
+     *//*
     public List<GeoAreaSensor> getGeoAreaSensorsByTypeByLocationByReadings(Location location, SensorTypeId sensorTypeId,
                                                                            LocalDate startDate, LocalDate endDate) {
         return geoAreaSensorRepo.findByLocationAndSensorTypeIdAndListOfReadingsBetween(location, sensorTypeId, startDate, endDate);
     }
 
-    /**
+    *//**
      * gets the right geo area sensor
      *
      * @param location
@@ -300,25 +302,19 @@ public class GeoAreaSensorService {
      * @param startDate
      * @param endDate
      * @return
-     */
+     *//*
     public GeoAreaSensor getRightSensorNearestOrMostRecentReadings(Location location, SensorTypeId sensorTypeId,
                                                                    LocalDate startDate, LocalDate endDate) {
         List<GeoAreaSensor> geoAreaSensorsByTypeByGeoByReadings = this.getGeoAreaSensorsByTypeByLocationByReadings(location, sensorTypeId, startDate, endDate);
-        GeoAreaSensor nearestSensorWithMostRecentReading = null;
-        if (!geoAreaSensorsByTypeByGeoByReadings.isEmpty()) {
-            for (GeoAreaSensor nearestOne : geoAreaSensorsByTypeByGeoByReadings) {
-                List<Reading> readings = nearestOne.getReadingsBetweenDates(startDate, endDate);
-                nearestOne.getMostRecentValidReading(readings);
-                if (Objects.isNull(nearestSensorWithMostRecentReading)) {
-                    nearestSensorWithMostRecentReading = nearestOne;
-                }
-            }
-        }
-        return nearestSensorWithMostRecentReading;
+
+       return this.getNearestSensorWithMostRecentReading(location, geoAreaSensorsByTypeByGeoByReadings, startDate, endDate);
+
     }
 
-    public boolean hasReadingsInGivenDay(LocalDate date, GeoAreaId) {
-        GeoAreaSensor geoAreaSensor = this.getNearestSensorWithMostRecentReading()
-        return !getDailyMeasurement(date).isEmpty();
-    }
+    public boolean hasReadingsInGivenDay(Location location, SensorTypeId sensorTypeId,
+                                         LocalDate startDate, LocalDate endDate, LocalDate givenDay) {
+        GeoAreaSensor rightGeoAreaSensor = this.getRightSensorNearestOrMostRecentReadings(location, sensorTypeId, startDate, endDate);
+
+        return !rightGeoAreaSensor.getDailyMeasurement(givenDay).isEmpty();
+    }*/
 }

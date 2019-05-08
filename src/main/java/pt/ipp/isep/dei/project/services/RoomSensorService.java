@@ -146,4 +146,12 @@ public class RoomSensorService {
     public List<RoomSensor> getAllSensorsOfRoom(RoomId roomId) {
         return this.roomSensorRepo.findAllByRoomId(roomId);
     }
+
+    /*
+//GGG////////////////possivelmente p apagar//////////////////////////////////////////
+    public boolean hasReadingsInGivenDay(LocalDate date, RoomId roomId, SensorTypeId sensorTypeId) {
+        return this.getRoomSensor(roomId, sensorTypeId).hasReadingsInGivenDay(date);
+    }
+    */
+
 }

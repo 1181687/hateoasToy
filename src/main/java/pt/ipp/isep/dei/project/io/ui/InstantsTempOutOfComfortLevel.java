@@ -117,12 +117,8 @@ public class InstantsTempOutOfComfortLevel {
         controller.getInstantsOutOfComfortTemperature(startDate, endDate);
         List<LocalDateTime> instantList = controller.getInstantListOutOfComfortLevel();
 
-        if (instantList.isEmpty()) {
-            System.out.println("There are no instants out of the Comfort level.");
-            return;
-        } else {
-            controller.getInstantListOutOfComfortLevel();
-        }
+        //get days that were not considered in calculation for the given interval
+        controller.getDaysNotConsideredInCalculation(startDate, endDate);
 
         displayResults(roomId, instantList, startDate, endDate);
     }
@@ -131,30 +127,34 @@ public class InstantsTempOutOfComfortLevel {
      * outputs the instants, that were above or bellow the comfort temperature in an interval, of a choosen room
      *
      * @param roomId      given String room name
-     * @param instantlist given list of instants (LocalDateTime)
+     * @param instantList given list of instants (LocalDateTime)
      * @param startdate   Localdate inicial
      * @param endDate     Localdate end
      */
-    public void displayResults(String roomId, List<LocalDateTime> instantlist, LocalDate startdate, LocalDate endDate) {
+    public void displayResults(String roomId, List<LocalDateTime> instantList, LocalDate startdate, LocalDate endDate) {
         StringBuilder content = new StringBuilder();
-        content.append("The list of instants ");
-        content.append(belowOrAbove);
-        content.append(" for the room ");
-        content.append(roomId);
-        content.append(" in the interval date between ");
-        content.append(startdate);
-        content.append(" and ");
-        content.append(endDate);
-        content.append(" are:\n");
-        content.append(this.getListInstantsToString(instantlist));
-        content.append("\n");
-        if (controller.existsDaysWithoutComfortTemp()) {
-            content.append("There weren't enough measurements to calculate the instants during:\n");
-            List<LocalDate> daysWithoutComfortTemp = controller.getDaysWithoutComfortTemp();
-            content.append(this.getDaysWithoutComfortTempToString(daysWithoutComfortTemp));
+
+        if (instantList.isEmpty()) {
+            System.out.println("There are no instants out of the Comfort level.");
+            return;
         }
-        // content.append(localDateTime.toLocalTime().toString());
-        //content.append(localDateTime.toString().substring(11));
+        if (!controller.instantListIsEmpty()) {
+            content.append("The list of instants ");
+            content.append(belowOrAbove);
+            content.append(" for the room ");
+            content.append(roomId);
+            content.append(" in the interval date between ");
+            content.append(startdate);
+            content.append(" and ");
+            content.append(endDate);
+            content.append(" are:\n");
+            content.append(this.getListInstantsToString(instantList));
+            content.append("\n");
+        }
+        if (!controller.daysNotConsideredListIsEmpty()) {
+            content.append("There weren't enough measurements to calculate the instants during:\n");
+            content.append(this.getDaysNotConsideredToString(controller.getDaysNotConsidered()));
+        }
         content.append("\n");
         System.out.println(content.toString());
     }
@@ -186,23 +186,22 @@ public class InstantsTempOutOfComfortLevel {
     /**
      * method that list to string the list LocalDate
      *
-     * @param localDates given List<LocalDate>
+     * @param daysNotConsidered given List<LocalDate>
      * @return strings
      */
-    public String getDaysWithoutComfortTempToString(List<LocalDate> localDates) {
+    public String getDaysNotConsideredToString(List<LocalDate> daysNotConsidered) {
         StringBuilder list = new StringBuilder();
 
-        if (localDates.isEmpty()) {
-            return "There are no dates without Comfort temperature level.";
-        }
+        if (!daysNotConsidered.isEmpty()) {
 
-        int listOrderByNumber = 1;
-        for (LocalDate localDate : localDates) {
-            list.append(listOrderByNumber);
-            list.append(" - Date: ");
-            list.append(localDate.toString());
-            list.append("\n");
-            listOrderByNumber++;
+            int listOrderByNumber = 1;
+            for (LocalDate localDate : daysNotConsidered) {
+                list.append(listOrderByNumber);
+                list.append(" - Date: ");
+                list.append(localDate.toString());
+                list.append("\n");
+                listOrderByNumber++;
+            }
         }
         return list.toString();
     }
@@ -211,27 +210,25 @@ public class InstantsTempOutOfComfortLevel {
     /**
      * method that list to string the instants LocalDateTime
      *
-     * @param instantlist given List<LocalDateTime>
+     * @param instantList given List<LocalDateTime>
      * @return strings
      */
-    public String getListInstantsToString(List<LocalDateTime> instantlist) {
+    public String getListInstantsToString(List<LocalDateTime> instantList) {
         StringBuilder list = new StringBuilder();
 
-        if (instantlist.isEmpty()) {
-            return "There are no instants out of the Comfort level.";
-        }
+        if (!instantList.isEmpty()) {
 
-        int listOrderByNumber = 1;
-        for (LocalDateTime localDateTime : instantlist) {
-            list.append(listOrderByNumber);
-            list.append(" - Date time: ");
-            list.append(localDateTime.toString());
-            list.append("\n");
-            listOrderByNumber++;
+            int listOrderByNumber = 1;
+            for (LocalDateTime localDateTime : instantList) {
+                list.append(listOrderByNumber);
+                list.append(" - Date time: ");
+                list.append(localDateTime.toString());
+                list.append("\n");
+                listOrderByNumber++;
+            }
         }
         return list.toString();
     }
-
 
 
 }
