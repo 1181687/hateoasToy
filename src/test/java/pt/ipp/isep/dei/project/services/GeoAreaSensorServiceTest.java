@@ -402,19 +402,22 @@ public class GeoAreaSensorServiceTest {
     }
 
     @Test
-    public void existsDaysWithoutComfortTemp_EmptyList_ShouldReturnTrue() {
+    public void existsDaysWithoutComfortTemp_ShouldReturnTrue() {
         // Arrange
+        List<Double> doubleList = new ArrayList<>();
+
         Map<LocalDate, List<Double>> listHashMap = new HashMap<>();
+        listHashMap.put(LocalDate.of(2017, 9, 30), doubleList);
 
         // Act
         boolean result = geoAreaSensorService.existsDaysWithoutComfortTemp(listHashMap);
 
         // assert
-        assertTrue(result);
+        assertFalse(result);
     }
 
     @Test
-    public void existsDaysWithoutComfortTemp_EmptyList_ShouldReturnFalse() {
+    public void existsDaysWithoutComfortTemp_ShouldReturnFalse() {
         // Arrange
         List<Double> doubleList = new ArrayList<>();
         doubleList.add(1.0);
