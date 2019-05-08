@@ -14,6 +14,7 @@ import pt.ipp.isep.dei.project.repositories.GeoAreaRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class GeographicalAreaService {
@@ -114,6 +115,10 @@ public class GeographicalAreaService {
      */
     public boolean checkIfGeoAreaDoesntHaveAnInsertedArea(GeographicalArea area) {
         return area.getInsertedIn() == null;
+    }
+
+    public boolean checkIfGeoAreaDoesntHaveAnInsertedArea_withDtos(GeographicalAreaDTO geoAreaDTO){
+        return Objects.isNull(GeographicalAreaMapper.mapToEntity(geoAreaDTO).getInsertedIn());
     }
 
     /**
