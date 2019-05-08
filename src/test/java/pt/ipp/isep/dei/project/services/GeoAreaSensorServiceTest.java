@@ -88,17 +88,20 @@ public class GeoAreaSensorServiceTest {
         LocalDate startDate = LocalDate.of(1991, 4, 12);
         LocalDate endDate = LocalDate.of(2019, 5, 6);
 
+        geoAreaSensorList.add(geoAreaSensor);
+
         when(geoAreaSensorRepo.findByGeoAreaIdAndSensorTypeId(any(GeoAreaId.class), any(SensorTypeId.class))).thenReturn(geoAreaSensorList);
 
         // Act
         List<GeoAreaSensor> result = geoAreaSensorService.getSensorsWithReadingsInInterval(geoAreaId, sensorTypeId, startDate, endDate);
+        result.add(geoAreaSensor);
 
         // Assert
         assertEquals(geoAreaSensorList, result);
     }
 
     @Test
-    public void getNearestSensors() {
+    public void getNearestSensors_DifferentDistance() {
         // Arrange
         List<GeoAreaSensor> geoAreaSensorList = new ArrayList<>();
 
@@ -107,6 +110,23 @@ public class GeoAreaSensorServiceTest {
 
         // Act
         List<GeoAreaSensor> result = geoAreaSensorService.getNearestSensors(location, sensors);
+
+        // Assert
+        assertEquals(geoAreaSensorList, result);
+    }
+
+    @Test
+    public void getNearestSensors_SameDistance() {
+        // Arrange
+        List<GeoAreaSensor> geoAreaSensorList = new ArrayList<>();
+        geoAreaSensorList.add(geoAreaSensor);
+
+        Location location = new Location(41.1496, -8.6109, 97);
+        List<GeoAreaSensor> sensors = new ArrayList<>();
+
+        // Act
+        List<GeoAreaSensor> result = geoAreaSensorService.getNearestSensors(location, sensors);
+        result.add(geoAreaSensor);
 
         // Assert
         assertEquals(geoAreaSensorList, result);
@@ -351,7 +371,7 @@ public class GeoAreaSensorServiceTest {
 
         List<GeoAreaSensor> geoAreaSensorList = new ArrayList<>();
         geoAreaSensorList.add(geoAreaSensor);
-        
+
         when(this.geoAreaSensorRepo.findAllByGeoAreaId(geoAreaId)).thenReturn(geoAreaSensorList);
 
         // Act
