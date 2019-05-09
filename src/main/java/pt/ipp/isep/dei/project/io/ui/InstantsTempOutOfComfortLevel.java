@@ -141,7 +141,7 @@ public class InstantsTempOutOfComfortLevel {
         if (!controller.instantListIsEmpty()) {
             content.append("The list of instants ");
             content.append(belowOrAbove);
-            content.append("the comfort Temperature, for the room ");
+            content.append(" the comfort Temperature, for the room ");
             content.append(roomId);
             content.append(" in the date interval between ");
             content.append(startdate);

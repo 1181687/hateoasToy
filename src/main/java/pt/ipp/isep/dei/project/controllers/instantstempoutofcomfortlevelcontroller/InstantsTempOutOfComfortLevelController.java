@@ -15,6 +15,7 @@ import pt.ipp.isep.dei.project.services.SensorsService;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -88,7 +89,9 @@ public class InstantsTempOutOfComfortLevelController {
     }
 
     public List<LocalDateTime> getInstantListOutOfComfortLevel (){
-        return listOfInstantsOutOfComfortTemp = sensorsService.getInstantListOutOfComfortLevel(mapInstantsOutOfComfortTemp);
+        listOfInstantsOutOfComfortTemp = sensorsService.getInstantListOutOfComfortLevel(mapInstantsOutOfComfortTemp);
+        Collections.sort(listOfInstantsOutOfComfortTemp);
+        return listOfInstantsOutOfComfortTemp;
     }
 
     //passa a lista de instantes localdatetime para localdate
