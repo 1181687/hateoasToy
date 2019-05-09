@@ -46,8 +46,9 @@ public class AddGeoAreaToAnotherGeoAreaController {
      * @param geoAreaDto
      * @return null if a geo area doesn't have an inserted area.
      */
-    public boolean checkIfGeoAreaHasAnInsertedArea(GeographicalAreaDTO geoAreaDto) {
-        return !(geographicalAreaService.checkIfGeoAreaDoesntHaveAnInsertedArea_withDtos(geoAreaDto));
+    public boolean checkIfGeoAreaDoesntHaveAnInsertedArea(GeographicalAreaDTO geoAreaDto) {
+        GeographicalArea geographicalArea = GeographicalAreaMapper.mapToEntity(geoAreaDto);
+        return geographicalAreaService.checkIfGeoAreaDoesntHaveAnInsertedArea(geographicalArea);
     }
 
     /*/**
@@ -60,14 +61,15 @@ public class AddGeoAreaToAnotherGeoAreaController {
     }*/
 
 
-    public boolean addParentGeoAreaToMainGeoArea(GeographicalAreaDTO mainGeoAreaDTO, GeographicalAreaDTO parentGeoAreaDTO){
-        GeographicalArea mainGeoArea = GeographicalAreaMapper.mapToEntity(mainGeoAreaDTO);
+    public boolean addParentGeoAreaToMainGeoArea(GeographicalAreaDTO geoAreaDTO, GeographicalAreaDTO parentGeoAreaDTO){
+        GeographicalArea geoArea = GeographicalAreaMapper.mapToEntity(geoAreaDTO);
         GeographicalArea parentGeoArea = GeographicalAreaMapper.mapToEntity(parentGeoAreaDTO);
-        if (Objects.isNull(mainGeoArea.getInsertedIn())){
-            mainGeoArea.setInsertedIn(parentGeoArea);
+        if(geographicalAreaService.addParentGeoAreaToMainGeoArea(geoArea, parentGeoArea)){
             return true;
         }
-        return false;
+        else{
+            return false;
+        }
     }
 
     /**
@@ -84,6 +86,10 @@ public class AddGeoAreaToAnotherGeoAreaController {
      */
     public int getListSize(){
         return geographicalAreaService.getSize();
+    }
+
+    public boolean saveGeoArea(GeographicalAreaDTO geoAreaDTO){
+        return geographicalAreaService.saveGeoArea(GeographicalAreaMapper.mapToEntity(geoAreaDTO));
     }
 }
 

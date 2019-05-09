@@ -19,4 +19,11 @@ public interface GeoAreaSensorRepository extends CrudRepository<GeoAreaSensor, S
 
     List<GeoAreaSensor> findAllByGeoAreaId(GeoAreaId geoAreaId);
 
+    /*
+    possivelmente p apagar ou subsituir alguns metodos que vao filtrando os sensores por esta query
+    List<GeoAreaSensor> findByLocationAndSensorTypeIdAndListOfReadingsBetween(Location location, SensorTypeId sensorTypeId,
+                                                                              LocalDate startDate, LocalDate endDate);
+
+
+     */
 }

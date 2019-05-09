@@ -51,7 +51,6 @@ public class GetListOfTypeOfGeoAreaControllerTest {
     public void testarGetListaAGPorTipo() {
         //Arrange
         String nameType = "Urban area";
-        //this.geographicalAreaTypeList.addTypeOfGeoAreaToTheList(type);
         this.geographicalAreaService.addGeoArea(ag);
 
         ArrayList<String> expectedResult = new ArrayList<>(Arrays.asList("Campus do ISEP"));

@@ -55,6 +55,16 @@ public class GeographicalAreaService {
         return false;
     }
 
+    public boolean addParentGeoAreaToMainGeoArea(GeographicalArea geoArea, GeographicalArea parentGeoArea) {
+        if (Objects.isNull(geoArea.getInsertedIn())) {
+            geoArea.setInsertedIn(parentGeoArea);
+            geoAreaRepository.save(geoArea);
+            return true;
+        }
+        return false;
+    }
+
+
     /**
      * get a geographical area of a geographical areas list.
      *
@@ -115,10 +125,6 @@ public class GeographicalAreaService {
      */
     public boolean checkIfGeoAreaDoesntHaveAnInsertedArea(GeographicalArea area) {
         return area.getInsertedIn() == null;
-    }
-
-    public boolean checkIfGeoAreaDoesntHaveAnInsertedArea_withDtos(GeographicalAreaDTO geoAreaDTO){
-        return Objects.isNull(GeographicalAreaMapper.mapToEntity(geoAreaDTO).getInsertedIn());
     }
 
     /**
@@ -307,5 +313,10 @@ public class GeographicalAreaService {
     public boolean geoAreaExists(GeoAreaIdDTO geoAreaIdDTO) {
         GeoAreaId geoAreaId = GeoAreaIdMapper.mapToEntity(geoAreaIdDTO);
         return this.geoAreaRepository.existsById(geoAreaId);
+    }
+
+    public boolean saveGeoArea(GeographicalArea geoArea){
+        geoAreaRepository.save(geoArea);
+        return true;
     }
 }

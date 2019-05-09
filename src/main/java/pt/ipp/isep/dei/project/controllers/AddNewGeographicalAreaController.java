@@ -9,8 +9,8 @@ import java.util.List;
 
 public class AddNewGeographicalAreaController {
 
-    private GeographicalAreaService geographicalAreaService;
-    private GeoAreaTypeService geoAreaTypeService;
+    private final GeographicalAreaService geographicalAreaService;
+    private final GeoAreaTypeService geoAreaTypeService;
 
     public AddNewGeographicalAreaController(GeographicalAreaService geographicalAreaService, GeoAreaTypeService geoAreaTypeService) {
         this.geographicalAreaService = geographicalAreaService;

@@ -33,12 +33,13 @@ As a Room Owner he/she chooses the following options:
 The user then chooses the option:
 1- Get instants in which the temperature fell below the comfort level.
 
-And then selects the option - Choose the category of comfort temperature:
+And then selects the option - Choose the building category:
 1 - Category I.
 2 - Category II.
 3 - Category III.
 
-The the user selects the option "Choose the room you want to get the instants:" and chooses the room he wants
+The the user selects the option "Choose the room for which you want to get the instants:" and chooses the room he/she
+wants.
 Finally the following options appear:
 
 "Please insert the first date of the period (yyyy-MM-dd):" and the user inserts a start date;
@@ -47,7 +48,7 @@ Finally the following options appear:
 - then:
 In case of success, the following message is displayed:
 
-"The list of instants [belowOrAbove] for the room [roomId] in the interval date between [startDate] and [endDate] are
+"The list of instants [belowOrAbove] for the room [roomId] in the interval date between [startDate] and [endDate] is
 [listOfInstants]
 
 
@@ -62,19 +63,19 @@ Acceptance Tests:
 // Measurements:
 "There weren't enough measurements in that period, to calculate the instants." - If there are no readings in house area
 or in the room
-"There weren't enough measurements to calculate the instants during.. [specified period] - Not enough measurements
 
+"There weren't enough measurements to calculate the instants for the following day(s) [specified period] -  Not enough
+measurements in a specified number of days.
 
 // Rooms
 "There are no rooms in the house. Please create a new room." - room list is empty
 
 
-// Dates
-"That is not a valid period. Please try again. - When the choosen period is not valid (is inserted in the wrong format
-yyyy-mm-dd)
-
-"There are no dates without Comfort temperature level." - When the choosen period does not have dates with comfort
-temperature level
+/// Dates
+ "That is not a valid period. Please try again. - When the choosen period is not valid (the end date is before the start
+  date).
+ "There are no dates without Comfort temperature level." - When the choosen period does not have dates with comfort
+ temperature level
 
 
 // Instants
