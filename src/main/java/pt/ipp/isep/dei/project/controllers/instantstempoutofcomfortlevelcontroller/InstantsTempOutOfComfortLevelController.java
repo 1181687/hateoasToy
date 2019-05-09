@@ -14,6 +14,7 @@ import pt.ipp.isep.dei.project.services.SensorsService;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -32,6 +33,7 @@ public class InstantsTempOutOfComfortLevelController {
     private int category;
     private int option;
     private List<LocalDateTime> listOfInstantsOutOfComfortTemp;
+    private List<LocalDate> daysNotConsidered = new ArrayList<>();
 
 
     /**
@@ -88,6 +90,42 @@ public class InstantsTempOutOfComfortLevelController {
     public List<LocalDateTime> getInstantListOutOfComfortLevel (){
         return listOfInstantsOutOfComfortTemp = sensorsService.getInstantListOutOfComfortLevel(mapInstantsOutOfComfortTemp);
     }
+
+    //passa a lista de instantes localdatetime para localdate
+    public List<LocalDate> getDatesListOutOfComfortLevel() {
+        List<LocalDate> datesListOutOfComfortLevel = new ArrayList<>();
+
+        for (LocalDateTime localDateTime : this.getInstantListOutOfComfortLevel()) {
+            datesListOutOfComfortLevel.add(localDateTime.toLocalDate());
+        }
+        return datesListOutOfComfortLevel;
+    }
+
+    //chamar este metodo abaixo antes de imprimir "os instantes calculados foram"
+    public boolean instantListIsEmpty() {
+        return this.getInstantListOutOfComfortLevel().isEmpty();
+    }
+
+    public void getDaysNotConsideredInCalculation(LocalDate startDate, LocalDate endDate) {
+        for (LocalDate dateIterator = startDate; !dateIterator.isAfter(endDate); dateIterator = dateIterator.plusDays(1)) {
+            if (!this.getDatesListOutOfComfortLevel().contains(dateIterator)) {
+                this.daysNotConsidered.add(dateIterator);
+            }
+        }
+    }
+
+    ////agora chamo este metodo acima que grava a lista aqui e faço to string para mostrar ao user os dias onde nao foi possivel calcular instantes
+
+    public boolean daysNotConsideredListIsEmpty() {
+        return this.daysNotConsidered.isEmpty();
+    }
+
+    public List<LocalDate> getDaysNotConsidered() {
+        return this.daysNotConsidered;
+    }
+
+    //abaixo verifico se é vazia a lista de dias nao considerados para ver se os imprimo
+
 
     public boolean existsDaysWithoutComfortTemp (){
         return sensorsService.existsDaysWithoutComfortTemp(comfortTemp);
