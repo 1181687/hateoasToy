@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 
-import pt.ipp.isep.dei.project.controllers.importgeoareasfromjsonorxmlcontroller.ImportGeoAreasAndSensorsController;
+import pt.ipp.isep.dei.project.controllers.importgeoareasandsensorscontroller.ImportGeoAreasAndSensorsController;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.services.GeoAreaSensorService;
 import pt.ipp.isep.dei.project.services.GeographicalAreaService;

@@ -228,4 +228,10 @@ public class RoomSensor implements Root {
     public void addReadings(List<Reading> readings) {
         this.readings.addAll(readings);
     }
+    /*
+//GGG////////possivelmente p apagar//////////////////////////////////////////////////////////
+    public boolean hasReadingsInGivenDay(LocalDate date) {
+        return !getDailyMeasurement(date).isEmpty();
+    }
+    */
 }
