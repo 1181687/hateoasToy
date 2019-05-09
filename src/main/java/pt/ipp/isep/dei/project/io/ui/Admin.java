@@ -74,8 +74,8 @@ public class Admin {
                     ui6.run();
                     break;
                 case 7:
-                    //AddGeoAreaToAnotherGeoArea ui7 = new AddGeoAreaToAnotherGeoArea(geographicalAreaService);
-                    //ui7.run();
+                    AddGeoAreaToAnotherGeoArea ui7 = new AddGeoAreaToAnotherGeoArea(geographicalAreaService);
+                    ui7.run();
                     break;
                 case 8:
                     InsertedGeoArea ui8 = new InsertedGeoArea(geographicalAreaService);
@@ -228,7 +228,5 @@ public class Admin {
             }
             option = Menu.adminMenu();
         }
-
-
     }
 }

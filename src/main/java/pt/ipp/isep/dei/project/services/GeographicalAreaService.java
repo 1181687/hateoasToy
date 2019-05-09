@@ -4,6 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.*;
+import pt.ipp.isep.dei.project.model.house.Room;
+import pt.ipp.isep.dei.project.model.house.RoomDTO;
+import pt.ipp.isep.dei.project.model.house.RoomMapper;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorList;
 import pt.ipp.isep.dei.project.model.sensor.SensorId;
@@ -11,6 +14,7 @@ import pt.ipp.isep.dei.project.repositories.GeoAreaRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class GeographicalAreaService {
@@ -113,6 +117,10 @@ public class GeographicalAreaService {
         return area.getInsertedIn() == null;
     }
 
+    public boolean checkIfGeoAreaDoesntHaveAnInsertedArea_withDtos(GeographicalAreaDTO geoAreaDTO){
+        return Objects.isNull(GeographicalAreaMapper.mapToEntity(geoAreaDTO).getInsertedIn());
+    }
+
     /**
      * that method remove a geo area from the list of geo areas.
      *
@@ -140,6 +148,19 @@ public class GeographicalAreaService {
             }
         }
         return false;
+    }
+
+    /**
+     * gets all GeoAreas in geoAreaRepository and map them to List<GeoAreaDtos>
+     *
+     * @return List<GeoAreaDtos>
+     */
+    public List<GeographicalAreaDTO> getAllGeoAreaDTO() {
+        List<GeographicalAreaDTO> geoAreaDTOList = new ArrayList<>();
+        for (GeographicalArea geoArea : this.geoAreaRepository.findAll()) {
+            geoAreaDTOList.add(GeographicalAreaMapper.mapToDTO(geoArea));
+        }
+        return geoAreaDTOList;
     }
 
     /**

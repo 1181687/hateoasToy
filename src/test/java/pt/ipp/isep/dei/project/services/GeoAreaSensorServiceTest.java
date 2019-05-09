@@ -7,10 +7,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaId;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaIdMapper;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaTypeId;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
+import pt.ipp.isep.dei.project.model.geographicalarea.*;
 import pt.ipp.isep.dei.project.model.sensor.*;
 import pt.ipp.isep.dei.project.repositories.GeoAreaSensorRepository;
 
@@ -20,6 +17,7 @@ import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
 public class GeoAreaSensorServiceTest {
@@ -130,6 +128,57 @@ public class GeoAreaSensorServiceTest {
 
         // Assert
         assertEquals(geoAreaSensorList, result);
+    }
+
+    @Test
+    public void getNearestSensors_AnotherSameDistance() {
+        // Arrange
+        Location location = new Location(41.1496, -8.6109, 97);
+        SensorTypeId temperature = new SensorTypeId("Temperature");
+        LocalDateTime startDate = LocalDateTime.of(2018, 5, 2, 11, 45, 0);
+        SensorId sensorId = new SensorId("s1");
+
+        // GeoAreaId
+        GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("City");
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType(geoAreaTypeId);
+        GeoAreaId geoAreaId = new GeoAreaId(location, "Espinho", geographicalAreaType);
+
+        GeoAreaSensor geoAreaSensor = new GeoAreaSensor(sensorId, "TT123123", startDate, temperature, location, "l/m2", geoAreaId);
+
+        List<GeoAreaSensor> geoAreaSensorList = new ArrayList<>();
+        geoAreaSensorList.add(geoAreaSensor);
+
+        Location location1 = new Location(41.1496, -8.6109, 97);
+
+        // Act
+        List<GeoAreaSensor> result = geoAreaSensorService.getNearestSensors(location1, geoAreaSensorList);
+
+        // Assert
+        assertEquals(geoAreaSensorList, result);
+    }
+
+    @Test
+    public void getLatestGeoAreaReadingInIntervalTest() {
+        // Arrange
+        LocalDate startDate = LocalDate.of(1991, 4, 12);
+        LocalDate endDate = LocalDate.of(2019, 5, 6);
+
+        LocalDateTime date = LocalDateTime.of(1999, 1, 1, 0, 0, 0);
+        Reading reading = new Reading(12, date);
+
+        LocalDateTime date1 = LocalDateTime.of(2000, 1, 1, 0, 0, 0);
+        Reading reading1 = new Reading(12, date1);
+
+        List<GeoAreaSensor> geoAreaSensorList = new ArrayList<>();
+        geoAreaSensorList.add(geoAreaSensor);
+        geoAreaSensor.addReading(reading);
+        geoAreaSensor.addReading(reading1);
+
+        // Act
+        Reading result = geoAreaSensorService.getLatestGeoAreaReadingInInterval(geoAreaSensorList, startDate, endDate);
+
+        // Assert
+        assertEquals(reading1, result);
     }
 
     @Test
@@ -254,6 +303,28 @@ public class GeoAreaSensorServiceTest {
     }
 
     @Test
+    public void getMapAverageOfDailyMeasurementsTest_EmptyList() {
+        // Arrange
+        GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("City");
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType(geoAreaTypeId);
+
+        Location location = new Location(123, 456, 789);
+        GeoAreaId geoAreaId = new GeoAreaId(location, "Espinho", geographicalAreaType);
+
+        SensorTypeId sensorTypeId = new SensorTypeId("Temperature");
+        LocalDate startDate = LocalDate.of(1991, 4, 12);
+        LocalDate endDate = LocalDate.of(2019, 5, 6);
+
+        Map<LocalDate, Double> expectedResult = new HashMap<>();
+
+        // Act
+        Map<LocalDate, Double> result = geoAreaSensorService.getMapAverageOfDailyMeasurements(location, geoAreaId, sensorTypeId, startDate, endDate);
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
     public void getComfortTemperature() {
         // Arrange
         GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("City");
@@ -285,6 +356,28 @@ public class GeoAreaSensorServiceTest {
     }
 
     @Test
+    public void getComfortTemperature_EmptyList() {
+        // Arrange
+        GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("City");
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType(geoAreaTypeId);
+
+        Location location = new Location(123, 456, 789);
+        GeoAreaId geoAreaId = new GeoAreaId(location, "Espinho", geographicalAreaType);
+
+        SensorTypeId sensorTypeId = new SensorTypeId("Temperature");
+        LocalDate startDate = LocalDate.of(1991, 4, 12);
+        LocalDate endDate = LocalDate.of(2019, 5, 6);
+
+        Map<LocalDate, List<Double>> expectedResult = new HashMap<>();
+
+        // Act
+        Map<LocalDate, List<Double>> result = geoAreaSensorService.getComfortTemperature(location, geoAreaId, sensorTypeId, startDate, endDate, 15);
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
     public void getDaysWithoutComfortTempTest() {
         // Arrange
         List<Double> doubleList = new ArrayList<>();
@@ -306,6 +399,39 @@ public class GeoAreaSensorServiceTest {
 
         // Assert
         assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void existsDaysWithoutComfortTemp_ShouldReturnTrue() {
+        // Arrange
+        List<Double> doubleList = new ArrayList<>();
+
+        Map<LocalDate, List<Double>> listHashMap = new HashMap<>();
+        listHashMap.put(LocalDate.of(2017, 9, 30), doubleList);
+
+        // Act
+        boolean result = geoAreaSensorService.existsDaysWithoutComfortTemp(listHashMap);
+
+        // assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void existsDaysWithoutComfortTemp_ShouldReturnFalse() {
+        // Arrange
+        List<Double> doubleList = new ArrayList<>();
+        doubleList.add(1.0);
+        doubleList.add(2.0);
+        doubleList.add(3.0);
+
+        Map<LocalDate, List<Double>> listHashMap = new HashMap<>();
+        listHashMap.put(LocalDate.of(2017, 9, 30), doubleList);
+
+        // Act
+        boolean result = geoAreaSensorService.existsDaysWithoutComfortTemp(listHashMap);
+
+        // assert
+        assertFalse(result);
     }
 
     @Test
@@ -383,4 +509,102 @@ public class GeoAreaSensorServiceTest {
         assertEquals(geoAreaSensorDTOList, result);
     }
 
+    @Test
+    public void testRemoveSensor_whenIdCorresponds_ShouldReturnTrue() {
+        // Arrange
+        SensorId sensorId = new SensorId("S01");
+        SensorIdDTO sensorIdDTO = SensorIdMapper.mapToDTO(sensorId);
+
+        List<GeoAreaSensorDTO> geoAreaSensorDTOS = new ArrayList<>();
+        GeoAreaSensorDTO geoAreaSensorDTO = GeoAreaSensorMapper.mapToDTO(geoAreaSensor);
+        geoAreaSensorDTO.setId(sensorId.getSensorId());
+        geoAreaSensorDTOS.add(geoAreaSensorDTO);
+
+        GeoAreaIdDTO geoAreaIdDTO = GeoAreaIdMapper.mapToDTO(geoAreaSensor.getGeoAreaId());
+        when(geoAreaSensorService.getSensorsByGeoAreaId(geoAreaIdDTO)).thenReturn(geoAreaSensorDTOS);
+        when(geoAreaSensorRepo.existsById(sensorId)).thenReturn(true);
+
+        doNothing().when(this.geoAreaSensorRepo).deleteById(sensorId);
+
+        // Act
+        boolean result = geoAreaSensorService.removeSensor(sensorIdDTO);
+
+        // Assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void testRemoveSensor_whenIdCorresponds_ShouldReturnFalse() {
+        // Arrange
+        SensorId sensorId = new SensorId("S01");
+        SensorIdDTO sensorIdDTO = SensorIdMapper.mapToDTO(sensorId);
+
+        List<GeoAreaSensorDTO> geoAreaSensorDTOS = new ArrayList<>();
+        GeoAreaSensorDTO geoAreaSensorDTO = GeoAreaSensorMapper.mapToDTO(geoAreaSensor);
+        geoAreaSensorDTO.setId(sensorId.getSensorId());
+        geoAreaSensorDTOS.add(geoAreaSensorDTO);
+
+        GeoAreaIdDTO geoAreaIdDTO = GeoAreaIdMapper.mapToDTO(geoAreaSensor.getGeoAreaId());
+        when(geoAreaSensorService.getSensorsByGeoAreaId(geoAreaIdDTO)).thenReturn(geoAreaSensorDTOS);
+        when(geoAreaSensorRepo.existsById(sensorId)).thenReturn(false);
+
+        doNothing().when(this.geoAreaSensorRepo).deleteById(sensorId);
+
+        // Act
+        boolean result = geoAreaSensorService.removeSensor(sensorIdDTO);
+
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testDeactivateDevice_DeviceActive_ReturnsTrue() {
+        // Arrange
+        GeoAreaSensorDTO geoAreaSensorDTO = GeoAreaSensorMapper.mapToDTO(geoAreaSensor);
+        geoAreaSensorDTO.setId(geoAreaSensor.getId().getSensorId());
+
+        when(geoAreaSensorRepo.existsById(geoAreaSensor.getId())).thenReturn(true);
+        when(geoAreaSensorRepo.findById(geoAreaSensor.getId())).thenReturn(Optional.of(geoAreaSensor));
+
+        // Act
+        boolean result = geoAreaSensorService.deactivateSensor(GeoAreaSensorMapper.mapToDTO(geoAreaSensor));
+
+        // Assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void testDeactivateDevice_DeviceActive_ReturnsFalse() {
+        // Arrange
+        GeoAreaSensorDTO geoAreaSensorDTO = GeoAreaSensorMapper.mapToDTO(geoAreaSensor);
+        geoAreaSensorDTO.setId(geoAreaSensor.getId().getSensorId());
+
+        when(geoAreaSensorRepo.existsById(geoAreaSensor.getId())).thenReturn(false);
+        when(geoAreaSensorRepo.findById(geoAreaSensor.getId())).thenReturn(Optional.of(geoAreaSensor));
+
+        // Act
+        boolean result = geoAreaSensorService.deactivateSensor(GeoAreaSensorMapper.mapToDTO(geoAreaSensor));
+
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void getGeoAreaSensorTest() {
+        // Arrange
+        GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("City");
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType(geoAreaTypeId);
+
+        Location location = new Location(123, 456, 789);
+        GeoAreaId geoAreaId = new GeoAreaId(location, "Espinho", geographicalAreaType);
+
+        SensorTypeId sensorTypeId = new SensorTypeId("Temperature");
+        when(geoAreaSensorRepo.findGeoAreaSensorsByGeoAreaIdAndSensorTypeId(geoAreaId, sensorTypeId)).thenReturn(geoAreaSensor);
+
+        // Act
+        GeoAreaSensor result = geoAreaSensorService.getGeoAreaSensor(geoAreaId, sensorTypeId);
+
+        // Assert
+        assertEquals(geoAreaSensor, result);
+    }
 }
