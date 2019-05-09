@@ -31,6 +31,12 @@ public class GeoAreaSensorDTO {
         return id;
     }
 
+    public SensorIdDTO getSensorIdDTO() {
+        SensorIdDTO sensorIdDTO = new SensorIdDTO();
+        sensorIdDTO.setId(this.id);
+        return sensorIdDTO;
+    }
+
     public void setId(String id) {
         this.id = id;
     }

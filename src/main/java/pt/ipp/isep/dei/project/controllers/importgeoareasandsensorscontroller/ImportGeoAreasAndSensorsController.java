@@ -1,12 +1,9 @@
 package pt.ipp.isep.dei.project.controllers.importgeoareasandsensorscontroller;
 
 
-import pt.ipp.isep.dei.project.model.LocationDTO;
 import pt.ipp.isep.dei.project.model.ProjectFileReader;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaIdDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorDTO;
-import pt.ipp.isep.dei.project.model.sensor.SensorIdDTO;
 import pt.ipp.isep.dei.project.services.GeoAreaSensorService;
 import pt.ipp.isep.dei.project.services.GeographicalAreaService;
 import pt.ipp.isep.dei.project.utils.Utils;
@@ -65,15 +62,7 @@ public class ImportGeoAreasAndSensorsController {
         List<GeographicalAreaDTO> geoAreaDTOs = new ArrayList<>();
         for (Object geoObject : this.geoAreaDTOs) {
             GeographicalAreaDTO geoAreaDTO = (GeographicalAreaDTO) geoObject;
-            LocationDTO locationDTO = new LocationDTO();
-            locationDTO.setLatitude(geoAreaDTO.getLatitude());
-            locationDTO.setLongitude(geoAreaDTO.getLongitude());
-            locationDTO.setElevation(geoAreaDTO.getElevation());
-            GeoAreaIdDTO geoAreaIdDTO = new GeoAreaIdDTO();
-            geoAreaIdDTO.setId(geoAreaDTO.getId());
-            geoAreaIdDTO.setLocationDTO(locationDTO);
-            geoAreaIdDTO.setGeoAreaType(geoAreaDTO.getType());
-            if (!this.geoAreaService.geoAreaExists(geoAreaIdDTO)) {
+            if (!this.geoAreaService.geoAreaExists(geoAreaDTO.getGeoAreaIdDTO())) {
                 geoAreaDTOs.add(geoAreaDTO);
                 importSensors(geoAreaDTO);
                 imported = true;
@@ -91,9 +80,7 @@ public class ImportGeoAreasAndSensorsController {
     private void importSensors(GeographicalAreaDTO geoAreaDTO) {
         List<GeoAreaSensorDTO> sensorDTOs = new ArrayList<>();
         for (GeoAreaSensorDTO sensorDTO : geoAreaDTO.getSensors()) {
-            SensorIdDTO sensorIdDTO = new SensorIdDTO();
-            sensorIdDTO.setId(sensorDTO.getId());
-            if (!this.geoAreaSensorService.sensorExists(sensorIdDTO)) {
+            if (!this.geoAreaSensorService.sensorExists(sensorDTO.getSensorIdDTO())) {
                 sensorDTOs.add(sensorDTO);
             }
         }

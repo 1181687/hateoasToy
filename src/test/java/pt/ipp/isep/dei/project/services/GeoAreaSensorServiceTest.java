@@ -588,4 +588,23 @@ public class GeoAreaSensorServiceTest {
         // Assert
         assertFalse(result);
     }
+
+    @Test
+    public void getGeoAreaSensorTest() {
+        // Arrange
+        GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("City");
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType(geoAreaTypeId);
+
+        Location location = new Location(123, 456, 789);
+        GeoAreaId geoAreaId = new GeoAreaId(location, "Espinho", geographicalAreaType);
+
+        SensorTypeId sensorTypeId = new SensorTypeId("Temperature");
+        when(geoAreaSensorRepo.findGeoAreaSensorsByGeoAreaIdAndSensorTypeId(geoAreaId, sensorTypeId)).thenReturn(geoAreaSensor);
+
+        // Act
+        GeoAreaSensor result = geoAreaSensorService.getGeoAreaSensor(geoAreaId, sensorTypeId);
+
+        // Assert
+        assertEquals(geoAreaSensor, result);
+    }
 }

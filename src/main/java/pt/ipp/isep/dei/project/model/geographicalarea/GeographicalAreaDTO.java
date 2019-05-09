@@ -30,6 +30,18 @@ public class GeographicalAreaDTO {
         return id;
     }
 
+    public GeoAreaIdDTO getGeoAreaIdDTO() {
+        LocationDTO locationDTO = new LocationDTO();
+        locationDTO.setLatitude(this.latitude);
+        locationDTO.setLongitude(this.longitude);
+        locationDTO.setElevation(this.elevation);
+        GeoAreaIdDTO geoAreaIdDTO = new GeoAreaIdDTO();
+        geoAreaIdDTO.setId(this.id);
+        geoAreaIdDTO.setLocationDTO(locationDTO);
+        geoAreaIdDTO.setGeoAreaType(this.type);
+        return geoAreaIdDTO;
+    }
+
     public void setId(String geoAreaName) {
         this.id = geoAreaName;
     }

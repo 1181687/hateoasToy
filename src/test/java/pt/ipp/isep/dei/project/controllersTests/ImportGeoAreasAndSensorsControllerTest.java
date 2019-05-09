@@ -5,9 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import pt.ipp.isep.dei.project.controllers.importgeoareasandsensorscontroller.ImportGeoAreasAndSensorsController;
-import pt.ipp.isep.dei.project.model.LocationDTO;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaIdDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorDTO;
 import pt.ipp.isep.dei.project.services.GeoAreaSensorService;
 import pt.ipp.isep.dei.project.services.GeographicalAreaService;
 
@@ -26,7 +25,7 @@ public class ImportGeoAreasAndSensorsControllerTest {
     @Mock
     private GeoAreaSensorService geoAreaSensorService;
     private ImportGeoAreasAndSensorsController controller;
-    private List<Object> geoAreaDTOs;
+    private List<Object> readGeoAreas;
 
     @BeforeEach
     public void StartUp() {
@@ -40,31 +39,28 @@ public class ImportGeoAreasAndSensorsControllerTest {
         String path = "datasets/sprint7/DataSet_sprint07_GA.json";
         File file = new File(path);
         try {
-            geoAreaDTOs = this.controller.readFile(file, path);
+            readGeoAreas = this.controller.readFile(file, path);
         } catch (FileNotFoundException e) {
-            geoAreaDTOs = null;
+            readGeoAreas = null;
         }
     }
 
     @Test
     public void importGeoAreasAndSensors() {
         // Arrange
-        GeographicalAreaDTO geoAreaDTO = new GeographicalAreaDTO();
-        List<GeographicalAreaDTO> geoAreas = new ArrayList<>();
-        for (Object geoAreaObject : geoAreaDTOs) {
-            geoAreaDTO = (GeographicalAreaDTO) geoAreaObject;
-            LocationDTO locationDTO = new LocationDTO();
-            locationDTO.setLatitude(geoAreaDTO.getLatitude());
-            locationDTO.setElevation(geoAreaDTO.getElevation());
-            locationDTO.setLongitude(geoAreaDTO.getLongitude());
-            GeoAreaIdDTO geoAreaIdDTO = new GeoAreaIdDTO();
-            geoAreaIdDTO.setId(geoAreaDTO.getId());
-            geoAreaIdDTO.setGeoAreaType(geoAreaDTO.getType());
-            geoAreaIdDTO.setLocationDTO(locationDTO);
-            when(geoAreaService.geoAreaExists(geoAreaIdDTO)).thenReturn(false);
-            geoAreas.add(geoAreaDTO);
+        List<GeographicalAreaDTO> geoAreaDTOs = new ArrayList<>();
+        List<GeoAreaSensorDTO> sensorDTOs = new ArrayList<>();
+        for (Object geoAreaObject : readGeoAreas) {
+            GeographicalAreaDTO geoAreaDTO = (GeographicalAreaDTO) geoAreaObject;
+            when(geoAreaService.geoAreaExists(geoAreaDTO.getGeoAreaIdDTO())).thenReturn(false);
+            geoAreaDTOs.add(geoAreaDTO);
+            for (GeoAreaSensorDTO sensorDTO : geoAreaDTO.getSensors()) {
+                when(geoAreaSensorService.sensorExists(sensorDTO.getSensorIdDTO())).thenReturn(false);
+                sensorDTOs.add(sensorDTO);
+            }
+            doNothing().when(geoAreaSensorService).saveSensors(sensorDTOs);
         }
-        doNothing().when(geoAreaService).saveGeoAreas(geoAreas);
+        doNothing().when(geoAreaService).saveGeoAreas(geoAreaDTOs);
 
         // Act
         boolean result = this.controller.importGeoAreasAndSensors();

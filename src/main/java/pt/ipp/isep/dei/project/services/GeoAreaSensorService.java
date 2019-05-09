@@ -163,12 +163,13 @@ public class GeoAreaSensorService {
     /**
      * gets Map<LocalDate, List<Double>> with list of the Comfort Temperature Min
      * and Max for category One or Two or Three, organized By LocalDate
+     *
      * @param location
      * @param geoAreaId
-     * @param typeId type of sensor
+     * @param typeId    type of sensor
      * @param startDate
      * @param endDate
-     * @param category house category (int)
+     * @param category  house category (int)
      * @return Map<LocalDate, List < Double>> map with List of Comfort Temperature Min and Max,  By Day
      */
     public Map<LocalDate, List<Double>> getComfortTemperature(Location location, GeoAreaId geoAreaId, SensorTypeId typeId,
@@ -238,6 +239,7 @@ public class GeoAreaSensorService {
         return geoAreaSensorRepo.findGeoAreaSensorsByGeoAreaIdAndSensorTypeId(geoAreaId, sensorTypeId);
     }
 
+
     /**
      * Method that finds the sensors that belong to a specific GeoArea by its Id
      *
@@ -276,5 +278,43 @@ public class GeoAreaSensorService {
         return false;
     }
 
+    /*
+    //GGG///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    *//**
+     * gets list geoAreaSensors by location, by sensor Type, that contain readings in the given interval
+     *
+     * @param location
+     * @param sensorTypeId
+     * @param startDate
+     * @param endDate
+     * @return List<GeoAreaSensor> that's needs to be filtrated by the nearest to the location and/or most recent readings
+     *//*
+    public List<GeoAreaSensor> getGeoAreaSensorsByTypeByLocationByReadings(Location location, SensorTypeId sensorTypeId,
+                                                                           LocalDate startDate, LocalDate endDate) {
+        return geoAreaSensorRepo.findByLocationAndSensorTypeIdAndListOfReadingsBetween(location, sensorTypeId, startDate, endDate);
+    }
 
+    *//**
+     * gets the right geo area sensor
+     *
+     * @param location
+     * @param sensorTypeId
+     * @param startDate
+     * @param endDate
+     * @return
+     *//*
+    public GeoAreaSensor getRightSensorNearestOrMostRecentReadings(Location location, SensorTypeId sensorTypeId,
+                                                                   LocalDate startDate, LocalDate endDate) {
+        List<GeoAreaSensor> geoAreaSensorsByTypeByGeoByReadings = this.getGeoAreaSensorsByTypeByLocationByReadings(location, sensorTypeId, startDate, endDate);
+
+       return this.getNearestSensorWithMostRecentReading(location, geoAreaSensorsByTypeByGeoByReadings, startDate, endDate);
+
+    }
+
+    public boolean hasReadingsInGivenDay(Location location, SensorTypeId sensorTypeId,
+                                         LocalDate startDate, LocalDate endDate, LocalDate givenDay) {
+        GeoAreaSensor rightGeoAreaSensor = this.getRightSensorNearestOrMostRecentReadings(location, sensorTypeId, startDate, endDate);
+
+        return !rightGeoAreaSensor.getDailyMeasurement(givenDay).isEmpty();
+    }*/
 }
