@@ -10,26 +10,18 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import pt.ipp.isep.dei.project.io.ui.logger.MyLogger;
 import pt.ipp.isep.dei.project.model.Location;
-import pt.ipp.isep.dei.project.model.Reading;
-import pt.ipp.isep.dei.project.model.devices.Device;
-import pt.ipp.isep.dei.project.model.devices.Program;
-import pt.ipp.isep.dei.project.model.devices.Programmable;
-import pt.ipp.isep.dei.project.model.geographicalarea.*;
+import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeoAreaTypeId;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.house.Address;
-import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
-import pt.ipp.isep.dei.project.model.house.Room;
-import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
-import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
-import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceType;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceTypeList;
-import pt.ipp.isep.dei.project.model.sensor.*;
+import pt.ipp.isep.dei.project.model.sensor.SensorTypeList;
 import pt.ipp.isep.dei.project.services.*;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @EnableJpaRepositories(basePackages = "pt.ipp.isep.dei.project")
@@ -170,25 +162,26 @@ public class Main {
         GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("Urban area");
         GeographicalAreaType geographicalAreaType = new GeographicalAreaType(geoAreaTypeId);
         GeographicalArea insertedGeoArea = new GeographicalArea("DUMMY", "DUMMY", geographicalAreaType, location2, areaShape);
-        List<GeographicalAreaDTO> geographicalAreas = new ArrayList<>();
-        GeographicalAreaDTO geographicalAreaDTO = (GeographicalAreaMapper.mapToDTOwithSensors(insertedGeoArea));
-        geographicalAreas.add(geographicalAreaDTO);
-        geographicalAreaService.saveGeoAreas(geographicalAreas);
-        geoAreaTypeService.save(geographicalAreaType);
+        //List<GeographicalAreaDTO> geographicalAreas = new ArrayList<>();
+        //GeographicalAreaDTO geographicalAreaDTO = (GeographicalAreaMapper.mapToDTOwithSensors(insertedGeoArea));
+        //geographicalAreas.add(geographicalAreaDTO);
+        //geographicalAreaService.saveGeoAreas(geographicalAreas);
+        //geoAreaTypeService.save(geographicalAreaType);
+
 
 
         // HOUSE
-        Address address = new Address("4500", location2, insertedGeoArea);
+        Address address = new Address("", null, null);
         houseEdificioB = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice, address);
-
+/*
 ////////////(des)comentar///////////////
         // houseService.saveHouse(houseEdificioB);
 
 
-
-
         // READINGS
+
         // Electric Water Heater B107/B109
+
         LocalDateTime ewhDate = LocalDateTime.of(2018, 12, 31, 8, 00, 00);
         LocalDateTime ewhDate1 = LocalDateTime.of(2018, 12, 31, 8, 15, 00);
         LocalDateTime ewhDate2 = LocalDateTime.of(2018, 12, 31, 8, 30, 00);
