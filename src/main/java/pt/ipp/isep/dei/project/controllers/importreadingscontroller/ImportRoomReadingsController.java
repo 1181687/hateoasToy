@@ -93,7 +93,7 @@ public class ImportRoomReadingsController {
         }
         roomSensorService.saveSensors(sensorDTOs);
         double stopTime = System.nanoTime();
-        System.out.println("Total time = " + ((stopTime - startTime) / 1000000000));
+        System.out.println("(total time  = " + Utils.round(((stopTime - startTime) / 1000000000), 2) + " seconds)\r");
         return imported;
     }
 
@@ -106,22 +106,25 @@ public class ImportRoomReadingsController {
         if (Objects.isNull(sensorDTO)) {
             numberOfNotImportedReadings++;
             String invalidInfo = "id: " + readingDTO.getId() + ".";
-            LOGGER.log(Level.WARNING, "GeoAreaReading was not imported because the following sensor id doesn't exist: " + invalidInfo);
+            LOGGER.log(Level.INFO, "Reading not imported because the following sensor id doesn't exist: " + invalidInfo);
             return false;
         }
         if (Objects.isNull(readingDTO.getDateTime())) {
             numberOfNotImportedReadings++;
             String invalidInfo = "id: " + readingDTO.getId() + ", value: " + readingDTO.getValue() + ", timestamp/date: " + readingDTO.getDateTime() + ", unit: " + readingDTO.getUnits() + ".";
-            LOGGER.log(Level.WARNING, "GeoAreaReading not imported due to invalid timestamp/date " + invalidInfo);
+            LOGGER.log(Level.INFO, "Reading not imported due to invalid timestamp/date " + invalidInfo);
             return false;
         }
         if (sensorDTO.getReadingDTOs().contains(readingDTO)) {
-            return false;
-        }
-        if (readingDTO.getDateTime().isBefore(sensorDTO.getStartingDate())) {
             numberOfNotImportedReadings++;
             String invalidInfo = "id: " + readingDTO.getId() + ", value: " + readingDTO.getValue() + ", timestamp/date: " + readingDTO.getDateTime() + ", unit: " + readingDTO.getUnits() + ".";
-            LOGGER.log(Level.WARNING, "GeoAreaReading not imported due to timestamp/date of reading being before starting date of sensor: " + invalidInfo);
+            LOGGER.log(Level.INFO, "Reading not imported because it already exists: " + invalidInfo);
+            return false;
+        }
+        if (readingDTO.getDateTime().toLocalDate().isBefore(sensorDTO.getStartingDate().toLocalDate())) {
+            numberOfNotImportedReadings++;
+            String invalidInfo = "id: " + readingDTO.getId() + ", value: " + readingDTO.getValue() + ", timestamp/date: " + readingDTO.getDateTime() + ", unit: " + readingDTO.getUnits() + ".";
+            LOGGER.log(Level.INFO, "Reading not imported due to timestamp/date of reading being before starting date of sensor: " + invalidInfo);
             return false;
         }
         if (readingDTO.getUnits().equals("F")) {
