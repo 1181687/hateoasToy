@@ -356,6 +356,35 @@ public class GeoAreaSensorServiceTest {
     }
 
     @Test
+    public void getComfortTemperature_NullAndDoubleNaNValues() {
+        // Arrange
+        GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("City");
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType(geoAreaTypeId);
+
+        Location location = new Location(123, 456, 789);
+        GeoAreaId geoAreaId = new GeoAreaId(location, "Espinho", geographicalAreaType);
+
+        SensorTypeId sensorTypeId = new SensorTypeId("Temperature");
+        LocalDate startDate = LocalDate.of(1991, 4, 12);
+        LocalDate endDate = LocalDate.of(2019, 5, 6);
+
+        List<Double> doubleList = new ArrayList<>();
+        doubleList.add(null);
+        doubleList.add(Double.NaN);
+        doubleList.add(3.0);
+
+        Map<LocalDate, List<Double>> expectedResult = new HashMap<>();
+        expectedResult.put(null, doubleList);
+
+        // Act
+        Map<LocalDate, List<Double>> result = geoAreaSensorService.getComfortTemperature(location, geoAreaId, sensorTypeId, startDate, endDate, 15);
+        result.put(null, doubleList);
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
     public void getComfortTemperature_EmptyList() {
         // Arrange
         GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("City");
@@ -369,9 +398,11 @@ public class GeoAreaSensorServiceTest {
         LocalDate endDate = LocalDate.of(2019, 5, 6);
 
         Map<LocalDate, List<Double>> expectedResult = new HashMap<>();
+        expectedResult.entrySet().isEmpty();
 
         // Act
         Map<LocalDate, List<Double>> result = geoAreaSensorService.getComfortTemperature(location, geoAreaId, sensorTypeId, startDate, endDate, 15);
+        result.entrySet().isEmpty();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -388,6 +419,8 @@ public class GeoAreaSensorServiceTest {
         List<LocalDate> expectedResult = new ArrayList<>();
         expectedResult.add(LocalDate.of(2017, 9, 30));
         expectedResult.add(LocalDate.of(2015, 9, 30));
+
+        LocalDate date = LocalDate.of(2016, 9, 30);
 
         Map<LocalDate, List<Double>> listHashMap = new HashMap<>();
         listHashMap.put(LocalDate.of(2017, 9, 30), doubleList);

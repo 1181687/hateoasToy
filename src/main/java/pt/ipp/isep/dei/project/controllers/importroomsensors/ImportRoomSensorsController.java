@@ -18,8 +18,8 @@ import java.util.logging.Logger;
 
 public class ImportRoomSensorsController {
     private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
-    private RoomService roomService;
-    private RoomSensorService roomSensorService;
+    private final RoomService roomService;
+    private final RoomSensorService roomSensorService;
     private ProjectFileReader reader;
     private List<Object> DTOs;
     private int numberOfNotImportedReadings;
