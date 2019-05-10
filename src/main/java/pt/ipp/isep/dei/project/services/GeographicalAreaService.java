@@ -55,16 +55,6 @@ public class GeographicalAreaService {
         return false;
     }
 
-    public boolean addParentGeoAreaToMainGeoArea(GeographicalArea geoArea, GeographicalArea parentGeoArea) {
-        if (Objects.isNull(geoArea.getInsertedIn())) {
-            geoArea.setInsertedIn(parentGeoArea);
-            geoAreaRepository.save(geoArea);
-            return true;
-        }
-        return false;
-    }
-
-
     /**
      * get a geographical area of a geographical areas list.
      *
@@ -315,8 +305,50 @@ public class GeographicalAreaService {
         return this.geoAreaRepository.existsById(geoAreaId);
     }
 
-    public boolean saveGeoArea(GeographicalArea geoArea){
-        geoAreaRepository.save(geoArea);
-        return true;
+    public boolean saveGeoArea(GeographicalArea geoArea) {
+        if (geoAreaRepository.existsById(geoArea.getId())) {
+            geoAreaRepository.save(geoArea);
+            return true;
+        } else {
+            return false;
+        }
     }
+
+    public List<GeoAreaIdDTO> getAllGeoAreaIdDTO() {
+        List<GeoAreaIdDTO> geoAreaDTOIdList = new ArrayList<>();
+        for (GeographicalArea geoArea : this.geoAreaRepository.findAll()) {
+            geoAreaDTOIdList.add(GeoAreaIdMapper.mapToDTO(geoArea.getId()));
+        }
+        return geoAreaDTOIdList;
+    }
+
+    public boolean isInsertedInNull(GeoAreaIdDTO geoAreaIdDTO) {
+        GeoAreaId geoAreaId = GeoAreaIdMapper.mapToEntity(geoAreaIdDTO);
+        GeographicalArea geoArea = this.geoAreaRepository.findById(geoAreaId).orElse(null);
+        if (Objects.isNull(geoArea.getInsertedIn())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public GeoAreaIdDTO getParentGeoAreaId(GeoAreaIdDTO geoAreaIdDTO){
+        GeoAreaId geoAreaId = GeoAreaIdMapper.mapToEntity(geoAreaIdDTO);
+        GeographicalArea geoArea = this.geoAreaRepository.findById(geoAreaId).orElse(null);
+        return GeoAreaIdMapper.mapToDTO(geoArea.getInsertedIn().getId());
+    }
+
+    public boolean addParentGeoAreaToMainGeoArea(GeoAreaIdDTO geoAreaIdDTO, GeoAreaIdDTO parentGeoAreaIdDTO) {
+        if (isInsertedInNull(geoAreaIdDTO)){
+            GeoAreaId geoAreaId = GeoAreaIdMapper.mapToEntity(geoAreaIdDTO);
+            GeoAreaId geoParentAreaId = GeoAreaIdMapper.mapToEntity(parentGeoAreaIdDTO);
+            GeographicalArea geoArea = geoAreaRepository.findById(geoAreaId).orElse(null);
+            GeographicalArea parentGeoArea = geoAreaRepository.findById(geoParentAreaId).orElse(null);
+            geoArea.setInsertedIn(parentGeoArea);
+            geoAreaRepository.save(geoArea);
+            return true;
+        }
+        return false;
+    }
+
 }

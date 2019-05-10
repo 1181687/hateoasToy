@@ -1,8 +1,7 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapper;
+import pt.ipp.isep.dei.project.model.geographicalarea.*;
+;
 import pt.ipp.isep.dei.project.services.GeographicalAreaService;
 
 import java.util.List;
@@ -28,8 +27,8 @@ public class AddGeoAreaToAnotherGeoAreaController {
         return geographicalAreaService.getGeoAreaListToString(useCriterion);
     }
 
-    public List<GeographicalAreaDTO> getGeoAreaDTO(){
-        return geographicalAreaService.getAllGeoAreaDTO();
+    public List<GeoAreaIdDTO> getGeoAreaIdDTO(){
+        return geographicalAreaService.getAllGeoAreaIdDTO();
     }
 
     /**
@@ -61,10 +60,8 @@ public class AddGeoAreaToAnotherGeoAreaController {
     }*/
 
 
-    public boolean addParentGeoAreaToMainGeoArea(GeographicalAreaDTO geoAreaDTO, GeographicalAreaDTO parentGeoAreaDTO){
-        GeographicalArea geoArea = GeographicalAreaMapper.mapToEntity(geoAreaDTO);
-        GeographicalArea parentGeoArea = GeographicalAreaMapper.mapToEntity(parentGeoAreaDTO);
-        if(geographicalAreaService.addParentGeoAreaToMainGeoArea(geoArea, parentGeoArea)){
+    public boolean addParentGeoAreaToMainGeoArea(GeoAreaIdDTO geoAreaIdDTO, GeoAreaIdDTO parentGeoAreaIdDTO){
+        if(geographicalAreaService.addParentGeoAreaToMainGeoArea(geoAreaIdDTO, parentGeoAreaIdDTO)){
             return true;
         }
         else{
@@ -90,6 +87,14 @@ public class AddGeoAreaToAnotherGeoAreaController {
 
     public boolean saveGeoArea(GeographicalAreaDTO geoAreaDTO){
         return geographicalAreaService.saveGeoArea(GeographicalAreaMapper.mapToEntity(geoAreaDTO));
+    }
+
+    public boolean isInsertedInNull(GeoAreaIdDTO geoAreaIdDTO){
+        return geographicalAreaService.isInsertedInNull(geoAreaIdDTO);
+    }
+
+    public GeoAreaIdDTO getParentGeoAreaId(GeoAreaIdDTO geoAreaIdDTO){
+        return geographicalAreaService.getParentGeoAreaId(geoAreaIdDTO);
     }
 }
 
