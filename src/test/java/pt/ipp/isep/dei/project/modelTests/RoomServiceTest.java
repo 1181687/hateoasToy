@@ -6,11 +6,15 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.devices.DeviceType;
+import pt.ipp.isep.dei.project.model.devices.walltowelheater.WallTowelHeaterType;
 import pt.ipp.isep.dei.project.model.house.*;
 import pt.ipp.isep.dei.project.repositories.RoomRepository;
 import pt.ipp.isep.dei.project.services.RoomService;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -175,6 +179,28 @@ public class RoomServiceTest {
         Room result = roomService.getRoomById(b107.getId());
         // Assert
         assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void getAllDevicesOfRoom(){
+
+        Dimension dim = new Dimension(3, 5, 6);
+        Room bathroom = new Room("Bathroom", "room", 1, dim);
+        RoomId roomId = new RoomId("Bathroom");
+
+        WallTowelHeaterType deviceType = new WallTowelHeaterType();
+        String deviceName = "Wall Tower Heater";
+        Device wallTowerHeater = deviceType.createDevice(deviceName);
+
+        bathroom.addDevice(wallTowerHeater);
+        List<Device> expectedResult = Arrays.asList(wallTowerHeater);
+
+        when(roomRepository.findById(roomId)).thenReturn(Optional.of(bathroom));
+
+        List<Device> result = roomService.getAllDevicesOfRoom("Bathroom");
+
+        assertEquals(expectedResult,result);
+
     }
 }
 
