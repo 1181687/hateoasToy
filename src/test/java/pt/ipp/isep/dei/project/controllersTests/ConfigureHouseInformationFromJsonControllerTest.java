@@ -8,12 +8,6 @@ import pt.ipp.isep.dei.project.controllers.configurehouseinformationfromjsoncont
 import pt.ipp.isep.dei.project.model.ProjectFileReader;
 import pt.ipp.isep.dei.project.services.HouseService;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 class ConfigureHouseInformationFromJsonControllerTest {
 
     @Mock
@@ -30,7 +24,7 @@ class ConfigureHouseInformationFromJsonControllerTest {
         this.controller = new ConfigureHouseInformationFromJsonController(houseService);
     }
 
-    @Test
+/*    @Test
     void getNumberOfNotImportedRooms() throws FileNotFoundException {
         // Arrange
         String path = "datasets/geoAreas/json/JSONfile.json";
@@ -48,8 +42,7 @@ class ConfigureHouseInformationFromJsonControllerTest {
 
         // Assert
         assertEquals(expectedResult, result);
-
-    }
+    }*/
 
     @Test
     void getNumberOfNotImportedGrids() {
