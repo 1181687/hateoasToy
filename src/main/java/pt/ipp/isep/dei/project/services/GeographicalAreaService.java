@@ -55,16 +55,6 @@ public class GeographicalAreaService {
         return false;
     }
 
-    public boolean addParentGeoAreaToMainGeoArea(GeographicalArea geoArea, GeographicalArea parentGeoArea) {
-        if (Objects.isNull(geoArea.getInsertedIn())) {
-            geoArea.setInsertedIn(parentGeoArea);
-            geoAreaRepository.save(geoArea);
-            return true;
-        }
-        return false;
-    }
-
-
     /**
      * get a geographical area of a geographical areas list.
      *
@@ -78,16 +68,6 @@ public class GeographicalAreaService {
             }
         }
         return null;
-    }
-
-    /**
-     * get the name of a geographicalArea by the position selected on the list of geographical areas
-     *
-     * @param position
-     * @return the name of a geoArea that is on the position selected on the list.
-     */
-    public String getGeographicalAreaNameByPosition(int position) {
-        return this.geoAreaList.get(position).getId().getId();
     }
 
     /**
@@ -154,19 +134,6 @@ public class GeographicalAreaService {
             }
         }
         return false;
-    }
-
-    /**
-     * gets all GeoAreas in geoAreaRepository and map them to List<GeoAreaDtos>
-     *
-     * @return List<GeoAreaDtos>
-     */
-    public List<GeographicalAreaDTO> getAllGeoAreaDTO() {
-        List<GeographicalAreaDTO> geoAreaDTOList = new ArrayList<>();
-        for (GeographicalArea geoArea : this.geoAreaRepository.findAll()) {
-            geoAreaDTOList.add(GeographicalAreaMapper.mapToDTO(geoArea));
-        }
-        return geoAreaDTOList;
     }
 
     /**
@@ -262,11 +229,6 @@ public class GeographicalAreaService {
         return getAllSensors().getSensorById(id);
     }
 
-    public void updateRepository() {
-        for (GeographicalArea geoArea : this.geoAreaList) {
-            geoAreaRepository.save(geoArea);
-        }
-    }
 
     /**
      * Method that saves a list of geographical areas in the repo.
@@ -315,8 +277,41 @@ public class GeographicalAreaService {
         return this.geoAreaRepository.existsById(geoAreaId);
     }
 
-    public boolean saveGeoArea(GeographicalArea geoArea){
-        geoAreaRepository.save(geoArea);
-        return true;
+    public List<GeoAreaIdDTO> getAllGeoAreaIdDTO() {
+        List<GeoAreaIdDTO> geoAreaDTOIdList = new ArrayList<>();
+        for (GeographicalArea geoArea : this.geoAreaRepository.findAll()) {
+            geoAreaDTOIdList.add(GeoAreaIdMapper.mapToDTO(geoArea.getId()));
+        }
+        return geoAreaDTOIdList;
     }
+
+    public boolean isInsertedInNull(GeoAreaIdDTO geoAreaIdDTO) {
+        GeoAreaId geoAreaId = GeoAreaIdMapper.mapToEntity(geoAreaIdDTO);
+        GeographicalArea geoArea = this.geoAreaRepository.findById(geoAreaId).orElse(null);
+        if (Objects.isNull(geoArea.getInsertedIn())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public GeoAreaIdDTO getParentGeoAreaId(GeoAreaIdDTO geoAreaIdDTO){
+        GeoAreaId geoAreaId = GeoAreaIdMapper.mapToEntity(geoAreaIdDTO);
+        GeographicalArea geoArea = this.geoAreaRepository.findById(geoAreaId).orElse(null);
+        return GeoAreaIdMapper.mapToDTO(geoArea.getInsertedIn().getId());
+    }
+
+    public boolean addParentGeoAreaToMainGeoArea(GeoAreaIdDTO geoAreaIdDTO, GeoAreaIdDTO parentGeoAreaIdDTO) {
+        if (isInsertedInNull(geoAreaIdDTO)){
+            GeoAreaId geoAreaId = GeoAreaIdMapper.mapToEntity(geoAreaIdDTO);
+            GeoAreaId geoParentAreaId = GeoAreaIdMapper.mapToEntity(parentGeoAreaIdDTO);
+            GeographicalArea geoArea = geoAreaRepository.findById(geoAreaId).orElse(null);
+            GeographicalArea parentGeoArea = geoAreaRepository.findById(geoParentAreaId).orElse(null);
+            geoArea.setInsertedIn(parentGeoArea);
+            geoAreaRepository.save(geoArea);
+            return true;
+        }
+        return false;
+    }
+
 }

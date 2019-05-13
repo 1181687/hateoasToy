@@ -71,7 +71,12 @@ public final class GeographicalAreaMapper {
         GeographicalAreaType geoType = new GeographicalAreaType(geoAreaTypeId);
         Location loc = new Location(geographicalAreaDTO.getLatitude(), geographicalAreaDTO.getLongitude(), geographicalAreaDTO.getElevation());
         AreaShape areaShape = new AreaShape(geographicalAreaDTO.getWidth(), geographicalAreaDTO.getLength());
-        return new GeographicalArea(geographicalAreaDTO.getId(), geographicalAreaDTO.getDescription(), geoType, loc, areaShape);
+        GeographicalArea mainGeoArea = new GeographicalArea(geographicalAreaDTO.getId(), geographicalAreaDTO.getDescription(), geoType, loc, areaShape);
+        while (Objects.nonNull(geographicalAreaDTO.getParentGeoArea())) {
+            mainGeoArea.setInsertedIn((mapToEntity(geographicalAreaDTO.getParentGeoArea())));
+            geographicalAreaDTO.setParentGeoArea(null);
+        }
+        return mainGeoArea;
     }
 
     public static GeographicalAreaDTO mapToDTO(GeographicalArea geographicalArea) {
@@ -86,6 +91,7 @@ public final class GeographicalAreaMapper {
         geographicalAreaDTO.setType(geographicalArea.getId().getGeographicalAreaType().getTypeId());
         while (Objects.nonNull(geographicalArea.getInsertedIn())) {
             geographicalAreaDTO.setParentGeoArea(mapToDTO(geographicalArea.getInsertedIn()));
+            geographicalArea.setInsertedIn(null);
         }
         return geographicalAreaDTO;
     }

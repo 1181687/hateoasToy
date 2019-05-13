@@ -15,11 +15,17 @@ General Criteria:
 - All code, comments and documentation are in proper English.
 
 Specific Criteria:
-- given -
-- when -
-- then:
+- given - list of sensor readings for the house sensors. Sensors without a valid room shouldn’t be imported but
+registered in the application log.
 
-- but -
+- when - The user chooses option "1" from Menu (Administrator), then option "1" (House) and then option "15" (Import
+readings for house sensors);
+Then User inserts the name of the file to be imported and chooses the option "YES" in "Do you want to import
+these readings? (Y/N)"
+
+- then - Success message appears:
+
+"The file was imported with success."
 
 
 
@@ -27,8 +33,26 @@ Test Criteria:
 - All unit tests with "Process finished with exit code 0" message.
 
 
+"Reading was not imported because the following sensor id doesn't exist." - Sensor Id doesn't exist.
 
-Acceptance Tests:
+"Reading not imported due to invalid timestamp/date." - invalid time stamp
+
+"Reading not imported due to timestamp/date of reading being before starting date of sensor." - self explanatory
+
+
+"ERROR: Please insert a valid format." - only accepst .csv, .json, .xml file types
+
+"ERROR: There's no such file with that name." - when no file or directory is found when the user inputs the name of the
+file to be imported.
+
+"Sorry! The file is empty." - empty file
+
+"The file was partially imported. There were " + notImportedReadings + " readings that were not imported, due to invalid
+information." - When the file cannot be imported in full, with the number of readings that were not imported
+
+"Sorry! The file doesn't contain valid readings. It was not possible to import them." - self explanatory
+
+"The file was not imported." - when the file cannot be imported.
 
 
 ASSUMPTIONS:

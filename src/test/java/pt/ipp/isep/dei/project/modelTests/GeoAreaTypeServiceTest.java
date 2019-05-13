@@ -84,7 +84,7 @@ public class GeoAreaTypeServiceTest {
     }
 
     @Test
-    public void createGeoAreaType_WhenTypeDoesntExistInRepo_ShouldReturnTrue(){
+    public void createGeoAreaType_WhenTypeDoesntExistInRepo_ShouldReturnTrue() {
         //Arrange
         String typeId = "City";
         GeographicalAreaType geoAreaTypeId = new GeographicalAreaType(new GeoAreaTypeId(typeId));
@@ -97,7 +97,7 @@ public class GeoAreaTypeServiceTest {
     }
 
     @Test
-    public void createGeoAreaType_WhenTypeAlreadyExistsInRepo_ShouldReturnFalse(){
+    public void createGeoAreaType_WhenTypeAlreadyExistsInRepo_ShouldReturnFalse() {
         //Arrange
         String typeId = "City";
         when(geoAreaTypeRepository.existsById(typeId)).thenReturn(true);
