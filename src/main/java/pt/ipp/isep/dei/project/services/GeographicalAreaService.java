@@ -71,16 +71,6 @@ public class GeographicalAreaService {
     }
 
     /**
-     * get the name of a geographicalArea by the position selected on the list of geographical areas
-     *
-     * @param position
-     * @return the name of a geoArea that is on the position selected on the list.
-     */
-    public String getGeographicalAreaNameByPosition(int position) {
-        return this.geoAreaList.get(position).getId().getId();
-    }
-
-    /**
      * get the list of the geo area type by name.
      *
      * @param geoAreaType
@@ -144,19 +134,6 @@ public class GeographicalAreaService {
             }
         }
         return false;
-    }
-
-    /**
-     * gets all GeoAreas in geoAreaRepository and map them to List<GeoAreaDtos>
-     *
-     * @return List<GeoAreaDtos>
-     */
-    public List<GeographicalAreaDTO> getAllGeoAreaDTO() {
-        List<GeographicalAreaDTO> geoAreaDTOList = new ArrayList<>();
-        for (GeographicalArea geoArea : this.geoAreaRepository.findAll()) {
-            geoAreaDTOList.add(GeographicalAreaMapper.mapToDTO(geoArea));
-        }
-        return geoAreaDTOList;
     }
 
     /**
@@ -252,11 +229,6 @@ public class GeographicalAreaService {
         return getAllSensors().getSensorById(id);
     }
 
-    public void updateRepository() {
-        for (GeographicalArea geoArea : this.geoAreaList) {
-            geoAreaRepository.save(geoArea);
-        }
-    }
 
     /**
      * Method that saves a list of geographical areas in the repo.
@@ -303,15 +275,6 @@ public class GeographicalAreaService {
     public boolean geoAreaExists(GeoAreaIdDTO geoAreaIdDTO) {
         GeoAreaId geoAreaId = GeoAreaIdMapper.mapToEntity(geoAreaIdDTO);
         return this.geoAreaRepository.existsById(geoAreaId);
-    }
-
-    public boolean saveGeoArea(GeographicalArea geoArea) {
-        if (geoAreaRepository.existsById(geoArea.getId())) {
-            geoAreaRepository.save(geoArea);
-            return true;
-        } else {
-            return false;
-        }
     }
 
     public List<GeoAreaIdDTO> getAllGeoAreaIdDTO() {
