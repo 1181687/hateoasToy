@@ -96,7 +96,7 @@ class RoomSensorServiceTest {
         roomSensorService.saveSensors(roomSensorDTOList);
 
         // Assert
-        assertNotEquals(roomSensorDTOList,roomSensorList);
+        assertNotEquals(roomSensorDTOList, roomSensorList);
     }
 
     @Test
@@ -499,6 +499,6 @@ class RoomSensorServiceTest {
         when(roomSensorRepository.findAllByRoomId(kitchen.getId())).thenReturn(roomSensorList);
         List<RoomSensor> result = roomSensorService.getAllSensorsOfRoom(kitchen.getId());
         // Assert
-        assertEquals(roomSensorList,result);
+        assertEquals(roomSensorList, result);
     }
 }

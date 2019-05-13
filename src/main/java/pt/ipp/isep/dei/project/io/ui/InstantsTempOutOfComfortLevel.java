@@ -97,7 +97,7 @@ public class InstantsTempOutOfComfortLevel {
             endDate = InputValidator.getStringDate(label2);
 
             if (startDate.isAfter(endDate)) {
-                System.out.println("That is not a valid period. Please try again.\n");
+                System.out.println("This is not a valid period: the second date is before the first date. Please try again.\n");
                 flag = true;
             }
         }
