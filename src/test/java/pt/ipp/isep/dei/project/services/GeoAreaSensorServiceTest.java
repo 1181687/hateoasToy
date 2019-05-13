@@ -26,6 +26,7 @@ public class GeoAreaSensorServiceTest {
     private GeoAreaSensorRepository geoAreaSensorRepo;
     private GeoAreaSensor geoAreaSensor;
     private GeoAreaSensor geoAreaSensor1;
+    private Reading reading;
     @InjectMocks
     private GeoAreaSensorService geoAreaSensorService;
 
@@ -36,26 +37,35 @@ public class GeoAreaSensorServiceTest {
         // GeoAreaSensor
         Location location = new Location(41.1496, -8.6109, 97);
         SensorTypeId temperature = new SensorTypeId("Temperature");
-        LocalDateTime startDate = LocalDateTime.of(2018, 5, 2, 11, 45, 0);
+        LocalDateTime date = LocalDateTime.of(2019, 5, 2, 11, 45, 0);
 
         // GeoAreaId
         GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("City");
         GeographicalAreaType geographicalAreaType = new GeographicalAreaType(geoAreaTypeId);
         GeoAreaId geoAreaId = new GeoAreaId(location, "Espinho", geographicalAreaType);
 
-        this.geoAreaSensor = new GeoAreaSensor(new SensorId("s1"), "TT123123", startDate, temperature, location, "l/m2", geoAreaId);
+        this.geoAreaSensor = new GeoAreaSensor(new SensorId("s1"), "TT123123", date, temperature, location, "l/m2", geoAreaId);
+
+        // Readings
+        Reading readingSensor = new Reading(12.0, date);
+        this.geoAreaSensor.addReading(readingSensor);
+
 
         // GeoAreaSensor1
         Location location1 = new Location(41.1357, -8.6057, 99);
         SensorTypeId temperature1 = new SensorTypeId("Temperature");
-        LocalDateTime startDate1 = LocalDateTime.of(2017, 5, 2, 12, 45, 0);
+        LocalDateTime date1 = LocalDateTime.of(2016, 5, 2, 12, 45, 0);
 
         // GeoAreaId1
         GeoAreaTypeId geoAreaTypeId1 = new GeoAreaTypeId("City");
         GeographicalAreaType geographicalAreaType1 = new GeographicalAreaType(geoAreaTypeId1);
         GeoAreaId geoAreaId1 = new GeoAreaId(location, "Porto", geographicalAreaType1);
 
-        this.geoAreaSensor1 = new GeoAreaSensor(new SensorId("s2"), "TT111111", startDate1, temperature1, location1, "l/m2", geoAreaId1);
+        this.geoAreaSensor1 = new GeoAreaSensor(new SensorId("s2"), "TT111111", date1, temperature1, location1, "l/m2", geoAreaId1);
+
+        // Readings1
+        this.reading = new Reading(12.0, date1);
+        this.geoAreaSensor1.addReading(reading);
     }
 
     @Test
@@ -73,7 +83,7 @@ public class GeoAreaSensorServiceTest {
     }
 
     @Test
-    public void getSensorsWithReadingsInIntervalTest() {
+    public void getSensorsWithReadingsInIntervalTest_InsideInterval() {
 
         // Arrange
         List<GeoAreaSensor> geoAreaSensorList = new ArrayList<>();
@@ -83,19 +93,50 @@ public class GeoAreaSensorServiceTest {
 
         GeoAreaId geoAreaId = new GeoAreaId(location, "Espinho", geographicalAreaType);
         SensorTypeId sensorTypeId = new SensorTypeId("Temperature");
-        LocalDate startDate = LocalDate.of(1991, 4, 12);
-        LocalDate endDate = LocalDate.of(2019, 5, 6);
+        LocalDate startDate = LocalDate.of(2013, 4, 12);
+        LocalDate endDate = LocalDate.of(2017, 6, 6);
 
         geoAreaSensorList.add(geoAreaSensor);
+        geoAreaSensorList.add(geoAreaSensor1);
+
+        List<GeoAreaSensor> expectedResult = Collections.singletonList(geoAreaSensor1);
 
         when(geoAreaSensorRepo.findByGeoAreaIdAndSensorTypeId(any(GeoAreaId.class), any(SensorTypeId.class))).thenReturn(geoAreaSensorList);
 
         // Act
         List<GeoAreaSensor> result = geoAreaSensorService.getSensorsWithReadingsInInterval(geoAreaId, sensorTypeId, startDate, endDate);
-        result.add(geoAreaSensor);
 
         // Assert
-        assertEquals(geoAreaSensorList, result);
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void getSensorsWithReadingsInIntervalTest_OutOfTheInterval() {
+
+        // Arrange
+        Location location = new Location(41.1496, -8.6109, 97);
+        GeoAreaTypeId geoAreaTypeId = new GeoAreaTypeId("City");
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType(geoAreaTypeId);
+        SensorTypeId sensorTypeId = new SensorTypeId("Temperature");
+
+        GeoAreaId geoAreaId = new GeoAreaId(location, "Espinho", geographicalAreaType);
+
+        List<GeoAreaSensor> geoAreaSensorList = new ArrayList<>();
+        LocalDate startDate = LocalDate.of(2013, 4, 12);
+        LocalDate endDate = LocalDate.of(2017, 6, 6);
+
+        geoAreaSensorList.add(geoAreaSensor1);
+        geoAreaSensorList.add(geoAreaSensor);
+
+        List<GeoAreaSensor> expectedResult = Collections.singletonList(geoAreaSensor1);
+
+        when(geoAreaSensorRepo.findByGeoAreaIdAndSensorTypeId(any(GeoAreaId.class), any(SensorTypeId.class))).thenReturn(geoAreaSensorList);
+
+        // Act
+        List<GeoAreaSensor> result = geoAreaSensorService.getSensorsWithReadingsInInterval(geoAreaId, sensorTypeId, startDate, endDate);
+
+        // Assert
+        assertEquals(expectedResult.get(0).getId().getSensorId(), result.get(0).getId().getSensorId());
     }
 
     @Test
@@ -160,25 +201,20 @@ public class GeoAreaSensorServiceTest {
     @Test
     public void getLatestGeoAreaReadingInIntervalTest() {
         // Arrange
-        LocalDate startDate = LocalDate.of(1991, 4, 12);
-        LocalDate endDate = LocalDate.of(2019, 5, 6);
-
-        LocalDateTime date = LocalDateTime.of(1999, 1, 1, 0, 0, 0);
-        Reading reading = new Reading(12, date);
-
-        LocalDateTime date1 = LocalDateTime.of(2000, 1, 1, 0, 0, 0);
-        Reading reading1 = new Reading(12, date1);
+        LocalDate startDate = LocalDate.of(2013, 4, 12);
+        LocalDate endDate = LocalDate.of(2017, 6, 6);
 
         List<GeoAreaSensor> geoAreaSensorList = new ArrayList<>();
         geoAreaSensorList.add(geoAreaSensor);
-        geoAreaSensor.addReading(reading);
-        geoAreaSensor.addReading(reading1);
+        geoAreaSensorList.add(geoAreaSensor1);
+
+        Reading expectedResult = reading;
 
         // Act
         Reading result = geoAreaSensorService.getLatestGeoAreaReadingInInterval(geoAreaSensorList, startDate, endDate);
 
         // Assert
-        assertEquals(reading1, result);
+        assertEquals(expectedResult, result);
     }
 
     @Test
@@ -419,8 +455,6 @@ public class GeoAreaSensorServiceTest {
         List<LocalDate> expectedResult = new ArrayList<>();
         expectedResult.add(LocalDate.of(2017, 9, 30));
         expectedResult.add(LocalDate.of(2015, 9, 30));
-
-        LocalDate date = LocalDate.of(2016, 9, 30);
 
         Map<LocalDate, List<Double>> listHashMap = new HashMap<>();
         listHashMap.put(LocalDate.of(2017, 9, 30), doubleList);
