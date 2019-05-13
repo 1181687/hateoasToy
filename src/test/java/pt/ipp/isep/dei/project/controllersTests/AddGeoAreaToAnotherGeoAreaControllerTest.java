@@ -1,62 +1,58 @@
 package pt.ipp.isep.dei.project.controllersTests;
-/*
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.mockito.MockitoAnnotations;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
-import org.springframework.test.context.support.AnnotationConfigContextLoader;
-import pt.ipp.isep.dei.project.repositories.GeoAreaRepository;
+import pt.ipp.isep.dei.project.model.geographicalarea.*;
 import pt.ipp.isep.dei.project.controllers.AddGeoAreaToAnotherGeoAreaController;
-import pt.ipp.isep.dei.project.io.ui.Main;
 import pt.ipp.isep.dei.project.model.Location;
-import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.services.GeographicalAreaService;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.ArrayList;
+import java.util.List;
 
-@SpringBootTest
-@ContextConfiguration(classes = {Main.class},
-        loader = AnnotationConfigContextLoader.class)
-@SpringJUnitConfig(AddGeoAreaToAnotherGeoAreaControllerTest.Config.class)
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.when;
+
 public class AddGeoAreaToAnotherGeoAreaControllerTest {
-    private AddGeoAreaToAnotherGeoAreaController controller;
-    @InjectMocks
+    @Mock
     private GeographicalAreaService geographicalAreaService;
     private GeographicalArea cityOfPorto;
     private GeographicalArea parishOfBonfim;
-    private GeographicalArea cityOfBraga;
+    private GeographicalArea districtOfPorto;
 
-    @Mock
-    private GeoAreaRepository geoAreaRepository;
+    private AddGeoAreaToAnotherGeoAreaController controller;
+
 
     @BeforeEach
     public void StartUp() {
+        MockitoAnnotations.initMocks(this);
+        controller = new AddGeoAreaToAnotherGeoAreaController(geographicalAreaService);
         // Geographical Area Types
-        GeographicalAreaType city = new GeographicalAreaType("City");
-        GeographicalAreaType parish = new GeographicalAreaType("Parish");
-
+        GeographicalAreaType city = new GeographicalAreaType(new GeoAreaTypeId("City"));
+        GeographicalAreaType parish = new GeographicalAreaType(new GeoAreaTypeId("Parish"));
+        GeographicalAreaType district = new GeographicalAreaType(new GeoAreaTypeId("District"));
         // Geographical Area
         Location location = new Location(41.178553, -8.608035, 111);
-        AreaShape areaShape = new AreaShape(0.261, 0.249, location);
+        AreaShape areaShape = new AreaShape(0.261, 0.249);
         cityOfPorto = new GeographicalArea("Porto", "City of Porto", city, location, areaShape);
-        geographicalAreaService.addGeoArea(cityOfPorto);
+
+        //geographicalAreaService.addGeoArea(cityOfPorto);
+
         Location location1 = new Location(40.178553, -8.208035, 112);
-        AreaShape areaShape1 = new AreaShape(0.161, 0.149, location1);
+        AreaShape areaShape1 = new AreaShape(0.161, 0.149);
         parishOfBonfim = new GeographicalArea("Bonfim", "Parish of Bonfim", parish, location1, areaShape1);
         parishOfBonfim.setInsertedIn(cityOfPorto);
-        geographicalAreaService.addGeoArea(parishOfBonfim);
-        Location location2 = new Location(21.178553, -7.608035, 100);
-        AreaShape areaShape2 = new AreaShape(0.191, 0.249, location2);
-        cityOfBraga = new GeographicalArea("Braga", "City of Braga", city, location2, areaShape2);
 
-        // Controller
-        controller = new AddGeoAreaToAnotherGeoAreaController(geographicalAreaService);
+        //geographicalAreaService.addGeoArea(parishOfBonfim);
+
+        Location location2 = new Location(42.178553, -8.708035, 111);
+        AreaShape areaShape2 = new AreaShape(0.761, 0.549);
+        districtOfPorto = new GeographicalArea("Porto", "Distrito do Porto", district, location2, areaShape2);
+
     }
 
     @Configuration
@@ -64,87 +60,74 @@ public class AddGeoAreaToAnotherGeoAreaControllerTest {
     }
 
     @Test
-    public void getListToStringTest() {
-        // Arrange
-        String expectResult = "1 - ID: Porto, Description: City of Porto, Type: City, Latitude: 41.178553, Longitude: -8.608035\n" +
-                "2 - ID: Bonfim, Description: Parish of Bonfim, Type: Parish, Latitude: 40.178553, Longitude: -8.208035, Inserted in: City City of Porto\n";
+    public void getGeoAreaIdDTOTest() {
+        //arrange
+        List<GeoAreaIdDTO> geoAreaIdDTOS = new ArrayList<>();
+        geoAreaIdDTOS.add(GeoAreaIdMapper.mapToDTO(cityOfPorto.getId()));
+        geoAreaIdDTOS.add(GeoAreaIdMapper.mapToDTO(parishOfBonfim.getId()));
 
-        // Act
-        String result = controller.getListToString(true);
+        when(geographicalAreaService.getAllGeoAreaIdDTO()).thenReturn(geoAreaIdDTOS);
 
-        // Assert
-        assertEquals(expectResult, result);
+        List<GeoAreaIdDTO>expectedResult = new ArrayList<>();
+        expectedResult.add(GeoAreaIdMapper.mapToDTO(cityOfPorto.getId()));
+        expectedResult.add(GeoAreaIdMapper.mapToDTO(parishOfBonfim.getId()));
+        //act
+        List<GeoAreaIdDTO> result = controller.getGeoAreaIdDTO();
+        //assert
+        assertEquals(expectedResult,result);
     }
 
     @Test
-    public void getGeoAreaInTheListTest() {
-        // Arrange
-        GeographicalArea expectedResult = parishOfBonfim;
+    public void isInsertedInNullTest_shouldReturnTrue() {
+        //arrange
+        GeoAreaIdDTO cityOfPortoIdDTO = GeoAreaIdMapper.mapToDTO(cityOfPorto.getId());
+        boolean expectedResult = true;
 
-        // Act
-        GeographicalArea result = controller.getGeoAreaInTheList(1);
-
-        // Assert
-        assertEquals(expectedResult, result);
-    }
-
-    @Test
-    public void checkIfGeoAreaDoesntHaveAnInsertedAreaPositiveTest() {
-        // Act
-        boolean result = controller.isGeoAreaInsertedinAnotherArea(cityOfPorto);
-
-        // Assert
+        when(geographicalAreaService.isInsertedInNull(cityOfPortoIdDTO)).thenReturn(true);
+        //act
+        boolean result = controller.isInsertedInNull(cityOfPortoIdDTO);
+        //assert
         assertTrue(result);
     }
 
     @Test
-    public void checkIfGeoAreaDoesntHaveAnInsertedAreaNegativeTest() {
-        // Act
-        boolean result = controller.isGeoAreaInsertedinAnotherArea(parishOfBonfim);
+    public void getParentGeoAreaIdTest_shouldReturnNull() {
+        //arrange
+        GeoAreaIdDTO portoCityIdDTO = GeoAreaIdMapper.mapToDTO(cityOfPorto.getId());
+        when(geographicalAreaService.getParentGeoAreaId(portoCityIdDTO)).thenReturn(null);
 
-        // Assert
-        assertFalse(result);
+        GeoAreaIdDTO expectedResult = null;
+        //act
+        GeoAreaIdDTO result = controller.getParentGeoAreaId(portoCityIdDTO);
+        //assert
+        assertEquals(expectedResult,result);
     }
 
     @Test
-    public void addGeoAreaInASpecificPositionTest() {
-        // Arrange
-        controller.addGeoAreaInASpecificPosition(0, cityOfBraga);
+    public void getParentGeoAreaIdTest_shouldReturnParishOfBonfim() {
+        //arrange
+        GeoAreaIdDTO portoCityIdDTO = GeoAreaIdMapper.mapToDTO(cityOfPorto.getId());
+        GeoAreaIdDTO parishOfBonfimIdDTO = GeoAreaIdMapper.mapToDTO(parishOfBonfim.getId());
+        when(geographicalAreaService.getParentGeoAreaId(parishOfBonfimIdDTO)).thenReturn(portoCityIdDTO);
 
-        GeographicalArea expectedResult = cityOfBraga;
-
-        // Act
-        GeographicalArea result = geographicalAreaService.getGeoAreaList().get(0);
-
-        // Assert
-        assertEquals(expectedResult, result);
+        GeoAreaIdDTO expectedResult = portoCityIdDTO;
+        //act
+        GeoAreaIdDTO result = controller.getParentGeoAreaId(parishOfBonfimIdDTO);
+        //assert
+        assertEquals(expectedResult,result);
     }
 
-    @Test
-    public void removeGeoAreaTest() {
-        // Arrange
-        controller.removeGeoArea(cityOfPorto);
+    /*@Test
+    public void addParentGeoAreaToMainGeoAreaTest(){
+        //arrange
+        GeoAreaIdDTO portoCityIdDTO = GeoAreaIdMapper.mapToDTO(cityOfPorto.getId());
+        GeoAreaIdDTO portoDistrictIdDTO = GeoAreaIdMapper.mapToDTO(districtOfPorto.getId());
 
-        GeographicalArea expectedResult = parishOfBonfim;
+        when(geographicalAreaService.addParentGeoAreaToMainGeoArea(portoCityIdDTO,portoDistrictIdDTO)).thenReturn(true);
 
-        // Act
-        GeographicalArea result = geographicalAreaService.getGeoAreaList().get(0);
-
-        // Assert
-        assertEquals(expectedResult, result);
-    }
-
-    @Test
-    public void testGetSizeList() {
-        // Arrange
-        int expectedResult = 2;
-
-        // Act
-        int result = controller.getListSize();
-
-        // Assert
-        assertEquals(expectedResult, result);
-    }
+        //act
+        boolean result = controller.addParentGeoAreaToMainGeoArea(portoCityIdDTO,portoCityIdDTO);
+        //assert
+        assertTrue(result);
+    }*/
 }
-
- */

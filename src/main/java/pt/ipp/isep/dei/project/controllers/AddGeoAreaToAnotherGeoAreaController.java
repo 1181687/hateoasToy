@@ -10,7 +10,7 @@ public class AddGeoAreaToAnotherGeoAreaController {
     private GeographicalAreaService geographicalAreaService;
 
     /**
-     * construtor of the controller.
+     * constructor of the controller.
      * @param geographicalAreaService
      */
     public AddGeoAreaToAnotherGeoAreaController(GeographicalAreaService geographicalAreaService) {

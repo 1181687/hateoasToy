@@ -295,10 +295,14 @@ public class GeographicalAreaService {
         }
     }
 
-    public GeoAreaIdDTO getParentGeoAreaId(GeoAreaIdDTO geoAreaIdDTO){
+    public GeoAreaIdDTO getParentGeoAreaId(GeoAreaIdDTO geoAreaIdDTO) {
         GeoAreaId geoAreaId = GeoAreaIdMapper.mapToEntity(geoAreaIdDTO);
         GeographicalArea geoArea = this.geoAreaRepository.findById(geoAreaId).orElse(null);
-        return GeoAreaIdMapper.mapToDTO(geoArea.getInsertedIn().getId());
+        if (Objects.isNull(geoArea) || Objects.isNull(geoArea.getInsertedIn())) {
+            return null;
+        } else {
+            return GeoAreaIdMapper.mapToDTO(geoArea.getInsertedIn().getId());
+        }
     }
 
     public boolean addParentGeoAreaToMainGeoArea(GeoAreaIdDTO geoAreaIdDTO, GeoAreaIdDTO parentGeoAreaIdDTO) {
