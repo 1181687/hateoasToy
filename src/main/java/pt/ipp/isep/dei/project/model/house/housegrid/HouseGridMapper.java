@@ -4,6 +4,8 @@ import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.RoomDTO;
 import pt.ipp.isep.dei.project.model.house.RoomMapper;
 
+import java.util.Objects;
+
 public final class HouseGridMapper {
 
     protected HouseGridMapper() {
@@ -25,5 +27,21 @@ public final class HouseGridMapper {
         return houseGrid;
     }
 
+    /**
+     * Method that creates a HouseGridDTO based on a existing houseGrid.
+     *
+     * @param houseGrid Room to be used.
+     * @return HouseGridDTO.
+     */
+    public static HouseGridDTO mapToDTO(HouseGrid houseGrid) {
+        if (Objects.isNull(houseGrid)) {
+            return null;
+        }
+        HouseGridDTO houseGridDTO = new HouseGridDTO();
+        houseGridDTO.setName(houseGrid.getName());
+
+        return houseGridDTO;
+
+    }
 }
 

@@ -1,29 +1,30 @@
 package pt.ipp.isep.dei.project.controllers;
 
 
-import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridDTO;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridMapper;
+import pt.ipp.isep.dei.project.services.HouseGridService;
 
 import java.util.List;
 
 
 public class CreateHouseGridController {
 
-    private House house;
+    private HouseGridService houseGridService;
 
-    public CreateHouseGridController(House house) {
-        this.house = house;
+    public CreateHouseGridController(HouseGridService houseGridService) {
+        // this.house = house;
+        this.houseGridService = houseGridService;
     }
 
     /**
-     * Get method.
+     * Gets List HouseGridDto.
      *
-     * @return mHouseGridList.
+     * @return HouseGridDTOList.
      */
-    public List<HouseGrid> getHouseGridList() {
-        return house.getHouseGridList();
+    public List<HouseGridDTO> getHouseGridList() {
+        return houseGridService.getAllHouseGridDTO();
     }
 
     /**
@@ -34,7 +35,7 @@ public class CreateHouseGridController {
      */
     public boolean createANewHouseGrid(HouseGridDTO gridDTO) {
         HouseGrid newGrid = HouseGridMapper.mapToEntity(gridDTO);
-        return house.createHouseGrid(newGrid);
+        return houseGridService.newHouseGrid(newGrid);
     }
 
 }
