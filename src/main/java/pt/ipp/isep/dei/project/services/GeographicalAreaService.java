@@ -306,16 +306,19 @@ public class GeographicalAreaService {
     }
 
     public boolean addParentGeoAreaToMainGeoArea(GeoAreaIdDTO geoAreaIdDTO, GeoAreaIdDTO parentGeoAreaIdDTO) {
-        if (isInsertedInNull(geoAreaIdDTO)){
+        if (isInsertedInNull(geoAreaIdDTO)) {
             GeoAreaId geoAreaId = GeoAreaIdMapper.mapToEntity(geoAreaIdDTO);
             GeoAreaId geoParentAreaId = GeoAreaIdMapper.mapToEntity(parentGeoAreaIdDTO);
             GeographicalArea geoArea = geoAreaRepository.findById(geoAreaId).orElse(null);
             GeographicalArea parentGeoArea = geoAreaRepository.findById(geoParentAreaId).orElse(null);
-            geoArea.setInsertedIn(parentGeoArea);
-            geoAreaRepository.save(geoArea);
-            return true;
+            if (Objects.nonNull(parentGeoArea.getInsertedIn()) && parentGeoArea.getInsertedIn().equals(geoArea)) {
+                return false;
+            } else {
+                geoArea.setInsertedIn(parentGeoArea);
+                geoAreaRepository.save(geoArea);
+                return true;
+            }
         }
         return false;
     }
-
 }
