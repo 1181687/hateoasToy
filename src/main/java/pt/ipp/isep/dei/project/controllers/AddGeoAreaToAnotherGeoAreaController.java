@@ -11,30 +11,26 @@ public class AddGeoAreaToAnotherGeoAreaController {
 
     /**
      * constructor of the controller.
+     *
      * @param geographicalAreaService
      */
     public AddGeoAreaToAnotherGeoAreaController(GeographicalAreaService geographicalAreaService) {
         this.geographicalAreaService = geographicalAreaService;
     }
 
-    public List<GeoAreaIdDTO> getGeoAreaIdDTO(){
+    public List<GeoAreaIdDTO> getGeoAreaIdDTO() {
         return geographicalAreaService.getAllGeoAreaIdDTO();
     }
 
-    public boolean addParentGeoAreaToMainGeoArea(GeoAreaIdDTO geoAreaIdDTO, GeoAreaIdDTO parentGeoAreaIdDTO){
-        if(geographicalAreaService.addParentGeoAreaToMainGeoArea(geoAreaIdDTO, parentGeoAreaIdDTO)){
-            return true;
-        }
-        else{
-            return false;
-        }
+    public boolean addParentGeoAreaToMainGeoArea(GeoAreaIdDTO geoAreaIdDTO, GeoAreaIdDTO parentGeoAreaIdDTO) {
+        return geographicalAreaService.addParentGeoAreaToMainGeoArea(geoAreaIdDTO, parentGeoAreaIdDTO);
     }
 
-    public boolean isInsertedInNull(GeoAreaIdDTO geoAreaIdDTO){
+    public boolean isInsertedInNull(GeoAreaIdDTO geoAreaIdDTO) {
         return geographicalAreaService.isInsertedInNull(geoAreaIdDTO);
     }
 
-    public GeoAreaIdDTO getParentGeoAreaId(GeoAreaIdDTO geoAreaIdDTO){
+    public GeoAreaIdDTO getParentGeoAreaId(GeoAreaIdDTO geoAreaIdDTO) {
         return geographicalAreaService.getParentGeoAreaId(geoAreaIdDTO);
     }
 }

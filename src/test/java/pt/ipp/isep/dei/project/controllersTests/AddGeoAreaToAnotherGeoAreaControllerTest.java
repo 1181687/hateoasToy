@@ -117,7 +117,7 @@ public class AddGeoAreaToAnotherGeoAreaControllerTest {
         assertEquals(expectedResult,result);
     }
 
-    /*@Test
+    @Test
     public void addParentGeoAreaToMainGeoAreaTest(){
         //arrange
         GeoAreaIdDTO portoCityIdDTO = GeoAreaIdMapper.mapToDTO(cityOfPorto.getId());
@@ -126,8 +126,8 @@ public class AddGeoAreaToAnotherGeoAreaControllerTest {
         when(geographicalAreaService.addParentGeoAreaToMainGeoArea(portoCityIdDTO,portoDistrictIdDTO)).thenReturn(true);
 
         //act
-        boolean result = controller.addParentGeoAreaToMainGeoArea(portoCityIdDTO,portoCityIdDTO);
+        boolean result = controller.addParentGeoAreaToMainGeoArea(portoCityIdDTO,portoDistrictIdDTO);
         //assert
         assertTrue(result);
-    }*/
+    }
 }
