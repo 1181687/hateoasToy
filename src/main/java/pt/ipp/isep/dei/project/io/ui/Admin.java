@@ -21,12 +21,13 @@ public class Admin {
     private RoomSensorService roomSensorService;
     private SensorTypeService sensorTypeService;
     private RoomService roomService;
+    private HouseGridService houseGridService;
 
 
     public Admin(GeographicalAreaService geographicalAreaService,
                  GeoAreaTypeService geoAreaTypeService, SensorTypeList sensorTypeList, PowerSourceTypeList powerSourceTypeList,
                  RoomList roomList, HouseService houseService, GeoAreaSensorService geoAreaSensorService, RoomSensorService roomSensorService,
-                 SensorTypeService sensorTypeService, RoomService roomService, House house) {
+                 SensorTypeService sensorTypeService, RoomService roomService, House house, HouseGridService houseGridService) {
         this.geographicalAreaService = geographicalAreaService;
         this.geoAreaTypeService = geoAreaTypeService;
         this.sensorTypeList = sensorTypeList;
@@ -38,6 +39,7 @@ public class Admin {
         this.roomSensorService = roomSensorService;
         this.sensorTypeService = sensorTypeService;
         this.roomService = roomService;
+        this.houseGridService = houseGridService;
     }
 
 
@@ -186,7 +188,7 @@ public class Admin {
 
             switch (option) {
                 case 1:
-                    CreateHouseGrid ui130 = new CreateHouseGrid(house);
+                    CreateHouseGrid ui130 = new CreateHouseGrid(houseGridService);
                     ui130.run();
                     break;
                 case 2:
