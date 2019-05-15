@@ -1,0 +1,36 @@
+NUMBER: US633
+
+DESCRIPTION: As a Regular User, I want to get the day with the highest temperature amplitude in the house area
+in a given period.
+
+TEAM MEMBERS: Developer - Gabriela Xavier; QA - Ricardo Araújo;
+
+ACCEPTANCE CRITERIA:
+
+General Criteria:
+- Correct Sequence and Class Diagrams.
+- JavaDoc documentation in both code and tests.
+- JUnit conventions in code and tests. (eg. tests should be named like this:
+                                        testNameOfTheMethod_conditionThatIsBeingTested_expectedResult).
+- All code, comments and documentation are in proper English.
+
+
+Specific Criteria:
+- given -
+
+- when -
+
+- then -
+
+- but - The following messages are displayed:
+
+
+
+
+Test Criteria:
+- All unit tests with "Process finished with exit code 0" message;
+
+
+
+ASSUMPTIONS:
+-
