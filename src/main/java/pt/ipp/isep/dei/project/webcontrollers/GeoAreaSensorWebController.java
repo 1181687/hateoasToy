@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-public class AddSensorToGeoAreaControllerWEB {
+public class GeoAreaSensorWebController {
     @Autowired
     private GeographicalAreaService geographicalAreaService;
     @Autowired
@@ -27,11 +27,7 @@ public class AddSensorToGeoAreaControllerWEB {
     @Autowired
     private GeoAreaSensorService geoAreaSensorService;
 
-    public boolean isGeoAreaRepositoryEmpty() {
-        return this.geographicalAreaService.isGeoAreaRepositoryEmpty();
-    }
-
-    @GetMapping("/GeoAreas")
+    @GetMapping("/geoareas")
     public List<GeographicalAreaDTO> getGeographicalAreaDTOList() {
         List<GeographicalArea> geoAreaList = this.geographicalAreaService.getGeoAreaList();
         List<GeographicalAreaDTO> geographicalAreaDTOList = new ArrayList<>();
@@ -53,7 +49,7 @@ public class AddSensorToGeoAreaControllerWEB {
         return sensorTypeDTOList;
     }
 
-    @PostMapping("/GeoAreaSensor")
+    @PostMapping("/geoareasensors")
     public ResponseEntity<?> addGeoAreaSensor(@RequestBody GeoAreaSensorDTO geoAreaSensorDTO) {
         if (this.geoAreaSensorService.addGeoAreaSensor(GeoAreaSensorMapper.mapToEntity(geoAreaSensorDTO))){
             return new ResponseEntity<>("Sensor created", HttpStatus.OK);
@@ -65,5 +61,6 @@ public class AddSensorToGeoAreaControllerWEB {
     public List<GeoAreaSensorDTO> getGeoAreaSensors() {
         return this.geoAreaSensorService.getGeoAreaSensors();
     }
+
 
 }
