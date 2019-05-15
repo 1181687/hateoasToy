@@ -1,0 +1,36 @@
+NUMBER: US010
+
+DESCRIPTION: US010 -  As an Administrator, I want to deactivate a sensor in a geographical area, so that
+it will no longer be used. It can be reactivated later.
+
+TEAM MEMBERS: Developer - Sónia Silva; QA - Joana Figueira;
+
+ACCEPTANCE CRITERIA:
+
+General Criteria:
+- Correct Sequence and Class Diagrams.
+- JavaDoc documentation in both code and tests.
+- JUnit conventions in code and tests. (eg. tests should be named like this:
+                                        testNameOfTheMethod_conditionThatIsBeingTested_expectedResult).
+- All code, comments and documentation are in proper English.
+
+Specific Criteria:
+- given -
+
+- when -
+
+- then -
+
+- but - The following messages are displayed:
+
+
+Test Criteria:
+- All unit tests with "Process finished with exit code 0" message;
+
+
+Acceptance tests:
+
+  Test_scenario1:
+-
+
+ASSUMPTIONS:

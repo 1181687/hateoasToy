@@ -71,7 +71,7 @@ measurements in a specified number of days.
 "There are no rooms in the house. Please create a new room." - room list is empty
 
 
-/// Dates
+// Dates
  "That is not a valid period. Please try again. - When the choosen period is not valid (the end date is before the start
   date).
  "There are no dates without Comfort temperature level." - When the choosen period does not have dates with comfort
