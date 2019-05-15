@@ -317,4 +317,12 @@ public class GeoAreaSensorService {
 
         return !rightGeoAreaSensor.getDailyMeasurement(givenDay).isEmpty();
     }*/
+
+    public List<GeoAreaSensorDTO> getGeoAreaSensors(){
+        List<GeoAreaSensorDTO> geoAreaSensorDTOList = new ArrayList<>();
+        for (GeoAreaSensor geoAreaSensor : this.geoAreaSensorRepo.findAll()) {
+            geoAreaSensorDTOList.add(GeoAreaSensorMapper.mapToDTO(geoAreaSensor));
+        }
+        return geoAreaSensorDTOList;
+    }
 }
