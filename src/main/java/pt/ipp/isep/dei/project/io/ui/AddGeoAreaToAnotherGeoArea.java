@@ -23,13 +23,13 @@ public class AddGeoAreaToAnotherGeoArea {
     public String getGeoAreaDTOListToString(boolean useCriteria) {
         StringBuilder geoAreaListContent = new StringBuilder();
         int numberOfGeoArea = 1;
-        for (GeoAreaIdDTO geoAreaIdDto:geoAreaIdDTOList) {
+        for (GeoAreaIdDTO geoAreaIdDto : geoAreaIdDTOList) {
             geoAreaListContent.append(numberOfGeoArea + " - Id: " + geoAreaIdDto.getId());
             geoAreaListContent.append(", Type: " + geoAreaIdDto.getGeoAreaType());
             geoAreaListContent.append(", Latitude: " + geoAreaIdDto.getLocationDTO().getLatitude());
             geoAreaListContent.append(", Longitude: " + geoAreaIdDto.getLocationDTO().getLongitude());
             if (useCriteria && !controller.isInsertedInNull(geoAreaIdDto)) {
-                geoAreaListContent.append(", Inserted in: " + controller.getParentGeoAreaId(geoAreaIdDto).getId()+", "+ controller.getParentGeoAreaId(geoAreaIdDto).getGeoAreaType());
+                geoAreaListContent.append(", Inserted in: " + controller.getParentGeoAreaId(geoAreaIdDto).getId() + ", " + controller.getParentGeoAreaId(geoAreaIdDto).getGeoAreaType());
             }
             geoAreaListContent.append("\n");
             numberOfGeoArea++;
@@ -37,20 +37,23 @@ public class AddGeoAreaToAnotherGeoArea {
         return geoAreaListContent.toString();
     }
 
-    public void run(){
+    public void run() {
         String label1 = "Please choose the number that corresponds to the geographical area you wish to include in " +
                 "another geographical area:\n" + getGeoAreaDTOListToString(true);
-        int firstOption = InputValidator.getIntRange(label1, 1, geoAreaIdDTOList.size())-1;
+        int firstOption = InputValidator.getIntRange(label1, 1, geoAreaIdDTOList.size()) - 1;
         GeoAreaIdDTO mainGeoAreaIdDTO = geoAreaIdDTOList.get(firstOption);
         if (controller.isInsertedInNull(mainGeoAreaIdDTO)) {
             geoAreaIdDTOList.remove(geoAreaIdDTOList.get(firstOption));
-            String label2 = ("Choose the number of the geographical area in which the previous geographical area is included.\n"+
+            String label2 = ("Choose the number of the geographical area in which the previous geographical area is included.\n" +
                     getGeoAreaDTOListToString(false));
-            int secondOption = InputValidator.getIntRange(label2, 1, geoAreaIdDTOList.size())-1;
+            int secondOption = InputValidator.getIntRange(label2, 1, geoAreaIdDTOList.size()) - 1;
             GeoAreaIdDTO parentGeoAreaIdDTO = geoAreaIdDTOList.get(secondOption);
-            controller.addParentGeoAreaToMainGeoArea(mainGeoAreaIdDTO, parentGeoAreaIdDTO);
-            System.out.println("Success!\n");
-           } else
-            System.out.println("The geographical area you have chosen is already included in another area. Try another geographical area.");
+            if (controller.addParentGeoAreaToMainGeoArea(mainGeoAreaIdDTO, parentGeoAreaIdDTO)) {
+                System.out.println("Success!\n");
+            } else
+                System.out.println("It was not possible to insert the first selected geographical area in the second one. " +
+                        "It happened because the geographical area you have chosen is already\nincluded in another area or because the first chosen geographical" +
+                        "area includes the second one chosen. Try another geographical area.\n");
+        }
     }
 }

@@ -295,23 +295,30 @@ public class GeographicalAreaService {
         }
     }
 
-    public GeoAreaIdDTO getParentGeoAreaId(GeoAreaIdDTO geoAreaIdDTO){
+    public GeoAreaIdDTO getParentGeoAreaId(GeoAreaIdDTO geoAreaIdDTO) {
         GeoAreaId geoAreaId = GeoAreaIdMapper.mapToEntity(geoAreaIdDTO);
         GeographicalArea geoArea = this.geoAreaRepository.findById(geoAreaId).orElse(null);
-        return GeoAreaIdMapper.mapToDTO(geoArea.getInsertedIn().getId());
+        if (Objects.isNull(geoArea) || Objects.isNull(geoArea.getInsertedIn())) {
+            return null;
+        } else {
+            return GeoAreaIdMapper.mapToDTO(geoArea.getInsertedIn().getId());
+        }
     }
 
     public boolean addParentGeoAreaToMainGeoArea(GeoAreaIdDTO geoAreaIdDTO, GeoAreaIdDTO parentGeoAreaIdDTO) {
-        if (isInsertedInNull(geoAreaIdDTO)){
+        if (isInsertedInNull(geoAreaIdDTO)) {
             GeoAreaId geoAreaId = GeoAreaIdMapper.mapToEntity(geoAreaIdDTO);
             GeoAreaId geoParentAreaId = GeoAreaIdMapper.mapToEntity(parentGeoAreaIdDTO);
             GeographicalArea geoArea = geoAreaRepository.findById(geoAreaId).orElse(null);
             GeographicalArea parentGeoArea = geoAreaRepository.findById(geoParentAreaId).orElse(null);
-            geoArea.setInsertedIn(parentGeoArea);
-            geoAreaRepository.save(geoArea);
-            return true;
+            if (Objects.nonNull(parentGeoArea.getInsertedIn()) && parentGeoArea.getInsertedIn().equals(geoArea)) {
+                return false;
+            } else {
+                geoArea.setInsertedIn(parentGeoArea);
+                geoAreaRepository.save(geoArea);
+                return true;
+            }
         }
         return false;
     }
-
 }

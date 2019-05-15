@@ -81,6 +81,10 @@ public class Main {
     @Autowired
     private SensorsService sensorsService;
 
+    //HouseGrid Repository Injection
+    @Autowired
+    private HouseGridService houseGridService;
+
 
     public static void main(String[] args) {
 
@@ -105,7 +109,7 @@ public class Main {
             //UI levels
             Admin admin = new Admin(geographicalAreaService, geoAreaTypeService, sensorTypeList, powerSourceTypeList,
                     houseEdificioB.getRoomList(), houseService, geoAreaSensorService, roomSensorService,
-                    sensorTypeService, roomService, houseEdificioB);
+                    sensorTypeService, roomService, houseEdificioB, houseGridService);
             RegularUser regularUser = new RegularUser(geoAreaTypeService, geographicalAreaService, sensorTypeList, houseService, roomService, roomSensorService);
             PowerUser powerUser = new PowerUser(houseService, roomService, sensorsService);
             RoomOwner roomOwner = new RoomOwner(houseService, roomService, sensorsService);
